@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerTube", "InnerTube\InnerTube.csproj", "{F091E90A-539C-46D6-8EF0-37B96CAE6FC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerTube.Tests", "InnerTube.Tests\InnerTube.Tests.csproj", "{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F091E90A-539C-46D6-8EF0-37B96CAE6FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F091E90A-539C-46D6-8EF0-37B96CAE6FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F091E90A-539C-46D6-8EF0-37B96CAE6FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F091E90A-539C-46D6-8EF0-37B96CAE6FC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
