@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Runtime.Caching;
 using System.Text;
+using InnerTube.Exceptions;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
@@ -71,6 +72,13 @@ public class InnerTube
 		JObject playerResponse = await MakeRequest(includeHls ? RequestClient.IOS : RequestClient.ANDROID, "player",
 			postData,
 			language, region, true);
+		string playabilityStatus = playerResponse.GetFromJsonPath<string>("playabilityStatus.status")!;
+		if (playabilityStatus != "OK")
+		{
+			throw new PlayerException(playabilityStatus, 
+			playerResponse.GetFromJsonPath<string>("playabilityStatus.reason")!,
+			playerResponse.GetFromJsonPath<string>("playabilityStatus.reasonTitle")!);
+		}
 		InnerTubePlayer player = new(playerResponse);
 		PlayerCache.Set(cacheId, player, DateTimeOffset.Now.AddSeconds(player.ExpiresInSeconds).AddSeconds(-player.Details.Length.TotalSeconds));
 		return player;

@@ -2,7 +2,7 @@ using System.Text;
 
 namespace InnerTube.Tests;
 
-public class Tests
+public class PlayerTests
 {
 	private InnerTube _innerTube;
 
@@ -107,5 +107,15 @@ public class Tests
 
 
 		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("V6kJKxvbgZ0", true, false, Description = "Age restricted video")]
+	[TestCase("LACbVhgtx9I", false, false, Description = "Video that includes self-harm topics")]
+	public void FailPlayer(string videoId, bool contentCheckOk, bool includeHls)
+	{
+		Assert.Catch(() =>
+		{
+			InnerTubePlayer _ = _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls).Result;
+		});
 	}
 }
