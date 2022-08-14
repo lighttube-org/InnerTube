@@ -45,6 +45,8 @@ public class InnerTube
 		hrm.Headers.Add("Origin", "https://www.youtube.com");
 
 		HttpResponseMessage ytPlayerRequest = await HttpClient.SendAsync(hrm);
+		if (!ytPlayerRequest.IsSuccessStatusCode)
+			throw new InnerTubeException($"Unexpected status code: [{(int)ytPlayerRequest.StatusCode}] {ytPlayerRequest.StatusCode}");
 		return JObject.Parse(await ytPlayerRequest.Content.ReadAsStringAsync());
 	}
 
@@ -75,12 +77,39 @@ public class InnerTube
 		string playabilityStatus = playerResponse.GetFromJsonPath<string>("playabilityStatus.status")!;
 		if (playabilityStatus != "OK")
 		{
-			throw new PlayerException(playabilityStatus, 
-			playerResponse.GetFromJsonPath<string>("playabilityStatus.reason")!,
-			playerResponse.GetFromJsonPath<string>("playabilityStatus.reasonTitle")!);
+			throw new PlayerException(playabilityStatus,
+				playerResponse.GetFromJsonPath<string>("playabilityStatus.reason")!,
+				playerResponse.GetFromJsonPath<string>("playabilityStatus.reasonTitle")!);
 		}
+
 		InnerTubePlayer player = new(playerResponse);
-		PlayerCache.Set(cacheId, player, DateTimeOffset.Now.AddSeconds(player.ExpiresInSeconds).AddSeconds(-player.Details.Length.TotalSeconds));
+		PlayerCache.Set(cacheId, player,
+			DateTimeOffset.Now.AddSeconds(player.ExpiresInSeconds).AddSeconds(-player.Details.Length.TotalSeconds));
 		return player;
+	}
+
+	public async Task<InnerTubeSearchResults> SearchAsync(string query, string? filterParams = null,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("query", query);
+
+		if (filterParams != null)
+			postData.AddValue("contentCheckOk", filterParams);
+
+		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
+			language, region);
+		return new InnerTubeSearchResults(searchResponse);
+	}
+	
+	public async Task<InnerTubeSearchResults> ContinueSearchAsync(string continuation,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+
+		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
+			language, region);
+		return new InnerTubeSearchResults(searchResponse);
 	}
 }

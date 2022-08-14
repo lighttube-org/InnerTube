@@ -1,6 +1,7 @@
 ﻿using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using System.Web;
+using InnerTube.Renderers;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
@@ -9,22 +10,29 @@ public static class Utils
 {
 	public static T? GetFromJsonPath<T>(this JToken json, string jsonPath)
 	{
-		string[] properties = jsonPath.Split(".");
-		JToken? current = json;
-		foreach (string key in properties)
+		try
 		{
-			Match match = Regex.Match(key, @"\[([0-9]*)\]");
-			current = match.Success ? current[key]?[int.Parse(match.Groups[0].Value)] : current[key];
-			if (current is null) break;
-		}
+			string[] properties = jsonPath.Split(".");
+			JToken? current = json;
+			foreach (string key in properties)
+			{
+				Match match = Regex.Match(key, @"\[([0-9]*)\]");
+				current = match.Success ? current[key.Split("[")[0]]?[int.Parse(match.Groups[1].Value)] : current[key];
+				if (current is null) break;
+			}
 
-		return current is null ? default : current.ToObject<T>();
+			return current is null ? default : current.ToObject<T>();
+		}
+		catch
+		{
+			return default;
+		}
 	}
 	
 	public static string ReadRuns(JArray runs)
 	{
 		string str = "";
-		foreach (JToken runToken in runs ?? new JArray())
+		foreach (JToken runToken in runs)
 		{
 			JObject run = runToken as JObject;
 			if (run is null) continue;
@@ -104,5 +112,22 @@ public static class Utils
 		}
 
 		return urls;
+	}
+
+	public static IRenderer ParseRenderer(JToken renderer, string type)
+	{
+		return type switch
+		{
+			"videoRenderer" => new VideoRenderer(renderer),
+			var _ => new UnknownRenderer(renderer)
+		};
+	}
+
+	public static IEnumerable<IRenderer> ParseRenderers(JArray rendererArray)
+	{
+		return from renderer 
+				in rendererArray 
+				let type = renderer.First?.Path.Split(".").Last()! 
+				select ParseRenderer(renderer[type], type);
 	}
 }
