@@ -63,14 +63,19 @@ public class SearchTests
 	[TestCase("EpMFEg9zYXVsIGdvb2RtYW4gM2QahANTQlNDQVF0blJHcE5XblpaVjFWa2I0SUJDM28zVDNJME56VkNRVFJGZ2dFTGFtVk5PWGxTU25kTGJEaUNBUXQ1TUhOWVZHSnhVSEJZUVlJQkMwOXlNVlJrYW1zMmFUUnpnZ0VMZEMxVFlXRlBTMmR0WW11Q0FRdE5kVXRWUzFwTGNHZFdiNElCQ3pkUE0yRkhOR3BzVVZCQmdnRUxVR04yUm1sclVsOW9NbFdDQVF0cmFGZGlOVVJ2WjFCblZZSUJDM281WDA5WU1WZFdXRmhWZ2dFTFRIbEZjV280YlVNM2FWR0NBUXN0WmpaaVlUUnhWbFpTUVlJQkMycFhSVzh4TWxGRVlra3dnZ0VMYUVGRmVWaFFXRWh2T0d1Q0FRdHFVMUpJZWxSWlZFWnBiNElCQzNoSFIycFNaV3B3Y1U4NGdnRUxTbVpxVmtsUmNFcFFlRUdDQVF0VWRYZHRhRTQ1ZGpkZlVZSUJDMFk1ZW5CNE16QnZPSGRac2dFR0NnUUlGUkFDkgL3AS9zZWFyY2g_b3E9c2F1bCBnb29kbWFuIDNkJmdzX2w9eW91dHViZS4zLi4waTQ3MWk0MzNrMWwyajBpNDcxazFqMGk1MTJpNDMzazFqMGk1MTJrMWowaTUxMmk0MzNrMWowaTUxMmk0MzNpMTMxazFqMGk1MTJrMWw3LjIyNzQuNDcwNS4wLjUwMDcuMTYuMTMuMC4zLjMuMC4zNDUuMjMxMS4wajlqMWoyLjEzLjAuLi4uMC4uLjFhYy4xLjY0LnlvdXR1YmUuLjEuMTQuMjE1Ny4wLi4waTQzM2kxMzFrMWowaTNrMS42MTAuTEs4aHZ1cXB0R3cYgeDoGCILc2VhcmNoLWZlZWQ%3D", Description = "A continuation key that i hope wont expire")]
 	public async Task Continue(string continuation)
 	{
-		InnerTubeSearchResults results = await _innerTube.ContinueSearchAsync(continuation);
+		InnerTubeContinuationResponse results = await _innerTube.ContinueSearchAsync(continuation);
 		StringBuilder sb = new();
 
-		sb.AppendLine("EstimatedResults: " + results.EstimatedResults);
-		sb.AppendLine("Continuation: " + results.Continuation.Substring(0, 20));
-		sb.AppendLine("TypoFixer: " + results.DidYouMean);
-		sb.AppendLine("Refinements: \n" + string.Join('\n', results.Refinements.Select(x => $"- {x}")));
+		sb.AppendLine("Continuation: " + results.Continuation?.Substring(0, 20));
 		
+		foreach (IRenderer renderer in results.Contents)
+		{
+			if (!_skip.Contains(renderer.Type))
+				sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
+			else
+				sb.AppendLine($"->\t[{renderer.Type}]");
+		}
+
 		Assert.Pass(sb.ToString());
 	}
 }

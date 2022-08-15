@@ -102,7 +102,7 @@ public class InnerTube
 		return new InnerTubeSearchResults(searchResponse);
 	}
 	
-	public async Task<InnerTubeSearchResults> ContinueSearchAsync(string continuation,
+	public async Task<InnerTubeContinuationResponse> ContinueSearchAsync(string continuation,
 		string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
@@ -110,6 +110,6 @@ public class InnerTube
 
 		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
 			language, region);
-		return new InnerTubeSearchResults(searchResponse);
+		return InnerTubeContinuationResponse.GetFromSearchResponse(searchResponse);
 	}
 }
