@@ -8,7 +8,7 @@ public class SearchTests
 	private InnerTube _innerTube;
 
 	private string[] _skip = {
-//		"videoRenderer"
+		"videoRenderer"
 	};
 
 	[SetUp]
@@ -38,6 +38,23 @@ public class SearchTests
 				sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
 			else
 				sb.AppendLine($"->\t[{renderer.Type}]");
+		}
+
+		Assert.Pass(sb.ToString());
+	}
+
+	[Test]
+	public async Task SearchFilters()
+	{
+		InnerTubeSearchResults results = await _innerTube.SearchAsync(":)");
+		StringBuilder sb = new();
+
+		sb.AppendLine(results.SearchOptions.Title);
+		foreach (InnerTubeSearchResults.Options.Group category in results.SearchOptions.Groups)
+		{
+			sb.AppendLine($"- {category.Title}");
+			foreach (InnerTubeSearchResults.Options.Group.Filter filter in category.Filters)
+				sb.AppendLine($"  [{filter.Params ?? "YOU ARE HERE"}] {filter.Label}");
 		}
 
 		Assert.Pass(sb.ToString());
