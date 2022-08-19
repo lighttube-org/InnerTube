@@ -74,11 +74,18 @@ public static class Utils
 
 	public static Thumbnail[] GetThumbnails(JArray thumbnails)
 	{
-		return thumbnails.Select(x => new Thumbnail
+		return thumbnails.Select(x =>
 		{
-			Width = x["width"]!.ToObject<int>(),
-			Height = x["height"]!.ToObject<int>(),
-			Url = x["url"]!.ToObject<Uri>()!
+			string url = x["url"]!.ToObject<string>()!;
+			Thumbnail a = new Thumbnail
+			{
+				Width = x["width"]!.ToObject<int>(),
+				Height = x["height"]!.ToObject<int>(),
+				Url = url.StartsWith("http")
+					? new Uri(url)
+					: new Uri("https:" + url)
+			};
+			return a;
 		}).ToArray();
 	}
 
@@ -119,6 +126,9 @@ public static class Utils
 		return type switch
 		{
 			"videoRenderer" => new VideoRenderer(renderer),
+			"shelfRenderer" => new ShelfRenderer(renderer),
+			"horizontalCardListRenderer" => new HorizontalCardListRenderer(renderer),
+			"searchRefinementCardRenderer" => new CardRenderer(renderer),
 			var _ => new UnknownRenderer(renderer)
 		};
 	}

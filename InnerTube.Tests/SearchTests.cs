@@ -8,7 +8,9 @@ public class SearchTests
 	private InnerTube _innerTube;
 
 	private string[] _skip = {
-		"videoRenderer"
+		"videoRenderer",
+		"shelfRenderer",
+		"horizontalCardListRenderer"
 	};
 
 	[SetUp]
@@ -37,7 +39,8 @@ public class SearchTests
 			if (!_skip.Contains(renderer.Type))
 				sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
 			else
-				sb.AppendLine($"->\t[{renderer.Type}]");
+				//sb.AppendLine($"->\t[{renderer.Type}]");
+				continue;
 		}
 
 		Assert.Pass(sb.ToString());
