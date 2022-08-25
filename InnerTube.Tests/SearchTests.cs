@@ -25,6 +25,7 @@ public class SearchTests
 	[TestCase("big bcuk bunny", null, Description = "Search with a typo")]
 	[TestCase("big bcuk bunny", "QgIIAQ%3D%3D", Description = "Force to search with the typo")]
 	[TestCase("technoblade skyblock", null, Description = "Used to get playlistRenderer & channelRenderer")]
+	[TestCase("lofi radio", null, Description = "Used to get live videos")]
 	public async Task Search(string query, string param)
 	{
 		InnerTubeSearchResults results = await _innerTube.SearchAsync(query, param);

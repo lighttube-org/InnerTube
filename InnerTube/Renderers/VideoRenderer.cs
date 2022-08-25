@@ -12,7 +12,7 @@ public class VideoRenderer : IRenderer
 	public string Title { get; }
 	public string Description { get; }
 	public TimeSpan Duration { get; }
-	public string Published { get; }
+	public string? Published { get; }
 	public string ViewCount { get; }
 	public IEnumerable<Thumbnail> Thumbnails { get; }
 	public Channel Channel { get; }
@@ -24,8 +24,10 @@ public class VideoRenderer : IRenderer
 		Id = renderer["videoId"]!.ToString();
 		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs") ?? new JArray());
 		Description = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("detailedMetadataSnippets[0].snippetText.runs") ?? new JArray());
-		Published = renderer["publishedTimeText"]!["simpleText"]!.ToString();
-		ViewCount = renderer["viewCountText"]!["simpleText"]!.ToString();
+		Published = renderer["publishedTimeText"]?["simpleText"]!.ToString();
+		ViewCount = renderer["viewCountText"]!["simpleText"] != null
+			? renderer["viewCountText"]!["simpleText"]!.ToString()
+			: Utils.ReadRuns(renderer["viewCountText"]!["runs"]!.ToObject<JArray>()!);
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());
 		Channel = new Channel
 		{
@@ -47,7 +49,7 @@ public class VideoRenderer : IRenderer
 			.AppendLine($"[{Type}] {Title}")
 			.AppendLine($"- Id: {Id}")
 			.AppendLine($"- Duration: {Duration}")
-			.AppendLine($"- Published: {Published}")
+			.AppendLine($"- Published: {Published ?? "Live now"}")
 			.AppendLine($"- ViewCount: {ViewCount}")
 			.AppendLine($"- Thumbnail count: {Thumbnails.Count()}")
 			.AppendLine($"- Channel: {Channel}")
