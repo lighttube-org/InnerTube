@@ -80,8 +80,8 @@ public static class Utils
 			string url = x["url"]!.ToObject<string>()!;
 			Thumbnail a = new Thumbnail
 			{
-				Width = x["width"]!.ToObject<int>(),
-				Height = x["height"]!.ToObject<int>(),
+				Width = x["width"]?.ToObject<int>(),
+				Height = x["height"]?.ToObject<int>(),
 				Url = url.StartsWith("http")
 					? new Uri(url)
 					: new Uri("https:" + url)
