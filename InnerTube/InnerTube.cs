@@ -136,4 +136,13 @@ public class InnerTube
 		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
 		return new InnerTubeNextResponse(nextResponse);
 	}
+
+	public async Task<InnerTubeContinuationResponse> GetVideoComments(string commentsContinuation, string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", commentsContinuation);
+
+		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
+		return InnerTubeContinuationResponse.GetFromComments(nextResponse);
+	}
 }

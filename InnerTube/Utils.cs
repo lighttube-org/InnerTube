@@ -150,6 +150,7 @@ public static class Utils
 			"searchRefinementCardRenderer" => new CardRenderer(renderer),
 			"searchPyvRenderer" => new SearchPyvRenderer(renderer),
 			"promotedVideoRenderer" => new PromotedVideoRenderer(renderer),
+			"commentThreadRenderer" => new CommentThreadRenderer(renderer),
 			var _ => new UnknownRenderer(renderer)
 		};
 	}

@@ -151,4 +151,21 @@ public class PlayerTests
 		
 		Assert.Pass(sb.ToString());
 	}
+
+	[TestCase("BaW_jenozKc", Description = "Regular video")]
+	[TestCase("V6kJKxvbgZ0", Description = "Age restricted video")]
+	[TestCase("LACbVhgtx9I", Description = "Video that includes self-harm topics")]
+	public async Task GetVideoComments(string videoId)
+	{
+		InnerTubeNextResponse next = await _innerTube.GetVideoNext(videoId);
+		if (next.CommentsContinuation is null) Assert.Fail("Video did not contain a comment continuation token");
+		InnerTubeContinuationResponse comments = await _innerTube.GetVideoComments(next.CommentsContinuation!);
+		StringBuilder sb = new();
+
+		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
+
+		sb.AppendLine($"\nContinuation: {comments.Continuation?.Substring(0, 20)}...");
+
+		Assert.Pass(sb.ToString());
+	}
 }

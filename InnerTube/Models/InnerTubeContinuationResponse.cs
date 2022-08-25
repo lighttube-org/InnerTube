@@ -21,4 +21,15 @@ public class InnerTubeContinuationResponse
 			response.GetFromJsonPath<string>("onResponseReceivedCommands[0].appendContinuationItemsAction.continuationItems[1].continuationItemRenderer.continuationEndpoint.continuationCommand.token")
 		);
 	}
+
+	public static InnerTubeContinuationResponse GetFromComments(JObject nextResponse)
+	{
+		JToken response = nextResponse["onResponseReceivedEndpoints"]!.ToObject<JArray>()!.Last!;
+		JArray comments =
+			(response["reloadContinuationItemsCommand"] ?? response["appendContinuationItemsAction"])![
+				"continuationItems"]!.ToObject<JArray>()!;
+		return new InnerTubeContinuationResponse(
+			Utils.ParseRenderers(new JArray(comments.Take(comments.Count - 1))),
+			comments.Last!.GetFromJsonPath<string>("continuationItemRenderer.continuationEndpoint.continuationCommand.token")
+		);	}
 }

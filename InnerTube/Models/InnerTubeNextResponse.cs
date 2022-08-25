@@ -12,7 +12,7 @@ public class InnerTubeNextResponse
 	public string ViewCount { get; }
 	public string LikeCount { get; }
 	public Channel Channel { get; }
-	public Comment? TeaserComment { get; }
+	public CommentThreadRenderer? TeaserComment { get; }
 	public string? CommentsContinuation { get; }
 	public string? CommentCount { get; }
 	public IEnumerable<IRenderer> Recommended { get; }
@@ -51,7 +51,7 @@ public class InnerTubeNextResponse
 		JObject? commentObject = playerResponse.GetFromJsonPath<JObject>(
 			"contents.twoColumnWatchNextResults.results.results.contents[2].itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer");
 		TeaserComment = commentObject != null
-			? new Comment(
+			? new CommentThreadRenderer(
 				commentObject.GetFromJsonPath<string>("teaserContent.simpleText")!,
 				new Channel
 				{
@@ -66,6 +66,7 @@ public class InnerTubeNextResponse
 				},
 				null,
 				false,
+				null,
 				null)
 			: null;
 		CommentCount = commentObject != null
