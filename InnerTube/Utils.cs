@@ -133,6 +133,8 @@ public static class Utils
 			"shelfRenderer" => new ShelfRenderer(renderer),
 			"horizontalCardListRenderer" => new HorizontalCardListRenderer(renderer),
 			"searchRefinementCardRenderer" => new CardRenderer(renderer),
+			"searchPyvRenderer" => new SearchPyvRenderer(renderer),
+			"promotedVideoRenderer" => new PromotedVideoRenderer(renderer),
 			var _ => new UnknownRenderer(renderer)
 		};
 	}
