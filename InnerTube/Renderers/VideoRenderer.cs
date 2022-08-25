@@ -33,7 +33,8 @@ public class VideoRenderer : IRenderer
 			Title = renderer.GetFromJsonPath<string>("longBylineText.runs[0].text")!,
 			Avatar = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>(
 				"channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails") ?? new JArray()).LastOrDefault()?.Url,
-			Subscribers = null
+			Subscribers = null,
+			Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>() 
 		};
 		Badges = renderer["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>();
 
