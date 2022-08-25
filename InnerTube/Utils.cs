@@ -126,6 +126,7 @@ public static class Utils
 		return type switch
 		{
 			"videoRenderer" => new VideoRenderer(renderer),
+			"channelRenderer" => new ChannelRenderer(renderer),
 			"shelfRenderer" => new ShelfRenderer(renderer),
 			"horizontalCardListRenderer" => new HorizontalCardListRenderer(renderer),
 			"searchRefinementCardRenderer" => new CardRenderer(renderer),
