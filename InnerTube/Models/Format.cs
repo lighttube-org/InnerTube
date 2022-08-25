@@ -6,7 +6,7 @@ public class Format
 {
 	public string Itag { get; }
 	public int Bitrate { get; }
-	public int? ContentLength { get; }
+	public long? ContentLength { get; }
 	public int? Fps { get; }
 	public int? Height { get; }
 	public int? Width { get; }
@@ -24,7 +24,7 @@ public class Format
 	{
 		Itag = jToken["itag"]!.ToString();
 		Bitrate = jToken["bitrate"]?.ToObject<int>() ?? jToken["averageBitrate"]?.ToObject<int>() ?? 0;
-		ContentLength = jToken["contentLength"]?.ToObject<int>();
+		ContentLength = jToken["contentLength"]?.ToObject<long>();
 		Fps = jToken["fps"]?.ToObject<int>();
 		Height = jToken["height"]?.ToObject<int>();
 		Width = jToken["width"]?.ToObject<int>();
