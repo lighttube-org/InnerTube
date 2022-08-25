@@ -88,6 +88,14 @@ public class InnerTube
 		return player;
 	}
 
+	/// <summary>
+	/// Search using a query
+	/// </summary>
+	/// <param name="query">Query of what to search</param>
+	/// <param name="filterParams">Filter params. Get this from InnerTubeSearchResults.SearchOptions</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>List of results</returns>
 	public async Task<InnerTubeSearchResults> SearchAsync(string query, string? filterParams = null,
 		string language = "en", string region = "US")
 	{
@@ -102,6 +110,13 @@ public class InnerTube
 		return new InnerTubeSearchResults(searchResponse);
 	}
 	
+	/// <summary>
+	/// Continue an old search query using its continuation key
+	/// </summary>
+	/// <param name="continuation">Continuation key received from an older response</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>List of continuation results</returns>
 	public async Task<InnerTubeContinuationResponse> ContinueSearchAsync(string continuation,
 		string language = "en", string region = "US")
 	{
