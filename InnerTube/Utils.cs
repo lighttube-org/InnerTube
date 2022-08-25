@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Web;
 using InnerTube.Renderers;
@@ -127,6 +128,8 @@ public static class Utils
 		{
 			"videoRenderer" => new VideoRenderer(renderer),
 			"channelRenderer" => new ChannelRenderer(renderer),
+			"playlistRenderer" => new PlaylistRenderer(renderer),
+			"childVideoRenderer" => new ChildVideoRenderer(renderer),
 			"shelfRenderer" => new ShelfRenderer(renderer),
 			"horizontalCardListRenderer" => new HorizontalCardListRenderer(renderer),
 			"searchRefinementCardRenderer" => new CardRenderer(renderer),
@@ -140,5 +143,14 @@ public static class Utils
 				in rendererArray 
 				let type = renderer.First?.Path.Split(".").Last()! 
 				select ParseRenderer(renderer[type], type);
+	}
+
+	public static TimeSpan ParseDuration(string duration)
+	{
+		if (!TimeSpan.TryParseExact(duration, "%m\\:%s", CultureInfo.InvariantCulture, out TimeSpan timeSpan))
+			if (!TimeSpan.TryParseExact(duration, "%h\\:%m\\:%s",
+				    CultureInfo.InvariantCulture, out timeSpan))
+				timeSpan = TimeSpan.Zero;
+		return timeSpan;
 	}
 }

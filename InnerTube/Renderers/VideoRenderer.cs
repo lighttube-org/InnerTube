@@ -38,11 +38,7 @@ public class VideoRenderer : IRenderer
 		};
 		Badges = renderer["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>();
 
-		if (!TimeSpan.TryParseExact(renderer["lengthText"]?["simpleText"]?.ToString(), "%m\\:%s", CultureInfo.InvariantCulture, out TimeSpan timeSpan))
-			if (!TimeSpan.TryParseExact(renderer["lengthText"]?["simpleText"]?.ToString(), "%h\\:%m\\:%s",
-				    CultureInfo.InvariantCulture, out timeSpan))
-				timeSpan = TimeSpan.Zero;
-		Duration = timeSpan;
+		Duration = Utils.ParseDuration(renderer["lengthText"]?["simpleText"]?.ToString()!);
 	}
 
 	public override string ToString()

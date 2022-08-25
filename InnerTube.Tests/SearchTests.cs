@@ -9,6 +9,8 @@ public class SearchTests
 
 	private string[] _skip = {
 		"videoRenderer",
+		"channelRenderer",
+		"playlistRenderer",
 		"shelfRenderer",
 		"horizontalCardListRenderer"
 	};
