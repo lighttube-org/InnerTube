@@ -124,6 +124,21 @@ public static class Utils
 
 	public static IRenderer ParseRenderer(JToken renderer, string type)
 	{
+		/* remaining: (from lighttube source code)
+			gridVideoRenderer
+			radioRenderer
+			compactVideoRenderer
+			compactPlaylistRenderer
+			compactRadioRenderer
+			compactStationRenderer
+			continuationItemRenderer
+			playlistVideoRenderer
+			itemSectionRenderer
+			gridRenderer
+			messageRenderer
+			channelAboutFullMetadataRenderer
+			promotedSparklesWebRenderer
+		*/
 		return type switch
 		{
 			"videoRenderer" => new VideoRenderer(renderer),
