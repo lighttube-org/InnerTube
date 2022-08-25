@@ -127,4 +127,13 @@ public class InnerTube
 			language, region);
 		return InnerTubeContinuationResponse.GetFromSearchResponse(searchResponse);
 	}
+
+	public async Task<InnerTubeNextResponse> GetVideoNext(string videoId, string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("videoId", videoId);
+
+		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
+		return new InnerTubeNextResponse(nextResponse);
+	}
 }

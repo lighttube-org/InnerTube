@@ -1,4 +1,5 @@
 using System.Text;
+using InnerTube.Renderers;
 
 namespace InnerTube.Tests;
 
@@ -117,5 +118,37 @@ public class PlayerTests
 		{
 			InnerTubePlayer _ = _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls).Result;
 		});
+	}
+
+	[TestCase("BaW_jenozKc", Description = "Regular video")]
+	[TestCase("V6kJKxvbgZ0", Description = "Age restricted video")]
+	[TestCase("LACbVhgtx9I", Description = "Video that includes self-harm topics")]
+	public async Task GetVideoNext(string videoId)
+	{
+		InnerTubeNextResponse next = await _innerTube.GetVideoNext(videoId);
+
+		StringBuilder sb = new();
+
+		sb.AppendLine("== DETAILS")
+			.AppendLine("Id: " + next.Id)
+			.AppendLine("Title: " + next.Title)
+			.AppendLine("Channel: " + next.Channel)
+			.AppendLine("DateText: " + next.DateText)
+			.AppendLine("ViewCount: " + next.ViewCount)
+			.AppendLine("LikeCount: " + next.LikeCount)
+			.AppendLine("Description:\n" + string.Join('\n', next.Description.Split("\n").Select(x => $"\t{x}")));
+
+		sb.AppendLine("\n== COMMENTS")
+			.AppendLine("CommentCount: " + next.CommentCount)
+			.AppendLine("TeaserComment: " + next.TeaserComment)
+			.AppendLine("CommentsContinuation: " + next.CommentsContinuation);
+
+		sb.AppendLine("\n== RECOMMENDED");
+		foreach (IRenderer renderer in next.Recommended)
+		{
+			sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
+		}
+		
+		Assert.Pass(sb.ToString());
 	}
 }
