@@ -152,14 +152,21 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("BaW_jenozKc", Description = "Regular video")]
-	[TestCase("V6kJKxvbgZ0", Description = "Age restricted video")]
-	[TestCase("LACbVhgtx9I", Description = "Video that includes self-harm topics")]
+	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
+	[TestCase("Eg0SC3F1STZnNEhwZVBjGAYyVSIuIgtxdUk2ZzRIcGVQYzAAeAKqAhpVZ3p3MnBIQXR1VW9xamRLbUtWNEFhQUJBZzABQiFlbmdhZ2VtZW50LXBhbmVsLWNvbW1lbnRzLXNlY3Rpb24%3D", Description = "Contains pinned & hearted comments")]
 	public async Task GetVideoComments(string videoId)
 	{
-		InnerTubeNextResponse next = await _innerTube.GetVideoNext(videoId);
-		if (next.CommentsContinuation is null) Assert.Fail("Video did not contain a comment continuation token");
-		InnerTubeContinuationResponse comments = await _innerTube.GetVideoComments(next.CommentsContinuation!);
+		InnerTubeContinuationResponse comments;
+		if (videoId.Length == 11)
+		{
+			InnerTubeNextResponse next = await _innerTube.GetVideoNext(videoId);
+			if (next.CommentsContinuation is null) Assert.Fail("Video did not contain a comment continuation token");
+			comments = await _innerTube.GetVideoComments(next.CommentsContinuation!);
+		}
+		else
+		{
+			comments = await _innerTube.GetVideoComments(videoId!);
+		}
 		StringBuilder sb = new();
 
 		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());

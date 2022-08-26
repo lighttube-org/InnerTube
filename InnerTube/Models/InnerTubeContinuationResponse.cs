@@ -29,7 +29,7 @@ public class InnerTubeContinuationResponse
 			(response["reloadContinuationItemsCommand"] ?? response["appendContinuationItemsAction"])![
 				"continuationItems"]!.ToObject<JArray>()!;
 		return new InnerTubeContinuationResponse(
-			Utils.ParseRenderers(new JArray(comments.Take(comments.Count - 1))),
+			Utils.ParseRenderers(new JArray(comments.Where(x => x["commentThreadRenderer"] != null))),
 			comments.Last!.GetFromJsonPath<string>("continuationItemRenderer.continuationEndpoint.continuationCommand.token")
 		);	}
 }

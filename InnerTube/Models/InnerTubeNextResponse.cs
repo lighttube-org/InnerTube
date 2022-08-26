@@ -52,6 +52,7 @@ public class InnerTubeNextResponse
 			"contents.twoColumnWatchNextResults.results.results.contents[2].itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer");
 		TeaserComment = commentObject != null
 			? new CommentThreadRenderer(
+				"",
 				commentObject.GetFromJsonPath<string>("teaserContent.simpleText")!,
 				new Channel
 				{
