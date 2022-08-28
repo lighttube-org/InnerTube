@@ -111,9 +111,9 @@ public class InnerTube
 	}
 	
 	/// <summary>
-	/// Continue an old search query using its continuation key
+	/// Continue an old search query using its continuation token
 	/// </summary>
-	/// <param name="continuation">Continuation key received from an older response</param>
+	/// <param name="continuation">Continuation token received from an older response</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>List of continuation results</returns>
@@ -128,6 +128,13 @@ public class InnerTube
 		return InnerTubeContinuationResponse.GetFromSearchResponse(searchResponse);
 	}
 
+	/// <summary>
+	/// Gets more information about a video, including recommended videos and a comment continuation token to be used with GetVideoComments
+	/// </summary>
+	/// <param name="videoId">ID of the video</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>Video info, a key for the comments & a list of recommended videos</returns>
 	public async Task<InnerTubeNextResponse> GetVideoNext(string videoId, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
@@ -137,6 +144,13 @@ public class InnerTube
 		return new InnerTubeNextResponse(nextResponse);
 	}
 
+	/// <summary>
+	/// Gets the comments of a video from a comment continuation token that can be received from GetVideoNext 
+	/// </summary>
+	/// <param name="commentsContinuation">Continuation token received from GetVideoNext</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>List of comments for the video that belongs to the specified key</returns>
 	public async Task<InnerTubeContinuationResponse> GetVideoComments(string commentsContinuation, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
