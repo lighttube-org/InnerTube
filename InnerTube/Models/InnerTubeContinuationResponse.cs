@@ -1,4 +1,5 @@
-﻿using InnerTube.Renderers;
+﻿using InnerTube.Exceptions;
+using InnerTube.Renderers;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
@@ -24,6 +25,14 @@ public class InnerTubeContinuationResponse
 
 	public static InnerTubeContinuationResponse GetFromComments(JObject nextResponse)
 	{
+		// error handling
+		// cant believe that they send a normal response instead of a continuation response when the continuation key is invalid
+		// find me the person who works at youtube that made this function like this, we will have a friendly chat
+		JToken? errorObject = nextResponse.GetFromJsonPath<JToken>(
+			"contents.twoColumnWatchNextResults.results.results.contents[0].itemSectionRenderer.contents[0].backgroundPromoRenderer");
+		if (errorObject is not null)
+			throw new NotFoundException(Utils.ReadRuns(errorObject["title"]!["runs"]!.ToObject<JArray>()!));
+
 		JToken response = nextResponse["onResponseReceivedEndpoints"]!.ToObject<JArray>()!.Last!;
 		JArray comments =
 			(response["reloadContinuationItemsCommand"] ?? response["appendContinuationItemsAction"])![

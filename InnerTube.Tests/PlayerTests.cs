@@ -1,4 +1,5 @@
 using System.Text;
+using InnerTube.Exceptions;
 using InnerTube.Renderers;
 
 namespace InnerTube.Tests;
@@ -152,6 +153,28 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
+	[TestCase("1234567890a", Description = "An ID I just made up")]
+	[TestCase("a62882basgl", Description = "Another ID I just made up")]
+	[TestCase("32nkdvLq3oQ", Description = "A deleted video")]
+	[TestCase("mVp-gQuCJI8", Description = "A private video")]
+	public async Task DontGetVideoNext(string videoId)
+	{
+		try
+		{
+			await _innerTube.GetVideoNext(videoId);
+		}
+		catch (InnerTubeException e)
+		{
+			Assert.Pass($"Exception thrown: [{e.GetType().Name}] {e.Message}");
+		}
+		catch (Exception e)
+		{
+			Assert.Fail("Wrong type of exception has been thrown\n" + e);
+		}
+
+		Assert.Fail("Didn't throw an exception");
+	}
+
 	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
 	[TestCase("Eg0SC3F1STZnNEhwZVBjGAYyVSIuIgtxdUk2ZzRIcGVQYzAAeAKqAhpVZ3p3MnBIQXR1VW9xamRLbUtWNEFhQUJBZzABQiFlbmdhZ2VtZW50LXBhbmVsLWNvbW1lbnRzLXNlY3Rpb24%3D", Description = "Contains pinned & hearted comments")]
 	public async Task GetVideoComments(string videoId)
@@ -174,5 +197,24 @@ public class PlayerTests
 		sb.AppendLine($"\nContinuation: {comments.Continuation?.Substring(0, 20)}...");
 
 		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("there's no way they will accept this as a continuation key", Description = "Self explanatory")]
+	public async Task DontGetVideoComments(string continuationToken)
+	{
+		try
+		{
+			await _innerTube.GetVideoComments(continuationToken);
+		}
+		catch (InnerTubeException e)
+		{
+			Assert.Pass($"Exception thrown: [{e.GetType().Name}] {e.Message}");
+		}
+		catch (Exception e)
+		{
+			Assert.Fail("Wrong type of exception has been thrown\n" + e);
+		}
+
+		Assert.Fail("Didn't throw an exception");
 	}
 }
