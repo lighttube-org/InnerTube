@@ -159,4 +159,17 @@ public class InnerTube
 		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
 		return InnerTubeContinuationResponse.GetFromComments(nextResponse);
 	}
+
+	/// <summary>
+	/// Get a list of all valid languages & regions
+	/// </summary>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>List of all valid languages & regions</returns>
+	public async Task<InnerTubeLocals> GetLocalsAsync(string language = "en", string region = "US")
+	{
+		JObject localsResponse = await MakeRequest(RequestClient.WEB, "account/account_menu", new InnerTubeRequest(),
+			language, region);
+		return new InnerTubeLocals(localsResponse);
+	}
 }
