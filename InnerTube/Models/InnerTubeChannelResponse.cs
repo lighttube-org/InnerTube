@@ -1,4 +1,5 @@
-﻿using InnerTube.Renderers;
+﻿using InnerTube.Exceptions;
+using InnerTube.Renderers;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
@@ -11,6 +12,10 @@ public class InnerTubeChannelResponse
 
 	public InnerTubeChannelResponse(JObject browseResponse)
 	{
+		if (browseResponse.ContainsKey("alerts"))
+		{
+			throw new NotFoundException(browseResponse.GetFromJsonPath<string>("alerts[0].alertRenderer.text.simpleText")!);
+		}
 		Header = (C4TabbedHeaderRenderer?)Utils.ParseRenderer(browseResponse.GetFromJsonPath<JToken>("header.c4TabbedHeaderRenderer"), "c4TabbedHeaderRenderer");
 		Metadata = (ChannelMetadataRenderer)Utils.ParseRenderer(browseResponse.GetFromJsonPath<JToken>("metadata.channelMetadataRenderer")!, "channelMetadataRenderer")!;
 		JToken currentTab =

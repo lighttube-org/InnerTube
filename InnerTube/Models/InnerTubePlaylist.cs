@@ -16,7 +16,28 @@ public class InnerTubePlaylist
 	{
 		JArray? alertsArray = browseResponse.GetFromJsonPath<JArray>("alerts");
 		Alerts = alertsArray is not null
-			? alertsArray.Select(x =>	x.First!.First!["text"]!["simpleText"]!.ToString()).ToArray()
+			? alertsArray.Select(x =>
+			{
+				JToken current = x.First!;
+				for (int i = 0; i < 3; i++)
+				{
+					try
+					{
+						if (current["text"] is not null)
+						{
+							return current["text"]!["runs"] is not null
+								? Utils.ReadRuns(current["text"]!["runs"]!.ToObject<JArray>()!)
+								: current["text"]!["simpleText"]!.ToString();
+						}
+					}
+					catch
+					{ }
+
+					current = current.First!;
+				}
+
+				return "";
+			}).ToArray()
 			: Array.Empty<string>();
 		if (!browseResponse.ContainsKey("header") && !browseResponse.ContainsKey("sidebar"))
 		{

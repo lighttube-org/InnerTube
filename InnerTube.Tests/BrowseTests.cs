@@ -63,7 +63,7 @@ public class BrowseTests
 	}
 
 	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false)]
-	[TestCase("PLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true)]
+	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true)]
 	public async Task GetPlaylist(string playlistId, bool includeUnavailable)
 	{
 		InnerTubePlaylist playlist = await _innerTube.GetPlaylistAsync(playlistId, includeUnavailable);
@@ -102,5 +102,42 @@ public class BrowseTests
 		sb.AppendLine($"Continuation: {response.Continuation?.Substring(0, 20)}");
 		
 		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("UCfba251A_nwl141Ahgt16", Description = "Invalid ID")]
+	public async Task FailChannel(string playlistId)
+	{
+		try
+		{
+			await _innerTube.GetChannelAsync(playlistId);
+			Assert.Fail("Exception not thrown");
+		}
+		catch (InnerTubeException e)
+		{
+			Assert.Pass(e.ToString());
+		}
+		catch (Exception e)
+		{
+			Assert.Fail(e.ToString());
+		}
+	}
+
+	[TestCase("q12f3g6ask2d5v71b4v7qıuysfqoh", Description = "Invalid ID")]
+	[TestCase("PLiDvcIUGEFPsDSRP5ErtC90k-gtzs2bNQ", Description = "Private playlist")]
+	public async Task FailPlaylist(string playlistId)
+	{
+		try
+		{
+			await _innerTube.GetPlaylistAsync(playlistId);
+			Assert.Fail("Exception not thrown");
+		}
+		catch (InnerTubeException e)
+		{
+			Assert.Pass(e.ToString());
+		}
+		catch (Exception e)
+		{
+			Assert.Fail(e.ToString());
+		}
 	}
 }
