@@ -1,5 +1,6 @@
 using System.Text;
 using InnerTube.Renderers;
+// ReSharper disable StringLiteralTypo
 
 namespace InnerTube.Tests;
 
@@ -43,8 +44,7 @@ public class SearchTests
 			if (!_skip.Contains(renderer.Type))
 				sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
 			else
-				//sb.AppendLine($"->\t[{renderer.Type}]");
-				continue;
+				sb.AppendLine($"->\t[{renderer.Type}]");
 		}
 
 		Assert.Pass(sb.ToString());
@@ -56,7 +56,7 @@ public class SearchTests
 		InnerTubeSearchResults results = await _innerTube.SearchAsync(":)");
 		StringBuilder sb = new();
 
-		sb.AppendLine(results.SearchOptions.Title);
+		sb.AppendLine(results.SearchOptions!.Title);
 		foreach (InnerTubeSearchResults.Options.Group category in results.SearchOptions.Groups)
 		{
 			sb.AppendLine($"- {category.Title}");
@@ -83,6 +83,21 @@ public class SearchTests
 				sb.AppendLine($"->\t[{renderer.Type}]");
 		}
 
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("big buck bun")]
+	[TestCase("qwer :)")]
+	[TestCase("asdf (asdf")]
+	public async Task Autocomplete(string query)
+	{
+		InnerTubeSearchAutocomplete innerTubeSearchAutocomplete = await _innerTube.GetSearchAutocompleteAsync(query);
+
+		StringBuilder sb = new();
+		sb.AppendLine("Query: " + innerTubeSearchAutocomplete.Query)
+			.AppendLine(new string('=', innerTubeSearchAutocomplete.Query.Length + 7));
+		foreach (string autocomplete in innerTubeSearchAutocomplete.Autocomplete) 
+			sb.AppendLine(autocomplete);
 		Assert.Pass(sb.ToString());
 	}
 }

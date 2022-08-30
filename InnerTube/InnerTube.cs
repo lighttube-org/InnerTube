@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Runtime.Caching;
 using System.Text;
+using System.Web;
 using InnerTube.Exceptions;
 using Newtonsoft.Json.Linq;
 
@@ -126,6 +127,22 @@ public class InnerTube
 		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
 			language, region);
 		return InnerTubeContinuationResponse.GetFromSearchResponse(searchResponse);
+	}
+
+	/// <summary>
+	/// Gets a list of search autocomplete using the given query
+	/// </summary>
+	/// <param name="query">Query to get autocompletes in</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>List of complete strings</returns>
+	public async Task<InnerTubeSearchAutocomplete> GetSearchAutocompleteAsync(string query,
+		string language = "en", string region = "US")
+	{
+		HttpResponseMessage response = await HttpClient.GetAsync(
+			$"https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&hl={language}&gl={region.ToLower()}&ds=yt&q={HttpUtility.UrlEncode(query)}");
+
+		return new InnerTubeSearchAutocomplete(await response.Content.ReadAsStringAsync());
 	}
 
 	/// <summary>
