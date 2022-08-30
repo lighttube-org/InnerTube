@@ -156,6 +156,7 @@ public class InnerTube
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("videoId", videoId);
+		//TODO: just found: we can have a playlistId here
 
 		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
 		return new InnerTubeNextResponse(nextResponse);
