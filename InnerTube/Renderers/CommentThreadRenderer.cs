@@ -23,13 +23,14 @@ public class CommentThreadRenderer : IRenderer
 
 		Id = renderer.GetFromJsonPath<string>("comment.commentRenderer.commentId")!;
 		Content = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("comment.commentRenderer.contentText.runs")!);
+		Badge? authorBadge = Badge.FromAuthorCommentBadgeRenderer(renderer.GetFromJsonPath<JObject>("comment.commentRenderer.authorCommentBadge.authorCommentBadgeRenderer"));
 		Owner = new Channel
 		{
 			Id = renderer.GetFromJsonPath<string>("comment.commentRenderer.authorEndpoint.browseEndpoint.browseId")!,
 			Title = renderer.GetFromJsonPath<string>("comment.commentRenderer.authorText.simpleText")!,
 			Avatar = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("comment.commentRenderer.authorThumbnail.thumbnails")!).Last().Url,
 			Subscribers = null,
-			Badges = Array.Empty<Badge>() //TODO
+			Badges = authorBadge is null ? Array.Empty<Badge>() : new []{ authorBadge }
 		};
 		PublishedTimeText = renderer.GetFromJsonPath<string>("comment.commentRenderer.publishedTimeText.runs[0].text")!;
 		AuthorIsChannelOwner = renderer.GetFromJsonPath<bool>("comment.commentRenderer.authorIsChannelOwner")!;
