@@ -8,7 +8,9 @@ public class Channel
 	public string? Subscribers { get; set; }
 	public IEnumerable<Badge> Badges { get; set; } = Array.Empty<Badge>();
 
-	public string ToString(bool verbose = true)
+	public override string ToString() => ToString(true);
+
+	public string ToString(bool verbose)
 	{
 		string res = $"{(Id != null ? $"[{Id}]" : "")} {Title}";
 		if (verbose)

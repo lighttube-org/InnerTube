@@ -47,7 +47,7 @@ public class InnerTube
 
 		HttpResponseMessage ytPlayerRequest = await HttpClient.SendAsync(hrm);
 		if (!ytPlayerRequest.IsSuccessStatusCode)
-			throw new InnerTubeException($"Unexpected status code: [{(int)ytPlayerRequest.StatusCode}] {ytPlayerRequest.StatusCode}");
+			throw new RequestException(ytPlayerRequest.StatusCode, await ytPlayerRequest.Content.ReadAsStringAsync());
 		return JObject.Parse(await ytPlayerRequest.Content.ReadAsStringAsync());
 	}
 
@@ -176,6 +176,51 @@ public class InnerTube
 
 		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
 		return InnerTubeContinuationResponse.GetFromComments(nextResponse);
+	}
+
+	/// <summary>
+	/// Get information about a channel
+	/// </summary>
+	/// <param name="channelId">ID of a channel, starts with UC</param>
+	/// <param name="tab">Tab of the requested channel. ChannelTabs.Community will return the same response as ChannelTabs.Home if the channel does not have community enabled</param>
+	/// <param name="searchQuery">Query to search in this channel. Only used if tab is ChannelTabs.Search</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>Information about a channel</returns>
+	public async Task<InnerTubeChannelResponse> GetChannelAsync(string channelId, ChannelTabs tab = ChannelTabs.Home, string? searchQuery = null,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("browseId", channelId);
+		if (tab == ChannelTabs.Search && searchQuery is not null)
+			postData
+				.AddValue("params", tab.GetParams())
+				.AddValue("query", searchQuery);
+		else if (tab != ChannelTabs.Search)
+			postData
+				.AddValue("params", tab.GetParams());
+
+		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
+
+		return new InnerTubeChannelResponse(browseResponse);
+	}
+	
+	/// <summary>
+	/// Get information about a channel
+	/// </summary>
+	/// <param name="continuation">Continuation token from an older GetSearchAsync call</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>Information about a channel</returns>
+	public async Task<InnerTubeContinuationResponse> ContinueChannelAsync(string continuation,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+
+		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
+
+		return InnerTubeContinuationResponse.GetFromBrowse(browseResponse);
 	}
 
 	/// <summary>

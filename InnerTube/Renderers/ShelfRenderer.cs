@@ -9,6 +9,7 @@ public class ShelfRenderer : IRenderer
 	
 	public string Title { get; }
 	public int CollapsedItemCount { get; }
+	public ShelfDirection Direction { get; }
 	public IEnumerable<IRenderer> Items { get; }
 
 	
@@ -17,7 +18,14 @@ public class ShelfRenderer : IRenderer
 		Type = renderer.Path.Split(".").Last();
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		CollapsedItemCount = renderer.GetFromJsonPath<int>("content.verticalListRenderer.collapsedItemCount")!;
-		Items = Utils.ParseRenderers(renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items")!);
+		Direction = renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items") == null
+			? ShelfDirection.Horizontal
+			: ShelfDirection.Vertical;
+		Items = Utils.ParseRenderers(Direction switch
+		{
+			ShelfDirection.Horizontal => renderer.GetFromJsonPath<JArray>("content.horizontalListRenderer.items")!,
+			ShelfDirection.Vertical => renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items")!
+		});
 	}
 
 	public override string ToString()

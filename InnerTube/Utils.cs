@@ -30,7 +30,7 @@ public static class Utils
 		}
 	}
 	
-	public static string ReadRuns(JArray runs)
+	public static string ReadRuns(JArray runs, bool includeFormatting = true)
 	{
 		string str = "";
 		foreach (JToken runToken in runs)
@@ -38,7 +38,11 @@ public static class Utils
 			JObject run = runToken as JObject;
 			if (run is null) continue;
 
-			if (run.ContainsKey("bold"))
+			if (!includeFormatting)
+			{
+				str += run["text"];
+			}
+			else if (run.ContainsKey("bold"))
 			{
 				str += "<b>" + run["text"] + "</b>";
 			}
@@ -122,19 +126,16 @@ public static class Utils
 		return urls;
 	}
 
-	public static IRenderer ParseRenderer(JToken renderer, string type)
+	public static IRenderer? ParseRenderer(JToken? renderer, string type)
 	{
+		if (renderer is null) return null;
 		/* remaining: (from lighttube source code)
-			gridVideoRenderer
 			radioRenderer
 			compactVideoRenderer
 			compactPlaylistRenderer
 			compactRadioRenderer
 			compactStationRenderer
-			continuationItemRenderer
 			playlistVideoRenderer
-			itemSectionRenderer
-			gridRenderer
 			messageRenderer
 			channelAboutFullMetadataRenderer
 			promotedSparklesWebRenderer
@@ -142,8 +143,11 @@ public static class Utils
 		return type switch
 		{
 			"videoRenderer" => new VideoRenderer(renderer),
+			"gridVideoRenderer" => new GridVideoRenderer(renderer),
 			"channelRenderer" => new ChannelRenderer(renderer),
+			"gridChannelRenderer" => new GridChannelRenderer(renderer),
 			"playlistRenderer" => new PlaylistRenderer(renderer),
+			"gridPlaylistRenderer" => new GridPlaylistRenderer(renderer),
 			"childVideoRenderer" => new ChildVideoRenderer(renderer),
 			"shelfRenderer" => new ShelfRenderer(renderer),
 			"horizontalCardListRenderer" => new HorizontalCardListRenderer(renderer),
@@ -151,6 +155,21 @@ public static class Utils
 			"searchPyvRenderer" => new SearchPyvRenderer(renderer),
 			"promotedVideoRenderer" => new PromotedVideoRenderer(renderer),
 			"commentThreadRenderer" => new CommentThreadRenderer(renderer),
+			"c4TabbedHeaderRenderer" => new C4TabbedHeaderRenderer(renderer),
+			"channelMetadataRenderer" => new ChannelMetadataRenderer(renderer),
+			"itemSectionRenderer" => new ItemSectionRenderer(renderer),
+			"channelVideoPlayerRenderer" => new ChannelVideoPlayerRenderer(renderer),
+			"recognitionShelfRenderer" => new RecognitionShelfRenderer(renderer),
+			"reelShelfRenderer" => new ReelShelfRenderer(renderer),
+			"reelItemRenderer" => new ReelItemRenderer(renderer),
+			"gridRenderer" => new GridRenderer(renderer),
+			"continuationItemRenderer" => new ContinuationItemRenderer(renderer),
+			"backstagePostThreadRenderer" => new BackstagePostThreadRenderer(renderer),
+			"backstagePostRenderer" => new BackstagePostRenderer(renderer),
+			"backstageImageRenderer" => new BackstageImageRenderer(renderer),
+			"postMultiImageRenderer" => new PostMultiImageRenderer(renderer),
+			"pollRenderer" => new PollRenderer(renderer),
+			"channelAboutFullMetadataRenderer" => new ChannelAboutFullMetadataRenderer(renderer),
 			var _ => new UnknownRenderer(renderer)
 		};
 	}
@@ -171,4 +190,17 @@ public static class Utils
 				timeSpan = TimeSpan.Zero;
 		return timeSpan;
 	}
+
+	public static string GetParams(this ChannelTabs tab) =>
+		tab switch
+		{
+			ChannelTabs.Home => "EghmZWF0dXJlZA%3D%3D",
+			ChannelTabs.Videos => "EgZ2aWRlb3M%3D",
+			ChannelTabs.Playlists => "EglwbGF5bGlzdHM%3D",
+			ChannelTabs.Community => "Egljb21tdW5pdHk%3D",
+			ChannelTabs.Channels => "EghjaGFubmVscw%3D%3D",
+			ChannelTabs.About => "EgVhYm91dA%3D%3D",
+			ChannelTabs.Search => "EgZzZWFyY2g%3D",
+			var _ => ""
+		};
 }

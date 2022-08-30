@@ -15,3 +15,20 @@ public enum EndScreenItemType
 	Channel,
 	Link
 }
+
+public enum ChannelTabs
+{
+	Home,
+	Videos,
+	Playlists,
+	Community,
+	Channels,
+	About,
+	Search
+}
+
+public enum ShelfDirection
+{
+	Horizontal,
+	Vertical
+}
