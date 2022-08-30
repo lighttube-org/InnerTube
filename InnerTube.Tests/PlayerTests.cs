@@ -126,7 +126,7 @@ public class PlayerTests
 	[TestCase("LACbVhgtx9I", Description = "Video that includes self-harm topics")]
 	public async Task GetVideoNext(string videoId)
 	{
-		InnerTubeNextResponse next = await _innerTube.GetVideoNext(videoId);
+		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);
 
 		StringBuilder sb = new();
 
@@ -161,7 +161,7 @@ public class PlayerTests
 	{
 		try
 		{
-			await _innerTube.GetVideoNext(videoId);
+			await _innerTube.GetVideoAsync(videoId);
 		}
 		catch (InnerTubeException e)
 		{
@@ -183,13 +183,13 @@ public class PlayerTests
 		InnerTubeContinuationResponse comments;
 		if (videoId.Length == 11)
 		{
-			InnerTubeNextResponse next = await _innerTube.GetVideoNext(videoId);
+			InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);
 			if (next.CommentsContinuation is null) Assert.Fail("Video did not contain a comment continuation token");
-			comments = await _innerTube.GetVideoComments(next.CommentsContinuation!);
+			comments = await _innerTube.GetVideoCommentsAsync(next.CommentsContinuation!);
 		}
 		else
 		{
-			comments = await _innerTube.GetVideoComments(videoId!);
+			comments = await _innerTube.GetVideoCommentsAsync(videoId!);
 		}
 		StringBuilder sb = new();
 
@@ -205,7 +205,7 @@ public class PlayerTests
 	{
 		try
 		{
-			await _innerTube.GetVideoComments(continuationToken);
+			await _innerTube.GetVideoCommentsAsync(continuationToken);
 		}
 		catch (InnerTubeException e)
 		{

@@ -146,13 +146,13 @@ public class InnerTube
 	}
 
 	/// <summary>
-	/// Gets more information about a video, including recommended videos and a comment continuation token to be used with GetVideoComments
+	/// Gets more information about a video, including recommended videos and a comment continuation token to be used with GetVideoCommentsAsync
 	/// </summary>
 	/// <param name="videoId">ID of the video</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>Video info, a key for the comments & a list of recommended videos</returns>
-	public async Task<InnerTubeNextResponse> GetVideoNext(string videoId, string language = "en", string region = "US")
+	public async Task<InnerTubeNextResponse> GetVideoAsync(string videoId, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("videoId", videoId);
@@ -162,13 +162,13 @@ public class InnerTube
 	}
 
 	/// <summary>
-	/// Gets the comments of a video from a comment continuation token that can be received from GetVideoNext 
+	/// Gets the comments of a video from a comment continuation token that can be received from GetVideoAsync 
 	/// </summary>
-	/// <param name="commentsContinuation">Continuation token received from GetVideoNext</param>
+	/// <param name="commentsContinuation">Continuation token received from GetVideoAsync</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>List of comments for the video that belongs to the specified key</returns>
-	public async Task<InnerTubeContinuationResponse> GetVideoComments(string commentsContinuation, string language = "en", string region = "US")
+	public async Task<InnerTubeContinuationResponse> GetVideoCommentsAsync(string commentsContinuation, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("continuation", commentsContinuation);
