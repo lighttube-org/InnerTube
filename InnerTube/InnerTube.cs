@@ -263,6 +263,46 @@ public class InnerTube
 	}
 
 	/// <summary>
+	/// Get raw renderers from a browseId. Do not use unless a method for what you're trying to do does not exist.
+	/// </summary>
+	/// <param name="browseId">A browseId you can gather from the InnerTube API.</param>
+	/// <param name="browseParams">Parameters for this browseId</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns></returns>
+	public async Task<InnerTubeExploreResponse> BrowseAsync(string browseId, string? browseParams = null,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("browseId", browseId);
+
+		if (browseParams is not null)
+			postData.AddValue("params", browseParams);
+
+		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
+
+		return new InnerTubeExploreResponse(browseResponse, browseId);
+	}
+
+	/// <summary>
+	/// Get more renderers from a continuation key received from BrowseAsync.
+	/// </summary>
+	/// <param name="continuation">Continuation token from an older BrowseAsync call</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>More renderers from the given continuation key</returns>
+	public async Task<InnerTubeContinuationResponse> ContinueBrowseAsync(string continuation,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+
+		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
+
+		return InnerTubeContinuationResponse.GetFromBrowse(browseResponse);
+	}
+
+	/// <summary>
 	/// Get a list of all valid languages & regions
 	/// </summary>
 	/// <param name="language">Language of the content</param>

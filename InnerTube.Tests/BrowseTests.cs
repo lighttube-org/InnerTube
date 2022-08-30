@@ -140,4 +140,20 @@ public class BrowseTests
 			Assert.Fail(e.ToString());
 		}
 	}
+
+	[TestCase("FEexplore")]
+	[TestCase("FEwhat_to_watch")]
+	public async Task Browse(string browseId)
+	{
+		InnerTubeExploreResponse innerTubeExploreResponse = await _innerTube.BrowseAsync(browseId);
+
+		StringBuilder sb = new($"[{innerTubeExploreResponse.BrowseId}]\n");
+		sb.AppendLine("Contents:");
+		sb.AppendLine(innerTubeExploreResponse.Contents.ToString());
+		sb.AppendLine();
+		sb.AppendLine("Header:");
+		sb.AppendLine(innerTubeExploreResponse.Header.ToString());
+		
+		Assert.Pass(sb.ToString());
+	}
 }
