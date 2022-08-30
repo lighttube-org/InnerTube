@@ -135,7 +135,6 @@ public static class Utils
 			compactPlaylistRenderer
 			compactRadioRenderer
 			compactStationRenderer
-			playlistVideoRenderer
 			messageRenderer
 			channelAboutFullMetadataRenderer
 			promotedSparklesWebRenderer
@@ -149,6 +148,7 @@ public static class Utils
 			"playlistRenderer" => new PlaylistRenderer(renderer),
 			"gridPlaylistRenderer" => new GridPlaylistRenderer(renderer),
 			"childVideoRenderer" => new ChildVideoRenderer(renderer),
+			"playlistVideoRenderer" => new PlaylistVideoRenderer(renderer),
 			"shelfRenderer" => new ShelfRenderer(renderer),
 			"horizontalCardListRenderer" => new HorizontalCardListRenderer(renderer),
 			"searchRefinementCardRenderer" => new CardRenderer(renderer),

@@ -61,4 +61,46 @@ public class BrowseTests
 		
 		Assert.Pass(sb.ToString());
 	}
+
+	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false)]
+	[TestCase("PLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true)]
+	public async Task GetPlaylist(string playlistId, bool includeUnavailable)
+	{
+		InnerTubePlaylist playlist = await _innerTube.GetPlaylistAsync(playlistId, includeUnavailable);
+
+		StringBuilder sb = new();
+		sb.AppendLine(playlist.Id);
+		if (playlist.Alerts.Any())
+		{
+			sb.AppendLine()
+				.AppendLine("/!\\ ALERTS");
+
+			foreach (string alert in playlist.Alerts) 
+				sb.AppendLine("->\t" + alert);
+		}
+
+		sb.AppendLine(playlist.Sidebar.ToString());
+		
+		foreach (PlaylistVideoRenderer renderer in playlist.Videos)
+			sb.AppendLine("->\t" + string.Join("\n\t", renderer.ToString().Split("\n")));
+
+		sb.AppendLine($"Continuation: {string.Join("", playlist.Continuation?.Take(20) ?? "")}...");
+		
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase(
+		"4qmFsgJhEiRWTFBMdjNUVEJyMVdfOXRwcGlrQnhBRV9HNnFqV2RCbGpCSEoaFENBRjZCbEJVT2tOSFp3JTNEJTNEmgIiUEx2M1RUQnIxV185dHBwaWtCeEFFX0c2cWpXZEJsakJISg%3D%3D")]
+	public async Task ContinuePlaylist(string continuation)
+	{
+		InnerTubeContinuationResponse response = await _innerTube.ContinuePlaylistAsync(continuation);
+		StringBuilder sb = new();
+		
+		foreach (IRenderer renderer in response.Contents)
+			sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
+
+		sb.AppendLine($"Continuation: {response.Continuation?.Substring(0, 20)}");
+		
+		Assert.Pass(sb.ToString());
+	}
 }

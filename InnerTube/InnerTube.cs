@@ -224,6 +224,45 @@ public class InnerTube
 	}
 
 	/// <summary>
+	/// Get videos from a playlist
+	/// </summary>
+	/// <param name="playlistId">ID of the playlist. Must start with either VL or PL</param>
+	/// <param name="includeUnavailable">Set to true if you want to received [Deleted video]s and such</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>Information and videos of a playlist</returns>
+	public async Task<InnerTubePlaylist> GetPlaylistAsync(string playlistId, bool includeUnavailable = false,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("browseId", playlistId.StartsWith("VL") ? playlistId : "VL" + playlistId);
+		if (includeUnavailable)
+			postData.AddValue("params", "wgYCCAA%3D");
+
+		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
+
+		return new InnerTubePlaylist(browseResponse);
+	}
+
+	/// <summary>
+	/// Get videos from a playlist
+	/// </summary>
+	/// <param name="continuation">Continuation token from an older GetPlaylistAsync call</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>More videos from a playlist</returns>
+	public async Task<InnerTubeContinuationResponse> ContinuePlaylistAsync(string continuation,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+
+		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
+
+		return InnerTubeContinuationResponse.GetFromBrowse(browseResponse);
+	}
+
+	/// <summary>
 	/// Get a list of all valid languages & regions
 	/// </summary>
 	/// <param name="language">Language of the content</param>
