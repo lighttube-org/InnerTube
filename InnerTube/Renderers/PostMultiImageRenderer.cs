@@ -21,7 +21,7 @@ public class PostMultiImageRenderer : IRenderer
 		StringBuilder sb = new();
 		sb.AppendLine($"[{Type}] {Images.Count()} images");
 
-		foreach (BackstageImageRenderer image in Images) 
+		foreach (BackstageImageRenderer image in Images)
 			sb.AppendLine(image.ToString());
 
 		return sb.ToString();

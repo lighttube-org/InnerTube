@@ -29,7 +29,7 @@ public static class Utils
 			return default;
 		}
 	}
-	
+
 	public static string ReadRuns(JArray runs, bool includeFormatting = true)
 	{
 		string str = "";
@@ -82,7 +82,7 @@ public static class Utils
 		return thumbnails.Select(x =>
 		{
 			string url = x["url"]!.ToObject<string>()!;
-			Thumbnail a = new Thumbnail
+			Thumbnail a = new()
 			{
 				Width = x["width"]?.ToObject<int>(),
 				Height = x["height"]?.ToObject<int>(),
@@ -95,7 +95,7 @@ public static class Utils
 	}
 
 	public static Dictionary<int, Uri> GetLevelsFromStoryboardSpec(string? specStr, long duration)
-	{ 
+	{
 		Dictionary<int, Uri> urls = new();
 		if (specStr is null) return new Dictionary<int, Uri>();
 		List<string> spec = new(specStr.Split("|"));
@@ -118,7 +118,7 @@ public static class Utils
 				.Replace("$N", N) + "&sigh=" + sigh;
 			float fragmentCount = frameCount / (cols * rows);
 			float fragmentDuration = duration / fragmentCount;
-				
+
 			for (int j = 0; j < Math.Ceiling(fragmentCount); j++)
 				urls.TryAdd(spec.Count - 1 - i, new Uri(url.Replace("$M", j.ToString())));
 		}
@@ -176,10 +176,10 @@ public static class Utils
 
 	public static IEnumerable<IRenderer> ParseRenderers(JArray rendererArray)
 	{
-		return from renderer 
-				in rendererArray 
-				let type = renderer.First?.Path.Split(".").Last()! 
-				select ParseRenderer(renderer[type], type);
+		return from renderer
+				in rendererArray
+			let type = renderer.First?.Path.Split(".").Last()!
+			select ParseRenderer(renderer[type], type);
 	}
 
 	public static TimeSpan ParseDuration(string duration)

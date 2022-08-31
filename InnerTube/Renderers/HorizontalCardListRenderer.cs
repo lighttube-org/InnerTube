@@ -6,7 +6,7 @@ namespace InnerTube.Renderers;
 public class HorizontalCardListRenderer : IRenderer
 {
 	public string Type { get; }
-	
+
 	public string Title { get; }
 	public IEnumerable<CardRenderer> Items { get; }
 
@@ -21,12 +21,10 @@ public class HorizontalCardListRenderer : IRenderer
 	{
 		StringBuilder sb = new StringBuilder()
 			.AppendLine($"[{Type}] {Title}");
-		
+
 		foreach (IRenderer renderer in Items)
-		{
 			sb.AppendLine(string.Join('\n',
 				renderer.ToString()?.Split('\n').Select(x => $"\t{x}") ?? Array.Empty<string>()));
-		}
 
 		return sb.ToString();
 	}

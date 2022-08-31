@@ -27,7 +27,8 @@ public class ChannelRenderer : IRenderer
 		Description = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("descriptionSnippet.runs")!);
 		VideoCountText = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("videoCountText.runs")!);
 		SubscriberCountText = renderer.GetFromJsonPath<string>("subscriberCountText.simpleText")!;
-		Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")!.Select(x => new Badge(x["metadataBadgeRenderer"]!)).ToList().AsReadOnly();
+		Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")!.Select(x => new Badge(x["metadataBadgeRenderer"]!))
+			.ToList().AsReadOnly();
 	}
 
 	public override string ToString()

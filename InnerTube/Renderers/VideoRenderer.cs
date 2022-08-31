@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Text;
+﻿using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube.Renderers;
@@ -23,7 +22,8 @@ public class VideoRenderer : IRenderer
 		Type = renderer.Path.Split(".").Last();
 		Id = renderer["videoId"]!.ToString();
 		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs") ?? new JArray());
-		Description = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("detailedMetadataSnippets[0].snippetText.runs") ?? new JArray());
+		Description = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("detailedMetadataSnippets[0].snippetText.runs") ??
+		                             new JArray());
 		Published = renderer["publishedTimeText"]?["simpleText"]!.ToString();
 		ViewCount = renderer["viewCountText"]!["simpleText"] != null
 			? renderer["viewCountText"]!["simpleText"]!.ToString()
@@ -34,11 +34,14 @@ public class VideoRenderer : IRenderer
 			Id = renderer.GetFromJsonPath<string>("longBylineText.runs[0].navigationEndpoint.browseEndpoint.browseId")!,
 			Title = renderer.GetFromJsonPath<string>("longBylineText.runs[0].text")!,
 			Avatar = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>(
-				"channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails") ?? new JArray()).LastOrDefault()?.Url,
+				                             "channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails") ??
+			                             new JArray()).LastOrDefault()?.Url,
 			Subscribers = null,
-			Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>() 
+			Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")
+				?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>()
 		};
-		Badges = renderer["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>();
+		Badges = renderer["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ??
+		         Array.Empty<Badge>();
 
 		Duration = Utils.ParseDuration(renderer["lengthText"]?["simpleText"]?.ToString()!);
 	}

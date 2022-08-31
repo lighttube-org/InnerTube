@@ -26,14 +26,20 @@ public class PlaylistSidebar
 		ViewCountText = primary.GetFromJsonPath<string>("stats[1].simpleText")!;
 		LastUpdated = Utils.ReadRuns(primary.GetFromJsonPath<JArray>("stats[2].runs")!);
 		Description = primary.GetFromJsonPath<string>("description.simpleText")!;
-		Badges = primary["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>();
+		Badges = primary["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ??
+		         Array.Empty<Badge>();
 
 		JObject secondary = renderer.GetFromJsonPath<JObject>("items[1].playlistSidebarSecondaryInfoRenderer")!;
 		Channel = new Channel
 		{
-			Id = secondary.GetFromJsonPath<string>("videoOwner.videoOwnerRenderer.navigationEndpoint.browseEndpoint.browseId"),
-			Title = Utils.ReadRuns(secondary.GetFromJsonPath<JArray>("videoOwner.videoOwnerRenderer.title.runs")!, false),
-			Avatar = Utils.GetThumbnails(secondary.GetFromJsonPath<JArray>("videoOwner.videoOwnerRenderer.thumbnail.thumbnails") ?? new JArray()).FirstOrDefault()?.Url,
+			Id = secondary.GetFromJsonPath<string>(
+				"videoOwner.videoOwnerRenderer.navigationEndpoint.browseEndpoint.browseId"),
+			Title = Utils.ReadRuns(secondary.GetFromJsonPath<JArray>("videoOwner.videoOwnerRenderer.title.runs")!,
+				false),
+			Avatar = Utils
+				.GetThumbnails(
+					secondary.GetFromJsonPath<JArray>("videoOwner.videoOwnerRenderer.thumbnail.thumbnails") ??
+					new JArray()).FirstOrDefault()?.Url,
 			Subscribers = null,
 			Badges = Array.Empty<Badge>()
 		};

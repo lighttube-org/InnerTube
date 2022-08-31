@@ -35,7 +35,8 @@ public class ChannelMetadataRenderer : IRenderer
 	public override string ToString() =>
 		new StringBuilder()
 			.AppendLine($"[{Id}] {Title}")
-			.AppendLine($"AvailableCountryCodes: {string.Join(", ", AvailableCountryCodes.Take(5))} (and {AvailableCountryCodes.Length - 5} more)")
+			.AppendLine(
+				$"AvailableCountryCodes: {string.Join(", ", AvailableCountryCodes.Take(5))} (and {AvailableCountryCodes.Length - 5} more)")
 			.AppendLine($"AvatarCount: {Avatar.Length}")
 			.AppendLine($"Description: {Description}")
 			.AppendLine($"IsFamilySafe: {IsFamilySafe}")

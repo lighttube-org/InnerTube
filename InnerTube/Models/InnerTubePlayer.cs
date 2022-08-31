@@ -27,7 +27,8 @@ public class InnerTubePlayer
 			},
 			Keywords = playerResponse.GetFromJsonPath<string[]>("videoDetails.keywords")!,
 			ShortDescription = playerResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
-			Length = TimeSpan.FromSeconds(long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
+			Length = TimeSpan.FromSeconds(
+				long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
 			IsLive = playerResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
 			ViewCount = long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.viewCount")!),
 			AllowRatings = playerResponse.GetFromJsonPath<bool>("videoDetails.allowRatings")
@@ -53,8 +54,11 @@ public class InnerTubePlayer
 				Label = Utils.ReadRuns(x["name"]!["runs"]!.ToObject<JArray>()!),
 				BaseUrl = new Uri(x["baseUrl"]!.ToString())
 			}) ?? Array.Empty<VideoCaption>();
-		Formats = playerResponse.GetFromJsonPath<JArray>("streamingData.formats")?.Select(x => new Format(x)) ?? Array.Empty<Format>();
-		AdaptiveFormats = playerResponse.GetFromJsonPath<JArray>("streamingData.adaptiveFormats")?.Select(x => new Format(x)) ?? Array.Empty<Format>();
+		Formats = playerResponse.GetFromJsonPath<JArray>("streamingData.formats")?.Select(x => new Format(x)) ??
+		          Array.Empty<Format>();
+		AdaptiveFormats =
+			playerResponse.GetFromJsonPath<JArray>("streamingData.adaptiveFormats")?.Select(x => new Format(x)) ??
+			Array.Empty<Format>();
 		ExpiresInSeconds = playerResponse["streamingData"]?["expiresInSeconds"]?.ToObject<int>() ?? 0;
 		HlsManifestUrl = playerResponse["streamingData"]?["hlsManifestUrl"]?.ToString();
 		DashManifestUrl = playerResponse["streamingData"]?["dashManifestUrl"]?.ToString();
@@ -92,4 +96,3 @@ public class InnerTubePlayer
 		public Dictionary<int, Uri> Levels { get; set; }
 	}
 }
-

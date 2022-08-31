@@ -17,7 +17,7 @@ public class InnerTubeAuthorization
 			Secrets = new Dictionary<string, object>
 			{
 				["SAPISID"] = sapisid,
-				["PSID"] = psid,
+				["PSID"] = psid
 			}
 		};
 
@@ -71,6 +71,7 @@ public class InnerTubeAuthorization
 				return;
 			}
 		}
+
 		Log.Debug("[AUTHORIZATION] Refreshing access token");
 		string requestBody =
 			$"{{\"client_id\":\"861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com\",\"client_secret\":\"SboVhoG9s0rNafixCSGGKXAT\",\"grant_type\":\"refresh_token\",\"refresh_token\":\"{Secrets["refreshToken"]}\" }}";

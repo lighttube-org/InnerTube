@@ -6,7 +6,7 @@ namespace InnerTube.Renderers;
 public class PollRenderer : IRenderer
 {
 	public string Type { get; }
-	
+
 	public IEnumerable<Choice> Choices { get; }
 	public string TotalVotes { get; }
 
@@ -35,7 +35,7 @@ public class PollRenderer : IRenderer
 		StringBuilder sb = new();
 		sb.AppendLine($"[{Type}] {TotalVotes}");
 
-		foreach (Choice choice in Choices) 
+		foreach (Choice choice in Choices)
 			sb.AppendLine(choice.ToString());
 
 		return sb.ToString();

@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Text;
+﻿using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube.Renderers;
@@ -29,15 +28,20 @@ public class GridVideoRenderer : IRenderer
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());
 		Channel = new Channel
 		{
-			Id = renderer.GetFromJsonPath<string>("shortBylineText.runs[0].navigationEndpoint.browseEndpoint.browseId")!,
+			Id = renderer.GetFromJsonPath<string>(
+				"shortBylineText.runs[0].navigationEndpoint.browseEndpoint.browseId")!,
 			Title = renderer.GetFromJsonPath<string>("shortBylineText.runs[0].text")!,
 			Avatar = null,
 			Subscribers = null,
-			Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>() 
+			Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")
+				?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>()
 		};
-		Badges = renderer["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>();
+		Badges = renderer["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ??
+		         Array.Empty<Badge>();
 
-		Duration = Utils.ParseDuration(renderer.GetFromJsonPath<string>("thumbnailOverlays[0].thumbnailOverlayTimeStatusRenderer.text.simpleText")!);
+		Duration = Utils.ParseDuration(
+			renderer.GetFromJsonPath<string>(
+				"thumbnailOverlays[0].thumbnailOverlayTimeStatusRenderer.text.simpleText")!);
 	}
 
 	public override string ToString()

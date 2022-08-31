@@ -22,6 +22,7 @@ public class Channel
 			if (Badges.Any())
 				res += " | Badges: " + string.Join(", ", Badges.Select(x => x.ToString()));
 		}
+
 		return res.Trim();
 	}
 }

@@ -6,10 +6,10 @@ namespace InnerTube.Renderers;
 public class ContinuationItemRenderer : IRenderer
 {
 	public string Type { get; }
-	
+
 	public string Title { get; }
 	public string Token { get; }
-	
+
 	public ContinuationItemRenderer(JToken renderer)
 	{
 		Type = renderer.Path.Split(".").Last();
@@ -22,7 +22,7 @@ public class ContinuationItemRenderer : IRenderer
 		StringBuilder sb = new StringBuilder()
 			.AppendLine($"[{Type}] {Title}")
 			.AppendLine($"- Token: {string.Join("", Token.Take(20))}...");
-		
+
 		return sb.ToString();
 	}
 }

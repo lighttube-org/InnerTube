@@ -51,8 +51,8 @@ public class InnerTubeRequest
 				clientContext.Add("platform", "MOBILE");
 				break;
 		}
-		
-		AddValue("context", new Dictionary<string, object>()
+
+		AddValue("context", new Dictionary<string, object>
 		{
 			["client"] = clientContext
 		});

@@ -9,7 +9,7 @@ public class CardRenderer : IRenderer
 
 	public string Title { get; }
 	public IEnumerable<Thumbnail> Thumbnails { get; }
-	
+
 	public CardRenderer(JToken renderer)
 	{
 		Type = renderer.Path.Split(".").Last();

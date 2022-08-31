@@ -6,13 +6,13 @@ namespace InnerTube.Renderers;
 public class ShelfRenderer : IRenderer
 {
 	public string Type { get; }
-	
+
 	public string Title { get; }
 	public int CollapsedItemCount { get; }
 	public ShelfDirection Direction { get; }
 	public IEnumerable<IRenderer> Items { get; }
 
-	
+
 	public ShelfRenderer(JToken renderer)
 	{
 		Type = renderer.Path.Split(".").Last();
@@ -33,12 +33,10 @@ public class ShelfRenderer : IRenderer
 		StringBuilder sb = new StringBuilder()
 			.AppendLine($"[{Type}] {Title}")
 			.AppendLine($"- CollapsedItemCount: {CollapsedItemCount}");
-		
+
 		foreach (IRenderer renderer in Items)
-		{
 			sb.AppendLine(string.Join('\n',
 				renderer.ToString()?.Split('\n').Select(x => $"\t{x}") ?? Array.Empty<string>()));
-		}
 
 		return sb.ToString();
 	}

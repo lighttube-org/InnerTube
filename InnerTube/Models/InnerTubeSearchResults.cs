@@ -18,7 +18,8 @@ public class InnerTubeSearchResults
 		public string CorrectedQuery { get; set; }
 		public string Params { get; set; }
 
-		public override string ToString() => $"Showing results for '{CorrectedQuery}'. Search instead for '{OriginalQuery}' [{Params}]";
+		public override string ToString() =>
+			$"Showing results for '{CorrectedQuery}'. Search instead for '{OriginalQuery}' [{Params}]";
 	}
 
 	public class Options
@@ -30,19 +31,19 @@ public class InnerTubeSearchResults
 		{
 			public string Title { get; }
 			public IEnumerable<Filter> Filters { get; }
-			
+
 			public class Filter
 			{
 				public string Label { get; }
 				public string? Params { get; }
-	
+
 				public Filter(JToken searchFilterRenderer)
 				{
 					Label = searchFilterRenderer["label"]!["simpleText"]!.ToString();
 					Params = searchFilterRenderer["navigationEndpoint"]?["searchEndpoint"]?["params"]?.ToString();
 				}
 			}
-	
+
 			public Group(JToken searchFilterGroupRenderer)
 			{
 				Title = searchFilterGroupRenderer["title"]!["simpleText"]!.ToString();
@@ -54,13 +55,15 @@ public class InnerTubeSearchResults
 		internal Options(JToken searchSubMenuRenderer)
 		{
 			Title = Utils.ReadRuns(searchSubMenuRenderer["title"]!["runs"]!.ToObject<JArray>()!);
-			Groups = searchSubMenuRenderer["groups"]!.ToObject<JArray>()!.Select(x => new Group(x["searchFilterGroupRenderer"]!));
+			Groups = searchSubMenuRenderer["groups"]!.ToObject<JArray>()!.Select(x =>
+				new Group(x["searchFilterGroupRenderer"]!));
 		}
 	}
 
 	public InnerTubeSearchResults(JObject json)
 	{
-		JArray? contents = json.GetFromJsonPath<JArray>("contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0].itemSectionRenderer.contents");
+		JArray? contents = json.GetFromJsonPath<JArray>(
+			"contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[0].itemSectionRenderer.contents");
 
 		if (contents?[0].First?.Path.EndsWith("showingResultsForRenderer") ?? false)
 		{
@@ -82,9 +85,9 @@ public class InnerTubeSearchResults
 				"contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[1].continuationItemRenderer.continuationEndpoint.continuationCommand.token") ??
 			null;
 
-		JObject? searchSubMenuRenderer = json.GetFromJsonPath<JObject>("contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.subMenu.searchSubMenuRenderer");
+		JObject? searchSubMenuRenderer = json.GetFromJsonPath<JObject>(
+			"contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.subMenu.searchSubMenuRenderer");
 		if (searchSubMenuRenderer != null)
 			SearchOptions = new Options(searchSubMenuRenderer);
 	}
 }
-

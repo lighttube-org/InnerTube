@@ -15,7 +15,7 @@ public class ChannelAboutFullMetadataRenderer : IRenderer
 	public string JoinedDate { get; }
 	public IEnumerable<ChannelLink> PrimaryLinks { get; }
 	public string Country { get; }
-	
+
 	public ChannelAboutFullMetadataRenderer(JToken renderer)
 	{
 		Type = renderer.Path.Split(".").Last();
@@ -43,7 +43,7 @@ public class ChannelAboutFullMetadataRenderer : IRenderer
 			.AppendLine($"Country: {Country}")
 			.AppendLine("Links:");
 
-		foreach (ChannelLink link in PrimaryLinks) 
+		foreach (ChannelLink link in PrimaryLinks)
 			sb.AppendLine(link.ToString());
 
 		return sb.ToString();

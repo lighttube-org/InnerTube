@@ -37,7 +37,6 @@ public class Format
 		AudioQuality = jToken["audioQuality"]?.ToString();
 		AudioSampleRate = int.Parse(jToken["audioSampleRate"]?.ToString() ?? "0");
 		AudioChannels = jToken["audioChannels"]?.ToObject<int>();
-		
 	}
 }
 
@@ -47,7 +46,7 @@ public class DashRange
 	public int End { get; }
 
 	public override string ToString() => $"({Start} - {End})";
-	
+
 	public DashRange(JToken? jToken)
 	{
 		if (jToken is null)

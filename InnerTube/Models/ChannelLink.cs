@@ -18,8 +18,8 @@ public class ChannelLink
 			HttpUtility.UrlDecode(
 				HttpUtility.ParseQueryString(jToken.GetFromJsonPath<Uri>("navigationEndpoint.urlEndpoint.url")!.Query)
 					.Get("q")
-				)!
-			);
+			)!
+		);
 	}
 
 	public override string ToString() => $"{Title} ({Url})";

@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 public class BackstageImageRenderer : IRenderer
 {
 	public string Type { get; }
-	
+
 	public IEnumerable<Thumbnail> Images { get; }
 
 	public BackstageImageRenderer(JToken renderer)

@@ -6,10 +6,10 @@ namespace InnerTube.Renderers;
 public class ReelShelfRenderer : IRenderer
 {
 	public string Type { get; }
-	
+
 	public string Title { get; }
 	public IEnumerable<ReelItemRenderer> Items { get; }
-	
+
 	public ReelShelfRenderer(JToken renderer)
 	{
 		Type = renderer.Path.Split(".").Last();
@@ -21,7 +21,7 @@ public class ReelShelfRenderer : IRenderer
 	{
 		StringBuilder sb = new StringBuilder()
 			.AppendLine($"[{Type}] {Title}");
-		
+
 		foreach (ReelItemRenderer renderer in Items)
 			sb.AppendLine(string.Join('\n',
 				renderer.ToString()?.Split('\n').Select(x => $"\t{x}") ?? Array.Empty<string>()));

@@ -56,7 +56,10 @@ public class InnerTube
 	/// </summary>
 	/// <param name="videoId">ID of the video</param>
 	/// <param name="contentCheckOk">Set to true if you want to skip the content warnings (suicide, self-harm etc.)</param>
-	/// <param name="includeHls">Set to true if you need HLS streams. Note that HLS streams are always sent for live videos and for non-live videos setting this to true will not return formats larger than 1080p</param>
+	/// <param name="includeHls">
+	/// Set to true if you need HLS streams. Note that HLS streams are always sent for live videos and
+	/// for non-live videos setting this to true will not return formats larger than 1080p
+	/// </param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	public async Task<InnerTubePlayer> GetPlayerAsync(string videoId, bool contentCheckOk, bool includeHls,
@@ -77,11 +80,9 @@ public class InnerTube
 			language, region, true);
 		string playabilityStatus = playerResponse.GetFromJsonPath<string>("playabilityStatus.status")!;
 		if (playabilityStatus != "OK")
-		{
 			throw new PlayerException(playabilityStatus,
 				playerResponse.GetFromJsonPath<string>("playabilityStatus.reason")!,
 				playerResponse.GetFromJsonPath<string>("playabilityStatus.reasonTitle")!);
-		}
 
 		InnerTubePlayer player = new(playerResponse);
 		PlayerCache.Set(cacheId, player,
@@ -110,7 +111,7 @@ public class InnerTube
 			language, region);
 		return new InnerTubeSearchResults(searchResponse);
 	}
-	
+
 	/// <summary>
 	/// Continue an old search query using its continuation token
 	/// </summary>
@@ -146,7 +147,8 @@ public class InnerTube
 	}
 
 	/// <summary>
-	/// Gets more information about a video, including recommended videos and a comment continuation token to be used with GetVideoCommentsAsync
+	/// Gets more information about a video, including recommended videos and a comment continuation token to be used with
+	/// GetVideoCommentsAsync
 	/// </summary>
 	/// <param name="videoId">ID of the video</param>
 	/// <param name="language">Language of the content</param>
@@ -163,13 +165,14 @@ public class InnerTube
 	}
 
 	/// <summary>
-	/// Gets the comments of a video from a comment continuation token that can be received from GetVideoAsync 
+	/// Gets the comments of a video from a comment continuation token that can be received from GetVideoAsync
 	/// </summary>
 	/// <param name="commentsContinuation">Continuation token received from GetVideoAsync</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>List of comments for the video that belongs to the specified key</returns>
-	public async Task<InnerTubeContinuationResponse> GetVideoCommentsAsync(string commentsContinuation, string language = "en", string region = "US")
+	public async Task<InnerTubeContinuationResponse> GetVideoCommentsAsync(string commentsContinuation,
+		string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("continuation", commentsContinuation);
@@ -182,12 +185,16 @@ public class InnerTube
 	/// Get information about a channel
 	/// </summary>
 	/// <param name="channelId">ID of a channel, starts with UC</param>
-	/// <param name="tab">Tab of the requested channel. ChannelTabs.Community will return the same response as ChannelTabs.Home if the channel does not have community enabled</param>
+	/// <param name="tab">
+	/// Tab of the requested channel. ChannelTabs.Community will return the same response as ChannelTabs.Home
+	/// if the channel does not have community enabled
+	/// </param>
 	/// <param name="searchQuery">Query to search in this channel. Only used if tab is ChannelTabs.Search</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>Information about a channel</returns>
-	public async Task<InnerTubeChannelResponse> GetChannelAsync(string channelId, ChannelTabs tab = ChannelTabs.Home, string? searchQuery = null,
+	public async Task<InnerTubeChannelResponse> GetChannelAsync(string channelId, ChannelTabs tab = ChannelTabs.Home,
+		string? searchQuery = null,
 		string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
@@ -204,7 +211,7 @@ public class InnerTube
 
 		return new InnerTubeChannelResponse(browseResponse);
 	}
-	
+
 	/// <summary>
 	/// Get information about a channel
 	/// </summary>

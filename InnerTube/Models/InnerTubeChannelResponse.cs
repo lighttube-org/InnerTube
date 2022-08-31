@@ -13,14 +13,17 @@ public class InnerTubeChannelResponse
 	public InnerTubeChannelResponse(JObject browseResponse)
 	{
 		if (browseResponse.ContainsKey("alerts"))
-		{
-			throw new NotFoundException(browseResponse.GetFromJsonPath<string>("alerts[0].alertRenderer.text.simpleText")!);
-		}
-		Header = (C4TabbedHeaderRenderer?)Utils.ParseRenderer(browseResponse.GetFromJsonPath<JToken>("header.c4TabbedHeaderRenderer"), "c4TabbedHeaderRenderer");
-		Metadata = (ChannelMetadataRenderer)Utils.ParseRenderer(browseResponse.GetFromJsonPath<JToken>("metadata.channelMetadataRenderer")!, "channelMetadataRenderer")!;
+			throw new NotFoundException(
+				browseResponse.GetFromJsonPath<string>("alerts[0].alertRenderer.text.simpleText")!);
+		Header = (C4TabbedHeaderRenderer?)Utils.ParseRenderer(
+			browseResponse.GetFromJsonPath<JToken>("header.c4TabbedHeaderRenderer"), "c4TabbedHeaderRenderer");
+		Metadata = (ChannelMetadataRenderer)Utils.ParseRenderer(
+			browseResponse.GetFromJsonPath<JToken>("metadata.channelMetadataRenderer")!, "channelMetadataRenderer")!;
 		JToken currentTab =
 			browseResponse.GetFromJsonPath<JArray>("contents.twoColumnBrowseResultsRenderer.tabs")!
-				.Select(x => x.GetFromJsonPath<JToken>("tabRenderer.content.sectionListRenderer.contents") ?? x.GetFromJsonPath<JToken>("expandableTabRenderer.content"))
+				.Select(x =>
+					x.GetFromJsonPath<JToken>("tabRenderer.content.sectionListRenderer.contents") ??
+					x.GetFromJsonPath<JToken>("expandableTabRenderer.content"))
 				.First(x => x != null)!;
 		if (currentTab is JObject)
 			currentTab = currentTab["sectionListRenderer"]!["contents"]!.ToObject<JToken>()!;

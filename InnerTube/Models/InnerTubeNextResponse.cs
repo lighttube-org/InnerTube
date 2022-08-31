@@ -20,10 +20,11 @@ public class InnerTubeNextResponse
 
 	public InnerTubeNextResponse(JObject playerResponse)
 	{
-		JToken resultsArray = playerResponse.GetFromJsonPath<JToken>("contents.twoColumnWatchNextResults.results.results");
+		JToken resultsArray =
+			playerResponse.GetFromJsonPath<JToken>("contents.twoColumnWatchNextResults.results.results");
 		if (resultsArray is null || !resultsArray.Any(x => x.Path.EndsWith("contents")))
 			throw new InnerTubeException("Cannot get information about this video");
-		
+
 		JToken? errorObject = resultsArray.GetFromJsonPath<JToken>(
 			"contents[0].itemSectionRenderer.contents[0].backgroundPromoRenderer");
 		if (errorObject is not null)
@@ -33,7 +34,7 @@ public class InnerTubeNextResponse
 		Title = Utils.ReadRuns(resultsArray.GetFromJsonPath<JArray>(
 			"contents[0].videoPrimaryInfoRenderer.title.runs")!);
 		JArray? descriptionArray = resultsArray.GetFromJsonPath<JArray>(
-				"contents[1].videoSecondaryInfoRenderer.description.runs");
+			"contents[1].videoSecondaryInfoRenderer.description.runs");
 		Description = descriptionArray != null ? Utils.ReadRuns(descriptionArray) : "";
 		DateText = resultsArray.GetFromJsonPath<string>(
 				"contents[0].videoPrimaryInfoRenderer.dateText.simpleText")
@@ -87,7 +88,9 @@ public class InnerTubeNextResponse
 		CommentsContinuation = resultsArray.GetFromJsonPath<string>(
 			"contents[3].itemSectionRenderer.contents[0].continuationItemRenderer.continuationEndpoint.continuationCommand.token");
 
-		JArray? recommendedList = playerResponse.GetFromJsonPath<JArray>("contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results");
+		JArray? recommendedList =
+			playerResponse.GetFromJsonPath<JArray>(
+				"contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results");
 		Recommended = recommendedList != null
 			? Utils.ParseRenderers(recommendedList)
 			: Array.Empty<IRenderer>();

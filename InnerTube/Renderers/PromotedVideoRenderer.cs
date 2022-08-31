@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using System.Text;
+﻿using System.Text;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube.Renderers;
@@ -33,7 +32,7 @@ public class PromotedVideoRenderer : IRenderer
 			Title = renderer.GetFromJsonPath<string>("longBylineText.runs[0].text")!,
 			Avatar = null,
 			Subscribers = null,
-			Badges = Array.Empty<Badge>() 
+			Badges = Array.Empty<Badge>()
 		};
 		Badges = new[]
 		{

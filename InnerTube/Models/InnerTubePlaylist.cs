@@ -24,14 +24,13 @@ public class InnerTubePlaylist
 					try
 					{
 						if (current["text"] is not null)
-						{
 							return current["text"]!["runs"] is not null
 								? Utils.ReadRuns(current["text"]!["runs"]!.ToObject<JArray>()!)
 								: current["text"]!["simpleText"]!.ToString();
-						}
 					}
 					catch
-					{ }
+					{
+					}
 
 					current = current.First!;
 				}
@@ -47,7 +46,7 @@ public class InnerTubePlaylist
 		}
 
 		Id = browseResponse.GetFromJsonPath<string>("header.playlistHeaderRenderer.playlistId")!;
-		
+
 		IRenderer[] renderers = Utils.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
 				"contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents")
 			!).ToArray();

@@ -18,8 +18,11 @@ public class InnerTubeContinuationResponse
 	public static InnerTubeContinuationResponse GetFromSearchResponse(JObject response)
 	{
 		return new InnerTubeContinuationResponse(
-			Utils.ParseRenderers(response.GetFromJsonPath<JArray>("onResponseReceivedCommands[0].appendContinuationItemsAction.continuationItems[0].itemSectionRenderer.contents")!),
-			response.GetFromJsonPath<string>("onResponseReceivedCommands[0].appendContinuationItemsAction.continuationItems[1].continuationItemRenderer.continuationEndpoint.continuationCommand.token")
+			Utils.ParseRenderers(response.GetFromJsonPath<JArray>(
+					"onResponseReceivedCommands[0].appendContinuationItemsAction.continuationItems[0].itemSectionRenderer.contents")
+				!),
+			response.GetFromJsonPath<string>(
+				"onResponseReceivedCommands[0].appendContinuationItemsAction.continuationItems[1].continuationItemRenderer.continuationEndpoint.continuationCommand.token")
 		);
 	}
 
@@ -39,8 +42,10 @@ public class InnerTubeContinuationResponse
 				"continuationItems"]!.ToObject<JArray>()!;
 		return new InnerTubeContinuationResponse(
 			Utils.ParseRenderers(new JArray(comments.Where(x => x["commentThreadRenderer"] != null))),
-			comments.Last!.GetFromJsonPath<string>("continuationItemRenderer.continuationEndpoint.continuationCommand.token")
-		);	}
+			comments.Last!.GetFromJsonPath<string>(
+				"continuationItemRenderer.continuationEndpoint.continuationCommand.token")
+		);
+	}
 
 	public static InnerTubeContinuationResponse GetFromBrowse(JObject browseResponse)
 	{
