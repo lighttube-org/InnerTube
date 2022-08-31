@@ -14,7 +14,7 @@ public class ReelShelfRenderer : IRenderer
 	{
 		Type = renderer.Path.Split(".").Last();
 		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!);
-		Items = Utils.ParseRenderers(renderer.GetFromJsonPath<JArray>("items")!).Cast<ReelItemRenderer>();
+		Items = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("items")!).Cast<ReelItemRenderer>();
 	}
 
 	public override string ToString()

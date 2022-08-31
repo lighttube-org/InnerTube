@@ -23,7 +23,7 @@ public class ShelfRenderer : IRenderer
 			: renderer.GetFromJsonPath<JArray>("content.horizontalListRenderer.items") != null
 				? ShelfDirection.Horizontal
 				: ShelfDirection.None;
-		Items = Utils.ParseRenderers(Direction switch
+		Items = RendererManager.ParseRenderers(Direction switch
 		{
 			ShelfDirection.Horizontal => renderer.GetFromJsonPath<JArray>("content.horizontalListRenderer.items")!,
 			ShelfDirection.Vertical => renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items")!,

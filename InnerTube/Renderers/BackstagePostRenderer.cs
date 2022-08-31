@@ -31,7 +31,7 @@ public class BackstagePostRenderer : IRenderer
 		Content = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("contentText.runs")!);
 		JToken? attachmentObject = renderer.GetFromJsonPath<JObject>("backstageAttachment")?.First;
 		Attachment =
-			Utils.ParseRenderer(attachmentObject?.First, attachmentObject?.Path.Split(".").Last() ?? "");
+			RendererManager.ParseRenderer(attachmentObject?.First, attachmentObject?.Path.Split(".").Last() ?? "");
 		Published = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("publishedTimeText.runs")!, false);
 		LikeCount = renderer.GetFromJsonPath<string>("voteCount.simpleText")!;
 	}

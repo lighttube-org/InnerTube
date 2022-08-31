@@ -13,7 +13,7 @@ public class RichGridRenderer : IRenderer
 	{
 		Type = renderer.Path.Split(".").Last();
 
-		Contents = Utils.ParseRenderers(renderer["contents"]!.ToObject<JArray>()!);
+		Contents = RendererManager.ParseRenderers(renderer["contents"]!.ToObject<JArray>()!);
 	}
 
 	public override string ToString()

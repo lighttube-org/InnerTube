@@ -15,7 +15,7 @@ public class SectionListRenderer : IRenderer
 		Type = renderer.Path.Split(".").Last();
 
 		TargetId = renderer.GetFromJsonPath<string>("targetId")!;
-		Contents = Utils.ParseRenderers(renderer.GetFromJsonPath<JArray>("contents")!);
+		Contents = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("contents")!);
 	}
 
 	public override string ToString()

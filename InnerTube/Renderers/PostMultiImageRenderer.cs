@@ -13,7 +13,7 @@ public class PostMultiImageRenderer : IRenderer
 	{
 		Type = renderer.Path.Split(".").Last();
 
-		Images = Utils.ParseRenderers(renderer["images"]!.ToObject<JArray>()!).Cast<BackstageImageRenderer>();
+		Images = RendererManager.ParseRenderers(renderer["images"]!.ToObject<JArray>()!).Cast<BackstageImageRenderer>();
 	}
 
 	public override string ToString()

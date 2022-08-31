@@ -14,7 +14,7 @@ public class HorizontalCardListRenderer : IRenderer
 	{
 		Type = renderer.Path.Split(".").Last();
 		Title = renderer.GetFromJsonPath<string>("header.richListHeaderRenderer.title.simpleText")!;
-		Items = Utils.ParseRenderers(renderer.GetFromJsonPath<JArray>("cards")!).Cast<CardRenderer>();
+		Items = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("cards")!).Cast<CardRenderer>();
 	}
 
 	public override string ToString()

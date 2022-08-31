@@ -46,7 +46,7 @@ public class PlaylistRenderer : IRenderer
 				?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>()
 		};
 
-		Videos = Utils.ParseRenderers(renderer["videos"]!.ToObject<JArray>()!).Cast<ChildVideoRenderer>();
+		Videos = RendererManager.ParseRenderers(renderer["videos"]!.ToObject<JArray>()!).Cast<ChildVideoRenderer>();
 	}
 
 	public override string ToString()

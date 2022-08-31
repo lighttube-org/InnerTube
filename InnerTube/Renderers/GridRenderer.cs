@@ -13,7 +13,7 @@ public class GridRenderer : IRenderer
 	{
 		Type = renderer.Path.Split(".").Last();
 
-		Items = Utils.ParseRenderers(renderer["items"]!.ToObject<JArray>()!);
+		Items = RendererManager.ParseRenderers(renderer["items"]!.ToObject<JArray>()!);
 	}
 
 	public override string ToString()

@@ -14,7 +14,7 @@ public class SearchPyvRenderer : IRenderer
 	{
 		Type = renderer.Path.Split(".").Last();
 
-		Ads = Utils.ParseRenderers(renderer["ads"]!.ToObject<JArray>()!);
+		Ads = RendererManager.ParseRenderers(renderer["ads"]!.ToObject<JArray>()!);
 	}
 
 	public override string ToString()

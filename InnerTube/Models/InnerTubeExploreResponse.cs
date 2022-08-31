@@ -12,10 +12,10 @@ public class InnerTubeExploreResponse
 	public InnerTubeExploreResponse(JObject browseResponse, string browseId)
 	{
 		BrowseId = browseId;
-		Contents = Utils.ParseRenderer(
+		Contents = RendererManager.ParseRenderer(
 			browseResponse.GetFromJsonPath<JObject>("contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer"),
 			"tabRenderer")!;
 		JToken headerElement = browseResponse["header"]!.First!;
-		Header = Utils.ParseRenderer(headerElement.First, headerElement.Path.Split(".").Last())!;
+		Header = RendererManager.ParseRenderer(headerElement.First, headerElement.Path.Split(".").Last())!;
 	}
 }

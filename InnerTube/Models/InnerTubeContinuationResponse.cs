@@ -18,7 +18,7 @@ public class InnerTubeContinuationResponse
 	public static InnerTubeContinuationResponse GetFromSearchResponse(JObject response)
 	{
 		return new InnerTubeContinuationResponse(
-			Utils.ParseRenderers(response.GetFromJsonPath<JArray>(
+			RendererManager.ParseRenderers(response.GetFromJsonPath<JArray>(
 					"onResponseReceivedCommands[0].appendContinuationItemsAction.continuationItems[0].itemSectionRenderer.contents")
 				!),
 			response.GetFromJsonPath<string>(
@@ -41,7 +41,7 @@ public class InnerTubeContinuationResponse
 			(response["reloadContinuationItemsCommand"] ?? response["appendContinuationItemsAction"])![
 				"continuationItems"]!.ToObject<JArray>()!;
 		return new InnerTubeContinuationResponse(
-			Utils.ParseRenderers(new JArray(comments.Where(x => x["commentThreadRenderer"] != null))),
+			RendererManager.ParseRenderers(new JArray(comments.Where(x => x["commentThreadRenderer"] != null))),
 			comments.Last!.GetFromJsonPath<string>(
 				"continuationItemRenderer.continuationEndpoint.continuationCommand.token")
 		);
@@ -49,7 +49,7 @@ public class InnerTubeContinuationResponse
 
 	public static InnerTubeContinuationResponse GetFromBrowse(JObject browseResponse)
 	{
-		IEnumerable<IRenderer> contents = Utils.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
+		IEnumerable<IRenderer> contents = RendererManager.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
 			"onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems")!).ToArray();
 		return new InnerTubeContinuationResponse(contents.Where(x => x is not ContinuationItemRenderer),
 			((ContinuationItemRenderer?)contents.FirstOrDefault(x => x is ContinuationItemRenderer))?.Token);

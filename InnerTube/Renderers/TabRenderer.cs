@@ -15,7 +15,7 @@ public class TabRenderer : IRenderer
 	{
 		Type = renderer.Path.Split(".").Last();
 
-		Content = Utils.ParseRenderer(renderer["content"]!.First!.First!, renderer["content"]!.First!.Path.Split(".").Last())!;
+		Content = RendererManager.ParseRenderer(renderer["content"]!.First!.First!, renderer["content"]!.First!.Path.Split(".").Last())!;
 		TabId = renderer.GetFromJsonPath<string>("tabIdentifier")!;
 		Selected = renderer.GetFromJsonPath<bool>("selected")!;
 	}

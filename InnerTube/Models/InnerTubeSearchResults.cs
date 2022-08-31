@@ -79,7 +79,7 @@ public class InnerTubeSearchResults
 
 		EstimatedResults = long.Parse(json["estimatedResults"]?.ToString() ?? "0");
 		Refinements = json.GetFromJsonPath<string[]>("refinements") ?? Array.Empty<string>();
-		Results = Utils.ParseRenderers(contents ?? new JArray()).ToList().AsReadOnly();
+		Results = RendererManager.ParseRenderers(contents ?? new JArray()).ToList().AsReadOnly();
 		Continuation =
 			json.GetFromJsonPath<string>(
 				"contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[1].continuationItemRenderer.continuationEndpoint.continuationCommand.token") ??

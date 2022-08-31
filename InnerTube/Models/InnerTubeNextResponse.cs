@@ -92,7 +92,7 @@ public class InnerTubeNextResponse
 			playerResponse.GetFromJsonPath<JArray>(
 				"contents.twoColumnWatchNextResults.secondaryResults.secondaryResults.results");
 		Recommended = recommendedList != null
-			? Utils.ParseRenderers(recommendedList)
+			? RendererManager.ParseRenderers(recommendedList)
 			: Array.Empty<IRenderer>();
 	}
 }

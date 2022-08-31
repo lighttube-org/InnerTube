@@ -126,69 +126,6 @@ public static class Utils
 		return urls;
 	}
 
-	public static IRenderer? ParseRenderer(JToken? renderer, string type)
-	{
-		if (renderer is null) return null;
-		/* remaining: (from lighttube source code)
-			radioRenderer
-			compactVideoRenderer
-			compactPlaylistRenderer
-			compactRadioRenderer
-			compactStationRenderer
-			messageRenderer
-			channelAboutFullMetadataRenderer
-			promotedSparklesWebRenderer
-		*/
-		return type switch
-		{
-			"videoRenderer" => new VideoRenderer(renderer),
-			"gridVideoRenderer" => new GridVideoRenderer(renderer),
-			"channelRenderer" => new ChannelRenderer(renderer),
-			"gridChannelRenderer" => new GridChannelRenderer(renderer),
-			"playlistRenderer" => new PlaylistRenderer(renderer),
-			"gridPlaylistRenderer" => new GridPlaylistRenderer(renderer),
-			"childVideoRenderer" => new ChildVideoRenderer(renderer),
-			"playlistVideoRenderer" => new PlaylistVideoRenderer(renderer),
-			"shelfRenderer" => new ShelfRenderer(renderer),
-			"horizontalCardListRenderer" => new HorizontalCardListRenderer(renderer),
-			"searchRefinementCardRenderer" => new CardRenderer(renderer),
-			"searchPyvRenderer" => new SearchPyvRenderer(renderer),
-			"promotedVideoRenderer" => new PromotedVideoRenderer(renderer),
-			"commentThreadRenderer" => new CommentThreadRenderer(renderer),
-			"c4TabbedHeaderRenderer" => new C4TabbedHeaderRenderer(renderer),
-			"channelMetadataRenderer" => new ChannelMetadataRenderer(renderer),
-			"itemSectionRenderer" => new ItemSectionRenderer(renderer),
-			"channelVideoPlayerRenderer" => new ChannelVideoPlayerRenderer(renderer),
-			"recognitionShelfRenderer" => new RecognitionShelfRenderer(renderer),
-			"reelShelfRenderer" => new ReelShelfRenderer(renderer),
-			"reelItemRenderer" => new ReelItemRenderer(renderer),
-			"gridRenderer" => new GridRenderer(renderer),
-			"continuationItemRenderer" => new ContinuationItemRenderer(renderer),
-			"backstagePostThreadRenderer" => new BackstagePostThreadRenderer(renderer),
-			"backstagePostRenderer" => new BackstagePostRenderer(renderer),
-			"backstageImageRenderer" => new BackstageImageRenderer(renderer),
-			"postMultiImageRenderer" => new PostMultiImageRenderer(renderer),
-			"pollRenderer" => new PollRenderer(renderer),
-			"channelAboutFullMetadataRenderer" => new ChannelAboutFullMetadataRenderer(renderer),
-			"tabRenderer" => new TabRenderer(renderer),
-			"sectionListRenderer" => new SectionListRenderer(renderer),
-			"richGridRenderer" => new RichGridRenderer(renderer),
-			"richSectionRenderer" => new RichSectionRenderer(renderer),
-			"richItemRenderer" => new RichItemRenderer(renderer),
-			"richShelfRenderer" => new RichShelfRenderer(renderer),
-			"feedTabbedHeaderRenderer" => new FeedTabbedHeaderRenderer(renderer),
-			var _ => new UnknownRenderer(renderer)
-		};
-	}
-
-	public static IEnumerable<IRenderer> ParseRenderers(JArray rendererArray)
-	{
-		return from renderer
-				in rendererArray
-			let type = renderer.First?.Path.Split(".").Last()!
-			select ParseRenderer(renderer[type], type);
-	}
-
 	public static TimeSpan ParseDuration(string duration)
 	{
 		if (!TimeSpan.TryParseExact(duration, "%m\\:%s", CultureInfo.InvariantCulture, out TimeSpan timeSpan))

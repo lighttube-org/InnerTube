@@ -16,7 +16,7 @@ public class RichShelfRenderer : IRenderer
 		Type = renderer.Path.Split(".").Last();
 		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!);
 		Icon = renderer.GetFromJsonPath<string>("icon.iconType")!;
-		Contents = Utils.ParseRenderers(renderer.GetFromJsonPath<JArray>("contents")!);
+		Contents = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("contents")!);
 	}
 
 	public override string ToString()

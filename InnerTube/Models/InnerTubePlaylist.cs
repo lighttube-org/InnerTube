@@ -47,7 +47,7 @@ public class InnerTubePlaylist
 
 		Id = browseResponse.GetFromJsonPath<string>("header.playlistHeaderRenderer.playlistId")!;
 
-		IRenderer[] renderers = Utils.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
+		IRenderer[] renderers = RendererManager.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
 				"contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents")
 			!).ToArray();
 		Videos = renderers.Where(x => x is PlaylistVideoRenderer).Cast<PlaylistVideoRenderer>();

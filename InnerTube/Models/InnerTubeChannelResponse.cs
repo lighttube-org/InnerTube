@@ -15,9 +15,9 @@ public class InnerTubeChannelResponse
 		if (browseResponse.ContainsKey("alerts"))
 			throw new NotFoundException(
 				browseResponse.GetFromJsonPath<string>("alerts[0].alertRenderer.text.simpleText")!);
-		Header = (C4TabbedHeaderRenderer?)Utils.ParseRenderer(
+		Header = (C4TabbedHeaderRenderer?)RendererManager.ParseRenderer(
 			browseResponse.GetFromJsonPath<JToken>("header.c4TabbedHeaderRenderer"), "c4TabbedHeaderRenderer");
-		Metadata = (ChannelMetadataRenderer)Utils.ParseRenderer(
+		Metadata = (ChannelMetadataRenderer)RendererManager.ParseRenderer(
 			browseResponse.GetFromJsonPath<JToken>("metadata.channelMetadataRenderer")!, "channelMetadataRenderer")!;
 		JToken currentTab =
 			browseResponse.GetFromJsonPath<JArray>("contents.twoColumnBrowseResultsRenderer.tabs")!
@@ -27,6 +27,6 @@ public class InnerTubeChannelResponse
 				.First(x => x != null)!;
 		if (currentTab is JObject)
 			currentTab = currentTab["sectionListRenderer"]!["contents"]!.ToObject<JToken>()!;
-		Contents = Utils.ParseRenderers(currentTab.ToObject<JArray>()!);
+		Contents = RendererManager.ParseRenderers(currentTab.ToObject<JArray>()!);
 	}
 }

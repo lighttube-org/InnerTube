@@ -12,7 +12,7 @@ public class BackstagePostThreadRenderer : IRenderer
 	{
 		Type = renderer.Path.Split(".").Last();
 
-		Post = (BackstagePostRenderer)Utils.ParseRenderer(
+		Post = (BackstagePostRenderer)RendererManager.ParseRenderer(
 			renderer["post"]!["backstagePostRenderer"]!.ToObject<JObject>()!, "backstagePostRenderer")!;
 	}
 

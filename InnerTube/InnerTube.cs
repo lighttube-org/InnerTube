@@ -16,6 +16,8 @@ public class InnerTube
 	public InnerTube(InnerTubeAuthorization authorization = null)
 	{
 		Authorization = authorization;
+		
+		RendererManager.LoadRenderers();
 	}
 
 	private async Task<JObject> MakeRequest(RequestClient client, string endpoint, InnerTubeRequest postData,
