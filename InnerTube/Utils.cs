@@ -170,6 +170,13 @@ public static class Utils
 			"postMultiImageRenderer" => new PostMultiImageRenderer(renderer),
 			"pollRenderer" => new PollRenderer(renderer),
 			"channelAboutFullMetadataRenderer" => new ChannelAboutFullMetadataRenderer(renderer),
+			"tabRenderer" => new TabRenderer(renderer),
+			"sectionListRenderer" => new SectionListRenderer(renderer),
+			"richGridRenderer" => new RichGridRenderer(renderer),
+			"richSectionRenderer" => new RichSectionRenderer(renderer),
+			"richItemRenderer" => new RichItemRenderer(renderer),
+			"richShelfRenderer" => new RichShelfRenderer(renderer),
+			"feedTabbedHeaderRenderer" => new FeedTabbedHeaderRenderer(renderer),
 			var _ => new UnknownRenderer(renderer)
 		};
 	}

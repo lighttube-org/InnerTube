@@ -29,6 +29,7 @@ public enum ChannelTabs
 
 public enum ShelfDirection
 {
+	None,
 	Horizontal,
 	Vertical
 }

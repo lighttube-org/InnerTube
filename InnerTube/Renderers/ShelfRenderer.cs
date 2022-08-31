@@ -18,13 +18,17 @@ public class ShelfRenderer : IRenderer
 		Type = renderer.Path.Split(".").Last();
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		CollapsedItemCount = renderer.GetFromJsonPath<int>("content.verticalListRenderer.collapsedItemCount")!;
-		Direction = renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items") == null
-			? ShelfDirection.Horizontal
-			: ShelfDirection.Vertical;
+		Direction = renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items") != null
+			? ShelfDirection.Vertical
+			: renderer.GetFromJsonPath<JArray>("content.horizontalListRenderer.items") != null
+				? ShelfDirection.Horizontal
+				: ShelfDirection.None;
 		Items = Utils.ParseRenderers(Direction switch
 		{
 			ShelfDirection.Horizontal => renderer.GetFromJsonPath<JArray>("content.horizontalListRenderer.items")!,
-			ShelfDirection.Vertical => renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items")!
+			ShelfDirection.Vertical => renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items")!,
+			//TODO this happens in FEexplore
+			var _ => new JArray()
 		});
 	}
 
