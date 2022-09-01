@@ -3,7 +3,7 @@ using Newtonsoft.Json.Linq;
 
 namespace InnerTube.Renderers;
 
-public class GridVideoRenderer : IRenderer
+public class CompactVideoRenderer : IRenderer
 {
 	public string Type { get; }
 
@@ -14,14 +14,12 @@ public class GridVideoRenderer : IRenderer
 	public string ViewCount { get; }
 	public IEnumerable<Thumbnail> Thumbnails { get; }
 	public Channel Channel { get; }
-	public IEnumerable<Badge> Badges { get; }
 
-	public GridVideoRenderer(JToken renderer)
+	public CompactVideoRenderer(JToken renderer)
 	{
 		Type = renderer.Path.Split(".").Last();
 		Id = renderer["videoId"]!.ToString();
-		Title = renderer.GetFromJsonPath<string>("title.simpleText") ??
-		        Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs") ?? new JArray());
+		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		Published = renderer["publishedTimeText"]?["simpleText"]!.ToString();
 		ViewCount = renderer["viewCountText"]!["simpleText"] != null
 			? renderer["viewCountText"]!["simpleText"]!.ToString()
@@ -29,20 +27,17 @@ public class GridVideoRenderer : IRenderer
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());
 		Channel = new Channel
 		{
-			Id = renderer.GetFromJsonPath<string>(
-				"shortBylineText.runs[0].navigationEndpoint.browseEndpoint.browseId")!,
-			Title = renderer.GetFromJsonPath<string>("shortBylineText.runs[0].text")!,
-			Avatar = null,
+			Id = renderer.GetFromJsonPath<string>("longBylineText.runs[0].navigationEndpoint.browseEndpoint.browseId")!,
+			Title = renderer.GetFromJsonPath<string>("longBylineText.runs[0].text")!,
+			Avatar = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>(
+				                             "channelThumbnailSupportedRenderers.channelThumbnailWithLinkRenderer.thumbnail.thumbnails") ??
+			                             new JArray()).LastOrDefault()?.Url,
 			Subscribers = null,
 			Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")
 				?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>()
 		};
-		Badges = renderer["badges"]?.ToObject<JArray>()?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ??
-		         Array.Empty<Badge>();
 
-		Duration = Utils.ParseDuration(
-			renderer.GetFromJsonPath<string>(
-				"thumbnailOverlays[0].thumbnailOverlayTimeStatusRenderer.text.simpleText")!);
+		Duration = Utils.ParseDuration(renderer["lengthText"]?["simpleText"]?.ToString()!);
 	}
 
 	public override string ToString()
@@ -54,8 +49,7 @@ public class GridVideoRenderer : IRenderer
 			.AppendLine($"- Published: {Published ?? "Live now"}")
 			.AppendLine($"- ViewCount: {ViewCount}")
 			.AppendLine($"- Thumbnail count: {Thumbnails.Count()}")
-			.AppendLine($"- Channel: {Channel}")
-			.AppendLine($"- Badges: {string.Join(" | ", Badges.Select(x => x.ToString()))}");
+			.AppendLine($"- Channel: {Channel}");
 
 		return sb.ToString();
 	}

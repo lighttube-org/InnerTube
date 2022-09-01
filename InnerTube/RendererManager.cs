@@ -10,12 +10,9 @@ public static class RendererManager
 
 	/* TODO: remaining: (from lighttube source code)
 	radioRenderer
-	compactVideoRenderer
-	compactPlaylistRenderer
 	compactRadioRenderer
 	compactStationRenderer
 	messageRenderer
-	channelAboutFullMetadataRenderer
 	promotedSparklesWebRenderer
 	*/
 
