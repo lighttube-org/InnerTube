@@ -8,14 +8,6 @@ public static class RendererManager
 {
 	public static Dictionary<string, Type> Renderers = null!;
 
-	/* TODO: remaining: (from lighttube source code)
-	radioRenderer
-	compactRadioRenderer
-	compactStationRenderer
-	messageRenderer
-	promotedSparklesWebRenderer
-	*/
-
 	internal static void LoadRenderers()
 	{
 		if (Renderers is not null) return;
