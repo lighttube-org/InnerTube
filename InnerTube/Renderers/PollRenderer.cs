@@ -22,7 +22,7 @@ public class PollRenderer : IRenderer
 
 		public Choice(JToken choice)
 		{
-			Text = Utils.ReadRuns(choice.GetFromJsonPath<JArray>("text.runs")!);
+			Text = Utils.ReadText(choice.GetFromJsonPath<JObject>("text")!);
 		}
 
 		public override string ToString() => $"[Choice] {Text}";

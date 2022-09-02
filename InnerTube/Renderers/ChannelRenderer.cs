@@ -22,8 +22,8 @@ public class ChannelRenderer : IRenderer
 		Id = renderer.GetFromJsonPath<string>("channelId")!;
 		CustomUrl = renderer.GetFromJsonPath<string>("navigationEndpoint.browseEndpoint.canonicalBaseUrl");
 		Avatars = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails")!);
-		Description = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("descriptionSnippet.runs")!);
-		VideoCountText = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("videoCountText.runs")!);
+		Description = Utils.ReadText(renderer.GetFromJsonPath<JObject>("descriptionSnippet")!, true);
+		VideoCountText = Utils.ReadText(renderer.GetFromJsonPath<JObject>("videoCountText")!);
 		SubscriberCountText = renderer.GetFromJsonPath<string>("subscriberCountText.simpleText")!;
 		Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")!.Select(x => new Badge(x["metadataBadgeRenderer"]!))
 			.ToList().AsReadOnly();

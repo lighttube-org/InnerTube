@@ -12,7 +12,7 @@ public class ReelShelfRenderer : IRenderer
 
 	public ReelShelfRenderer(JToken renderer)
 	{
-		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!);
+		Title = Utils.ReadText(renderer.GetFromJsonPath<JObject>("title")!);
 		Items = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("items")!).Cast<ReelItemRenderer>();
 	}
 

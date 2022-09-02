@@ -19,9 +19,9 @@ public class EndScreenItem
 
 	public EndScreenItem(JToken json)
 	{
-		Title = Utils.ReadRuns(json["title"]!["runs"]!.ToObject<JArray>()!);
+		Title = Utils.ReadText(json["title"]!.ToObject<JObject>()!);
 		Image = Utils.GetThumbnails(json.GetFromJsonPath<JArray>("image.thumbnails")!);
-		Metadata = Utils.ReadRuns(json["metadata"]!["runs"]!.ToObject<JArray>()!);
+		Metadata = Utils.ReadText(json["metadata"]!.ToObject<JObject>()!);
 		Style = json["style"]!.ToString();
 		StartMs = long.Parse(json["startMs"]!.ToString());
 		EndMs = long.Parse(json["endMs"]!.ToString());

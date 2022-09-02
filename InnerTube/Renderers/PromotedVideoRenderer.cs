@@ -21,9 +21,7 @@ public class PromotedVideoRenderer : IRenderer
 		Id = renderer["videoId"]!.ToString();
 		Title = renderer["title"]!["simpleText"]!.ToString();
 		Description = renderer["description"]!["simpleText"]!.ToString();
-		ViewCount = renderer["viewCountText"]!["simpleText"] != null
-			? renderer["viewCountText"]!["simpleText"]!.ToString()
-			: Utils.ReadRuns(renderer["viewCountText"]!["runs"]!.ToObject<JArray>()!);
+		ViewCount = Utils.ReadText(renderer["viewCountText"]!.ToObject<JObject>()!);
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());
 		Channel = new Channel
 		{

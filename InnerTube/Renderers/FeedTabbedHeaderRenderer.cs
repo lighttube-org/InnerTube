@@ -11,7 +11,7 @@ public class FeedTabbedHeaderRenderer : IRenderer
 
 	public FeedTabbedHeaderRenderer(JToken renderer)
 	{
-		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!);
+		Title = Utils.ReadText(renderer.GetFromJsonPath<JObject>("title")!);
 	}
 
 	public override string ToString() =>

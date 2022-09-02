@@ -20,13 +20,11 @@ public class VideoRenderer : IRenderer
 	public VideoRenderer(JToken renderer)
 	{
 		Id = renderer["videoId"]!.ToString();
-		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs") ?? new JArray());
-		Description = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("detailedMetadataSnippets[0].snippetText.runs") ??
-		                             new JArray());
+		Title = Utils.ReadText(renderer.GetFromJsonPath<JObject>("title") ?? new JObject());
+		Description = Utils.ReadText(renderer.GetFromJsonPath<JObject>("detailedMetadataSnippets[0].snippetText") ??
+		                             new JObject(), true);
 		Published = renderer["publishedTimeText"]?["simpleText"]!.ToString();
-		ViewCount = renderer["viewCountText"]!["simpleText"] != null
-			? renderer["viewCountText"]!["simpleText"]!.ToString()
-			: Utils.ReadRuns(renderer["viewCountText"]!["runs"]!.ToObject<JArray>()!);
+		ViewCount = Utils.ReadText(renderer["viewCountText"]!.ToObject<JObject>()!);
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());
 		Channel = new Channel
 		{

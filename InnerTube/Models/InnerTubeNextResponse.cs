@@ -21,21 +21,21 @@ public class InnerTubeNextResponse
 	public InnerTubeNextResponse(JObject playerResponse)
 	{
 		JToken resultsArray =
-			playerResponse.GetFromJsonPath<JToken>("contents.twoColumnWatchNextResults.results.results");
+			playerResponse.GetFromJsonPath<JToken>("contents.twoColumnWatchNextResults.results.results")!;
 		if (resultsArray is null || !resultsArray.Any(x => x.Path.EndsWith("contents")))
 			throw new InnerTubeException("Cannot get information about this video");
 
 		JToken? errorObject = resultsArray.GetFromJsonPath<JToken>(
 			"contents[0].itemSectionRenderer.contents[0].backgroundPromoRenderer");
 		if (errorObject is not null)
-			throw new NotFoundException(Utils.ReadRuns(errorObject["title"]!["runs"]!.ToObject<JArray>()!));
+			throw new NotFoundException(Utils.ReadText(errorObject["title"]!.ToObject<JObject>()!));
 
 		Id = playerResponse.GetFromJsonPath<string>("currentVideoEndpoint.watchEndpoint.videoId")!;
-		Title = Utils.ReadRuns(resultsArray.GetFromJsonPath<JArray>(
-			"contents[0].videoPrimaryInfoRenderer.title.runs")!);
-		JArray? descriptionArray = resultsArray.GetFromJsonPath<JArray>(
-			"contents[1].videoSecondaryInfoRenderer.description.runs");
-		Description = descriptionArray != null ? Utils.ReadRuns(descriptionArray) : "";
+		Title = Utils.ReadText(resultsArray.GetFromJsonPath<JObject>(
+			"contents[0].videoPrimaryInfoRenderer.title")!);
+		JObject? descriptionArray = resultsArray.GetFromJsonPath<JObject>(
+			"contents[1].videoSecondaryInfoRenderer.description");
+		Description = descriptionArray != null ? Utils.ReadText(descriptionArray) : "";
 		DateText = resultsArray.GetFromJsonPath<string>(
 				"contents[0].videoPrimaryInfoRenderer.dateText.simpleText")
 			!;

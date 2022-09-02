@@ -26,11 +26,11 @@ public class BackstagePostRenderer : IRenderer
 			Subscribers = null,
 			Badges = Array.Empty<Badge>()
 		};
-		Content = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("contentText.runs")!);
+		Content = Utils.ReadText(renderer.GetFromJsonPath<JObject>("contentText")!);
 		JToken? attachmentObject = renderer.GetFromJsonPath<JObject>("backstageAttachment")?.First;
 		Attachment =
 			RendererManager.ParseRenderer(attachmentObject?.First, attachmentObject?.Path.Split(".").Last() ?? "");
-		Published = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("publishedTimeText.runs")!, false);
+		Published = Utils.ReadText(renderer.GetFromJsonPath<JObject>("publishedTimeText")!);
 		LikeCount = renderer.GetFromJsonPath<string>("voteCount.simpleText")!;
 	}
 

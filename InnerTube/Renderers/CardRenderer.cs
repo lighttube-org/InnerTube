@@ -12,7 +12,7 @@ public class CardRenderer : IRenderer
 
 	public CardRenderer(JToken renderer)
 	{
-		Title = Utils.ReadRuns(renderer["query"]!["runs"]!.ToObject<JArray>()!);
+		Title = Utils.ReadText(renderer["query"]!.ToObject<JObject>()!);
 		Thumbnails = Utils.GetThumbnails(renderer["thumbnail"]!["thumbnails"]!.ToObject<JArray>()!);
 	}
 

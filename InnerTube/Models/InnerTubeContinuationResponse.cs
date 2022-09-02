@@ -34,7 +34,7 @@ public class InnerTubeContinuationResponse
 		JToken? errorObject = nextResponse.GetFromJsonPath<JToken>(
 			"contents.twoColumnWatchNextResults.results.results.contents[0].itemSectionRenderer.contents[0].backgroundPromoRenderer");
 		if (errorObject is not null)
-			throw new NotFoundException(Utils.ReadRuns(errorObject["title"]!["runs"]!.ToObject<JArray>()!));
+			throw new NotFoundException(Utils.ReadText(errorObject["title"]!.ToObject<JObject>()!));
 
 		JToken response = nextResponse["onResponseReceivedEndpoints"]!.ToObject<JArray>()!.Last!;
 		JArray comments =

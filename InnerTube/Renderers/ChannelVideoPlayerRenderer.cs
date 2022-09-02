@@ -16,10 +16,10 @@ public class ChannelVideoPlayerRenderer : IRenderer
 	public ChannelVideoPlayerRenderer(JToken renderer)
 	{
 		Id = renderer["videoId"]!.ToString();
-		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs") ?? new JArray(), false);
-		Description = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("description.runs") ?? new JArray());
-		Published = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("publishedTimeText.runs") ?? new JArray());
-		ViewCount = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("viewCountText.runs") ?? new JArray());
+		Title = Utils.ReadText(renderer.GetFromJsonPath<JObject>("title") ?? new JObject());
+		Description = Utils.ReadText(renderer.GetFromJsonPath<JObject>("description") ?? new JObject(), true);
+		Published = Utils.ReadText(renderer.GetFromJsonPath<JObject>("publishedTimeText") ?? new JObject());
+		ViewCount = Utils.ReadText(renderer.GetFromJsonPath<JObject>("viewCountText") ?? new JObject());
 	}
 
 	public override string ToString()

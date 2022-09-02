@@ -2,13 +2,15 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Web;
-using InnerTube.Renderers;
+using InnerTube.Formatters;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
 
 public static class Utils
 {
+	public static IFormatter Formatter = new HtmlFormatter();
+
 	public static T? GetFromJsonPath<T>(this JToken json, string jsonPath)
 	{
 		try
@@ -30,51 +32,64 @@ public static class Utils
 		}
 	}
 
-	public static string ReadRuns(JArray runs, bool includeFormatting = true)
+	public static string ReadText(JObject richText, bool includeFormatting = false)
 	{
-		string str = "";
-		foreach (JToken runToken in runs)
+		if (richText.ContainsKey("simpleText"))
+			return richText["simpleText"]!.ToString();
+
+		if (richText.ContainsKey("label"))
+			return richText["label"]!.ToString();
+
+		if (richText.ContainsKey("runs"))
 		{
-			JObject run = runToken as JObject;
-			if (run is null) continue;
+			JArray runs = richText["runs"]!.ToObject<JArray>()!;
+			string str = "";
+			foreach (JToken runToken in runs)
+			{
+				JObject run = (JObject)runToken;
 
-			if (!includeFormatting)
-			{
-				str += run["text"];
-			}
-			else if (run.ContainsKey("bold"))
-			{
-				str += "<b>" + run["text"] + "</b>";
-			}
-			else if (run.ContainsKey("navigationEndpoint"))
-			{
-				if (run?["navigationEndpoint"]?["urlEndpoint"] is not null)
+				if (!includeFormatting)
 				{
-					string url = run["navigationEndpoint"]?["urlEndpoint"]?["url"]?.ToString() ?? "";
-					if (url.StartsWith("https://www.youtube.com/redirect"))
+					str += run["text"];
+					continue;
+				}
+
+				string currentString = run["text"]!.ToString();
+				
+				if (run.ContainsKey("bold"))
+					currentString = Formatter.FormatBold(currentString);
+				else if (run.ContainsKey("bold"))
+					currentString = Formatter.FormatItalics(currentString);
+				else if (run.ContainsKey("navigationEndpoint"))
+				{
+					if (run["navigationEndpoint"]?["urlEndpoint"] is not null)
 					{
-						NameValueCollection qsl = HttpUtility.ParseQueryString(url.Split("?")[1]);
-						url = qsl["url"] ?? qsl["q"];
-					}
+						string url = run["navigationEndpoint"]?["urlEndpoint"]?["url"]?.ToString() ?? "";
+						if (url.StartsWith("https://www.youtube.com/redirect"))
+						{
+							NameValueCollection qsl = HttpUtility.ParseQueryString(url.Split("?")[1]);
+							url = (qsl["url"] ?? qsl["q"])!;
+						}
 
-					str += $"<a href=\"{url}\">{run["text"]}</a>";
+						currentString = Formatter.FormatUrl(currentString, url);
+					}
+					else if (run["navigationEndpoint"]?["commandMetadata"] is not null)
+					{
+						string url = run["navigationEndpoint"]?["commandMetadata"]?["webCommandMetadata"]?["url"]
+							?.ToString() ?? "";
+						if (url.StartsWith("/"))
+							url = "https://youtube.com" + url;
+						currentString = Formatter.FormatUrl(currentString, url);
+					}
 				}
-				else if (run?["navigationEndpoint"]?["commandMetadata"] is not null)
-				{
-					string url = run["navigationEndpoint"]?["commandMetadata"]?["webCommandMetadata"]?["url"]
-						?.ToString() ?? "";
-					if (url.StartsWith("/"))
-						url = "https://youtube.com" + url;
-					str += $"<a href=\"{url}\">{run["text"]}</a>";
-				}
+
+				str += currentString;
 			}
-			else
-			{
-				str += run["text"];
-			}
+
+			return str;		
 		}
 
-		return str;
+		return "";
 	}
 
 	public static Thumbnail[] GetThumbnails(JArray thumbnails)

@@ -18,7 +18,7 @@ public class PlaylistVideoRenderer : IRenderer
 	public PlaylistVideoRenderer(JToken renderer)
 	{
 		Id = renderer["videoId"]!.ToString();
-		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs") ?? new JArray());
+		Title = Utils.ReadText(renderer.GetFromJsonPath<JObject>("title") ?? new JObject());
 		Index = int.Parse(renderer.GetFromJsonPath<string>("index.simpleText")!.Replace(",", "").Replace(".", ""));
 		IsPlayable = renderer.GetFromJsonPath<bool>("isPlayable");
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());

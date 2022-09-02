@@ -51,7 +51,7 @@ public class InnerTubePlayer
 			.Select(x => new VideoCaption
 			{
 				LanguageCode = x["languageCode"]!.ToString(),
-				Label = Utils.ReadRuns(x["name"]!["runs"]!.ToObject<JArray>()!),
+				Label = Utils.ReadText(x["name"]!.ToObject<JObject>()!),
 				BaseUrl = new Uri(x["baseUrl"]!.ToString())
 			}) ?? Array.Empty<VideoCaption>();
 		Formats = playerResponse.GetFromJsonPath<JArray>("streamingData.formats")?.Select(x => new Format(x)) ??

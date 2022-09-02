@@ -16,7 +16,7 @@ public class GridPlaylistRenderer : IRenderer
 	public GridPlaylistRenderer(JToken renderer)
 	{
 		Id = renderer["playlistId"]!.ToString();
-		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!, false);
+		Title = Utils.ReadText(renderer.GetFromJsonPath<JObject>("title")!);
 		VideoCount = int.Parse(renderer["videoCountShortText"]!["simpleText"]!.ToString());
 		Thumbnails =
 			Utils.GetThumbnails(

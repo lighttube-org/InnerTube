@@ -33,3 +33,10 @@ public enum ShelfDirection
 	Horizontal,
 	Vertical
 }
+
+public enum FormattingType
+{
+	None,
+	Html,
+	Markdown
+}

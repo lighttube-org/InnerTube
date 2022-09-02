@@ -13,7 +13,7 @@ public class RichShelfRenderer : IRenderer
 
 	public RichShelfRenderer(JToken renderer)
 	{
-		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!);
+		Title = Utils.ReadText(renderer.GetFromJsonPath<JObject>("title")!);
 		Icon = renderer.GetFromJsonPath<string>("icon.iconType")!;
 		Contents = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("contents")!);
 	}

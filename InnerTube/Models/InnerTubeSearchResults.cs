@@ -54,7 +54,7 @@ public class InnerTubeSearchResults
 
 		internal Options(JToken searchSubMenuRenderer)
 		{
-			Title = Utils.ReadRuns(searchSubMenuRenderer["title"]!["runs"]!.ToObject<JArray>()!);
+			Title = Utils.ReadText(searchSubMenuRenderer["title"]!.ToObject<JObject>()!);
 			Groups = searchSubMenuRenderer["groups"]!.ToObject<JArray>()!.Select(x =>
 				new Group(x["searchFilterGroupRenderer"]!));
 		}
@@ -71,7 +71,7 @@ public class InnerTubeSearchResults
 			DidYouMean = new TypoFixer
 			{
 				OriginalQuery = srfr.GetFromJsonPath<string>("originalQuery.simpleText")!,
-				CorrectedQuery = Utils.ReadRuns(srfr.GetFromJsonPath<JArray>("correctedQuery.runs")!),
+				CorrectedQuery = Utils.ReadText(srfr.GetFromJsonPath<JObject>("correctedQuery")!),
 				Params = srfr.GetFromJsonPath<string>("originalQueryEndpoint.searchEndpoint.params")!
 			};
 			contents = JArray.FromObject(contents.Skip(1));

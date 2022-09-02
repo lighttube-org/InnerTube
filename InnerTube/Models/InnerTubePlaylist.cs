@@ -24,9 +24,7 @@ public class InnerTubePlaylist
 					try
 					{
 						if (current["text"] is not null)
-							return current["text"]!["runs"] is not null
-								? Utils.ReadRuns(current["text"]!["runs"]!.ToObject<JArray>()!)
-								: current["text"]!["simpleText"]!.ToString();
+							return Utils.ReadText(current["text"]!.ToObject<JObject>()!);
 					}
 					catch
 					{

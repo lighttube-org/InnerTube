@@ -18,7 +18,7 @@ public class CompactPlaylistRenderer : IRenderer
 	{
 		Id = renderer["playlistId"]!.ToString();
 		Title = renderer["title"]!["simpleText"]!.ToString();
-		VideoCountText = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("videoCountText.runs")!, false);
+		VideoCountText = Utils.ReadText(renderer.GetFromJsonPath<JObject>("videoCountText")!);
 
 		Thumbnails =
 			Utils.GetThumbnails(

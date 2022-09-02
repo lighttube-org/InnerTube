@@ -20,7 +20,7 @@ public class CommentThreadRenderer : IRenderer
 	public CommentThreadRenderer(JToken renderer)
 	{
 		Id = renderer.GetFromJsonPath<string>("comment.commentRenderer.commentId")!;
-		Content = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("comment.commentRenderer.contentText.runs")!);
+		Content = Utils.ReadText(renderer.GetFromJsonPath<JObject>("comment.commentRenderer.contentText")!, true);
 		Badge? authorBadge = Badge.FromAuthorCommentBadgeRenderer(
 			renderer.GetFromJsonPath<JObject>("comment.commentRenderer.authorCommentBadge.authorCommentBadgeRenderer"));
 		Owner = new Channel
