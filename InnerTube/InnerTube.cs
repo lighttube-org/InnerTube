@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Headers;
-using System.Runtime.Caching;
 using System.Text;
 using System.Web;
 using InnerTube.Exceptions;
+using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
@@ -10,13 +10,21 @@ namespace InnerTube;
 public class InnerTube
 {
 	internal readonly HttpClient HttpClient = new();
-	internal readonly MemoryCache PlayerCache = new("innertube.players");
+	internal readonly MemoryCache PlayerCache;
+	internal readonly string ApiKey;
 	internal readonly InnerTubeAuthorization? Authorization;
 
-	public InnerTube(InnerTubeAuthorization authorization = null)
+	public InnerTube(InnerTubeConfiguration? config = null)
 	{
-		Authorization = authorization;
-		
+		config ??= new InnerTubeConfiguration();
+		ApiKey = config.ApiKey;
+		Authorization = config.Authorization;
+		PlayerCache = new MemoryCache(new MemoryCacheOptions
+		{
+			ExpirationScanFrequency = config.CacheExpirationPollingInterval,
+			SizeLimit = config.CacheSize
+		});
+
 		RendererManager.LoadRenderers();
 	}
 
@@ -24,7 +32,7 @@ public class InnerTube
 		string language, string region, bool authorized = false)
 	{
 		HttpRequestMessage hrm = new(HttpMethod.Post,
-			@$"https://www.youtube.com/youtubei/v1/{endpoint}?prettyPrint=false{(authorized && Authorization?.Type == AuthorizationType.REFRESH_TOKEN ? "" : "&key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8")}");
+			@$"https://www.youtube.com/youtubei/v1/{endpoint}?prettyPrint=false{(authorized && Authorization?.Type == AuthorizationType.REFRESH_TOKEN ? "" : $"&key={ApiKey}")}");
 
 		byte[] buffer = Encoding.UTF8.GetBytes(postData.GetJson(client, language, region));
 		ByteArrayContent byteContent = new(buffer);
@@ -69,8 +77,7 @@ public class InnerTube
 	{
 		string cacheId = $"{videoId}_{(includeHls ? "hls" : "dash")}({language}_{region})";
 
-		if (PlayerCache.Contains(cacheId))
-			return (InnerTubePlayer)PlayerCache.Get(cacheId)!;
+		if (PlayerCache.TryGetValue(cacheId, out InnerTubePlayer cachedPlayer)) return cachedPlayer;
 
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("videoId", videoId)
@@ -87,8 +94,13 @@ public class InnerTube
 				playerResponse.GetFromJsonPath<string>("playabilityStatus.reasonTitle")!);
 
 		InnerTubePlayer player = new(playerResponse);
-		PlayerCache.Set(cacheId, player,
-			DateTimeOffset.Now.AddSeconds(player.ExpiresInSeconds).AddSeconds(-player.Details.Length.TotalSeconds));
+		PlayerCache.Set(cacheId, player, new MemoryCacheEntryOptions
+		{
+			Size = 1,
+			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, player.Details.Length.TotalSeconds)),
+			AbsoluteExpirationRelativeToNow =
+				TimeSpan.FromSeconds(player.ExpiresInSeconds - player.Details.Length.TotalSeconds)
+		});
 		return player;
 	}
 

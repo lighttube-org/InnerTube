@@ -10,6 +10,9 @@ public class InnerTubeAuthorization
 	public AuthorizationType Type;
 	private Dictionary<string, object> Secrets = new();
 
+	internal InnerTubeAuthorization()
+	{ }
+
 	public static InnerTubeAuthorization SapisidAuthorization(string sapisid, string psid) =>
 		new()
 		{
