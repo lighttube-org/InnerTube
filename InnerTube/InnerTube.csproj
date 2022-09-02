@@ -4,6 +4,13 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <Title>InnerTube</Title>
+        <Description>A C# wrapper for YouTube's private API</Description>
+        <PackageProjectUrl>https://github.com/kuylar/InnerTube</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/kuylar/InnerTube/blob/master/LICENSE</PackageLicenseUrl>
+        <RepositoryUrl>https://github.com/kuylar/InnerTube</RepositoryUrl>
+        <PackageTags>youtube, innertube</PackageTags>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
     </PropertyGroup>
 
     <ItemGroup>
