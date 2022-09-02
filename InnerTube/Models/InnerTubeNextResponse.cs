@@ -13,10 +13,10 @@ public class InnerTubeNextResponse
 	public string ViewCount { get; }
 	public string LikeCount { get; }
 	public Channel Channel { get; }
-	public CommentThreadRenderer? TeaserComment { get; }
 	public string? CommentsContinuation { get; }
 	public string? CommentCount { get; }
 	public IEnumerable<IRenderer> Recommended { get; }
+	public InnerTubePlaylistInfo? Playlist { get; }
 
 	public InnerTubeNextResponse(JObject playerResponse)
 	{
@@ -61,26 +61,6 @@ public class InnerTubeNextResponse
 
 		JObject? commentObject = resultsArray.GetFromJsonPath<JObject>(
 			"contents[2].itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer");
-		TeaserComment = commentObject != null
-			? new CommentThreadRenderer(
-				"",
-				commentObject.GetFromJsonPath<string>("teaserContent.simpleText")!,
-				new Channel
-				{
-					Id = null,
-					Title =
-						commentObject.GetFromJsonPath<string>("teaserAvatar.accessibility.accessibilityData.label")!,
-					Avatar = Utils.GetThumbnails(commentObject.GetFromJsonPath<JArray>("teaserAvatar.thumbnails")!)
-						.Last()
-						.Url,
-					Subscribers = null,
-					Badges = Array.Empty<Badge>()
-				},
-				null,
-				false,
-				null,
-				null)
-			: null;
 		CommentCount = commentObject != null
 			? commentObject["commentCount"]!["simpleText"]!.ToString()
 			: null;
@@ -94,5 +74,10 @@ public class InnerTubeNextResponse
 		Recommended = recommendedList != null
 			? RendererManager.ParseRenderers(recommendedList)
 			: Array.Empty<IRenderer>();
+
+		JObject? playlistObject =
+			playerResponse.GetFromJsonPath<JObject>("contents.twoColumnWatchNextResults.playlist.playlist");
+		if (playlistObject != null)
+			Playlist = new InnerTubePlaylistInfo(playlistObject);
 	}
 }

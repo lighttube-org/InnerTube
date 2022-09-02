@@ -165,14 +165,22 @@ public class InnerTube
 	/// GetVideoCommentsAsync
 	/// </summary>
 	/// <param name="videoId">ID of the video</param>
+	/// <param name="playlistId">ID of a playlist that contains this video. Must start with either PL or OLAK</param>
+	/// <param name="playlistIndex"></param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>Video info, a key for the comments & a list of recommended videos</returns>
-	public async Task<InnerTubeNextResponse> GetVideoAsync(string videoId, string language = "en", string region = "US")
+	public async Task<InnerTubeNextResponse> GetVideoAsync(string videoId, string? playlistId = null,
+		int? playlistIndex = null, string? playlistParams = null, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("videoId", videoId);
-		//TODO: just found: we can have a playlistId here
+		if (playlistId != null)
+			postData.AddValue("playlistId", playlistId);
+		if (playlistId != null && playlistIndex != null) 
+			postData.AddValue("playlistIndex", playlistIndex);
+		if (playlistParams != null) 
+			postData.AddValue("params", playlistParams);
 
 		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
 		return new InnerTubeNextResponse(nextResponse);
@@ -247,7 +255,7 @@ public class InnerTube
 	/// <summary>
 	/// Get videos from a playlist
 	/// </summary>
-	/// <param name="playlistId">ID of the playlist. Must start with either VL or PL</param>
+	/// <param name="playlistId">ID of the playlist. Must start with either VL, PL or OLAK</param>
 	/// <param name="includeUnavailable">Set to true if you want to received [Deleted video]s and such</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
@@ -256,7 +264,9 @@ public class InnerTube
 		string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("browseId", playlistId.StartsWith("VL") ? playlistId : "VL" + playlistId);
+			.AddValue("browseId",
+				playlistId.StartsWith("VL") ? playlistId :
+				playlistId.StartsWith("OL") ? playlistId : "VL" + playlistId);
 		if (includeUnavailable)
 			postData.AddValue("params", "wgYCCAA%3D");
 

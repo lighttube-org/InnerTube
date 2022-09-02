@@ -142,7 +142,6 @@ public class PlayerTests
 
 		sb.AppendLine("\n== COMMENTS")
 			.AppendLine("CommentCount: " + next.CommentCount)
-			.AppendLine("TeaserComment: " + next.TeaserComment)
 			.AppendLine("CommentsContinuation: " + next.CommentsContinuation);
 
 		sb.AppendLine("\n== RECOMMENDED");
@@ -154,6 +153,41 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
+	[TestCase("3BR7-AzE2dQ", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null)]
+	[TestCase("o0tky2O8NlY", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null)]
+	[TestCase("NZwS7Cja6oE", "PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", null, null)]
+	[TestCase("k_nLHgIM4yE", "PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", null, null)]
+	// tried to get infinite playlists (aka mixes) to work here but "failed"
+	// the playlists ARE infinite but dont continue
+	[TestCase("Atvsg_zogxo", "RDEMWXVIjg8ng0Vne5Slky9CPQ", null, null)]
+	[TestCase("YgmFIVOR1-I", "RDEMWXVIjg8ng0Vne5Slky9CPQ", 24, "OAE%3D")]
+	public async Task GetVideoNextWithPlaylist(string videoId, string playlistId, int? playlistIndex, string? playlistParams)
+	{
+		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId, playlistId, playlistIndex, playlistParams);
+		if (next.Playlist is null)
+		{
+			Assert.Fail("Playlist is null");
+			return;
+		}
+
+		StringBuilder sb = new();
+
+		sb.AppendLine($"[{next.Playlist.PlaylistId}] {next.Playlist.Title}")
+			.AppendLine($"{next.Playlist.Channel}")
+			.AppendLine(
+				$"{next.Playlist.CurrentIndex} ({next.Playlist.LocalCurrentIndex}) / {next.Playlist.TotalVideos}")
+			.AppendLine($"IsCourse: {next.Playlist.IsCourse}")
+			.AppendLine($"IsInfinite: {next.Playlist.IsInfinite}");
+
+		sb.AppendLine()
+			.AppendLine("== VIDEOS");
+
+		foreach (PlaylistPanelVideoRenderer video in next.Playlist.Videos)
+			sb.AppendLine(video.ToString());
+
+		Assert.Pass(sb.ToString());
+	}
+	
 	[TestCase("1234567890a", Description = "An ID I just made up")]
 	[TestCase("a62882basgl", Description = "Another ID I just made up")]
 	[TestCase("32nkdvLq3oQ", Description = "A deleted video")]
