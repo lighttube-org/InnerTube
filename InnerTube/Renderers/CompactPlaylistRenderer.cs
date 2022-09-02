@@ -11,7 +11,7 @@ public class CompactPlaylistRenderer : IRenderer
 	public string Title { get; }
 	public IEnumerable<Thumbnail> Thumbnails { get; }
 	public Channel Channel { get; }
-	public int VideoCount { get; }
+	public string VideoCountText { get; }
 	public string FirstVideoId { get; }
 
 	public CompactPlaylistRenderer(JToken renderer)
@@ -20,12 +20,14 @@ public class CompactPlaylistRenderer : IRenderer
 
 		Id = renderer["playlistId"]!.ToString();
 		Title = renderer["title"]!["simpleText"]!.ToString();
-		VideoCount = int.Parse(renderer["videoCount"]!.ToString());
+		VideoCountText = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("videoCountText.runs")!, false);
 
 		Thumbnails =
 			Utils.GetThumbnails(
-				renderer.GetFromJsonPath<JArray>(
-					"thumbnailRenderer.playlistVideoThumbnailRenderer.thumbnail.thumbnails")!);
+				(renderer.GetFromJsonPath<JArray>(
+					 "thumbnailRenderer.playlistVideoThumbnailRenderer.thumbnail.thumbnails") ??
+				 renderer.GetFromJsonPath<JArray>(
+					 "thumbnailRenderer.playlistCustomThumbnailRenderer.thumbnail.thumbnails"))!);
 
 		Channel = new Channel
 		{
@@ -45,7 +47,7 @@ public class CompactPlaylistRenderer : IRenderer
 		StringBuilder sb = new StringBuilder()
 			.AppendLine($"[{Type}] {Title}")
 			.AppendLine($"- Id: {Id}")
-			.AppendLine($"- VideoCount: {VideoCount}")
+			.AppendLine($"- VideoCountText: {VideoCountText}")
 			.AppendLine($"- Thumbnail count: {Thumbnails.Count()}")
 			.AppendLine($"- Channel: {Channel}")
 			.AppendLine($"- FirstVideoId: {FirstVideoId}");
