@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class GridChannelRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "gridChannelRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -17,8 +17,6 @@ public class GridChannelRenderer : IRenderer
 
 	public GridChannelRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		Id = renderer.GetFromJsonPath<string>("channelId")!;
 		CustomUrl = renderer.GetFromJsonPath<string>("navigationEndpoint.browseEndpoint.canonicalBaseUrl")!;

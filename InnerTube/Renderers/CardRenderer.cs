@@ -5,14 +5,13 @@ namespace InnerTube.Renderers;
 
 public class CardRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "cardRenderer";
 
 	public string Title { get; }
 	public IEnumerable<Thumbnail> Thumbnails { get; }
 
 	public CardRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Title = Utils.ReadRuns(renderer["query"]!["runs"]!.ToObject<JArray>()!);
 		Thumbnails = Utils.GetThumbnails(renderer["thumbnail"]!["thumbnails"]!.ToObject<JArray>()!);
 	}

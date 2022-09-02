@@ -5,14 +5,12 @@ namespace InnerTube.Renderers;
 
 public class RichGridRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "richGridRenderer";
 
-	public IEnumerable<IRenderer> Contents;
+	public IEnumerable<IRenderer> Contents { get; }
 
 	public RichGridRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Contents = RendererManager.ParseRenderers(renderer["contents"]!.ToObject<JArray>()!);
 	}
 

@@ -6,14 +6,12 @@ namespace InnerTube.Renderers;
 // adding this and PromotedVideoRenderer kinda hurt me ngl
 public class SearchPyvRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "searchPyvRenderer";
 
 	public IEnumerable<IRenderer> Ads { get; }
 
 	public SearchPyvRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Ads = RendererManager.ParseRenderers(renderer["ads"]!.ToObject<JArray>()!);
 	}
 

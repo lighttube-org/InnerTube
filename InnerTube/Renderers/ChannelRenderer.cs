@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class ChannelRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "channelRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -18,8 +18,6 @@ public class ChannelRenderer : IRenderer
 
 	public ChannelRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		Id = renderer.GetFromJsonPath<string>("channelId")!;
 		CustomUrl = renderer.GetFromJsonPath<string>("navigationEndpoint.browseEndpoint.canonicalBaseUrl");

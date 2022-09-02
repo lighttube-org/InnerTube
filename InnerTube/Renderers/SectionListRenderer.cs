@@ -5,15 +5,13 @@ namespace InnerTube.Renderers;
 
 public class SectionListRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "sectionListRenderer";
 	
 	public string TargetId { get; }
 	public IEnumerable<IRenderer> Contents { get; }
 
 	public SectionListRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		TargetId = renderer.GetFromJsonPath<string>("targetId")!;
 		Contents = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("contents")!);
 	}

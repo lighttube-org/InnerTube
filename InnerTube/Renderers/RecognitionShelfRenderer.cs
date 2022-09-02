@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class RecognitionShelfRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "recognitionShelfRenderer";
 
 	public string Title { get; }
 	public string Subtitle { get; }
@@ -14,7 +14,6 @@ public class RecognitionShelfRenderer : IRenderer
 
 	public RecognitionShelfRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		Subtitle = renderer.GetFromJsonPath<string>("subtitle.simpleText")!;
 		Avatars = renderer.GetFromJsonPath<JArray>("avatars")!.Select(x =>

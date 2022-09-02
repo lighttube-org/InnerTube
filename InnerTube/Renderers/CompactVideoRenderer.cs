@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class CompactVideoRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "compactVideoRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -17,7 +17,6 @@ public class CompactVideoRenderer : IRenderer
 
 	public CompactVideoRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Id = renderer["videoId"]!.ToString();
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		Published = renderer["publishedTimeText"]?["simpleText"]!.ToString();

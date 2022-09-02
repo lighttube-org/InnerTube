@@ -5,15 +5,13 @@ namespace InnerTube.Renderers;
 
 public class PollRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "pollRenderer";
 
 	public IEnumerable<Choice> Choices { get; }
 	public string TotalVotes { get; }
 
 	public PollRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Choices = renderer.GetFromJsonPath<JArray>("choices")!.Select(x => new Choice(x));
 		TotalVotes = renderer.GetFromJsonPath<string>("totalVotes.simpleText")!;
 	}

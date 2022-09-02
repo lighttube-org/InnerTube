@@ -5,14 +5,12 @@ namespace InnerTube.Renderers;
 
 public class PostMultiImageRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "postMultiImageRenderer";
 
 	public IEnumerable<BackstageImageRenderer> Images { get; }
 
 	public PostMultiImageRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Images = RendererManager.ParseRenderers(renderer["images"]!.ToObject<JArray>()!).Cast<BackstageImageRenderer>();
 	}
 

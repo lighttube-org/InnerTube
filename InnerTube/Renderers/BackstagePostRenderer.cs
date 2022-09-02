@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class BackstagePostRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "backstagePostRenderer";
 
 	public string Id { get; set; }
 	public Channel Author { get; }
@@ -16,8 +16,6 @@ public class BackstagePostRenderer : IRenderer
 
 	public BackstagePostRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Id = renderer.GetFromJsonPath<string>("postId")!;
 		Author = new Channel
 		{

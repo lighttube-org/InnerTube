@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class RichShelfRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "richShelfRenderer";
 
 	public string Title { get; }
 	public string Icon { get; }
@@ -13,7 +13,6 @@ public class RichShelfRenderer : IRenderer
 
 	public RichShelfRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!);
 		Icon = renderer.GetFromJsonPath<string>("icon.iconType")!;
 		Contents = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("contents")!);

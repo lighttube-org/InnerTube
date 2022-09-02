@@ -5,14 +5,13 @@ namespace InnerTube.Renderers;
 
 public class ReelShelfRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "reelShelfRenderer";
 
 	public string Title { get; }
 	public IEnumerable<ReelItemRenderer> Items { get; }
 
 	public ReelShelfRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!);
 		Items = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("items")!).Cast<ReelItemRenderer>();
 	}

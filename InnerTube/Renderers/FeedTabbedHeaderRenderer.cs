@@ -5,13 +5,12 @@ namespace InnerTube.Renderers;
 
 public class FeedTabbedHeaderRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "feedTabbedHeaderRenderer";
 
 	public string Title { get; }
 
 	public FeedTabbedHeaderRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!);
 	}
 

@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class GridPlaylistRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "gridPlaylistRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -15,8 +15,6 @@ public class GridPlaylistRenderer : IRenderer
 
 	public GridPlaylistRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Id = renderer["playlistId"]!.ToString();
 		Title = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs")!, false);
 		VideoCount = int.Parse(renderer["videoCountShortText"]!["simpleText"]!.ToString());

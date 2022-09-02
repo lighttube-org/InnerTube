@@ -5,14 +5,12 @@ namespace InnerTube.Renderers;
 
 public class DestinationShelfRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "destinationShelfRenderer";
 
 	public IEnumerable<DestinationButtonRenderer> DestinationButtons { get; }
 
 	public DestinationShelfRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		DestinationButtons = RendererManager
 			.ParseRenderers(renderer.GetFromJsonPath<JArray>("destinationButtons")!)
 			.Cast<DestinationButtonRenderer>();

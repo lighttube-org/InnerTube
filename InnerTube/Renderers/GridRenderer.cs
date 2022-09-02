@@ -5,14 +5,12 @@ namespace InnerTube.Renderers;
 
 public class GridRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "gridRenderer";
 
-	public IEnumerable<IRenderer> Items;
+	public IEnumerable<IRenderer> Items { get; }
 
 	public GridRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Items = RendererManager.ParseRenderers(renderer["items"]!.ToObject<JArray>()!);
 	}
 

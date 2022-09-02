@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class PlaylistRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "playlistRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -17,8 +17,6 @@ public class PlaylistRenderer : IRenderer
 
 	public PlaylistRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Id = renderer["playlistId"]!.ToString();
 		Title = renderer["title"]!["simpleText"]!.ToString();
 		VideoCount = int.Parse(renderer["videoCount"]!.ToString());

@@ -5,14 +5,12 @@ namespace InnerTube.Renderers;
 
 public class ItemSectionRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "itemSectionRenderer";
 
-	public IEnumerable<IRenderer> Contents;
+	public IEnumerable<IRenderer> Contents { get; }
 
 	public ItemSectionRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Contents = RendererManager.ParseRenderers(renderer["contents"]!.ToObject<JArray>()!);
 	}
 

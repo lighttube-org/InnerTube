@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class C4TabbedHeaderRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "c4TabbedHeaderRenderer";
 
 	public string Id { get; }
 	public Thumbnail[] Avatars { get; }
@@ -18,8 +18,6 @@ public class C4TabbedHeaderRenderer : IRenderer
 
 	public C4TabbedHeaderRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Id = renderer.GetFromJsonPath<string>("channelId")!;
 		Avatars = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("avatar.thumbnails")!);
 		Banner = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("banner.thumbnails")!);

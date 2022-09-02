@@ -5,14 +5,13 @@ namespace InnerTube.Renderers;
 
 public class HorizontalCardListRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "horizontalCardListRenderer";
 
 	public string Title { get; }
 	public IEnumerable<CardRenderer> Items { get; }
 
 	public HorizontalCardListRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Title = renderer.GetFromJsonPath<string>("header.richListHeaderRenderer.title.simpleText")!;
 		Items = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("cards")!).Cast<CardRenderer>();
 	}

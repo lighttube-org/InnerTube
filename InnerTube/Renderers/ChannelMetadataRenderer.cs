@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class ChannelMetadataRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "channelMetadataRenderer";
 
 	public string Id { get; }
 	public string[] AvailableCountryCodes { get; }
@@ -19,8 +19,6 @@ public class ChannelMetadataRenderer : IRenderer
 
 	public ChannelMetadataRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Id = renderer.GetFromJsonPath<string>("externalId")!;
 		AvailableCountryCodes = renderer.GetFromJsonPath<string[]>("availableCountryCodes")!;
 		Avatar = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("avatar.thumbnails")!);

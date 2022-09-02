@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class ReelItemRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "reelItemRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -14,7 +14,6 @@ public class ReelItemRenderer : IRenderer
 
 	public ReelItemRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Id = renderer["videoId"]!.ToString();
 		Title = renderer.GetFromJsonPath<string>("headline.simpleText")!;
 		ViewCount = renderer["viewCountText"]!["simpleText"]!.ToString();

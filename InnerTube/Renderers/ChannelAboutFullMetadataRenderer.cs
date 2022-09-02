@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class ChannelAboutFullMetadataRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "channelAboutFullMetadataRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -18,8 +18,6 @@ public class ChannelAboutFullMetadataRenderer : IRenderer
 
 	public ChannelAboutFullMetadataRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Id = renderer.GetFromJsonPath<string>("channelId")!;
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		Avatar = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("avatar.thumbnails")!);

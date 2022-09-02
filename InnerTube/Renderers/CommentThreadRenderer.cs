@@ -5,7 +5,7 @@ namespace InnerTube;
 
 public class CommentThreadRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "commentThreadRenderer";
 
 	public string Id { get; }
 	public string Content { get; }
@@ -19,8 +19,6 @@ public class CommentThreadRenderer : IRenderer
 
 	public CommentThreadRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Id = renderer.GetFromJsonPath<string>("comment.commentRenderer.commentId")!;
 		Content = Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("comment.commentRenderer.contentText.runs")!);
 		Badge? authorBadge = Badge.FromAuthorCommentBadgeRenderer(
@@ -49,7 +47,6 @@ public class CommentThreadRenderer : IRenderer
 		string? replyContinuation, string? publishedTimeText)
 	{
 		Id = id;
-		Type = "comment";
 		Content = content;
 		Owner = owner;
 		LikeCount = likeCount;

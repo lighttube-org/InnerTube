@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class DestinationButtonRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "destinationButtonRenderer";
 
 	public Thumbnail[] Icons { get; }
 	public string Label { get; }
@@ -14,8 +14,6 @@ public class DestinationButtonRenderer : IRenderer
 
 	public DestinationButtonRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Label = renderer.GetFromJsonPath<string>("label.simpleText")!;
 		BrowseId = renderer.GetFromJsonPath<string>("onTap.browseEndpoint.browseId")!;
 		BrowseParams = renderer.GetFromJsonPath<string>("onTap.browseEndpoint.params")!;

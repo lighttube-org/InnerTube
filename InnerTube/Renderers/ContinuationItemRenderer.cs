@@ -5,14 +5,13 @@ namespace InnerTube.Renderers;
 
 public class ContinuationItemRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "continuationItemRenderer";
 
 	public string Title { get; }
 	public string Token { get; }
 
 	public ContinuationItemRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		Token = renderer.GetFromJsonPath<string>("continuationEndpoint.continuationCommand.token")!;
 	}

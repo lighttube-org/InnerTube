@@ -5,14 +5,12 @@ namespace InnerTube.Renderers;
 
 public class RichItemRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "richItemRenderer";
 
-	public IRenderer Content;
+	public IRenderer Content { get; }
 
 	public RichItemRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Content = RendererManager.ParseRenderer(renderer["content"]!.First!.First!, renderer["content"]!.First!.Path.Split(".").Last())!;
 	}
 

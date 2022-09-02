@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class PromotedVideoRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "promotedVideoRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -18,7 +18,6 @@ public class PromotedVideoRenderer : IRenderer
 
 	public PromotedVideoRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Id = renderer["videoId"]!.ToString();
 		Title = renderer["title"]!["simpleText"]!.ToString();
 		Description = renderer["description"]!["simpleText"]!.ToString();

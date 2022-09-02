@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class TabRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "tabRenderer";
 	
 	public string TabId { get; }
 	public bool Selected { get; }
@@ -13,8 +13,6 @@ public class TabRenderer : IRenderer
 
 	public TabRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
-
 		Content = RendererManager.ParseRenderer(renderer["content"]!.First!.First!, renderer["content"]!.First!.Path.Split(".").Last())!;
 		TabId = renderer.GetFromJsonPath<string>("tabIdentifier")!;
 		Selected = renderer.GetFromJsonPath<bool>("selected")!;

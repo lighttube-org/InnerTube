@@ -5,7 +5,7 @@ namespace InnerTube.Renderers;
 
 public class GridVideoRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "gridVideoRenderer";
 
 	public string Id { get; }
 	public string Title { get; }
@@ -18,7 +18,6 @@ public class GridVideoRenderer : IRenderer
 
 	public GridVideoRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Id = renderer["videoId"]!.ToString();
 		Title = renderer.GetFromJsonPath<string>("title.simpleText") ??
 		        Utils.ReadRuns(renderer.GetFromJsonPath<JArray>("title.runs") ?? new JArray());

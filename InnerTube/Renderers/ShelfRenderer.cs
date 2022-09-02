@@ -5,17 +5,15 @@ namespace InnerTube.Renderers;
 
 public class ShelfRenderer : IRenderer
 {
-	public string Type { get; }
+	public string Type => "shelfRenderer";
 
 	public string Title { get; }
 	public int CollapsedItemCount { get; }
 	public ShelfDirection Direction { get; }
 	public IEnumerable<IRenderer> Items { get; }
 
-
 	public ShelfRenderer(JToken renderer)
 	{
-		Type = renderer.Path.Split(".").Last();
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		CollapsedItemCount = renderer.GetFromJsonPath<int>("content.verticalListRenderer.collapsedItemCount")!;
 		Direction = renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items") != null
