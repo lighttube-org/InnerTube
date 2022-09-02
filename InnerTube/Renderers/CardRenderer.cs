@@ -3,14 +3,14 @@ using Newtonsoft.Json.Linq;
 
 namespace InnerTube.Renderers;
 
-public class CardRenderer : IRenderer
+public class SearchRefinementCardRenderer : IRenderer
 {
-	public string Type => "cardRenderer";
+	public string Type => "searchRefinementCardRenderer";
 
 	public string Title { get; }
 	public IEnumerable<Thumbnail> Thumbnails { get; }
 
-	public CardRenderer(JToken renderer)
+	public SearchRefinementCardRenderer(JToken renderer)
 	{
 		Title = Utils.ReadText(renderer["query"]!.ToObject<JObject>()!);
 		Thumbnails = Utils.GetThumbnails(renderer["thumbnail"]!["thumbnails"]!.ToObject<JArray>()!);

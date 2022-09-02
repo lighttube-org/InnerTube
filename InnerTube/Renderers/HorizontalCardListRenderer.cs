@@ -8,12 +8,12 @@ public class HorizontalCardListRenderer : IRenderer
 	public string Type => "horizontalCardListRenderer";
 
 	public string Title { get; }
-	public IEnumerable<CardRenderer> Items { get; }
+	public IEnumerable<SearchRefinementCardRenderer> Items { get; }
 
 	public HorizontalCardListRenderer(JToken renderer)
 	{
 		Title = renderer.GetFromJsonPath<string>("header.richListHeaderRenderer.title.simpleText")!;
-		Items = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("cards")!).Cast<CardRenderer>();
+		Items = RendererManager.ParseRenderers(renderer.GetFromJsonPath<JArray>("cards")!).Cast<SearchRefinementCardRenderer>();
 	}
 
 	public override string ToString()

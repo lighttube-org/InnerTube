@@ -8,14 +8,6 @@ public class SearchTests
 {
 	private InnerTube _innerTube;
 
-	private string[] _skip = {
-		"videoRenderer",
-		"channelRenderer",
-		"playlistRenderer",
-		"shelfRenderer",
-		"horizontalCardListRenderer"
-	};
-
 	[SetUp]
 	public void Setup()
 	{
@@ -40,12 +32,7 @@ public class SearchTests
 			.AppendLine("== RESULTS ==");
 
 		foreach (IRenderer renderer in results.Results)
-		{
-			if (!_skip.Contains(renderer.Type))
-				sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
-			else
-				sb.AppendLine($"->\t[{renderer.Type}]");
-		}
+			sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
 
 		Assert.Pass(sb.ToString());
 	}
@@ -76,12 +63,7 @@ public class SearchTests
 		sb.AppendLine("Continuation: " + results.Continuation?.Substring(0, 20));
 		
 		foreach (IRenderer renderer in results.Contents)
-		{
-			if (!_skip.Contains(renderer.Type))
-				sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
-			else
-				sb.AppendLine($"->\t[{renderer.Type}]");
-		}
+			sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
 
 		Assert.Pass(sb.ToString());
 	}

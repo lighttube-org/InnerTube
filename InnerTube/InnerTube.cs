@@ -72,7 +72,7 @@ public class InnerTube
 	/// </param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
-	public async Task<InnerTubePlayer> GetPlayerAsync(string videoId, bool contentCheckOk, bool includeHls,
+	public async Task<InnerTubePlayer> GetPlayerAsync(string videoId, bool contentCheckOk = false, bool includeHls = false,
 		string language = "en", string region = "US")
 	{
 		string cacheId = $"{videoId}_{(includeHls ? "hls" : "dash")}({language}_{region})";
