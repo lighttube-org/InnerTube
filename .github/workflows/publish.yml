@@ -22,6 +22,8 @@ jobs:
       - name: Publish to NuGet
         id: publish_nuget
         uses: brandedoutcast/publish-nuget@v2
+        env:
+          NUGET_KEY: ${{ secrets.NUGET_KEY }}
         with:
           # Filepath of the project to be packaged, relative to root of repository
           PROJECT_FILE_PATH: InnerTube/InnerTube.csproj
