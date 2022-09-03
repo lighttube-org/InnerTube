@@ -16,6 +16,7 @@ public class VideoRenderer : IRenderer
 	public IEnumerable<Thumbnail> Thumbnails { get; }
 	public Channel Channel { get; }
 	public IEnumerable<Badge> Badges { get; }
+	public DateTimeOffset? PremiereStartsAt { get; }
 
 	public VideoRenderer(JToken renderer)
 	{
@@ -24,7 +25,9 @@ public class VideoRenderer : IRenderer
 		Description = Utils.ReadText(renderer.GetFromJsonPath<JObject>("detailedMetadataSnippets[0].snippetText") ??
 		                             new JObject(), true);
 		Published = renderer["publishedTimeText"]?["simpleText"]!.ToString();
-		ViewCount = Utils.ReadText(renderer["viewCountText"]!.ToObject<JObject>()!);
+		ViewCount = renderer["viewCountText"] is not null
+			? Utils.ReadText(renderer["viewCountText"]!.ToObject<JObject>()!)
+			: "0";
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());
 		Channel = new Channel
 		{
@@ -41,6 +44,9 @@ public class VideoRenderer : IRenderer
 		         Array.Empty<Badge>();
 
 		Duration = Utils.ParseDuration(renderer["lengthText"]?["simpleText"]?.ToString()!);
+
+		if (renderer["upcomingEventData"] is not null)
+			PremiereStartsAt = DateTimeOffset.FromUnixTimeSeconds(renderer.GetFromJsonPath<long>("upcomingEventData.startTime"));
 	}
 
 	public override string ToString()
@@ -54,6 +60,7 @@ public class VideoRenderer : IRenderer
 			.AppendLine($"- Thumbnail count: {Thumbnails.Count()}")
 			.AppendLine($"- Channel: {Channel}")
 			.AppendLine($"- Badges: {string.Join(" | ", Badges.Select(x => x.ToString()))}")
+			.AppendLine($"- PremiereStartsAt: {PremiereStartsAt}")
 			.AppendLine(Description);
 
 		return sb.ToString();
