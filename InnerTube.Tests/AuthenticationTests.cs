@@ -5,6 +5,8 @@ public class AuthenticationTests
 	[Test]
 	public async Task GetAuthorizedPlayerWithSapisid()
 	{
+		if (Environment.GetEnvironmentVariable("INNERTUBE_SAPISID") is null && Environment.GetEnvironmentVariable("INNERTUBE_PSID") is null)
+			Assert.Inconclusive("Authorization variables are not set");
 		InnerTube tube = new(new InnerTubeConfiguration()
 		{
 			Authorization = InnerTubeAuthorization.SapisidAuthorization(
@@ -24,6 +26,8 @@ public class AuthenticationTests
 	[Test]
 	public async Task GetAuthorizedPlayerWithRefreshToken()
 	{
+		if (Environment.GetEnvironmentVariable("INNERTUBE_REFRESH_TOKEN") is null)
+			Assert.Inconclusive("Authorization variables are not set");
 		InnerTube tube = new(new InnerTubeConfiguration()
 		{
 			Authorization = InnerTubeAuthorization.RefreshTokenAuthorization(
