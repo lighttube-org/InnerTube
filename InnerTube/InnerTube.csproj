@@ -11,6 +11,7 @@
         <RepositoryUrl>https://github.com/kuylar/InnerTube</RepositoryUrl>
         <PackageTags>youtube, innertube</PackageTags>
         <AssemblyVersion>1.0.0</AssemblyVersion>
+        <Version>1.0.0</Version>
     </PropertyGroup>
 
     <ItemGroup>
