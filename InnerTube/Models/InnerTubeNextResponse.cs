@@ -25,6 +25,11 @@ public class InnerTubeNextResponse
 		if (resultsArray is null || !resultsArray.Any(x => x.Path.EndsWith("contents")))
 			throw new InnerTubeException("Cannot get information about this video");
 
+		int index = 0;
+
+		if (resultsArray.GetFromJsonPath<JToken>("contents[0].itemSectionRenderer") != null)
+			index = 1;
+
 		JToken? errorObject = resultsArray.GetFromJsonPath<JToken>(
 			"contents[0].itemSectionRenderer.contents[0].backgroundPromoRenderer");
 		if (errorObject is not null)
@@ -32,21 +37,21 @@ public class InnerTubeNextResponse
 
 		Id = playerResponse.GetFromJsonPath<string>("currentVideoEndpoint.watchEndpoint.videoId")!;
 		Title = Utils.ReadText(resultsArray.GetFromJsonPath<JObject>(
-			"contents[0].videoPrimaryInfoRenderer.title")!);
+			$"contents[{index}].videoPrimaryInfoRenderer.title")!);
 		JObject? descriptionArray = resultsArray.GetFromJsonPath<JObject>(
-			"contents[1].videoSecondaryInfoRenderer.description");
+			$"contents[{index + 1}].videoSecondaryInfoRenderer.description");
 		Description = descriptionArray != null ? Utils.ReadText(descriptionArray) : "";
 		DateText = resultsArray.GetFromJsonPath<string>(
-				"contents[0].videoPrimaryInfoRenderer.dateText.simpleText")
+				$"contents[{index}].videoPrimaryInfoRenderer.dateText.simpleText")
 			!;
 		ViewCount = resultsArray.GetFromJsonPath<string>(
-				"contents[0].videoPrimaryInfoRenderer.viewCount.videoViewCountRenderer.viewCount.simpleText")
+				$"contents[{index}].videoPrimaryInfoRenderer.viewCount.videoViewCountRenderer.viewCount.simpleText")
 			!;
 		LikeCount = resultsArray.GetFromJsonPath<string>(
-				"contents[0].videoPrimaryInfoRenderer.videoActions.menuRenderer.topLevelButtons[0].toggleButtonRenderer.defaultText.simpleText")
+				$"contents[{index}].videoPrimaryInfoRenderer.videoActions.menuRenderer.topLevelButtons[0].toggleButtonRenderer.defaultText.simpleText")
 			!;
 		JObject channelObject = resultsArray.GetFromJsonPath<JObject>(
-				"contents[1].videoSecondaryInfoRenderer.owner.videoOwnerRenderer")
+				$"contents[{index + 1}].videoSecondaryInfoRenderer.owner.videoOwnerRenderer")
 			!;
 		Channel = new Channel
 		{
@@ -60,13 +65,13 @@ public class InnerTubeNextResponse
 		};
 
 		JObject? commentObject = resultsArray.GetFromJsonPath<JObject>(
-			"contents[2].itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer");
+			$"contents[{index + 2}].itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer");
 		CommentCount = commentObject != null
 			? commentObject["commentCount"]!["simpleText"]!.ToString()
 			: null;
 
 		CommentsContinuation = resultsArray.GetFromJsonPath<string>(
-			"contents[3].itemSectionRenderer.contents[0].continuationItemRenderer.continuationEndpoint.continuationCommand.token");
+			$"contents[{index + 3}].itemSectionRenderer.contents[0].continuationItemRenderer.continuationEndpoint.continuationCommand.token");
 
 		JArray? recommendedList =
 			playerResponse.GetFromJsonPath<JArray>(
