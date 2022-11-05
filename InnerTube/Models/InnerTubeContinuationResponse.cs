@@ -49,8 +49,19 @@ public class InnerTubeContinuationResponse
 
 	public static InnerTubeContinuationResponse GetFromBrowse(JObject browseResponse)
 	{
-		IEnumerable<IRenderer> contents = RendererManager.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
-			"onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems")!).ToArray();
+		// i think this is being a/b tested? idk the payload i
+		// receive in the website and in the code are different
+		IEnumerable<IRenderer> contents;
+		try
+		{
+			contents = RendererManager.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
+				"continuationContents.richGridContinuation.contents")!).ToArray();
+		}
+		catch
+		{
+			contents = RendererManager.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
+				"onResponseReceivedActions[0].appendContinuationItemsAction.continuationItems")!).ToArray();
+		}
 		return new InnerTubeContinuationResponse(contents.Where(x => x is not ContinuationItemRenderer),
 			((ContinuationItemRenderer?)contents.FirstOrDefault(x => x is ContinuationItemRenderer))?.Token);
 	}
