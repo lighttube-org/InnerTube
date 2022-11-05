@@ -19,7 +19,7 @@ jobs:
         run: dotnet test
 
       - name: Package
-        run: dotnet pack -c Release -o . GrpcBrowser/GrpcBrowser.csproj
+        run: dotnet pack -c Release -o . InnerTube/InnerTube.csproj
 
       - name: Publish to NuGet
         run: dotnet nuget push *.nupkg -k ${{ secrets.NUGET_KEY }} -s https://api.nuget.org/v3/index.json --skip-duplicate
