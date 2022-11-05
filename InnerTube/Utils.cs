@@ -154,7 +154,7 @@ public static class Utils
 		tab switch
 		{
 			ChannelTabs.Home => "EghmZWF0dXJlZA%3D%3D",
-			ChannelTabs.Videos => "EgZ2aWRlb3M%3D",
+			ChannelTabs.Videos => "EgZ2aWRlb3PyBgQKAjoA",
 			ChannelTabs.Playlists => "EglwbGF5bGlzdHM%3D",
 			ChannelTabs.Community => "Egljb21tdW5pdHk%3D",
 			ChannelTabs.Channels => "EghjaGFubmVscw%3D%3D",

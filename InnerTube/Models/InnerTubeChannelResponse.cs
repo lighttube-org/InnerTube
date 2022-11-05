@@ -23,6 +23,7 @@ public class InnerTubeChannelResponse
 			browseResponse.GetFromJsonPath<JArray>("contents.twoColumnBrowseResultsRenderer.tabs")!
 				.Select(x =>
 					x.GetFromJsonPath<JToken>("tabRenderer.content.sectionListRenderer.contents") ??
+					x.GetFromJsonPath<JToken>("tabRenderer.content.richGridRenderer.contents") ??
 					x.GetFromJsonPath<JToken>("expandableTabRenderer.content"))
 				.First(x => x != null)!;
 		if (currentTab is JObject)
