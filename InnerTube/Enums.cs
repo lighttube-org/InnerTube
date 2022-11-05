@@ -20,6 +20,8 @@ public enum ChannelTabs
 {
 	Home,
 	Videos,
+	Shorts,
+	Live,
 	Playlists,
 	Community,
 	Channels,

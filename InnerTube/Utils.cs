@@ -155,6 +155,8 @@ public static class Utils
 		{
 			ChannelTabs.Home => "EghmZWF0dXJlZA%3D%3D",
 			ChannelTabs.Videos => "EgZ2aWRlb3PyBgQKAjoA",
+			ChannelTabs.Shorts => "EgZzaG9ydHPyBgUKA5oBAA%3D%3D",
+			ChannelTabs.Live => "EgdzdHJlYW1z8gYECgJ6AA%3D%3D",
 			ChannelTabs.Playlists => "EglwbGF5bGlzdHM%3D",
 			ChannelTabs.Community => "Egljb21tdW5pdHk%3D",
 			ChannelTabs.Channels => "EghjaGFubmVscw%3D%3D",
