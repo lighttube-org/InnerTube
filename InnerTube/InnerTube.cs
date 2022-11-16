@@ -68,7 +68,8 @@ public class InnerTube
 	/// <param name="contentCheckOk">Set to true if you want to skip the content warnings (suicide, self-harm etc.)</param>
 	/// <param name="includeHls">
 	/// Set to true if you need HLS streams. Note that HLS streams are always sent for live videos and
-	/// for non-live videos setting this to true will not return formats larger than 1080p
+	/// for non-live videos setting this to true will not return formats larger than 1080p <br>
+	/// If this is set to true, Formats will be empty
 	/// </param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
