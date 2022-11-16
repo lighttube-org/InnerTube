@@ -48,7 +48,7 @@ public class InnerTubeNextResponse
 				$"contents[{index}].videoPrimaryInfoRenderer.viewCount.videoViewCountRenderer.viewCount.simpleText")
 			!;
 		LikeCount = resultsArray.GetFromJsonPath<string>(
-				$"contents[{index}].videoPrimaryInfoRenderer.videoActions.menuRenderer.topLevelButtons[0].toggleButtonRenderer.defaultText.simpleText")
+				$"contents[{index}].videoPrimaryInfoRenderer.videoActions.menuRenderer.topLevelButtons[0].segmentedLikeDislikeButtonRenderer.likeButton.toggleButtonRenderer.defaultText.simpleText")
 			!;
 		JObject channelObject = resultsArray.GetFromJsonPath<JObject>(
 				$"contents[{index + 1}].videoSecondaryInfoRenderer.owner.videoOwnerRenderer")
