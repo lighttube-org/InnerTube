@@ -67,7 +67,7 @@ public class InnerTubeNextResponse
 		JObject? commentObject = resultsArray.GetFromJsonPath<JObject>(
 			$"contents[{index + 2}].itemSectionRenderer.contents[0].commentsEntryPointHeaderRenderer");
 		CommentCount = commentObject != null
-			? commentObject["commentCount"]!["simpleText"]!.ToString()
+			? commentObject["commentCount"]?["simpleText"]?.ToString()
 			: null;
 
 		CommentsContinuation = resultsArray.GetFromJsonPath<string>(
