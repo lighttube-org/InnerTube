@@ -17,6 +17,7 @@ public class PlayerTests
 	[TestCase("BaW_jenozKc", true, true, Description = "Load a video with an HLS manifest")]
 	[TestCase("J6Ga4wciA2k", true, false, Description = "Load a video with the endscreen & info cards")]
 	[TestCase("jfKfPfyJRdk", true, false, Description = "Load a livestream")]
+	[TestCase("9gIXoaB-Jik", true, false, Description = "Video with WEBSITE endscreen item")]
 	public async Task GetPlayer(string videoId, bool contentCheckOk, bool includeHls)
 	{
 		InnerTubePlayer player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls);

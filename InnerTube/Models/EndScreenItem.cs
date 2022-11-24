@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Web;
+using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
 
@@ -39,6 +40,16 @@ public class EndScreenItem
 			case "VIDEO":
 				Type = EndScreenItemType.Video;
 				Target = json.GetFromJsonPath<string>("endpoint.watchEndpoint.videoId")!;
+				break;
+			case "WEBSITE":
+				Type = EndScreenItemType.Link;
+				Target = HttpUtility.ParseQueryString(
+					json.GetFromJsonPath<string>("endpoint.urlEndpoint.url")?.Split("?")[1] ?? "q="
+				).Get("q")!;
+				break;
+			case "PLAYLIST":
+				Type = EndScreenItemType.Playlist;
+				Target = $"{json.GetFromJsonPath<string>("endpoint.watchEndpoint.videoId")!}&list={json.GetFromJsonPath<string>("endpoint.watchEndpoint.playlistId")!}";
 				break;
 		}
 	}
