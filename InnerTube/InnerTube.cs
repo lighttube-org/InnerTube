@@ -120,7 +120,7 @@ public class InnerTube
 			.AddValue("query", query);
 
 		if (filterParams != null)
-			postData.AddValue("contentCheckOk", filterParams);
+			postData.AddValue("params", filterParams);
 
 		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
 			language, region);
