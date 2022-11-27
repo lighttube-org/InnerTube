@@ -8,13 +8,20 @@ public class ShelfRenderer : IRenderer
 	public string Type => "shelfRenderer";
 
 	public string Title { get; }
+	public string? Subtitle { get; }
+	public string? Destination { get; }
 	public int CollapsedItemCount { get; }
 	public ShelfDirection Direction { get; }
 	public IEnumerable<IRenderer> Items { get; }
 
 	public ShelfRenderer(JToken renderer)
 	{
-		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
+		Title = Utils.ReadText(renderer.GetFromJsonPath<JObject>("title")!);
+		Subtitle = renderer.GetFromJsonPath<JObject>("subtitle")?["simpleText"]?.ToString(); // dont ask why
+		if (renderer.GetFromJsonPath<JArray?>("title.runs") != null)
+		{
+			Destination = renderer.GetFromJsonPath<string>("title.runs[0].navigationEndpoint.commandMetadata.webCommandMetadata.url");
+		}
 		CollapsedItemCount = renderer.GetFromJsonPath<int>("content.verticalListRenderer.collapsedItemCount")!;
 		Direction = renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items") != null
 			? ShelfDirection.Vertical
@@ -34,6 +41,8 @@ public class ShelfRenderer : IRenderer
 	{
 		StringBuilder sb = new StringBuilder()
 			.AppendLine($"[{Type}] {Title}")
+			.AppendLine($"- Subtitle: {Subtitle}")
+			.AppendLine($"- Destination: {Destination}")
 			.AppendLine($"- CollapsedItemCount: {CollapsedItemCount}");
 
 		foreach (IRenderer renderer in Items)
