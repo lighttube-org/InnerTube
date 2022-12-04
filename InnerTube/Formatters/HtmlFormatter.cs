@@ -7,4 +7,5 @@ public class HtmlFormatter : IFormatter
 	public string FormatItalics(string text) => $"<i>{text}</i>";
 
 	public string FormatUrl(string text, string url) => $"<a href=\"{url}\">{text}</a>";
+	public string HandleLineBreaks(string text) => text.Replace("\n", "<br>");
 }

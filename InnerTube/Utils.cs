@@ -86,7 +86,7 @@ public static class Utils
 				str += currentString;
 			}
 
-			return str;		
+			return Formatter.HandleLineBreaks(str);
 		}
 
 		return "";
