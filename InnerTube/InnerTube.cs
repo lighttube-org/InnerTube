@@ -73,7 +73,8 @@ public class InnerTube
 	/// </param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
-	public async Task<InnerTubePlayer> GetPlayerAsync(string videoId, bool contentCheckOk = false, bool includeHls = false,
+	public async Task<InnerTubePlayer> GetPlayerAsync(string videoId, bool contentCheckOk = false,
+		bool includeHls = false,
 		string language = "en", string region = "US")
 	{
 		string cacheId = $"{videoId}_{(includeHls ? "hls" : "dash")}({language}_{region})";
@@ -178,9 +179,9 @@ public class InnerTube
 			.AddValue("videoId", videoId);
 		if (playlistId != null)
 			postData.AddValue("playlistId", playlistId);
-		if (playlistId != null && playlistIndex != null) 
+		if (playlistId != null && playlistIndex != null)
 			postData.AddValue("playlistIndex", playlistIndex);
-		if (playlistParams != null) 
+		if (playlistParams != null)
 			postData.AddValue("params", playlistParams);
 
 		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
@@ -220,6 +221,15 @@ public class InnerTube
 		string? searchQuery = null,
 		string language = "en", string region = "US")
 	{
+		// channel ID is a vanity url/handle
+		if (!channelId.StartsWith("UC"))
+		{
+			channelId = await GetChannelIdFromVanity(
+				channelId.StartsWith("@")
+					? $"https://youtube.com/{channelId}"
+					: $"https://youtube.com/c/{channelId}") ?? channelId;
+		}
+
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("browseId", channelId);
 		if (tab == ChannelTabs.Search && searchQuery is not null)
@@ -233,6 +243,32 @@ public class InnerTube
 		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
 
 		return new InnerTubeChannelResponse(browseResponse);
+	}
+
+	/// <summary>
+	/// Get a channel ID from its vanity URL or @handle
+	/// </summary>
+	/// <param name="vanityUrl">
+	/// The vanity URL or the handle of the channel
+	/// <br/>
+	/// If this is a handle, make sure it follows the format @url
+	/// <br/>
+	/// If this is a vanity URL, only pass in the part after the /c/ 
+	/// </param>
+	/// <returns>Channel ID of the given vanity URL, or null if given ID is not valid</returns>
+	public async Task<string?> GetChannelIdFromVanity(string vanityUrl)
+	{
+		if (vanityUrl.StartsWith("@"))
+			vanityUrl = "https://youtube.com/" + vanityUrl;
+		else if (!vanityUrl.StartsWith("http"))
+			vanityUrl = "https://youtube.com/c/" + vanityUrl;
+
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("url", vanityUrl);
+
+		JObject browseResponse = await MakeRequest(RequestClient.ANDROID, "navigation/resolve_url", postData, "en", "US");
+
+		return browseResponse.GetFromJsonPath<string>("endpoint.browseEndpoint.browseId");
 	}
 
 	/// <summary>

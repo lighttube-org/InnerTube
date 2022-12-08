@@ -23,6 +23,7 @@ public class BrowseTests
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Channels, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.About, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Search, "skyblock")]
+	[TestCase("@kuylardev", (int)ChannelTabs.Home, null)]
 	public async Task GetChannel(string channelId, ChannelTabs tab, string query)
 	{
 		try
@@ -157,5 +158,13 @@ public class BrowseTests
 		sb.AppendLine(innerTubeExploreResponse.Header.ToString());
 		
 		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("@kuylardev")]
+	[TestCase("YouTube")]
+	[TestCase("this is an invalid vanity url")]
+	public async Task GetIdFromVanityUrl(string vanity)
+	{
+		Assert.Pass(await _innerTube.GetChannelIdFromVanity(vanity) ?? "Invalid vanity URL");
 	}
 }
