@@ -24,11 +24,11 @@ public class C4TabbedHeaderRenderer : IRenderer
 		JObject? badgeObject = renderer.GetFromJsonPath<JObject>("badges[0].metadataBadgeRenderer");
 		Badges = badgeObject is not null ? new[] { new Badge(badgeObject) } : Array.Empty<Badge>();
 		PrimaryLinks =
-			renderer.GetFromJsonPath<JArray>("headerLinks.channelHeaderLinksRenderer.primaryLinks")!.Select(x =>
-				new ChannelLink(x));
+			renderer.GetFromJsonPath<JArray>("headerLinks.channelHeaderLinksRenderer.primaryLinks")?.Select(x =>
+				new ChannelLink(x)) ?? Array.Empty<ChannelLink>();
 		SecondaryLinks =
-			renderer.GetFromJsonPath<JArray>("headerLinks.channelHeaderLinksRenderer.secondaryLinks")!.Select(x =>
-				new ChannelLink(x));
+			renderer.GetFromJsonPath<JArray>("headerLinks.channelHeaderLinksRenderer.secondaryLinks")?.Select(x =>
+				new ChannelLink(x)) ?? Array.Empty<ChannelLink>();
 		SubscriberCountText = renderer.GetFromJsonPath<string>("subscriberCountText.simpleText")!;
 		Title = renderer.GetFromJsonPath<string>("title")!;
 	}
