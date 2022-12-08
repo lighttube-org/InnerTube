@@ -50,7 +50,7 @@ public class SearchTests
 		{
 			sb.AppendLine($"- {category.Title}");
 			foreach (InnerTubeSearchResults.Options.Group.Filter filter in category.Filters)
-				sb.AppendLine($"  [{filter.Params ?? "YOU ARE HERE"}] {filter.Label}");
+				sb.AppendLine($"  {(filter.Selected ? "[SELECTED]" : "")} [{filter.Params}] {filter.Label}");
 		}
 
 		Assert.Pass(sb.ToString());

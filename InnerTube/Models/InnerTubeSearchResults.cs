@@ -36,11 +36,15 @@ public class InnerTubeSearchResults
 			{
 				public string Label { get; }
 				public string? Params { get; }
+				public string Tooltip { get; }
+				public bool Selected { get; }
 
 				public Filter(JToken searchFilterRenderer)
 				{
 					Label = searchFilterRenderer["label"]!["simpleText"]!.ToString();
 					Params = searchFilterRenderer["navigationEndpoint"]?["searchEndpoint"]?["params"]?.ToString();
+					Tooltip = searchFilterRenderer["tooltip"]!.ToString();
+					Selected = searchFilterRenderer["tooltip"]?.ToString() == "FILTER_STATUS_SELECTED";
 				}
 			}
 
