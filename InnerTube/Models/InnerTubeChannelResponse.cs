@@ -9,6 +9,7 @@ public class InnerTubeChannelResponse
 	public C4TabbedHeaderRenderer? Header { get; }
 	public ChannelMetadataRenderer Metadata { get; }
 	public IEnumerable<IRenderer> Contents { get; }
+	public ChannelTabs[] EnabledTabs { get; }
 
 	public InnerTubeChannelResponse(JObject browseResponse)
 	{
@@ -28,6 +29,12 @@ public class InnerTubeChannelResponse
 				.First(x => x != null)!;
 		if (currentTab is JObject)
 			currentTab = currentTab["sectionListRenderer"]!["contents"]!.ToObject<JToken>()!;
+		EnabledTabs = browseResponse.GetFromJsonPath<JArray>("contents.twoColumnBrowseResultsRenderer.tabs")!
+			.Select(tabRenderer => 
+				Utils.GetTabFromParams(
+					tabRenderer.GetFromJsonPath<string>("tabRenderer.endpoint.browseEndpoint.params") ?? ""))
+			.ToArray();
+
 		Contents = RendererManager.ParseRenderers(currentTab.ToObject<JArray>()!);
 	}
 }

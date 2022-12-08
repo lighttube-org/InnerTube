@@ -164,4 +164,19 @@ public static class Utils
 			ChannelTabs.Search => "EgZzZWFyY2g%3D",
 			var _ => ""
 		};
+
+	public static ChannelTabs GetTabFromParams(string param) =>
+		string.Join("", param.Take(9)) switch
+		{
+			"EghmZWF0d" => ChannelTabs.Home,
+			"EgZ2aWRlb" => ChannelTabs.Videos, 
+			"EgZzaG9yd" => ChannelTabs.Shorts,
+			"EgdzdHJlY" => ChannelTabs.Live,
+			"EglwbGF5b" => ChannelTabs.Playlists,
+			"Egljb21td" => ChannelTabs.Community,
+			"EghjaGFub" => ChannelTabs.Channels,
+			"EgVhYm91d" => ChannelTabs.About,
+			"" => ChannelTabs.Search,
+			var _ => ChannelTabs.Home
+		};
 }
