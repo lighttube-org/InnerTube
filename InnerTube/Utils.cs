@@ -32,8 +32,11 @@ public static class Utils
 		}
 	}
 
-	public static string ReadText(JObject richText, bool includeFormatting = false)
+	public static string ReadText(JObject? richText, bool includeFormatting = false)
 	{
+		if (richText is null)
+			return "";
+
 		if (richText.ContainsKey("simpleText"))
 			return richText["simpleText"]!.ToString();
 
@@ -92,8 +95,10 @@ public static class Utils
 		return "";
 	}
 
-	public static Thumbnail[] GetThumbnails(JArray thumbnails)
+	public static Thumbnail[] GetThumbnails(JArray? thumbnails)
 	{
+		if (thumbnails is null)
+			return Array.Empty<Thumbnail>();
 		return thumbnails.Select(x =>
 		{
 			string url = x["url"]!.ToObject<string>()!;
