@@ -10,8 +10,8 @@
         <PackageLicenseUrl>https://github.com/kuylar/InnerTube/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/kuylar/InnerTube</RepositoryUrl>
         <PackageTags>youtube, innertube</PackageTags>
-        <AssemblyVersion>1.0.7</AssemblyVersion>
-        <Version>1.0.7</Version>
+        <AssemblyVersion>1.0.8</AssemblyVersion>
+        <Version>1.0.8</Version>
     </PropertyGroup>
 
     <ItemGroup>
