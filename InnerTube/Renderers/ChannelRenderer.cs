@@ -25,7 +25,7 @@ public class ChannelRenderer : IRenderer
 		Description = Utils.ReadText(renderer.GetFromJsonPath<JObject>("descriptionSnippet") ?? new JObject(), true);
 		VideoCountText = Utils.ReadText(renderer.GetFromJsonPath<JObject>("videoCountText")!);
 		SubscriberCountText = renderer.GetFromJsonPath<string>("subscriberCountText.simpleText")!;
-		Badges = renderer.GetFromJsonPath<JArray>("ownerBadges")!.Select(x => new Badge(x["metadataBadgeRenderer"]!))
+		Badges = (renderer.GetFromJsonPath<JArray>("ownerBadges")?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>())
 			.ToList().AsReadOnly();
 	}
 
