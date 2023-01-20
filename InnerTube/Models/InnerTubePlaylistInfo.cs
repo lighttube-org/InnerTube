@@ -13,7 +13,7 @@ public class InnerTubePlaylistInfo
 	public Channel Channel { get; }
 	public bool IsCourse { get; }
 	public bool IsInfinite { get; }
-	public IEnumerable<PlaylistPanelVideoRenderer> Videos { get; }
+	public IEnumerable<IRenderer> Videos { get; }
 	
 	public InnerTubePlaylistInfo(JObject playlist)
 	{
@@ -32,7 +32,6 @@ public class InnerTubePlaylistInfo
 		};
 		IsCourse = playlist.GetFromJsonPath<bool>("isCourse")!;
 		IsInfinite = playlist.GetFromJsonPath<bool>("isInfinite")!;
-		Videos = RendererManager.ParseRenderers(playlist.GetFromJsonPath<JArray>("contents")!)
-			.Cast<PlaylistPanelVideoRenderer>();
+		Videos = RendererManager.ParseRenderers(playlist.GetFromJsonPath<JArray>("contents")!);
 	}
 }
