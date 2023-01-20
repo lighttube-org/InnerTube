@@ -244,6 +244,10 @@ public class PlayerTests
 		{
 			Assert.Pass($"Exception thrown: [{e.GetType().Name}] {e.Message}");
 		}
+		catch (ArgumentException e)
+		{
+			Assert.Pass($"Exception thrown: [{e.GetType().Name}] {e.Message}");
+		}
 		catch (Exception e)
 		{
 			Assert.Fail("Wrong type of exception has been thrown\n" + e);

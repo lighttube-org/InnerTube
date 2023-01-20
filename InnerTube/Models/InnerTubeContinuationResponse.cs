@@ -36,6 +36,9 @@ public class InnerTubeContinuationResponse
 		if (errorObject is not null)
 			throw new NotFoundException(Utils.ReadText(errorObject["title"]!.ToObject<JObject>()!));
 
+		if (!nextResponse.ContainsKey("onResponseReceivedEndpoints"))
+			throw new ArgumentException("Invalid continuation key");
+
 		JToken response = nextResponse["onResponseReceivedEndpoints"]!.ToObject<JArray>()!.Last!;
 		JArray comments =
 			(response["reloadContinuationItemsCommand"] ?? response["appendContinuationItemsAction"])![
