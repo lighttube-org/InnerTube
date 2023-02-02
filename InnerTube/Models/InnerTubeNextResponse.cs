@@ -40,7 +40,7 @@ public class InnerTubeNextResponse
 			$"contents[{index}].videoPrimaryInfoRenderer.title")!);
 		JObject? descriptionArray = resultsArray.GetFromJsonPath<JObject>(
 			$"contents[{index + 1}].videoSecondaryInfoRenderer.description");
-		Description = descriptionArray != null ? Utils.ReadText(descriptionArray) : "";
+		Description = descriptionArray != null ? Utils.ReadText(descriptionArray, true) : "";
 		DateText = resultsArray.GetFromJsonPath<string>(
 				$"contents[{index}].videoPrimaryInfoRenderer.dateText.simpleText")
 			!;
