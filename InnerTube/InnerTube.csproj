@@ -12,12 +12,13 @@
         <PackageTags>youtube, innertube</PackageTags>
         <AssemblyVersion>1.0.10</AssemblyVersion>
         <Version>1.0.10</Version>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Serilog" Version="2.11.0" />
+        <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="6.0.1"/>
+        <PackageReference Include="Newtonsoft.Json" Version="13.0.1"/>
+        <PackageReference Include="Serilog" Version="2.11.0"/>
     </ItemGroup>
 
 </Project>
