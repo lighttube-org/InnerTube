@@ -7,6 +7,9 @@ using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
 
+/// <summary>
+/// The InnerTube client.
+/// </summary>
 public class InnerTube
 {
 	internal readonly HttpClient HttpClient = new();
@@ -14,6 +17,10 @@ public class InnerTube
 	internal readonly string ApiKey;
 	internal readonly InnerTubeAuthorization? Authorization;
 
+	/// <summary>
+	/// Initializes a new instance of InnerTube client.
+	/// </summary>
+	/// <param name="config">Configuration parameters</param>
 	public InnerTube(InnerTubeConfiguration? config = null)
 	{
 		config ??= new InnerTubeConfiguration();
@@ -68,7 +75,7 @@ public class InnerTube
 	/// <param name="contentCheckOk">Set to true if you want to skip the content warnings (suicide, self-harm etc.)</param>
 	/// <param name="includeHls">
 	/// Set to true if you need HLS streams. Note that HLS streams are always sent for live videos and
-	/// for non-live videos setting this to true will not return formats larger than 1080p <br>
+	/// for non-live videos setting this to true will not return formats larger than 1080p <br></br>
 	/// If this is set to true, Formats will be empty
 	/// </param>
 	/// <param name="language">Language of the content</param>
@@ -156,6 +163,8 @@ public class InnerTube
 	public async Task<InnerTubeSearchAutocomplete> GetSearchAutocompleteAsync(string query,
 		string language = "en", string region = "US")
 	{
+		// TODO: this is inefficient
+		// do some funny things with the mobile app to see how we should *actually* do this
 		HttpResponseMessage response = await HttpClient.GetAsync(
 			$"https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&hl={language}&gl={region.ToLower()}&ds=yt&q={HttpUtility.UrlEncode(query)}");
 
@@ -168,10 +177,11 @@ public class InnerTube
 	/// </summary>
 	/// <param name="videoId">ID of the video</param>
 	/// <param name="playlistId">ID of a playlist that contains this video. Must start with either PL or OLAK</param>
-	/// <param name="playlistIndex"></param>
+	/// <param name="playlistIndex">Index of the video for the playlist this video is in. Requires <paramref name="playlistId"/> to be set.</param>
+	/// <param name="playlistParams">Params for the playlist this video is in. Requires <paramref name="playlistId"/> to be set.</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
-	/// <returns>Video info, a key for the comments & a list of recommended videos</returns>
+	/// <returns>Video info, a key for the comments &amp; a list of recommended videos</returns>
 	public async Task<InnerTubeNextResponse> GetVideoAsync(string videoId, string? playlistId = null,
 		int? playlistIndex = null, string? playlistParams = null, string language = "en", string region = "US")
 	{
@@ -371,11 +381,11 @@ public class InnerTube
 	}
 
 	/// <summary>
-	/// Get a list of all valid languages & regions
+	/// Get a list of all valid languages &amp; regions
 	/// </summary>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
-	/// <returns>List of all valid languages & regions</returns>
+	/// <returns>List of all valid languages &amp; regions</returns>
 	public async Task<InnerTubeLocals> GetLocalsAsync(string language = "en", string region = "US")
 	{
 		JObject localsResponse = await MakeRequest(RequestClient.WEB, "account/account_menu", new InnerTubeRequest(),
