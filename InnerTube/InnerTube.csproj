@@ -13,6 +13,8 @@
         <AssemblyVersion>1.0.10</AssemblyVersion>
         <Version>1.0.10</Version>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <!-- Remove/comment this while looking for missing XMLDocs -->
+        <NoWarn>$(NoWarn);1591</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
