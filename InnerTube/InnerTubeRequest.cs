@@ -2,7 +2,7 @@
 
 namespace InnerTube;
 
-public class InnerTubeRequest
+internal class InnerTubeRequest
 {
 	private Dictionary<string, object> data = new();
 
