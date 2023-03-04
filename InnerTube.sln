@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerTube", "InnerTube\Inne
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerTube.Tests", "InnerTube.Tests\InnerTube.Tests.csproj", "{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerTube.Docs", "InnerTube.Docs\InnerTube.Docs.csproj", "{F091E90B-539C-46D6-8EF0-37B96CAE6FC7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

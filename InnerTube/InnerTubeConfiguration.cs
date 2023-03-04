@@ -1,5 +1,8 @@
 ﻿namespace InnerTube;
 
+/// <summary>
+/// Configuration parameters for the InnerTube client
+/// </summary>
 public class InnerTubeConfiguration
 {
 	/// <summary>

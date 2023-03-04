@@ -5,14 +5,29 @@ using Serilog;
 
 namespace InnerTube;
 
+/// <summary>
+/// Authorization parameters for InnerTube
+/// </summary>
 public class InnerTubeAuthorization
 {
+	/// <summary>
+	/// The way this authorization works
+	/// </summary>
 	public AuthorizationType Type;
+	/// <summary>
+	/// Secrets that an authorization implementation uses
+	/// </summary>
 	private Dictionary<string, object> Secrets = new();
 
 	internal InnerTubeAuthorization()
 	{ }
 
+	/// <summary>
+	/// Authorize with cookies. See https://github.com/kuylar/InnerTube/wiki/Authorization#using-cookies
+	/// </summary>
+	/// <param name="sapisid">The <code>__Secure-3PAPISID</code> cookie from your browser session</param>
+	/// <param name="psid">The <code>__Secure-3PSID</code> cookie from your browser session</param>
+	/// <returns></returns>
 	public static InnerTubeAuthorization SapisidAuthorization(string sapisid, string psid) =>
 		new()
 		{
@@ -24,6 +39,11 @@ public class InnerTubeAuthorization
 			}
 		};
 
+	/// <summary>
+	/// Authorize with an OAuth2 refresh token. See: https://github.com/kuylar/InnerTube/wiki/Authorization#using-a-refresh-token
+	/// </summary>
+	/// <param name="refreshToken">The refresh token from the OAuth response</param>
+	/// <returns></returns>
 	public static InnerTubeAuthorization RefreshTokenAuthorization(string refreshToken) =>
 		new()
 		{
@@ -34,7 +54,7 @@ public class InnerTubeAuthorization
 			}
 		};
 
-	public string GenerateCookieHeader()
+	internal string GenerateCookieHeader()
 	{
 		switch (Type)
 		{
@@ -47,7 +67,7 @@ public class InnerTubeAuthorization
 		}
 	}
 
-	public string GenerateAuthHeader()
+	internal string GenerateAuthHeader()
 	{
 		switch (Type)
 		{
@@ -104,8 +124,17 @@ public class InnerTubeAuthorization
 	}
 }
 
+/// <summary>
+/// Authorization type
+/// </summary>
 public enum AuthorizationType
 {
+	/// <summary>
+	/// Cookie based authorization
+	/// </summary>
 	SAPISID,
+	/// <summary>
+	/// OAuth2 based authorization
+	/// </summary>
 	REFRESH_TOKEN
 }
