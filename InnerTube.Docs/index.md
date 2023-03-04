@@ -1,4 +1,5 @@
-# This is the **HOMEPAGE**.
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
-## Quick Start Notes:
-1. Add images to the *images* folder if the file is referencing an image.
+# InnerTube
+
+A wrapper for the private YouTube API used in the YouTube website and the mobile apps.
+
+Visit our <a href="https://discord.gg/HFCUCFpayh">Discord server</a> for support.
