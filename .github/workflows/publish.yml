@@ -5,6 +5,7 @@ on:
       - master # Default release branch, may also be named 'master' or 'develop'
 jobs:
   publish:
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
     name: build, pack & publish
     runs-on: ubuntu-latest
     steps:
