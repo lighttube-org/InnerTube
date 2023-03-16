@@ -68,13 +68,8 @@ public static class Utils
 					if (run["navigationEndpoint"]?["urlEndpoint"] is not null)
 					{
 						string url = run["navigationEndpoint"]?["urlEndpoint"]?["url"]?.ToString() ?? "";
-						if (url.StartsWith("https://www.youtube.com/redirect"))
-						{
-							NameValueCollection qsl = HttpUtility.ParseQueryString(url.Split("?")[1]);
-							url = (qsl["url"] ?? qsl["q"])!;
-						}
 
-						currentString = Formatter.FormatUrl(currentString, url);
+						currentString = Formatter.FormatUrl(currentString, UnwrapRedirectUrl(url));
 					}
 					else if (run["navigationEndpoint"]?["commandMetadata"] is not null)
 					{
@@ -93,6 +88,17 @@ public static class Utils
 		}
 
 		return "";
+	}
+
+	public static string UnwrapRedirectUrl(string url)
+	{
+		if (url.StartsWith("https://www.youtube.com/redirect"))
+		{
+			NameValueCollection qsl = HttpUtility.ParseQueryString(url.Split("?")[1]);
+			url = qsl["url"] ?? qsl["q"] ?? url;
+		}
+
+		return url;
 	}
 
 	public static Thumbnail[] GetThumbnails(JArray? thumbnails)
@@ -150,7 +156,7 @@ public static class Utils
 	{
 		if (!TimeSpan.TryParseExact(duration, "%m\\:%s", CultureInfo.InvariantCulture, out TimeSpan timeSpan))
 			if (!TimeSpan.TryParseExact(duration, "%h\\:%m\\:%s",
-				    CultureInfo.InvariantCulture, out timeSpan))
+					CultureInfo.InvariantCulture, out timeSpan))
 				timeSpan = TimeSpan.Zero;
 		return timeSpan;
 	}

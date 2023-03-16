@@ -43,9 +43,9 @@ public class EndScreenItem
 				break;
 			case "WEBSITE":
 				Type = EndScreenItemType.Link;
-				Target = HttpUtility.ParseQueryString(
-					json.GetFromJsonPath<string>("endpoint.urlEndpoint.url")?.Split("?")[1] ?? "q="
-				).Get("q")!;
+				Target = Utils.UnwrapRedirectUrl(
+					json.GetFromJsonPath<string>("endpoint.urlEndpoint.url") ?? ""
+				);
 				break;
 			case "PLAYLIST":
 				Type = EndScreenItemType.Playlist;
