@@ -24,7 +24,7 @@ public class ChannelAboutFullMetadataRenderer : IRenderer
 		Description = renderer.GetFromJsonPath<string>("description.simpleText")!;
 		ViewCount = renderer.GetFromJsonPath<string>("viewCountText.simpleText")!;
 		JoinedDate = Utils.ReadText(renderer.GetFromJsonPath<JObject>("joinedDateText")!);
-		PrimaryLinks = renderer.GetFromJsonPath<JArray>("primaryLinks")!.Select(x => new ChannelLink(x));
+		PrimaryLinks = renderer.GetFromJsonPath<JArray>("primaryLinks")?.Select(x => new ChannelLink(x)) ?? Array.Empty<ChannelLink>();
 		Country = renderer.GetFromJsonPath<string>("country.simpleText")!;
 	}
 
