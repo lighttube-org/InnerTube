@@ -13,12 +13,10 @@ public class ChannelLink
 	{
 		Title = jToken.GetFromJsonPath<string>("title.simpleText")!;
 		Icon = Utils.GetThumbnails(jToken.GetFromJsonPath<JArray>("icon.thumbnails")!).First();
-		// pretty sure the following line will fail at any second
+		// ~~pretty sure the following line will fail at any second~~
+		// no it won't
 		Url = new Uri(
-			HttpUtility.UrlDecode(
-				HttpUtility.ParseQueryString(jToken.GetFromJsonPath<Uri>("navigationEndpoint.urlEndpoint.url")!.Query)
-					.Get("q")
-			)!
+			Utils.UnwrapRedirectUrl(jToken.GetFromJsonPath<string>("navigationEndpoint.urlEndpoint.url")!)
 		);
 	}
 

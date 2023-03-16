@@ -24,6 +24,7 @@ public class BrowseTests
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.About, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Search, "skyblock")]
 	[TestCase("@kuylardev", (int)ChannelTabs.Home, null)]
+	[TestCase("@Highly_Original", (int)ChannelTabs.About, null)]
 	public async Task GetChannel(string channelId, ChannelTabs tab, string query)
 	{
 		try
