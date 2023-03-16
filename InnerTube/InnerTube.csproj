@@ -10,8 +10,8 @@
         <PackageLicenseUrl>https://github.com/kuylar/InnerTube/blob/master/LICENSE</PackageLicenseUrl>
         <RepositoryUrl>https://github.com/kuylar/InnerTube</RepositoryUrl>
         <PackageTags>youtube, innertube</PackageTags>
-        <AssemblyVersion>1.0.10</AssemblyVersion>
-        <Version>1.0.10</Version>
+        <AssemblyVersion>1.0.11</AssemblyVersion>
+        <Version>1.0.11</Version>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <!-- Remove/comment this while looking for missing XMLDocs -->
         <NoWarn>$(NoWarn);1591</NoWarn>
