@@ -34,8 +34,11 @@ public static class RendererManager
 		return new UnknownRenderer(renderer);
 	}
 	
-	public static IEnumerable<IRenderer> ParseRenderers(JArray rendererArray)
+	public static IEnumerable<IRenderer> ParseRenderers(JArray? rendererArray)
 	{
+		if (rendererArray is null)
+			return Array.Empty<IRenderer>();
+
 		return from renderer
 				in rendererArray
 			let type = renderer.First?.Path.Split(".").Last()!

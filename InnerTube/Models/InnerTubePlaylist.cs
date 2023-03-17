@@ -47,7 +47,7 @@ public class InnerTubePlaylist
 
 		IRenderer[] renderers = RendererManager.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
 				"contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents")
-			!).ToArray();
+			).ToArray();
 		Videos = renderers.Where(x => x is PlaylistVideoRenderer).Cast<PlaylistVideoRenderer>();
 		Continuation = ((ContinuationItemRenderer?)renderers.FirstOrDefault(x => x is ContinuationItemRenderer))?.Token;
 		Sidebar = new PlaylistSidebar(browseResponse.GetFromJsonPath<JObject>("sidebar.playlistSidebarRenderer")!);
