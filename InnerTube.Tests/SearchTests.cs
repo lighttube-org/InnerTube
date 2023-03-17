@@ -21,6 +21,7 @@ public class SearchTests
 	[TestCase("lofi radio", null, Description = "Used to get live videos")]
 	[TestCase("EvCZ9W2xAMQ", null, Description = "Premiere video")]
 	[TestCase("technoblade", null, Description = "didYouMeanRenderer")]
+	[TestCase("O'zbekcha Kuylar 2020, Vol. 2", null, Description = "epic broken playlist")]
 	public async Task Search(string query, string param)
 	{
 		InnerTubeSearchResults results = await _innerTube.SearchAsync(query, param);
