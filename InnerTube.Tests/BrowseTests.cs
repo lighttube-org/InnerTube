@@ -71,6 +71,7 @@ public class BrowseTests
 
 	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false)]
 	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true)]
+	[TestCase("PLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF", false, Description = "Intentionally empty playlist")]
 	public async Task GetPlaylist(string playlistId, bool includeUnavailable)
 	{
 		InnerTubePlaylist playlist = await _innerTube.GetPlaylistAsync(playlistId, includeUnavailable);

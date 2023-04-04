@@ -23,8 +23,11 @@ public class PlaylistRenderer : IRenderer
 
 		Thumbnails =
 			Utils.GetThumbnails(
-				renderer.GetFromJsonPath<JArray>(
-					"thumbnailRenderer.playlistVideoThumbnailRenderer.thumbnail.thumbnails")!);
+				(renderer["thumbnailRenderer"] as JObject)
+					?.Properties()
+					.FirstOrDefault()
+					?.Value
+					?.GetFromJsonPath<JArray>("thumbnail.thumbnails"));
 		VideoThumbnails = new Dictionary<string, IEnumerable<Thumbnail>>();
 		foreach (JArray thumbnails in renderer["thumbnails"]!.ToObject<JArray>()!.Select(x =>
 			         x["thumbnails"]!.ToObject<JArray>()!))
@@ -44,7 +47,7 @@ public class PlaylistRenderer : IRenderer
 				?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>()
 		};
 
-		Videos = RendererManager.ParseRenderers(renderer["videos"]!.ToObject<JArray>()!).Cast<ChildVideoRenderer>();
+		Videos = RendererManager.ParseRenderers(renderer["videos"]?.ToObject<JArray>()).Cast<ChildVideoRenderer>();
 	}
 
 	public override string ToString()
