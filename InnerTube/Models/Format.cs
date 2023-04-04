@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
 
@@ -19,6 +20,7 @@ public class Format
 	public string? AudioQuality { get; }
 	public int? AudioSampleRate { get; }
 	public int? AudioChannels { get; }
+	public AudioTrack? AudioTrack { get; }
 
 	public Format(JToken jToken)
 	{
@@ -37,7 +39,17 @@ public class Format
 		AudioQuality = jToken["audioQuality"]?.ToString();
 		AudioSampleRate = int.Parse(jToken["audioSampleRate"]?.ToString() ?? "0");
 		AudioChannels = jToken["audioChannels"]?.ToObject<int>();
+		AudioTrack = jToken["audioTrack"]?.ToObject<AudioTrack>();
 	}
+}
+
+public class AudioTrack
+{
+	[JsonProperty("displayName")] public string DisplayName { get; set; }
+	[JsonProperty("id")] public string Id { get; set; }
+	[JsonProperty("audioIsDefault")] public bool AudioIsDefault { get; set; }
+
+	public override string ToString() => $"[{Id}] {DisplayName}{(AudioIsDefault ?" (default)" : "")}";
 }
 
 public class DashRange
