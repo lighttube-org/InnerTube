@@ -38,9 +38,8 @@ public class InnerTubeNextResponse
 		Id = playerResponse.GetFromJsonPath<string>("currentVideoEndpoint.watchEndpoint.videoId")!;
 		Title = Utils.ReadText(resultsArray.GetFromJsonPath<JObject>(
 			$"contents[{index}].videoPrimaryInfoRenderer.title")!);
-		JObject? descriptionArray = resultsArray.GetFromJsonPath<JObject>(
-			$"contents[{index + 1}].videoSecondaryInfoRenderer.description");
-		Description = descriptionArray != null ? Utils.ReadText(descriptionArray, true) : "";
+		Description = Utils.ReadAttributedText(resultsArray.GetFromJsonPath<JObject>(
+			$"contents[{index + 1}].videoSecondaryInfoRenderer.attributedDescription") ?? new JObject(), true) ?? "";
 		DateText = resultsArray.GetFromJsonPath<string>(
 				$"contents[{index}].videoPrimaryInfoRenderer.dateText.simpleText")
 			!;

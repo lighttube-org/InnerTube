@@ -58,7 +58,7 @@ public static class Utils
 				}
 
 				string currentString = run["text"]!.ToString();
-				
+
 				if (run.ContainsKey("bold"))
 					currentString = Formatter.FormatBold(currentString);
 				else if (run.ContainsKey("bold"))
@@ -156,7 +156,7 @@ public static class Utils
 	{
 		if (!TimeSpan.TryParseExact(duration, "%m\\:%s", CultureInfo.InvariantCulture, out TimeSpan timeSpan))
 			if (!TimeSpan.TryParseExact(duration, "%h\\:%m\\:%s",
-					CultureInfo.InvariantCulture, out timeSpan))
+				    CultureInfo.InvariantCulture, out timeSpan))
 				timeSpan = TimeSpan.Zero;
 		return timeSpan;
 	}
@@ -180,7 +180,7 @@ public static class Utils
 		string.Join("", param.Take(9)) switch
 		{
 			"EghmZWF0d" => ChannelTabs.Home,
-			"EgZ2aWRlb" => ChannelTabs.Videos, 
+			"EgZ2aWRlb" => ChannelTabs.Videos,
 			"EgZzaG9yd" => ChannelTabs.Shorts,
 			"EgdzdHJlY" => ChannelTabs.Live,
 			"EglwbGF5b" => ChannelTabs.Playlists,
@@ -190,4 +190,56 @@ public static class Utils
 			"" => ChannelTabs.Search,
 			var _ => ChannelTabs.Home
 		};
+
+	public static string? ReadAttributedText(JObject attributedText, bool includeFormatting = false)
+	{
+		if (!attributedText.ContainsKey("content")) return null;
+
+		string text = attributedText["content"]?.ToString() ?? "";
+
+		if (!includeFormatting) return text;
+		if (!attributedText.ContainsKey("commandRuns")) return text;
+
+		foreach (JToken run in (attributedText["commandRuns"]?.ToObject<JArray>() ?? new JArray()).Reverse())
+		{
+			int startIndex = run["startIndex"]?.ToObject<int>() ?? 0;
+			int length = run["length"]?.ToObject<int>() ?? 0;
+			string replacement = text.Substring(startIndex, length);
+			JObject command = run.GetFromJsonPath<JObject>("onTap.innertubeCommand") ?? new JObject();
+
+			if (command.ContainsKey("urlEndpoint"))
+			{
+				string url = UnwrapRedirectUrl(command.GetFromJsonPath<string>("urlEndpoint.url") ?? "");
+				replacement = Formatter.FormatUrl(replacement, url);
+			}
+
+			if (command.ContainsKey("watchEndpoint"))
+			{
+				string url = $"https://youtube.com/watch?v={command.GetFromJsonPath<string>("watchEndpoint.videoId")}";
+				if (command.GetFromJsonPath<bool>("watchEndpoint.continuePlayback"))
+					url += $"&t={command.GetFromJsonPath<int>("watchEndpoint.startTimeSeconds")}";
+				replacement = Formatter.FormatUrl(replacement, url);
+			}
+
+			if (command.ContainsKey("watchEndpoint"))
+			{
+				string url = $"https://youtube.com/watch?v={command.GetFromJsonPath<string>("watchEndpoint.videoId")}";
+				if (command.GetFromJsonPath<bool>("watchEndpoint.continuePlayback"))
+					url += $"&t={command.GetFromJsonPath<int>("watchEndpoint.startTimeSeconds")}";
+				replacement = Formatter.FormatUrl(replacement, url);
+			}
+
+			if (command.ContainsKey("browseEndpoint"))
+			{
+				string url = $"https://youtube.com{command.GetFromJsonPath<string>("browseEndpoint.canonicalBaseUrl")}";
+				replacement = Formatter.FormatUrl(replacement, url);
+			}
+
+			text = text
+				.Remove(startIndex, length)
+				.Insert(startIndex, replacement);
+		}
+
+		return text;
+	}
 }
