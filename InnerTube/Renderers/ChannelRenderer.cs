@@ -12,7 +12,7 @@ public class ChannelRenderer : IRenderer
 	public IEnumerable<Thumbnail> Avatars { get; }
 	public string? CustomUrl { get; }
 	public string Description { get; }
-	public string VideoCountText { get; }
+	public string UserHandle { get; }
 	public string SubscriberCountText { get; }
 	public IReadOnlyList<Badge> Badges { get; }
 
@@ -23,8 +23,8 @@ public class ChannelRenderer : IRenderer
 		CustomUrl = renderer.GetFromJsonPath<string>("navigationEndpoint.browseEndpoint.canonicalBaseUrl");
 		Avatars = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails")!);
 		Description = Utils.ReadText(renderer.GetFromJsonPath<JObject>("descriptionSnippet") ?? new JObject(), true);
-		VideoCountText = Utils.ReadText(renderer.GetFromJsonPath<JObject>("videoCountText")!);
-		SubscriberCountText = renderer.GetFromJsonPath<string>("subscriberCountText.simpleText")!;
+		SubscriberCountText = Utils.ReadText(renderer.GetFromJsonPath<JObject>("videoCountText")!);
+		UserHandle = renderer.GetFromJsonPath<string>("subscriberCountText.simpleText")!;
 		Badges = (renderer.GetFromJsonPath<JArray>("ownerBadges")?.Select(x => new Badge(x["metadataBadgeRenderer"]!)) ?? Array.Empty<Badge>())
 			.ToList().AsReadOnly();
 	}
@@ -36,7 +36,7 @@ public class ChannelRenderer : IRenderer
 			.AppendLine($"- Id: {Id}")
 			.AppendLine($"- Avatars.Length: {Avatars.Count()}")
 			.AppendLine($"- CustomUrl: {CustomUrl ?? "no custom ID"}")
-			.AppendLine($"- VideoCountText: {VideoCountText}")
+			.AppendLine($"- UserHandle: {UserHandle}")
 			.AppendLine($"- SubscriberCountText: {SubscriberCountText}")
 			.AppendLine($"- Badges:\n{string.Join('\n', Badges.Select(x => "\t- " + x))}")
 			.AppendLine(Description);
