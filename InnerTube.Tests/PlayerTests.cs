@@ -127,6 +127,7 @@ public class PlayerTests
 	[TestCase("LACbVhgtx9I", Description = "Video that includes self-harm topics")]
 	[TestCase("Atvsg_zogxo", Description = "something broke CompactPlaylistRenderer")]
 	[TestCase("t6cZn-Fvwa0", Description = "Video with comments disabled")]
+	[TestCase("jPhJbKBuNnA", Description = "Video with watchEndpoint in attributedDescription")]
 	public async Task GetVideoNext(string videoId)
 	{
 		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);

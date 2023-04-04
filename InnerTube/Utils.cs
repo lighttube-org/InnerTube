@@ -213,23 +213,13 @@ public static class Utils
 				replacement = Formatter.FormatUrl(replacement, url);
 			}
 
-			//if (run.ContainsKey("navigationEndpoint"))
-			//{
-			//	if (run["navigationEndpoint"]?["urlEndpoint"] is not null)
-			//	{
-			//		string url = run["navigationEndpoint"]?["urlEndpoint"]?["url"]?.ToString() ?? "";
-			//
-			//		currentString = Formatter.FormatUrl(currentString, UnwrapRedirectUrl(url));
-			//	}
-			//	else if (run["navigationEndpoint"]?["commandMetadata"] is not null)
-			//	{
-			//		string url = run["navigationEndpoint"]?["commandMetadata"]?["webCommandMetadata"]?["url"]
-			//			?.ToString() ?? "";
-			//		if (url.StartsWith("/"))
-			//			url = "https://youtube.com" + url;
-			//		currentString = Formatter.FormatUrl(currentString, url);
-			//	}
-			//}
+			if (command.ContainsKey("watchEndpoint"))
+			{
+				string url = $"https://youtube.com/watch?v={command.GetFromJsonPath<string>("watchEndpoint.videoId")}";
+				if (command.GetFromJsonPath<bool>("watchEndpoint.continuePlayback"))
+					url += $"&t={command.GetFromJsonPath<int>("watchEndpoint.startTimeSeconds")}";
+				replacement = Formatter.FormatUrl(replacement, url);
+			}
 
 			text = text
 				.Remove(startIndex, length)
