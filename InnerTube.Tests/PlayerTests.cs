@@ -18,6 +18,7 @@ public class PlayerTests
 	[TestCase("J6Ga4wciA2k", true, false, Description = "Load a video with the endscreen & info cards")]
 	[TestCase("jfKfPfyJRdk", true, false, Description = "Load a livestream")]
 	[TestCase("9gIXoaB-Jik", true, false, Description = "Video with WEBSITE endscreen item")]
+	[TestCase("4ZX9T0kWb4Y", true, false, Description = "Video with multiple audio tracks")]
 	public async Task GetPlayer(string videoId, bool contentCheckOk, bool includeHls)
 	{
 		InnerTubePlayer player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls);
@@ -80,7 +81,8 @@ public class PlayerTests
 				.AppendLine("   Quality: " + f.Quality)
 				.AppendLine("   AudioQuality: " + f.AudioQuality)
 				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
-				.AppendLine("   AudioChannels: " + f.AudioChannels);
+				.AppendLine("   AudioChannels: " + f.AudioChannels)
+				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
 		}
 
 		sb.AppendLine("== ADAPTIVE FORMATS");
@@ -100,7 +102,8 @@ public class PlayerTests
 				.AppendLine("   Quality: " + f.Quality)
 				.AppendLine("   AudioQuality: " + f.AudioQuality)
 				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
-				.AppendLine("   AudioChannels: " + f.AudioChannels);
+				.AppendLine("   AudioChannels: " + f.AudioChannels)
+				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
 		}
 
 		sb.AppendLine("== OTHER")
