@@ -221,6 +221,20 @@ public static class Utils
 				replacement = Formatter.FormatUrl(replacement, url);
 			}
 
+			if (command.ContainsKey("watchEndpoint"))
+			{
+				string url = $"https://youtube.com/watch?v={command.GetFromJsonPath<string>("watchEndpoint.videoId")}";
+				if (command.GetFromJsonPath<bool>("watchEndpoint.continuePlayback"))
+					url += $"&t={command.GetFromJsonPath<int>("watchEndpoint.startTimeSeconds")}";
+				replacement = Formatter.FormatUrl(replacement, url);
+			}
+
+			if (command.ContainsKey("browseEndpoint"))
+			{
+				string url = $"https://youtube.com{command.GetFromJsonPath<string>("browseEndpoint.canonicalBaseUrl")}";
+				replacement = Formatter.FormatUrl(replacement, url);
+			}
+
 			text = text
 				.Remove(startIndex, length)
 				.Insert(startIndex, replacement);
