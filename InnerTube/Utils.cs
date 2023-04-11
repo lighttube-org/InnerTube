@@ -240,6 +240,6 @@ public static class Utils
 				.Insert(startIndex, replacement);
 		}
 
-		return text;
+		return Formatter.HandleLineBreaks(text);
 	}
 }
