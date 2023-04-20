@@ -100,7 +100,10 @@ public class InnerTube
 		if (playabilityStatus != "OK")
 			throw new PlayerException(playabilityStatus,
 				playerResponse.GetFromJsonPath<string>("playabilityStatus.reason")!,
-				playerResponse.GetFromJsonPath<string>("playabilityStatus.reasonTitle")!);
+				playerResponse.GetFromJsonPath<string>("playabilityStatus.reasonTitle") ??
+				Utils.ReadText(
+					playerResponse.GetFromJsonPath<JObject>(
+						"playabilityStatus.errorScreen.playerErrorMessageRenderer.subreason")));
 
 		InnerTubePlayer player = new(playerResponse);
 		PlayerCache.Set(cacheId, player, new MemoryCacheEntryOptions
@@ -276,7 +279,8 @@ public class InnerTube
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("url", vanityUrl);
 
-		JObject browseResponse = await MakeRequest(RequestClient.ANDROID, "navigation/resolve_url", postData, "en", "US");
+		JObject browseResponse =
+			await MakeRequest(RequestClient.ANDROID, "navigation/resolve_url", postData, "en", "US");
 
 		return browseResponse.GetFromJsonPath<string>("endpoint.browseEndpoint.browseId");
 	}
