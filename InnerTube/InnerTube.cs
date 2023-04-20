@@ -61,6 +61,8 @@ public class InnerTube
 			var _ => ""
 		});
 		hrm.Headers.Add("Origin", "https://www.youtube.com");
+		if (client == RequestClient.ANDROID)
+			hrm.Headers.Add("User-Agent", "com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip");
 
 		HttpResponseMessage ytPlayerRequest = await HttpClient.SendAsync(hrm);
 		if (!ytPlayerRequest.IsSuccessStatusCode)
