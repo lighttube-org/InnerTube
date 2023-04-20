@@ -18,7 +18,7 @@ public class PlayerException : InnerTubeException
 	/// </summary>
 	public string Description { get; }
 
-	internal PlayerException(string code, string error, string description) : base($"[{code}] {error}")
+	internal PlayerException(string code, string error, string description) : base($"[{code}] {error}\n{description}")
 	{
 		Code = code;
 		Error = error;
