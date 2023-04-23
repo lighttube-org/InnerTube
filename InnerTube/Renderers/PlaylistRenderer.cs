@@ -34,7 +34,7 @@ public class PlaylistRenderer : IRenderer
 		{
 			string videoId = thumbnails.First()["url"]!.ToString().Split("/vi/")[1].Split("/")[0];
 			Thumbnail[] thumbs = Utils.GetThumbnails(thumbnails);
-			VideoThumbnails.Add(videoId, thumbs);
+			VideoThumbnails.TryAdd(videoId, thumbs);
 		}
 
 		Channel = new Channel
