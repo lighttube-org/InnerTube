@@ -98,6 +98,9 @@ public static class Utils
 			url = qsl["url"] ?? qsl["q"] ?? url;
 		}
 
+		if (!url.StartsWith("http"))
+			url = "https://" + url;
+
 		return url;
 	}
 
@@ -169,6 +172,8 @@ public static class Utils
 			ChannelTabs.Shorts => "EgZzaG9ydHPyBgUKA5oBAA%3D%3D",
 			ChannelTabs.Live => "EgdzdHJlYW1z8gYECgJ6AA%3D%3D",
 			ChannelTabs.Playlists => "EglwbGF5bGlzdHM%3D",
+			ChannelTabs.Podcasts => "Eghwb2RjYXN0c_IGBQoDugEA",
+			ChannelTabs.Releases => "EghyZWxlYXNlc_IGBQoDsgEA",
 			ChannelTabs.Community => "Egljb21tdW5pdHk%3D",
 			ChannelTabs.Channels => "EghjaGFubmVscw%3D%3D",
 			ChannelTabs.About => "EgVhYm91dA%3D%3D",
@@ -177,6 +182,7 @@ public static class Utils
 		};
 
 	public static ChannelTabs GetTabFromParams(string param) =>
+		// this method is starting to look slightly stupid with every new tab youtube adds
 		string.Join("", param.Take(9)) switch
 		{
 			"EghmZWF0d" => ChannelTabs.Home,
@@ -184,6 +190,8 @@ public static class Utils
 			"EgZzaG9yd" => ChannelTabs.Shorts,
 			"EgdzdHJlY" => ChannelTabs.Live,
 			"EglwbGF5b" => ChannelTabs.Playlists,
+			"Eghwb2RjY" => ChannelTabs.Podcasts,
+			"EghyZWxlY" => ChannelTabs.Releases,
 			"Egljb21td" => ChannelTabs.Community,
 			"EghjaGFub" => ChannelTabs.Channels,
 			"EgVhYm91d" => ChannelTabs.About,

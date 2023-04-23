@@ -72,6 +72,16 @@ public enum ChannelTabs
 	/// </summary>
 	Playlists,
 	/// <summary>
+	/// Podcasts tab.
+	/// Not available on all channels.
+	/// </summary>
+	Podcasts,
+	/// <summary>
+	/// Releases tab.
+	/// Only available in music channels [citation needed]
+	/// </summary>
+	Releases,
+	/// <summary>
 	/// Community tab.
 	/// </summary>
 	Community,
