@@ -1,10 +1,12 @@
 name: .NET Docs
 on:
+  push:
+    branches:
+      - master
   release:
     types:
       - published
   workflow_dispatch:
-  push: 
 env:
   DOTNET_NOLOGO: true
   DOTNET_CLI_TELEMETRY_OPTOUT: true
