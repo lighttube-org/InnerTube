@@ -116,7 +116,7 @@ public class InnerTube
 			Size = 1,
 			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, player.Details.Length.TotalSeconds)),
 			AbsoluteExpirationRelativeToNow =
-				TimeSpan.FromSeconds(player.ExpiresInSeconds - player.Details.Length.TotalSeconds)
+				TimeSpan.FromSeconds(Math.Max(3600, player.ExpiresInSeconds - player.Details.Length.TotalSeconds))
 		});
 		return player;
 	}
