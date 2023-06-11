@@ -216,6 +216,7 @@ public class PlayerTests
 	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
 	[TestCase("Eg0SC3F1STZnNEhwZVBjGAYyVSIuIgtxdUk2ZzRIcGVQYzAAeAKqAhpVZ3p3MnBIQXR1VW9xamRLbUtWNEFhQUJBZzABQiFlbmdhZ2VtZW50LXBhbmVsLWNvbW1lbnRzLXNlY3Rpb24%3D", Description = "Contains pinned & hearted comments")]
 	[TestCase("Eg0SC2tZd0Ita1p5TlU0GAYyJSIRIgtrWXdCLWtaeU5VNDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D", Description = "Contains authors with badges")]
+	[TestCase("5UCz9i2K9gY", Description = "Has unescaped HTML tags")]
 	public async Task GetVideoComments(string videoId)
 	{
 		InnerTubeContinuationResponse comments;

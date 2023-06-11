@@ -16,4 +16,7 @@ public class MarkdownFormatter : IFormatter
 
 	/// <inheritdoc />
 	public string HandleLineBreaks(string text) => text;
+
+	/// <inheritdoc />
+	public string Sanitize(string text) => text;
 }

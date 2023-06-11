@@ -57,7 +57,7 @@ public static class Utils
 					continue;
 				}
 
-				string currentString = run["text"]!.ToString();
+				string currentString = Formatter.Sanitize(run["text"]!.ToString());
 
 				if (run.ContainsKey("bold"))
 					currentString = Formatter.FormatBold(currentString);

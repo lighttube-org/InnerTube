@@ -36,4 +36,11 @@ public interface IFormatter
 	/// <param name="text">Full text to fix line breaks in</param>
 	/// <returns>The same text with line breaks fixed</returns>
 	public string HandleLineBreaks(string text);
+	
+	/// <summary>
+	/// Sanitize non-special content
+	/// </summary>
+	/// <param name="text">Full text to sanitize</param>
+	/// <returns>Sanitized text</returns>
+	public string Sanitize(string text);
 }
