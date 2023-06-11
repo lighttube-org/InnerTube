@@ -17,6 +17,7 @@ public class InnerTubeNextResponse
 	public string? CommentCount { get; }
 	public IEnumerable<IRenderer> Recommended { get; }
 	public InnerTubePlaylistInfo? Playlist { get; }
+	public IEnumerable<ChapterRenderer>? Chapters { get; }
 
 	public InnerTubeNextResponse(JObject playerResponse)
 	{
@@ -83,5 +84,15 @@ public class InnerTubeNextResponse
 			playerResponse.GetFromJsonPath<JObject>("contents.twoColumnWatchNextResults.playlist.playlist");
 		if (playlistObject != null)
 			Playlist = new InnerTubePlaylistInfo(playlistObject);
+
+		JArray? markersMap =
+			playerResponse.GetFromJsonPath<JArray>(
+				"playerOverlays.playerOverlayRenderer.decoratedPlayerBarRenderer.decoratedPlayerBarRenderer.playerBar.multiMarkersPlayerBarRenderer.markersMap");
+		JArray? chaptersList = markersMap
+			?.FirstOrDefault(x => x.GetFromJsonPath<string>("key") == "DESCRIPTION_CHAPTERS")
+			?.GetFromJsonPath<JArray>("value.chapters");
+		Chapters = chaptersList != null
+			? RendererManager.ParseRenderers(chaptersList).Cast<ChapterRenderer>()
+			: null;
 	}
 }

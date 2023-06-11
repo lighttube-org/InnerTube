@@ -133,6 +133,7 @@ public class PlayerTests
 	[TestCase("jPhJbKBuNnA", Description = "Video with watchEndpoint in attributedDescription")]
 	[TestCase("UoBFuLMlDkw", Description = "Video with more special stuff in attributedDescription")]
 	[TestCase("llrBX6FpMpM", Description = "compactMovieRenderer")]
+	[TestCase("jUUe6TuRlgU", Description = "Chapters")]
 	public async Task GetVideoNext(string videoId)
 	{
 		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);
@@ -148,6 +149,17 @@ public class PlayerTests
 			.AppendLine("LikeCount: " + next.LikeCount)
 			.AppendLine("Description:\n" + string.Join('\n', next.Description.Split("\n").Select(x => $"\t{x}")));
 
+		sb.AppendLine("\n== CHAPTERS");
+		if (next.Chapters != null)
+		{
+			foreach (ChapterRenderer chapter in next.Chapters)
+				sb.AppendLine($"- [{TimeSpan.FromMilliseconds(chapter.TimeRangeStartMillis)}] {chapter.Title}");
+		}
+		else
+		{
+			sb.AppendLine("No chapters available");
+		}
+
 		sb.AppendLine("\n== COMMENTS")
 			.AppendLine("CommentCount: " + next.CommentCount)
 			.AppendLine("CommentsContinuation: " + next.CommentsContinuation);
@@ -155,9 +167,10 @@ public class PlayerTests
 		sb.AppendLine("\n== RECOMMENDED");
 		foreach (IRenderer renderer in next.Recommended)
 		{
-			sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
+			sb.AppendLine("->\t" + string.Join("\n\t",
+				(renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
 		}
-		
+
 		Assert.Pass(sb.ToString());
 	}
 
@@ -165,7 +178,8 @@ public class PlayerTests
 	[TestCase("o0tky2O8NlY", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null)]
 	[TestCase("NZwS7Cja6oE", "PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", null, null)]
 	[TestCase("k_nLHgIM4yE", "PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", null, null)]
-	public async Task GetVideoNextWithPlaylist(string videoId, string playlistId, int? playlistIndex, string? playlistParams)
+	public async Task GetVideoNextWithPlaylist(string videoId, string playlistId, int? playlistIndex,
+		string? playlistParams)
 	{
 		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId, playlistId, playlistIndex, playlistParams);
 		if (next.Playlist is null)
@@ -191,7 +205,7 @@ public class PlayerTests
 
 		Assert.Pass(sb.ToString());
 	}
-	
+
 	[TestCase("1234567890a", Description = "An ID I just made up")]
 	[TestCase("a62882basgl", Description = "Another ID I just made up")]
 	[TestCase("32nkdvLq3oQ", Description = "A deleted video")]
@@ -215,8 +229,11 @@ public class PlayerTests
 	}
 
 	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
-	[TestCase("Eg0SC3F1STZnNEhwZVBjGAYyVSIuIgtxdUk2ZzRIcGVQYzAAeAKqAhpVZ3p3MnBIQXR1VW9xamRLbUtWNEFhQUJBZzABQiFlbmdhZ2VtZW50LXBhbmVsLWNvbW1lbnRzLXNlY3Rpb24%3D", Description = "Contains pinned & hearted comments")]
-	[TestCase("Eg0SC2tZd0Ita1p5TlU0GAYyJSIRIgtrWXdCLWtaeU5VNDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D", Description = "Contains authors with badges")]
+	[TestCase(
+		"Eg0SC3F1STZnNEhwZVBjGAYyVSIuIgtxdUk2ZzRIcGVQYzAAeAKqAhpVZ3p3MnBIQXR1VW9xamRLbUtWNEFhQUJBZzABQiFlbmdhZ2VtZW50LXBhbmVsLWNvbW1lbnRzLXNlY3Rpb24%3D",
+		Description = "Contains pinned & hearted comments")]
+	[TestCase("Eg0SC2tZd0Ita1p5TlU0GAYyJSIRIgtrWXdCLWtaeU5VNDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D",
+		Description = "Contains authors with badges")]
 	[TestCase("5UCz9i2K9gY", Description = "Has unescaped HTML tags")]
 	public async Task GetVideoComments(string videoId)
 	{
@@ -231,6 +248,7 @@ public class PlayerTests
 		{
 			comments = await _innerTube.GetVideoCommentsAsync(videoId!);
 		}
+
 		StringBuilder sb = new();
 
 		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
