@@ -9,14 +9,14 @@ public class ReelItemRenderer : IRenderer
 
 	public string Id { get; }
 	public string Title { get; }
-	public string ViewCount { get; }
+	public string? ViewCount { get; }
 	public IEnumerable<Thumbnail> Thumbnails { get; }
 
 	public ReelItemRenderer(JToken renderer)
 	{
 		Id = renderer["videoId"]!.ToString();
 		Title = renderer.GetFromJsonPath<string>("headline.simpleText")!;
-		ViewCount = renderer["viewCountText"]!["simpleText"]!.ToString();
+		ViewCount = renderer["viewCountText"]?["simpleText"]?.ToString();
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());
 	}
 
