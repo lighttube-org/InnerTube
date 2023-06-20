@@ -1,0 +1,60 @@
+syntax = "proto2";
+
+message SearchParams {
+  enum SortField {
+    RELEVANCE = 0;
+    RATING = 1;
+    UPLOAD_DATE = 2;
+    VIEW_COUNT = 3;
+  }
+
+  optional SortField SortBy = 1;
+  optional SearchFilters Filters = 2;
+  optional QueryFlags QueryFlags = 8;
+}
+
+message SearchFilters {
+  enum UploadDate {
+    LAST_HOUR = 1;
+    TODAY = 2;
+    THIS_WEEK = 3;
+    THIS_MONTH = 4;
+    THIS_YEAR = 5;
+  }
+
+  enum ItemType {
+    VIDEO = 1;
+    CHANNEL = 2;
+    PLAYLIST = 3;
+    MOVIE = 4;
+  }
+
+  enum VideoDuration {
+    SHORT = 1;
+    LONG = 2;
+    MEDIUM = 3;
+  }
+
+  optional UploadDate UploadedIn = 1;
+  optional ItemType Type = 2;
+  optional VideoDuration Duration = 3;
+
+  optional bool Hd = 4;
+  optional bool Subtitles = 5;
+  optional bool CreativeCommons = 6;
+  optional bool Resolution3D = 7;
+  optional bool Live = 8;
+  optional bool Purchased = 9;
+
+  optional bool Resolution4K = 14;
+  optional bool Vr360 = 15;
+
+  optional bool Location = 23;
+
+  optional bool Hdr = 25;
+  optional bool Vr180 = 26;
+}
+
+message QueryFlags {
+  optional bool ExactSearch = 1;
+}

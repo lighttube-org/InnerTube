@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using System.Web;
+using Google.Protobuf;
 using InnerTube.Exceptions;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json.Linq;
@@ -125,18 +126,18 @@ public class InnerTube
 	/// Search using a query
 	/// </summary>
 	/// <param name="query">Query of what to search</param>
-	/// <param name="filterParams">Filter params. Get this from InnerTubeSearchResults.SearchOptions</param>
+	/// <param name="param">Filter params.</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>List of results</returns>
-	public async Task<InnerTubeSearchResults> SearchAsync(string query, string? filterParams = null,
+	public async Task<InnerTubeSearchResults> SearchAsync(string query, SearchParams? param,
 		string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("query", query);
 
-		if (filterParams != null)
-			postData.AddValue("params", filterParams);
+		if (param != null) 
+			postData.AddValue("params", Convert.ToBase64String(param.ToByteArray()));
 
 		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
 			language, region);

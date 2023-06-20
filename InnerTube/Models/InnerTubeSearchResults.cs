@@ -10,7 +10,6 @@ public class InnerTubeSearchResults
 	public string? Continuation { get; }
 	public string[] Refinements { get; }
 	public long EstimatedResults { get; }
-	public Options? SearchOptions { get; }
 
 	public class TypoFixer
 	{
@@ -20,48 +19,6 @@ public class InnerTubeSearchResults
 
 		public override string ToString() =>
 			$"Showing results for '{CorrectedQuery}'. Search instead for '{OriginalQuery}' [{Params}]";
-	}
-
-	public class Options
-	{
-		public IEnumerable<Group> Groups { get; }
-		public string Title { get; }
-
-		public class Group
-		{
-			public string Title { get; }
-			public IEnumerable<Filter> Filters { get; }
-
-			public class Filter
-			{
-				public string Label { get; }
-				public string? Params { get; }
-				public string Tooltip { get; }
-				public bool Selected { get; }
-
-				public Filter(JToken searchFilterRenderer)
-				{
-					Label = searchFilterRenderer["label"]!["simpleText"]!.ToString();
-					Params = searchFilterRenderer["navigationEndpoint"]?["searchEndpoint"]?["params"]?.ToString();
-					Tooltip = searchFilterRenderer["tooltip"]!.ToString();
-					Selected = searchFilterRenderer["tooltip"]?.ToString() == "FILTER_STATUS_SELECTED";
-				}
-			}
-
-			public Group(JToken searchFilterGroupRenderer)
-			{
-				Title = searchFilterGroupRenderer["title"]!["simpleText"]!.ToString();
-				Filters = searchFilterGroupRenderer["filters"]!.ToObject<JArray>()!
-					.Select(x => new Filter(x["searchFilterRenderer"]!));
-			}
-		}
-
-		internal Options(JToken searchSubMenuRenderer)
-		{
-			Title = Utils.ReadText(searchSubMenuRenderer["title"]!.ToObject<JObject>()!);
-			Groups = searchSubMenuRenderer["groups"]!.ToObject<JArray>()!.Select(x =>
-				new Group(x["searchFilterGroupRenderer"]!));
-		}
 	}
 
 	public InnerTubeSearchResults(JObject json)
@@ -88,10 +45,5 @@ public class InnerTubeSearchResults
 			json.GetFromJsonPath<string>(
 				"contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.contents[1].continuationItemRenderer.continuationEndpoint.continuationCommand.token") ??
 			null;
-
-		JObject? searchSubMenuRenderer = json.GetFromJsonPath<JObject>(
-			"contents.twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer.subMenu.searchSubMenuRenderer");
-		if (searchSubMenuRenderer != null)
-			SearchOptions = new Options(searchSubMenuRenderer);
 	}
 }
