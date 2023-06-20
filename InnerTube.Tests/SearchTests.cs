@@ -25,6 +25,7 @@ public class SearchTests
 	[TestCase("technoblade", null, Description = "didYouMeanRenderer")]
 	[TestCase("O'zbekcha Kuylar 2020, Vol. 2", null, Description = "epic broken playlist")]
 	[TestCase("cars 2", "movie", Description = "movieRenderer")]
+	[TestCase("", "exact", Description = "backgroundPromoRenderer")]
 	public async Task Search(string query, string paramArgs)
 	{
 		SearchParams? param = paramArgs switch
