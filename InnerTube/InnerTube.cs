@@ -97,7 +97,7 @@ public class InnerTube
 			.AddValue("racyCheckOk", contentCheckOk);
 
 		if (!includeHls)
-			postData.AddValue("params", "CgIQBg%3D%3D");
+			postData.AddValue("params", "8AEByAMkuAQH");
 
 		JObject playerResponse = await MakeRequest(includeHls ? RequestClient.IOS : RequestClient.ANDROID, "player",
 			postData,

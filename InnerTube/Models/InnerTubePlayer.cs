@@ -30,7 +30,6 @@ public class InnerTubePlayer
 			Length = TimeSpan.FromSeconds(
 				long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
 			IsLive = playerResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
-			ViewCount = long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.viewCount")!),
 			AllowRatings = playerResponse.GetFromJsonPath<bool>("videoDetails.allowRatings")
 		};
 		Endscreen = new VideoEndscreen
@@ -73,7 +72,6 @@ public class InnerTubePlayer
 		public string ShortDescription { get; set; }
 		public TimeSpan Length { get; set; }
 		public bool IsLive { get; set; }
-		public long ViewCount { get; set; }
 		public bool AllowRatings { get; set; }
 	}
 

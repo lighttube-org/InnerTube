@@ -23,6 +23,10 @@ public class PlayerTests
 	{
 		InnerTubePlayer player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls);
 		StringBuilder sb = new();
+		
+		if (player.Details.IsLive) Assert.Pass(player.Storyboard.Levels.Count + ": Live video, no formats");
+		if (includeHls) Assert.Pass(player.Storyboard.Levels.Count + ": iOS client, no formats");
+		Assert.Pass(player.Storyboard.Levels.Count + "\n" + player.Formats.ElementAt(1).Url);
 
 		sb.AppendLine("== DETAILS")
 			.AppendLine("Id: " + player.Details.Id)
@@ -32,7 +36,6 @@ public class PlayerTests
 			.AppendLine("ShortDescription: " + player.Details.ShortDescription)
 			.AppendLine("Length: " + player.Details.Length)
 			.AppendLine("IsLive: " + player.Details.IsLive)
-			.AppendLine("ViewCount: " + player.Details.ViewCount)
 			.AppendLine("AllowRatings: " + player.Details.AllowRatings);
 
 		sb.AppendLine("== STORYBOARD")
