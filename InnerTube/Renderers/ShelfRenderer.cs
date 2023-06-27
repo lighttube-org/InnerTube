@@ -20,18 +20,24 @@ public class ShelfRenderer : IRenderer
 		Subtitle = renderer.GetFromJsonPath<JObject>("subtitle")?["simpleText"]?.ToString(); // dont ask why
 		if (renderer.GetFromJsonPath<JArray?>("title.runs") != null)
 		{
-			Destination = renderer.GetFromJsonPath<string>("title.runs[0].navigationEndpoint.commandMetadata.webCommandMetadata.url");
+			Destination =
+				renderer.GetFromJsonPath<string>(
+					"title.runs[0].navigationEndpoint.commandMetadata.webCommandMetadata.url");
 		}
+
 		CollapsedItemCount = renderer.GetFromJsonPath<int>("content.verticalListRenderer.collapsedItemCount")!;
 		Direction = renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items") != null
 			? ShelfDirection.Vertical
 			: renderer.GetFromJsonPath<JArray>("content.horizontalListRenderer.items") != null
 				? ShelfDirection.Horizontal
-				: ShelfDirection.None;
+				: renderer.GetFromJsonPath<JArray>("content.gridRenderer.items") != null
+					? ShelfDirection.Grid
+					: ShelfDirection.None;
 		Items = RendererManager.ParseRenderers(Direction switch
 		{
 			ShelfDirection.Horizontal => renderer.GetFromJsonPath<JArray>("content.horizontalListRenderer.items")!,
 			ShelfDirection.Vertical => renderer.GetFromJsonPath<JArray>("content.verticalListRenderer.items")!,
+			ShelfDirection.Grid => renderer.GetFromJsonPath<JArray>("content.gridRenderer.items")!,
 			//TODO this happens in FEexplore
 			var _ => new JArray()
 		});

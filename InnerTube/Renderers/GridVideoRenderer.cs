@@ -22,7 +22,7 @@ public class GridVideoRenderer : IRenderer
 		Title = renderer.GetFromJsonPath<string>("title.simpleText") ??
 		        Utils.ReadText(renderer.GetFromJsonPath<JObject>("title.runs") ?? new JObject());
 		Published = renderer["publishedTimeText"]?["simpleText"]!.ToString();
-		ViewCount = Utils.ReadText(renderer["viewCountText"]!.ToObject<JObject>()!);
+		ViewCount = Utils.ReadText(renderer["viewCountText"]?.ToObject<JObject>()!);
 		Thumbnails = Utils.GetThumbnails(renderer.GetFromJsonPath<JArray>("thumbnail.thumbnails") ?? new JArray());
 		Channel = new Channel
 		{

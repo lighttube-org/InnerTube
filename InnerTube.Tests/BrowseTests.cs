@@ -27,6 +27,7 @@ public class BrowseTests
 	[TestCase("@Highly_Original", (int)ChannelTabs.About, null)]
 	[TestCase("@LinusTechTips", (int)ChannelTabs.Podcasts, null)]
 	[TestCase("@daftpunk", (int)ChannelTabs.Releases, null)]
+	[TestCase("@ZUTOMAYO", (int)ChannelTabs.Store, null)]
 	public async Task GetChannel(string channelId, ChannelTabs tab, string query)
 	{
 		try
