@@ -26,12 +26,19 @@ public static class RendererManager
 
 	public static IRenderer? ParseRenderer(JToken? renderer, string type)
 	{
-		if (renderer is null) 
-			return null;
+		try
+		{
+			if (renderer is null)
+				return null;
 
-		if (Renderers.TryGetValue(type, out Type? rendererType))
-			return (IRenderer)Activator.CreateInstance(rendererType, renderer)!;
-		return new UnknownRenderer(renderer);
+			if (Renderers.TryGetValue(type, out Type? rendererType))
+				return (IRenderer)Activator.CreateInstance(rendererType, renderer)!;
+			return new UnknownRenderer(renderer);
+		}
+		catch (Exception e)
+		{
+			return new ExceptionRenderer(e, type);
+		}
 	}
 	
 	public static IEnumerable<IRenderer> ParseRenderers(JArray? rendererArray)

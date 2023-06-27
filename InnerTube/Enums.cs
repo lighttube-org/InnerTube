@@ -90,6 +90,10 @@ public enum ChannelTabs
 	/// </summary>
 	Channels,
 	/// <summary>
+	/// Store tab.
+	/// </summary>
+	Store,
+	/// <summary>
 	/// About tab.
 	/// </summary>
 	About,
@@ -115,5 +119,9 @@ public enum ShelfDirection
 	/// <summary>
 	/// Vertical shelf
 	/// </summary>
-	Vertical
+	Vertical,
+	/// <summary>
+	/// Grid
+	/// </summary>
+	Grid
 }

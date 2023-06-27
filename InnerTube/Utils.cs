@@ -176,6 +176,7 @@ public static class Utils
 			ChannelTabs.Releases => "EghyZWxlYXNlc_IGBQoDsgEA",
 			ChannelTabs.Community => "Egljb21tdW5pdHk%3D",
 			ChannelTabs.Channels => "EghjaGFubmVscw%3D%3D",
+			ChannelTabs.Store => "EgVzdG9yZfIGBAoCGgA%3D",
 			ChannelTabs.About => "EgVhYm91dA%3D%3D",
 			ChannelTabs.Search => "EgZzZWFyY2g%3D",
 			var _ => ""
@@ -194,6 +195,7 @@ public static class Utils
 			"EghyZWxlY" => ChannelTabs.Releases,
 			"Egljb21td" => ChannelTabs.Community,
 			"EghjaGFub" => ChannelTabs.Channels,
+			"EgVzdG9yZ" => ChannelTabs.Store,
 			"EgVhYm91d" => ChannelTabs.About,
 			"" => ChannelTabs.Search,
 			var _ => ChannelTabs.Home
