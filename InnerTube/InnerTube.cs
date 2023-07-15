@@ -136,7 +136,7 @@ public class InnerTube
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("query", query);
 
-		if (param != null) 
+		if (param != null)
 			postData.AddValue("params", Convert.ToBase64String(param.ToByteArray()));
 
 		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
@@ -292,7 +292,7 @@ public class InnerTube
 	}
 
 	/// <summary>
-	/// Get information about a channel
+	/// Paginate through a channel
 	/// </summary>
 	/// <param name="continuation">Continuation token from an older GetSearchAsync call</param>
 	/// <param name="language">Language of the content</param>
