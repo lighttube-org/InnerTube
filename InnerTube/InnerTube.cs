@@ -335,15 +335,19 @@ public class InnerTube
 	/// <summary>
 	/// Get videos from a playlist
 	/// </summary>
-	/// <param name="continuation">Continuation token from an older GetPlaylistAsync call</param>
+	/// <param name="playlistId">ID of the playlist. Must start with either VL, PL or OLAK</param>
+	/// <param name="skipAmount">Amount of items to skip. Usually page multiplied by 100</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>More videos from a playlist</returns>
-	public async Task<InnerTubeContinuationResponse> ContinuePlaylistAsync(string continuation,
+	public async Task<InnerTubeContinuationResponse> ContinuePlaylistAsync(string playlistId, int skipAmount,
 		string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("continuation", continuation);
+			.AddValue("continuation", Utils.PackPlaylistContinuation(
+				playlistId.StartsWith("VL") ? playlistId :
+				playlistId.StartsWith("OL") ? playlistId : 
+				"VL" + playlistId, skipAmount));
 
 		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
 
