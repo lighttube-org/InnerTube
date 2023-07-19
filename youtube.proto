@@ -1,5 +1,7 @@
 syntax = "proto2";
 
+// Search
+
 message SearchParams {
   enum SortField {
     RELEVANCE = 0;
@@ -57,4 +59,24 @@ message SearchFilters {
 
 message QueryFlags {
   optional bool ExactSearch = 1;
+}
+
+// Playlist continuation
+
+message PlaylistContinuationContainer {
+  required PlaylistContinuation Continuation = 80226972;
+}
+
+message PlaylistContinuation {
+  required string InternalPlaylistId = 2;
+  required string PaginationInfo = 3;
+  required string PlaylistId = 35;
+}
+
+message PaginationInfo {
+  required string SkipAmountEncoded = 15;
+}
+
+message IntContainer {
+  required int32 Value = 1;
 }

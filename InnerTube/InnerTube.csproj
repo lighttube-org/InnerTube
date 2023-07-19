@@ -27,6 +27,7 @@
 
     <ItemGroup>
         <None Include="../README.md" Pack="true" PackagePath="" />
+        <None Include="../youtube.proto" Pack="false" PackagePath="" />
     </ItemGroup>
 
 </Project>

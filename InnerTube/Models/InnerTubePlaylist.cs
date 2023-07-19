@@ -9,7 +9,7 @@ public class InnerTubePlaylist
 	public string Id { get; }
 	public IEnumerable<string> Alerts { get; }
 	public IEnumerable<PlaylistVideoRenderer> Videos { get; }
-	public string? Continuation { get; }
+	public PlaylistContinuationInfo? Continuation { get; }
 	public PlaylistSidebar Sidebar { get; }
 
 	public InnerTubePlaylist(JObject browseResponse)
@@ -49,7 +49,10 @@ public class InnerTubePlaylist
 				"contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents")
 			).ToArray();
 		Videos = renderers.OfType<PlaylistVideoRenderer>();
-		Continuation = ((ContinuationItemRenderer?)renderers.FirstOrDefault(x => x is ContinuationItemRenderer))?.Token;
+		string? contToken = ((ContinuationItemRenderer?)renderers.FirstOrDefault(x => x is ContinuationItemRenderer))
+			?.Token;
+		if (contToken!=null)
+			Continuation = Utils.UnpackPlaylistContinuation(contToken);
 		Sidebar = new PlaylistSidebar(browseResponse.GetFromJsonPath<JObject>("sidebar.playlistSidebarRenderer")!);
 	}
 }

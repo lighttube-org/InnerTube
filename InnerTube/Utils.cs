@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Web;
+using Google.Protobuf;
 using InnerTube.Formatters;
 using Newtonsoft.Json.Linq;
 
@@ -243,5 +244,60 @@ public static class Utils
 		}
 
 		return Formatter.HandleLineBreaks(text);
+	}
+
+	public static string ToBase64UrlString(byte[] buffer) =>
+		Convert.ToBase64String(buffer)
+			.TrimEnd('=')
+			.Replace('+', '-')
+			.Replace('/', '_');
+
+	public static byte[] FromBase64UrlString(string s)
+	{
+		string b64 = HttpUtility.UrlDecode(s);
+		if (!b64.EndsWith("="))
+			b64 = b64.PadRight(s.Length + (4 - s.Length % 4) % 4, '=');
+		return Convert.FromBase64String(b64
+			.Replace('-', '+')
+			.Replace('_', '/'));
+	}
+
+	public static string PackProtobufInt(int value) =>
+		ToBase64UrlString(new IntContainer { Value = value }.ToByteArray());
+
+	public static int UnpackProtobufInt(string encoded) =>
+		IntContainer.Parser.ParseFrom(FromBase64UrlString(encoded)).Value;
+
+	public static string PackPlaylistContinuation(string playlistId, int skipAmount)
+	{
+		PaginationInfo info = new()
+		{
+			SkipAmountEncoded = $"PT:{PackProtobufInt(skipAmount)}"
+		};
+
+		PlaylistContinuationContainer container = new()
+		{
+			Continuation = new PlaylistContinuation
+			{
+				InternalPlaylistId = playlistId,
+				PaginationInfo = ToBase64UrlString(info.ToByteArray()),
+				PlaylistId = playlistId[2..]
+			}
+		};
+
+		return ToBase64UrlString(container.ToByteArray());
+	}
+
+	public static PlaylistContinuationInfo UnpackPlaylistContinuation(string continuationKey)
+	{
+		PlaylistContinuationContainer container = PlaylistContinuationContainer.Parser.ParseFrom(FromBase64UrlString(continuationKey));
+		PaginationInfo info =
+			PaginationInfo.Parser.ParseFrom(FromBase64UrlString(container.Continuation.PaginationInfo));
+		return new PlaylistContinuationInfo
+		{
+			InternalPlaylistId = container.Continuation.InternalPlaylistId,
+			PlaylistId = container.Continuation.PlaylistId,
+			ContinueFrom = UnpackProtobufInt(info.SkipAmountEncoded.Split(":").Last())
+		};
 	}
 }

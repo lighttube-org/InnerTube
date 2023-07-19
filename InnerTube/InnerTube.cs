@@ -91,27 +91,27 @@ public class InnerTube
 
 		if (PlayerCache.TryGetValue(cacheId, out InnerTubePlayer cachedPlayer)) return cachedPlayer;
 
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("videoId", videoId)
-			.AddValue("contentCheckOk", contentCheckOk)
-			.AddValue("racyCheckOk", contentCheckOk);
+		Task[] tasks = 
+		{
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region,
+				includeHls ? RequestClient.IOS : RequestClient.ANDROID)
+		};
 
-		if (!includeHls)
-			postData.AddValue("params", "8AEByAMkuAQH");
+		Task.WaitAll(tasks);
 
-		JObject playerResponse = await MakeRequest(includeHls ? RequestClient.IOS : RequestClient.ANDROID, "player",
-			postData,
-			language, region, true);
-		string playabilityStatus = playerResponse.GetFromJsonPath<string>("playabilityStatus.status")!;
+		JObject[] responses = tasks.Select(x => ((Task<JObject>)x).Result).ToArray();
+		
+		string playabilityStatus = responses[1].GetFromJsonPath<string>("playabilityStatus.status")!;
 		if (playabilityStatus != "OK")
 			throw new PlayerException(playabilityStatus,
-				playerResponse.GetFromJsonPath<string>("playabilityStatus.reason")!,
-				playerResponse.GetFromJsonPath<string>("playabilityStatus.reasonTitle") ??
+				responses[1].GetFromJsonPath<string>("playabilityStatus.reason")!,
+				responses[1].GetFromJsonPath<string>("playabilityStatus.reasonTitle") ??
 				Utils.ReadText(
-					playerResponse.GetFromJsonPath<JObject>(
+					responses[1].GetFromJsonPath<JObject>(
 						"playabilityStatus.errorScreen.playerErrorMessageRenderer.subreason")));
 
-		InnerTubePlayer player = new(playerResponse);
+		InnerTubePlayer player = new(responses[1], responses[0]);
 		PlayerCache.Set(cacheId, player, new MemoryCacheEntryOptions
 		{
 			Size = 1,
@@ -120,6 +120,26 @@ public class InnerTube
 				TimeSpan.FromSeconds(Math.Max(3600, player.ExpiresInSeconds - player.Details.Length.TotalSeconds))
 		});
 		return player;
+	}
+
+	// instead of trying hours to find a protobuf compilation to
+	// have endscreen, cards, storyboards and non 403'ing video
+	// data at the same time i decided to just do the request
+	// twice, one WEB and one ANDROID. if someone finds a protobuf
+	// string that returns all those on the android client pls pr <3
+	private async Task<JObject> GetPlayerObjectAsync(string videoId, bool contentCheckOk, string language,
+		string region, RequestClient client)
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("videoId", videoId)
+			.AddValue("contentCheckOk", contentCheckOk)
+			.AddValue("racyCheckOk", contentCheckOk);
+
+		if (client == RequestClient.ANDROID)
+			postData.AddValue("params", "8AEB");
+
+		return await MakeRequest(client, "player", postData,
+			language, region, true);
 	}
 
 	/// <summary>
@@ -136,7 +156,7 @@ public class InnerTube
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("query", query);
 
-		if (param != null) 
+		if (param != null)
 			postData.AddValue("params", Convert.ToBase64String(param.ToByteArray()));
 
 		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
@@ -292,7 +312,7 @@ public class InnerTube
 	}
 
 	/// <summary>
-	/// Get information about a channel
+	/// Paginate through a channel
 	/// </summary>
 	/// <param name="continuation">Continuation token from an older GetSearchAsync call</param>
 	/// <param name="language">Language of the content</param>
@@ -335,15 +355,19 @@ public class InnerTube
 	/// <summary>
 	/// Get videos from a playlist
 	/// </summary>
-	/// <param name="continuation">Continuation token from an older GetPlaylistAsync call</param>
+	/// <param name="playlistId">ID of the playlist. Must start with either VL, PL or OLAK</param>
+	/// <param name="skipAmount">Amount of items to skip. Usually page multiplied by 100</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>More videos from a playlist</returns>
-	public async Task<InnerTubeContinuationResponse> ContinuePlaylistAsync(string continuation,
+	public async Task<InnerTubeContinuationResponse> ContinuePlaylistAsync(string playlistId, int skipAmount,
 		string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("continuation", continuation);
+			.AddValue("continuation", Utils.PackPlaylistContinuation(
+				playlistId.StartsWith("VL") ? playlistId :
+				playlistId.StartsWith("OL") ? playlistId : 
+				"VL" + playlistId, skipAmount));
 
 		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
 

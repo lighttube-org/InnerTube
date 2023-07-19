@@ -1,5 +1,4 @@
 using System.Text;
-using System.Web;
 using InnerTube.Renderers;
 
 // ReSharper disable StringLiteralTypo
@@ -39,7 +38,6 @@ public class SearchTests
 
 		sb.AppendLine("EstimatedResults: " + results.EstimatedResults)
 			.AppendLine("Continuation: " + string.Join("", results.Continuation?.Take(20) ?? "NONE") + "...")
-			.AppendLine("TypoFixer: " + results.DidYouMean)
 			.AppendLine("Refinements: \n" + string.Join('\n', results.Refinements.Select(x => $"- {x}")))
 			.AppendLine("")
 			.AppendLine("== RESULTS ==");

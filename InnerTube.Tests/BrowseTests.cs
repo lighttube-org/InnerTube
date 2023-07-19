@@ -95,16 +95,15 @@ public class BrowseTests
 		foreach (PlaylistVideoRenderer renderer in playlist.Videos)
 			sb.AppendLine("->\t" + string.Join("\n\t", renderer.ToString().Split("\n")));
 
-		sb.AppendLine($"Continuation: {string.Join("", playlist.Continuation?.Take(20) ?? "")}...");
+		sb.AppendLine($"Continuation: {string.Join("", playlist.Continuation?.ToString() ?? "<no continuation>")}");
 		
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase(
-		"4qmFsgJhEiRWTFBMdjNUVEJyMVdfOXRwcGlrQnhBRV9HNnFqV2RCbGpCSEoaFENBRjZCbEJVT2tOSFp3JTNEJTNEmgIiUEx2M1RUQnIxV185dHBwaWtCeEFFX0c2cWpXZEJsakJISg%3D%3D")]
-	public async Task ContinuePlaylist(string continuation)
+	[TestCase("VLPLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", 100)]
+	public async Task ContinuePlaylist(string playlistId, int skipAmount)
 	{
-		InnerTubeContinuationResponse response = await _innerTube.ContinuePlaylistAsync(continuation);
+		InnerTubeContinuationResponse response = await _innerTube.ContinuePlaylistAsync(playlistId, skipAmount);
 		StringBuilder sb = new();
 		
 		foreach (IRenderer renderer in response.Contents)
@@ -113,6 +112,12 @@ public class BrowseTests
 		sb.AppendLine($"Continuation: {response.Continuation?.Substring(0, 20)}");
 		
 		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("4qmFsgJhEiRWTFBMdjNUVEJyMVdfOXRwcGlrQnhBRV9HNnFqV2RCbGpCSEoaFENBRjZCbEJVT2tOSFp3JTNEJTNEmgIiUEx2M1RUQnIxV185dHBwaWtCeEFFX0c2cWpXZEJsakJISg")]
+	public void UnpackPlaylistContinuation(string continuation)
+	{
+		Assert.Pass(Utils.UnpackPlaylistContinuation(continuation).ToString());
 	}
 
 	[TestCase("UCfba251A_nwl141Ahgt16", Description = "Invalid ID")]

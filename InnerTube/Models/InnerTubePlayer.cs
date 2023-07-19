@@ -14,41 +14,47 @@ public class InnerTubePlayer
 	public string? HlsManifestUrl { get; }
 	public string? DashManifestUrl { get; }
 
-	public InnerTubePlayer(JObject playerResponse)
+	public InnerTubePlayer(JObject playerResponse, JObject metadataResponse)
 	{
 		Details = new VideoDetails
 		{
-			Id = playerResponse.GetFromJsonPath<string>("videoDetails.videoId")!,
-			Title = playerResponse.GetFromJsonPath<string>("videoDetails.title")!,
+			Id = metadataResponse.GetFromJsonPath<string>("videoDetails.videoId")!,
+			Title = metadataResponse.GetFromJsonPath<string>("videoDetails.title")!,
 			Author = new Channel
 			{
-				Id = playerResponse.GetFromJsonPath<string>("videoDetails.channelId")!,
-				Title = playerResponse.GetFromJsonPath<string>("videoDetails.author")!
+				Id = metadataResponse.GetFromJsonPath<string>("videoDetails.channelId")!,
+				Title = metadataResponse.GetFromJsonPath<string>("videoDetails.author")!
 			},
-			Keywords = playerResponse.GetFromJsonPath<string[]>("videoDetails.keywords")!,
-			ShortDescription = playerResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
+			Keywords = metadataResponse.GetFromJsonPath<string[]>("videoDetails.keywords")!,
+			ShortDescription = metadataResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
+			Category = metadataResponse.GetFromJsonPath<string>("videoDetails.category")!,
+			UploadDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.uploadDate")!),
+			PublishDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.publishDate")!),
 			Length = TimeSpan.FromSeconds(
-				long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
-			IsLive = playerResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
-			AllowRatings = playerResponse.GetFromJsonPath<bool>("videoDetails.allowRatings")
+				long.Parse(metadataResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
+			IsLive = metadataResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
+			AllowRatings = metadataResponse.GetFromJsonPath<bool>("videoDetails.allowRatings"),
+			IsFamilySafe = metadataResponse.GetFromJsonPath<bool>("microformat.playerMicroformatRenderer.isFamilySafe")!,
+			Thumbnails = Utils.GetThumbnails(metadataResponse.GetFromJsonPath<JArray>("microformat.playerMicroformatRenderer.thumbnail.thumbnails"))
 		};
 		Endscreen = new VideoEndscreen
 		{
-			Items = playerResponse.GetFromJsonPath<JArray>("endscreen.endscreenRenderer.elements")
+			Items = metadataResponse.GetFromJsonPath<JArray>("endscreen.endscreenRenderer.elements")
 				?.Select(x => new EndScreenItem(x["endscreenElementRenderer"]!)) ?? Array.Empty<EndScreenItem>(),
-			StartMs = long.Parse(playerResponse.GetFromJsonPath<string>("endscreen.endscreenRenderer.startMs") ?? "0")
+			StartMs = long.Parse(metadataResponse.GetFromJsonPath<string>("endscreen.endscreenRenderer.startMs") ?? "0")
 		};
 		Storyboard = new VideoStoryboard
 		{
 			RecommendedLevel =
-				playerResponse.GetFromJsonPath<int>("storyboards.playerStoryboardSpecRenderer.recommendedLevel"),
+				metadataResponse.GetFromJsonPath<int>("storyboards.playerStoryboardSpecRenderer.recommendedLevel"),
 			Levels = Utils.GetLevelsFromStoryboardSpec(
-				playerResponse.GetFromJsonPath<string>("storyboards.playerStoryboardSpecRenderer.spec"),
-				long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!))
+				metadataResponse.GetFromJsonPath<string>("storyboards.playerStoryboardSpecRenderer.spec"),
+				long.Parse(metadataResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!))
 		};
-		Captions = playerResponse.GetFromJsonPath<JArray>("captions.playerCaptionsTracklistRenderer.captionTracks")?
+		Captions = metadataResponse.GetFromJsonPath<JArray>("captions.playerCaptionsTracklistRenderer.captionTracks")?
 			.Select(x => new VideoCaption
 			{
+				VssId = x["vssId"]?.ToString() ?? x["languageCode"]!.ToString(),
 				LanguageCode = x["languageCode"]!.ToString(),
 				Label = Utils.ReadText(x["name"]!.ToObject<JObject>()!),
 				BaseUrl = new Uri(x["baseUrl"]!.ToString())
@@ -70,16 +76,23 @@ public class InnerTubePlayer
 		public Channel Author { get; set; }
 		public string[] Keywords { get; set; }
 		public string ShortDescription { get; set; }
+		public string Category { get; set; }
+		public DateTimeOffset PublishDate { get; set; }
+		public DateTimeOffset UploadDate { get; set; }
 		public TimeSpan Length { get; set; }
 		public bool IsLive { get; set; }
 		public bool AllowRatings { get; set; }
+		public bool IsFamilySafe { get; set; }
+		public Thumbnail[] Thumbnails { get; set; }
 	}
 
 	public class VideoCaption
 	{
+		public string VssId { get; set; }
 		public string LanguageCode { get; set; }
 		public string Label { get; set; }
 		public Uri BaseUrl { get; set; }
+		public bool IsAutomaticCaption => VssId[0] == 'a';
 	}
 
 	public class VideoEndscreen
