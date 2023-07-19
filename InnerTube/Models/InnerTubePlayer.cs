@@ -14,39 +14,39 @@ public class InnerTubePlayer
 	public string? HlsManifestUrl { get; }
 	public string? DashManifestUrl { get; }
 
-	public InnerTubePlayer(JObject playerResponse)
+	public InnerTubePlayer(JObject playerResponse, JObject metadataResponse)
 	{
 		Details = new VideoDetails
 		{
-			Id = playerResponse.GetFromJsonPath<string>("videoDetails.videoId")!,
-			Title = playerResponse.GetFromJsonPath<string>("videoDetails.title")!,
+			Id = metadataResponse.GetFromJsonPath<string>("videoDetails.videoId")!,
+			Title = metadataResponse.GetFromJsonPath<string>("videoDetails.title")!,
 			Author = new Channel
 			{
-				Id = playerResponse.GetFromJsonPath<string>("videoDetails.channelId")!,
-				Title = playerResponse.GetFromJsonPath<string>("videoDetails.author")!
+				Id = metadataResponse.GetFromJsonPath<string>("videoDetails.channelId")!,
+				Title = metadataResponse.GetFromJsonPath<string>("videoDetails.author")!
 			},
-			Keywords = playerResponse.GetFromJsonPath<string[]>("videoDetails.keywords")!,
-			ShortDescription = playerResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
+			Keywords = metadataResponse.GetFromJsonPath<string[]>("videoDetails.keywords")!,
+			ShortDescription = metadataResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
 			Length = TimeSpan.FromSeconds(
-				long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
-			IsLive = playerResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
-			AllowRatings = playerResponse.GetFromJsonPath<bool>("videoDetails.allowRatings")
+				long.Parse(metadataResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
+			IsLive = metadataResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
+			AllowRatings = metadataResponse.GetFromJsonPath<bool>("videoDetails.allowRatings")
 		};
 		Endscreen = new VideoEndscreen
 		{
-			Items = playerResponse.GetFromJsonPath<JArray>("endscreen.endscreenRenderer.elements")
+			Items = metadataResponse.GetFromJsonPath<JArray>("endscreen.endscreenRenderer.elements")
 				?.Select(x => new EndScreenItem(x["endscreenElementRenderer"]!)) ?? Array.Empty<EndScreenItem>(),
-			StartMs = long.Parse(playerResponse.GetFromJsonPath<string>("endscreen.endscreenRenderer.startMs") ?? "0")
+			StartMs = long.Parse(metadataResponse.GetFromJsonPath<string>("endscreen.endscreenRenderer.startMs") ?? "0")
 		};
 		Storyboard = new VideoStoryboard
 		{
 			RecommendedLevel =
-				playerResponse.GetFromJsonPath<int>("storyboards.playerStoryboardSpecRenderer.recommendedLevel"),
+				metadataResponse.GetFromJsonPath<int>("storyboards.playerStoryboardSpecRenderer.recommendedLevel"),
 			Levels = Utils.GetLevelsFromStoryboardSpec(
-				playerResponse.GetFromJsonPath<string>("storyboards.playerStoryboardSpecRenderer.spec"),
-				long.Parse(playerResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!))
+				metadataResponse.GetFromJsonPath<string>("storyboards.playerStoryboardSpecRenderer.spec"),
+				long.Parse(metadataResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!))
 		};
-		Captions = playerResponse.GetFromJsonPath<JArray>("captions.playerCaptionsTracklistRenderer.captionTracks")?
+		Captions = metadataResponse.GetFromJsonPath<JArray>("captions.playerCaptionsTracklistRenderer.captionTracks")?
 			.Select(x => new VideoCaption
 			{
 				LanguageCode = x["languageCode"]!.ToString(),
