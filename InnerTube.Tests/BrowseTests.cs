@@ -58,7 +58,7 @@ public class BrowseTests
 		}
 	}
 
-	[TestCase("4qmFsgKnARIYVUNGQWlGeUdzNm9EaUYxTmYtclJKcFpBGooBOGdaaUdtQnlYZ3BhQ2pKRlozTkpjMG95Y1dnMmFWY3RUR0pyUVZObmVVMUJSVFJJYTBsTlExQlFYMjF3YzBkRlVFUTRiWEkwUTFOQlJsRkJRUklrTmpNM1lqZzBZamt0TURBd01DMHlZMkprTFRreFpESXRNMk15T0Raa05EYzNZakl5R0FFJTNE")]
+	[TestCase("4qmFsgKCARIYVUNwZDUwSnpRQXVvcHdTR1FRQ21KSDh3GmY4Z1pIR2tWNlF3b19DaGREWnpCTFF6QldibGRzVWxkU1NFSkZWVmR3VWtWQlFSSWtOalJqT1RaalpqUXRNREF3TUMweVlUSm1MVGd6T0dVdFpqUXdNekEwTldRM1lURmhHQUUlM0Q%3D")]
 	public async Task ContinueChannel(string key)
 	{
 		InnerTubeContinuationResponse response = await _innerTube.ContinueChannelAsync(key);
