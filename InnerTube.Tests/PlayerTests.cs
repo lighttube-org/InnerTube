@@ -29,10 +29,15 @@ public class PlayerTests
 			.AppendLine("Title: " + player.Details.Title)
 			.AppendLine("Author: " + player.Details.Author)
 			.AppendLine("Keywords: " + string.Join(", ", player.Details.Keywords.Select(x => $"#{x}")))
-			.AppendLine("ShortDescription: " + player.Details.ShortDescription)
+			.AppendLine("ShortDescription: " + player.Details.ShortDescription.Split('\n')[0])
+			.AppendLine("Category: " + player.Details.Category)
+			.AppendLine("UploadDate: " + player.Details.UploadDate)
+			.AppendLine("PublishDate: " + player.Details.PublishDate)
 			.AppendLine("Length: " + player.Details.Length)
 			.AppendLine("IsLive: " + player.Details.IsLive)
-			.AppendLine("AllowRatings: " + player.Details.AllowRatings);
+			.AppendLine("AllowRatings: " + player.Details.AllowRatings)
+			.AppendLine("IsFamilySafe: " + player.Details.IsFamilySafe)
+			.AppendLine("Thumbnails: " + player.Details.Thumbnails.Length);
 
 		sb.AppendLine("== STORYBOARD")
 			.AppendLine("RecommendedLevel: " + player.Storyboard.RecommendedLevel);
@@ -59,7 +64,8 @@ public class PlayerTests
 		foreach (InnerTubePlayer.VideoCaption item in player.Captions)
 		{
 			sb
-				.AppendLine($"-> [{item.LanguageCode}] {item.Label}")
+				.AppendLine($"-> [{item.VssId}] ({item.LanguageCode}) {item.Label}")
+				.AppendLine("   IsAuto: " + item.IsAutomaticCaption)
 				.AppendLine("   Url: " + item.BaseUrl);
 		}
 

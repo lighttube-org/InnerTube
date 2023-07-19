@@ -27,10 +27,15 @@ public class InnerTubePlayer
 			},
 			Keywords = metadataResponse.GetFromJsonPath<string[]>("videoDetails.keywords")!,
 			ShortDescription = metadataResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
+			Category = metadataResponse.GetFromJsonPath<string>("videoDetails.category")!,
+			UploadDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.uploadDate")!),
+			PublishDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.publishDate")!),
 			Length = TimeSpan.FromSeconds(
 				long.Parse(metadataResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
 			IsLive = metadataResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
-			AllowRatings = metadataResponse.GetFromJsonPath<bool>("videoDetails.allowRatings")
+			AllowRatings = metadataResponse.GetFromJsonPath<bool>("videoDetails.allowRatings"),
+			IsFamilySafe = metadataResponse.GetFromJsonPath<bool>("microformat.playerMicroformatRenderer.isFamilySafe")!,
+			Thumbnails = Utils.GetThumbnails(metadataResponse.GetFromJsonPath<JArray>("microformat.playerMicroformatRenderer.thumbnail.thumbnails"))
 		};
 		Endscreen = new VideoEndscreen
 		{
@@ -49,6 +54,7 @@ public class InnerTubePlayer
 		Captions = metadataResponse.GetFromJsonPath<JArray>("captions.playerCaptionsTracklistRenderer.captionTracks")?
 			.Select(x => new VideoCaption
 			{
+				VssId = x["vssId"]?.ToString() ?? x["languageCode"]!.ToString(),
 				LanguageCode = x["languageCode"]!.ToString(),
 				Label = Utils.ReadText(x["name"]!.ToObject<JObject>()!),
 				BaseUrl = new Uri(x["baseUrl"]!.ToString())
@@ -70,16 +76,23 @@ public class InnerTubePlayer
 		public Channel Author { get; set; }
 		public string[] Keywords { get; set; }
 		public string ShortDescription { get; set; }
+		public string Category { get; set; }
+		public DateTimeOffset PublishDate { get; set; }
+		public DateTimeOffset UploadDate { get; set; }
 		public TimeSpan Length { get; set; }
 		public bool IsLive { get; set; }
 		public bool AllowRatings { get; set; }
+		public bool IsFamilySafe { get; set; }
+		public Thumbnail[] Thumbnails { get; set; }
 	}
 
 	public class VideoCaption
 	{
+		public string VssId { get; set; }
 		public string LanguageCode { get; set; }
 		public string Label { get; set; }
 		public Uri BaseUrl { get; set; }
+		public bool IsAutomaticCaption => VssId[0] == 'a';
 	}
 
 	public class VideoEndscreen
