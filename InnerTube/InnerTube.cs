@@ -49,7 +49,8 @@ public class InnerTube
 
 		if (authorized && Authorization is not null)
 		{
-			hrm.Headers.Add("Cookie", Authorization.GenerateCookieHeader());
+			if (Authorization.Type == AuthorizationType.SAPISID)
+				hrm.Headers.Add("Cookie", Authorization.GenerateCookieHeader());
 			hrm.Headers.Add("Authorization", Authorization.GenerateAuthHeader());
 		}
 
