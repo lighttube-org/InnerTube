@@ -300,4 +300,27 @@ public static class Utils
 			ContinueFrom = UnpackProtobufInt(info.SkipAmountEncoded.Split(":").Last())
 		};
 	}
+
+	public static string PackCommentsContinuation(string videoId, CommentsContext.Types.SortOrder sortOrder)
+	{
+		CommentsContinuation continuation = new()
+		{
+			Something = 6,
+			VideoId = new VideoIdContainer
+			{
+				Id = videoId
+			},
+			ContextContainer = new CommentsContextContainer
+			{
+				Context = new CommentsContext
+				{
+					VideoId = videoId,
+					SortingOrder = sortOrder,
+				},
+				Source = "comments-section"
+			}
+		};
+
+		return ToBase64UrlString(continuation.ToByteArray());
+	}
 }

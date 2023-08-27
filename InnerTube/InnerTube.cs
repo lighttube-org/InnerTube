@@ -245,6 +245,25 @@ public class InnerTube
 		return InnerTubeContinuationResponse.GetFromComments(nextResponse);
 	}
 
+
+	/// <summary>
+	/// Gets the comments of a video from its ID
+	/// </summary>
+	/// <param name="videoId">ID of the video</param>
+	/// <param name="sortOrder">The order to sort the comments in</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>List of comments for the video that belongs to the specified key</returns>
+	public async Task<InnerTubeContinuationResponse> GetVideoCommentsAsync(string videoId,
+		CommentsContext.Types.SortOrder sortOrder, string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", Utils.PackCommentsContinuation(videoId, sortOrder));
+
+		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
+		return InnerTubeContinuationResponse.GetFromComments(nextResponse);
+	}
+
 	/// <summary>
 	/// Get information about a channel
 	/// </summary>
