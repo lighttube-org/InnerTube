@@ -23,7 +23,7 @@ public class PlayerTests
 	{
 		InnerTubePlayer player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls);
 		StringBuilder sb = new();
-		
+
 		sb.AppendLine("== DETAILS")
 			.AppendLine("Id: " + player.Details.Id)
 			.AppendLine("Title: " + player.Details.Title)
@@ -264,7 +264,6 @@ public class PlayerTests
 	}
 
 	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
-	[TestCase("astISOttCQ0", Description = "Video with comments disabled")]
 	public async Task GetVideoCommentsProtobuf(string videoId)
 	{
 		InnerTubeContinuationResponse comments =
@@ -275,6 +274,16 @@ public class PlayerTests
 		sb.AppendLine($"\nContinuation: {comments.Continuation?[..20]}...");
 
 		Assert.Pass(sb.ToString());
+	}
+
+
+	[TestCase("astISOttCQ0", Description = "Video with comments disabled")]
+	public void DontGetVideoCommentsProtobuf(string videoId)
+	{
+		Assert.Catch(() =>
+		{
+			_ = _innerTube.GetVideoCommentsAsync(videoId, CommentsContext.Types.SortOrder.TopComments).Result;
+		});
 	}
 
 	[TestCase("there's no way they will accept this as a continuation key", Description = "Self explanatory")]
