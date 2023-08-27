@@ -43,10 +43,17 @@ public static partial class YoutubeReflection {
           "dGlvbkNvbnRhaW5lchIuCgxDb250aW51YXRpb24YnNWgJiACKAsyFS5QbGF5",
           "bGlzdENvbnRpbnVhdGlvbiJeChRQbGF5bGlzdENvbnRpbnVhdGlvbhIaChJJ",
           "bnRlcm5hbFBsYXlsaXN0SWQYAiACKAkSFgoOUGFnaW5hdGlvbkluZm8YAyAC",
-          "KAkSEgoKUGxheWxpc3RJZBgjIAIoCSI4Cg5QYWdpbmF0aW9uSW5mbxILCgNP",
-          "bmUYASABKAUSGQoRU2tpcEFtb3VudEVuY29kZWQYDyACKAkiMQohSURvbnRL",
-          "bm93SG9wZVRoaXNJc05vdFJlcXVpcmVkVXd1EgwKBFplcm8YASACKAUiHQoM",
-          "SW50Q29udGFpbmVyEg0KBVZhbHVlGAEgAigF"));
+          "KAkSEgoKUGxheWxpc3RJZBgjIAIoCSIrCg5QYWdpbmF0aW9uSW5mbxIZChFT",
+          "a2lwQW1vdW50RW5jb2RlZBgPIAIoCSIdCgxJbnRDb250YWluZXISDQoFVmFs",
+          "dWUYASACKAUikgEKFENvbW1lbnRzQ29udGludWF0aW9uEg4KBkFtb3VudBgB",
+          "IAEoBRIiCgdWaWRlb0lkGAIgAigLMhEuVmlkZW9JZENvbnRhaW5lchIRCglT",
+          "b21ldGhpbmcYAyACKAUSMwoQQ29udGV4dENvbnRhaW5lchgGIAEoCzIZLkNv",
+          "bW1lbnRzQ29udGV4dENvbnRhaW5lciIeChBWaWRlb0lkQ29udGFpbmVyEgoK",
+          "AklkGAIgAigJIk0KGENvbW1lbnRzQ29udGV4dENvbnRhaW5lchIhCgdDb250",
+          "ZXh0GAQgAigLMhAuQ29tbWVudHNDb250ZXh0Eg4KBlNvdXJjZRgIIAIoCSKF",
+          "AQoPQ29tbWVudHNDb250ZXh0Eg8KB1ZpZGVvSWQYBCACKAkSMAoMU29ydGlu",
+          "Z09yZGVyGAYgAigOMhouQ29tbWVudHNDb250ZXh0LlNvcnRPcmRlciIvCglT",
+          "b3J0T3JkZXISEAoMVE9QX0NPTU1FTlRTEAASEAoMTkVXRVNUX0ZJUlNUEAE="));
     descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
         new pbr::FileDescriptor[] { },
         new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -55,9 +62,12 @@ public static partial class YoutubeReflection {
           new pbr::GeneratedClrTypeInfo(typeof(global::QueryFlags), global::QueryFlags.Parser, new[]{ "ExactSearch" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlaylistContinuationContainer), global::PlaylistContinuationContainer.Parser, new[]{ "Continuation" }, null, null, null, null),
           new pbr::GeneratedClrTypeInfo(typeof(global::PlaylistContinuation), global::PlaylistContinuation.Parser, new[]{ "InternalPlaylistId", "PaginationInfo", "PlaylistId" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::PaginationInfo), global::PaginationInfo.Parser, new[]{ "One", "SkipAmountEncoded" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::IDontKnowHopeThisIsNotRequiredUwu), global::IDontKnowHopeThisIsNotRequiredUwu.Parser, new[]{ "Zero" }, null, null, null, null),
-          new pbr::GeneratedClrTypeInfo(typeof(global::IntContainer), global::IntContainer.Parser, new[]{ "Value" }, null, null, null, null)
+          new pbr::GeneratedClrTypeInfo(typeof(global::PaginationInfo), global::PaginationInfo.Parser, new[]{ "SkipAmountEncoded" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::IntContainer), global::IntContainer.Parser, new[]{ "Value" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CommentsContinuation), global::CommentsContinuation.Parser, new[]{ "Amount", "VideoId", "Something", "ContextContainer" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::VideoIdContainer), global::VideoIdContainer.Parser, new[]{ "Id" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CommentsContextContainer), global::CommentsContextContainer.Parser, new[]{ "Context", "Source" }, null, null, null, null),
+          new pbr::GeneratedClrTypeInfo(typeof(global::CommentsContext), global::CommentsContext.Parser, new[]{ "VideoId", "SortingOrder" }, null, new[]{ typeof(global::CommentsContext.Types.SortOrder) }, null, null)
         }));
   }
   #endregion
@@ -2004,7 +2014,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
 {
   private static readonly pb::MessageParser<PaginationInfo> _parser = new pb::MessageParser<PaginationInfo>(() => new PaginationInfo());
   private pb::UnknownFieldSet _unknownFields;
-  private int _hasBits0;
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pb::MessageParser<PaginationInfo> Parser { get { return _parser; } }
@@ -2032,8 +2041,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public PaginationInfo(PaginationInfo other) : this() {
-    _hasBits0 = other._hasBits0;
-    one_ = other.one_;
     skipAmountEncoded_ = other.skipAmountEncoded_;
     _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
   }
@@ -2044,41 +2051,11 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
     return new PaginationInfo(this);
   }
 
-  /// <summary>Field number for the "One" field.</summary>
-  public const int OneFieldNumber = 1;
-  private readonly static int OneDefaultValue = 0;
-
-  private int one_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int One {
-    get { if ((_hasBits0 & 1) != 0) { return one_; } else { return OneDefaultValue; } }
-    set {
-      _hasBits0 |= 1;
-      one_ = value;
-    }
-  }
-  /// <summary>Gets whether the "One" field is set</summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool HasOne {
-    get { return (_hasBits0 & 1) != 0; }
-  }
-  /// <summary>Clears the value of the "One" field</summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void ClearOne() {
-    _hasBits0 &= ~1;
-  }
-
   /// <summary>Field number for the "SkipAmountEncoded" field.</summary>
   public const int SkipAmountEncodedFieldNumber = 15;
   private readonly static string SkipAmountEncodedDefaultValue = "";
 
   private string skipAmountEncoded_;
-  /// <summary>
-  ///  optional IDontKnowHopeThisIsNotRequiredUwu IDK = 104;
-  /// </summary>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public string SkipAmountEncoded {
@@ -2115,7 +2092,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
     if (ReferenceEquals(other, this)) {
       return true;
     }
-    if (One != other.One) return false;
     if (SkipAmountEncoded != other.SkipAmountEncoded) return false;
     return Equals(_unknownFields, other._unknownFields);
   }
@@ -2124,7 +2100,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public override int GetHashCode() {
     int hash = 1;
-    if (HasOne) hash ^= One.GetHashCode();
     if (HasSkipAmountEncoded) hash ^= SkipAmountEncoded.GetHashCode();
     if (_unknownFields != null) {
       hash ^= _unknownFields.GetHashCode();
@@ -2144,10 +2119,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
     output.WriteRawMessage(this);
   #else
-    if (HasOne) {
-      output.WriteRawTag(8);
-      output.WriteInt32(One);
-    }
     if (HasSkipAmountEncoded) {
       output.WriteRawTag(122);
       output.WriteString(SkipAmountEncoded);
@@ -2162,10 +2133,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (HasOne) {
-      output.WriteRawTag(8);
-      output.WriteInt32(One);
-    }
     if (HasSkipAmountEncoded) {
       output.WriteRawTag(122);
       output.WriteString(SkipAmountEncoded);
@@ -2180,9 +2147,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public int CalculateSize() {
     int size = 0;
-    if (HasOne) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(One);
-    }
     if (HasSkipAmountEncoded) {
       size += 1 + pb::CodedOutputStream.ComputeStringSize(SkipAmountEncoded);
     }
@@ -2197,9 +2161,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
   public void MergeFrom(PaginationInfo other) {
     if (other == null) {
       return;
-    }
-    if (other.HasOne) {
-      One = other.One;
     }
     if (other.HasSkipAmountEncoded) {
       SkipAmountEncoded = other.SkipAmountEncoded;
@@ -2219,10 +2180,6 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
           break;
-        case 8: {
-          One = input.ReadInt32();
-          break;
-        }
         case 122: {
           SkipAmountEncoded = input.ReadString();
           break;
@@ -2242,218 +2199,8 @@ public sealed partial class PaginationInfo : pb::IMessage<PaginationInfo>
         default:
           _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
           break;
-        case 8: {
-          One = input.ReadInt32();
-          break;
-        }
         case 122: {
           SkipAmountEncoded = input.ReadString();
-          break;
-        }
-      }
-    }
-  }
-  #endif
-
-}
-
-public sealed partial class IDontKnowHopeThisIsNotRequiredUwu : pb::IMessage<IDontKnowHopeThisIsNotRequiredUwu>
-#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    , pb::IBufferMessage
-#endif
-{
-  private static readonly pb::MessageParser<IDontKnowHopeThisIsNotRequiredUwu> _parser = new pb::MessageParser<IDontKnowHopeThisIsNotRequiredUwu>(() => new IDontKnowHopeThisIsNotRequiredUwu());
-  private pb::UnknownFieldSet _unknownFields;
-  private int _hasBits0;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pb::MessageParser<IDontKnowHopeThisIsNotRequiredUwu> Parser { get { return _parser; } }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public static pbr::MessageDescriptor Descriptor {
-    get { return global::YoutubeReflection.Descriptor.MessageTypes[6]; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  pbr::MessageDescriptor pb::IMessage.Descriptor {
-    get { return Descriptor; }
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public IDontKnowHopeThisIsNotRequiredUwu() {
-    OnConstruction();
-  }
-
-  partial void OnConstruction();
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public IDontKnowHopeThisIsNotRequiredUwu(IDontKnowHopeThisIsNotRequiredUwu other) : this() {
-    _hasBits0 = other._hasBits0;
-    zero_ = other.zero_;
-    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public IDontKnowHopeThisIsNotRequiredUwu Clone() {
-    return new IDontKnowHopeThisIsNotRequiredUwu(this);
-  }
-
-  /// <summary>Field number for the "Zero" field.</summary>
-  public const int ZeroFieldNumber = 1;
-  private readonly static int ZeroDefaultValue = 0;
-
-  private int zero_;
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int Zero {
-    get { if ((_hasBits0 & 1) != 0) { return zero_; } else { return ZeroDefaultValue; } }
-    set {
-      _hasBits0 |= 1;
-      zero_ = value;
-    }
-  }
-  /// <summary>Gets whether the "Zero" field is set</summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool HasZero {
-    get { return (_hasBits0 & 1) != 0; }
-  }
-  /// <summary>Clears the value of the "Zero" field</summary>
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void ClearZero() {
-    _hasBits0 &= ~1;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override bool Equals(object other) {
-    return Equals(other as IDontKnowHopeThisIsNotRequiredUwu);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public bool Equals(IDontKnowHopeThisIsNotRequiredUwu other) {
-    if (ReferenceEquals(other, null)) {
-      return false;
-    }
-    if (ReferenceEquals(other, this)) {
-      return true;
-    }
-    if (Zero != other.Zero) return false;
-    return Equals(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override int GetHashCode() {
-    int hash = 1;
-    if (HasZero) hash ^= Zero.GetHashCode();
-    if (_unknownFields != null) {
-      hash ^= _unknownFields.GetHashCode();
-    }
-    return hash;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public override string ToString() {
-    return pb::JsonFormatter.ToDiagnosticString(this);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void WriteTo(pb::CodedOutputStream output) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    output.WriteRawMessage(this);
-  #else
-    if (HasZero) {
-      output.WriteRawTag(8);
-      output.WriteInt32(Zero);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(output);
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-    if (HasZero) {
-      output.WriteRawTag(8);
-      output.WriteInt32(Zero);
-    }
-    if (_unknownFields != null) {
-      _unknownFields.WriteTo(ref output);
-    }
-  }
-  #endif
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public int CalculateSize() {
-    int size = 0;
-    if (HasZero) {
-      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Zero);
-    }
-    if (_unknownFields != null) {
-      size += _unknownFields.CalculateSize();
-    }
-    return size;
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(IDontKnowHopeThisIsNotRequiredUwu other) {
-    if (other == null) {
-      return;
-    }
-    if (other.HasZero) {
-      Zero = other.Zero;
-    }
-    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
-  }
-
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  public void MergeFrom(pb::CodedInputStream input) {
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-    input.ReadRawMessage(this);
-  #else
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-      switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
-          break;
-        case 8: {
-          Zero = input.ReadInt32();
-          break;
-        }
-      }
-    }
-  #endif
-  }
-
-  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
-    uint tag;
-    while ((tag = input.ReadTag()) != 0) {
-      switch(tag) {
-        default:
-          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
-          break;
-        case 8: {
-          Zero = input.ReadInt32();
           break;
         }
       }
@@ -2478,7 +2225,7 @@ public sealed partial class IntContainer : pb::IMessage<IntContainer>
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
   [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
   public static pbr::MessageDescriptor Descriptor {
-    get { return global::YoutubeReflection.Descriptor.MessageTypes[7]; }
+    get { return global::YoutubeReflection.Descriptor.MessageTypes[6]; }
   }
 
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2666,6 +2413,1084 @@ public sealed partial class IntContainer : pb::IMessage<IntContainer>
     }
   }
   #endif
+
+}
+
+public sealed partial class CommentsContinuation : pb::IMessage<CommentsContinuation>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<CommentsContinuation> _parser = new pb::MessageParser<CommentsContinuation>(() => new CommentsContinuation());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<CommentsContinuation> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::YoutubeReflection.Descriptor.MessageTypes[7]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContinuation() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContinuation(CommentsContinuation other) : this() {
+    _hasBits0 = other._hasBits0;
+    amount_ = other.amount_;
+    videoId_ = other.videoId_ != null ? other.videoId_.Clone() : null;
+    something_ = other.something_;
+    contextContainer_ = other.contextContainer_ != null ? other.contextContainer_.Clone() : null;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContinuation Clone() {
+    return new CommentsContinuation(this);
+  }
+
+  /// <summary>Field number for the "Amount" field.</summary>
+  public const int AmountFieldNumber = 1;
+  private readonly static int AmountDefaultValue = 0;
+
+  private int amount_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Amount {
+    get { if ((_hasBits0 & 1) != 0) { return amount_; } else { return AmountDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      amount_ = value;
+    }
+  }
+  /// <summary>Gets whether the "Amount" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasAmount {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "Amount" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearAmount() {
+    _hasBits0 &= ~1;
+  }
+
+  /// <summary>Field number for the "VideoId" field.</summary>
+  public const int VideoIdFieldNumber = 2;
+  private global::VideoIdContainer videoId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::VideoIdContainer VideoId {
+    get { return videoId_; }
+    set {
+      videoId_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "Something" field.</summary>
+  public const int SomethingFieldNumber = 3;
+  private readonly static int SomethingDefaultValue = 0;
+
+  private int something_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int Something {
+    get { if ((_hasBits0 & 2) != 0) { return something_; } else { return SomethingDefaultValue; } }
+    set {
+      _hasBits0 |= 2;
+      something_ = value;
+    }
+  }
+  /// <summary>Gets whether the "Something" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasSomething {
+    get { return (_hasBits0 & 2) != 0; }
+  }
+  /// <summary>Clears the value of the "Something" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearSomething() {
+    _hasBits0 &= ~2;
+  }
+
+  /// <summary>Field number for the "ContextContainer" field.</summary>
+  public const int ContextContainerFieldNumber = 6;
+  private global::CommentsContextContainer contextContainer_;
+  /// <summary>
+  /// required? in the first one
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CommentsContextContainer ContextContainer {
+    get { return contextContainer_; }
+    set {
+      contextContainer_ = value;
+    }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as CommentsContinuation);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(CommentsContinuation other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Amount != other.Amount) return false;
+    if (!object.Equals(VideoId, other.VideoId)) return false;
+    if (Something != other.Something) return false;
+    if (!object.Equals(ContextContainer, other.ContextContainer)) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasAmount) hash ^= Amount.GetHashCode();
+    if (videoId_ != null) hash ^= VideoId.GetHashCode();
+    if (HasSomething) hash ^= Something.GetHashCode();
+    if (contextContainer_ != null) hash ^= ContextContainer.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (HasAmount) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Amount);
+    }
+    if (videoId_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(VideoId);
+    }
+    if (HasSomething) {
+      output.WriteRawTag(24);
+      output.WriteInt32(Something);
+    }
+    if (contextContainer_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(ContextContainer);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (HasAmount) {
+      output.WriteRawTag(8);
+      output.WriteInt32(Amount);
+    }
+    if (videoId_ != null) {
+      output.WriteRawTag(18);
+      output.WriteMessage(VideoId);
+    }
+    if (HasSomething) {
+      output.WriteRawTag(24);
+      output.WriteInt32(Something);
+    }
+    if (contextContainer_ != null) {
+      output.WriteRawTag(50);
+      output.WriteMessage(ContextContainer);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasAmount) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Amount);
+    }
+    if (videoId_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(VideoId);
+    }
+    if (HasSomething) {
+      size += 1 + pb::CodedOutputStream.ComputeInt32Size(Something);
+    }
+    if (contextContainer_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(ContextContainer);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(CommentsContinuation other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasAmount) {
+      Amount = other.Amount;
+    }
+    if (other.videoId_ != null) {
+      if (videoId_ == null) {
+        VideoId = new global::VideoIdContainer();
+      }
+      VideoId.MergeFrom(other.VideoId);
+    }
+    if (other.HasSomething) {
+      Something = other.Something;
+    }
+    if (other.contextContainer_ != null) {
+      if (contextContainer_ == null) {
+        ContextContainer = new global::CommentsContextContainer();
+      }
+      ContextContainer.MergeFrom(other.ContextContainer);
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 8: {
+          Amount = input.ReadInt32();
+          break;
+        }
+        case 18: {
+          if (videoId_ == null) {
+            VideoId = new global::VideoIdContainer();
+          }
+          input.ReadMessage(VideoId);
+          break;
+        }
+        case 24: {
+          Something = input.ReadInt32();
+          break;
+        }
+        case 50: {
+          if (contextContainer_ == null) {
+            ContextContainer = new global::CommentsContextContainer();
+          }
+          input.ReadMessage(ContextContainer);
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 8: {
+          Amount = input.ReadInt32();
+          break;
+        }
+        case 18: {
+          if (videoId_ == null) {
+            VideoId = new global::VideoIdContainer();
+          }
+          input.ReadMessage(VideoId);
+          break;
+        }
+        case 24: {
+          Something = input.ReadInt32();
+          break;
+        }
+        case 50: {
+          if (contextContainer_ == null) {
+            ContextContainer = new global::CommentsContextContainer();
+          }
+          input.ReadMessage(ContextContainer);
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+public sealed partial class VideoIdContainer : pb::IMessage<VideoIdContainer>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<VideoIdContainer> _parser = new pb::MessageParser<VideoIdContainer>(() => new VideoIdContainer());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<VideoIdContainer> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::YoutubeReflection.Descriptor.MessageTypes[8]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public VideoIdContainer() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public VideoIdContainer(VideoIdContainer other) : this() {
+    id_ = other.id_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public VideoIdContainer Clone() {
+    return new VideoIdContainer(this);
+  }
+
+  /// <summary>Field number for the "Id" field.</summary>
+  public const int IdFieldNumber = 2;
+  private readonly static string IdDefaultValue = "";
+
+  private string id_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Id {
+    get { return id_ ?? IdDefaultValue; }
+    set {
+      id_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "Id" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasId {
+    get { return id_ != null; }
+  }
+  /// <summary>Clears the value of the "Id" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearId() {
+    id_ = null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as VideoIdContainer);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(VideoIdContainer other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (Id != other.Id) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasId) hash ^= Id.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (HasId) {
+      output.WriteRawTag(18);
+      output.WriteString(Id);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (HasId) {
+      output.WriteRawTag(18);
+      output.WriteString(Id);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasId) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Id);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(VideoIdContainer other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasId) {
+      Id = other.Id;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 18: {
+          Id = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 18: {
+          Id = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+public sealed partial class CommentsContextContainer : pb::IMessage<CommentsContextContainer>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<CommentsContextContainer> _parser = new pb::MessageParser<CommentsContextContainer>(() => new CommentsContextContainer());
+  private pb::UnknownFieldSet _unknownFields;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<CommentsContextContainer> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::YoutubeReflection.Descriptor.MessageTypes[9]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContextContainer() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContextContainer(CommentsContextContainer other) : this() {
+    context_ = other.context_ != null ? other.context_.Clone() : null;
+    source_ = other.source_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContextContainer Clone() {
+    return new CommentsContextContainer(this);
+  }
+
+  /// <summary>Field number for the "Context" field.</summary>
+  public const int ContextFieldNumber = 4;
+  private global::CommentsContext context_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CommentsContext Context {
+    get { return context_; }
+    set {
+      context_ = value;
+    }
+  }
+
+  /// <summary>Field number for the "Source" field.</summary>
+  public const int SourceFieldNumber = 8;
+  private readonly static string SourceDefaultValue = "";
+
+  private string source_;
+  /// <summary>
+  /// set to comments-section
+  /// </summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string Source {
+    get { return source_ ?? SourceDefaultValue; }
+    set {
+      source_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "Source" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasSource {
+    get { return source_ != null; }
+  }
+  /// <summary>Clears the value of the "Source" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearSource() {
+    source_ = null;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as CommentsContextContainer);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(CommentsContextContainer other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (!object.Equals(Context, other.Context)) return false;
+    if (Source != other.Source) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (context_ != null) hash ^= Context.GetHashCode();
+    if (HasSource) hash ^= Source.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (context_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(Context);
+    }
+    if (HasSource) {
+      output.WriteRawTag(66);
+      output.WriteString(Source);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (context_ != null) {
+      output.WriteRawTag(34);
+      output.WriteMessage(Context);
+    }
+    if (HasSource) {
+      output.WriteRawTag(66);
+      output.WriteString(Source);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (context_ != null) {
+      size += 1 + pb::CodedOutputStream.ComputeMessageSize(Context);
+    }
+    if (HasSource) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(Source);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(CommentsContextContainer other) {
+    if (other == null) {
+      return;
+    }
+    if (other.context_ != null) {
+      if (context_ == null) {
+        Context = new global::CommentsContext();
+      }
+      Context.MergeFrom(other.Context);
+    }
+    if (other.HasSource) {
+      Source = other.Source;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 34: {
+          if (context_ == null) {
+            Context = new global::CommentsContext();
+          }
+          input.ReadMessage(Context);
+          break;
+        }
+        case 66: {
+          Source = input.ReadString();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 34: {
+          if (context_ == null) {
+            Context = new global::CommentsContext();
+          }
+          input.ReadMessage(Context);
+          break;
+        }
+        case 66: {
+          Source = input.ReadString();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+}
+
+public sealed partial class CommentsContext : pb::IMessage<CommentsContext>
+#if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    , pb::IBufferMessage
+#endif
+{
+  private static readonly pb::MessageParser<CommentsContext> _parser = new pb::MessageParser<CommentsContext>(() => new CommentsContext());
+  private pb::UnknownFieldSet _unknownFields;
+  private int _hasBits0;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pb::MessageParser<CommentsContext> Parser { get { return _parser; } }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static pbr::MessageDescriptor Descriptor {
+    get { return global::YoutubeReflection.Descriptor.MessageTypes[10]; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  pbr::MessageDescriptor pb::IMessage.Descriptor {
+    get { return Descriptor; }
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContext() {
+    OnConstruction();
+  }
+
+  partial void OnConstruction();
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContext(CommentsContext other) : this() {
+    _hasBits0 = other._hasBits0;
+    videoId_ = other.videoId_;
+    sortingOrder_ = other.sortingOrder_;
+    _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public CommentsContext Clone() {
+    return new CommentsContext(this);
+  }
+
+  /// <summary>Field number for the "VideoId" field.</summary>
+  public const int VideoIdFieldNumber = 4;
+  private readonly static string VideoIdDefaultValue = "";
+
+  private string videoId_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public string VideoId {
+    get { return videoId_ ?? VideoIdDefaultValue; }
+    set {
+      videoId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+    }
+  }
+  /// <summary>Gets whether the "VideoId" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasVideoId {
+    get { return videoId_ != null; }
+  }
+  /// <summary>Clears the value of the "VideoId" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearVideoId() {
+    videoId_ = null;
+  }
+
+  /// <summary>Field number for the "SortingOrder" field.</summary>
+  public const int SortingOrderFieldNumber = 6;
+  private readonly static global::CommentsContext.Types.SortOrder SortingOrderDefaultValue = global::CommentsContext.Types.SortOrder.TopComments;
+
+  private global::CommentsContext.Types.SortOrder sortingOrder_;
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public global::CommentsContext.Types.SortOrder SortingOrder {
+    get { if ((_hasBits0 & 1) != 0) { return sortingOrder_; } else { return SortingOrderDefaultValue; } }
+    set {
+      _hasBits0 |= 1;
+      sortingOrder_ = value;
+    }
+  }
+  /// <summary>Gets whether the "SortingOrder" field is set</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool HasSortingOrder {
+    get { return (_hasBits0 & 1) != 0; }
+  }
+  /// <summary>Clears the value of the "SortingOrder" field</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void ClearSortingOrder() {
+    _hasBits0 &= ~1;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override bool Equals(object other) {
+    return Equals(other as CommentsContext);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public bool Equals(CommentsContext other) {
+    if (ReferenceEquals(other, null)) {
+      return false;
+    }
+    if (ReferenceEquals(other, this)) {
+      return true;
+    }
+    if (VideoId != other.VideoId) return false;
+    if (SortingOrder != other.SortingOrder) return false;
+    return Equals(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override int GetHashCode() {
+    int hash = 1;
+    if (HasVideoId) hash ^= VideoId.GetHashCode();
+    if (HasSortingOrder) hash ^= SortingOrder.GetHashCode();
+    if (_unknownFields != null) {
+      hash ^= _unknownFields.GetHashCode();
+    }
+    return hash;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public override string ToString() {
+    return pb::JsonFormatter.ToDiagnosticString(this);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void WriteTo(pb::CodedOutputStream output) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    output.WriteRawMessage(this);
+  #else
+    if (HasVideoId) {
+      output.WriteRawTag(34);
+      output.WriteString(VideoId);
+    }
+    if (HasSortingOrder) {
+      output.WriteRawTag(48);
+      output.WriteEnum((int) SortingOrder);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(output);
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+    if (HasVideoId) {
+      output.WriteRawTag(34);
+      output.WriteString(VideoId);
+    }
+    if (HasSortingOrder) {
+      output.WriteRawTag(48);
+      output.WriteEnum((int) SortingOrder);
+    }
+    if (_unknownFields != null) {
+      _unknownFields.WriteTo(ref output);
+    }
+  }
+  #endif
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public int CalculateSize() {
+    int size = 0;
+    if (HasVideoId) {
+      size += 1 + pb::CodedOutputStream.ComputeStringSize(VideoId);
+    }
+    if (HasSortingOrder) {
+      size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) SortingOrder);
+    }
+    if (_unknownFields != null) {
+      size += _unknownFields.CalculateSize();
+    }
+    return size;
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(CommentsContext other) {
+    if (other == null) {
+      return;
+    }
+    if (other.HasVideoId) {
+      VideoId = other.VideoId;
+    }
+    if (other.HasSortingOrder) {
+      SortingOrder = other.SortingOrder;
+    }
+    _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+  }
+
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public void MergeFrom(pb::CodedInputStream input) {
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    input.ReadRawMessage(this);
+  #else
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+          break;
+        case 34: {
+          VideoId = input.ReadString();
+          break;
+        }
+        case 48: {
+          SortingOrder = (global::CommentsContext.Types.SortOrder) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  #endif
+  }
+
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+    uint tag;
+    while ((tag = input.ReadTag()) != 0) {
+      switch(tag) {
+        default:
+          _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+          break;
+        case 34: {
+          VideoId = input.ReadString();
+          break;
+        }
+        case 48: {
+          SortingOrder = (global::CommentsContext.Types.SortOrder) input.ReadEnum();
+          break;
+        }
+      }
+    }
+  }
+  #endif
+
+  #region Nested types
+  /// <summary>Container for nested types declared in the CommentsContext message type.</summary>
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+  [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+  public static partial class Types {
+    public enum SortOrder {
+      [pbr::OriginalName("TOP_COMMENTS")] TopComments = 0,
+      [pbr::OriginalName("NEWEST_FIRST")] NewestFirst = 1,
+    }
+
+  }
+  #endregion
 
 }
 

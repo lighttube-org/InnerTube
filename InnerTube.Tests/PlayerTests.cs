@@ -263,6 +263,20 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
+	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
+	[TestCase("astISOttCQ0", Description = "Video with comments disabled")]
+	public async Task GetVideoCommentsProtobuf(string videoId)
+	{
+		InnerTubeContinuationResponse comments =
+			await _innerTube.GetVideoCommentsAsync(videoId, CommentsContext.Types.SortOrder.TopComments);
+
+		StringBuilder sb = new();
+		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
+		sb.AppendLine($"\nContinuation: {comments.Continuation?[..20]}...");
+
+		Assert.Pass(sb.ToString());
+	}
+
 	[TestCase("there's no way they will accept this as a continuation key", Description = "Self explanatory")]
 	public async Task DontGetVideoComments(string continuationToken)
 	{
