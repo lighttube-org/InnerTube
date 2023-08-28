@@ -76,7 +76,7 @@ public static class Utils
 					{
 						string url = run["navigationEndpoint"]?["commandMetadata"]?["webCommandMetadata"]?["url"]
 							?.ToString() ?? "";
-						if (url.StartsWith("/"))
+						if (url.StartsWith('/'))
 							url = "https://youtube.com" + url;
 						currentString = Formatter.FormatUrl(currentString, url);
 					}
@@ -255,7 +255,7 @@ public static class Utils
 	public static byte[] FromBase64UrlString(string s)
 	{
 		string b64 = HttpUtility.UrlDecode(s);
-		if (!b64.EndsWith("="))
+		if (!b64.EndsWith('='))
 			b64 = b64.PadRight(s.Length + (4 - s.Length % 4) % 4, '=');
 		return Convert.FromBase64String(b64
 			.Replace('-', '+')

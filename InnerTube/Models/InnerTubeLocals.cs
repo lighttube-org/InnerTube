@@ -26,6 +26,5 @@ public class InnerTubeLocals
 				"compactLinkRenderer.serviceEndpoint.signalServiceEndpoint.actions[0].selectCountryCommand.gl")!,
 			x => x.GetFromJsonPath<string>("compactLinkRenderer.title.simpleText")!
 		);
-		;
 	}
 }

@@ -284,7 +284,7 @@ public class InnerTube
 		if (!channelId.StartsWith("UC"))
 		{
 			channelId = await GetChannelIdFromVanity(
-				channelId.StartsWith("@")
+				channelId.StartsWith('@')
 					? $"https://youtube.com/{channelId}"
 					: $"https://youtube.com/c/{channelId}") ?? channelId;
 		}
@@ -317,7 +317,7 @@ public class InnerTube
 	/// <returns>Channel ID of the given vanity URL, or null if given ID is not valid</returns>
 	public async Task<string?> GetChannelIdFromVanity(string vanityUrl)
 	{
-		if (vanityUrl.StartsWith("@"))
+		if (vanityUrl.StartsWith('@'))
 			vanityUrl = "https://youtube.com/" + vanityUrl;
 		else if (!vanityUrl.StartsWith("http"))
 			vanityUrl = "https://youtube.com/c/" + vanityUrl;

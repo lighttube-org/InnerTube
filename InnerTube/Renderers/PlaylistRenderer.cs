@@ -32,7 +32,7 @@ public class PlaylistRenderer : IRenderer
 		foreach (JArray thumbnails in renderer["thumbnails"]!.ToObject<JArray>()!.Select(x =>
 			         x["thumbnails"]!.ToObject<JArray>()!))
 		{
-			string videoId = thumbnails.First()["url"]!.ToString().Split("/vi/")[1].Split("/")[0];
+			string videoId = thumbnails[0]["url"]!.ToString().Split("/vi/")[1].Split("/")[0];
 			Thumbnail[] thumbs = Utils.GetThumbnails(thumbnails);
 			VideoThumbnails.TryAdd(videoId, thumbs);
 		}

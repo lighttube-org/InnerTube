@@ -49,7 +49,7 @@ public class InnerTubePlaylist
 				"contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents")
 			).ToArray();
 		Videos = renderers.OfType<PlaylistVideoRenderer>();
-		string? contToken = ((ContinuationItemRenderer?)renderers.FirstOrDefault(x => x is ContinuationItemRenderer))
+		string? contToken = ((ContinuationItemRenderer?)Array.Find(renderers,x => x is ContinuationItemRenderer))
 			?.Token;
 		if (contToken!=null)
 			Continuation = Utils.UnpackPlaylistContinuation(contToken);
