@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using System.Globalization;
+using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
 
@@ -28,8 +29,8 @@ public class InnerTubePlayer
 			Keywords = metadataResponse.GetFromJsonPath<string[]>("videoDetails.keywords")!,
 			ShortDescription = metadataResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
 			Category = metadataResponse.GetFromJsonPath<string>("videoDetails.category")!,
-			UploadDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.uploadDate")!),
-			PublishDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.publishDate")!),
+			UploadDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.uploadDate")!, CultureInfo.InvariantCulture),
+			PublishDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.publishDate")!, CultureInfo.InvariantCulture),
 			Length = TimeSpan.FromSeconds(
 				long.Parse(metadataResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
 			IsLive = metadataResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
