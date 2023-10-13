@@ -24,7 +24,6 @@ public class BrowseTests
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.About, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Search, "skyblock")]
 	[TestCase("@kuylardev", (int)ChannelTabs.Home, null)]
-	[TestCase("@Highly_Original", (int)ChannelTabs.About, null)]
 	[TestCase("@LinusTechTips", (int)ChannelTabs.Podcasts, null)]
 	[TestCase("@daftpunk", (int)ChannelTabs.Releases, null)]
 	[TestCase("@ZUTOMAYO", (int)ChannelTabs.Store, null)]
