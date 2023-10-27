@@ -17,6 +17,7 @@ public class InnerTube
 	internal readonly MemoryCache PlayerCache;
 	internal readonly string ApiKey;
 	internal readonly InnerTubeAuthorization? Authorization;
+	private InnerTubeLocals? _cachedLocals;
 
 	/// <summary>
 	/// Initializes a new instance of InnerTube client.
@@ -440,10 +441,17 @@ public class InnerTube
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	/// <returns>List of all valid languages &amp; regions</returns>
-	public async Task<InnerTubeLocals> GetLocalsAsync(string language = "en", string region = "US")
+	public async Task<InnerTubeLocals> GetLocalsAsync(bool refreshCache = false, string language = "en",
+		string region = "US")
 	{
-		JObject localsResponse = await MakeRequest(RequestClient.WEB, "account/account_menu", new InnerTubeRequest(),
-			language, region);
-		return new InnerTubeLocals(localsResponse);
+		if (refreshCache || _cachedLocals is null)
+		{
+			JObject localsResponse = await MakeRequest(RequestClient.WEB, "account/account_menu",
+				new InnerTubeRequest(),
+				language, region);
+			_cachedLocals = new InnerTubeLocals(localsResponse);
+		}
+
+		return _cachedLocals!;
 	}
 }
