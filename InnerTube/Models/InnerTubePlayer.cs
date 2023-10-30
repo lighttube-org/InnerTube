@@ -26,7 +26,7 @@ public class InnerTubePlayer
 				Id = metadataResponse.GetFromJsonPath<string>("videoDetails.channelId")!,
 				Title = metadataResponse.GetFromJsonPath<string>("videoDetails.author")!
 			},
-			Keywords = metadataResponse.GetFromJsonPath<string[]>("videoDetails.keywords")!,
+			Keywords = metadataResponse.GetFromJsonPath<string[]>("videoDetails.keywords") ?? Array.Empty<string>(),
 			ShortDescription = metadataResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
 			Category = metadataResponse.GetFromJsonPath<string>("videoDetails.category")!,
 			UploadDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.uploadDate")!, CultureInfo.InvariantCulture),
