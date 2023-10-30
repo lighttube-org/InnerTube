@@ -11,10 +11,10 @@ public class AdSlotRenderer : IRenderer
 
 	public AdSlotRenderer(JToken renderer)
 	{
-		JObject? obj = renderer
+		JProperty? obj = renderer
 			.GetFromJsonPath<JObject>("fulfillmentContent.fulfilledLayout.inFeedAdLayoutRenderer.renderingContent")
-			?.First?.ToObject<JObject>();
-		Content = obj != null ? RendererManager.ParseRenderer(obj.First!, obj.Path.Split(".").Last())! : null;
+			?.First?.ToObject<JProperty>();
+		Content = obj != null ? RendererManager.ParseRenderer(obj.Value.ToObject<JObject>(), obj.Name)! : null;
 	}
 
 	public override string ToString() =>
