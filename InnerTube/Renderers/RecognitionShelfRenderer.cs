@@ -17,7 +17,7 @@ public class RecognitionShelfRenderer : IRenderer
 		Title = renderer.GetFromJsonPath<string>("title.simpleText")!;
 		Subtitle = renderer.GetFromJsonPath<string>("subtitle.simpleText")!;
 		Avatars = renderer.GetFromJsonPath<JArray>("avatars")!.Select(x =>
-			Utils.GetThumbnails(x["thumbnails"]!.ToObject<JArray>()!).First());
+			Utils.GetThumbnails(x["thumbnails"]!.ToObject<JArray>()!)[0]);
 	}
 
 	public override string ToString()

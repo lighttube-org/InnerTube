@@ -12,7 +12,7 @@ public class ChannelLink
 	public ChannelLink(JToken jToken)
 	{
 		Title = jToken.GetFromJsonPath<string>("title.simpleText")!;
-		Icon = Utils.GetThumbnails(jToken.GetFromJsonPath<JArray>("icon.thumbnails")!).First();
+		Icon = Utils.GetThumbnails(jToken.GetFromJsonPath<JArray>("icon.thumbnails")!)[0];
 		// ~~pretty sure the following line will fail at any second~~
 		// no it won't
 		Url = new Uri(
