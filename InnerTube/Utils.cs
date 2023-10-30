@@ -11,6 +11,7 @@ namespace InnerTube;
 public static class Utils
 {
 	public static IFormatter Formatter = new HtmlFormatter();
+	private static readonly Regex NotDigitsRegex = new(@"\D");
 
 	public static T? GetFromJsonPath<T>(this JToken json, string jsonPath)
 	{
@@ -163,6 +164,23 @@ public static class Utils
 				    CultureInfo.InvariantCulture, out timeSpan))
 				timeSpan = TimeSpan.Zero;
 		return timeSpan;
+	}
+	
+	/// <summary>
+	/// Parses a string to a <see cref="ulong"/> by removing all non-digit characters first.<br /><br />
+	/// Negative numbers are not supported. If string contains no digits, returns 0.
+	/// </summary>
+	/// <param name="input">The string to parse, e.g. "10,341 views".</param>
+	/// <returns>The number, e.g. 10341.</returns>
+	/// <exception cref="OverflowException">
+	/// The number is less than <see cref="ulong.MinValue"/> or greater than <see cref="ulong.MaxValue"/>.
+	/// </exception> 
+	public static ulong ParseNumber(string input)
+	{
+		input = NotDigitsRegex.Replace(input, "");
+		return string.IsNullOrWhiteSpace(input)
+			? 0 
+			: ulong.Parse(input);
 	}
 
 	public static string GetParams(this ChannelTabs tab) =>

@@ -9,12 +9,19 @@ public class InnerTubeLocals
 
 	public InnerTubeLocals(JObject localsResponse)
 	{
-		JArray languagesArray = localsResponse.GetFromJsonPath<JArray>(
-				"actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[1].multiPageMenuSectionRenderer.items[1].compactLinkRenderer.serviceEndpoint.signalServiceEndpoint.actions[0].getMultiPageMenuAction.menu.multiPageMenuRenderer.sections[0].multiPageMenuSectionRenderer.items")
-			!;
-		JArray regionsArray = localsResponse.GetFromJsonPath<JArray>(
-				"actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[1].multiPageMenuSectionRenderer.items[3].compactLinkRenderer.serviceEndpoint.signalServiceEndpoint.actions[0].getMultiPageMenuAction.menu.multiPageMenuRenderer.sections[0].multiPageMenuSectionRenderer.items")
-			!;
+		JArray sections = localsResponse.GetFromJsonPath<JArray>(
+			"actions[0].openPopupAction.popup.multiPageMenuRenderer.sections[0].multiPageMenuSectionRenderer.items")!;
+
+		JArray languagesArray = sections
+			                        .First(x => x["compactLinkRenderer"]?["icon"]?["iconType"]?.ToObject<string>() == "TRANSLATE")
+			                        .GetFromJsonPath<JArray>(
+				                        "compactLinkRenderer.serviceEndpoint.signalServiceEndpoint.actions[0].getMultiPageMenuAction.menu.multiPageMenuRenderer.sections[0].multiPageMenuSectionRenderer.items")
+		                        ?? new JArray();
+		JArray regionsArray = sections
+			                      .First(x => x["compactLinkRenderer"]?["icon"]?["iconType"]?.ToObject<string>() == "LANGUAGE")
+			                      .GetFromJsonPath<JArray>(
+				                      "compactLinkRenderer.serviceEndpoint.signalServiceEndpoint.actions[0].getMultiPageMenuAction.menu.multiPageMenuRenderer.sections[0].multiPageMenuSectionRenderer.items")
+		                      ?? new JArray();
 
 		Languages = languagesArray.ToDictionary(
 			x => x.GetFromJsonPath<string>(
