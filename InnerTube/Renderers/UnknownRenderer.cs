@@ -14,6 +14,12 @@ public class UnknownRenderer : IRenderer
 		Type = renderer.Path.Split(".").Last();
 	}
 
+	public UnknownRenderer(JToken renderer, string type)
+	{
+		Json = renderer;
+		Type = type;
+	}
+
 	public override string ToString()
 	{
 		return $"Unknown renderer of type: {Type}. JSON:\n\t{Json.ToString(Formatting.None)}";

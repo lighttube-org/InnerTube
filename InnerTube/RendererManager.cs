@@ -33,7 +33,7 @@ public static class RendererManager
 
 			if (Renderers.TryGetValue(type, out Type? rendererType))
 				return (IRenderer)Activator.CreateInstance(rendererType, renderer)!;
-			return new UnknownRenderer(renderer);
+			return new UnknownRenderer(renderer, type);
 		}
 		catch (Exception e)
 		{
