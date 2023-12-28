@@ -106,25 +106,6 @@ public static class Utils
 		return url;
 	}
 
-	public static Thumbnail[] GetThumbnails(JArray? thumbnails)
-	{
-		if (thumbnails is null)
-			return Array.Empty<Thumbnail>();
-		return thumbnails.Select(x =>
-		{
-			string url = x["url"]!.ToObject<string>()!;
-			Thumbnail a = new()
-			{
-				Width = x["width"]?.ToObject<int>(),
-				Height = x["height"]?.ToObject<int>(),
-				Url = url.StartsWith("http")
-					? new Uri(url)
-					: new Uri("https:" + url)
-			};
-			return a;
-		}).ToArray();
-	}
-
 	public static Dictionary<int, Uri> GetLevelsFromStoryboardSpec(string? specStr, long duration)
 	{
 		Dictionary<int, Uri> urls = new();
