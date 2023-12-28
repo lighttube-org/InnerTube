@@ -19,6 +19,7 @@ public class PlayerTests
 	[TestCase("jfKfPfyJRdk", true, false, Description = "Load a livestream")]
 	[TestCase("9gIXoaB-Jik", true, false, Description = "Video with WEBSITE endscreen item")]
 	[TestCase("4ZX9T0kWb4Y", true, false, Description = "Video with multiple audio tracks")]
+	[TestCase("-UBaW1OIgTo", true, false, Description = "EndScreenItem ctor")]
 	public async Task GetPlayer(string videoId, bool contentCheckOk, bool includeHls)
 	{
 		InnerTubePlayer player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls);

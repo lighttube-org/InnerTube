@@ -22,7 +22,7 @@ public class EndScreenItem
 	{
 		Title = Utils.ReadText(json["title"]!.ToObject<JObject>()!);
 		Image = Utils.GetThumbnails(json.GetFromJsonPath<JArray>("image.thumbnails")!);
-		Metadata = Utils.ReadText(json["metadata"]!.ToObject<JObject>()!);
+		Metadata = Utils.ReadText(json["metadata"]?.ToObject<JObject>());
 		Style = json["style"]!.ToString();
 		StartMs = long.Parse(json["startMs"]!.ToString());
 		EndMs = long.Parse(json["endMs"]!.ToString());
