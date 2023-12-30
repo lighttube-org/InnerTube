@@ -1,0 +1,89 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Requests;
+
+import "general.proto";
+
+message PlayerResponse {
+  //bytes context = 1;
+  PlayabilityStatus playabilityStatus = 2;
+  StreamingData streamingData = 4;
+  RendererWrapper captions = 10;
+  VideoDetails videoDetails = 11;
+}
+
+message PlayabilityStatus {
+  enum Status {
+    OK = 0;
+  }
+
+  Status status = 1;
+  bool playableInEmbed = 9;
+  string contextParams = 31;
+}
+
+message StreamingData {
+  int32 expiresInSeconds = 1;
+  repeated Format formats = 2;
+  repeated Format adaptiveFormats = 3;
+}
+
+message RendererWrapper {
+  optional PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
+}
+
+message PlayerCaptionsTracklistRenderer {
+  repeated Caption captions = 1;
+  repeated TranslationLanguage translationLanguages = 3;
+  int32 defaultAudioTrackIndex = 4;
+}
+
+message Format {
+  int32 itag = 1;
+  string url = 2;
+  string mime = 5;
+  int32 bitrate = 6;
+  int32 width = 7;
+  int32 height = 8;
+  optional Range initRange = 9;
+  optional Range indexRange = 10;
+  uint64 lastModified = 11;
+  string quality = 16;
+  int32 fps = 25;
+  string qualityLabel = 26;
+  bytes colorInfo = 33;
+  int32 approxDurationMs = 44;
+  optional int32 audioSampleRate = 45;
+  optional int32 audioChannels = 46;
+  optional float loudnessDb = 47;
+}
+
+message Range {
+  int32 start = 3;
+  int32 end = 4;
+}
+
+message Caption {
+  string baseUrl = 1;
+  Text name = 2;
+  string vssId = 3;
+  string language = 4;
+  bool isTranslatable = 7;
+}
+
+message TranslationLanguage {
+  string languageCode = 1;
+  Text languageName = 2;
+}
+
+message VideoDetails {
+  string videoId = 1;
+  string title = 15;
+  int32 lengthSeconds = 16;
+  repeated string keywords = 18;
+  string channelId = 19;
+  string shortDescription = 21;
+  Thumbnails thumbnail = 25;
+  string viewCount = 32;
+  string author = 33;
+}
