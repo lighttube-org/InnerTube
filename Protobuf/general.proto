@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Requests;
+
+message Thumbnails {
+  repeated Thumbnail thumbnails = 1;
+}
+
+message Thumbnail {
+  string url = 1;
+  int32 width = 2;
+  int32 height = 3;
+}
+
+message Text {
+  SimpleText simpleText = 1;
+}
+
+message SimpleText {
+  string text = 1;
+}
