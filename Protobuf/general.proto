@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package InnerTube.Protobuf.Requests;
+package InnerTube.Protobuf;
 
 message Thumbnails {
   repeated Thumbnail thumbnails = 1;
@@ -13,9 +13,9 @@ message Thumbnail {
 }
 
 message Text {
-  SimpleText simpleText = 1;
-}
+  message Run {
+    string text = 1;
+  }
 
-message SimpleText {
-  string text = 1;
+  repeated Run runs = 1;
 }

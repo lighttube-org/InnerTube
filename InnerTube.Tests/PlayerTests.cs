@@ -1,4 +1,5 @@
 using System.Text;
+using InnerTube.Protobuf.Renderers;
 using InnerTube.Protobuf.Requests;
 
 namespace InnerTube.Tests;
@@ -44,32 +45,38 @@ public class PlayerTests
 		//	.AppendLine("RecommendedLevel: " + player.Storyboard.RecommendedLevel);
 		//foreach ((int level, Uri? uri) in player.Storyboard.Levels) sb.AppendLine($"-> L{level}: {uri}");
 
-		//TODO: Endscreen
-		/*
-		sb.AppendLine("== ENDSCREEN")
-			.AppendLine("Start: " + TimeSpan.FromMilliseconds(player.Endscreen.StartMs));
-		foreach (EndScreenItem item in player.Endscreen.Items)
+		sb.AppendLine("== ENDSCREEN");
+		if (player.Endscreen != null)
 		{
-			sb
-				.AppendLine($"-> [{item.Type}] Endscreen item")
-				.AppendLine("   Target: " + item.Target)
-				.AppendLine("   Title: " + item.Title)
-				.AppendLine("   Image: " + item.Image.First().Url)
-				.AppendLine("   Metadata: " + item.Metadata)
-				.AppendLine("   Style: " + item.Style)
-				.AppendLine("   AspectRatio: " + item.AspectRatio)
-				.AppendLine("   Left: " + item.Left)
-				.AppendLine("   Top: " + item.Top)
-				.AppendLine("   Width: " + item.Width);
+			sb.AppendLine("Start: " + TimeSpan.FromMilliseconds(player.Endscreen.EndscreenRenderer.StartMs));
+			foreach (EndscreenElementRenderer item in player.Endscreen.EndscreenRenderer.Elements.Select(x =>
+				         x.EndscreenElementRenderer))
+			{
+				sb
+					.AppendLine($"-> [{item.Style}] Endscreen item")
+					.AppendLine("   Target: " + item.Endpoint)
+					.AppendLine("   Title: " + item.Title)
+					.AppendLine("   Image: " + item.Image.Thumbnails_.First().Url)
+					.AppendLine("   Icon: " + item.Icon?.Thumbnails_.First().Url)
+					.AppendLine("   Metadata: " + item.Metadata)
+					.AppendLine("   Style: " + item.Style)
+					.AppendLine("   AspectRatio: " + item.AspectRatio)
+					.AppendLine("   Left: " + item.Left)
+					.AppendLine("   Top: " + item.Top)
+					.AppendLine("   Width: " + item.Width);
+			}
 		}
-		*/
+
 		sb.AppendLine("== CAPTIONS");
-		foreach (Caption? item in player.Captions.CaptionsTrackListRenderer.Captions)
-		{
-			sb
-				.AppendLine($"-> [{item.VssId}] ({item.Language}) {item.Name}")
-				.AppendLine("   Url: " + item.BaseUrl);
-		}
+		if (player.Captions != null) // why doesnt protoc create a HasCaptions value????
+			foreach (PlayerCaptionsTracklistRenderer.Types.Caption item in player.Captions.CaptionsTrackListRenderer
+				         .Captions)
+			{
+				sb
+					.AppendLine($"-> [{item.VssId}] ({item.Language}) {item.Name}")
+					.AppendLine("   Url: " + item.BaseUrl)
+					.AppendLine("   Kind: " + item.Kind);
+			}
 
 		sb.AppendLine("== FORMATS");
 		foreach (Format f in player.StreamingData.Formats)
@@ -77,7 +84,7 @@ public class PlayerTests
 			sb
 				.AppendLine($"-> [{f.Itag}] {f.QualityLabel}")
 				.AppendLine("   Bitrate: " + f.Bitrate)
-				//.AppendLine("   ContentLength: " + f.ContentLength)
+				.AppendLine("   ContentLength: " + f.ContentLength)
 				.AppendLine("   Fps: " + f.Fps)
 				.AppendLine("   Height: " + f.Height)
 				.AppendLine("   Width: " + f.Width)
@@ -88,8 +95,8 @@ public class PlayerTests
 				.AppendLine("   Quality: " + f.Quality)
 				//.AppendLine("   AudioQuality: " + f.AudioQuality)
 				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
-				.AppendLine("   AudioChannels: " + f.AudioChannels);
-			//.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
+				.AppendLine("   AudioChannels: " + f.AudioChannels)
+				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
 		}
 
 		sb.AppendLine("== ADAPTIVE FORMATS");
@@ -98,7 +105,7 @@ public class PlayerTests
 			sb
 				.AppendLine($"-> [{f.Itag}] {f.QualityLabel}")
 				.AppendLine("   Bitrate: " + f.Bitrate)
-				//.AppendLine("   ContentLength: " + f.ContentLength)
+				.AppendLine("   ContentLength: " + f.ContentLength)
 				.AppendLine("   Fps: " + f.Fps)
 				.AppendLine("   Height: " + f.Height)
 				.AppendLine("   Width: " + f.Width)
@@ -109,14 +116,14 @@ public class PlayerTests
 				.AppendLine("   Quality: " + f.Quality)
 				//.AppendLine("   AudioQuality: " + f.AudioQuality)
 				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
-				.AppendLine("   AudioChannels: " + f.AudioChannels);
-			//.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
+				.AppendLine("   AudioChannels: " + f.AudioChannels)
+				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
 		}
 
 		sb.AppendLine("== OTHER")
-			.AppendLine("ExpiresInSeconds: " + player.StreamingData.ExpiresInSeconds);
-//			.AppendLine("HlsManifestUrl: " + player.HlsManifestUrl)
-//			.AppendLine("DashManifestUrl: " + player.DashManifestUrl);
+			.AppendLine("ExpiresInSeconds: " + player.StreamingData.ExpiresInSeconds)
+			.AppendLine("HlsManifestUrl: " + player.StreamingData.HlsManifestUrl)
+			.AppendLine("DashManifestUrl: " + player.StreamingData.DashManifestUrl);
 
 
 		Assert.Pass(sb.ToString());

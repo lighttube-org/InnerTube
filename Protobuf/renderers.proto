@@ -1,0 +1,84 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Renderers;
+
+import "general.proto";
+import "endpoints.proto";
+
+message RendererWrapper {
+  oneof renderer {
+    PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
+    EndscreenRenderer endscreenRenderer = 106301526;
+    EndscreenElementRenderer endscreenElementRenderer = 105860658;
+    ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
+  }
+}
+
+message PlayerCaptionsTracklistRenderer {
+  message Caption {
+    string baseUrl = 1;
+    InnerTube.Protobuf.Text name = 2;
+    string vssId = 3;
+    string language = 4;
+    string kind = 5;
+    bool isTranslatable = 7;
+  }
+
+  message CaptionAudioTrack {
+    repeated int32 captionTrackIndices = 2;
+    optional bool defaultCaptionTrackIndex = 3;
+    optional int32 visibility = 5;
+    optional bool hasDefaultTrack = 6;
+    string audioTrackId = 8;
+    optional int32 captionsInitialState = 11;
+  }
+
+  message TranslationLanguage {
+    string languageCode = 1;
+    InnerTube.Protobuf.Text languageName = 2;
+    repeated int32 excludeAudioTrackIndices = 4;
+  }
+
+  repeated Caption captions = 1;
+  repeated CaptionAudioTrack audioTracks = 2;
+  repeated TranslationLanguage translationLanguages = 3;
+  int32 defaultAudioTrackIndex = 4;
+}
+
+message EndscreenRenderer {
+  repeated RendererWrapper elements = 1;
+  int32 startMs = 2;
+}
+
+
+message EndscreenElementRenderer {
+  enum EndscreenElementStyle {
+    INVALID = 0;
+    VIDEO = 1;
+    PLAYLIST = 2;
+    CHANNEL = 3;
+    WEBSITE = 4;
+  }
+
+  EndscreenElementStyle style = 1;
+  Thumbnails image = 2;
+  optional Thumbnails icon = 3;
+  float left = 6;
+  float width = 7;
+  float top = 8;
+  float aspectRatio = 9;
+  int32 startMs = 10;
+  int32 endMs = 11;
+  Text title = 12;
+  Text metadata = 13;
+  optional Text callToAction = 14;
+  optional Text dismiss = 15;
+  InnerTube.Protobuf.Endpoints.Endpoint endpoint = 16;
+  string id = 31;
+  RendererWrapper thumbnailOverlays = 32;
+}
+
+message ThumbnailOverlayTimeStatusRenderer {
+  InnerTube.Protobuf.Text text = 1;
+  int32 style = 2;
+}

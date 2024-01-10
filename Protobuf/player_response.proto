@@ -2,14 +2,16 @@ syntax = "proto3";
 
 package InnerTube.Protobuf.Requests;
 
+import "renderers.proto";
 import "general.proto";
 
 message PlayerResponse {
   //bytes context = 1;
   PlayabilityStatus playabilityStatus = 2;
   StreamingData streamingData = 4;
-  RendererWrapper captions = 10;
+  optional InnerTube.Protobuf.Renderers.RendererWrapper captions = 10;
   VideoDetails videoDetails = 11;
+  optional InnerTube.Protobuf.Renderers.RendererWrapper endscreen = 32;
 }
 
 message PlayabilityStatus {
@@ -26,16 +28,8 @@ message StreamingData {
   int32 expiresInSeconds = 1;
   repeated Format formats = 2;
   repeated Format adaptiveFormats = 3;
-}
-
-message RendererWrapper {
-  optional PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
-}
-
-message PlayerCaptionsTracklistRenderer {
-  repeated Caption captions = 1;
-  repeated TranslationLanguage translationLanguages = 3;
-  int32 defaultAudioTrackIndex = 4;
+  optional string dashManifestUrl = 4;
+  optional string hlsManifestUrl = 5;
 }
 
 message Format {
@@ -48,10 +42,15 @@ message Format {
   optional Range initRange = 9;
   optional Range indexRange = 10;
   uint64 lastModified = 11;
+  uint64 contentLength = 12;
   string quality = 16;
   int32 fps = 25;
+  optional bytes xtags = 23;
   string qualityLabel = 26;
+  optional AudioTrack audioTrack = 28;
+  int32 averageBitrate = 31;
   bytes colorInfo = 33;
+  bool highReplication = 39;
   int32 approxDurationMs = 44;
   optional int32 audioSampleRate = 45;
   optional int32 audioChannels = 46;
@@ -63,17 +62,10 @@ message Range {
   int32 end = 4;
 }
 
-message Caption {
-  string baseUrl = 1;
-  Text name = 2;
-  string vssId = 3;
-  string language = 4;
-  bool isTranslatable = 7;
-}
-
-message TranslationLanguage {
-  string languageCode = 1;
-  Text languageName = 2;
+message AudioTrack {
+  string displayName = 4;
+  string id = 5;
+  bool audioIsDefault = 6;
 }
 
 message VideoDetails {
@@ -83,7 +75,7 @@ message VideoDetails {
   repeated string keywords = 18;
   string channelId = 19;
   string shortDescription = 21;
-  Thumbnails thumbnail = 25;
+  InnerTube.Protobuf.Thumbnails thumbnail = 25;
   string viewCount = 32;
   string author = 33;
 }

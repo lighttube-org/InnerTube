@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Endpoints;
+
+message Endpoint {
+  oneof endpointType {
+    WatchEndpoint watchEndpoint = 48687757;
+    UrlEndpoint urlEndpoint = 49679253;
+    BrowseEndpoint browseEndpoint = 48687626;
+  }
+}
+
+message WatchEndpoint {
+  string videoId = 1;
+  optional string playlistId = 2;
+}
+
+message UrlEndpoint {
+  string url = 1;
+  int32 target = 2;
+}
+
+message BrowseEndpoint {
+  string browseId = 2;
+}
