@@ -11,17 +11,23 @@ message PlayerResponse {
   StreamingData streamingData = 4;
   optional InnerTube.Protobuf.Renderers.RendererWrapper captions = 10;
   VideoDetails videoDetails = 11;
+  optional InnerTube.Protobuf.Renderers.RendererWrapper storyboards = 16;
+  optional InnerTube.Protobuf.Renderers.RendererWrapper microformat = 19;
   optional InnerTube.Protobuf.Renderers.RendererWrapper endscreen = 32;
 }
 
 message PlayabilityStatus {
   enum Status {
     OK = 0;
+    LOGIN_REQUIRED = 3;
+    CONTENT_CHECK_REQUIRED = 4;
   }
 
   Status status = 1;
-  bool playableInEmbed = 9;
-  string contextParams = 31;
+  optional string reason = 2;
+  optional bool playableInEmbed = 9;
+  optional string subreason = 22;
+  optional string contextParams = 31;
 }
 
 message StreamingData {
@@ -74,8 +80,14 @@ message VideoDetails {
   int32 lengthSeconds = 16;
   repeated string keywords = 18;
   string channelId = 19;
+  bool isOwnerViewing = 20;
   string shortDescription = 21;
+  bool isCrawlable = 22;
   InnerTube.Protobuf.Thumbnails thumbnail = 25;
+  bool allowRatings = 31;
   string viewCount = 32;
+  bool isPrivate = 37;
   string author = 33;
+  bool isUnpluggedCorpus = 38;
+  bool isLiveContent = 41;
 }

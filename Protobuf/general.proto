@@ -18,4 +18,5 @@ message Text {
   }
 
   repeated Run runs = 1;
+  optional string simpleText = 4;
 }

@@ -27,15 +27,16 @@ namespace InnerTube.Protobuf {
             "Cg1nZW5lcmFsLnByb3RvEhJJbm5lclR1YmUuUHJvdG9idWYiPwoKVGh1bWJu",
             "YWlscxIxCgp0aHVtYm5haWxzGAEgAygLMh0uSW5uZXJUdWJlLlByb3RvYnVm",
             "LlRodW1ibmFpbCI3CglUaHVtYm5haWwSCwoDdXJsGAEgASgJEg0KBXdpZHRo",
-            "GAIgASgFEg4KBmhlaWdodBgDIAEoBSJHCgRUZXh0EioKBHJ1bnMYASADKAsy",
-            "HC5Jbm5lclR1YmUuUHJvdG9idWYuVGV4dC5SdW4aEwoDUnVuEgwKBHRleHQY",
-            "ASABKAliBnByb3RvMw=="));
+            "GAIgASgFEg4KBmhlaWdodBgDIAEoBSJvCgRUZXh0EioKBHJ1bnMYASADKAsy",
+            "HC5Jbm5lclR1YmUuUHJvdG9idWYuVGV4dC5SdW4SFwoKc2ltcGxlVGV4dBgE",
+            "IAEoCUgAiAEBGhMKA1J1bhIMCgR0ZXh0GAEgASgJQg0KC19zaW1wbGVUZXh0",
+            "YgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Thumbnails), global::InnerTube.Protobuf.Thumbnails.Parser, new[]{ "Thumbnails_" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Thumbnail), global::InnerTube.Protobuf.Thumbnail.Parser, new[]{ "Url", "Width", "Height" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Text), global::InnerTube.Protobuf.Text.Parser, new[]{ "Runs" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Text.Types.Run), global::InnerTube.Protobuf.Text.Types.Run.Parser, new[]{ "Text" }, null, null, null, null)})
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Text), global::InnerTube.Protobuf.Text.Parser, new[]{ "Runs", "SimpleText" }, new[]{ "SimpleText" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Text.Types.Run), global::InnerTube.Protobuf.Text.Types.Run.Parser, new[]{ "Text" }, null, null, null, null)})
           }));
     }
     #endregion
@@ -521,6 +522,7 @@ namespace InnerTube.Protobuf {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public Text(Text other) : this() {
       runs_ = other.runs_.Clone();
+      simpleText_ = other.simpleText_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -541,6 +543,32 @@ namespace InnerTube.Protobuf {
       get { return runs_; }
     }
 
+    /// <summary>Field number for the "simpleText" field.</summary>
+    public const int SimpleTextFieldNumber = 4;
+    private readonly static string SimpleTextDefaultValue = "";
+
+    private string simpleText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SimpleText {
+      get { return simpleText_ ?? SimpleTextDefaultValue; }
+      set {
+        simpleText_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "simpleText" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSimpleText {
+      get { return simpleText_ != null; }
+    }
+    /// <summary>Clears the value of the "simpleText" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSimpleText() {
+      simpleText_ = null;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -557,6 +585,7 @@ namespace InnerTube.Protobuf {
         return true;
       }
       if(!runs_.Equals(other.runs_)) return false;
+      if (SimpleText != other.SimpleText) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -565,6 +594,7 @@ namespace InnerTube.Protobuf {
     public override int GetHashCode() {
       int hash = 1;
       hash ^= runs_.GetHashCode();
+      if (HasSimpleText) hash ^= SimpleText.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -584,6 +614,10 @@ namespace InnerTube.Protobuf {
       output.WriteRawMessage(this);
     #else
       runs_.WriteTo(output, _repeated_runs_codec);
+      if (HasSimpleText) {
+        output.WriteRawTag(34);
+        output.WriteString(SimpleText);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -595,6 +629,10 @@ namespace InnerTube.Protobuf {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
       runs_.WriteTo(ref output, _repeated_runs_codec);
+      if (HasSimpleText) {
+        output.WriteRawTag(34);
+        output.WriteString(SimpleText);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -606,6 +644,9 @@ namespace InnerTube.Protobuf {
     public int CalculateSize() {
       int size = 0;
       size += runs_.CalculateSize(_repeated_runs_codec);
+      if (HasSimpleText) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SimpleText);
+      }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -619,6 +660,9 @@ namespace InnerTube.Protobuf {
         return;
       }
       runs_.Add(other.runs_);
+      if (other.HasSimpleText) {
+        SimpleText = other.SimpleText;
+      }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -638,6 +682,10 @@ namespace InnerTube.Protobuf {
             runs_.AddEntriesFrom(input, _repeated_runs_codec);
             break;
           }
+          case 34: {
+            SimpleText = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -655,6 +703,10 @@ namespace InnerTube.Protobuf {
             break;
           case 10: {
             runs_.AddEntriesFrom(ref input, _repeated_runs_codec);
+            break;
+          }
+          case 34: {
+            SimpleText = input.ReadString();
             break;
           }
         }

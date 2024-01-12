@@ -8,6 +8,9 @@ import "endpoints.proto";
 message RendererWrapper {
   oneof renderer {
     PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
+    PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
+    PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
+    PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
     EndscreenRenderer endscreenRenderer = 106301526;
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
@@ -45,11 +48,45 @@ message PlayerCaptionsTracklistRenderer {
   int32 defaultAudioTrackIndex = 4;
 }
 
+message PlayerStoryboardSpecRenderer {
+  string spec = 1;
+  int32 recommendedLevel = 3;
+  int32 highResolutionRecommendedLevel = 7;
+}
+
+message PlayerMicroformatRenderer {
+  message Embed {
+    string embedUrl = 1;
+    int32 width = 3;
+    int32 height = 4;
+  }
+
+  Thumbnails thumbnail = 1;
+  Embed embed = 2;
+  Text title = 3;
+  Text description = 4;
+  int32 lengthSeconds = 5;
+  string ownerProfileUrl = 6;
+  string externalChannelId = 8;
+  bool isFamilySafe = 9;
+  repeated string availableCountries = 10;
+  bool isUnlisted = 11;
+  bool hasYpcMetadata = 12;
+  string viewCount = 14;
+  string category = 15;
+  string publishDate = 16;
+  string ownerChannelName = 17;
+  string uploadDate = 19;
+}
+
+message PlayerLiveStoryboardSpecRenderer {
+  string spec = 1;
+}
+
 message EndscreenRenderer {
   repeated RendererWrapper elements = 1;
   int32 startMs = 2;
 }
-
 
 message EndscreenElementRenderer {
   enum EndscreenElementStyle {

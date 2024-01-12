@@ -1,4 +1,5 @@
 using System.Text;
+using InnerTube.Exceptions;
 using InnerTube.Protobuf.Renderers;
 using InnerTube.Protobuf.Requests;
 
@@ -14,15 +15,16 @@ public class PlayerTests
 		_innerTube = new InnerTube();
 	}
 
-	[TestCase("BaW_jenozKc", true, true, Description = "Load a video with an HLS manifest")]
-	[TestCase("J6Ga4wciA2k", true, false, Description = "Load a video with the endscreen & info cards")]
-	[TestCase("jfKfPfyJRdk", true, false, Description = "Load a livestream")]
-	[TestCase("9gIXoaB-Jik", true, false, Description = "Video with WEBSITE endscreen item")]
-	[TestCase("4ZX9T0kWb4Y", true, false, Description = "Video with multiple audio tracks")]
-	[TestCase("-UBaW1OIgTo", true, false, Description = "EndScreenItem ctor")]
-	public async Task GetPlayer(string videoId, bool contentCheckOk, bool includeHls)
+	[TestCase("BaW_jenozKc", true, Description = "Load a video with an HLS manifest")]
+	[TestCase("J6Ga4wciA2k", true, Description = "Load a video with the endscreen & info cards")]
+	[TestCase("jfKfPfyJRdk", true, Description = "Load a livestream")]
+	[TestCase("9gIXoaB-Jik", true, Description = "Video with WEBSITE endscreen item")]
+	[TestCase("4ZX9T0kWb4Y", true, Description = "Video with multiple audio tracks")]
+	[TestCase("-UBaW1OIgTo", true, Description = "EndScreenItem ctor")]
+	[TestCase("UoBFuLMlDkw", true, Description = "Video with cards")]
+	public async Task GetPlayer(string videoId, bool contentCheckOk)
 	{
-		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls);
+		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk);
 		StringBuilder sb = new();
 
 		sb.AppendLine("== DETAILS")
@@ -31,19 +33,69 @@ public class PlayerTests
 			.AppendLine("Author: " + player.VideoDetails.Author)
 			.AppendLine("Keywords: " + string.Join(", ", player.VideoDetails.Keywords.Select(x => $"#{x}")))
 			.AppendLine("ShortDescription: " + player.VideoDetails.ShortDescription.Split('\n')[0])
-			//.AppendLine("Category: " + player.VideoDetails.Category)
-			//.AppendLine("UploadDate: " + player.VideoDetails.UploadDate)
-			//.AppendLine("PublishDate: " + player.VideoDetails.PublishDate)
 			.AppendLine("Length: " + player.VideoDetails.LengthSeconds)
-			//.AppendLine("IsLive: " + player.VideoDetails.IsLive)
-			//.AppendLine("AllowRatings: " + player.VideoDetails.AllowRatings)
-			//.AppendLine("IsFamilySafe: " + player.VideoDetails.IsFamilySafe)
+			.AppendLine("IsOwnerViewing: " + player.VideoDetails.IsOwnerViewing)
+			.AppendLine("IsCrawlable: " + player.VideoDetails.IsCrawlable)
+			.AppendLine("AllowRatings: " + player.VideoDetails.AllowRatings)
+			.AppendLine("IsPrivate: " + player.VideoDetails.IsPrivate)
+			.AppendLine("IsUnpluggedCorpus: " + player.VideoDetails.IsUnpluggedCorpus)
+			.AppendLine("IsLiveContent: " + player.VideoDetails.IsLiveContent)
 			.AppendLine("Thumbnails: " + player.VideoDetails.Thumbnail.Thumbnails_.Count);
 
-		//TODO: Storyboard
-		//sb.AppendLine("== STORYBOARD")
-		//	.AppendLine("RecommendedLevel: " + player.Storyboard.RecommendedLevel);
-		//foreach ((int level, Uri? uri) in player.Storyboard.Levels) sb.AppendLine($"-> L{level}: {uri}");
+		sb.AppendLine("== MICROFORMAT");
+		if (player.Microformat != null)
+			sb.AppendLine("Thumbnails: " + player.Microformat.PlayerMicroformatRenderer.Thumbnail.Thumbnails_.Count)
+				.AppendLine("Embed: " + player.Microformat.PlayerMicroformatRenderer.Embed)
+				.AppendLine("Title: " + player.Microformat.PlayerMicroformatRenderer.Title.SimpleText)
+				.AppendLine("Description: " + player.Microformat.PlayerMicroformatRenderer.Description.SimpleText)
+				.AppendLine("LengthSeconds: " + player.Microformat.PlayerMicroformatRenderer.LengthSeconds)
+				.AppendLine("OwnerProfileUrl: " + player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl)
+				.AppendLine("ExternalChannelId: " + player.Microformat.PlayerMicroformatRenderer.ExternalChannelId)
+				.AppendLine("IsFamilySafe: " + player.Microformat.PlayerMicroformatRenderer.IsFamilySafe)
+				.AppendLine("AvailableCountries: " +
+				            string.Join(", ", player.Microformat.PlayerMicroformatRenderer.AvailableCountries))
+				.AppendLine("IsUnlisted: " + player.Microformat.PlayerMicroformatRenderer.IsUnlisted)
+				.AppendLine("HasYpcMetadata: " + player.Microformat.PlayerMicroformatRenderer.HasYpcMetadata)
+				.AppendLine("ViewCount: " + player.Microformat.PlayerMicroformatRenderer.ViewCount)
+				.AppendLine("Category: " + player.Microformat.PlayerMicroformatRenderer.Category)
+				.AppendLine("PublishDate: " + player.Microformat.PlayerMicroformatRenderer.PublishDate)
+				.AppendLine("OwnerChannelName: " + player.Microformat.PlayerMicroformatRenderer.OwnerChannelName)
+				.AppendLine("UploadDate: " + player.Microformat.PlayerMicroformatRenderer.UploadDate);
+
+		sb.AppendLine("== STORYBOARD");
+		if (player.Storyboards != null)
+		{
+			// ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
+			switch (player.Storyboards.RendererCase)
+			{
+				case RendererWrapper.RendererOneofCase.PlayerStoryboardSpecRenderer:
+				{
+					sb.AppendLine("RecommendedLevel: " +
+					              player.Storyboards.PlayerStoryboardSpecRenderer.RecommendedLevel)
+						.AppendLine("HighResolutionRecommendedLevel: " +
+						            player.Storyboards.PlayerStoryboardSpecRenderer.HighResolutionRecommendedLevel)
+						.AppendLine("Spec: " + player.Storyboards.PlayerStoryboardSpecRenderer.Spec);
+					foreach ((int level, Uri? uri) in Utils.ParseStoryboardSpec(
+						         player.Storyboards.PlayerStoryboardSpecRenderer.Spec,
+						         player.VideoDetails.LengthSeconds))
+					{
+						sb.AppendLine($"-> L{level}: {uri}");
+					}
+
+					break;
+				}
+
+				case RendererWrapper.RendererOneofCase.PlayerLiveStoryboardSpecRenderer:
+				{
+					sb.AppendLine("[LIVE] Spec: " + player.Storyboards.PlayerLiveStoryboardSpecRenderer.Spec);
+					sb.AppendLine(
+						$"-> L0: {Utils.ParseLiveStoryboardSpec(player.Storyboards.PlayerLiveStoryboardSpecRenderer.Spec)}");
+
+					break;
+				}
+			}
+		}
+
 
 		sb.AppendLine("== ENDSCREEN");
 		if (player.Endscreen != null)
@@ -131,12 +183,21 @@ public class PlayerTests
 
 	[TestCase("V6kJKxvbgZ0", true, false, Description = "Age restricted video")]
 	[TestCase("LACbVhgtx9I", false, false, Description = "Video that includes self-harm topics")]
-	public void FailPlayer(string videoId, bool contentCheckOk, bool includeHls)
+	public async Task FailPlayer(string videoId, bool contentCheckOk, bool includeHls)
 	{
-		Assert.Catch(() =>
+		try
 		{
-			//InnerTubePlayer _ = _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls).Result;
-		});
+			await _innerTube.GetPlayerAsync(videoId, contentCheckOk);
+			Assert.Fail("No exceptions were thrown");
+		}
+		catch (PlayerException e)
+		{
+			Assert.Pass(e.ToString());
+		}
+		catch (Exception e)
+		{
+			Assert.Fail($"Wrong exception was thrown ({e.GetType().Name} instead of {nameof(PlayerException)}).\n{e}");
+		}
 	}
 
 	[TestCase("BaW_jenozKc", Description = "Regular video")]
