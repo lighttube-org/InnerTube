@@ -38,12 +38,8 @@ public class InnerTube
 	private async Task<byte[]> MakeRequest(RequestClient client, string endpoint, InnerTubeRequest postData,
 		string language, string region, bool authorized = false)
 	{
-		string url = "https://";
-		if (client == RequestClient.ANDROID)
-			url += "youtube.com";
-		else
-			url += "youtubei.googleapis.com";
-		url += $"/youtubei/v1/{endpoint}?alt=proto";
+		string url = $"https://youtubei.googleapis.com/youtubei/v1/{endpoint}";
+		url += "?alt=proto";
 		if (!authorized || Authorization?.Type != AuthorizationType.REFRESH_TOKEN)
 			url += $"&key={ApiKey}";
 
@@ -131,8 +127,17 @@ public class InnerTube
 		});
 		return player;
 		*/
-		return PlayerResponse.Parser.ParseFrom(await GetPlayerObjectAsync(videoId, contentCheckOk, language, region,
-			RequestClient.ANDROID));
+		Task<PlayerResponse>[] tasks =
+		{
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.ANDROID)
+		};
+		Task.WaitAll(tasks.Cast<Task>().ToArray());
+		PlayerResponse[] players = tasks.Select(x => x.Result).ToArray();
+
+		players[0].StreamingData = players[1].StreamingData;
+		
+		return players[0];
 	}
 
 	// instead of trying hours to find a protobuf compilation to
@@ -140,7 +145,7 @@ public class InnerTube
 	// data at the same time i decided to just do the request
 	// twice, one WEB and one ANDROID. if someone finds a protobuf
 	// string that returns all those on the android client pls pr <3
-	private async Task<byte[]> GetPlayerObjectAsync(string videoId, bool contentCheckOk, string language,
+	private async Task<PlayerResponse> GetPlayerObjectAsync(string videoId, bool contentCheckOk, string language,
 		string region, RequestClient client)
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
@@ -151,7 +156,7 @@ public class InnerTube
 		if (client == RequestClient.ANDROID)
 			postData.AddValue("params", "CgIQBg");
 
-		return await MakeRequest(client, "player", postData,
-			language, region, true);
+		return PlayerResponse.Parser.ParseFrom(await MakeRequest(client, "player", postData,
+			language, region, true));
 	}
 }
