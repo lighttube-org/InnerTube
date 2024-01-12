@@ -81,15 +81,9 @@ public class InnerTube
 	/// </summary>
 	/// <param name="videoId">ID of the video</param>
 	/// <param name="contentCheckOk">Set to true if you want to skip the content warnings (suicide, self-harm etc.)</param>
-	/// <param name="includeHls">
-	/// Set to true if you need HLS streams. Note that HLS streams are always sent for live videos and
-	/// for non-live videos setting this to true will not return formats larger than 1080p <br></br>
-	/// If this is set to true, Formats will be empty
-	/// </param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
-		bool includeHls = false,
 		string language = "en", string region = "US")
 	{
 		/*
@@ -130,12 +124,15 @@ public class InnerTube
 		Task<PlayerResponse>[] tasks =
 		{
 			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.ANDROID)
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.ANDROID),
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS)
 		};
 		Task.WaitAll(tasks.Cast<Task>().ToArray());
 		PlayerResponse[] players = tasks.Select(x => x.Result).ToArray();
 
 		players[0].StreamingData = players[1].StreamingData;
+		if (!players[0].StreamingData.HasHlsManifestUrl && players[2].StreamingData.HasHlsManifestUrl)
+			players[0].StreamingData.HlsManifestUrl = players[2].StreamingData.HlsManifestUrl;
 		
 		return players[0];
 	}
