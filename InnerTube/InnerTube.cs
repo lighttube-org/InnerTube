@@ -130,10 +130,15 @@ public class InnerTube
 		Task.WaitAll(tasks.Cast<Task>().ToArray());
 		PlayerResponse[] players = tasks.Select(x => x.Result).ToArray();
 
+		if (players[0].PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
+			throw new PlayerException(players[0].PlayabilityStatus.Status, players[0].PlayabilityStatus.Reason,
+				players[0].PlayabilityStatus.Subreason);
+
 		players[0].StreamingData = players[1].StreamingData;
-		if (!players[0].StreamingData.HasHlsManifestUrl && players[2].StreamingData.HasHlsManifestUrl)
+		if (players[0].StreamingData != null && players[2].StreamingData != null &&
+		    players[0].StreamingData.HasHlsManifestUrl && players[2].StreamingData.HasHlsManifestUrl)
 			players[0].StreamingData.HlsManifestUrl = players[2].StreamingData.HlsManifestUrl;
-		
+
 		return players[0];
 	}
 
