@@ -38,8 +38,17 @@ public class InnerTube
 	private async Task<byte[]> MakeRequest(RequestClient client, string endpoint, InnerTubeRequest postData,
 		string language, string region, bool authorized = false)
 	{
-		HttpRequestMessage hrm = new(HttpMethod.Post,
-			@$"https://youtubei.googleapis.com/youtubei/v1/{endpoint}?alt=proto{(authorized && Authorization?.Type == AuthorizationType.REFRESH_TOKEN ? "" : $"&key={ApiKey}")}");
+		string url = "https://";
+		if (client == RequestClient.ANDROID)
+			url += "youtube.com";
+		else
+			url += "youtubei.googleapis.com";
+		url += $"/youtubei/v1/{endpoint}?alt=proto";
+		if (!authorized || Authorization?.Type != AuthorizationType.REFRESH_TOKEN)
+			url += $"&key={ApiKey}";
+
+
+		HttpRequestMessage hrm = new(HttpMethod.Post, url);
 
 		byte[] buffer = Encoding.UTF8.GetBytes(postData.GetJson(client, language, region));
 		ByteArrayContent byteContent = new(buffer);
