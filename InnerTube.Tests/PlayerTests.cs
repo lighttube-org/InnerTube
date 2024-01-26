@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Text;
 using InnerTube.Exceptions;
 using InnerTube.Protobuf.Renderers;
@@ -198,6 +199,19 @@ public class PlayerTests
 		{
 			Assert.Fail($"Wrong exception was thrown ({e.GetType().Name} instead of {nameof(PlayerException)}).\n{e}");
 		}
+	}
+
+	[Test]
+	public async Task CachePlayer()
+	{
+		StringBuilder sb = new();
+		Stopwatch sp = Stopwatch.StartNew();
+		await _innerTube.GetPlayerAsync("BaW_jenozKc", true);
+		sb.AppendLine($"First request : {sp.ElapsedMilliseconds}ms");
+		sp.Restart();
+		await _innerTube.GetPlayerAsync("BaW_jenozKc", true);
+		sb.AppendLine($"Second request: {sp.ElapsedMilliseconds}ms");
+		Assert.Pass(sb.ToString());
 	}
 
 	[TestCase("BaW_jenozKc", Description = "Regular video")]

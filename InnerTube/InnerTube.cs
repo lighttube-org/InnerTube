@@ -86,41 +86,10 @@ public class InnerTube
 	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
 		string language = "en", string region = "US")
 	{
-		/*
-		string cacheId = $"{videoId}_{(includeHls ? "hls" : "dash")}({language}_{region})";
+		string cacheId = $"{videoId}_({language}_{region})";
 
-		if (PlayerCache.TryGetValue(cacheId, out InnerTubePlayer cachedPlayer)) return cachedPlayer;
+		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
-		Task[] tasks =
-		{
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region,
-				includeHls ? RequestClient.IOS : RequestClient.ANDROID)
-		};
-
-		Task.WaitAll(tasks);
-
-		JObject[] responses = tasks.Select(x => ((Task<JObject>)x).Result).ToArray();
-
-		string playabilityStatus = responses[1].GetFromJsonPath<string>("playabilityStatus.status")!;
-		if (playabilityStatus != "OK")
-			throw new PlayerException(playabilityStatus,
-				responses[1].GetFromJsonPath<string>("playabilityStatus.reason")!,
-				responses[1].GetFromJsonPath<string>("playabilityStatus.reasonTitle") ??
-				Utils.ReadText(
-					responses[1].GetFromJsonPath<JObject>(
-						"playabilityStatus.errorScreen.playerErrorMessageRenderer.subreason")));
-
-		InnerTubePlaPlayerResyer player = new(responses[1], responses[0]);
-		PlayerCache.Set(cacheId, player, new MemoryCacheEntryOptions
-		{
-			Size = 1,
-			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, player.Details.Length.TotalSeconds)),
-			AbsoluteExpirationRelativeToNow =
-				TimeSpan.FromSeconds(Math.Max(3600, player.ExpiresInSeconds - player.Details.Length.TotalSeconds))
-		});
-		return player;
-		*/
 		Task<PlayerResponse>[] tasks =
 		{
 			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
@@ -139,6 +108,13 @@ public class InnerTube
 		    players[0].StreamingData.HasHlsManifestUrl && players[2].StreamingData.HasHlsManifestUrl)
 			players[0].StreamingData.HlsManifestUrl = players[2].StreamingData.HlsManifestUrl;
 
+		PlayerCache.Set(cacheId, players[0], new MemoryCacheEntryOptions
+		{
+			Size = 1,
+			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, players[0].VideoDetails.LengthSeconds)),
+			AbsoluteExpirationRelativeToNow =
+				TimeSpan.FromSeconds(Math.Max(3600, players[0].StreamingData.ExpiresInSeconds - players[0].VideoDetails.LengthSeconds))
+		});
 		return players[0];
 	}
 
