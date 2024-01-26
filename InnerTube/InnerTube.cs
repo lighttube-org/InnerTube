@@ -118,11 +118,11 @@ public class InnerTube
 		return players[0];
 	}
 
-	// instead of trying hours to find a protobuf compilation to
-	// have endscreen, cards, storyboards and non 403'ing video
-	// data at the same time i decided to just do the request
-	// twice, one WEB and one ANDROID. if someone finds a protobuf
-	// string that returns all those on the android client pls pr <3
+	// instead of trying hours to find a protobuf compilation for
+	// the params to get endscreen, cards, storyboards and non 403'ing
+	// video data at the same time i decided to just do the request
+	// in all clients. if someone finds a protobuf string that returns
+	// all those on the ANDROID client pls pr <3
 	private async Task<PlayerResponse> GetPlayerObjectAsync(string videoId, bool contentCheckOk, string language,
 		string region, RequestClient client)
 	{
