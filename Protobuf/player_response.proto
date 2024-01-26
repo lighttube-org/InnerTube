@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package InnerTube.Protobuf.Requests;
+package InnerTube.Protobuf.Responses;
 
 import "renderers.proto";
 import "general.proto";
