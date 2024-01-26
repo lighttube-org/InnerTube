@@ -90,32 +90,31 @@ public class InnerTube
 
 		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
-		Task<PlayerResponse>[] tasks =
-		{
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.ANDROID),
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS)
-		};
-		Task.WaitAll(tasks.Cast<Task>().ToArray());
-		PlayerResponse[] players = tasks.Select(x => x.Result).ToArray();
+		Task<PlayerResponse> webResponse =	GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB);
+		Task<PlayerResponse> androidResponse =	GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.ANDROID);
+		Task<PlayerResponse> iosResponse =	GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS);
 
-		if (players[0].PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
-			throw new PlayerException(players[1].PlayabilityStatus.Status, players[1].PlayabilityStatus.Reason,
-				players[1].PlayabilityStatus.Subreason);
+		PlayerResponse webPlayer = await webResponse;
+		PlayerResponse androidPlayer = await androidResponse;
+		PlayerResponse iosPlayer = await iosResponse;
+		
+		if (webPlayer.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
+			throw new PlayerException(androidPlayer.PlayabilityStatus.Status, androidPlayer.PlayabilityStatus.Reason,
+				androidPlayer.PlayabilityStatus.Subreason);
 
-		players[0].StreamingData = players[1].StreamingData;
-		if (players[0].StreamingData != null && players[2].StreamingData != null &&
-		    players[0].StreamingData.HasHlsManifestUrl && players[2].StreamingData.HasHlsManifestUrl)
-			players[0].StreamingData.HlsManifestUrl = players[2].StreamingData.HlsManifestUrl;
+		webPlayer.StreamingData = androidPlayer.StreamingData;
+		if (webPlayer.StreamingData != null && iosPlayer.StreamingData != null &&
+		    webPlayer.StreamingData.HasHlsManifestUrl && iosPlayer.StreamingData.HasHlsManifestUrl)
+			webPlayer.StreamingData.HlsManifestUrl = iosPlayer.StreamingData.HlsManifestUrl;
 
-		PlayerCache.Set(cacheId, players[0], new MemoryCacheEntryOptions
+		PlayerCache.Set(cacheId, webPlayer, new MemoryCacheEntryOptions
 		{
 			Size = 1,
-			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, players[0].VideoDetails.LengthSeconds)),
+			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, webPlayer.VideoDetails.LengthSeconds)),
 			AbsoluteExpirationRelativeToNow =
-				TimeSpan.FromSeconds(Math.Max(3600, players[0].StreamingData.ExpiresInSeconds - players[0].VideoDetails.LengthSeconds))
+				TimeSpan.FromSeconds(Math.Max(3600, webPlayer.StreamingData!.ExpiresInSeconds - webPlayer.VideoDetails.LengthSeconds))
 		});
-		return players[0];
+		return webPlayer;
 	}
 
 	// instead of trying hours to find a protobuf compilation for
