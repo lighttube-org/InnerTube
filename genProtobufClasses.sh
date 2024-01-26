@@ -5,4 +5,6 @@ then
 fi
 
 mkdir -p InnerTube/Protobuf
-protoc --csharp_out=InnerTube/Protobuf youtube.proto
+cd Protobuf
+protoc --csharp_out=../InnerTube/Protobuf *
+cd ..

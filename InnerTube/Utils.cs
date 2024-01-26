@@ -106,26 +106,7 @@ public static class Utils
 		return url;
 	}
 
-	public static Thumbnail[] GetThumbnails(JArray? thumbnails)
-	{
-		if (thumbnails is null)
-			return Array.Empty<Thumbnail>();
-		return thumbnails.Select(x =>
-		{
-			string url = x["url"]!.ToObject<string>()!;
-			Thumbnail a = new()
-			{
-				Width = x["width"]?.ToObject<int>(),
-				Height = x["height"]?.ToObject<int>(),
-				Url = url.StartsWith("http")
-					? new Uri(url)
-					: new Uri("https:" + url)
-			};
-			return a;
-		}).ToArray();
-	}
-
-	public static Dictionary<int, Uri> GetLevelsFromStoryboardSpec(string? specStr, long duration)
+	public static Dictionary<int, Uri> ParseStoryboardSpec(string? specStr, long duration)
 	{
 		Dictionary<int, Uri> urls = new();
 		if (specStr is null) return new Dictionary<int, Uri>();
@@ -157,6 +138,8 @@ public static class Utils
 		return urls;
 	}
 
+	public static Uri? ParseLiveStoryboardSpec(string? specStr) => specStr is null ? null : new Uri(specStr.Replace("$M", "0"));
+
 	public static TimeSpan ParseDuration(string duration)
 	{
 		if (!TimeSpan.TryParseExact(duration, "%m\\:%s", CultureInfo.InvariantCulture, out TimeSpan timeSpan))
@@ -165,7 +148,7 @@ public static class Utils
 				timeSpan = TimeSpan.Zero;
 		return timeSpan;
 	}
-	
+
 	/// <summary>
 	/// Parses a string to a <see cref="ulong"/> by removing all non-digit characters first.<br /><br />
 	/// Negative numbers are not supported. If string contains no digits, returns 0.
@@ -179,7 +162,7 @@ public static class Utils
 	{
 		input = NotDigitsRegex.Replace(input, "");
 		return string.IsNullOrWhiteSpace(input)
-			? 0 
+			? 0
 			: ulong.Parse(input);
 	}
 
@@ -308,7 +291,8 @@ public static class Utils
 
 	public static PlaylistContinuationInfo UnpackPlaylistContinuation(string continuationKey)
 	{
-		PlaylistContinuationContainer container = PlaylistContinuationContainer.Parser.ParseFrom(FromBase64UrlString(continuationKey));
+		PlaylistContinuationContainer container =
+			PlaylistContinuationContainer.Parser.ParseFrom(FromBase64UrlString(continuationKey));
 		PaginationInfo info =
 			PaginationInfo.Parser.ParseFrom(FromBase64UrlString(container.Continuation.PaginationInfo));
 		return new PlaylistContinuationInfo
