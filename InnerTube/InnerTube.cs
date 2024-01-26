@@ -131,8 +131,8 @@ public class InnerTube
 		PlayerResponse[] players = tasks.Select(x => x.Result).ToArray();
 
 		if (players[0].PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
-			throw new PlayerException(players[0].PlayabilityStatus.Status, players[0].PlayabilityStatus.Reason,
-				players[0].PlayabilityStatus.Subreason);
+			throw new PlayerException(players[1].PlayabilityStatus.Status, players[1].PlayabilityStatus.Reason,
+				players[1].PlayabilityStatus.Subreason);
 
 		players[0].StreamingData = players[1].StreamingData;
 		if (players[0].StreamingData != null && players[2].StreamingData != null &&
