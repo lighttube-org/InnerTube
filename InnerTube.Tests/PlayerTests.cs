@@ -225,6 +225,7 @@ public class PlayerTests
 	[TestCase("jUUe6TuRlgU", Description = "Chapters")]
 	public async Task GetVideoNext(string videoId)
 	{
+		Assert.Pass(await _innerTube.GetNextAsync(videoId, true, false));
 		/*
 		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);
 

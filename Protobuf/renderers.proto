@@ -7,14 +7,29 @@ import "endpoints.proto";
 
 message RendererWrapper {
   oneof renderer {
+    ResultsContainer resultsContainer = 49399797;
     PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
+    TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759; 
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
+    ButtonViewModel buttonViewModel = 65153809;
+    MenuRenderer menuRenderer = 66439850;
+    MenuNavigationItemRenderer menuNavigationItemRenderer = 66441108;
+    VideoViewCountRenderer videoViewCountRenderer = 70044402;
     PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
+    AccessibilityData accessibilityData = 75730170;
+    LikeButtonViewModel likeButtonViewModel = 79971800;
+    VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
     EndscreenRenderer endscreenRenderer = 106301526;
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
+    MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
+    SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 452133865;
   }
+}
+
+message ResultsContainer {
+  repeated RendererWrapper results = 1;
 }
 
 message PlayerCaptionsTracklistRenderer {
@@ -48,6 +63,12 @@ message PlayerCaptionsTracklistRenderer {
   int32 defaultAudioTrackIndex = 4;
 }
 
+message TwoColumnWatchNextResults {
+  RendererWrapper results = 1;
+  RendererWrapper secondaryResults = 2;
+  RendererWrapper autoplay = 4;
+}
+
 message PlayerStoryboardSpecRenderer {
   string spec = 1;
   int32 recommendedLevel = 3;
@@ -79,8 +100,55 @@ message PlayerMicroformatRenderer {
   string uploadDate = 19;
 }
 
+message ButtonViewModel {
+  Text title = 5;
+  string accessibilityText = 11;
+  RendererWrapper accessibilityData = 16;
+}
+
+message MenuRenderer {
+  repeated RendererWrapper items = 1;
+  repeated RendererWrapper topLevelButtons = 6;
+  RendererWrapper accessibility = 10;
+  repeated RendererWrapper flexibleItems = 20;
+}
+
+message MenuNavigationItemRenderer {
+  Text text = 1;
+  Icon icon = 2;
+  Endpoints.Endpoint endpoint = 3;
+}
+
+message VideoViewCountRenderer {
+  Text viewCount = 1;
+  Text shortViewCount = 4;
+  int32 originalViewCount = 9;
+}
+
 message PlayerLiveStoryboardSpecRenderer {
   string spec = 1;
+}
+
+message AccessibilityData {
+  string label = 2;
+}
+
+message LikeButtonViewModel {
+  Icon icon = 1;
+  Text text = 6;
+  Text toggledText = 9;
+  AccessibilityData accessibilityText = 11;
+  string tooltip = 14;
+  string toggledTooltip = 15;
+  string identifier = 24;
+}
+
+message VideoPrimaryInfoRenderer {
+  Text title = 1;
+  RendererWrapper viewCount = 3;
+  RendererWrapper videoActions = 4;
+  Text dateText = 14;
+  Text relativeDateText = 21;
 }
 
 message EndscreenRenderer {
@@ -118,4 +186,14 @@ message EndscreenElementRenderer {
 message ThumbnailOverlayTimeStatusRenderer {
   InnerTube.Protobuf.Text text = 1;
   int32 style = 2;
+}
+
+message MenuFlexibleItemRenderer {
+  RendererWrapper menuItem = 1;
+  RendererWrapper topLevelButton = 2;
+}
+
+message SegmentedLikeDislikeButtonViewModel {
+  RendererWrapper likeButtonViewModel = 1;
+  RendererWrapper dislikeButtonViewModel = 2;
 }

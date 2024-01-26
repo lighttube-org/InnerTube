@@ -16,7 +16,20 @@ message Text {
   message Run {
     string text = 1;
   }
+  
+  message AccessibilityWrapper {
+    message AccessibilityData {
+      string label = 2;
+    }
+    
+    AccessibilityData accessibilityData = 75730170;
+  }
 
   repeated Run runs = 1;
+  AccessibilityWrapper accessibility = 3;
   optional string simpleText = 4;
+}
+
+message Icon {
+  int32 iconType = 1;
 }

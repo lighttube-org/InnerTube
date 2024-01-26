@@ -1,11 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
-using System.Web;
-using Google.Protobuf;
 using InnerTube.Exceptions;
 using InnerTube.Protobuf.Requests;
 using Microsoft.Extensions.Caching.Memory;
-using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
 
@@ -135,5 +132,15 @@ public class InnerTube
 
 		return PlayerResponse.Parser.ParseFrom(await MakeRequest(client, "player", postData,
 			language, region, true));
+	}
+
+	public async Task<string> GetNextAsync(string videoId, bool contentCheckOk, bool captionsRequested, string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("videoId", videoId)
+			.AddValue("contentCheckOk", contentCheckOk)
+			.AddValue("racyCheckOk", contentCheckOk)
+			.AddValue("captionsRequested", captionsRequested);
+		return Convert.ToBase64String(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
 	}
 }

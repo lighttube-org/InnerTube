@@ -2,11 +2,23 @@ syntax = "proto3";
 
 package InnerTube.Protobuf.Endpoints;
 
+import "general.proto";
+
 message Endpoint {
+  message CommandMetadata {
+    oneof metadataType {
+      WebCommandMetadata webCommandMetadata = 177881822;
+    }
+  }
+
+  bytes clickTrackingParams = 2;
+  CommandMetadata commandMetadata = 4;
+
   oneof endpointType {
     WatchEndpoint watchEndpoint = 48687757;
     UrlEndpoint urlEndpoint = 49679253;
     BrowseEndpoint browseEndpoint = 48687626;
+    ModalEndpoint modalEndpoint = 106613511;
   }
 }
 
@@ -22,4 +34,36 @@ message UrlEndpoint {
 
 message BrowseEndpoint {
   string browseId = 2;
+}
+
+message ModalEndpoint {
+  message ButtonWrapper {
+    message Button {
+      int32 style = 1;
+      int32 size = 2;
+      bool isDisabled = 3;
+      Text text = 5;
+      Endpoint navigationEndpoint = 9;
+    }
+
+    Button buttonWrapper = 65153809;
+  }
+
+  message ModalWithTitleAndButtonWrapper {
+    message ModalWithTitleAndButton {
+      Text title = 1;
+      Text content = 2;
+      ButtonWrapper button = 3;
+    }
+
+    ModalWithTitleAndButton modalWithTitleAndButton = 106613512;
+  }
+  ModalWithTitleAndButtonWrapper modalWithTitleAndButtonWrapper = 1;
+}
+
+message WebCommandMetadata {
+  string url = 1;
+  int32 webPageType = 3;
+  bool ignoreNavigation = 4;
+  int32 rootVe = 5;
 }
