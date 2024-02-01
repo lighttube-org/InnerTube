@@ -57,4 +57,12 @@ public class InnerTubeContinuationResponse
 		return new InnerTubeContinuationResponse(contents.Where(x => x is not ContinuationItemRenderer),
 			((ContinuationItemRenderer?)contents.FirstOrDefault(x => x is ContinuationItemRenderer))?.Token);
 	}
+
+	public static InnerTubeContinuationResponse GetFromNext(JObject browseResponse)
+	{
+		IEnumerable<IRenderer> contents = RendererManager.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
+			"onResponseReceivedEndpoints[0].appendContinuationItemsAction.continuationItems")!).ToArray();
+		return new InnerTubeContinuationResponse(contents.Where(x => x is not ContinuationItemRenderer),
+			((ContinuationItemRenderer?)contents.FirstOrDefault(x => x is ContinuationItemRenderer))?.Token);
+	}
 }
