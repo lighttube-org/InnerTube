@@ -9,22 +9,29 @@ message RendererWrapper {
   oneof renderer {
     ResultsContainer resultsContainer = 49399797;
     PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
-    TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759; 
+    VideoOwnerRenderer videoOwnerRenderer = 51779708;
+    TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
+    SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
-    ButtonViewModel buttonViewModel = 65153809;
+    ShareButtonViewModel shareButtonViewModel = 65153809;
     MenuRenderer menuRenderer = 66439850;
     MenuNavigationItemRenderer menuNavigationItemRenderer = 66441108;
+    MenuServiceItemRenderer menuServiceItemRenderer = 66441155;
     VideoViewCountRenderer videoViewCountRenderer = 70044402;
     PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
+    MetadataRowContainerRenderer metadataRowContainerRenderer = 71271859;
     AccessibilityData accessibilityData = 75730170;
     LikeButtonViewModel likeButtonViewModel = 79971800;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
+    VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
     EndscreenRenderer endscreenRenderer = 106301526;
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
+    SubscriptionNotificationToggleButtonRenderer subscriptionNotificationToggleButtonRenderer = 136076983;
     MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
     SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 452133865;
+    SaveButtonViewModel saveButtonViewModel = 461054335;
   }
 }
 
@@ -35,7 +42,7 @@ message ResultsContainer {
 message PlayerCaptionsTracklistRenderer {
   message Caption {
     string baseUrl = 1;
-    InnerTube.Protobuf.Text name = 2;
+    Endpoints.Text name = 2;
     string vssId = 3;
     string language = 4;
     string kind = 5;
@@ -53,7 +60,7 @@ message PlayerCaptionsTracklistRenderer {
 
   message TranslationLanguage {
     string languageCode = 1;
-    InnerTube.Protobuf.Text languageName = 2;
+    Endpoints.Text languageName = 2;
     repeated int32 excludeAudioTrackIndices = 4;
   }
 
@@ -63,10 +70,43 @@ message PlayerCaptionsTracklistRenderer {
   int32 defaultAudioTrackIndex = 4;
 }
 
+message VideoOwnerRenderer {
+  message SubscriptionButton {
+    int32 type = 1;
+  }
+  
+  Thumbnails thumbnail = 1;
+  Endpoints.Text title = 2;
+  SubscriptionButton subscriptionButton = 3;
+  Endpoints.Endpoint navigationEndpoint = 4;
+  Endpoints.Text subscriberCountText = 5;
+  bytes trackingParams = 8;
+}
+
 message TwoColumnWatchNextResults {
   RendererWrapper results = 1;
   RendererWrapper secondaryResults = 2;
   RendererWrapper autoplay = 4;
+}
+
+message SubscribeButtonRenderer {
+  Endpoints.Text buttonText = 1;
+  bool subscribed = 3;
+  bool enabled = 4;
+  int32 type = 6;
+  string channelId = 7;
+  bool showPreferences = 8;
+  Endpoints.Text subscribedButtonText = 12;
+  Endpoints.Text unsubscribedButtonText = 13;
+  bytes trackingParams = 15;
+  Endpoints.Text unsubscribeButtonText = 16;
+  RendererWrapper subscribeAccessibility = 25;
+  RendererWrapper unsubscribeAccessibility = 26;
+  RendererWrapper notificationPreferenceButton = 27;
+  string targetId = 31;
+  string subscribedEntityKey = 36;
+  repeated Endpoints.Endpoint onSubscribeEndpoints = 38;
+  repeated Endpoints.Endpoint onUnsubscribeEndpoints = 39;
 }
 
 message PlayerStoryboardSpecRenderer {
@@ -84,8 +124,8 @@ message PlayerMicroformatRenderer {
 
   Thumbnails thumbnail = 1;
   Embed embed = 2;
-  Text title = 3;
-  Text description = 4;
+  Endpoints.Text title = 3;
+  Endpoints.Text description = 4;
   int32 lengthSeconds = 5;
   string ownerProfileUrl = 6;
   string externalChannelId = 8;
@@ -100,10 +140,11 @@ message PlayerMicroformatRenderer {
   string uploadDate = 19;
 }
 
-message ButtonViewModel {
-  Text title = 5;
+message ShareButtonViewModel {
+  Endpoints.Text title = 5;
   string accessibilityText = 11;
   RendererWrapper accessibilityData = 16;
+  optional Endpoints.Endpoint onTap = 7;
 }
 
 message MenuRenderer {
@@ -114,19 +155,30 @@ message MenuRenderer {
 }
 
 message MenuNavigationItemRenderer {
-  Text text = 1;
+  Endpoints.Text text = 1;
   Icon icon = 2;
   Endpoints.Endpoint endpoint = 3;
 }
 
+message MenuServiceItemRenderer {
+  Endpoints.Text text = 1;
+  Icon icon = 2;
+  Endpoints.Endpoint serviceEndpoint = 3;
+}
+
 message VideoViewCountRenderer {
-  Text viewCount = 1;
-  Text shortViewCount = 4;
+  Endpoints.Text viewCount = 1;
+  Endpoints.Text shortViewCount = 4;
   int32 originalViewCount = 9;
 }
 
 message PlayerLiveStoryboardSpecRenderer {
   string spec = 1;
+}
+
+message MetadataRowContainerRenderer {
+  int32 collapsedItemCount = 2;
+  bytes trackingParams = 4;
 }
 
 message AccessibilityData {
@@ -135,20 +187,62 @@ message AccessibilityData {
 
 message LikeButtonViewModel {
   Icon icon = 1;
-  Text text = 6;
-  Text toggledText = 9;
+  Endpoints.Text text = 6;
+  Endpoints.Text toggledText = 9;
   AccessibilityData accessibilityText = 11;
   string tooltip = 14;
   string toggledTooltip = 15;
+  RendererWrapper toggledAccessibilityText = 19;
+  Endpoints.Endpoint endpoint = 17;
   string identifier = 24;
 }
 
 message VideoPrimaryInfoRenderer {
-  Text title = 1;
+  Endpoints.Text title = 1;
   RendererWrapper viewCount = 3;
   RendererWrapper videoActions = 4;
-  Text dateText = 14;
-  Text relativeDateText = 21;
+  Endpoints.Text dateText = 14;
+  Endpoints.Text relativeDateText = 21;
+}
+
+message VideoSecondaryInfoRenderer {
+  message AttributedDescription {
+    message CommandRun {
+      int32 startIndex = 1;
+      int32 length = 2;
+      Endpoints.Command command = 3;
+    }
+
+    message StyleRun {
+      message Extensions {
+        message ColorMapExtension {
+          map<string, uint32> colorMap = 1;
+        }
+
+        ColorMapExtension styleRunColorMapExtension = 289753726;
+      }
+
+      int32 startIndex = 1;
+      int32 length = 2;
+      Extensions styleRunExtensions = 10;
+      string fontName = 14;
+    }
+
+    string content = 1;
+    repeated CommandRun commandRuns = 5;
+    repeated StyleRun styleRuns = 6;
+  }
+
+  RendererWrapper owner = 1;
+  RendererWrapper subscribeButton = 4;
+  RendererWrapper metadataRowContainer = 5;
+  Endpoints.Text showMoreText = 6;
+  Endpoints.Text showLessText = 7;
+  bool defaultExpanded = 10;
+  int32 descriptionCollapsedLines = 11;
+  Endpoints.Command showMoreCommand = 12;
+  Endpoints.Command showLessCommand = 14;
+  AttributedDescription attributedDescription = 15;
 }
 
 message EndscreenRenderer {
@@ -174,18 +268,46 @@ message EndscreenElementRenderer {
   float aspectRatio = 9;
   int32 startMs = 10;
   int32 endMs = 11;
-  Text title = 12;
-  Text metadata = 13;
-  optional Text callToAction = 14;
-  optional Text dismiss = 15;
+  Endpoints.Text title = 12;
+  Endpoints.Text metadata = 13;
+  optional Endpoints.Text callToAction = 14;
+  optional Endpoints.Text dismiss = 15;
   InnerTube.Protobuf.Endpoints.Endpoint endpoint = 16;
   string id = 31;
   RendererWrapper thumbnailOverlays = 32;
 }
 
 message ThumbnailOverlayTimeStatusRenderer {
-  InnerTube.Protobuf.Text text = 1;
+  Endpoints.Text text = 1;
   int32 style = 2;
+}
+
+message SubscriptionNotificationToggleButtonRenderer {
+  message State {
+    message StateWrapper {
+      message State {
+        int32 style = 1;
+        int32 size = 2;
+        bool isDisabled = 3;
+        Icon icon = 8;
+        AccessibilityData accessibility = 10;
+        bytes trackingParams = 13;
+        RendererWrapper accessibilityData = 16;
+      }
+      
+      State buttonRenderer = 65153809;
+    }
+    int32 stateId = 1;
+    int32 nextStateId = 2;
+    StateWrapper state = 3;
+  }
+  
+  repeated State states = 1;
+  int32 currentStateId = 2;
+  bytes trackingParams = 6;
+  Endpoints.Command command = 10;
+  string targetId = 11;
+  Icon secondaryIcon = 13;
 }
 
 message MenuFlexibleItemRenderer {
@@ -196,4 +318,14 @@ message MenuFlexibleItemRenderer {
 message SegmentedLikeDislikeButtonViewModel {
   RendererWrapper likeButtonViewModel = 1;
   RendererWrapper dislikeButtonViewModel = 2;
+}
+
+message SaveButtonViewModel {
+  string iconName = 2;
+  string title = 3;
+  Endpoints.Endpoint onTap = 4;
+  string accessibilityText = 5;
+  int32 style = 7;
+  int32 type = 11;
+  int32 buttonSize = 13;
 }

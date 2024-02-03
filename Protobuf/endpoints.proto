@@ -2,7 +2,29 @@ syntax = "proto3";
 
 package InnerTube.Protobuf.Endpoints;
 
+import "google/protobuf/wrappers.proto";
 import "general.proto";
+
+// moved from general.proto because we cant import endpoints.proto there
+// i feel like they have a single monolith of a .proto file over at youtube
+message Text {
+  message Run {
+    string text = 1;
+    optional Endpoint navigationEndpoint = 5;
+  }
+
+  message AccessibilityWrapper {
+    message AccessibilityData {
+      string label = 2;
+    }
+
+    AccessibilityData accessibilityData = 75730170;
+  }
+
+  repeated Run runs = 1;
+  AccessibilityWrapper accessibility = 3;
+  optional string simpleText = 4;
+}
 
 message Endpoint {
   message CommandMetadata {
@@ -18,22 +40,60 @@ message Endpoint {
     WatchEndpoint watchEndpoint = 48687757;
     UrlEndpoint urlEndpoint = 49679253;
     BrowseEndpoint browseEndpoint = 48687626;
+    SignInEndpoint signInEndpoint = 49706687;
+    SubscribeEndpoint subscribeEndpoint = 68997349;
+    UnsubscribeEndpoint unsubscribeEndpoint = 68997401;
+    ModifyChannelNotificationPreferenceEndpoint modifyChannelNotificationPreferenceEndpoint = 90195593;
     ModalEndpoint modalEndpoint = 106613511;
+    SignalServiceEndpoint signalServiceEndpoint = 124290411;
+    SerialCommand serialCommand = 170382688;
   }
 }
 
 message WatchEndpoint {
+  message WatchEndpointSupportedOnesieConfig {
+    message Html5PlaybackOnesieConfig {
+      // i dont wanna write a new message for this thing.
+      optional google.protobuf.StringValue commonConfig = 1;
+    }
+
+    // pretty sure we need a oneof here
+    optional Html5PlaybackOnesieConfig html5PlaybackOnesieConfig = 268150231;
+  }
+
   string videoId = 1;
   optional string playlistId = 2;
+  optional WatchEndpointSupportedOnesieConfig watchEndpointSupportedOnesieConfig = 79857908;
 }
 
 message UrlEndpoint {
   string url = 1;
   int32 target = 2;
+  optional bool nofollow = 17;
 }
 
 message BrowseEndpoint {
   string browseId = 2;
+  optional string canonicalBaseUrl = 4;
+}
+
+message SignInEndpoint {
+  Endpoint nextEndpoint = 2;
+  string idamTag = 8;
+}
+
+message SubscribeEndpoint {
+  repeated string channelIds = 1;
+  string params = 3;
+}
+
+message UnsubscribeEndpoint {
+  repeated string channelIds = 1;
+  bytes trackingParams = 4;
+}
+
+message ModifyChannelNotificationPreferenceEndpoint {
+  string params = 1;
 }
 
 message ModalEndpoint {
@@ -43,6 +103,7 @@ message ModalEndpoint {
       int32 size = 2;
       bool isDisabled = 3;
       Text text = 5;
+      Endpoint serviceEndpoint = 7;
       Endpoint navigationEndpoint = 9;
     }
 
@@ -61,9 +122,87 @@ message ModalEndpoint {
   ModalWithTitleAndButtonWrapper modalWithTitleAndButtonWrapper = 1;
 }
 
+message SignalServiceEndpoint {
+  int32 signal = 1;
+  repeated Command commands = 2;
+}
+
+message SerialCommand {
+  repeated Command commands = 1;
+}
+
+message Command {
+  optional bytes clickTrackingParams = 2;
+  oneof commandType {
+    LogGestureCommand logGestureCommand = 241780379;
+    ChangeEngagementPanelVisibilityAction changeEngagementPanelVisibilityAction = 247256721;
+    OpenPopupAction openPopupAction = 128491736;
+    Endpoint innertubeCommand = 169495254;
+    CommandExecutorCommand commandExecutorCommand = 174116574;
+    ScrollToEngagementPanelCommand scrollToEngagementPanelCommand = 344410484;
+  }
+}
+
+message LogGestureCommand {
+  int32 gestureType = 1;
+  bytes trackingParams = 2;
+}
+
+message ChangeEngagementPanelVisibilityAction {
+  string targetId = 1;
+  int32 visibility = 2;
+}
+
+message OpenPopupAction {
+  message MenuPopupRendererWrapper {
+    message ConfirmDialogRenderer {
+      bytes trackingParams = 7;
+      Text dialogMessages = 8;
+      ModalEndpoint.ButtonWrapper confirmButton = 12;
+      ModalEndpoint.ButtonWrapper cancelButton = 13;
+      bool primaryIsCancel = 19;
+    }
+
+    message MenuPopupRenderer {
+      message MenuServiceItemRendererWrapper {
+        message MenuServiceItemRenderer {
+          Text text = 1;
+          Icon icon = 2;
+          Endpoint serviceEndpoint = 3;
+          bytes trackingParams = 5;
+          bool isSelected = 13;
+        }
+
+        MenuServiceItemRenderer menuServiceItemRenderer = 66441155;
+      }
+
+      repeated MenuServiceItemRendererWrapper items = 1;
+    }
+
+    oneof popupRendererType {
+      ConfirmDialogRenderer confirmDialogRenderer = 64099105;
+      MenuPopupRenderer menuPopupRenderer = 144495266;
+    }
+
+  }
+
+  MenuPopupRendererWrapper popup = 1;
+  int32 popupType = 2;
+}
+
+message CommandExecutorCommand {
+  repeated Command commands = 1;
+}
+
+message ScrollToEngagementPanelCommand {
+  string targetId = 1;
+}
+
 message WebCommandMetadata {
   string url = 1;
+  bool sendPost = 2;
   int32 webPageType = 3;
   bool ignoreNavigation = 4;
   int32 rootVe = 5;
+  string apiUrl = 7;
 }
