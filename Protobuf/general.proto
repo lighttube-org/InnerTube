@@ -4,6 +4,7 @@ package InnerTube.Protobuf;
 
 message Thumbnails {
   repeated Thumbnail thumbnails = 1;
+  optional AccessibilityWrapper accessibility = 4;
 }
 
 message Thumbnail {
@@ -14,4 +15,12 @@ message Thumbnail {
 
 message Icon {
   int32 iconType = 1;
+}
+
+message AccessibilityData {
+  string label = 2;
+}
+
+message AccessibilityWrapper {
+  AccessibilityData accessibilityData = 75730170;
 }

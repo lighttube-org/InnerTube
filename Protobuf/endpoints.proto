@@ -13,14 +13,6 @@ message Text {
     optional Endpoint navigationEndpoint = 5;
   }
 
-  message AccessibilityWrapper {
-    message AccessibilityData {
-      string label = 2;
-    }
-
-    AccessibilityData accessibilityData = 75730170;
-  }
-
   repeated Run runs = 1;
   AccessibilityWrapper accessibility = 3;
   optional string simpleText = 4;
@@ -41,12 +33,23 @@ message Endpoint {
     UrlEndpoint urlEndpoint = 49679253;
     BrowseEndpoint browseEndpoint = 48687626;
     SignInEndpoint signInEndpoint = 49706687;
+    PlaylistEditEndpoint playlistEditEndpoint = 60666189;
     SubscribeEndpoint subscribeEndpoint = 68997349;
     UnsubscribeEndpoint unsubscribeEndpoint = 68997401;
     ModifyChannelNotificationPreferenceEndpoint modifyChannelNotificationPreferenceEndpoint = 90195593;
     ModalEndpoint modalEndpoint = 106613511;
     SignalServiceEndpoint signalServiceEndpoint = 124290411;
+    CreatePlaylistServiceEndpoint createPlaylistServiceEndpoint = 124747980;
+    OpenPopupAction openPopupAction = 128491736;
+    Endpoint innertubeCommand = 169495254;
     SerialCommand serialCommand = 170382688;
+    ShareEntityServiceEndpoint shareEntityServiceEndpoint = 171169820;
+    CommandExecutorCommand commandExecutorCommand = 174116574;
+    LogGestureCommand logGestureCommand = 241780379;
+    AddToPlaylistCommand addToPlaylistCommand = 243789987;
+    ChangeEngagementPanelVisibilityAction changeEngagementPanelVisibilityAction = 247256721;
+    ContinuationCommand continuationCommand = 280298060;
+    ScrollToEngagementPanelCommand scrollToEngagementPanelCommand = 344410484;
   }
 }
 
@@ -61,9 +64,23 @@ message WatchEndpoint {
     optional Html5PlaybackOnesieConfig html5PlaybackOnesieConfig = 268150231;
   }
 
+  message PrefetchHintConfigWrapper {
+    message PrefetchHintConfig {
+      int32 prefetchPriority = 1;
+      int64 countdownUiRelativeSecondsPrefetchCondition = 5;
+    }
+
+    // pretty sure we need a oneof here
+    optional PrefetchHintConfig prefetchHintConfig = 68429767;
+  }
+
   string videoId = 1;
   optional string playlistId = 2;
+  string params = 5;
+  string playerParams = 9;
+  optional bool nofollow = 17;
   optional WatchEndpointSupportedOnesieConfig watchEndpointSupportedOnesieConfig = 79857908;
+  optional PrefetchHintConfigWrapper watchEndpointSupportedPrefetchConfig = 68146959;
 }
 
 message UrlEndpoint {
@@ -80,6 +97,17 @@ message BrowseEndpoint {
 message SignInEndpoint {
   Endpoint nextEndpoint = 2;
   string idamTag = 8;
+}
+
+message PlaylistEditEndpoint {
+  message Action {
+    string addedVideoId = 2;
+    int32 action = 6;
+    string removedVideoId = 17;
+  }
+
+  string playlistId = 1;
+  repeated Action actions = 2;
 }
 
 message SubscribeEndpoint {
@@ -124,23 +152,16 @@ message ModalEndpoint {
 
 message SignalServiceEndpoint {
   int32 signal = 1;
-  repeated Command commands = 2;
+  repeated Endpoint commands = 2;
 }
 
 message SerialCommand {
-  repeated Command commands = 1;
+  repeated Endpoint commands = 1;
 }
 
-message Command {
-  optional bytes clickTrackingParams = 2;
-  oneof commandType {
-    LogGestureCommand logGestureCommand = 241780379;
-    ChangeEngagementPanelVisibilityAction changeEngagementPanelVisibilityAction = 247256721;
-    OpenPopupAction openPopupAction = 128491736;
-    Endpoint innertubeCommand = 169495254;
-    CommandExecutorCommand commandExecutorCommand = 174116574;
-    ScrollToEngagementPanelCommand scrollToEngagementPanelCommand = 344410484;
-  }
+message ContinuationCommand {
+  string token = 1;
+  int32 request = 2;
 }
 
 message LogGestureCommand {
@@ -148,21 +169,27 @@ message LogGestureCommand {
   bytes trackingParams = 2;
 }
 
+message AddToPlaylistCommand {
+  bool openMiniplayer = 1;
+  bool openListPanel = 2;
+  string videoId = 3;
+  int32 listType = 5;
+  Endpoint onCreateListCommand = 6;
+  repeated string videoIds = 8;
+}
+
 message ChangeEngagementPanelVisibilityAction {
   string targetId = 1;
   int32 visibility = 2;
 }
 
+message CreatePlaylistServiceEndpoint {
+  repeated string videoIds = 1;
+  string params = 4;
+}
+
 message OpenPopupAction {
   message MenuPopupRendererWrapper {
-    message ConfirmDialogRenderer {
-      bytes trackingParams = 7;
-      Text dialogMessages = 8;
-      ModalEndpoint.ButtonWrapper confirmButton = 12;
-      ModalEndpoint.ButtonWrapper cancelButton = 13;
-      bool primaryIsCancel = 19;
-    }
-
     message MenuPopupRenderer {
       message MenuServiceItemRendererWrapper {
         message MenuServiceItemRenderer {
@@ -179,19 +206,44 @@ message OpenPopupAction {
       repeated MenuServiceItemRendererWrapper items = 1;
     }
 
-    oneof popupRendererType {
-      ConfirmDialogRenderer confirmDialogRenderer = 64099105;
-      MenuPopupRenderer menuPopupRenderer = 144495266;
+    message ConfirmDialogRenderer {
+      bytes trackingParams = 7;
+      Text dialogMessages = 8;
+      ModalEndpoint.ButtonWrapper confirmButton = 12;
+      ModalEndpoint.ButtonWrapper cancelButton = 13;
+      bool primaryIsCancel = 19;
     }
 
+    message NotificationActionRenderer {
+      Text responseText = 1;
+      bytes trackingParams = 4;
+    }
+
+    message UnifiedSharePanelRenderer {
+      bytes trackingParams = 6;
+      bool showLoadingSpinner = 15;
+    }
+
+    oneof popupRendererType {
+      MenuPopupRenderer menuPopupRenderer = 144495266;
+      ConfirmDialogRenderer confirmDialogRenderer = 64099105;
+      UnifiedSharePanelRenderer unifiedSharePanelRenderer = 87759049;
+      NotificationActionRenderer notificationActionRenderer = 96140188;
+    }
   }
 
   MenuPopupRendererWrapper popup = 1;
   int32 popupType = 2;
+  bool beReused = 7;
+}
+
+message ShareEntityServiceEndpoint {
+  string serializedShareEntity = 1;
+  repeated Endpoint commands = 4;
 }
 
 message CommandExecutorCommand {
-  repeated Command commands = 1;
+  repeated Endpoint commands = 1;
 }
 
 message ScrollToEngagementPanelCommand {

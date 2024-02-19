@@ -7,9 +7,13 @@ import "endpoints.proto";
 
 message RendererWrapper {
   oneof renderer {
+    Autoplay autoplay = 46659098;
     ResultsContainer resultsContainer = 49399797;
+    ItemSectionRenderer itemSectionRenderer = 50195462;
+    CompactVideoRenderer compactVideoRenderer = 50630979;
     PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
     VideoOwnerRenderer videoOwnerRenderer = 51779708;
+    SecondaryResults secondaryResults = 51779776;
     TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
@@ -28,15 +32,59 @@ message RendererWrapper {
     EndscreenRenderer endscreenRenderer = 106301526;
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
+    ThumbnailOverlayToggleButtonRenderer thumbnailOverlayToggleButtonRenderer = 128231774;
+    MetadataBadgeRenderer metadataBadgeRenderer = 128361622;
     SubscriptionNotificationToggleButtonRenderer subscriptionNotificationToggleButtonRenderer = 136076983;
+    ContinuationItemRenderer continuationItemRenderer = 159495980;
+    ThumbnailOverlayNowPlayingRenderer thumbnailOverlayNowPlayingRenderer = 228343999;
+    CommentsEntryPointHeaderRenderer commentsEntryPointHeaderRenderer = 275947328;
     MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
+    CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
     SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 452133865;
     SaveButtonViewModel saveButtonViewModel = 461054335;
   }
 }
 
+message Autoplay {
+  message Set {
+    int32 mode = 1;
+    Endpoints.Endpoint autoplayVideo = 2;
+  }
+
+  repeated Set sets = 1;
+  int32 countdownSecs = 3;
+  bytes trackingParams = 11;
+}
+
 message ResultsContainer {
   repeated RendererWrapper results = 1;
+}
+
+message ItemSectionRenderer {
+  repeated RendererWrapper contents = 1;
+  optional bytes trackingParams = 4;
+  optional string sectionIdentifier = 7;
+  optional string targetId = 13;
+}
+
+message CompactVideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Endpoints.Text text = 3;
+  Endpoints.Text longBylineText = 4;
+  Endpoints.Text publishedTimeText = 5;
+  Endpoints.Text viewCountText = 6;
+  Endpoints.Text lengthText = 7;
+  Endpoints.Endpoint navigationEndpoint = 8;
+  Endpoints.Text shortBylineText = 10;
+  repeated RendererWrapper badges = 13;
+  Thumbnails channelThumbnail = 14;
+  repeated RendererWrapper ownerBadges = 15;
+  bytes trackingParams = 18;
+  Endpoints.Text shortViewCountText = 23;
+  RendererWrapper menu = 25;
+  repeated RendererWrapper thumbnailOverlays = 32;
+  RendererWrapper accessibility = 36;
 }
 
 message PlayerCaptionsTracklistRenderer {
@@ -74,13 +122,19 @@ message VideoOwnerRenderer {
   message SubscriptionButton {
     int32 type = 1;
   }
-  
+
   Thumbnails thumbnail = 1;
   Endpoints.Text title = 2;
   SubscriptionButton subscriptionButton = 3;
   Endpoints.Endpoint navigationEndpoint = 4;
   Endpoints.Text subscriberCountText = 5;
   bytes trackingParams = 8;
+}
+
+message SecondaryResults {
+  repeated RendererWrapper results = 1;
+  optional bytes trackingParams = 4;
+  optional string targetId = 6;
 }
 
 message TwoColumnWatchNextResults {
@@ -151,7 +205,8 @@ message MenuRenderer {
   repeated RendererWrapper items = 1;
   repeated RendererWrapper topLevelButtons = 6;
   RendererWrapper accessibility = 10;
-  repeated RendererWrapper flexibleItems = 20;
+  bytes trackingParams = 4;
+  optional string targetId = 11;
 }
 
 message MenuNavigationItemRenderer {
@@ -164,6 +219,8 @@ message MenuServiceItemRenderer {
   Endpoints.Text text = 1;
   Icon icon = 2;
   Endpoints.Endpoint serviceEndpoint = 3;
+  bytes trackingParams = 5;
+  bool hasSeparator = 12;
 }
 
 message VideoViewCountRenderer {
@@ -179,10 +236,6 @@ message PlayerLiveStoryboardSpecRenderer {
 message MetadataRowContainerRenderer {
   int32 collapsedItemCount = 2;
   bytes trackingParams = 4;
-}
-
-message AccessibilityData {
-  string label = 2;
 }
 
 message LikeButtonViewModel {
@@ -210,7 +263,7 @@ message VideoSecondaryInfoRenderer {
     message CommandRun {
       int32 startIndex = 1;
       int32 length = 2;
-      Endpoints.Command command = 3;
+      Endpoints.Endpoint command = 3;
     }
 
     message StyleRun {
@@ -240,8 +293,8 @@ message VideoSecondaryInfoRenderer {
   Endpoints.Text showLessText = 7;
   bool defaultExpanded = 10;
   int32 descriptionCollapsedLines = 11;
-  Endpoints.Command showMoreCommand = 12;
-  Endpoints.Command showLessCommand = 14;
+  Endpoints.Endpoint showMoreCommand = 12;
+  Endpoints.Endpoint showLessCommand = 14;
   AttributedDescription attributedDescription = 15;
 }
 
@@ -282,6 +335,28 @@ message ThumbnailOverlayTimeStatusRenderer {
   int32 style = 2;
 }
 
+message ThumbnailOverlayToggleButtonRenderer {
+  bool isToggled = 1;
+  Icon untoggledIcon = 2;
+  Icon toggledIcon = 3;
+  string untoggledTooltip = 4;
+  string toggledTooltip = 5;
+  Endpoints.Endpoint untoggledServiceEndpoint = 6;
+  Endpoints.Endpoint toggledServiceEndpoint = 7;
+  RendererWrapper untoggledAccessibility = 8;
+  RendererWrapper toggledAccessibility = 9;
+  bytes trackingParams = 12;
+}
+
+message MetadataBadgeRenderer {
+  optional Icon icon = 1;
+  int32 style = 2;
+  optional string label = 3;
+  optional string tooltip = 4;
+  bytes trackingParams = 6;
+  optional AccessibilityData accessibilityData = 7;
+}
+
 message SubscriptionNotificationToggleButtonRenderer {
   message State {
     message StateWrapper {
@@ -294,25 +369,49 @@ message SubscriptionNotificationToggleButtonRenderer {
         bytes trackingParams = 13;
         RendererWrapper accessibilityData = 16;
       }
-      
+
       State buttonRenderer = 65153809;
     }
     int32 stateId = 1;
     int32 nextStateId = 2;
     StateWrapper state = 3;
   }
-  
+
   repeated State states = 1;
   int32 currentStateId = 2;
   bytes trackingParams = 6;
-  Endpoints.Command command = 10;
+  Endpoints.Endpoint command = 10;
   string targetId = 11;
   Icon secondaryIcon = 13;
+}
+
+message ContinuationItemRenderer {
+  int32 trigger = 1;
+  Endpoints.Endpoint continuationEndpoint = 2;
+}
+
+message ThumbnailOverlayNowPlayingRenderer {
+  Endpoints.Text text = 1;
+}
+
+message CommentsEntryPointHeaderRenderer {
+  Endpoints.Text headerText = 1;
+  Endpoints.Endpoint onTap = 2;
+  bytes trackingParams = 3;
+  Endpoints.Text commentCount = 5;
+  RendererWrapper contentRenderer = 12;
+  string targetId = 13;
 }
 
 message MenuFlexibleItemRenderer {
   RendererWrapper menuItem = 1;
   RendererWrapper topLevelButton = 2;
+}
+
+message CommentsEntryPointTeaserRenderer {
+  Thumbnails teaserAvatar = 1;
+  Endpoints.Text teaserContent = 2;
+  bytes trackingParams = 3;
 }
 
 message SegmentedLikeDislikeButtonViewModel {
