@@ -9,7 +9,7 @@ using pb = global::Google.Protobuf;
 using pbc = global::Google.Protobuf.Collections;
 using pbr = global::Google.Protobuf.Reflection;
 using scg = global::System.Collections.Generic;
-namespace InnerTube.Protobuf.Requests {
+namespace InnerTube.Protobuf.Responses {
 
   /// <summary>Holder for reflection information generated from player_response.proto</summary>
   public static partial class PlayerResponseReflection {
@@ -24,72 +24,70 @@ namespace InnerTube.Protobuf.Requests {
     static PlayerResponseReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "ChVwbGF5ZXJfcmVzcG9uc2UucHJvdG8SG0lubmVyVHViZS5Qcm90b2J1Zi5S",
-            "ZXF1ZXN0cxoPcmVuZGVyZXJzLnByb3RvGg1nZW5lcmFsLnByb3RvIoYFCg5Q",
-            "bGF5ZXJSZXNwb25zZRJJChFwbGF5YWJpbGl0eVN0YXR1cxgCIAEoCzIuLklu",
-            "bmVyVHViZS5Qcm90b2J1Zi5SZXF1ZXN0cy5QbGF5YWJpbGl0eVN0YXR1cxJB",
-            "Cg1zdHJlYW1pbmdEYXRhGAQgASgLMiouSW5uZXJUdWJlLlByb3RvYnVmLlJl",
-            "cXVlc3RzLlN0cmVhbWluZ0RhdGESRAoIY2FwdGlvbnMYCiABKAsyLS5Jbm5l",
-            "clR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlckgAiAEB",
-            "Ej8KDHZpZGVvRGV0YWlscxgLIAEoCzIpLklubmVyVHViZS5Qcm90b2J1Zi5S",
-            "ZXF1ZXN0cy5WaWRlb0RldGFpbHMSRwoLc3Rvcnlib2FyZHMYECABKAsyLS5J",
-            "bm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlckgB",
-            "iAEBEkcKC21pY3JvZm9ybWF0GBMgASgLMi0uSW5uZXJUdWJlLlByb3RvYnVm",
-            "LlJlbmRlcmVycy5SZW5kZXJlcldyYXBwZXJIAogBARJBCgVjYXJkcxgUIAEo",
-            "CzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJXcmFw",
-            "cGVySAOIAQESRQoJZW5kc2NyZWVuGCAgASgLMi0uSW5uZXJUdWJlLlByb3Rv",
-            "YnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBwZXJIBIgBAUILCglfY2FwdGlv",
-            "bnNCDgoMX3N0b3J5Ym9hcmRzQg4KDF9taWNyb2Zvcm1hdEIICgZfY2FyZHNC",
-            "DAoKX2VuZHNjcmVlbiLCAgoRUGxheWFiaWxpdHlTdGF0dXMSRQoGc3RhdHVz",
-            "GAEgASgOMjUuSW5uZXJUdWJlLlByb3RvYnVmLlJlcXVlc3RzLlBsYXlhYmls",
-            "aXR5U3RhdHVzLlN0YXR1cxITCgZyZWFzb24YAiABKAlIAIgBARIcCg9wbGF5",
-            "YWJsZUluRW1iZWQYCSABKAhIAYgBARIWCglzdWJyZWFzb24YFiABKAlIAogB",
-            "ARIaCg1jb250ZXh0UGFyYW1zGB8gASgJSAOIAQEiQAoGU3RhdHVzEgYKAk9L",
-            "EAASEgoOTE9HSU5fUkVRVUlSRUQQAxIaChZDT05URU5UX0NIRUNLX1JFUVVJ",
-            "UkVEEARCCQoHX3JlYXNvbkISChBfcGxheWFibGVJbkVtYmVkQgwKCl9zdWJy",
-            "ZWFzb25CEAoOX2NvbnRleHRQYXJhbXMi/wEKDVN0cmVhbWluZ0RhdGESGAoQ",
-            "ZXhwaXJlc0luU2Vjb25kcxgBIAEoBRI0Cgdmb3JtYXRzGAIgAygLMiMuSW5u",
-            "ZXJUdWJlLlByb3RvYnVmLlJlcXVlc3RzLkZvcm1hdBI8Cg9hZGFwdGl2ZUZv",
-            "cm1hdHMYAyADKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYuUmVxdWVzdHMuRm9y",
-            "bWF0EhwKD2Rhc2hNYW5pZmVzdFVybBgEIAEoCUgAiAEBEhsKDmhsc01hbmlm",
-            "ZXN0VXJsGAUgASgJSAGIAQFCEgoQX2Rhc2hNYW5pZmVzdFVybEIRCg9faGxz",
-            "TWFuaWZlc3RVcmwirQUKBkZvcm1hdBIMCgRpdGFnGAEgASgFEgsKA3VybBgC",
-            "IAEoCRIMCgRtaW1lGAUgASgJEg8KB2JpdHJhdGUYBiABKAUSDQoFd2lkdGgY",
-            "ByABKAUSDgoGaGVpZ2h0GAggASgFEjoKCWluaXRSYW5nZRgJIAEoCzIiLklu",
-            "bmVyVHViZS5Qcm90b2J1Zi5SZXF1ZXN0cy5SYW5nZUgAiAEBEjsKCmluZGV4",
-            "UmFuZ2UYCiABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYuUmVxdWVzdHMuUmFu",
-            "Z2VIAYgBARIUCgxsYXN0TW9kaWZpZWQYCyABKAQSFQoNY29udGVudExlbmd0",
-            "aBgMIAEoBBIPCgdxdWFsaXR5GBAgASgJEgsKA2ZwcxgZIAEoBRISCgV4dGFn",
-            "cxgXIAEoDEgCiAEBEhQKDHF1YWxpdHlMYWJlbBgaIAEoCRJACgphdWRpb1Ry",
-            "YWNrGBwgASgLMicuSW5uZXJUdWJlLlByb3RvYnVmLlJlcXVlc3RzLkF1ZGlv",
-            "VHJhY2tIA4gBARIWCg5hdmVyYWdlQml0cmF0ZRgfIAEoBRIRCgljb2xvcklu",
-            "Zm8YISABKAwSFwoPaGlnaFJlcGxpY2F0aW9uGCcgASgIEhgKEGFwcHJveER1",
-            "cmF0aW9uTXMYLCABKAUSHAoPYXVkaW9TYW1wbGVSYXRlGC0gASgFSASIAQES",
-            "GgoNYXVkaW9DaGFubmVscxguIAEoBUgFiAEBEhcKCmxvdWRuZXNzRGIYLyAB",
-            "KAJIBogBAUIMCgpfaW5pdFJhbmdlQg0KC19pbmRleFJhbmdlQggKBl94dGFn",
-            "c0INCgtfYXVkaW9UcmFja0ISChBfYXVkaW9TYW1wbGVSYXRlQhAKDl9hdWRp",
-            "b0NoYW5uZWxzQg0KC19sb3VkbmVzc0RiIiMKBVJhbmdlEg0KBXN0YXJ0GAMg",
-            "ASgFEgsKA2VuZBgEIAEoBSJFCgpBdWRpb1RyYWNrEhMKC2Rpc3BsYXlOYW1l",
-            "GAQgASgJEgoKAmlkGAUgASgJEhYKDmF1ZGlvSXNEZWZhdWx0GAYgASgIIuIC",
-            "CgxWaWRlb0RldGFpbHMSDwoHdmlkZW9JZBgBIAEoCRINCgV0aXRsZRgPIAEo",
-            "CRIVCg1sZW5ndGhTZWNvbmRzGBAgASgFEhAKCGtleXdvcmRzGBIgAygJEhEK",
-            "CWNoYW5uZWxJZBgTIAEoCRIWCg5pc093bmVyVmlld2luZxgUIAEoCBIYChBz",
-            "aG9ydERlc2NyaXB0aW9uGBUgASgJEhMKC2lzQ3Jhd2xhYmxlGBYgASgIEjEK",
-            "CXRodW1ibmFpbBgZIAEoCzIeLklubmVyVHViZS5Qcm90b2J1Zi5UaHVtYm5h",
-            "aWxzEhQKDGFsbG93UmF0aW5ncxgfIAEoCBIRCgl2aWV3Q291bnQYICABKAkS",
-            "EQoJaXNQcml2YXRlGCUgASgIEg4KBmF1dGhvchghIAEoCRIZChFpc1VucGx1",
-            "Z2dlZENvcnB1cxgmIAEoCBIVCg1pc0xpdmVDb250ZW50GCkgASgIYgZwcm90",
-            "bzM="));
+            "ChVwbGF5ZXJfcmVzcG9uc2UucHJvdG8SHElubmVyVHViZS5Qcm90b2J1Zi5S",
+            "ZXNwb25zZXMaD3JlbmRlcmVycy5wcm90bxoNZ2VuZXJhbC5wcm90byK8BAoO",
+            "UGxheWVyUmVzcG9uc2USSgoRcGxheWFiaWxpdHlTdGF0dXMYAiABKAsyLy5J",
+            "bm5lclR1YmUuUHJvdG9idWYuUmVzcG9uc2VzLlBsYXlhYmlsaXR5U3RhdHVz",
+            "EkIKDXN0cmVhbWluZ0RhdGEYBCABKAsyKy5Jbm5lclR1YmUuUHJvdG9idWYu",
+            "UmVzcG9uc2VzLlN0cmVhbWluZ0RhdGESRAoIY2FwdGlvbnMYCiABKAsyLS5J",
+            "bm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlckgA",
+            "iAEBEkAKDHZpZGVvRGV0YWlscxgLIAEoCzIqLklubmVyVHViZS5Qcm90b2J1",
+            "Zi5SZXNwb25zZXMuVmlkZW9EZXRhaWxzEkcKC3N0b3J5Ym9hcmRzGBAgASgL",
+            "Mi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBw",
+            "ZXJIAYgBARJHCgttaWNyb2Zvcm1hdBgTIAEoCzItLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJXcmFwcGVySAKIAQESRQoJZW5kc2Ny",
+            "ZWVuGCAgASgLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5k",
+            "ZXJlcldyYXBwZXJIA4gBAUILCglfY2FwdGlvbnNCDgoMX3N0b3J5Ym9hcmRz",
+            "Qg4KDF9taWNyb2Zvcm1hdEIMCgpfZW5kc2NyZWVuIsMCChFQbGF5YWJpbGl0",
+            "eVN0YXR1cxJGCgZzdGF0dXMYASABKA4yNi5Jbm5lclR1YmUuUHJvdG9idWYu",
+            "UmVzcG9uc2VzLlBsYXlhYmlsaXR5U3RhdHVzLlN0YXR1cxITCgZyZWFzb24Y",
+            "AiABKAlIAIgBARIcCg9wbGF5YWJsZUluRW1iZWQYCSABKAhIAYgBARIWCglz",
+            "dWJyZWFzb24YFiABKAlIAogBARIaCg1jb250ZXh0UGFyYW1zGB8gASgJSAOI",
+            "AQEiQAoGU3RhdHVzEgYKAk9LEAASEgoOTE9HSU5fUkVRVUlSRUQQAxIaChZD",
+            "T05URU5UX0NIRUNLX1JFUVVJUkVEEARCCQoHX3JlYXNvbkISChBfcGxheWFi",
+            "bGVJbkVtYmVkQgwKCl9zdWJyZWFzb25CEAoOX2NvbnRleHRQYXJhbXMigQIK",
+            "DVN0cmVhbWluZ0RhdGESGAoQZXhwaXJlc0luU2Vjb25kcxgBIAEoBRI1Cgdm",
+            "b3JtYXRzGAIgAygLMiQuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5G",
+            "b3JtYXQSPQoPYWRhcHRpdmVGb3JtYXRzGAMgAygLMiQuSW5uZXJUdWJlLlBy",
+            "b3RvYnVmLlJlc3BvbnNlcy5Gb3JtYXQSHAoPZGFzaE1hbmlmZXN0VXJsGAQg",
+            "ASgJSACIAQESGwoOaGxzTWFuaWZlc3RVcmwYBSABKAlIAYgBAUISChBfZGFz",
+            "aE1hbmlmZXN0VXJsQhEKD19obHNNYW5pZmVzdFVybCKwBQoGRm9ybWF0EgwK",
+            "BGl0YWcYASABKAUSCwoDdXJsGAIgASgJEgwKBG1pbWUYBSABKAkSDwoHYml0",
+            "cmF0ZRgGIAEoBRINCgV3aWR0aBgHIAEoBRIOCgZoZWlnaHQYCCABKAUSOwoJ",
+            "aW5pdFJhbmdlGAkgASgLMiMuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNl",
+            "cy5SYW5nZUgAiAEBEjwKCmluZGV4UmFuZ2UYCiABKAsyIy5Jbm5lclR1YmUu",
+            "UHJvdG9idWYuUmVzcG9uc2VzLlJhbmdlSAGIAQESFAoMbGFzdE1vZGlmaWVk",
+            "GAsgASgEEhUKDWNvbnRlbnRMZW5ndGgYDCABKAQSDwoHcXVhbGl0eRgQIAEo",
+            "CRILCgNmcHMYGSABKAUSEgoFeHRhZ3MYFyABKAxIAogBARIUCgxxdWFsaXR5",
+            "TGFiZWwYGiABKAkSQQoKYXVkaW9UcmFjaxgcIAEoCzIoLklubmVyVHViZS5Q",
+            "cm90b2J1Zi5SZXNwb25zZXMuQXVkaW9UcmFja0gDiAEBEhYKDmF2ZXJhZ2VC",
+            "aXRyYXRlGB8gASgFEhEKCWNvbG9ySW5mbxghIAEoDBIXCg9oaWdoUmVwbGlj",
+            "YXRpb24YJyABKAgSGAoQYXBwcm94RHVyYXRpb25NcxgsIAEoBRIcCg9hdWRp",
+            "b1NhbXBsZVJhdGUYLSABKAVIBIgBARIaCg1hdWRpb0NoYW5uZWxzGC4gASgF",
+            "SAWIAQESFwoKbG91ZG5lc3NEYhgvIAEoAkgGiAEBQgwKCl9pbml0UmFuZ2VC",
+            "DQoLX2luZGV4UmFuZ2VCCAoGX3h0YWdzQg0KC19hdWRpb1RyYWNrQhIKEF9h",
+            "dWRpb1NhbXBsZVJhdGVCEAoOX2F1ZGlvQ2hhbm5lbHNCDQoLX2xvdWRuZXNz",
+            "RGIiIwoFUmFuZ2USDQoFc3RhcnQYAyABKAUSCwoDZW5kGAQgASgFIkUKCkF1",
+            "ZGlvVHJhY2sSEwoLZGlzcGxheU5hbWUYBCABKAkSCgoCaWQYBSABKAkSFgoO",
+            "YXVkaW9Jc0RlZmF1bHQYBiABKAgi4gIKDFZpZGVvRGV0YWlscxIPCgd2aWRl",
+            "b0lkGAEgASgJEg0KBXRpdGxlGA8gASgJEhUKDWxlbmd0aFNlY29uZHMYECAB",
+            "KAUSEAoIa2V5d29yZHMYEiADKAkSEQoJY2hhbm5lbElkGBMgASgJEhYKDmlz",
+            "T3duZXJWaWV3aW5nGBQgASgIEhgKEHNob3J0RGVzY3JpcHRpb24YFSABKAkS",
+            "EwoLaXNDcmF3bGFibGUYFiABKAgSMQoJdGh1bWJuYWlsGBkgASgLMh4uSW5u",
+            "ZXJUdWJlLlByb3RvYnVmLlRodW1ibmFpbHMSFAoMYWxsb3dSYXRpbmdzGB8g",
+            "ASgIEhEKCXZpZXdDb3VudBggIAEoCRIRCglpc1ByaXZhdGUYJSABKAgSDgoG",
+            "YXV0aG9yGCEgASgJEhkKEWlzVW5wbHVnZ2VkQ29ycHVzGCYgASgIEhUKDWlz",
+            "TGl2ZUNvbnRlbnQYKSABKAhiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor, global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Requests.PlayerResponse), global::InnerTube.Protobuf.Requests.PlayerResponse.Parser, new[]{ "PlayabilityStatus", "StreamingData", "Captions", "VideoDetails", "Storyboards", "Microformat", "Cards", "Endscreen" }, new[]{ "Captions", "Storyboards", "Microformat", "Cards", "Endscreen" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Requests.PlayabilityStatus), global::InnerTube.Protobuf.Requests.PlayabilityStatus.Parser, new[]{ "Status", "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ typeof(global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Requests.StreamingData), global::InnerTube.Protobuf.Requests.StreamingData.Parser, new[]{ "ExpiresInSeconds", "Formats", "AdaptiveFormats", "DashManifestUrl", "HlsManifestUrl" }, new[]{ "DashManifestUrl", "HlsManifestUrl" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Requests.Format), global::InnerTube.Protobuf.Requests.Format.Parser, new[]{ "Itag", "Url", "Mime", "Bitrate", "Width", "Height", "InitRange", "IndexRange", "LastModified", "ContentLength", "Quality", "Fps", "Xtags", "QualityLabel", "AudioTrack", "AverageBitrate", "ColorInfo", "HighReplication", "ApproxDurationMs", "AudioSampleRate", "AudioChannels", "LoudnessDb" }, new[]{ "InitRange", "IndexRange", "Xtags", "AudioTrack", "AudioSampleRate", "AudioChannels", "LoudnessDb" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Requests.Range), global::InnerTube.Protobuf.Requests.Range.Parser, new[]{ "Start", "End" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Requests.AudioTrack), global::InnerTube.Protobuf.Requests.AudioTrack.Parser, new[]{ "DisplayName", "Id", "AudioIsDefault" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Requests.VideoDetails), global::InnerTube.Protobuf.Requests.VideoDetails.Parser, new[]{ "VideoId", "Title", "LengthSeconds", "Keywords", "ChannelId", "IsOwnerViewing", "ShortDescription", "IsCrawlable", "Thumbnail", "AllowRatings", "ViewCount", "IsPrivate", "Author", "IsUnpluggedCorpus", "IsLiveContent" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayerResponse), global::InnerTube.Protobuf.Responses.PlayerResponse.Parser, new[]{ "PlayabilityStatus", "StreamingData", "Captions", "VideoDetails", "Storyboards", "Microformat", "Endscreen" }, new[]{ "Captions", "Storyboards", "Microformat", "Endscreen" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus), global::InnerTube.Protobuf.Responses.PlayabilityStatus.Parser, new[]{ "Status", "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.StreamingData), global::InnerTube.Protobuf.Responses.StreamingData.Parser, new[]{ "ExpiresInSeconds", "Formats", "AdaptiveFormats", "DashManifestUrl", "HlsManifestUrl" }, new[]{ "DashManifestUrl", "HlsManifestUrl" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Format), global::InnerTube.Protobuf.Responses.Format.Parser, new[]{ "Itag", "Url", "Mime", "Bitrate", "Width", "Height", "InitRange", "IndexRange", "LastModified", "ContentLength", "Quality", "Fps", "Xtags", "QualityLabel", "AudioTrack", "AverageBitrate", "ColorInfo", "HighReplication", "ApproxDurationMs", "AudioSampleRate", "AudioChannels", "LoudnessDb" }, new[]{ "InitRange", "IndexRange", "Xtags", "AudioTrack", "AudioSampleRate", "AudioChannels", "LoudnessDb" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Range), global::InnerTube.Protobuf.Responses.Range.Parser, new[]{ "Start", "End" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.AudioTrack), global::InnerTube.Protobuf.Responses.AudioTrack.Parser, new[]{ "DisplayName", "Id", "AudioIsDefault" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.VideoDetails), global::InnerTube.Protobuf.Responses.VideoDetails.Parser, new[]{ "VideoId", "Title", "LengthSeconds", "Keywords", "ChannelId", "IsOwnerViewing", "ShortDescription", "IsCrawlable", "Thumbnail", "AllowRatings", "ViewCount", "IsPrivate", "Author", "IsUnpluggedCorpus", "IsLiveContent" }, null, null, null, null)
           }));
     }
     #endregion
@@ -111,7 +109,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Requests.PlayerResponseReflection.Descriptor.MessageTypes[0]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[0]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -137,7 +135,6 @@ namespace InnerTube.Protobuf.Requests {
       videoDetails_ = other.videoDetails_ != null ? other.videoDetails_.Clone() : null;
       storyboards_ = other.storyboards_ != null ? other.storyboards_.Clone() : null;
       microformat_ = other.microformat_ != null ? other.microformat_.Clone() : null;
-      cards_ = other.cards_ != null ? other.cards_.Clone() : null;
       endscreen_ = other.endscreen_ != null ? other.endscreen_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -150,13 +147,13 @@ namespace InnerTube.Protobuf.Requests {
 
     /// <summary>Field number for the "playabilityStatus" field.</summary>
     public const int PlayabilityStatusFieldNumber = 2;
-    private global::InnerTube.Protobuf.Requests.PlayabilityStatus playabilityStatus_;
+    private global::InnerTube.Protobuf.Responses.PlayabilityStatus playabilityStatus_;
     /// <summary>
     ///bytes context = 1;
     /// </summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Requests.PlayabilityStatus PlayabilityStatus {
+    public global::InnerTube.Protobuf.Responses.PlayabilityStatus PlayabilityStatus {
       get { return playabilityStatus_; }
       set {
         playabilityStatus_ = value;
@@ -165,10 +162,10 @@ namespace InnerTube.Protobuf.Requests {
 
     /// <summary>Field number for the "streamingData" field.</summary>
     public const int StreamingDataFieldNumber = 4;
-    private global::InnerTube.Protobuf.Requests.StreamingData streamingData_;
+    private global::InnerTube.Protobuf.Responses.StreamingData streamingData_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Requests.StreamingData StreamingData {
+    public global::InnerTube.Protobuf.Responses.StreamingData StreamingData {
       get { return streamingData_; }
       set {
         streamingData_ = value;
@@ -189,10 +186,10 @@ namespace InnerTube.Protobuf.Requests {
 
     /// <summary>Field number for the "videoDetails" field.</summary>
     public const int VideoDetailsFieldNumber = 11;
-    private global::InnerTube.Protobuf.Requests.VideoDetails videoDetails_;
+    private global::InnerTube.Protobuf.Responses.VideoDetails videoDetails_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Requests.VideoDetails VideoDetails {
+    public global::InnerTube.Protobuf.Responses.VideoDetails VideoDetails {
       get { return videoDetails_; }
       set {
         videoDetails_ = value;
@@ -220,18 +217,6 @@ namespace InnerTube.Protobuf.Requests {
       get { return microformat_; }
       set {
         microformat_ = value;
-      }
-    }
-
-    /// <summary>Field number for the "cards" field.</summary>
-    public const int CardsFieldNumber = 20;
-    private global::InnerTube.Protobuf.Renderers.RendererWrapper cards_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Renderers.RendererWrapper Cards {
-      get { return cards_; }
-      set {
-        cards_ = value;
       }
     }
 
@@ -268,7 +253,6 @@ namespace InnerTube.Protobuf.Requests {
       if (!object.Equals(VideoDetails, other.VideoDetails)) return false;
       if (!object.Equals(Storyboards, other.Storyboards)) return false;
       if (!object.Equals(Microformat, other.Microformat)) return false;
-      if (!object.Equals(Cards, other.Cards)) return false;
       if (!object.Equals(Endscreen, other.Endscreen)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -283,7 +267,6 @@ namespace InnerTube.Protobuf.Requests {
       if (videoDetails_ != null) hash ^= VideoDetails.GetHashCode();
       if (storyboards_ != null) hash ^= Storyboards.GetHashCode();
       if (microformat_ != null) hash ^= Microformat.GetHashCode();
-      if (cards_ != null) hash ^= Cards.GetHashCode();
       if (endscreen_ != null) hash ^= Endscreen.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -327,10 +310,6 @@ namespace InnerTube.Protobuf.Requests {
         output.WriteRawTag(154, 1);
         output.WriteMessage(Microformat);
       }
-      if (cards_ != null) {
-        output.WriteRawTag(162, 1);
-        output.WriteMessage(Cards);
-      }
       if (endscreen_ != null) {
         output.WriteRawTag(130, 2);
         output.WriteMessage(Endscreen);
@@ -369,10 +348,6 @@ namespace InnerTube.Protobuf.Requests {
         output.WriteRawTag(154, 1);
         output.WriteMessage(Microformat);
       }
-      if (cards_ != null) {
-        output.WriteRawTag(162, 1);
-        output.WriteMessage(Cards);
-      }
       if (endscreen_ != null) {
         output.WriteRawTag(130, 2);
         output.WriteMessage(Endscreen);
@@ -405,9 +380,6 @@ namespace InnerTube.Protobuf.Requests {
       if (microformat_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(Microformat);
       }
-      if (cards_ != null) {
-        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Cards);
-      }
       if (endscreen_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(Endscreen);
       }
@@ -425,13 +397,13 @@ namespace InnerTube.Protobuf.Requests {
       }
       if (other.playabilityStatus_ != null) {
         if (playabilityStatus_ == null) {
-          PlayabilityStatus = new global::InnerTube.Protobuf.Requests.PlayabilityStatus();
+          PlayabilityStatus = new global::InnerTube.Protobuf.Responses.PlayabilityStatus();
         }
         PlayabilityStatus.MergeFrom(other.PlayabilityStatus);
       }
       if (other.streamingData_ != null) {
         if (streamingData_ == null) {
-          StreamingData = new global::InnerTube.Protobuf.Requests.StreamingData();
+          StreamingData = new global::InnerTube.Protobuf.Responses.StreamingData();
         }
         StreamingData.MergeFrom(other.StreamingData);
       }
@@ -443,7 +415,7 @@ namespace InnerTube.Protobuf.Requests {
       }
       if (other.videoDetails_ != null) {
         if (videoDetails_ == null) {
-          VideoDetails = new global::InnerTube.Protobuf.Requests.VideoDetails();
+          VideoDetails = new global::InnerTube.Protobuf.Responses.VideoDetails();
         }
         VideoDetails.MergeFrom(other.VideoDetails);
       }
@@ -458,12 +430,6 @@ namespace InnerTube.Protobuf.Requests {
           Microformat = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
         }
         Microformat.MergeFrom(other.Microformat);
-      }
-      if (other.cards_ != null) {
-        if (cards_ == null) {
-          Cards = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
-        }
-        Cards.MergeFrom(other.Cards);
       }
       if (other.endscreen_ != null) {
         if (endscreen_ == null) {
@@ -488,14 +454,14 @@ namespace InnerTube.Protobuf.Requests {
             break;
           case 18: {
             if (playabilityStatus_ == null) {
-              PlayabilityStatus = new global::InnerTube.Protobuf.Requests.PlayabilityStatus();
+              PlayabilityStatus = new global::InnerTube.Protobuf.Responses.PlayabilityStatus();
             }
             input.ReadMessage(PlayabilityStatus);
             break;
           }
           case 34: {
             if (streamingData_ == null) {
-              StreamingData = new global::InnerTube.Protobuf.Requests.StreamingData();
+              StreamingData = new global::InnerTube.Protobuf.Responses.StreamingData();
             }
             input.ReadMessage(StreamingData);
             break;
@@ -509,7 +475,7 @@ namespace InnerTube.Protobuf.Requests {
           }
           case 90: {
             if (videoDetails_ == null) {
-              VideoDetails = new global::InnerTube.Protobuf.Requests.VideoDetails();
+              VideoDetails = new global::InnerTube.Protobuf.Responses.VideoDetails();
             }
             input.ReadMessage(VideoDetails);
             break;
@@ -526,13 +492,6 @@ namespace InnerTube.Protobuf.Requests {
               Microformat = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
             }
             input.ReadMessage(Microformat);
-            break;
-          }
-          case 162: {
-            if (cards_ == null) {
-              Cards = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
-            }
-            input.ReadMessage(Cards);
             break;
           }
           case 258: {
@@ -559,14 +518,14 @@ namespace InnerTube.Protobuf.Requests {
             break;
           case 18: {
             if (playabilityStatus_ == null) {
-              PlayabilityStatus = new global::InnerTube.Protobuf.Requests.PlayabilityStatus();
+              PlayabilityStatus = new global::InnerTube.Protobuf.Responses.PlayabilityStatus();
             }
             input.ReadMessage(PlayabilityStatus);
             break;
           }
           case 34: {
             if (streamingData_ == null) {
-              StreamingData = new global::InnerTube.Protobuf.Requests.StreamingData();
+              StreamingData = new global::InnerTube.Protobuf.Responses.StreamingData();
             }
             input.ReadMessage(StreamingData);
             break;
@@ -580,7 +539,7 @@ namespace InnerTube.Protobuf.Requests {
           }
           case 90: {
             if (videoDetails_ == null) {
-              VideoDetails = new global::InnerTube.Protobuf.Requests.VideoDetails();
+              VideoDetails = new global::InnerTube.Protobuf.Responses.VideoDetails();
             }
             input.ReadMessage(VideoDetails);
             break;
@@ -597,13 +556,6 @@ namespace InnerTube.Protobuf.Requests {
               Microformat = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
             }
             input.ReadMessage(Microformat);
-            break;
-          }
-          case 162: {
-            if (cards_ == null) {
-              Cards = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
-            }
-            input.ReadMessage(Cards);
             break;
           }
           case 258: {
@@ -636,7 +588,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Requests.PlayerResponseReflection.Descriptor.MessageTypes[1]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[1]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -673,10 +625,10 @@ namespace InnerTube.Protobuf.Requests {
 
     /// <summary>Field number for the "status" field.</summary>
     public const int StatusFieldNumber = 1;
-    private global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status status_ = global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status.Ok;
+    private global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status status_ = global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status.Ok;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status Status {
+    public global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status Status {
       get { return status_; }
       set {
         status_ = value;
@@ -815,7 +767,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      if (Status != global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status.Ok) hash ^= Status.GetHashCode();
+      if (Status != global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status.Ok) hash ^= Status.GetHashCode();
       if (HasReason) hash ^= Reason.GetHashCode();
       if (HasPlayableInEmbed) hash ^= PlayableInEmbed.GetHashCode();
       if (HasSubreason) hash ^= Subreason.GetHashCode();
@@ -838,7 +790,7 @@ namespace InnerTube.Protobuf.Requests {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      if (Status != global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status.Ok) {
+      if (Status != global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status.Ok) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Status);
       }
@@ -868,7 +820,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      if (Status != global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status.Ok) {
+      if (Status != global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status.Ok) {
         output.WriteRawTag(8);
         output.WriteEnum((int) Status);
       }
@@ -898,7 +850,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      if (Status != global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status.Ok) {
+      if (Status != global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status.Ok) {
         size += 1 + pb::CodedOutputStream.ComputeEnumSize((int) Status);
       }
       if (HasReason) {
@@ -925,7 +877,7 @@ namespace InnerTube.Protobuf.Requests {
       if (other == null) {
         return;
       }
-      if (other.Status != global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status.Ok) {
+      if (other.Status != global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status.Ok) {
         Status = other.Status;
       }
       if (other.HasReason) {
@@ -956,7 +908,7 @@ namespace InnerTube.Protobuf.Requests {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 8: {
-            Status = (global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status) input.ReadEnum();
+            Status = (global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status) input.ReadEnum();
             break;
           }
           case 18: {
@@ -991,7 +943,7 @@ namespace InnerTube.Protobuf.Requests {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 8: {
-            Status = (global::InnerTube.Protobuf.Requests.PlayabilityStatus.Types.Status) input.ReadEnum();
+            Status = (global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status) input.ReadEnum();
             break;
           }
           case 18: {
@@ -1046,7 +998,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Requests.PlayerResponseReflection.Descriptor.MessageTypes[2]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1094,23 +1046,23 @@ namespace InnerTube.Protobuf.Requests {
 
     /// <summary>Field number for the "formats" field.</summary>
     public const int FormatsFieldNumber = 2;
-    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Requests.Format> _repeated_formats_codec
-        = pb::FieldCodec.ForMessage(18, global::InnerTube.Protobuf.Requests.Format.Parser);
-    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Requests.Format> formats_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Requests.Format>();
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Responses.Format> _repeated_formats_codec
+        = pb::FieldCodec.ForMessage(18, global::InnerTube.Protobuf.Responses.Format.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format> formats_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::InnerTube.Protobuf.Requests.Format> Formats {
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format> Formats {
       get { return formats_; }
     }
 
     /// <summary>Field number for the "adaptiveFormats" field.</summary>
     public const int AdaptiveFormatsFieldNumber = 3;
-    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Requests.Format> _repeated_adaptiveFormats_codec
-        = pb::FieldCodec.ForMessage(26, global::InnerTube.Protobuf.Requests.Format.Parser);
-    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Requests.Format> adaptiveFormats_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Requests.Format>();
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Responses.Format> _repeated_adaptiveFormats_codec
+        = pb::FieldCodec.ForMessage(26, global::InnerTube.Protobuf.Responses.Format.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format> adaptiveFormats_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format>();
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::InnerTube.Protobuf.Requests.Format> AdaptiveFormats {
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format> AdaptiveFormats {
       get { return adaptiveFormats_; }
     }
 
@@ -1391,7 +1343,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Requests.PlayerResponseReflection.Descriptor.MessageTypes[3]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1517,10 +1469,10 @@ namespace InnerTube.Protobuf.Requests {
 
     /// <summary>Field number for the "initRange" field.</summary>
     public const int InitRangeFieldNumber = 9;
-    private global::InnerTube.Protobuf.Requests.Range initRange_;
+    private global::InnerTube.Protobuf.Responses.Range initRange_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Requests.Range InitRange {
+    public global::InnerTube.Protobuf.Responses.Range InitRange {
       get { return initRange_; }
       set {
         initRange_ = value;
@@ -1529,10 +1481,10 @@ namespace InnerTube.Protobuf.Requests {
 
     /// <summary>Field number for the "indexRange" field.</summary>
     public const int IndexRangeFieldNumber = 10;
-    private global::InnerTube.Protobuf.Requests.Range indexRange_;
+    private global::InnerTube.Protobuf.Responses.Range indexRange_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Requests.Range IndexRange {
+    public global::InnerTube.Protobuf.Responses.Range IndexRange {
       get { return indexRange_; }
       set {
         indexRange_ = value;
@@ -1627,10 +1579,10 @@ namespace InnerTube.Protobuf.Requests {
 
     /// <summary>Field number for the "audioTrack" field.</summary>
     public const int AudioTrackFieldNumber = 28;
-    private global::InnerTube.Protobuf.Requests.AudioTrack audioTrack_;
+    private global::InnerTube.Protobuf.Responses.AudioTrack audioTrack_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Requests.AudioTrack AudioTrack {
+    public global::InnerTube.Protobuf.Responses.AudioTrack AudioTrack {
       get { return audioTrack_; }
       set {
         audioTrack_ = value;
@@ -2144,13 +2096,13 @@ namespace InnerTube.Protobuf.Requests {
       }
       if (other.initRange_ != null) {
         if (initRange_ == null) {
-          InitRange = new global::InnerTube.Protobuf.Requests.Range();
+          InitRange = new global::InnerTube.Protobuf.Responses.Range();
         }
         InitRange.MergeFrom(other.InitRange);
       }
       if (other.indexRange_ != null) {
         if (indexRange_ == null) {
-          IndexRange = new global::InnerTube.Protobuf.Requests.Range();
+          IndexRange = new global::InnerTube.Protobuf.Responses.Range();
         }
         IndexRange.MergeFrom(other.IndexRange);
       }
@@ -2174,7 +2126,7 @@ namespace InnerTube.Protobuf.Requests {
       }
       if (other.audioTrack_ != null) {
         if (audioTrack_ == null) {
-          AudioTrack = new global::InnerTube.Protobuf.Requests.AudioTrack();
+          AudioTrack = new global::InnerTube.Protobuf.Responses.AudioTrack();
         }
         AudioTrack.MergeFrom(other.AudioTrack);
       }
@@ -2240,14 +2192,14 @@ namespace InnerTube.Protobuf.Requests {
           }
           case 74: {
             if (initRange_ == null) {
-              InitRange = new global::InnerTube.Protobuf.Requests.Range();
+              InitRange = new global::InnerTube.Protobuf.Responses.Range();
             }
             input.ReadMessage(InitRange);
             break;
           }
           case 82: {
             if (indexRange_ == null) {
-              IndexRange = new global::InnerTube.Protobuf.Requests.Range();
+              IndexRange = new global::InnerTube.Protobuf.Responses.Range();
             }
             input.ReadMessage(IndexRange);
             break;
@@ -2278,7 +2230,7 @@ namespace InnerTube.Protobuf.Requests {
           }
           case 226: {
             if (audioTrack_ == null) {
-              AudioTrack = new global::InnerTube.Protobuf.Requests.AudioTrack();
+              AudioTrack = new global::InnerTube.Protobuf.Responses.AudioTrack();
             }
             input.ReadMessage(AudioTrack);
             break;
@@ -2352,14 +2304,14 @@ namespace InnerTube.Protobuf.Requests {
           }
           case 74: {
             if (initRange_ == null) {
-              InitRange = new global::InnerTube.Protobuf.Requests.Range();
+              InitRange = new global::InnerTube.Protobuf.Responses.Range();
             }
             input.ReadMessage(InitRange);
             break;
           }
           case 82: {
             if (indexRange_ == null) {
-              IndexRange = new global::InnerTube.Protobuf.Requests.Range();
+              IndexRange = new global::InnerTube.Protobuf.Responses.Range();
             }
             input.ReadMessage(IndexRange);
             break;
@@ -2390,7 +2342,7 @@ namespace InnerTube.Protobuf.Requests {
           }
           case 226: {
             if (audioTrack_ == null) {
-              AudioTrack = new global::InnerTube.Protobuf.Requests.AudioTrack();
+              AudioTrack = new global::InnerTube.Protobuf.Responses.AudioTrack();
             }
             input.ReadMessage(AudioTrack);
             break;
@@ -2445,7 +2397,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Requests.PlayerResponseReflection.Descriptor.MessageTypes[4]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2672,7 +2624,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Requests.PlayerResponseReflection.Descriptor.MessageTypes[5]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2936,7 +2888,7 @@ namespace InnerTube.Protobuf.Requests {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Requests.PlayerResponseReflection.Descriptor.MessageTypes[6]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]

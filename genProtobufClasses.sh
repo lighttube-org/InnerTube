@@ -6,5 +6,5 @@ fi
 
 mkdir -p InnerTube/Protobuf
 cd Protobuf
-protoc --csharp_out=../InnerTube/Protobuf *
+protoc --csharp_out=../InnerTube/Protobuf *.proto
 cd ..

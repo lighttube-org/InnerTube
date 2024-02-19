@@ -25,103 +25,399 @@ namespace InnerTube.Protobuf.Renderers {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "Cg9yZW5kZXJlcnMucHJvdG8SHElubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJl",
-            "cnMaDWdlbmVyYWwucHJvdG8aD2VuZHBvaW50cy5wcm90byK5BgoPUmVuZGVy",
-            "ZXJXcmFwcGVyEmUKGWNhcHRpb25zVHJhY2tMaXN0UmVuZGVyZXIYgdzOGCAB",
-            "KAsyPS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlBsYXllckNhcHRp",
-            "b25zVHJhY2tsaXN0UmVuZGVyZXJIABJlChxwbGF5ZXJTdG9yeWJvYXJkU3Bl",
-            "Y1JlbmRlcmVyGMnpyRogASgLMjouSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRl",
-            "cmVycy5QbGF5ZXJTdG9yeWJvYXJkU3BlY1JlbmRlcmVySAASXwoZcGxheWVy",
-            "TWljcm9mb3JtYXRSZW5kZXJlchiAu/MbIAEoCzI3LklubmVyVHViZS5Qcm90",
-            "b2J1Zi5SZW5kZXJlcnMuUGxheWVyTWljcm9mb3JtYXRSZW5kZXJlckgAElkK",
-            "FmNhcmRDb2xsZWN0aW9uUmVuZGVyZXIY3ZG4HSABKAsyNC5Jbm5lclR1YmUu",
-            "UHJvdG9idWYuUmVuZGVyZXJzLkNhcmRDb2xsZWN0aW9uUmVuZGVyZXJIABJt",
-            "CiBwbGF5ZXJMaXZlU3Rvcnlib2FyZFNwZWNSZW5kZXJlchiyqcEhIAEoCzI+",
-            "LklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUGxheWVyTGl2ZVN0b3J5",
-            "Ym9hcmRTcGVjUmVuZGVyZXJIABJPChFlbmRzY3JlZW5SZW5kZXJlchjWkNgy",
-            "IAEoCzIvLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuRW5kc2NyZWVu",
-            "UmVuZGVyZXJIABJdChhlbmRzY3JlZW5FbGVtZW50UmVuZGVyZXIYspy9MiAB",
-            "KAsyNi5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLkVuZHNjcmVlbkVs",
-            "ZW1lbnRSZW5kZXJlckgAEnEKInRodW1ibmFpbE92ZXJsYXlUaW1lU3RhdHVz",
-            "UmVuZGVyZXIYwJ+FOiABKAsyQC5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVy",
-            "ZXJzLlRodW1ibmFpbE92ZXJsYXlUaW1lU3RhdHVzUmVuZGVyZXJIAEIKCghy",
-            "ZW5kZXJlciKfBwofUGxheWVyQ2FwdGlvbnNUcmFja2xpc3RSZW5kZXJlchJX",
-            "CghjYXB0aW9ucxgBIAMoCzJFLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJl",
-            "cnMuUGxheWVyQ2FwdGlvbnNUcmFja2xpc3RSZW5kZXJlci5DYXB0aW9uEmQK",
-            "C2F1ZGlvVHJhY2tzGAIgAygLMk8uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRl",
-            "cmVycy5QbGF5ZXJDYXB0aW9uc1RyYWNrbGlzdFJlbmRlcmVyLkNhcHRpb25B",
-            "dWRpb1RyYWNrEm8KFHRyYW5zbGF0aW9uTGFuZ3VhZ2VzGAMgAygLMlEuSW5u",
-            "ZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5QbGF5ZXJDYXB0aW9uc1RyYWNr",
-            "bGlzdFJlbmRlcmVyLlRyYW5zbGF0aW9uTGFuZ3VhZ2USHgoWZGVmYXVsdEF1",
-            "ZGlvVHJhY2tJbmRleBgEIAEoBRqJAQoHQ2FwdGlvbhIPCgdiYXNlVXJsGAEg",
-            "ASgJEiYKBG5hbWUYAiABKAsyGC5Jbm5lclR1YmUuUHJvdG9idWYuVGV4dBIN",
-            "CgV2c3NJZBgDIAEoCRIQCghsYW5ndWFnZRgEIAEoCRIMCgRraW5kGAUgASgJ",
-            "EhYKDmlzVHJhbnNsYXRhYmxlGAcgASgIGqACChFDYXB0aW9uQXVkaW9UcmFj",
-            "axIbChNjYXB0aW9uVHJhY2tJbmRpY2VzGAIgAygFEiUKGGRlZmF1bHRDYXB0",
-            "aW9uVHJhY2tJbmRleBgDIAEoCEgAiAEBEhcKCnZpc2liaWxpdHkYBSABKAVI",
-            "AYgBARIcCg9oYXNEZWZhdWx0VHJhY2sYBiABKAhIAogBARIUCgxhdWRpb1Ry",
-            "YWNrSWQYCCABKAkSIQoUY2FwdGlvbnNJbml0aWFsU3RhdGUYCyABKAVIA4gB",
-            "AUIbChlfZGVmYXVsdENhcHRpb25UcmFja0luZGV4Qg0KC192aXNpYmlsaXR5",
-            "QhIKEF9oYXNEZWZhdWx0VHJhY2tCFwoVX2NhcHRpb25zSW5pdGlhbFN0YXRl",
-            "Gn0KE1RyYW5zbGF0aW9uTGFuZ3VhZ2USFAoMbGFuZ3VhZ2VDb2RlGAEgASgJ",
-            "Ei4KDGxhbmd1YWdlTmFtZRgCIAEoCzIYLklubmVyVHViZS5Qcm90b2J1Zi5U",
-            "ZXh0EiAKGGV4Y2x1ZGVBdWRpb1RyYWNrSW5kaWNlcxgEIAMoBSJuChxQbGF5",
-            "ZXJTdG9yeWJvYXJkU3BlY1JlbmRlcmVyEgwKBHNwZWMYASABKAkSGAoQcmVj",
-            "b21tZW5kZWRMZXZlbBgDIAEoBRImCh5oaWdoUmVzb2x1dGlvblJlY29tbWVu",
-            "ZGVkTGV2ZWwYByABKAUivwQKGVBsYXllck1pY3JvZm9ybWF0UmVuZGVyZXIS",
-            "MQoJdGh1bWJuYWlsGAEgASgLMh4uSW5uZXJUdWJlLlByb3RvYnVmLlRodW1i",
-            "bmFpbHMSTAoFZW1iZWQYAiABKAsyPS5Jbm5lclR1YmUuUHJvdG9idWYuUmVu",
-            "ZGVyZXJzLlBsYXllck1pY3JvZm9ybWF0UmVuZGVyZXIuRW1iZWQSJwoFdGl0",
-            "bGUYAyABKAsyGC5Jbm5lclR1YmUuUHJvdG9idWYuVGV4dBItCgtkZXNjcmlw",
-            "dGlvbhgEIAEoCzIYLklubmVyVHViZS5Qcm90b2J1Zi5UZXh0EhUKDWxlbmd0",
-            "aFNlY29uZHMYBSABKAUSFwoPb3duZXJQcm9maWxlVXJsGAYgASgJEhkKEWV4",
-            "dGVybmFsQ2hhbm5lbElkGAggASgJEhQKDGlzRmFtaWx5U2FmZRgJIAEoCBIa",
-            "ChJhdmFpbGFibGVDb3VudHJpZXMYCiADKAkSEgoKaXNVbmxpc3RlZBgLIAEo",
-            "CBIWCg5oYXNZcGNNZXRhZGF0YRgMIAEoCBIRCgl2aWV3Q291bnQYDiABKAkS",
-            "EAoIY2F0ZWdvcnkYDyABKAkSEwoLcHVibGlzaERhdGUYECABKAkSGAoQb3du",
-            "ZXJDaGFubmVsTmFtZRgRIAEoCRISCgp1cGxvYWREYXRlGBMgASgJGjgKBUVt",
-            "YmVkEhAKCGVtYmVkVXJsGAEgASgJEg0KBXdpZHRoGAMgASgFEg4KBmhlaWdo",
-            "dBgEIAEoBSLCAQoWQ2FyZENvbGxlY3Rpb25SZW5kZXJlchI8CgVjYXJkcxgB",
-            "IAMoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJX",
-            "cmFwcGVyEiwKCmhlYWRlclRleHQYDSABKAsyGC5Jbm5lclR1YmUuUHJvdG9i",
-            "dWYuVGV4dBIaChJhbGxvd1RlYXNlckRpc21pc3MYESABKAgSIAoYbG9nSWNv",
-            "blZpc2liaWxpdHlVcGRhdGVzGBQgASgIIjAKIFBsYXllckxpdmVTdG9yeWJv",
-            "YXJkU3BlY1JlbmRlcmVyEgwKBHNwZWMYASABKAkiZQoRRW5kc2NyZWVuUmVu",
-            "ZGVyZXISPwoIZWxlbWVudHMYASADKAsyLS5Jbm5lclR1YmUuUHJvdG9idWYu",
-            "UmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlchIPCgdzdGFydE1zGAIgASgFIoEG",
-            "ChhFbmRzY3JlZW5FbGVtZW50UmVuZGVyZXISWwoFc3R5bGUYASABKA4yTC5J",
-            "bm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLkVuZHNjcmVlbkVsZW1lbnRS",
-            "ZW5kZXJlci5FbmRzY3JlZW5FbGVtZW50U3R5bGUSLQoFaW1hZ2UYAiABKAsy",
-            "Hi5Jbm5lclR1YmUuUHJvdG9idWYuVGh1bWJuYWlscxIxCgRpY29uGAMgASgL",
-            "Mh4uSW5uZXJUdWJlLlByb3RvYnVmLlRodW1ibmFpbHNIAIgBARIMCgRsZWZ0",
-            "GAYgASgCEg0KBXdpZHRoGAcgASgCEgsKA3RvcBgIIAEoAhITCgthc3BlY3RS",
-            "YXRpbxgJIAEoAhIPCgdzdGFydE1zGAogASgFEg0KBWVuZE1zGAsgASgFEicK",
-            "BXRpdGxlGAwgASgLMhguSW5uZXJUdWJlLlByb3RvYnVmLlRleHQSKgoIbWV0",
-            "YWRhdGEYDSABKAsyGC5Jbm5lclR1YmUuUHJvdG9idWYuVGV4dBIzCgxjYWxs",
-            "VG9BY3Rpb24YDiABKAsyGC5Jbm5lclR1YmUuUHJvdG9idWYuVGV4dEgBiAEB",
-            "Ei4KB2Rpc21pc3MYDyABKAsyGC5Jbm5lclR1YmUuUHJvdG9idWYuVGV4dEgC",
-            "iAEBEjgKCGVuZHBvaW50GBAgASgLMiYuSW5uZXJUdWJlLlByb3RvYnVmLkVu",
-            "ZHBvaW50cy5FbmRwb2ludBIKCgJpZBgfIAEoCRJIChF0aHVtYm5haWxPdmVy",
-            "bGF5cxggIAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVu",
-            "ZGVyZXJXcmFwcGVyIlcKFUVuZHNjcmVlbkVsZW1lbnRTdHlsZRILCgdJTlZB",
-            "TElEEAASCQoFVklERU8QARIMCghQTEFZTElTVBACEgsKB0NIQU5ORUwQAxIL",
-            "CgdXRUJTSVRFEARCBwoFX2ljb25CDwoNX2NhbGxUb0FjdGlvbkIKCghfZGlz",
-            "bWlzcyJbCiJUaHVtYm5haWxPdmVybGF5VGltZVN0YXR1c1JlbmRlcmVyEiYK",
-            "BHRleHQYASABKAsyGC5Jbm5lclR1YmUuUHJvdG9idWYuVGV4dBINCgVzdHls",
-            "ZRgCIAEoBWIGcHJvdG8z"));
+            "cnMaDWdlbmVyYWwucHJvdG8aD2VuZHBvaW50cy5wcm90byKsGgoPUmVuZGVy",
+            "ZXJXcmFwcGVyEj0KCGF1dG9wbGF5GJrsnxYgASgLMiYuSW5uZXJUdWJlLlBy",
+            "b3RvYnVmLlJlbmRlcmVycy5BdXRvcGxheUgAEk0KEHJlc3VsdHNDb250YWlu",
+            "ZXIY9Y/HFyABKAsyLi5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJl",
+            "c3VsdHNDb250YWluZXJIABJTChNpdGVtU2VjdGlvblJlbmRlcmVyGIbY9xcg",
+            "ASgLMjEuSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5JdGVtU2VjdGlv",
+            "blJlbmRlcmVySAASVQoUY29tcGFjdFZpZGVvUmVuZGVyZXIYw6KSGCABKAsy",
+            "Mi5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLkNvbXBhY3RWaWRlb1Jl",
+            "bmRlcmVySAASZQoZY2FwdGlvbnNUcmFja0xpc3RSZW5kZXJlchiB3M4YIAEo",
+            "CzI9LklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUGxheWVyQ2FwdGlv",
+            "bnNUcmFja2xpc3RSZW5kZXJlckgAElEKEnZpZGVvT3duZXJSZW5kZXJlchj8",
+            "sNgYIAEoCzIwLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuVmlkZW9P",
+            "d25lclJlbmRlcmVySAASTQoQc2Vjb25kYXJ5UmVzdWx0cxjAsdgYIAEoCzIu",
+            "LklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuU2Vjb25kYXJ5UmVzdWx0",
+            "c0gAEl8KGXR3b0NvbHVtbldhdGNoTmV4dFJlc3VsdHMYr7HYGCABKAsyNy5J",
+            "bm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlR3b0NvbHVtbldhdGNoTmV4",
+            "dFJlc3VsdHNIABJbChdzdWJzY3JpYmVCdXR0b25SZW5kZXJlchjZxbYaIAEo",
+            "CzI1LklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuU3Vic2NyaWJlQnV0",
+            "dG9uUmVuZGVyZXJIABJlChxwbGF5ZXJTdG9yeWJvYXJkU3BlY1JlbmRlcmVy",
+            "GMnpyRogASgLMjouSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5QbGF5",
+            "ZXJTdG9yeWJvYXJkU3BlY1JlbmRlcmVySAASXwoZcGxheWVyTWljcm9mb3Jt",
+            "YXRSZW5kZXJlchiAu/MbIAEoCzI3LklubmVyVHViZS5Qcm90b2J1Zi5SZW5k",
+            "ZXJlcnMuUGxheWVyTWljcm9mb3JtYXRSZW5kZXJlckgAElUKFHNoYXJlQnV0",
+            "dG9uVmlld01vZGVsGJHWiB8gASgLMjIuSW5uZXJUdWJlLlByb3RvYnVmLlJl",
+            "bmRlcmVycy5TaGFyZUJ1dHRvblZpZXdNb2RlbEgAEkUKDG1lbnVSZW5kZXJl",
+            "chiqldcfIAEoCzIqLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuTWVu",
+            "dVJlbmRlcmVySAASYQoabWVudU5hdmlnYXRpb25JdGVtUmVuZGVyZXIYlJ/X",
+            "HyABKAsyOC5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLk1lbnVOYXZp",
+            "Z2F0aW9uSXRlbVJlbmRlcmVySAASWwoXbWVudVNlcnZpY2VJdGVtUmVuZGVy",
+            "ZXIYw5/XHyABKAsyNS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLk1l",
+            "bnVTZXJ2aWNlSXRlbVJlbmRlcmVySAASWQoWdmlkZW9WaWV3Q291bnRSZW5k",
+            "ZXJlchjylbMhIAEoCzI0LklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMu",
+            "VmlkZW9WaWV3Q291bnRSZW5kZXJlckgAEm0KIHBsYXllckxpdmVTdG9yeWJv",
+            "YXJkU3BlY1JlbmRlcmVyGLKpwSEgASgLMj4uSW5uZXJUdWJlLlByb3RvYnVm",
+            "LlJlbmRlcmVycy5QbGF5ZXJMaXZlU3Rvcnlib2FyZFNwZWNSZW5kZXJlckgA",
+            "EmUKHG1ldGFkYXRhUm93Q29udGFpbmVyUmVuZGVyZXIYs4v+ISABKAsyOi5J",
+            "bm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLk1ldGFkYXRhUm93Q29udGFp",
+            "bmVyUmVuZGVyZXJIABJFChFhY2Nlc3NpYmlsaXR5RGF0YRj6mY4kIAEoCzIl",
+            "LklubmVyVHViZS5Qcm90b2J1Zi5BY2Nlc3NpYmlsaXR5RGF0YUgAElMKE2xp",
+            "a2VCdXR0b25WaWV3TW9kZWwY2IuRJiABKAsyMS5Jbm5lclR1YmUuUHJvdG9i",
+            "dWYuUmVuZGVyZXJzLkxpa2VCdXR0b25WaWV3TW9kZWxIABJdChh2aWRlb1By",
+            "aW1hcnlJbmZvUmVuZGVyZXIY1LvaLyABKAsyNi5Jbm5lclR1YmUuUHJvdG9i",
+            "dWYuUmVuZGVyZXJzLlZpZGVvUHJpbWFyeUluZm9SZW5kZXJlckgAEmEKGnZp",
+            "ZGVvU2Vjb25kYXJ5SW5mb1JlbmRlcmVyGL+j8TAgASgLMjguSW5uZXJUdWJl",
+            "LlByb3RvYnVmLlJlbmRlcmVycy5WaWRlb1NlY29uZGFyeUluZm9SZW5kZXJl",
+            "ckgAEk8KEWVuZHNjcmVlblJlbmRlcmVyGNaQ2DIgASgLMi8uSW5uZXJUdWJl",
+            "LlByb3RvYnVmLlJlbmRlcmVycy5FbmRzY3JlZW5SZW5kZXJlckgAEl0KGGVu",
+            "ZHNjcmVlbkVsZW1lbnRSZW5kZXJlchiynL0yIAEoCzI2LklubmVyVHViZS5Q",
+            "cm90b2J1Zi5SZW5kZXJlcnMuRW5kc2NyZWVuRWxlbWVudFJlbmRlcmVySAAS",
+            "cQoidGh1bWJuYWlsT3ZlcmxheVRpbWVTdGF0dXNSZW5kZXJlchjAn4U6IAEo",
+            "CzJALklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuVGh1bWJuYWlsT3Zl",
+            "cmxheVRpbWVTdGF0dXNSZW5kZXJlckgAEnUKJHRodW1ibmFpbE92ZXJsYXlU",
+            "b2dnbGVCdXR0b25SZW5kZXJlchje0pI9IAEoCzJCLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5SZW5kZXJlcnMuVGh1bWJuYWlsT3ZlcmxheVRvZ2dsZUJ1dHRvblJl",
+            "bmRlcmVySAASVwoVbWV0YWRhdGFCYWRnZVJlbmRlcmVyGJbJmj0gASgLMjMu",
+            "SW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5NZXRhZGF0YUJhZGdlUmVu",
+            "ZGVyZXJIABKFAQosc3Vic2NyaXB0aW9uTm90aWZpY2F0aW9uVG9nZ2xlQnV0",
+            "dG9uUmVuZGVyZXIYt73xQCABKAsySi5Jbm5lclR1YmUuUHJvdG9idWYuUmVu",
+            "ZGVyZXJzLlN1YnNjcmlwdGlvbk5vdGlmaWNhdGlvblRvZ2dsZUJ1dHRvblJl",
+            "bmRlcmVySAASXQoYY29udGludWF0aW9uSXRlbVJlbmRlcmVyGKzuhkwgASgL",
+            "MjYuSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5Db250aW51YXRpb25J",
+            "dGVtUmVuZGVyZXJIABJxCiJ0aHVtYm5haWxPdmVybGF5Tm93UGxheWluZ1Jl",
+            "bmRlcmVyGL+B8WwgASgLMkAuSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVy",
+            "cy5UaHVtYm5haWxPdmVybGF5Tm93UGxheWluZ1JlbmRlcmVySAASbgogY29t",
+            "bWVudHNFbnRyeVBvaW50SGVhZGVyUmVuZGVyZXIYwL7KgwEgASgLMj4uSW5u",
+            "ZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5Db21tZW50c0VudHJ5UG9pbnRI",
+            "ZWFkZXJSZW5kZXJlckgAEl4KGG1lbnVGbGV4aWJsZUl0ZW1SZW5kZXJlchin",
+            "hrOpASABKAsyNi5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLk1lbnVG",
+            "bGV4aWJsZUl0ZW1SZW5kZXJlckgAEm4KIGNvbW1lbnRzRW50cnlQb2ludFRl",
+            "YXNlclJlbmRlcmVyGP6r+9YBIAEoCzI+LklubmVyVHViZS5Qcm90b2J1Zi5S",
+            "ZW5kZXJlcnMuQ29tbWVudHNFbnRyeVBvaW50VGVhc2VyUmVuZGVyZXJIABJ0",
+            "CiNzZWdtZW50ZWRMaWtlRGlzbGlrZUJ1dHRvblZpZXdNb2RlbBjph8zXASAB",
+            "KAsyQS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlNlZ21lbnRlZExp",
+            "a2VEaXNsaWtlQnV0dG9uVmlld01vZGVsSAASVAoTc2F2ZUJ1dHRvblZpZXdN",
+            "b2RlbBj/wuzbASABKAsyMS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJz",
+            "LlNhdmVCdXR0b25WaWV3TW9kZWxIAEIKCghyZW5kZXJlciLHAQoIQXV0b3Bs",
+            "YXkSOAoEc2V0cxgBIAMoCzIqLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJl",
+            "cnMuQXV0b3BsYXkuU2V0EhUKDWNvdW50ZG93blNlY3MYAyABKAUSFgoOdHJh",
+            "Y2tpbmdQYXJhbXMYCyABKAwaUgoDU2V0EgwKBG1vZGUYASABKAUSPQoNYXV0",
+            "b3BsYXlWaWRlbxgCIAEoCzImLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2lu",
+            "dHMuRW5kcG9pbnQiUgoQUmVzdWx0c0NvbnRhaW5lchI+CgdyZXN1bHRzGAEg",
+            "AygLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldy",
+            "YXBwZXIi4AEKE0l0ZW1TZWN0aW9uUmVuZGVyZXISPwoIY29udGVudHMYASAD",
+            "KAsyLS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3Jh",
+            "cHBlchIbCg50cmFja2luZ1BhcmFtcxgEIAEoDEgAiAEBEh4KEXNlY3Rpb25J",
+            "ZGVudGlmaWVyGAcgASgJSAGIAQESFQoIdGFyZ2V0SWQYDSABKAlIAogBAUIR",
+            "Cg9fdHJhY2tpbmdQYXJhbXNCFAoSX3NlY3Rpb25JZGVudGlmaWVyQgsKCV90",
+            "YXJnZXRJZCLdBwoUQ29tcGFjdFZpZGVvUmVuZGVyZXISDwoHdmlkZW9JZBgB",
+            "IAEoCRIxCgl0aHVtYm5haWwYAiABKAsyHi5Jbm5lclR1YmUuUHJvdG9idWYu",
+            "VGh1bWJuYWlscxIwCgR0ZXh0GAMgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVm",
+            "LkVuZHBvaW50cy5UZXh0EjoKDmxvbmdCeWxpbmVUZXh0GAQgASgLMiIuSW5u",
+            "ZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5UZXh0Ej0KEXB1Ymxpc2hlZFRp",
+            "bWVUZXh0GAUgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5U",
+            "ZXh0EjkKDXZpZXdDb3VudFRleHQYBiABKAsyIi5Jbm5lclR1YmUuUHJvdG9i",
+            "dWYuRW5kcG9pbnRzLlRleHQSNgoKbGVuZ3RoVGV4dBgHIAEoCzIiLklubmVy",
+            "VHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuVGV4dBJCChJuYXZpZ2F0aW9uRW5k",
+            "cG9pbnQYCCABKAsyJi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLkVu",
+            "ZHBvaW50EjsKD3Nob3J0QnlsaW5lVGV4dBgKIAEoCzIiLklubmVyVHViZS5Q",
+            "cm90b2J1Zi5FbmRwb2ludHMuVGV4dBI9CgZiYWRnZXMYDSADKAsyLS5Jbm5l",
+            "clR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlchI4ChBj",
+            "aGFubmVsVGh1bWJuYWlsGA4gASgLMh4uSW5uZXJUdWJlLlByb3RvYnVmLlRo",
+            "dW1ibmFpbHMSQgoLb3duZXJCYWRnZXMYDyADKAsyLS5Jbm5lclR1YmUuUHJv",
+            "dG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlchIWCg50cmFja2luZ1Bh",
+            "cmFtcxgSIAEoDBI+ChJzaG9ydFZpZXdDb3VudFRleHQYFyABKAsyIi5Jbm5l",
+            "clR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLlRleHQSOwoEbWVudRgZIAEoCzIt",
+            "LklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJXcmFwcGVy",
+            "EkgKEXRodW1ibmFpbE92ZXJsYXlzGCAgAygLMi0uSW5uZXJUdWJlLlByb3Rv",
+            "YnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBwZXISRAoNYWNjZXNzaWJpbGl0",
+            "eRgkIAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVuZGVy",
+            "ZXJXcmFwcGVyIrQHCh9QbGF5ZXJDYXB0aW9uc1RyYWNrbGlzdFJlbmRlcmVy",
+            "ElcKCGNhcHRpb25zGAEgAygLMkUuSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRl",
+            "cmVycy5QbGF5ZXJDYXB0aW9uc1RyYWNrbGlzdFJlbmRlcmVyLkNhcHRpb24S",
+            "ZAoLYXVkaW9UcmFja3MYAiADKAsyTy5Jbm5lclR1YmUuUHJvdG9idWYuUmVu",
+            "ZGVyZXJzLlBsYXllckNhcHRpb25zVHJhY2tsaXN0UmVuZGVyZXIuQ2FwdGlv",
+            "bkF1ZGlvVHJhY2sSbwoUdHJhbnNsYXRpb25MYW5ndWFnZXMYAyADKAsyUS5J",
+            "bm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlBsYXllckNhcHRpb25zVHJh",
+            "Y2tsaXN0UmVuZGVyZXIuVHJhbnNsYXRpb25MYW5ndWFnZRIeChZkZWZhdWx0",
+            "QXVkaW9UcmFja0luZGV4GAQgASgFGpMBCgdDYXB0aW9uEg8KB2Jhc2VVcmwY",
+            "ASABKAkSMAoEbmFtZRgCIAEoCzIiLklubmVyVHViZS5Qcm90b2J1Zi5FbmRw",
+            "b2ludHMuVGV4dBINCgV2c3NJZBgDIAEoCRIQCghsYW5ndWFnZRgEIAEoCRIM",
+            "CgRraW5kGAUgASgJEhYKDmlzVHJhbnNsYXRhYmxlGAcgASgIGqACChFDYXB0",
+            "aW9uQXVkaW9UcmFjaxIbChNjYXB0aW9uVHJhY2tJbmRpY2VzGAIgAygFEiUK",
+            "GGRlZmF1bHRDYXB0aW9uVHJhY2tJbmRleBgDIAEoCEgAiAEBEhcKCnZpc2li",
+            "aWxpdHkYBSABKAVIAYgBARIcCg9oYXNEZWZhdWx0VHJhY2sYBiABKAhIAogB",
+            "ARIUCgxhdWRpb1RyYWNrSWQYCCABKAkSIQoUY2FwdGlvbnNJbml0aWFsU3Rh",
+            "dGUYCyABKAVIA4gBAUIbChlfZGVmYXVsdENhcHRpb25UcmFja0luZGV4Qg0K",
+            "C192aXNpYmlsaXR5QhIKEF9oYXNEZWZhdWx0VHJhY2tCFwoVX2NhcHRpb25z",
+            "SW5pdGlhbFN0YXRlGocBChNUcmFuc2xhdGlvbkxhbmd1YWdlEhQKDGxhbmd1",
+            "YWdlQ29kZRgBIAEoCRI4CgxsYW5ndWFnZU5hbWUYAiABKAsyIi5Jbm5lclR1",
+            "YmUuUHJvdG9idWYuRW5kcG9pbnRzLlRleHQSIAoYZXhjbHVkZUF1ZGlvVHJh",
+            "Y2tJbmRpY2VzGAQgAygFIpwDChJWaWRlb093bmVyUmVuZGVyZXISMQoJdGh1",
+            "bWJuYWlsGAEgASgLMh4uSW5uZXJUdWJlLlByb3RvYnVmLlRodW1ibmFpbHMS",
+            "MQoFdGl0bGUYAiABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRz",
+            "LlRleHQSXwoSc3Vic2NyaXB0aW9uQnV0dG9uGAMgASgLMkMuSW5uZXJUdWJl",
+            "LlByb3RvYnVmLlJlbmRlcmVycy5WaWRlb093bmVyUmVuZGVyZXIuU3Vic2Ny",
+            "aXB0aW9uQnV0dG9uEkIKEm5hdmlnYXRpb25FbmRwb2ludBgEIAEoCzImLklu",
+            "bmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQSPwoTc3Vic2Ny",
+            "aWJlckNvdW50VGV4dBgFIAEoCzIiLklubmVyVHViZS5Qcm90b2J1Zi5FbmRw",
+            "b2ludHMuVGV4dBIWCg50cmFja2luZ1BhcmFtcxgIIAEoDBoiChJTdWJzY3Jp",
+            "cHRpb25CdXR0b24SDAoEdHlwZRgBIAEoBSKmAQoQU2Vjb25kYXJ5UmVzdWx0",
+            "cxI+CgdyZXN1bHRzGAEgAygLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRl",
+            "cmVycy5SZW5kZXJlcldyYXBwZXISGwoOdHJhY2tpbmdQYXJhbXMYBCABKAxI",
+            "AIgBARIVCgh0YXJnZXRJZBgGIAEoCUgBiAEBQhEKD190cmFja2luZ1BhcmFt",
+            "c0ILCglfdGFyZ2V0SWQi5QEKGVR3b0NvbHVtbldhdGNoTmV4dFJlc3VsdHMS",
+            "PgoHcmVzdWx0cxgBIAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJl",
+            "cnMuUmVuZGVyZXJXcmFwcGVyEkcKEHNlY29uZGFyeVJlc3VsdHMYAiABKAsy",
+            "LS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBl",
+            "chI/CghhdXRvcGxheRgEIAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5k",
+            "ZXJlcnMuUmVuZGVyZXJXcmFwcGVyIsMGChdTdWJzY3JpYmVCdXR0b25SZW5k",
+            "ZXJlchI2CgpidXR0b25UZXh0GAEgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVm",
+            "LkVuZHBvaW50cy5UZXh0EhIKCnN1YnNjcmliZWQYAyABKAgSDwoHZW5hYmxl",
+            "ZBgEIAEoCBIMCgR0eXBlGAYgASgFEhEKCWNoYW5uZWxJZBgHIAEoCRIXCg9z",
+            "aG93UHJlZmVyZW5jZXMYCCABKAgSQAoUc3Vic2NyaWJlZEJ1dHRvblRleHQY",
+            "DCABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLlRleHQSQgoW",
+            "dW5zdWJzY3JpYmVkQnV0dG9uVGV4dBgNIAEoCzIiLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5FbmRwb2ludHMuVGV4dBIWCg50cmFja2luZ1BhcmFtcxgPIAEoDBJB",
+            "ChV1bnN1YnNjcmliZUJ1dHRvblRleHQYECABKAsyIi5Jbm5lclR1YmUuUHJv",
+            "dG9idWYuRW5kcG9pbnRzLlRleHQSTQoWc3Vic2NyaWJlQWNjZXNzaWJpbGl0",
+            "eRgZIAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVuZGVy",
+            "ZXJXcmFwcGVyEk8KGHVuc3Vic2NyaWJlQWNjZXNzaWJpbGl0eRgaIAEoCzIt",
+            "LklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJXcmFwcGVy",
+            "ElMKHG5vdGlmaWNhdGlvblByZWZlcmVuY2VCdXR0b24YGyABKAsyLS5Jbm5l",
+            "clR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlchIQCgh0",
+            "YXJnZXRJZBgfIAEoCRIbChNzdWJzY3JpYmVkRW50aXR5S2V5GCQgASgJEkQK",
+            "FG9uU3Vic2NyaWJlRW5kcG9pbnRzGCYgAygLMiYuSW5uZXJUdWJlLlByb3Rv",
+            "YnVmLkVuZHBvaW50cy5FbmRwb2ludBJGChZvblVuc3Vic2NyaWJlRW5kcG9p",
+            "bnRzGCcgAygLMiYuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5FbmRw",
+            "b2ludCJuChxQbGF5ZXJTdG9yeWJvYXJkU3BlY1JlbmRlcmVyEgwKBHNwZWMY",
+            "ASABKAkSGAoQcmVjb21tZW5kZWRMZXZlbBgDIAEoBRImCh5oaWdoUmVzb2x1",
+            "dGlvblJlY29tbWVuZGVkTGV2ZWwYByABKAUi0wQKGVBsYXllck1pY3JvZm9y",
+            "bWF0UmVuZGVyZXISMQoJdGh1bWJuYWlsGAEgASgLMh4uSW5uZXJUdWJlLlBy",
+            "b3RvYnVmLlRodW1ibmFpbHMSTAoFZW1iZWQYAiABKAsyPS5Jbm5lclR1YmUu",
+            "UHJvdG9idWYuUmVuZGVyZXJzLlBsYXllck1pY3JvZm9ybWF0UmVuZGVyZXIu",
+            "RW1iZWQSMQoFdGl0bGUYAyABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYuRW5k",
+            "cG9pbnRzLlRleHQSNwoLZGVzY3JpcHRpb24YBCABKAsyIi5Jbm5lclR1YmUu",
+            "UHJvdG9idWYuRW5kcG9pbnRzLlRleHQSFQoNbGVuZ3RoU2Vjb25kcxgFIAEo",
+            "BRIXCg9vd25lclByb2ZpbGVVcmwYBiABKAkSGQoRZXh0ZXJuYWxDaGFubmVs",
+            "SWQYCCABKAkSFAoMaXNGYW1pbHlTYWZlGAkgASgIEhoKEmF2YWlsYWJsZUNv",
+            "dW50cmllcxgKIAMoCRISCgppc1VubGlzdGVkGAsgASgIEhYKDmhhc1lwY01l",
+            "dGFkYXRhGAwgASgIEhEKCXZpZXdDb3VudBgOIAEoCRIQCghjYXRlZ29yeRgP",
+            "IAEoCRITCgtwdWJsaXNoRGF0ZRgQIAEoCRIYChBvd25lckNoYW5uZWxOYW1l",
+            "GBEgASgJEhIKCnVwbG9hZERhdGUYEyABKAkaOAoFRW1iZWQSEAoIZW1iZWRV",
+            "cmwYASABKAkSDQoFd2lkdGgYAyABKAUSDgoGaGVpZ2h0GAQgASgFIvQBChRT",
+            "aGFyZUJ1dHRvblZpZXdNb2RlbBIxCgV0aXRsZRgFIAEoCzIiLklubmVyVHVi",
+            "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuVGV4dBIZChFhY2Nlc3NpYmlsaXR5VGV4",
+            "dBgLIAEoCRJIChFhY2Nlc3NpYmlsaXR5RGF0YRgQIAEoCzItLklubmVyVHVi",
+            "ZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJXcmFwcGVyEjoKBW9uVGFw",
+            "GAcgASgLMiYuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5FbmRwb2lu",
+            "dEgAiAEBQggKBl9vblRhcCKWAgoMTWVudVJlbmRlcmVyEjwKBWl0ZW1zGAEg",
+            "AygLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldy",
+            "YXBwZXISRgoPdG9wTGV2ZWxCdXR0b25zGAYgAygLMi0uSW5uZXJUdWJlLlBy",
+            "b3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBwZXISRAoNYWNjZXNzaWJp",
+            "bGl0eRgKIAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVu",
+            "ZGVyZXJXcmFwcGVyEhYKDnRyYWNraW5nUGFyYW1zGAQgASgMEhUKCHRhcmdl",
+            "dElkGAsgASgJSACIAQFCCwoJX3RhcmdldElkIrABChpNZW51TmF2aWdhdGlv",
+            "bkl0ZW1SZW5kZXJlchIwCgR0ZXh0GAEgASgLMiIuSW5uZXJUdWJlLlByb3Rv",
+            "YnVmLkVuZHBvaW50cy5UZXh0EiYKBGljb24YAiABKAsyGC5Jbm5lclR1YmUu",
+            "UHJvdG9idWYuSWNvbhI4CghlbmRwb2ludBgDIAEoCzImLklubmVyVHViZS5Q",
+            "cm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQi4gEKF01lbnVTZXJ2aWNlSXRl",
+            "bVJlbmRlcmVyEjAKBHRleHQYASABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYu",
+            "RW5kcG9pbnRzLlRleHQSJgoEaWNvbhgCIAEoCzIYLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5JY29uEj8KD3NlcnZpY2VFbmRwb2ludBgDIAEoCzImLklubmVyVHVi",
+            "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQSFgoOdHJhY2tpbmdQYXJh",
+            "bXMYBSABKAwSFAoMaGFzU2VwYXJhdG9yGAwgASgIIqYBChZWaWRlb1ZpZXdD",
+            "b3VudFJlbmRlcmVyEjUKCXZpZXdDb3VudBgBIAEoCzIiLklubmVyVHViZS5Q",
+            "cm90b2J1Zi5FbmRwb2ludHMuVGV4dBI6Cg5zaG9ydFZpZXdDb3VudBgEIAEo",
+            "CzIiLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuVGV4dBIZChFvcmln",
+            "aW5hbFZpZXdDb3VudBgJIAEoBSIwCiBQbGF5ZXJMaXZlU3Rvcnlib2FyZFNw",
+            "ZWNSZW5kZXJlchIMCgRzcGVjGAEgASgJIlIKHE1ldGFkYXRhUm93Q29udGFp",
+            "bmVyUmVuZGVyZXISGgoSY29sbGFwc2VkSXRlbUNvdW50GAIgASgFEhYKDnRy",
+            "YWNraW5nUGFyYW1zGAQgASgMIrIDChNMaWtlQnV0dG9uVmlld01vZGVsEiYK",
+            "BGljb24YASABKAsyGC5Jbm5lclR1YmUuUHJvdG9idWYuSWNvbhIwCgR0ZXh0",
+            "GAYgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5UZXh0EjcK",
+            "C3RvZ2dsZWRUZXh0GAkgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBv",
+            "aW50cy5UZXh0EkAKEWFjY2Vzc2liaWxpdHlUZXh0GAsgASgLMiUuSW5uZXJU",
+            "dWJlLlByb3RvYnVmLkFjY2Vzc2liaWxpdHlEYXRhEg8KB3Rvb2x0aXAYDiAB",
+            "KAkSFgoOdG9nZ2xlZFRvb2x0aXAYDyABKAkSTwoYdG9nZ2xlZEFjY2Vzc2li",
+            "aWxpdHlUZXh0GBMgASgLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVy",
+            "cy5SZW5kZXJlcldyYXBwZXISOAoIZW5kcG9pbnQYESABKAsyJi5Jbm5lclR1",
+            "YmUuUHJvdG9idWYuRW5kcG9pbnRzLkVuZHBvaW50EhIKCmlkZW50aWZpZXIY",
+            "GCABKAkiyAIKGFZpZGVvUHJpbWFyeUluZm9SZW5kZXJlchIxCgV0aXRsZRgB",
+            "IAEoCzIiLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuVGV4dBJACgl2",
+            "aWV3Q291bnQYAyABKAsyLS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJz",
+            "LlJlbmRlcmVyV3JhcHBlchJDCgx2aWRlb0FjdGlvbnMYBCABKAsyLS5Jbm5l",
+            "clR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlchI0Cghk",
+            "YXRlVGV4dBgOIAEoCzIiLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMu",
+            "VGV4dBI8ChByZWxhdGl2ZURhdGVUZXh0GBUgASgLMiIuSW5uZXJUdWJlLlBy",
+            "b3RvYnVmLkVuZHBvaW50cy5UZXh0ItEMChpWaWRlb1NlY29uZGFyeUluZm9S",
+            "ZW5kZXJlchI8CgVvd25lchgBIAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5S",
+            "ZW5kZXJlcnMuUmVuZGVyZXJXcmFwcGVyEkYKD3N1YnNjcmliZUJ1dHRvbhgE",
+            "IAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJX",
+            "cmFwcGVyEksKFG1ldGFkYXRhUm93Q29udGFpbmVyGAUgASgLMi0uSW5uZXJU",
+            "dWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBwZXISOAoMc2hv",
+            "d01vcmVUZXh0GAYgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50",
+            "cy5UZXh0EjgKDHNob3dMZXNzVGV4dBgHIAEoCzIiLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5FbmRwb2ludHMuVGV4dBIXCg9kZWZhdWx0RXhwYW5kZWQYCiABKAgS",
+            "IQoZZGVzY3JpcHRpb25Db2xsYXBzZWRMaW5lcxgLIAEoBRI/Cg9zaG93TW9y",
+            "ZUNvbW1hbmQYDCABKAsyJi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRz",
+            "LkVuZHBvaW50Ej8KD3Nob3dMZXNzQ29tbWFuZBgOIAEoCzImLklubmVyVHVi",
+            "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQSbQoVYXR0cmlidXRlZERl",
+            "c2NyaXB0aW9uGA8gASgLMk4uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVy",
+            "cy5WaWRlb1NlY29uZGFyeUluZm9SZW5kZXJlci5BdHRyaWJ1dGVkRGVzY3Jp",
+            "cHRpb24avgcKFUF0dHJpYnV0ZWREZXNjcmlwdGlvbhIPCgdjb250ZW50GAEg",
+            "ASgJEm4KC2NvbW1hbmRSdW5zGAUgAygLMlkuSW5uZXJUdWJlLlByb3RvYnVm",
+            "LlJlbmRlcmVycy5WaWRlb1NlY29uZGFyeUluZm9SZW5kZXJlci5BdHRyaWJ1",
+            "dGVkRGVzY3JpcHRpb24uQ29tbWFuZFJ1bhJqCglzdHlsZVJ1bnMYBiADKAsy",
+            "Vy5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlZpZGVvU2Vjb25kYXJ5",
+            "SW5mb1JlbmRlcmVyLkF0dHJpYnV0ZWREZXNjcmlwdGlvbi5TdHlsZVJ1bhpp",
+            "CgpDb21tYW5kUnVuEhIKCnN0YXJ0SW5kZXgYASABKAUSDgoGbGVuZ3RoGAIg",
+            "ASgFEjcKB2NvbW1hbmQYAyABKAsyJi5Jbm5lclR1YmUuUHJvdG9idWYuRW5k",
+            "cG9pbnRzLkVuZHBvaW50GswECghTdHlsZVJ1bhISCgpzdGFydEluZGV4GAEg",
+            "ASgFEg4KBmxlbmd0aBgCIAEoBRJ+ChJzdHlsZVJ1bkV4dGVuc2lvbnMYCiAB",
+            "KAsyYi5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlZpZGVvU2Vjb25k",
+            "YXJ5SW5mb1JlbmRlcmVyLkF0dHJpYnV0ZWREZXNjcmlwdGlvbi5TdHlsZVJ1",
+            "bi5FeHRlbnNpb25zEhAKCGZvbnROYW1lGA4gASgJGokDCgpFeHRlbnNpb25z",
+            "EpsBChlzdHlsZVJ1bkNvbG9yTWFwRXh0ZW5zaW9uGP6UlYoBIAEoCzJ0Lklu",
+            "bmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMuVmlkZW9TZWNvbmRhcnlJbmZv",
+            "UmVuZGVyZXIuQXR0cmlidXRlZERlc2NyaXB0aW9uLlN0eWxlUnVuLkV4dGVu",
+            "c2lvbnMuQ29sb3JNYXBFeHRlbnNpb24a3AEKEUNvbG9yTWFwRXh0ZW5zaW9u",
+            "EpUBCghjb2xvck1hcBgBIAMoCzKCAS5Jbm5lclR1YmUuUHJvdG9idWYuUmVu",
+            "ZGVyZXJzLlZpZGVvU2Vjb25kYXJ5SW5mb1JlbmRlcmVyLkF0dHJpYnV0ZWRE",
+            "ZXNjcmlwdGlvbi5TdHlsZVJ1bi5FeHRlbnNpb25zLkNvbG9yTWFwRXh0ZW5z",
+            "aW9uLkNvbG9yTWFwRW50cnkaLwoNQ29sb3JNYXBFbnRyeRILCgNrZXkYASAB",
+            "KAkSDQoFdmFsdWUYAiABKA06AjgBImUKEUVuZHNjcmVlblJlbmRlcmVyEj8K",
+            "CGVsZW1lbnRzGAEgAygLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVy",
+            "cy5SZW5kZXJlcldyYXBwZXISDwoHc3RhcnRNcxgCIAEoBSKpBgoYRW5kc2Ny",
+            "ZWVuRWxlbWVudFJlbmRlcmVyElsKBXN0eWxlGAEgASgOMkwuSW5uZXJUdWJl",
+            "LlByb3RvYnVmLlJlbmRlcmVycy5FbmRzY3JlZW5FbGVtZW50UmVuZGVyZXIu",
+            "RW5kc2NyZWVuRWxlbWVudFN0eWxlEi0KBWltYWdlGAIgASgLMh4uSW5uZXJU",
+            "dWJlLlByb3RvYnVmLlRodW1ibmFpbHMSMQoEaWNvbhgDIAEoCzIeLklubmVy",
+            "VHViZS5Qcm90b2J1Zi5UaHVtYm5haWxzSACIAQESDAoEbGVmdBgGIAEoAhIN",
+            "CgV3aWR0aBgHIAEoAhILCgN0b3AYCCABKAISEwoLYXNwZWN0UmF0aW8YCSAB",
+            "KAISDwoHc3RhcnRNcxgKIAEoBRINCgVlbmRNcxgLIAEoBRIxCgV0aXRsZRgM",
+            "IAEoCzIiLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuVGV4dBI0Cght",
+            "ZXRhZGF0YRgNIAEoCzIiLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMu",
+            "VGV4dBI9CgxjYWxsVG9BY3Rpb24YDiABKAsyIi5Jbm5lclR1YmUuUHJvdG9i",
+            "dWYuRW5kcG9pbnRzLlRleHRIAYgBARI4CgdkaXNtaXNzGA8gASgLMiIuSW5u",
+            "ZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5UZXh0SAKIAQESOAoIZW5kcG9p",
+            "bnQYECABKAsyJi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLkVuZHBv",
+            "aW50EgoKAmlkGB8gASgJEkgKEXRodW1ibmFpbE92ZXJsYXlzGCAgASgLMi0u",
+            "SW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBwZXIi",
+            "VwoVRW5kc2NyZWVuRWxlbWVudFN0eWxlEgsKB0lOVkFMSUQQABIJCgVWSURF",
+            "TxABEgwKCFBMQVlMSVNUEAISCwoHQ0hBTk5FTBADEgsKB1dFQlNJVEUQBEIH",
+            "CgVfaWNvbkIPCg1fY2FsbFRvQWN0aW9uQgoKCF9kaXNtaXNzImUKIlRodW1i",
+            "bmFpbE92ZXJsYXlUaW1lU3RhdHVzUmVuZGVyZXISMAoEdGV4dBgBIAEoCzIi",
+            "LklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuVGV4dBINCgVzdHlsZRgC",
+            "IAEoBSKRBAokVGh1bWJuYWlsT3ZlcmxheVRvZ2dsZUJ1dHRvblJlbmRlcmVy",
+            "EhEKCWlzVG9nZ2xlZBgBIAEoCBIvCg11bnRvZ2dsZWRJY29uGAIgASgLMhgu",
+            "SW5uZXJUdWJlLlByb3RvYnVmLkljb24SLQoLdG9nZ2xlZEljb24YAyABKAsy",
+            "GC5Jbm5lclR1YmUuUHJvdG9idWYuSWNvbhIYChB1bnRvZ2dsZWRUb29sdGlw",
+            "GAQgASgJEhYKDnRvZ2dsZWRUb29sdGlwGAUgASgJEkgKGHVudG9nZ2xlZFNl",
+            "cnZpY2VFbmRwb2ludBgGIAEoCzImLklubmVyVHViZS5Qcm90b2J1Zi5FbmRw",
+            "b2ludHMuRW5kcG9pbnQSRgoWdG9nZ2xlZFNlcnZpY2VFbmRwb2ludBgHIAEo",
+            "CzImLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQSTQoW",
+            "dW50b2dnbGVkQWNjZXNzaWJpbGl0eRgIIAEoCzItLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJXcmFwcGVyEksKFHRvZ2dsZWRBY2Nl",
+            "c3NpYmlsaXR5GAkgASgLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVy",
+            "cy5SZW5kZXJlcldyYXBwZXISFgoOdHJhY2tpbmdQYXJhbXMYDCABKAwikQIK",
+            "FU1ldGFkYXRhQmFkZ2VSZW5kZXJlchIrCgRpY29uGAEgASgLMhguSW5uZXJU",
+            "dWJlLlByb3RvYnVmLkljb25IAIgBARINCgVzdHlsZRgCIAEoBRISCgVsYWJl",
+            "bBgDIAEoCUgBiAEBEhQKB3Rvb2x0aXAYBCABKAlIAogBARIWCg50cmFja2lu",
+            "Z1BhcmFtcxgGIAEoDBJFChFhY2Nlc3NpYmlsaXR5RGF0YRgHIAEoCzIlLklu",
+            "bmVyVHViZS5Qcm90b2J1Zi5BY2Nlc3NpYmlsaXR5RGF0YUgDiAEBQgcKBV9p",
+            "Y29uQggKBl9sYWJlbEIKCghfdG9vbHRpcEIUChJfYWNjZXNzaWJpbGl0eURh",
+            "dGEi7gYKLFN1YnNjcmlwdGlvbk5vdGlmaWNhdGlvblRvZ2dsZUJ1dHRvblJl",
+            "bmRlcmVyEmAKBnN0YXRlcxgBIAMoCzJQLklubmVyVHViZS5Qcm90b2J1Zi5S",
+            "ZW5kZXJlcnMuU3Vic2NyaXB0aW9uTm90aWZpY2F0aW9uVG9nZ2xlQnV0dG9u",
+            "UmVuZGVyZXIuU3RhdGUSFgoOY3VycmVudFN0YXRlSWQYAiABKAUSFgoOdHJh",
+            "Y2tpbmdQYXJhbXMYBiABKAwSNwoHY29tbWFuZBgKIAEoCzImLklubmVyVHVi",
+            "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQSEAoIdGFyZ2V0SWQYCyAB",
+            "KAkSLwoNc2Vjb25kYXJ5SWNvbhgNIAEoCzIYLklubmVyVHViZS5Qcm90b2J1",
+            "Zi5JY29uGq8ECgVTdGF0ZRIPCgdzdGF0ZUlkGAEgASgFEhMKC25leHRTdGF0",
+            "ZUlkGAIgASgFEmwKBXN0YXRlGAMgASgLMl0uSW5uZXJUdWJlLlByb3RvYnVm",
+            "LlJlbmRlcmVycy5TdWJzY3JpcHRpb25Ob3RpZmljYXRpb25Ub2dnbGVCdXR0",
+            "b25SZW5kZXJlci5TdGF0ZS5TdGF0ZVdyYXBwZXIakQMKDFN0YXRlV3JhcHBl",
+            "chJ+Cg5idXR0b25SZW5kZXJlchiR1ogfIAEoCzJjLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5SZW5kZXJlcnMuU3Vic2NyaXB0aW9uTm90aWZpY2F0aW9uVG9nZ2xl",
+            "QnV0dG9uUmVuZGVyZXIuU3RhdGUuU3RhdGVXcmFwcGVyLlN0YXRlGoACCgVT",
+            "dGF0ZRINCgVzdHlsZRgBIAEoBRIMCgRzaXplGAIgASgFEhIKCmlzRGlzYWJs",
+            "ZWQYAyABKAgSJgoEaWNvbhgIIAEoCzIYLklubmVyVHViZS5Qcm90b2J1Zi5J",
+            "Y29uEjwKDWFjY2Vzc2liaWxpdHkYCiABKAsyJS5Jbm5lclR1YmUuUHJvdG9i",
+            "dWYuQWNjZXNzaWJpbGl0eURhdGESFgoOdHJhY2tpbmdQYXJhbXMYDSABKAwS",
+            "SAoRYWNjZXNzaWJpbGl0eURhdGEYECABKAsyLS5Jbm5lclR1YmUuUHJvdG9i",
+            "dWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlciJxChhDb250aW51YXRpb25J",
+            "dGVtUmVuZGVyZXISDwoHdHJpZ2dlchgBIAEoBRJEChRjb250aW51YXRpb25F",
+            "bmRwb2ludBgCIAEoCzImLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMu",
+            "RW5kcG9pbnQiVgoiVGh1bWJuYWlsT3ZlcmxheU5vd1BsYXlpbmdSZW5kZXJl",
+            "chIwCgR0ZXh0GAEgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50",
+            "cy5UZXh0Ir0CCiBDb21tZW50c0VudHJ5UG9pbnRIZWFkZXJSZW5kZXJlchI2",
+            "CgpoZWFkZXJUZXh0GAEgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBv",
+            "aW50cy5UZXh0EjUKBW9uVGFwGAIgASgLMiYuSW5uZXJUdWJlLlByb3RvYnVm",
+            "LkVuZHBvaW50cy5FbmRwb2ludBIWCg50cmFja2luZ1BhcmFtcxgDIAEoDBI4",
+            "Cgxjb21tZW50Q291bnQYBSABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYuRW5k",
+            "cG9pbnRzLlRleHQSRgoPY29udGVudFJlbmRlcmVyGAwgASgLMi0uSW5uZXJU",
+            "dWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBwZXISEAoIdGFy",
+            "Z2V0SWQYDSABKAkiogEKGE1lbnVGbGV4aWJsZUl0ZW1SZW5kZXJlchI/Cght",
+            "ZW51SXRlbRgBIAEoCzItLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcnMu",
+            "UmVuZGVyZXJXcmFwcGVyEkUKDnRvcExldmVsQnV0dG9uGAIgASgLMi0uSW5u",
+            "ZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBwZXIiqwEK",
+            "IENvbW1lbnRzRW50cnlQb2ludFRlYXNlclJlbmRlcmVyEjQKDHRlYXNlckF2",
+            "YXRhchgBIAEoCzIeLklubmVyVHViZS5Qcm90b2J1Zi5UaHVtYm5haWxzEjkK",
+            "DXRlYXNlckNvbnRlbnQYAiABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYuRW5k",
+            "cG9pbnRzLlRleHQSFgoOdHJhY2tpbmdQYXJhbXMYAyABKAwiwAEKI1NlZ21l",
+            "bnRlZExpa2VEaXNsaWtlQnV0dG9uVmlld01vZGVsEkoKE2xpa2VCdXR0b25W",
+            "aWV3TW9kZWwYASABKAsyLS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJz",
+            "LlJlbmRlcmVyV3JhcHBlchJNChZkaXNsaWtlQnV0dG9uVmlld01vZGVsGAIg",
+            "ASgLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldy",
+            "YXBwZXIiuQEKE1NhdmVCdXR0b25WaWV3TW9kZWwSEAoIaWNvbk5hbWUYAiAB",
+            "KAkSDQoFdGl0bGUYAyABKAkSNQoFb25UYXAYBCABKAsyJi5Jbm5lclR1YmUu",
+            "UHJvdG9idWYuRW5kcG9pbnRzLkVuZHBvaW50EhkKEWFjY2Vzc2liaWxpdHlU",
+            "ZXh0GAUgASgJEg0KBXN0eWxlGAcgASgFEgwKBHR5cGUYCyABKAUSEgoKYnV0",
+            "dG9uU2l6ZRgNIAEoBWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.RendererWrapper), global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser, new[]{ "CaptionsTrackListRenderer", "PlayerStoryboardSpecRenderer", "PlayerMicroformatRenderer", "CardCollectionRenderer", "PlayerLiveStoryboardSpecRenderer", "EndscreenRenderer", "EndscreenElementRenderer", "ThumbnailOverlayTimeStatusRenderer" }, new[]{ "Renderer" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.RendererWrapper), global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser, new[]{ "Autoplay", "ResultsContainer", "ItemSectionRenderer", "CompactVideoRenderer", "CaptionsTrackListRenderer", "VideoOwnerRenderer", "SecondaryResults", "TwoColumnWatchNextResults", "SubscribeButtonRenderer", "PlayerStoryboardSpecRenderer", "PlayerMicroformatRenderer", "ShareButtonViewModel", "MenuRenderer", "MenuNavigationItemRenderer", "MenuServiceItemRenderer", "VideoViewCountRenderer", "PlayerLiveStoryboardSpecRenderer", "MetadataRowContainerRenderer", "AccessibilityData", "LikeButtonViewModel", "VideoPrimaryInfoRenderer", "VideoSecondaryInfoRenderer", "EndscreenRenderer", "EndscreenElementRenderer", "ThumbnailOverlayTimeStatusRenderer", "ThumbnailOverlayToggleButtonRenderer", "MetadataBadgeRenderer", "SubscriptionNotificationToggleButtonRenderer", "ContinuationItemRenderer", "ThumbnailOverlayNowPlayingRenderer", "CommentsEntryPointHeaderRenderer", "MenuFlexibleItemRenderer", "CommentsEntryPointTeaserRenderer", "SegmentedLikeDislikeButtonViewModel", "SaveButtonViewModel" }, new[]{ "Renderer" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.Autoplay), global::InnerTube.Protobuf.Renderers.Autoplay.Parser, new[]{ "Sets", "CountdownSecs", "TrackingParams" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.Autoplay.Types.Set), global::InnerTube.Protobuf.Renderers.Autoplay.Types.Set.Parser, new[]{ "Mode", "AutoplayVideo" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.ResultsContainer), global::InnerTube.Protobuf.Renderers.ResultsContainer.Parser, new[]{ "Results" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.ItemSectionRenderer), global::InnerTube.Protobuf.Renderers.ItemSectionRenderer.Parser, new[]{ "Contents", "TrackingParams", "SectionIdentifier", "TargetId" }, new[]{ "TrackingParams", "SectionIdentifier", "TargetId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.CompactVideoRenderer), global::InnerTube.Protobuf.Renderers.CompactVideoRenderer.Parser, new[]{ "VideoId", "Thumbnail", "Text", "LongBylineText", "PublishedTimeText", "ViewCountText", "LengthText", "NavigationEndpoint", "ShortBylineText", "Badges", "ChannelThumbnail", "OwnerBadges", "TrackingParams", "ShortViewCountText", "Menu", "ThumbnailOverlays", "Accessibility" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer), global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer.Parser, new[]{ "Captions", "AudioTracks", "TranslationLanguages", "DefaultAudioTrackIndex" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer.Types.Caption), global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer.Types.Caption.Parser, new[]{ "BaseUrl", "Name", "VssId", "Language", "Kind", "IsTranslatable" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer.Types.CaptionAudioTrack), global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer.Types.CaptionAudioTrack.Parser, new[]{ "CaptionTrackIndices", "DefaultCaptionTrackIndex", "Visibility", "HasDefaultTrack", "AudioTrackId", "CaptionsInitialState" }, new[]{ "DefaultCaptionTrackIndex", "Visibility", "HasDefaultTrack", "CaptionsInitialState" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer.Types.TranslationLanguage), global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer.Types.TranslationLanguage.Parser, new[]{ "LanguageCode", "LanguageName", "ExcludeAudioTrackIndices" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer), global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Parser, new[]{ "Thumbnail", "Title", "SubscriptionButton", "NavigationEndpoint", "SubscriberCountText", "TrackingParams" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Types.SubscriptionButton), global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Types.SubscriptionButton.Parser, new[]{ "Type" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.SecondaryResults), global::InnerTube.Protobuf.Renderers.SecondaryResults.Parser, new[]{ "Results", "TrackingParams", "TargetId" }, new[]{ "TrackingParams", "TargetId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults), global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults.Parser, new[]{ "Results", "SecondaryResults", "Autoplay" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer), global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer.Parser, new[]{ "ButtonText", "Subscribed", "Enabled", "Type", "ChannelId", "ShowPreferences", "SubscribedButtonText", "UnsubscribedButtonText", "TrackingParams", "UnsubscribeButtonText", "SubscribeAccessibility", "UnsubscribeAccessibility", "NotificationPreferenceButton", "TargetId", "SubscribedEntityKey", "OnSubscribeEndpoints", "OnUnsubscribeEndpoints" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.PlayerStoryboardSpecRenderer), global::InnerTube.Protobuf.Renderers.PlayerStoryboardSpecRenderer.Parser, new[]{ "Spec", "RecommendedLevel", "HighResolutionRecommendedLevel" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.PlayerMicroformatRenderer), global::InnerTube.Protobuf.Renderers.PlayerMicroformatRenderer.Parser, new[]{ "Thumbnail", "Embed", "Title", "Description", "LengthSeconds", "OwnerProfileUrl", "ExternalChannelId", "IsFamilySafe", "AvailableCountries", "IsUnlisted", "HasYpcMetadata", "ViewCount", "Category", "PublishDate", "OwnerChannelName", "UploadDate" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.PlayerMicroformatRenderer.Types.Embed), global::InnerTube.Protobuf.Renderers.PlayerMicroformatRenderer.Types.Embed.Parser, new[]{ "EmbedUrl", "Width", "Height" }, null, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.CardCollectionRenderer), global::InnerTube.Protobuf.Renderers.CardCollectionRenderer.Parser, new[]{ "Cards", "HeaderText", "AllowTeaserDismiss", "LogIconVisibilityUpdates" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.ShareButtonViewModel), global::InnerTube.Protobuf.Renderers.ShareButtonViewModel.Parser, new[]{ "Title", "AccessibilityText", "AccessibilityData", "OnTap" }, new[]{ "OnTap" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.MenuRenderer), global::InnerTube.Protobuf.Renderers.MenuRenderer.Parser, new[]{ "Items", "TopLevelButtons", "Accessibility", "TrackingParams", "TargetId" }, new[]{ "TargetId" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer), global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer.Parser, new[]{ "Text", "Icon", "Endpoint" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer), global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer.Parser, new[]{ "Text", "Icon", "ServiceEndpoint", "TrackingParams", "HasSeparator" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer), global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer.Parser, new[]{ "ViewCount", "ShortViewCount", "OriginalViewCount" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.PlayerLiveStoryboardSpecRenderer), global::InnerTube.Protobuf.Renderers.PlayerLiveStoryboardSpecRenderer.Parser, new[]{ "Spec" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer), global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer.Parser, new[]{ "CollapsedItemCount", "TrackingParams" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.LikeButtonViewModel), global::InnerTube.Protobuf.Renderers.LikeButtonViewModel.Parser, new[]{ "Icon", "Text", "ToggledText", "AccessibilityText", "Tooltip", "ToggledTooltip", "ToggledAccessibilityText", "Endpoint", "Identifier" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer), global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer.Parser, new[]{ "Title", "ViewCount", "VideoActions", "DateText", "RelativeDateText" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer), global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Parser, new[]{ "Owner", "SubscribeButton", "MetadataRowContainer", "ShowMoreText", "ShowLessText", "DefaultExpanded", "DescriptionCollapsedLines", "ShowMoreCommand", "ShowLessCommand", "AttributedDescription" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription), global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Parser, new[]{ "Content", "CommandRuns", "StyleRuns" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun), global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun.Parser, new[]{ "StartIndex", "Length", "Command" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun), global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Parser, new[]{ "StartIndex", "Length", "StyleRunExtensions", "FontName" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions), global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Parser, new[]{ "StyleRunColorMapExtension" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Types.ColorMapExtension), global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Types.ColorMapExtension.Parser, new[]{ "ColorMap" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { null, })})})})}),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.EndscreenRenderer), global::InnerTube.Protobuf.Renderers.EndscreenRenderer.Parser, new[]{ "Elements", "StartMs" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.EndscreenElementRenderer), global::InnerTube.Protobuf.Renderers.EndscreenElementRenderer.Parser, new[]{ "Style", "Image", "Icon", "Left", "Width", "Top", "AspectRatio", "StartMs", "EndMs", "Title", "Metadata", "CallToAction", "Dismiss", "Endpoint", "Id", "ThumbnailOverlays" }, new[]{ "Icon", "CallToAction", "Dismiss" }, new[]{ typeof(global::InnerTube.Protobuf.Renderers.EndscreenElementRenderer.Types.EndscreenElementStyle) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.ThumbnailOverlayTimeStatusRenderer), global::InnerTube.Protobuf.Renderers.ThumbnailOverlayTimeStatusRenderer.Parser, new[]{ "Text", "Style" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.ThumbnailOverlayTimeStatusRenderer), global::InnerTube.Protobuf.Renderers.ThumbnailOverlayTimeStatusRenderer.Parser, new[]{ "Text", "Style" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer), global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer.Parser, new[]{ "IsToggled", "UntoggledIcon", "ToggledIcon", "UntoggledTooltip", "ToggledTooltip", "UntoggledServiceEndpoint", "ToggledServiceEndpoint", "UntoggledAccessibility", "ToggledAccessibility", "TrackingParams" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer), global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer.Parser, new[]{ "Icon", "Style", "Label", "Tooltip", "TrackingParams", "AccessibilityData" }, new[]{ "Icon", "Label", "Tooltip", "AccessibilityData" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer), global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Parser, new[]{ "States", "CurrentStateId", "TrackingParams", "Command", "TargetId", "SecondaryIcon" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State), global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Parser, new[]{ "StateId", "NextStateId", "State_" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper), global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Parser, new[]{ "ButtonRenderer" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Types.State), global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Types.State.Parser, new[]{ "Style", "Size", "IsDisabled", "Icon", "Accessibility", "TrackingParams", "AccessibilityData" }, null, null, null, null)})})}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer), global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer.Parser, new[]{ "Trigger", "ContinuationEndpoint" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer), global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer.Parser, new[]{ "Text" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer), global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer.Parser, new[]{ "HeaderText", "OnTap", "TrackingParams", "CommentCount", "ContentRenderer", "TargetId" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer), global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer.Parser, new[]{ "MenuItem", "TopLevelButton" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer), global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer.Parser, new[]{ "TeaserAvatar", "TeaserContent", "TrackingParams" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel), global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel.Parser, new[]{ "LikeButtonViewModel", "DislikeButtonViewModel" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Renderers.SaveButtonViewModel), global::InnerTube.Protobuf.Renderers.SaveButtonViewModel.Parser, new[]{ "IconName", "Title", "OnTap", "AccessibilityText", "Style", "Type", "ButtonSize" }, null, null, null, null)
           }));
     }
     #endregion
@@ -164,8 +460,32 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public RendererWrapper(RendererWrapper other) : this() {
       switch (other.RendererCase) {
+        case RendererOneofCase.Autoplay:
+          Autoplay = other.Autoplay.Clone();
+          break;
+        case RendererOneofCase.ResultsContainer:
+          ResultsContainer = other.ResultsContainer.Clone();
+          break;
+        case RendererOneofCase.ItemSectionRenderer:
+          ItemSectionRenderer = other.ItemSectionRenderer.Clone();
+          break;
+        case RendererOneofCase.CompactVideoRenderer:
+          CompactVideoRenderer = other.CompactVideoRenderer.Clone();
+          break;
         case RendererOneofCase.CaptionsTrackListRenderer:
           CaptionsTrackListRenderer = other.CaptionsTrackListRenderer.Clone();
+          break;
+        case RendererOneofCase.VideoOwnerRenderer:
+          VideoOwnerRenderer = other.VideoOwnerRenderer.Clone();
+          break;
+        case RendererOneofCase.SecondaryResults:
+          SecondaryResults = other.SecondaryResults.Clone();
+          break;
+        case RendererOneofCase.TwoColumnWatchNextResults:
+          TwoColumnWatchNextResults = other.TwoColumnWatchNextResults.Clone();
+          break;
+        case RendererOneofCase.SubscribeButtonRenderer:
+          SubscribeButtonRenderer = other.SubscribeButtonRenderer.Clone();
           break;
         case RendererOneofCase.PlayerStoryboardSpecRenderer:
           PlayerStoryboardSpecRenderer = other.PlayerStoryboardSpecRenderer.Clone();
@@ -173,11 +493,38 @@ namespace InnerTube.Protobuf.Renderers {
         case RendererOneofCase.PlayerMicroformatRenderer:
           PlayerMicroformatRenderer = other.PlayerMicroformatRenderer.Clone();
           break;
-        case RendererOneofCase.CardCollectionRenderer:
-          CardCollectionRenderer = other.CardCollectionRenderer.Clone();
+        case RendererOneofCase.ShareButtonViewModel:
+          ShareButtonViewModel = other.ShareButtonViewModel.Clone();
+          break;
+        case RendererOneofCase.MenuRenderer:
+          MenuRenderer = other.MenuRenderer.Clone();
+          break;
+        case RendererOneofCase.MenuNavigationItemRenderer:
+          MenuNavigationItemRenderer = other.MenuNavigationItemRenderer.Clone();
+          break;
+        case RendererOneofCase.MenuServiceItemRenderer:
+          MenuServiceItemRenderer = other.MenuServiceItemRenderer.Clone();
+          break;
+        case RendererOneofCase.VideoViewCountRenderer:
+          VideoViewCountRenderer = other.VideoViewCountRenderer.Clone();
           break;
         case RendererOneofCase.PlayerLiveStoryboardSpecRenderer:
           PlayerLiveStoryboardSpecRenderer = other.PlayerLiveStoryboardSpecRenderer.Clone();
+          break;
+        case RendererOneofCase.MetadataRowContainerRenderer:
+          MetadataRowContainerRenderer = other.MetadataRowContainerRenderer.Clone();
+          break;
+        case RendererOneofCase.AccessibilityData:
+          AccessibilityData = other.AccessibilityData.Clone();
+          break;
+        case RendererOneofCase.LikeButtonViewModel:
+          LikeButtonViewModel = other.LikeButtonViewModel.Clone();
+          break;
+        case RendererOneofCase.VideoPrimaryInfoRenderer:
+          VideoPrimaryInfoRenderer = other.VideoPrimaryInfoRenderer.Clone();
+          break;
+        case RendererOneofCase.VideoSecondaryInfoRenderer:
+          VideoSecondaryInfoRenderer = other.VideoSecondaryInfoRenderer.Clone();
           break;
         case RendererOneofCase.EndscreenRenderer:
           EndscreenRenderer = other.EndscreenRenderer.Clone();
@@ -187,6 +534,36 @@ namespace InnerTube.Protobuf.Renderers {
           break;
         case RendererOneofCase.ThumbnailOverlayTimeStatusRenderer:
           ThumbnailOverlayTimeStatusRenderer = other.ThumbnailOverlayTimeStatusRenderer.Clone();
+          break;
+        case RendererOneofCase.ThumbnailOverlayToggleButtonRenderer:
+          ThumbnailOverlayToggleButtonRenderer = other.ThumbnailOverlayToggleButtonRenderer.Clone();
+          break;
+        case RendererOneofCase.MetadataBadgeRenderer:
+          MetadataBadgeRenderer = other.MetadataBadgeRenderer.Clone();
+          break;
+        case RendererOneofCase.SubscriptionNotificationToggleButtonRenderer:
+          SubscriptionNotificationToggleButtonRenderer = other.SubscriptionNotificationToggleButtonRenderer.Clone();
+          break;
+        case RendererOneofCase.ContinuationItemRenderer:
+          ContinuationItemRenderer = other.ContinuationItemRenderer.Clone();
+          break;
+        case RendererOneofCase.ThumbnailOverlayNowPlayingRenderer:
+          ThumbnailOverlayNowPlayingRenderer = other.ThumbnailOverlayNowPlayingRenderer.Clone();
+          break;
+        case RendererOneofCase.CommentsEntryPointHeaderRenderer:
+          CommentsEntryPointHeaderRenderer = other.CommentsEntryPointHeaderRenderer.Clone();
+          break;
+        case RendererOneofCase.MenuFlexibleItemRenderer:
+          MenuFlexibleItemRenderer = other.MenuFlexibleItemRenderer.Clone();
+          break;
+        case RendererOneofCase.CommentsEntryPointTeaserRenderer:
+          CommentsEntryPointTeaserRenderer = other.CommentsEntryPointTeaserRenderer.Clone();
+          break;
+        case RendererOneofCase.SegmentedLikeDislikeButtonViewModel:
+          SegmentedLikeDislikeButtonViewModel = other.SegmentedLikeDislikeButtonViewModel.Clone();
+          break;
+        case RendererOneofCase.SaveButtonViewModel:
+          SaveButtonViewModel = other.SaveButtonViewModel.Clone();
           break;
       }
 
@@ -199,6 +576,54 @@ namespace InnerTube.Protobuf.Renderers {
       return new RendererWrapper(this);
     }
 
+    /// <summary>Field number for the "autoplay" field.</summary>
+    public const int AutoplayFieldNumber = 46659098;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.Autoplay Autoplay {
+      get { return rendererCase_ == RendererOneofCase.Autoplay ? (global::InnerTube.Protobuf.Renderers.Autoplay) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.Autoplay;
+      }
+    }
+
+    /// <summary>Field number for the "resultsContainer" field.</summary>
+    public const int ResultsContainerFieldNumber = 49399797;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.ResultsContainer ResultsContainer {
+      get { return rendererCase_ == RendererOneofCase.ResultsContainer ? (global::InnerTube.Protobuf.Renderers.ResultsContainer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.ResultsContainer;
+      }
+    }
+
+    /// <summary>Field number for the "itemSectionRenderer" field.</summary>
+    public const int ItemSectionRendererFieldNumber = 50195462;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.ItemSectionRenderer ItemSectionRenderer {
+      get { return rendererCase_ == RendererOneofCase.ItemSectionRenderer ? (global::InnerTube.Protobuf.Renderers.ItemSectionRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.ItemSectionRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "compactVideoRenderer" field.</summary>
+    public const int CompactVideoRendererFieldNumber = 50630979;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.CompactVideoRenderer CompactVideoRenderer {
+      get { return rendererCase_ == RendererOneofCase.CompactVideoRenderer ? (global::InnerTube.Protobuf.Renderers.CompactVideoRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.CompactVideoRenderer;
+      }
+    }
+
     /// <summary>Field number for the "captionsTrackListRenderer" field.</summary>
     public const int CaptionsTrackListRendererFieldNumber = 51621377;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -208,6 +633,54 @@ namespace InnerTube.Protobuf.Renderers {
       set {
         renderer_ = value;
         rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.CaptionsTrackListRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "videoOwnerRenderer" field.</summary>
+    public const int VideoOwnerRendererFieldNumber = 51779708;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer VideoOwnerRenderer {
+      get { return rendererCase_ == RendererOneofCase.VideoOwnerRenderer ? (global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.VideoOwnerRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "secondaryResults" field.</summary>
+    public const int SecondaryResultsFieldNumber = 51779776;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.SecondaryResults SecondaryResults {
+      get { return rendererCase_ == RendererOneofCase.SecondaryResults ? (global::InnerTube.Protobuf.Renderers.SecondaryResults) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.SecondaryResults;
+      }
+    }
+
+    /// <summary>Field number for the "twoColumnWatchNextResults" field.</summary>
+    public const int TwoColumnWatchNextResultsFieldNumber = 51779759;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults TwoColumnWatchNextResults {
+      get { return rendererCase_ == RendererOneofCase.TwoColumnWatchNextResults ? (global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.TwoColumnWatchNextResults;
+      }
+    }
+
+    /// <summary>Field number for the "subscribeButtonRenderer" field.</summary>
+    public const int SubscribeButtonRendererFieldNumber = 55419609;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer SubscribeButtonRenderer {
+      get { return rendererCase_ == RendererOneofCase.SubscribeButtonRenderer ? (global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.SubscribeButtonRenderer;
       }
     }
 
@@ -235,15 +708,63 @@ namespace InnerTube.Protobuf.Renderers {
       }
     }
 
-    /// <summary>Field number for the "cardCollectionRenderer" field.</summary>
-    public const int CardCollectionRendererFieldNumber = 61737181;
+    /// <summary>Field number for the "shareButtonViewModel" field.</summary>
+    public const int ShareButtonViewModelFieldNumber = 65153809;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Renderers.CardCollectionRenderer CardCollectionRenderer {
-      get { return rendererCase_ == RendererOneofCase.CardCollectionRenderer ? (global::InnerTube.Protobuf.Renderers.CardCollectionRenderer) renderer_ : null; }
+    public global::InnerTube.Protobuf.Renderers.ShareButtonViewModel ShareButtonViewModel {
+      get { return rendererCase_ == RendererOneofCase.ShareButtonViewModel ? (global::InnerTube.Protobuf.Renderers.ShareButtonViewModel) renderer_ : null; }
       set {
         renderer_ = value;
-        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.CardCollectionRenderer;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.ShareButtonViewModel;
+      }
+    }
+
+    /// <summary>Field number for the "menuRenderer" field.</summary>
+    public const int MenuRendererFieldNumber = 66439850;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.MenuRenderer MenuRenderer {
+      get { return rendererCase_ == RendererOneofCase.MenuRenderer ? (global::InnerTube.Protobuf.Renderers.MenuRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.MenuRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "menuNavigationItemRenderer" field.</summary>
+    public const int MenuNavigationItemRendererFieldNumber = 66441108;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer MenuNavigationItemRenderer {
+      get { return rendererCase_ == RendererOneofCase.MenuNavigationItemRenderer ? (global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.MenuNavigationItemRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "menuServiceItemRenderer" field.</summary>
+    public const int MenuServiceItemRendererFieldNumber = 66441155;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer MenuServiceItemRenderer {
+      get { return rendererCase_ == RendererOneofCase.MenuServiceItemRenderer ? (global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.MenuServiceItemRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "videoViewCountRenderer" field.</summary>
+    public const int VideoViewCountRendererFieldNumber = 70044402;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer VideoViewCountRenderer {
+      get { return rendererCase_ == RendererOneofCase.VideoViewCountRenderer ? (global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.VideoViewCountRenderer;
       }
     }
 
@@ -256,6 +777,66 @@ namespace InnerTube.Protobuf.Renderers {
       set {
         renderer_ = value;
         rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.PlayerLiveStoryboardSpecRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "metadataRowContainerRenderer" field.</summary>
+    public const int MetadataRowContainerRendererFieldNumber = 71271859;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer MetadataRowContainerRenderer {
+      get { return rendererCase_ == RendererOneofCase.MetadataRowContainerRenderer ? (global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.MetadataRowContainerRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "accessibilityData" field.</summary>
+    public const int AccessibilityDataFieldNumber = 75730170;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.AccessibilityData AccessibilityData {
+      get { return rendererCase_ == RendererOneofCase.AccessibilityData ? (global::InnerTube.Protobuf.AccessibilityData) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.AccessibilityData;
+      }
+    }
+
+    /// <summary>Field number for the "likeButtonViewModel" field.</summary>
+    public const int LikeButtonViewModelFieldNumber = 79971800;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.LikeButtonViewModel LikeButtonViewModel {
+      get { return rendererCase_ == RendererOneofCase.LikeButtonViewModel ? (global::InnerTube.Protobuf.Renderers.LikeButtonViewModel) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.LikeButtonViewModel;
+      }
+    }
+
+    /// <summary>Field number for the "videoPrimaryInfoRenderer" field.</summary>
+    public const int VideoPrimaryInfoRendererFieldNumber = 100048340;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer VideoPrimaryInfoRenderer {
+      get { return rendererCase_ == RendererOneofCase.VideoPrimaryInfoRenderer ? (global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.VideoPrimaryInfoRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "videoSecondaryInfoRenderer" field.</summary>
+    public const int VideoSecondaryInfoRendererFieldNumber = 102519231;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer VideoSecondaryInfoRenderer {
+      get { return rendererCase_ == RendererOneofCase.VideoSecondaryInfoRenderer ? (global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.VideoSecondaryInfoRenderer;
       }
     }
 
@@ -295,18 +876,165 @@ namespace InnerTube.Protobuf.Renderers {
       }
     }
 
+    /// <summary>Field number for the "thumbnailOverlayToggleButtonRenderer" field.</summary>
+    public const int ThumbnailOverlayToggleButtonRendererFieldNumber = 128231774;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer ThumbnailOverlayToggleButtonRenderer {
+      get { return rendererCase_ == RendererOneofCase.ThumbnailOverlayToggleButtonRenderer ? (global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.ThumbnailOverlayToggleButtonRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "metadataBadgeRenderer" field.</summary>
+    public const int MetadataBadgeRendererFieldNumber = 128361622;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer MetadataBadgeRenderer {
+      get { return rendererCase_ == RendererOneofCase.MetadataBadgeRenderer ? (global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.MetadataBadgeRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "subscriptionNotificationToggleButtonRenderer" field.</summary>
+    public const int SubscriptionNotificationToggleButtonRendererFieldNumber = 136076983;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer SubscriptionNotificationToggleButtonRenderer {
+      get { return rendererCase_ == RendererOneofCase.SubscriptionNotificationToggleButtonRenderer ? (global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.SubscriptionNotificationToggleButtonRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "continuationItemRenderer" field.</summary>
+    public const int ContinuationItemRendererFieldNumber = 159495980;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer ContinuationItemRenderer {
+      get { return rendererCase_ == RendererOneofCase.ContinuationItemRenderer ? (global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.ContinuationItemRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "thumbnailOverlayNowPlayingRenderer" field.</summary>
+    public const int ThumbnailOverlayNowPlayingRendererFieldNumber = 228343999;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer ThumbnailOverlayNowPlayingRenderer {
+      get { return rendererCase_ == RendererOneofCase.ThumbnailOverlayNowPlayingRenderer ? (global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.ThumbnailOverlayNowPlayingRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "commentsEntryPointHeaderRenderer" field.</summary>
+    public const int CommentsEntryPointHeaderRendererFieldNumber = 275947328;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer CommentsEntryPointHeaderRenderer {
+      get { return rendererCase_ == RendererOneofCase.CommentsEntryPointHeaderRenderer ? (global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.CommentsEntryPointHeaderRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "menuFlexibleItemRenderer" field.</summary>
+    public const int MenuFlexibleItemRendererFieldNumber = 355255079;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer MenuFlexibleItemRenderer {
+      get { return rendererCase_ == RendererOneofCase.MenuFlexibleItemRenderer ? (global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.MenuFlexibleItemRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "commentsEntryPointTeaserRenderer" field.</summary>
+    public const int CommentsEntryPointTeaserRendererFieldNumber = 450811390;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer CommentsEntryPointTeaserRenderer {
+      get { return rendererCase_ == RendererOneofCase.CommentsEntryPointTeaserRenderer ? (global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.CommentsEntryPointTeaserRenderer;
+      }
+    }
+
+    /// <summary>Field number for the "segmentedLikeDislikeButtonViewModel" field.</summary>
+    public const int SegmentedLikeDislikeButtonViewModelFieldNumber = 452133865;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel SegmentedLikeDislikeButtonViewModel {
+      get { return rendererCase_ == RendererOneofCase.SegmentedLikeDislikeButtonViewModel ? (global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.SegmentedLikeDislikeButtonViewModel;
+      }
+    }
+
+    /// <summary>Field number for the "saveButtonViewModel" field.</summary>
+    public const int SaveButtonViewModelFieldNumber = 461054335;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.SaveButtonViewModel SaveButtonViewModel {
+      get { return rendererCase_ == RendererOneofCase.SaveButtonViewModel ? (global::InnerTube.Protobuf.Renderers.SaveButtonViewModel) renderer_ : null; }
+      set {
+        renderer_ = value;
+        rendererCase_ = value == null ? RendererOneofCase.None : RendererOneofCase.SaveButtonViewModel;
+      }
+    }
+
     private object renderer_;
     /// <summary>Enum of possible cases for the "renderer" oneof.</summary>
     public enum RendererOneofCase {
       None = 0,
+      Autoplay = 46659098,
+      ResultsContainer = 49399797,
+      ItemSectionRenderer = 50195462,
+      CompactVideoRenderer = 50630979,
       CaptionsTrackListRenderer = 51621377,
+      VideoOwnerRenderer = 51779708,
+      SecondaryResults = 51779776,
+      TwoColumnWatchNextResults = 51779759,
+      SubscribeButtonRenderer = 55419609,
       PlayerStoryboardSpecRenderer = 55735497,
       PlayerMicroformatRenderer = 58514816,
-      CardCollectionRenderer = 61737181,
+      ShareButtonViewModel = 65153809,
+      MenuRenderer = 66439850,
+      MenuNavigationItemRenderer = 66441108,
+      MenuServiceItemRenderer = 66441155,
+      VideoViewCountRenderer = 70044402,
       PlayerLiveStoryboardSpecRenderer = 70276274,
+      MetadataRowContainerRenderer = 71271859,
+      AccessibilityData = 75730170,
+      LikeButtonViewModel = 79971800,
+      VideoPrimaryInfoRenderer = 100048340,
+      VideoSecondaryInfoRenderer = 102519231,
       EndscreenRenderer = 106301526,
       EndscreenElementRenderer = 105860658,
       ThumbnailOverlayTimeStatusRenderer = 121720768,
+      ThumbnailOverlayToggleButtonRenderer = 128231774,
+      MetadataBadgeRenderer = 128361622,
+      SubscriptionNotificationToggleButtonRenderer = 136076983,
+      ContinuationItemRenderer = 159495980,
+      ThumbnailOverlayNowPlayingRenderer = 228343999,
+      CommentsEntryPointHeaderRenderer = 275947328,
+      MenuFlexibleItemRenderer = 355255079,
+      CommentsEntryPointTeaserRenderer = 450811390,
+      SegmentedLikeDislikeButtonViewModel = 452133865,
+      SaveButtonViewModel = 461054335,
     }
     private RendererOneofCase rendererCase_ = RendererOneofCase.None;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -337,14 +1065,41 @@ namespace InnerTube.Protobuf.Renderers {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (!object.Equals(Autoplay, other.Autoplay)) return false;
+      if (!object.Equals(ResultsContainer, other.ResultsContainer)) return false;
+      if (!object.Equals(ItemSectionRenderer, other.ItemSectionRenderer)) return false;
+      if (!object.Equals(CompactVideoRenderer, other.CompactVideoRenderer)) return false;
       if (!object.Equals(CaptionsTrackListRenderer, other.CaptionsTrackListRenderer)) return false;
+      if (!object.Equals(VideoOwnerRenderer, other.VideoOwnerRenderer)) return false;
+      if (!object.Equals(SecondaryResults, other.SecondaryResults)) return false;
+      if (!object.Equals(TwoColumnWatchNextResults, other.TwoColumnWatchNextResults)) return false;
+      if (!object.Equals(SubscribeButtonRenderer, other.SubscribeButtonRenderer)) return false;
       if (!object.Equals(PlayerStoryboardSpecRenderer, other.PlayerStoryboardSpecRenderer)) return false;
       if (!object.Equals(PlayerMicroformatRenderer, other.PlayerMicroformatRenderer)) return false;
-      if (!object.Equals(CardCollectionRenderer, other.CardCollectionRenderer)) return false;
+      if (!object.Equals(ShareButtonViewModel, other.ShareButtonViewModel)) return false;
+      if (!object.Equals(MenuRenderer, other.MenuRenderer)) return false;
+      if (!object.Equals(MenuNavigationItemRenderer, other.MenuNavigationItemRenderer)) return false;
+      if (!object.Equals(MenuServiceItemRenderer, other.MenuServiceItemRenderer)) return false;
+      if (!object.Equals(VideoViewCountRenderer, other.VideoViewCountRenderer)) return false;
       if (!object.Equals(PlayerLiveStoryboardSpecRenderer, other.PlayerLiveStoryboardSpecRenderer)) return false;
+      if (!object.Equals(MetadataRowContainerRenderer, other.MetadataRowContainerRenderer)) return false;
+      if (!object.Equals(AccessibilityData, other.AccessibilityData)) return false;
+      if (!object.Equals(LikeButtonViewModel, other.LikeButtonViewModel)) return false;
+      if (!object.Equals(VideoPrimaryInfoRenderer, other.VideoPrimaryInfoRenderer)) return false;
+      if (!object.Equals(VideoSecondaryInfoRenderer, other.VideoSecondaryInfoRenderer)) return false;
       if (!object.Equals(EndscreenRenderer, other.EndscreenRenderer)) return false;
       if (!object.Equals(EndscreenElementRenderer, other.EndscreenElementRenderer)) return false;
       if (!object.Equals(ThumbnailOverlayTimeStatusRenderer, other.ThumbnailOverlayTimeStatusRenderer)) return false;
+      if (!object.Equals(ThumbnailOverlayToggleButtonRenderer, other.ThumbnailOverlayToggleButtonRenderer)) return false;
+      if (!object.Equals(MetadataBadgeRenderer, other.MetadataBadgeRenderer)) return false;
+      if (!object.Equals(SubscriptionNotificationToggleButtonRenderer, other.SubscriptionNotificationToggleButtonRenderer)) return false;
+      if (!object.Equals(ContinuationItemRenderer, other.ContinuationItemRenderer)) return false;
+      if (!object.Equals(ThumbnailOverlayNowPlayingRenderer, other.ThumbnailOverlayNowPlayingRenderer)) return false;
+      if (!object.Equals(CommentsEntryPointHeaderRenderer, other.CommentsEntryPointHeaderRenderer)) return false;
+      if (!object.Equals(MenuFlexibleItemRenderer, other.MenuFlexibleItemRenderer)) return false;
+      if (!object.Equals(CommentsEntryPointTeaserRenderer, other.CommentsEntryPointTeaserRenderer)) return false;
+      if (!object.Equals(SegmentedLikeDislikeButtonViewModel, other.SegmentedLikeDislikeButtonViewModel)) return false;
+      if (!object.Equals(SaveButtonViewModel, other.SaveButtonViewModel)) return false;
       if (RendererCase != other.RendererCase) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -353,14 +1108,41 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (rendererCase_ == RendererOneofCase.Autoplay) hash ^= Autoplay.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.ResultsContainer) hash ^= ResultsContainer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.ItemSectionRenderer) hash ^= ItemSectionRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.CompactVideoRenderer) hash ^= CompactVideoRenderer.GetHashCode();
       if (rendererCase_ == RendererOneofCase.CaptionsTrackListRenderer) hash ^= CaptionsTrackListRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.VideoOwnerRenderer) hash ^= VideoOwnerRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.SecondaryResults) hash ^= SecondaryResults.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.TwoColumnWatchNextResults) hash ^= TwoColumnWatchNextResults.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.SubscribeButtonRenderer) hash ^= SubscribeButtonRenderer.GetHashCode();
       if (rendererCase_ == RendererOneofCase.PlayerStoryboardSpecRenderer) hash ^= PlayerStoryboardSpecRenderer.GetHashCode();
       if (rendererCase_ == RendererOneofCase.PlayerMicroformatRenderer) hash ^= PlayerMicroformatRenderer.GetHashCode();
-      if (rendererCase_ == RendererOneofCase.CardCollectionRenderer) hash ^= CardCollectionRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.ShareButtonViewModel) hash ^= ShareButtonViewModel.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.MenuRenderer) hash ^= MenuRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.MenuNavigationItemRenderer) hash ^= MenuNavigationItemRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.MenuServiceItemRenderer) hash ^= MenuServiceItemRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.VideoViewCountRenderer) hash ^= VideoViewCountRenderer.GetHashCode();
       if (rendererCase_ == RendererOneofCase.PlayerLiveStoryboardSpecRenderer) hash ^= PlayerLiveStoryboardSpecRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.MetadataRowContainerRenderer) hash ^= MetadataRowContainerRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.AccessibilityData) hash ^= AccessibilityData.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.LikeButtonViewModel) hash ^= LikeButtonViewModel.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.VideoPrimaryInfoRenderer) hash ^= VideoPrimaryInfoRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.VideoSecondaryInfoRenderer) hash ^= VideoSecondaryInfoRenderer.GetHashCode();
       if (rendererCase_ == RendererOneofCase.EndscreenRenderer) hash ^= EndscreenRenderer.GetHashCode();
       if (rendererCase_ == RendererOneofCase.EndscreenElementRenderer) hash ^= EndscreenElementRenderer.GetHashCode();
       if (rendererCase_ == RendererOneofCase.ThumbnailOverlayTimeStatusRenderer) hash ^= ThumbnailOverlayTimeStatusRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.ThumbnailOverlayToggleButtonRenderer) hash ^= ThumbnailOverlayToggleButtonRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.MetadataBadgeRenderer) hash ^= MetadataBadgeRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.SubscriptionNotificationToggleButtonRenderer) hash ^= SubscriptionNotificationToggleButtonRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.ContinuationItemRenderer) hash ^= ContinuationItemRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.ThumbnailOverlayNowPlayingRenderer) hash ^= ThumbnailOverlayNowPlayingRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.CommentsEntryPointHeaderRenderer) hash ^= CommentsEntryPointHeaderRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.MenuFlexibleItemRenderer) hash ^= MenuFlexibleItemRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.CommentsEntryPointTeaserRenderer) hash ^= CommentsEntryPointTeaserRenderer.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.SegmentedLikeDislikeButtonViewModel) hash ^= SegmentedLikeDislikeButtonViewModel.GetHashCode();
+      if (rendererCase_ == RendererOneofCase.SaveButtonViewModel) hash ^= SaveButtonViewModel.GetHashCode();
       hash ^= (int) rendererCase_;
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -380,9 +1162,41 @@ namespace InnerTube.Protobuf.Renderers {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (rendererCase_ == RendererOneofCase.Autoplay) {
+        output.WriteRawTag(210, 225, 254, 177, 1);
+        output.WriteMessage(Autoplay);
+      }
+      if (rendererCase_ == RendererOneofCase.ResultsContainer) {
+        output.WriteRawTag(170, 255, 184, 188, 1);
+        output.WriteMessage(ResultsContainer);
+      }
+      if (rendererCase_ == RendererOneofCase.ItemSectionRenderer) {
+        output.WriteRawTag(178, 192, 189, 191, 1);
+        output.WriteMessage(ItemSectionRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CompactVideoRenderer) {
+        output.WriteRawTag(154, 148, 146, 193, 1);
+        output.WriteMessage(CompactVideoRenderer);
+      }
       if (rendererCase_ == RendererOneofCase.CaptionsTrackListRenderer) {
         output.WriteRawTag(138, 224, 245, 196, 1);
         output.WriteMessage(CaptionsTrackListRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoOwnerRenderer) {
+        output.WriteRawTag(226, 135, 195, 197, 1);
+        output.WriteMessage(VideoOwnerRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.TwoColumnWatchNextResults) {
+        output.WriteRawTag(250, 138, 195, 197, 1);
+        output.WriteMessage(TwoColumnWatchNextResults);
+      }
+      if (rendererCase_ == RendererOneofCase.SecondaryResults) {
+        output.WriteRawTag(130, 140, 195, 197, 1);
+        output.WriteMessage(SecondaryResults);
+      }
+      if (rendererCase_ == RendererOneofCase.SubscribeButtonRenderer) {
+        output.WriteRawTag(202, 173, 180, 211, 1);
+        output.WriteMessage(SubscribeButtonRenderer);
       }
       if (rendererCase_ == RendererOneofCase.PlayerStoryboardSpecRenderer) {
         output.WriteRawTag(202, 204, 206, 212, 1);
@@ -392,13 +1206,49 @@ namespace InnerTube.Protobuf.Renderers {
         output.WriteRawTag(130, 216, 155, 223, 1);
         output.WriteMessage(PlayerMicroformatRenderer);
       }
-      if (rendererCase_ == RendererOneofCase.CardCollectionRenderer) {
-        output.WriteRawTag(234, 141, 193, 235, 1);
-        output.WriteMessage(CardCollectionRenderer);
+      if (rendererCase_ == RendererOneofCase.ShareButtonViewModel) {
+        output.WriteRawTag(138, 177, 197, 248, 1);
+        output.WriteMessage(ShareButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuRenderer) {
+        output.WriteRawTag(210, 170, 185, 253, 1);
+        output.WriteMessage(MenuRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuNavigationItemRenderer) {
+        output.WriteRawTag(162, 249, 185, 253, 1);
+        output.WriteMessage(MenuNavigationItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuServiceItemRenderer) {
+        output.WriteRawTag(154, 252, 185, 253, 1);
+        output.WriteMessage(MenuServiceItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoViewCountRenderer) {
+        output.WriteRawTag(146, 175, 153, 139, 2);
+        output.WriteMessage(VideoViewCountRenderer);
       }
       if (rendererCase_ == RendererOneofCase.PlayerLiveStoryboardSpecRenderer) {
         output.WriteRawTag(146, 203, 138, 140, 2);
         output.WriteMessage(PlayerLiveStoryboardSpecRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MetadataRowContainerRenderer) {
+        output.WriteRawTag(154, 219, 240, 143, 2);
+        output.WriteMessage(MetadataRowContainerRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.AccessibilityData) {
+        output.WriteRawTag(210, 207, 241, 160, 2);
+        output.WriteMessage(AccessibilityData);
+      }
+      if (rendererCase_ == RendererOneofCase.LikeButtonViewModel) {
+        output.WriteRawTag(194, 221, 136, 177, 2);
+        output.WriteMessage(LikeButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoPrimaryInfoRenderer) {
+        output.WriteRawTag(162, 221, 211, 253, 2);
+        output.WriteMessage(VideoPrimaryInfoRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoSecondaryInfoRenderer) {
+        output.WriteRawTag(250, 155, 138, 135, 3);
+        output.WriteMessage(VideoSecondaryInfoRenderer);
       }
       if (rendererCase_ == RendererOneofCase.EndscreenElementRenderer) {
         output.WriteRawTag(146, 227, 233, 147, 3);
@@ -411,6 +1261,46 @@ namespace InnerTube.Protobuf.Renderers {
       if (rendererCase_ == RendererOneofCase.ThumbnailOverlayTimeStatusRenderer) {
         output.WriteRawTag(130, 252, 169, 208, 3);
         output.WriteMessage(ThumbnailOverlayTimeStatusRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.ThumbnailOverlayToggleButtonRenderer) {
+        output.WriteRawTag(242, 149, 149, 233, 3);
+        output.WriteMessage(ThumbnailOverlayToggleButtonRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MetadataBadgeRenderer) {
+        output.WriteRawTag(178, 201, 212, 233, 3);
+        output.WriteMessage(MetadataBadgeRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.SubscriptionNotificationToggleButtonRenderer) {
+        output.WriteRawTag(186, 235, 139, 135, 4);
+        output.WriteMessage(SubscriptionNotificationToggleButtonRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.ContinuationItemRenderer) {
+        output.WriteRawTag(226, 242, 182, 224, 4);
+        output.WriteMessage(ContinuationItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.ThumbnailOverlayNowPlayingRenderer) {
+        output.WriteRawTag(250, 139, 136, 231, 6);
+        output.WriteMessage(ThumbnailOverlayNowPlayingRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CommentsEntryPointHeaderRenderer) {
+        output.WriteRawTag(130, 244, 211, 156, 8);
+        output.WriteMessage(CommentsEntryPointHeaderRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuFlexibleItemRenderer) {
+        output.WriteRawTag(186, 178, 152, 203, 10);
+        output.WriteMessage(MenuFlexibleItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CommentsEntryPointTeaserRenderer) {
+        output.WriteRawTag(242, 223, 218, 183, 13);
+        output.WriteMessage(CommentsEntryPointTeaserRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.SegmentedLikeDislikeButtonViewModel) {
+        output.WriteRawTag(202, 190, 224, 188, 13);
+        output.WriteMessage(SegmentedLikeDislikeButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.SaveButtonViewModel) {
+        output.WriteRawTag(250, 151, 228, 222, 13);
+        output.WriteMessage(SaveButtonViewModel);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -422,9 +1312,41 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (rendererCase_ == RendererOneofCase.Autoplay) {
+        output.WriteRawTag(210, 225, 254, 177, 1);
+        output.WriteMessage(Autoplay);
+      }
+      if (rendererCase_ == RendererOneofCase.ResultsContainer) {
+        output.WriteRawTag(170, 255, 184, 188, 1);
+        output.WriteMessage(ResultsContainer);
+      }
+      if (rendererCase_ == RendererOneofCase.ItemSectionRenderer) {
+        output.WriteRawTag(178, 192, 189, 191, 1);
+        output.WriteMessage(ItemSectionRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CompactVideoRenderer) {
+        output.WriteRawTag(154, 148, 146, 193, 1);
+        output.WriteMessage(CompactVideoRenderer);
+      }
       if (rendererCase_ == RendererOneofCase.CaptionsTrackListRenderer) {
         output.WriteRawTag(138, 224, 245, 196, 1);
         output.WriteMessage(CaptionsTrackListRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoOwnerRenderer) {
+        output.WriteRawTag(226, 135, 195, 197, 1);
+        output.WriteMessage(VideoOwnerRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.TwoColumnWatchNextResults) {
+        output.WriteRawTag(250, 138, 195, 197, 1);
+        output.WriteMessage(TwoColumnWatchNextResults);
+      }
+      if (rendererCase_ == RendererOneofCase.SecondaryResults) {
+        output.WriteRawTag(130, 140, 195, 197, 1);
+        output.WriteMessage(SecondaryResults);
+      }
+      if (rendererCase_ == RendererOneofCase.SubscribeButtonRenderer) {
+        output.WriteRawTag(202, 173, 180, 211, 1);
+        output.WriteMessage(SubscribeButtonRenderer);
       }
       if (rendererCase_ == RendererOneofCase.PlayerStoryboardSpecRenderer) {
         output.WriteRawTag(202, 204, 206, 212, 1);
@@ -434,13 +1356,49 @@ namespace InnerTube.Protobuf.Renderers {
         output.WriteRawTag(130, 216, 155, 223, 1);
         output.WriteMessage(PlayerMicroformatRenderer);
       }
-      if (rendererCase_ == RendererOneofCase.CardCollectionRenderer) {
-        output.WriteRawTag(234, 141, 193, 235, 1);
-        output.WriteMessage(CardCollectionRenderer);
+      if (rendererCase_ == RendererOneofCase.ShareButtonViewModel) {
+        output.WriteRawTag(138, 177, 197, 248, 1);
+        output.WriteMessage(ShareButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuRenderer) {
+        output.WriteRawTag(210, 170, 185, 253, 1);
+        output.WriteMessage(MenuRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuNavigationItemRenderer) {
+        output.WriteRawTag(162, 249, 185, 253, 1);
+        output.WriteMessage(MenuNavigationItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuServiceItemRenderer) {
+        output.WriteRawTag(154, 252, 185, 253, 1);
+        output.WriteMessage(MenuServiceItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoViewCountRenderer) {
+        output.WriteRawTag(146, 175, 153, 139, 2);
+        output.WriteMessage(VideoViewCountRenderer);
       }
       if (rendererCase_ == RendererOneofCase.PlayerLiveStoryboardSpecRenderer) {
         output.WriteRawTag(146, 203, 138, 140, 2);
         output.WriteMessage(PlayerLiveStoryboardSpecRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MetadataRowContainerRenderer) {
+        output.WriteRawTag(154, 219, 240, 143, 2);
+        output.WriteMessage(MetadataRowContainerRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.AccessibilityData) {
+        output.WriteRawTag(210, 207, 241, 160, 2);
+        output.WriteMessage(AccessibilityData);
+      }
+      if (rendererCase_ == RendererOneofCase.LikeButtonViewModel) {
+        output.WriteRawTag(194, 221, 136, 177, 2);
+        output.WriteMessage(LikeButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoPrimaryInfoRenderer) {
+        output.WriteRawTag(162, 221, 211, 253, 2);
+        output.WriteMessage(VideoPrimaryInfoRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoSecondaryInfoRenderer) {
+        output.WriteRawTag(250, 155, 138, 135, 3);
+        output.WriteMessage(VideoSecondaryInfoRenderer);
       }
       if (rendererCase_ == RendererOneofCase.EndscreenElementRenderer) {
         output.WriteRawTag(146, 227, 233, 147, 3);
@@ -454,6 +1412,46 @@ namespace InnerTube.Protobuf.Renderers {
         output.WriteRawTag(130, 252, 169, 208, 3);
         output.WriteMessage(ThumbnailOverlayTimeStatusRenderer);
       }
+      if (rendererCase_ == RendererOneofCase.ThumbnailOverlayToggleButtonRenderer) {
+        output.WriteRawTag(242, 149, 149, 233, 3);
+        output.WriteMessage(ThumbnailOverlayToggleButtonRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MetadataBadgeRenderer) {
+        output.WriteRawTag(178, 201, 212, 233, 3);
+        output.WriteMessage(MetadataBadgeRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.SubscriptionNotificationToggleButtonRenderer) {
+        output.WriteRawTag(186, 235, 139, 135, 4);
+        output.WriteMessage(SubscriptionNotificationToggleButtonRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.ContinuationItemRenderer) {
+        output.WriteRawTag(226, 242, 182, 224, 4);
+        output.WriteMessage(ContinuationItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.ThumbnailOverlayNowPlayingRenderer) {
+        output.WriteRawTag(250, 139, 136, 231, 6);
+        output.WriteMessage(ThumbnailOverlayNowPlayingRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CommentsEntryPointHeaderRenderer) {
+        output.WriteRawTag(130, 244, 211, 156, 8);
+        output.WriteMessage(CommentsEntryPointHeaderRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuFlexibleItemRenderer) {
+        output.WriteRawTag(186, 178, 152, 203, 10);
+        output.WriteMessage(MenuFlexibleItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CommentsEntryPointTeaserRenderer) {
+        output.WriteRawTag(242, 223, 218, 183, 13);
+        output.WriteMessage(CommentsEntryPointTeaserRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.SegmentedLikeDislikeButtonViewModel) {
+        output.WriteRawTag(202, 190, 224, 188, 13);
+        output.WriteMessage(SegmentedLikeDislikeButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.SaveButtonViewModel) {
+        output.WriteRawTag(250, 151, 228, 222, 13);
+        output.WriteMessage(SaveButtonViewModel);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -464,8 +1462,32 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (rendererCase_ == RendererOneofCase.Autoplay) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(Autoplay);
+      }
+      if (rendererCase_ == RendererOneofCase.ResultsContainer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(ResultsContainer);
+      }
+      if (rendererCase_ == RendererOneofCase.ItemSectionRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(ItemSectionRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CompactVideoRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(CompactVideoRenderer);
+      }
       if (rendererCase_ == RendererOneofCase.CaptionsTrackListRenderer) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(CaptionsTrackListRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoOwnerRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(VideoOwnerRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.SecondaryResults) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(SecondaryResults);
+      }
+      if (rendererCase_ == RendererOneofCase.TwoColumnWatchNextResults) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(TwoColumnWatchNextResults);
+      }
+      if (rendererCase_ == RendererOneofCase.SubscribeButtonRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(SubscribeButtonRenderer);
       }
       if (rendererCase_ == RendererOneofCase.PlayerStoryboardSpecRenderer) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(PlayerStoryboardSpecRenderer);
@@ -473,11 +1495,38 @@ namespace InnerTube.Protobuf.Renderers {
       if (rendererCase_ == RendererOneofCase.PlayerMicroformatRenderer) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(PlayerMicroformatRenderer);
       }
-      if (rendererCase_ == RendererOneofCase.CardCollectionRenderer) {
-        size += 5 + pb::CodedOutputStream.ComputeMessageSize(CardCollectionRenderer);
+      if (rendererCase_ == RendererOneofCase.ShareButtonViewModel) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(ShareButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(MenuRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuNavigationItemRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(MenuNavigationItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuServiceItemRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(MenuServiceItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoViewCountRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(VideoViewCountRenderer);
       }
       if (rendererCase_ == RendererOneofCase.PlayerLiveStoryboardSpecRenderer) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(PlayerLiveStoryboardSpecRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MetadataRowContainerRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(MetadataRowContainerRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.AccessibilityData) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(AccessibilityData);
+      }
+      if (rendererCase_ == RendererOneofCase.LikeButtonViewModel) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(LikeButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoPrimaryInfoRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(VideoPrimaryInfoRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.VideoSecondaryInfoRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(VideoSecondaryInfoRenderer);
       }
       if (rendererCase_ == RendererOneofCase.EndscreenRenderer) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(EndscreenRenderer);
@@ -487,6 +1536,36 @@ namespace InnerTube.Protobuf.Renderers {
       }
       if (rendererCase_ == RendererOneofCase.ThumbnailOverlayTimeStatusRenderer) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(ThumbnailOverlayTimeStatusRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.ThumbnailOverlayToggleButtonRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(ThumbnailOverlayToggleButtonRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MetadataBadgeRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(MetadataBadgeRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.SubscriptionNotificationToggleButtonRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(SubscriptionNotificationToggleButtonRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.ContinuationItemRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(ContinuationItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.ThumbnailOverlayNowPlayingRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(ThumbnailOverlayNowPlayingRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CommentsEntryPointHeaderRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(CommentsEntryPointHeaderRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.MenuFlexibleItemRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(MenuFlexibleItemRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.CommentsEntryPointTeaserRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(CommentsEntryPointTeaserRenderer);
+      }
+      if (rendererCase_ == RendererOneofCase.SegmentedLikeDislikeButtonViewModel) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(SegmentedLikeDislikeButtonViewModel);
+      }
+      if (rendererCase_ == RendererOneofCase.SaveButtonViewModel) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(SaveButtonViewModel);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -501,11 +1580,59 @@ namespace InnerTube.Protobuf.Renderers {
         return;
       }
       switch (other.RendererCase) {
+        case RendererOneofCase.Autoplay:
+          if (Autoplay == null) {
+            Autoplay = new global::InnerTube.Protobuf.Renderers.Autoplay();
+          }
+          Autoplay.MergeFrom(other.Autoplay);
+          break;
+        case RendererOneofCase.ResultsContainer:
+          if (ResultsContainer == null) {
+            ResultsContainer = new global::InnerTube.Protobuf.Renderers.ResultsContainer();
+          }
+          ResultsContainer.MergeFrom(other.ResultsContainer);
+          break;
+        case RendererOneofCase.ItemSectionRenderer:
+          if (ItemSectionRenderer == null) {
+            ItemSectionRenderer = new global::InnerTube.Protobuf.Renderers.ItemSectionRenderer();
+          }
+          ItemSectionRenderer.MergeFrom(other.ItemSectionRenderer);
+          break;
+        case RendererOneofCase.CompactVideoRenderer:
+          if (CompactVideoRenderer == null) {
+            CompactVideoRenderer = new global::InnerTube.Protobuf.Renderers.CompactVideoRenderer();
+          }
+          CompactVideoRenderer.MergeFrom(other.CompactVideoRenderer);
+          break;
         case RendererOneofCase.CaptionsTrackListRenderer:
           if (CaptionsTrackListRenderer == null) {
             CaptionsTrackListRenderer = new global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer();
           }
           CaptionsTrackListRenderer.MergeFrom(other.CaptionsTrackListRenderer);
+          break;
+        case RendererOneofCase.VideoOwnerRenderer:
+          if (VideoOwnerRenderer == null) {
+            VideoOwnerRenderer = new global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer();
+          }
+          VideoOwnerRenderer.MergeFrom(other.VideoOwnerRenderer);
+          break;
+        case RendererOneofCase.SecondaryResults:
+          if (SecondaryResults == null) {
+            SecondaryResults = new global::InnerTube.Protobuf.Renderers.SecondaryResults();
+          }
+          SecondaryResults.MergeFrom(other.SecondaryResults);
+          break;
+        case RendererOneofCase.TwoColumnWatchNextResults:
+          if (TwoColumnWatchNextResults == null) {
+            TwoColumnWatchNextResults = new global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults();
+          }
+          TwoColumnWatchNextResults.MergeFrom(other.TwoColumnWatchNextResults);
+          break;
+        case RendererOneofCase.SubscribeButtonRenderer:
+          if (SubscribeButtonRenderer == null) {
+            SubscribeButtonRenderer = new global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer();
+          }
+          SubscribeButtonRenderer.MergeFrom(other.SubscribeButtonRenderer);
           break;
         case RendererOneofCase.PlayerStoryboardSpecRenderer:
           if (PlayerStoryboardSpecRenderer == null) {
@@ -519,17 +1646,71 @@ namespace InnerTube.Protobuf.Renderers {
           }
           PlayerMicroformatRenderer.MergeFrom(other.PlayerMicroformatRenderer);
           break;
-        case RendererOneofCase.CardCollectionRenderer:
-          if (CardCollectionRenderer == null) {
-            CardCollectionRenderer = new global::InnerTube.Protobuf.Renderers.CardCollectionRenderer();
+        case RendererOneofCase.ShareButtonViewModel:
+          if (ShareButtonViewModel == null) {
+            ShareButtonViewModel = new global::InnerTube.Protobuf.Renderers.ShareButtonViewModel();
           }
-          CardCollectionRenderer.MergeFrom(other.CardCollectionRenderer);
+          ShareButtonViewModel.MergeFrom(other.ShareButtonViewModel);
+          break;
+        case RendererOneofCase.MenuRenderer:
+          if (MenuRenderer == null) {
+            MenuRenderer = new global::InnerTube.Protobuf.Renderers.MenuRenderer();
+          }
+          MenuRenderer.MergeFrom(other.MenuRenderer);
+          break;
+        case RendererOneofCase.MenuNavigationItemRenderer:
+          if (MenuNavigationItemRenderer == null) {
+            MenuNavigationItemRenderer = new global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer();
+          }
+          MenuNavigationItemRenderer.MergeFrom(other.MenuNavigationItemRenderer);
+          break;
+        case RendererOneofCase.MenuServiceItemRenderer:
+          if (MenuServiceItemRenderer == null) {
+            MenuServiceItemRenderer = new global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer();
+          }
+          MenuServiceItemRenderer.MergeFrom(other.MenuServiceItemRenderer);
+          break;
+        case RendererOneofCase.VideoViewCountRenderer:
+          if (VideoViewCountRenderer == null) {
+            VideoViewCountRenderer = new global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer();
+          }
+          VideoViewCountRenderer.MergeFrom(other.VideoViewCountRenderer);
           break;
         case RendererOneofCase.PlayerLiveStoryboardSpecRenderer:
           if (PlayerLiveStoryboardSpecRenderer == null) {
             PlayerLiveStoryboardSpecRenderer = new global::InnerTube.Protobuf.Renderers.PlayerLiveStoryboardSpecRenderer();
           }
           PlayerLiveStoryboardSpecRenderer.MergeFrom(other.PlayerLiveStoryboardSpecRenderer);
+          break;
+        case RendererOneofCase.MetadataRowContainerRenderer:
+          if (MetadataRowContainerRenderer == null) {
+            MetadataRowContainerRenderer = new global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer();
+          }
+          MetadataRowContainerRenderer.MergeFrom(other.MetadataRowContainerRenderer);
+          break;
+        case RendererOneofCase.AccessibilityData:
+          if (AccessibilityData == null) {
+            AccessibilityData = new global::InnerTube.Protobuf.AccessibilityData();
+          }
+          AccessibilityData.MergeFrom(other.AccessibilityData);
+          break;
+        case RendererOneofCase.LikeButtonViewModel:
+          if (LikeButtonViewModel == null) {
+            LikeButtonViewModel = new global::InnerTube.Protobuf.Renderers.LikeButtonViewModel();
+          }
+          LikeButtonViewModel.MergeFrom(other.LikeButtonViewModel);
+          break;
+        case RendererOneofCase.VideoPrimaryInfoRenderer:
+          if (VideoPrimaryInfoRenderer == null) {
+            VideoPrimaryInfoRenderer = new global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer();
+          }
+          VideoPrimaryInfoRenderer.MergeFrom(other.VideoPrimaryInfoRenderer);
+          break;
+        case RendererOneofCase.VideoSecondaryInfoRenderer:
+          if (VideoSecondaryInfoRenderer == null) {
+            VideoSecondaryInfoRenderer = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer();
+          }
+          VideoSecondaryInfoRenderer.MergeFrom(other.VideoSecondaryInfoRenderer);
           break;
         case RendererOneofCase.EndscreenRenderer:
           if (EndscreenRenderer == null) {
@@ -549,6 +1730,66 @@ namespace InnerTube.Protobuf.Renderers {
           }
           ThumbnailOverlayTimeStatusRenderer.MergeFrom(other.ThumbnailOverlayTimeStatusRenderer);
           break;
+        case RendererOneofCase.ThumbnailOverlayToggleButtonRenderer:
+          if (ThumbnailOverlayToggleButtonRenderer == null) {
+            ThumbnailOverlayToggleButtonRenderer = new global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer();
+          }
+          ThumbnailOverlayToggleButtonRenderer.MergeFrom(other.ThumbnailOverlayToggleButtonRenderer);
+          break;
+        case RendererOneofCase.MetadataBadgeRenderer:
+          if (MetadataBadgeRenderer == null) {
+            MetadataBadgeRenderer = new global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer();
+          }
+          MetadataBadgeRenderer.MergeFrom(other.MetadataBadgeRenderer);
+          break;
+        case RendererOneofCase.SubscriptionNotificationToggleButtonRenderer:
+          if (SubscriptionNotificationToggleButtonRenderer == null) {
+            SubscriptionNotificationToggleButtonRenderer = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer();
+          }
+          SubscriptionNotificationToggleButtonRenderer.MergeFrom(other.SubscriptionNotificationToggleButtonRenderer);
+          break;
+        case RendererOneofCase.ContinuationItemRenderer:
+          if (ContinuationItemRenderer == null) {
+            ContinuationItemRenderer = new global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer();
+          }
+          ContinuationItemRenderer.MergeFrom(other.ContinuationItemRenderer);
+          break;
+        case RendererOneofCase.ThumbnailOverlayNowPlayingRenderer:
+          if (ThumbnailOverlayNowPlayingRenderer == null) {
+            ThumbnailOverlayNowPlayingRenderer = new global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer();
+          }
+          ThumbnailOverlayNowPlayingRenderer.MergeFrom(other.ThumbnailOverlayNowPlayingRenderer);
+          break;
+        case RendererOneofCase.CommentsEntryPointHeaderRenderer:
+          if (CommentsEntryPointHeaderRenderer == null) {
+            CommentsEntryPointHeaderRenderer = new global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer();
+          }
+          CommentsEntryPointHeaderRenderer.MergeFrom(other.CommentsEntryPointHeaderRenderer);
+          break;
+        case RendererOneofCase.MenuFlexibleItemRenderer:
+          if (MenuFlexibleItemRenderer == null) {
+            MenuFlexibleItemRenderer = new global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer();
+          }
+          MenuFlexibleItemRenderer.MergeFrom(other.MenuFlexibleItemRenderer);
+          break;
+        case RendererOneofCase.CommentsEntryPointTeaserRenderer:
+          if (CommentsEntryPointTeaserRenderer == null) {
+            CommentsEntryPointTeaserRenderer = new global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer();
+          }
+          CommentsEntryPointTeaserRenderer.MergeFrom(other.CommentsEntryPointTeaserRenderer);
+          break;
+        case RendererOneofCase.SegmentedLikeDislikeButtonViewModel:
+          if (SegmentedLikeDislikeButtonViewModel == null) {
+            SegmentedLikeDislikeButtonViewModel = new global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel();
+          }
+          SegmentedLikeDislikeButtonViewModel.MergeFrom(other.SegmentedLikeDislikeButtonViewModel);
+          break;
+        case RendererOneofCase.SaveButtonViewModel:
+          if (SaveButtonViewModel == null) {
+            SaveButtonViewModel = new global::InnerTube.Protobuf.Renderers.SaveButtonViewModel();
+          }
+          SaveButtonViewModel.MergeFrom(other.SaveButtonViewModel);
+          break;
       }
 
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
@@ -566,6 +1807,42 @@ namespace InnerTube.Protobuf.Renderers {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 373272786: {
+            global::InnerTube.Protobuf.Renderers.Autoplay subBuilder = new global::InnerTube.Protobuf.Renderers.Autoplay();
+            if (rendererCase_ == RendererOneofCase.Autoplay) {
+              subBuilder.MergeFrom(Autoplay);
+            }
+            input.ReadMessage(subBuilder);
+            Autoplay = subBuilder;
+            break;
+          }
+          case 395198378: {
+            global::InnerTube.Protobuf.Renderers.ResultsContainer subBuilder = new global::InnerTube.Protobuf.Renderers.ResultsContainer();
+            if (rendererCase_ == RendererOneofCase.ResultsContainer) {
+              subBuilder.MergeFrom(ResultsContainer);
+            }
+            input.ReadMessage(subBuilder);
+            ResultsContainer = subBuilder;
+            break;
+          }
+          case 401563698: {
+            global::InnerTube.Protobuf.Renderers.ItemSectionRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.ItemSectionRenderer();
+            if (rendererCase_ == RendererOneofCase.ItemSectionRenderer) {
+              subBuilder.MergeFrom(ItemSectionRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            ItemSectionRenderer = subBuilder;
+            break;
+          }
+          case 405047834: {
+            global::InnerTube.Protobuf.Renderers.CompactVideoRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.CompactVideoRenderer();
+            if (rendererCase_ == RendererOneofCase.CompactVideoRenderer) {
+              subBuilder.MergeFrom(CompactVideoRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            CompactVideoRenderer = subBuilder;
+            break;
+          }
           case 412971018: {
             global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer();
             if (rendererCase_ == RendererOneofCase.CaptionsTrackListRenderer) {
@@ -573,6 +1850,42 @@ namespace InnerTube.Protobuf.Renderers {
             }
             input.ReadMessage(subBuilder);
             CaptionsTrackListRenderer = subBuilder;
+            break;
+          }
+          case 414237666: {
+            global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer();
+            if (rendererCase_ == RendererOneofCase.VideoOwnerRenderer) {
+              subBuilder.MergeFrom(VideoOwnerRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            VideoOwnerRenderer = subBuilder;
+            break;
+          }
+          case 414238074: {
+            global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults subBuilder = new global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults();
+            if (rendererCase_ == RendererOneofCase.TwoColumnWatchNextResults) {
+              subBuilder.MergeFrom(TwoColumnWatchNextResults);
+            }
+            input.ReadMessage(subBuilder);
+            TwoColumnWatchNextResults = subBuilder;
+            break;
+          }
+          case 414238210: {
+            global::InnerTube.Protobuf.Renderers.SecondaryResults subBuilder = new global::InnerTube.Protobuf.Renderers.SecondaryResults();
+            if (rendererCase_ == RendererOneofCase.SecondaryResults) {
+              subBuilder.MergeFrom(SecondaryResults);
+            }
+            input.ReadMessage(subBuilder);
+            SecondaryResults = subBuilder;
+            break;
+          }
+          case 443356874: {
+            global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer();
+            if (rendererCase_ == RendererOneofCase.SubscribeButtonRenderer) {
+              subBuilder.MergeFrom(SubscribeButtonRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            SubscribeButtonRenderer = subBuilder;
             break;
           }
           case 445883978: {
@@ -593,13 +1906,49 @@ namespace InnerTube.Protobuf.Renderers {
             PlayerMicroformatRenderer = subBuilder;
             break;
           }
-          case 493897450: {
-            global::InnerTube.Protobuf.Renderers.CardCollectionRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.CardCollectionRenderer();
-            if (rendererCase_ == RendererOneofCase.CardCollectionRenderer) {
-              subBuilder.MergeFrom(CardCollectionRenderer);
+          case 521230474: {
+            global::InnerTube.Protobuf.Renderers.ShareButtonViewModel subBuilder = new global::InnerTube.Protobuf.Renderers.ShareButtonViewModel();
+            if (rendererCase_ == RendererOneofCase.ShareButtonViewModel) {
+              subBuilder.MergeFrom(ShareButtonViewModel);
             }
             input.ReadMessage(subBuilder);
-            CardCollectionRenderer = subBuilder;
+            ShareButtonViewModel = subBuilder;
+            break;
+          }
+          case 531518802: {
+            global::InnerTube.Protobuf.Renderers.MenuRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MenuRenderer();
+            if (rendererCase_ == RendererOneofCase.MenuRenderer) {
+              subBuilder.MergeFrom(MenuRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MenuRenderer = subBuilder;
+            break;
+          }
+          case 531528866: {
+            global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer();
+            if (rendererCase_ == RendererOneofCase.MenuNavigationItemRenderer) {
+              subBuilder.MergeFrom(MenuNavigationItemRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MenuNavigationItemRenderer = subBuilder;
+            break;
+          }
+          case 531529242: {
+            global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer();
+            if (rendererCase_ == RendererOneofCase.MenuServiceItemRenderer) {
+              subBuilder.MergeFrom(MenuServiceItemRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MenuServiceItemRenderer = subBuilder;
+            break;
+          }
+          case 560355218: {
+            global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer();
+            if (rendererCase_ == RendererOneofCase.VideoViewCountRenderer) {
+              subBuilder.MergeFrom(VideoViewCountRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            VideoViewCountRenderer = subBuilder;
             break;
           }
           case 562210194: {
@@ -609,6 +1958,51 @@ namespace InnerTube.Protobuf.Renderers {
             }
             input.ReadMessage(subBuilder);
             PlayerLiveStoryboardSpecRenderer = subBuilder;
+            break;
+          }
+          case 570174874: {
+            global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer();
+            if (rendererCase_ == RendererOneofCase.MetadataRowContainerRenderer) {
+              subBuilder.MergeFrom(MetadataRowContainerRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MetadataRowContainerRenderer = subBuilder;
+            break;
+          }
+          case 605841362: {
+            global::InnerTube.Protobuf.AccessibilityData subBuilder = new global::InnerTube.Protobuf.AccessibilityData();
+            if (rendererCase_ == RendererOneofCase.AccessibilityData) {
+              subBuilder.MergeFrom(AccessibilityData);
+            }
+            input.ReadMessage(subBuilder);
+            AccessibilityData = subBuilder;
+            break;
+          }
+          case 639774402: {
+            global::InnerTube.Protobuf.Renderers.LikeButtonViewModel subBuilder = new global::InnerTube.Protobuf.Renderers.LikeButtonViewModel();
+            if (rendererCase_ == RendererOneofCase.LikeButtonViewModel) {
+              subBuilder.MergeFrom(LikeButtonViewModel);
+            }
+            input.ReadMessage(subBuilder);
+            LikeButtonViewModel = subBuilder;
+            break;
+          }
+          case 800386722: {
+            global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer();
+            if (rendererCase_ == RendererOneofCase.VideoPrimaryInfoRenderer) {
+              subBuilder.MergeFrom(VideoPrimaryInfoRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            VideoPrimaryInfoRenderer = subBuilder;
+            break;
+          }
+          case 820153850: {
+            global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer();
+            if (rendererCase_ == RendererOneofCase.VideoSecondaryInfoRenderer) {
+              subBuilder.MergeFrom(VideoSecondaryInfoRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            VideoSecondaryInfoRenderer = subBuilder;
             break;
           }
           case 846885266: {
@@ -636,6 +2030,96 @@ namespace InnerTube.Protobuf.Renderers {
             }
             input.ReadMessage(subBuilder);
             ThumbnailOverlayTimeStatusRenderer = subBuilder;
+            break;
+          }
+          case 1025854194: {
+            global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer();
+            if (rendererCase_ == RendererOneofCase.ThumbnailOverlayToggleButtonRenderer) {
+              subBuilder.MergeFrom(ThumbnailOverlayToggleButtonRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            ThumbnailOverlayToggleButtonRenderer = subBuilder;
+            break;
+          }
+          case 1026892978: {
+            global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer();
+            if (rendererCase_ == RendererOneofCase.MetadataBadgeRenderer) {
+              subBuilder.MergeFrom(MetadataBadgeRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MetadataBadgeRenderer = subBuilder;
+            break;
+          }
+          case 1088615866: {
+            global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer();
+            if (rendererCase_ == RendererOneofCase.SubscriptionNotificationToggleButtonRenderer) {
+              subBuilder.MergeFrom(SubscriptionNotificationToggleButtonRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            SubscriptionNotificationToggleButtonRenderer = subBuilder;
+            break;
+          }
+          case 1275967842: {
+            global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer();
+            if (rendererCase_ == RendererOneofCase.ContinuationItemRenderer) {
+              subBuilder.MergeFrom(ContinuationItemRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            ContinuationItemRenderer = subBuilder;
+            break;
+          }
+          case 1826751994: {
+            global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer();
+            if (rendererCase_ == RendererOneofCase.ThumbnailOverlayNowPlayingRenderer) {
+              subBuilder.MergeFrom(ThumbnailOverlayNowPlayingRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            ThumbnailOverlayNowPlayingRenderer = subBuilder;
+            break;
+          }
+          case 2207578626: {
+            global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer();
+            if (rendererCase_ == RendererOneofCase.CommentsEntryPointHeaderRenderer) {
+              subBuilder.MergeFrom(CommentsEntryPointHeaderRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            CommentsEntryPointHeaderRenderer = subBuilder;
+            break;
+          }
+          case 2842040634: {
+            global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer();
+            if (rendererCase_ == RendererOneofCase.MenuFlexibleItemRenderer) {
+              subBuilder.MergeFrom(MenuFlexibleItemRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MenuFlexibleItemRenderer = subBuilder;
+            break;
+          }
+          case 3606491122: {
+            global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer();
+            if (rendererCase_ == RendererOneofCase.CommentsEntryPointTeaserRenderer) {
+              subBuilder.MergeFrom(CommentsEntryPointTeaserRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            CommentsEntryPointTeaserRenderer = subBuilder;
+            break;
+          }
+          case 3617070922: {
+            global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel subBuilder = new global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel();
+            if (rendererCase_ == RendererOneofCase.SegmentedLikeDislikeButtonViewModel) {
+              subBuilder.MergeFrom(SegmentedLikeDislikeButtonViewModel);
+            }
+            input.ReadMessage(subBuilder);
+            SegmentedLikeDislikeButtonViewModel = subBuilder;
+            break;
+          }
+          case 3688434682: {
+            global::InnerTube.Protobuf.Renderers.SaveButtonViewModel subBuilder = new global::InnerTube.Protobuf.Renderers.SaveButtonViewModel();
+            if (rendererCase_ == RendererOneofCase.SaveButtonViewModel) {
+              subBuilder.MergeFrom(SaveButtonViewModel);
+            }
+            input.ReadMessage(subBuilder);
+            SaveButtonViewModel = subBuilder;
             break;
           }
         }
@@ -653,6 +2137,42 @@ namespace InnerTube.Protobuf.Renderers {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 373272786: {
+            global::InnerTube.Protobuf.Renderers.Autoplay subBuilder = new global::InnerTube.Protobuf.Renderers.Autoplay();
+            if (rendererCase_ == RendererOneofCase.Autoplay) {
+              subBuilder.MergeFrom(Autoplay);
+            }
+            input.ReadMessage(subBuilder);
+            Autoplay = subBuilder;
+            break;
+          }
+          case 395198378: {
+            global::InnerTube.Protobuf.Renderers.ResultsContainer subBuilder = new global::InnerTube.Protobuf.Renderers.ResultsContainer();
+            if (rendererCase_ == RendererOneofCase.ResultsContainer) {
+              subBuilder.MergeFrom(ResultsContainer);
+            }
+            input.ReadMessage(subBuilder);
+            ResultsContainer = subBuilder;
+            break;
+          }
+          case 401563698: {
+            global::InnerTube.Protobuf.Renderers.ItemSectionRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.ItemSectionRenderer();
+            if (rendererCase_ == RendererOneofCase.ItemSectionRenderer) {
+              subBuilder.MergeFrom(ItemSectionRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            ItemSectionRenderer = subBuilder;
+            break;
+          }
+          case 405047834: {
+            global::InnerTube.Protobuf.Renderers.CompactVideoRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.CompactVideoRenderer();
+            if (rendererCase_ == RendererOneofCase.CompactVideoRenderer) {
+              subBuilder.MergeFrom(CompactVideoRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            CompactVideoRenderer = subBuilder;
+            break;
+          }
           case 412971018: {
             global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.PlayerCaptionsTracklistRenderer();
             if (rendererCase_ == RendererOneofCase.CaptionsTrackListRenderer) {
@@ -660,6 +2180,42 @@ namespace InnerTube.Protobuf.Renderers {
             }
             input.ReadMessage(subBuilder);
             CaptionsTrackListRenderer = subBuilder;
+            break;
+          }
+          case 414237666: {
+            global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer();
+            if (rendererCase_ == RendererOneofCase.VideoOwnerRenderer) {
+              subBuilder.MergeFrom(VideoOwnerRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            VideoOwnerRenderer = subBuilder;
+            break;
+          }
+          case 414238074: {
+            global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults subBuilder = new global::InnerTube.Protobuf.Renderers.TwoColumnWatchNextResults();
+            if (rendererCase_ == RendererOneofCase.TwoColumnWatchNextResults) {
+              subBuilder.MergeFrom(TwoColumnWatchNextResults);
+            }
+            input.ReadMessage(subBuilder);
+            TwoColumnWatchNextResults = subBuilder;
+            break;
+          }
+          case 414238210: {
+            global::InnerTube.Protobuf.Renderers.SecondaryResults subBuilder = new global::InnerTube.Protobuf.Renderers.SecondaryResults();
+            if (rendererCase_ == RendererOneofCase.SecondaryResults) {
+              subBuilder.MergeFrom(SecondaryResults);
+            }
+            input.ReadMessage(subBuilder);
+            SecondaryResults = subBuilder;
+            break;
+          }
+          case 443356874: {
+            global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.SubscribeButtonRenderer();
+            if (rendererCase_ == RendererOneofCase.SubscribeButtonRenderer) {
+              subBuilder.MergeFrom(SubscribeButtonRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            SubscribeButtonRenderer = subBuilder;
             break;
           }
           case 445883978: {
@@ -680,13 +2236,49 @@ namespace InnerTube.Protobuf.Renderers {
             PlayerMicroformatRenderer = subBuilder;
             break;
           }
-          case 493897450: {
-            global::InnerTube.Protobuf.Renderers.CardCollectionRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.CardCollectionRenderer();
-            if (rendererCase_ == RendererOneofCase.CardCollectionRenderer) {
-              subBuilder.MergeFrom(CardCollectionRenderer);
+          case 521230474: {
+            global::InnerTube.Protobuf.Renderers.ShareButtonViewModel subBuilder = new global::InnerTube.Protobuf.Renderers.ShareButtonViewModel();
+            if (rendererCase_ == RendererOneofCase.ShareButtonViewModel) {
+              subBuilder.MergeFrom(ShareButtonViewModel);
             }
             input.ReadMessage(subBuilder);
-            CardCollectionRenderer = subBuilder;
+            ShareButtonViewModel = subBuilder;
+            break;
+          }
+          case 531518802: {
+            global::InnerTube.Protobuf.Renderers.MenuRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MenuRenderer();
+            if (rendererCase_ == RendererOneofCase.MenuRenderer) {
+              subBuilder.MergeFrom(MenuRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MenuRenderer = subBuilder;
+            break;
+          }
+          case 531528866: {
+            global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MenuNavigationItemRenderer();
+            if (rendererCase_ == RendererOneofCase.MenuNavigationItemRenderer) {
+              subBuilder.MergeFrom(MenuNavigationItemRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MenuNavigationItemRenderer = subBuilder;
+            break;
+          }
+          case 531529242: {
+            global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MenuServiceItemRenderer();
+            if (rendererCase_ == RendererOneofCase.MenuServiceItemRenderer) {
+              subBuilder.MergeFrom(MenuServiceItemRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MenuServiceItemRenderer = subBuilder;
+            break;
+          }
+          case 560355218: {
+            global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.VideoViewCountRenderer();
+            if (rendererCase_ == RendererOneofCase.VideoViewCountRenderer) {
+              subBuilder.MergeFrom(VideoViewCountRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            VideoViewCountRenderer = subBuilder;
             break;
           }
           case 562210194: {
@@ -696,6 +2288,51 @@ namespace InnerTube.Protobuf.Renderers {
             }
             input.ReadMessage(subBuilder);
             PlayerLiveStoryboardSpecRenderer = subBuilder;
+            break;
+          }
+          case 570174874: {
+            global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MetadataRowContainerRenderer();
+            if (rendererCase_ == RendererOneofCase.MetadataRowContainerRenderer) {
+              subBuilder.MergeFrom(MetadataRowContainerRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MetadataRowContainerRenderer = subBuilder;
+            break;
+          }
+          case 605841362: {
+            global::InnerTube.Protobuf.AccessibilityData subBuilder = new global::InnerTube.Protobuf.AccessibilityData();
+            if (rendererCase_ == RendererOneofCase.AccessibilityData) {
+              subBuilder.MergeFrom(AccessibilityData);
+            }
+            input.ReadMessage(subBuilder);
+            AccessibilityData = subBuilder;
+            break;
+          }
+          case 639774402: {
+            global::InnerTube.Protobuf.Renderers.LikeButtonViewModel subBuilder = new global::InnerTube.Protobuf.Renderers.LikeButtonViewModel();
+            if (rendererCase_ == RendererOneofCase.LikeButtonViewModel) {
+              subBuilder.MergeFrom(LikeButtonViewModel);
+            }
+            input.ReadMessage(subBuilder);
+            LikeButtonViewModel = subBuilder;
+            break;
+          }
+          case 800386722: {
+            global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.VideoPrimaryInfoRenderer();
+            if (rendererCase_ == RendererOneofCase.VideoPrimaryInfoRenderer) {
+              subBuilder.MergeFrom(VideoPrimaryInfoRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            VideoPrimaryInfoRenderer = subBuilder;
+            break;
+          }
+          case 820153850: {
+            global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer();
+            if (rendererCase_ == RendererOneofCase.VideoSecondaryInfoRenderer) {
+              subBuilder.MergeFrom(VideoSecondaryInfoRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            VideoSecondaryInfoRenderer = subBuilder;
             break;
           }
           case 846885266: {
@@ -723,6 +2360,1961 @@ namespace InnerTube.Protobuf.Renderers {
             }
             input.ReadMessage(subBuilder);
             ThumbnailOverlayTimeStatusRenderer = subBuilder;
+            break;
+          }
+          case 1025854194: {
+            global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.ThumbnailOverlayToggleButtonRenderer();
+            if (rendererCase_ == RendererOneofCase.ThumbnailOverlayToggleButtonRenderer) {
+              subBuilder.MergeFrom(ThumbnailOverlayToggleButtonRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            ThumbnailOverlayToggleButtonRenderer = subBuilder;
+            break;
+          }
+          case 1026892978: {
+            global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MetadataBadgeRenderer();
+            if (rendererCase_ == RendererOneofCase.MetadataBadgeRenderer) {
+              subBuilder.MergeFrom(MetadataBadgeRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MetadataBadgeRenderer = subBuilder;
+            break;
+          }
+          case 1088615866: {
+            global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer();
+            if (rendererCase_ == RendererOneofCase.SubscriptionNotificationToggleButtonRenderer) {
+              subBuilder.MergeFrom(SubscriptionNotificationToggleButtonRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            SubscriptionNotificationToggleButtonRenderer = subBuilder;
+            break;
+          }
+          case 1275967842: {
+            global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.ContinuationItemRenderer();
+            if (rendererCase_ == RendererOneofCase.ContinuationItemRenderer) {
+              subBuilder.MergeFrom(ContinuationItemRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            ContinuationItemRenderer = subBuilder;
+            break;
+          }
+          case 1826751994: {
+            global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.ThumbnailOverlayNowPlayingRenderer();
+            if (rendererCase_ == RendererOneofCase.ThumbnailOverlayNowPlayingRenderer) {
+              subBuilder.MergeFrom(ThumbnailOverlayNowPlayingRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            ThumbnailOverlayNowPlayingRenderer = subBuilder;
+            break;
+          }
+          case 2207578626: {
+            global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.CommentsEntryPointHeaderRenderer();
+            if (rendererCase_ == RendererOneofCase.CommentsEntryPointHeaderRenderer) {
+              subBuilder.MergeFrom(CommentsEntryPointHeaderRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            CommentsEntryPointHeaderRenderer = subBuilder;
+            break;
+          }
+          case 2842040634: {
+            global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.MenuFlexibleItemRenderer();
+            if (rendererCase_ == RendererOneofCase.MenuFlexibleItemRenderer) {
+              subBuilder.MergeFrom(MenuFlexibleItemRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            MenuFlexibleItemRenderer = subBuilder;
+            break;
+          }
+          case 3606491122: {
+            global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer subBuilder = new global::InnerTube.Protobuf.Renderers.CommentsEntryPointTeaserRenderer();
+            if (rendererCase_ == RendererOneofCase.CommentsEntryPointTeaserRenderer) {
+              subBuilder.MergeFrom(CommentsEntryPointTeaserRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            CommentsEntryPointTeaserRenderer = subBuilder;
+            break;
+          }
+          case 3617070922: {
+            global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel subBuilder = new global::InnerTube.Protobuf.Renderers.SegmentedLikeDislikeButtonViewModel();
+            if (rendererCase_ == RendererOneofCase.SegmentedLikeDislikeButtonViewModel) {
+              subBuilder.MergeFrom(SegmentedLikeDislikeButtonViewModel);
+            }
+            input.ReadMessage(subBuilder);
+            SegmentedLikeDislikeButtonViewModel = subBuilder;
+            break;
+          }
+          case 3688434682: {
+            global::InnerTube.Protobuf.Renderers.SaveButtonViewModel subBuilder = new global::InnerTube.Protobuf.Renderers.SaveButtonViewModel();
+            if (rendererCase_ == RendererOneofCase.SaveButtonViewModel) {
+              subBuilder.MergeFrom(SaveButtonViewModel);
+            }
+            input.ReadMessage(subBuilder);
+            SaveButtonViewModel = subBuilder;
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class Autoplay : pb::IMessage<Autoplay>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Autoplay> _parser = new pb::MessageParser<Autoplay>(() => new Autoplay());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Autoplay> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Autoplay() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Autoplay(Autoplay other) : this() {
+      sets_ = other.sets_.Clone();
+      countdownSecs_ = other.countdownSecs_;
+      trackingParams_ = other.trackingParams_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Autoplay Clone() {
+      return new Autoplay(this);
+    }
+
+    /// <summary>Field number for the "sets" field.</summary>
+    public const int SetsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.Autoplay.Types.Set> _repeated_sets_codec
+        = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.Renderers.Autoplay.Types.Set.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.Autoplay.Types.Set> sets_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.Autoplay.Types.Set>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.Autoplay.Types.Set> Sets {
+      get { return sets_; }
+    }
+
+    /// <summary>Field number for the "countdownSecs" field.</summary>
+    public const int CountdownSecsFieldNumber = 3;
+    private int countdownSecs_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CountdownSecs {
+      get { return countdownSecs_; }
+      set {
+        countdownSecs_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 11;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Autoplay);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Autoplay other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!sets_.Equals(other.sets_)) return false;
+      if (CountdownSecs != other.CountdownSecs) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= sets_.GetHashCode();
+      if (CountdownSecs != 0) hash ^= CountdownSecs.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      sets_.WriteTo(output, _repeated_sets_codec);
+      if (CountdownSecs != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(CountdownSecs);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      sets_.WriteTo(ref output, _repeated_sets_codec);
+      if (CountdownSecs != 0) {
+        output.WriteRawTag(24);
+        output.WriteInt32(CountdownSecs);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += sets_.CalculateSize(_repeated_sets_codec);
+      if (CountdownSecs != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CountdownSecs);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Autoplay other) {
+      if (other == null) {
+        return;
+      }
+      sets_.Add(other.sets_);
+      if (other.CountdownSecs != 0) {
+        CountdownSecs = other.CountdownSecs;
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            sets_.AddEntriesFrom(input, _repeated_sets_codec);
+            break;
+          }
+          case 24: {
+            CountdownSecs = input.ReadInt32();
+            break;
+          }
+          case 90: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            sets_.AddEntriesFrom(ref input, _repeated_sets_codec);
+            break;
+          }
+          case 24: {
+            CountdownSecs = input.ReadInt32();
+            break;
+          }
+          case 90: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the Autoplay message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class Set : pb::IMessage<Set>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<Set> _parser = new pb::MessageParser<Set>(() => new Set());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Set> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::InnerTube.Protobuf.Renderers.Autoplay.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Set() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Set(Set other) : this() {
+          mode_ = other.mode_;
+          autoplayVideo_ = other.autoplayVideo_ != null ? other.autoplayVideo_.Clone() : null;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Set Clone() {
+          return new Set(this);
+        }
+
+        /// <summary>Field number for the "mode" field.</summary>
+        public const int ModeFieldNumber = 1;
+        private int mode_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int Mode {
+          get { return mode_; }
+          set {
+            mode_ = value;
+          }
+        }
+
+        /// <summary>Field number for the "autoplayVideo" field.</summary>
+        public const int AutoplayVideoFieldNumber = 2;
+        private global::InnerTube.Protobuf.Endpoints.Endpoint autoplayVideo_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::InnerTube.Protobuf.Endpoints.Endpoint AutoplayVideo {
+          get { return autoplayVideo_; }
+          set {
+            autoplayVideo_ = value;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as Set);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Set other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (Mode != other.Mode) return false;
+          if (!object.Equals(AutoplayVideo, other.AutoplayVideo)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (Mode != 0) hash ^= Mode.GetHashCode();
+          if (autoplayVideo_ != null) hash ^= AutoplayVideo.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (Mode != 0) {
+            output.WriteRawTag(8);
+            output.WriteInt32(Mode);
+          }
+          if (autoplayVideo_ != null) {
+            output.WriteRawTag(18);
+            output.WriteMessage(AutoplayVideo);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (Mode != 0) {
+            output.WriteRawTag(8);
+            output.WriteInt32(Mode);
+          }
+          if (autoplayVideo_ != null) {
+            output.WriteRawTag(18);
+            output.WriteMessage(AutoplayVideo);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (Mode != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeInt32Size(Mode);
+          }
+          if (autoplayVideo_ != null) {
+            size += 1 + pb::CodedOutputStream.ComputeMessageSize(AutoplayVideo);
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Set other) {
+          if (other == null) {
+            return;
+          }
+          if (other.Mode != 0) {
+            Mode = other.Mode;
+          }
+          if (other.autoplayVideo_ != null) {
+            if (autoplayVideo_ == null) {
+              AutoplayVideo = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            AutoplayVideo.MergeFrom(other.AutoplayVideo);
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 8: {
+                Mode = input.ReadInt32();
+                break;
+              }
+              case 18: {
+                if (autoplayVideo_ == null) {
+                  AutoplayVideo = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+                }
+                input.ReadMessage(AutoplayVideo);
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 8: {
+                Mode = input.ReadInt32();
+                break;
+              }
+              case 18: {
+                if (autoplayVideo_ == null) {
+                  AutoplayVideo = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+                }
+                input.ReadMessage(AutoplayVideo);
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+    }
+    #endregion
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ResultsContainer : pb::IMessage<ResultsContainer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ResultsContainer> _parser = new pb::MessageParser<ResultsContainer>(() => new ResultsContainer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ResultsContainer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ResultsContainer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ResultsContainer(ResultsContainer other) : this() {
+      results_ = other.results_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ResultsContainer Clone() {
+      return new ResultsContainer(this);
+    }
+
+    /// <summary>Field number for the "results" field.</summary>
+    public const int ResultsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_results_codec
+        = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> results_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> Results {
+      get { return results_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ResultsContainer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ResultsContainer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!results_.Equals(other.results_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= results_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      results_.WriteTo(output, _repeated_results_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      results_.WriteTo(ref output, _repeated_results_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += results_.CalculateSize(_repeated_results_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ResultsContainer other) {
+      if (other == null) {
+        return;
+      }
+      results_.Add(other.results_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            results_.AddEntriesFrom(input, _repeated_results_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            results_.AddEntriesFrom(ref input, _repeated_results_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ItemSectionRenderer : pb::IMessage<ItemSectionRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ItemSectionRenderer> _parser = new pb::MessageParser<ItemSectionRenderer>(() => new ItemSectionRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ItemSectionRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[3]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ItemSectionRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ItemSectionRenderer(ItemSectionRenderer other) : this() {
+      contents_ = other.contents_.Clone();
+      trackingParams_ = other.trackingParams_;
+      sectionIdentifier_ = other.sectionIdentifier_;
+      targetId_ = other.targetId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ItemSectionRenderer Clone() {
+      return new ItemSectionRenderer(this);
+    }
+
+    /// <summary>Field number for the "contents" field.</summary>
+    public const int ContentsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_contents_codec
+        = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> contents_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> Contents {
+      get { return contents_; }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 4;
+    private readonly static pb::ByteString TrackingParamsDefaultValue = pb::ByteString.Empty;
+
+    private pb::ByteString trackingParams_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_ ?? TrackingParamsDefaultValue; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "trackingParams" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTrackingParams {
+      get { return trackingParams_ != null; }
+    }
+    /// <summary>Clears the value of the "trackingParams" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTrackingParams() {
+      trackingParams_ = null;
+    }
+
+    /// <summary>Field number for the "sectionIdentifier" field.</summary>
+    public const int SectionIdentifierFieldNumber = 7;
+    private readonly static string SectionIdentifierDefaultValue = "";
+
+    private string sectionIdentifier_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SectionIdentifier {
+      get { return sectionIdentifier_ ?? SectionIdentifierDefaultValue; }
+      set {
+        sectionIdentifier_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "sectionIdentifier" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSectionIdentifier {
+      get { return sectionIdentifier_ != null; }
+    }
+    /// <summary>Clears the value of the "sectionIdentifier" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSectionIdentifier() {
+      sectionIdentifier_ = null;
+    }
+
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 13;
+    private readonly static string TargetIdDefaultValue = "";
+
+    private string targetId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TargetId {
+      get { return targetId_ ?? TargetIdDefaultValue; }
+      set {
+        targetId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "targetId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTargetId {
+      get { return targetId_ != null; }
+    }
+    /// <summary>Clears the value of the "targetId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTargetId() {
+      targetId_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ItemSectionRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ItemSectionRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!contents_.Equals(other.contents_)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (SectionIdentifier != other.SectionIdentifier) return false;
+      if (TargetId != other.TargetId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= contents_.GetHashCode();
+      if (HasTrackingParams) hash ^= TrackingParams.GetHashCode();
+      if (HasSectionIdentifier) hash ^= SectionIdentifier.GetHashCode();
+      if (HasTargetId) hash ^= TargetId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      contents_.WriteTo(output, _repeated_contents_codec);
+      if (HasTrackingParams) {
+        output.WriteRawTag(34);
+        output.WriteBytes(TrackingParams);
+      }
+      if (HasSectionIdentifier) {
+        output.WriteRawTag(58);
+        output.WriteString(SectionIdentifier);
+      }
+      if (HasTargetId) {
+        output.WriteRawTag(106);
+        output.WriteString(TargetId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      contents_.WriteTo(ref output, _repeated_contents_codec);
+      if (HasTrackingParams) {
+        output.WriteRawTag(34);
+        output.WriteBytes(TrackingParams);
+      }
+      if (HasSectionIdentifier) {
+        output.WriteRawTag(58);
+        output.WriteString(SectionIdentifier);
+      }
+      if (HasTargetId) {
+        output.WriteRawTag(106);
+        output.WriteString(TargetId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += contents_.CalculateSize(_repeated_contents_codec);
+      if (HasTrackingParams) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (HasSectionIdentifier) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(SectionIdentifier);
+      }
+      if (HasTargetId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TargetId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ItemSectionRenderer other) {
+      if (other == null) {
+        return;
+      }
+      contents_.Add(other.contents_);
+      if (other.HasTrackingParams) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.HasSectionIdentifier) {
+        SectionIdentifier = other.SectionIdentifier;
+      }
+      if (other.HasTargetId) {
+        TargetId = other.TargetId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            contents_.AddEntriesFrom(input, _repeated_contents_codec);
+            break;
+          }
+          case 34: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 58: {
+            SectionIdentifier = input.ReadString();
+            break;
+          }
+          case 106: {
+            TargetId = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            contents_.AddEntriesFrom(ref input, _repeated_contents_codec);
+            break;
+          }
+          case 34: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 58: {
+            SectionIdentifier = input.ReadString();
+            break;
+          }
+          case 106: {
+            TargetId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class CompactVideoRenderer : pb::IMessage<CompactVideoRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CompactVideoRenderer> _parser = new pb::MessageParser<CompactVideoRenderer>(() => new CompactVideoRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CompactVideoRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[4]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CompactVideoRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CompactVideoRenderer(CompactVideoRenderer other) : this() {
+      videoId_ = other.videoId_;
+      thumbnail_ = other.thumbnail_ != null ? other.thumbnail_.Clone() : null;
+      text_ = other.text_ != null ? other.text_.Clone() : null;
+      longBylineText_ = other.longBylineText_ != null ? other.longBylineText_.Clone() : null;
+      publishedTimeText_ = other.publishedTimeText_ != null ? other.publishedTimeText_.Clone() : null;
+      viewCountText_ = other.viewCountText_ != null ? other.viewCountText_.Clone() : null;
+      lengthText_ = other.lengthText_ != null ? other.lengthText_.Clone() : null;
+      navigationEndpoint_ = other.navigationEndpoint_ != null ? other.navigationEndpoint_.Clone() : null;
+      shortBylineText_ = other.shortBylineText_ != null ? other.shortBylineText_.Clone() : null;
+      badges_ = other.badges_.Clone();
+      channelThumbnail_ = other.channelThumbnail_ != null ? other.channelThumbnail_.Clone() : null;
+      ownerBadges_ = other.ownerBadges_.Clone();
+      trackingParams_ = other.trackingParams_;
+      shortViewCountText_ = other.shortViewCountText_ != null ? other.shortViewCountText_.Clone() : null;
+      menu_ = other.menu_ != null ? other.menu_.Clone() : null;
+      thumbnailOverlays_ = other.thumbnailOverlays_.Clone();
+      accessibility_ = other.accessibility_ != null ? other.accessibility_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CompactVideoRenderer Clone() {
+      return new CompactVideoRenderer(this);
+    }
+
+    /// <summary>Field number for the "videoId" field.</summary>
+    public const int VideoIdFieldNumber = 1;
+    private string videoId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string VideoId {
+      get { return videoId_; }
+      set {
+        videoId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "thumbnail" field.</summary>
+    public const int ThumbnailFieldNumber = 2;
+    private global::InnerTube.Protobuf.Thumbnails thumbnail_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Thumbnails Thumbnail {
+      get { return thumbnail_; }
+      set {
+        thumbnail_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "text" field.</summary>
+    public const int TextFieldNumber = 3;
+    private global::InnerTube.Protobuf.Endpoints.Text text_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text Text {
+      get { return text_; }
+      set {
+        text_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "longBylineText" field.</summary>
+    public const int LongBylineTextFieldNumber = 4;
+    private global::InnerTube.Protobuf.Endpoints.Text longBylineText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text LongBylineText {
+      get { return longBylineText_; }
+      set {
+        longBylineText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "publishedTimeText" field.</summary>
+    public const int PublishedTimeTextFieldNumber = 5;
+    private global::InnerTube.Protobuf.Endpoints.Text publishedTimeText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text PublishedTimeText {
+      get { return publishedTimeText_; }
+      set {
+        publishedTimeText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "viewCountText" field.</summary>
+    public const int ViewCountTextFieldNumber = 6;
+    private global::InnerTube.Protobuf.Endpoints.Text viewCountText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ViewCountText {
+      get { return viewCountText_; }
+      set {
+        viewCountText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "lengthText" field.</summary>
+    public const int LengthTextFieldNumber = 7;
+    private global::InnerTube.Protobuf.Endpoints.Text lengthText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text LengthText {
+      get { return lengthText_; }
+      set {
+        lengthText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "navigationEndpoint" field.</summary>
+    public const int NavigationEndpointFieldNumber = 8;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint navigationEndpoint_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint NavigationEndpoint {
+      get { return navigationEndpoint_; }
+      set {
+        navigationEndpoint_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "shortBylineText" field.</summary>
+    public const int ShortBylineTextFieldNumber = 10;
+    private global::InnerTube.Protobuf.Endpoints.Text shortBylineText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ShortBylineText {
+      get { return shortBylineText_; }
+      set {
+        shortBylineText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "badges" field.</summary>
+    public const int BadgesFieldNumber = 13;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_badges_codec
+        = pb::FieldCodec.ForMessage(106, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> badges_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> Badges {
+      get { return badges_; }
+    }
+
+    /// <summary>Field number for the "channelThumbnail" field.</summary>
+    public const int ChannelThumbnailFieldNumber = 14;
+    private global::InnerTube.Protobuf.Thumbnails channelThumbnail_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Thumbnails ChannelThumbnail {
+      get { return channelThumbnail_; }
+      set {
+        channelThumbnail_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "ownerBadges" field.</summary>
+    public const int OwnerBadgesFieldNumber = 15;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_ownerBadges_codec
+        = pb::FieldCodec.ForMessage(122, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> ownerBadges_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> OwnerBadges {
+      get { return ownerBadges_; }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 18;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "shortViewCountText" field.</summary>
+    public const int ShortViewCountTextFieldNumber = 23;
+    private global::InnerTube.Protobuf.Endpoints.Text shortViewCountText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ShortViewCountText {
+      get { return shortViewCountText_; }
+      set {
+        shortViewCountText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "menu" field.</summary>
+    public const int MenuFieldNumber = 25;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper menu_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper Menu {
+      get { return menu_; }
+      set {
+        menu_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "thumbnailOverlays" field.</summary>
+    public const int ThumbnailOverlaysFieldNumber = 32;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_thumbnailOverlays_codec
+        = pb::FieldCodec.ForMessage(258, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> thumbnailOverlays_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> ThumbnailOverlays {
+      get { return thumbnailOverlays_; }
+    }
+
+    /// <summary>Field number for the "accessibility" field.</summary>
+    public const int AccessibilityFieldNumber = 36;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper accessibility_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper Accessibility {
+      get { return accessibility_; }
+      set {
+        accessibility_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CompactVideoRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CompactVideoRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (VideoId != other.VideoId) return false;
+      if (!object.Equals(Thumbnail, other.Thumbnail)) return false;
+      if (!object.Equals(Text, other.Text)) return false;
+      if (!object.Equals(LongBylineText, other.LongBylineText)) return false;
+      if (!object.Equals(PublishedTimeText, other.PublishedTimeText)) return false;
+      if (!object.Equals(ViewCountText, other.ViewCountText)) return false;
+      if (!object.Equals(LengthText, other.LengthText)) return false;
+      if (!object.Equals(NavigationEndpoint, other.NavigationEndpoint)) return false;
+      if (!object.Equals(ShortBylineText, other.ShortBylineText)) return false;
+      if(!badges_.Equals(other.badges_)) return false;
+      if (!object.Equals(ChannelThumbnail, other.ChannelThumbnail)) return false;
+      if(!ownerBadges_.Equals(other.ownerBadges_)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (!object.Equals(ShortViewCountText, other.ShortViewCountText)) return false;
+      if (!object.Equals(Menu, other.Menu)) return false;
+      if(!thumbnailOverlays_.Equals(other.thumbnailOverlays_)) return false;
+      if (!object.Equals(Accessibility, other.Accessibility)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (VideoId.Length != 0) hash ^= VideoId.GetHashCode();
+      if (thumbnail_ != null) hash ^= Thumbnail.GetHashCode();
+      if (text_ != null) hash ^= Text.GetHashCode();
+      if (longBylineText_ != null) hash ^= LongBylineText.GetHashCode();
+      if (publishedTimeText_ != null) hash ^= PublishedTimeText.GetHashCode();
+      if (viewCountText_ != null) hash ^= ViewCountText.GetHashCode();
+      if (lengthText_ != null) hash ^= LengthText.GetHashCode();
+      if (navigationEndpoint_ != null) hash ^= NavigationEndpoint.GetHashCode();
+      if (shortBylineText_ != null) hash ^= ShortBylineText.GetHashCode();
+      hash ^= badges_.GetHashCode();
+      if (channelThumbnail_ != null) hash ^= ChannelThumbnail.GetHashCode();
+      hash ^= ownerBadges_.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (shortViewCountText_ != null) hash ^= ShortViewCountText.GetHashCode();
+      if (menu_ != null) hash ^= Menu.GetHashCode();
+      hash ^= thumbnailOverlays_.GetHashCode();
+      if (accessibility_ != null) hash ^= Accessibility.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (VideoId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(VideoId);
+      }
+      if (thumbnail_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Thumbnail);
+      }
+      if (text_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Text);
+      }
+      if (longBylineText_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(LongBylineText);
+      }
+      if (publishedTimeText_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(PublishedTimeText);
+      }
+      if (viewCountText_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(ViewCountText);
+      }
+      if (lengthText_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(LengthText);
+      }
+      if (navigationEndpoint_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(NavigationEndpoint);
+      }
+      if (shortBylineText_ != null) {
+        output.WriteRawTag(82);
+        output.WriteMessage(ShortBylineText);
+      }
+      badges_.WriteTo(output, _repeated_badges_codec);
+      if (channelThumbnail_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(ChannelThumbnail);
+      }
+      ownerBadges_.WriteTo(output, _repeated_ownerBadges_codec);
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(146, 1);
+        output.WriteBytes(TrackingParams);
+      }
+      if (shortViewCountText_ != null) {
+        output.WriteRawTag(186, 1);
+        output.WriteMessage(ShortViewCountText);
+      }
+      if (menu_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(Menu);
+      }
+      thumbnailOverlays_.WriteTo(output, _repeated_thumbnailOverlays_codec);
+      if (accessibility_ != null) {
+        output.WriteRawTag(162, 2);
+        output.WriteMessage(Accessibility);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (VideoId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(VideoId);
+      }
+      if (thumbnail_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Thumbnail);
+      }
+      if (text_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Text);
+      }
+      if (longBylineText_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(LongBylineText);
+      }
+      if (publishedTimeText_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(PublishedTimeText);
+      }
+      if (viewCountText_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(ViewCountText);
+      }
+      if (lengthText_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(LengthText);
+      }
+      if (navigationEndpoint_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(NavigationEndpoint);
+      }
+      if (shortBylineText_ != null) {
+        output.WriteRawTag(82);
+        output.WriteMessage(ShortBylineText);
+      }
+      badges_.WriteTo(ref output, _repeated_badges_codec);
+      if (channelThumbnail_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(ChannelThumbnail);
+      }
+      ownerBadges_.WriteTo(ref output, _repeated_ownerBadges_codec);
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(146, 1);
+        output.WriteBytes(TrackingParams);
+      }
+      if (shortViewCountText_ != null) {
+        output.WriteRawTag(186, 1);
+        output.WriteMessage(ShortViewCountText);
+      }
+      if (menu_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(Menu);
+      }
+      thumbnailOverlays_.WriteTo(ref output, _repeated_thumbnailOverlays_codec);
+      if (accessibility_ != null) {
+        output.WriteRawTag(162, 2);
+        output.WriteMessage(Accessibility);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (VideoId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(VideoId);
+      }
+      if (thumbnail_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Thumbnail);
+      }
+      if (text_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Text);
+      }
+      if (longBylineText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LongBylineText);
+      }
+      if (publishedTimeText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PublishedTimeText);
+      }
+      if (viewCountText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ViewCountText);
+      }
+      if (lengthText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LengthText);
+      }
+      if (navigationEndpoint_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NavigationEndpoint);
+      }
+      if (shortBylineText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShortBylineText);
+      }
+      size += badges_.CalculateSize(_repeated_badges_codec);
+      if (channelThumbnail_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ChannelThumbnail);
+      }
+      size += ownerBadges_.CalculateSize(_repeated_ownerBadges_codec);
+      if (TrackingParams.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (shortViewCountText_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(ShortViewCountText);
+      }
+      if (menu_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Menu);
+      }
+      size += thumbnailOverlays_.CalculateSize(_repeated_thumbnailOverlays_codec);
+      if (accessibility_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Accessibility);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CompactVideoRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.VideoId.Length != 0) {
+        VideoId = other.VideoId;
+      }
+      if (other.thumbnail_ != null) {
+        if (thumbnail_ == null) {
+          Thumbnail = new global::InnerTube.Protobuf.Thumbnails();
+        }
+        Thumbnail.MergeFrom(other.Thumbnail);
+      }
+      if (other.text_ != null) {
+        if (text_ == null) {
+          Text = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        Text.MergeFrom(other.Text);
+      }
+      if (other.longBylineText_ != null) {
+        if (longBylineText_ == null) {
+          LongBylineText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        LongBylineText.MergeFrom(other.LongBylineText);
+      }
+      if (other.publishedTimeText_ != null) {
+        if (publishedTimeText_ == null) {
+          PublishedTimeText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        PublishedTimeText.MergeFrom(other.PublishedTimeText);
+      }
+      if (other.viewCountText_ != null) {
+        if (viewCountText_ == null) {
+          ViewCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ViewCountText.MergeFrom(other.ViewCountText);
+      }
+      if (other.lengthText_ != null) {
+        if (lengthText_ == null) {
+          LengthText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        LengthText.MergeFrom(other.LengthText);
+      }
+      if (other.navigationEndpoint_ != null) {
+        if (navigationEndpoint_ == null) {
+          NavigationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        NavigationEndpoint.MergeFrom(other.NavigationEndpoint);
+      }
+      if (other.shortBylineText_ != null) {
+        if (shortBylineText_ == null) {
+          ShortBylineText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ShortBylineText.MergeFrom(other.ShortBylineText);
+      }
+      badges_.Add(other.badges_);
+      if (other.channelThumbnail_ != null) {
+        if (channelThumbnail_ == null) {
+          ChannelThumbnail = new global::InnerTube.Protobuf.Thumbnails();
+        }
+        ChannelThumbnail.MergeFrom(other.ChannelThumbnail);
+      }
+      ownerBadges_.Add(other.ownerBadges_);
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.shortViewCountText_ != null) {
+        if (shortViewCountText_ == null) {
+          ShortViewCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ShortViewCountText.MergeFrom(other.ShortViewCountText);
+      }
+      if (other.menu_ != null) {
+        if (menu_ == null) {
+          Menu = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        Menu.MergeFrom(other.Menu);
+      }
+      thumbnailOverlays_.Add(other.thumbnailOverlays_);
+      if (other.accessibility_ != null) {
+        if (accessibility_ == null) {
+          Accessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        Accessibility.MergeFrom(other.Accessibility);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            VideoId = input.ReadString();
+            break;
+          }
+          case 18: {
+            if (thumbnail_ == null) {
+              Thumbnail = new global::InnerTube.Protobuf.Thumbnails();
+            }
+            input.ReadMessage(Thumbnail);
+            break;
+          }
+          case 26: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+          case 34: {
+            if (longBylineText_ == null) {
+              LongBylineText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(LongBylineText);
+            break;
+          }
+          case 42: {
+            if (publishedTimeText_ == null) {
+              PublishedTimeText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(PublishedTimeText);
+            break;
+          }
+          case 50: {
+            if (viewCountText_ == null) {
+              ViewCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ViewCountText);
+            break;
+          }
+          case 58: {
+            if (lengthText_ == null) {
+              LengthText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(LengthText);
+            break;
+          }
+          case 66: {
+            if (navigationEndpoint_ == null) {
+              NavigationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(NavigationEndpoint);
+            break;
+          }
+          case 82: {
+            if (shortBylineText_ == null) {
+              ShortBylineText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShortBylineText);
+            break;
+          }
+          case 106: {
+            badges_.AddEntriesFrom(input, _repeated_badges_codec);
+            break;
+          }
+          case 114: {
+            if (channelThumbnail_ == null) {
+              ChannelThumbnail = new global::InnerTube.Protobuf.Thumbnails();
+            }
+            input.ReadMessage(ChannelThumbnail);
+            break;
+          }
+          case 122: {
+            ownerBadges_.AddEntriesFrom(input, _repeated_ownerBadges_codec);
+            break;
+          }
+          case 146: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 186: {
+            if (shortViewCountText_ == null) {
+              ShortViewCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShortViewCountText);
+            break;
+          }
+          case 202: {
+            if (menu_ == null) {
+              Menu = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Menu);
+            break;
+          }
+          case 258: {
+            thumbnailOverlays_.AddEntriesFrom(input, _repeated_thumbnailOverlays_codec);
+            break;
+          }
+          case 290: {
+            if (accessibility_ == null) {
+              Accessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Accessibility);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            VideoId = input.ReadString();
+            break;
+          }
+          case 18: {
+            if (thumbnail_ == null) {
+              Thumbnail = new global::InnerTube.Protobuf.Thumbnails();
+            }
+            input.ReadMessage(Thumbnail);
+            break;
+          }
+          case 26: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+          case 34: {
+            if (longBylineText_ == null) {
+              LongBylineText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(LongBylineText);
+            break;
+          }
+          case 42: {
+            if (publishedTimeText_ == null) {
+              PublishedTimeText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(PublishedTimeText);
+            break;
+          }
+          case 50: {
+            if (viewCountText_ == null) {
+              ViewCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ViewCountText);
+            break;
+          }
+          case 58: {
+            if (lengthText_ == null) {
+              LengthText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(LengthText);
+            break;
+          }
+          case 66: {
+            if (navigationEndpoint_ == null) {
+              NavigationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(NavigationEndpoint);
+            break;
+          }
+          case 82: {
+            if (shortBylineText_ == null) {
+              ShortBylineText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShortBylineText);
+            break;
+          }
+          case 106: {
+            badges_.AddEntriesFrom(ref input, _repeated_badges_codec);
+            break;
+          }
+          case 114: {
+            if (channelThumbnail_ == null) {
+              ChannelThumbnail = new global::InnerTube.Protobuf.Thumbnails();
+            }
+            input.ReadMessage(ChannelThumbnail);
+            break;
+          }
+          case 122: {
+            ownerBadges_.AddEntriesFrom(ref input, _repeated_ownerBadges_codec);
+            break;
+          }
+          case 146: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 186: {
+            if (shortViewCountText_ == null) {
+              ShortViewCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShortViewCountText);
+            break;
+          }
+          case 202: {
+            if (menu_ == null) {
+              Menu = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Menu);
+            break;
+          }
+          case 258: {
+            thumbnailOverlays_.AddEntriesFrom(ref input, _repeated_thumbnailOverlays_codec);
+            break;
+          }
+          case 290: {
+            if (accessibility_ == null) {
+              Accessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Accessibility);
             break;
           }
         }
@@ -747,7 +4339,7 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[1]; }
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1067,10 +4659,10 @@ namespace InnerTube.Protobuf.Renderers {
 
         /// <summary>Field number for the "name" field.</summary>
         public const int NameFieldNumber = 2;
-        private global::InnerTube.Protobuf.Text name_;
+        private global::InnerTube.Protobuf.Endpoints.Text name_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public global::InnerTube.Protobuf.Text Name {
+        public global::InnerTube.Protobuf.Endpoints.Text Name {
           get { return name_; }
           set {
             name_ = value;
@@ -1280,7 +4872,7 @@ namespace InnerTube.Protobuf.Renderers {
           }
           if (other.name_ != null) {
             if (name_ == null) {
-              Name = new global::InnerTube.Protobuf.Text();
+              Name = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             Name.MergeFrom(other.Name);
           }
@@ -1317,7 +4909,7 @@ namespace InnerTube.Protobuf.Renderers {
               }
               case 18: {
                 if (name_ == null) {
-                  Name = new global::InnerTube.Protobuf.Text();
+                  Name = new global::InnerTube.Protobuf.Endpoints.Text();
                 }
                 input.ReadMessage(Name);
                 break;
@@ -1359,7 +4951,7 @@ namespace InnerTube.Protobuf.Renderers {
               }
               case 18: {
                 if (name_ == null) {
-                  Name = new global::InnerTube.Protobuf.Text();
+                  Name = new global::InnerTube.Protobuf.Endpoints.Text();
                 }
                 input.ReadMessage(Name);
                 break;
@@ -1876,10 +5468,10 @@ namespace InnerTube.Protobuf.Renderers {
 
         /// <summary>Field number for the "languageName" field.</summary>
         public const int LanguageNameFieldNumber = 2;
-        private global::InnerTube.Protobuf.Text languageName_;
+        private global::InnerTube.Protobuf.Endpoints.Text languageName_;
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
         [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-        public global::InnerTube.Protobuf.Text LanguageName {
+        public global::InnerTube.Protobuf.Endpoints.Text LanguageName {
           get { return languageName_; }
           set {
             languageName_ = value;
@@ -2005,7 +5597,7 @@ namespace InnerTube.Protobuf.Renderers {
           }
           if (other.languageName_ != null) {
             if (languageName_ == null) {
-              LanguageName = new global::InnerTube.Protobuf.Text();
+              LanguageName = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             LanguageName.MergeFrom(other.LanguageName);
           }
@@ -2031,7 +5623,7 @@ namespace InnerTube.Protobuf.Renderers {
               }
               case 18: {
                 if (languageName_ == null) {
-                  LanguageName = new global::InnerTube.Protobuf.Text();
+                  LanguageName = new global::InnerTube.Protobuf.Endpoints.Text();
                 }
                 input.ReadMessage(LanguageName);
                 break;
@@ -2062,7 +5654,7 @@ namespace InnerTube.Protobuf.Renderers {
               }
               case 18: {
                 if (languageName_ == null) {
-                  LanguageName = new global::InnerTube.Protobuf.Text();
+                  LanguageName = new global::InnerTube.Protobuf.Endpoints.Text();
                 }
                 input.ReadMessage(LanguageName);
                 break;
@@ -2085,6 +5677,2019 @@ namespace InnerTube.Protobuf.Renderers {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class VideoOwnerRenderer : pb::IMessage<VideoOwnerRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<VideoOwnerRenderer> _parser = new pb::MessageParser<VideoOwnerRenderer>(() => new VideoOwnerRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<VideoOwnerRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[6]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoOwnerRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoOwnerRenderer(VideoOwnerRenderer other) : this() {
+      thumbnail_ = other.thumbnail_ != null ? other.thumbnail_.Clone() : null;
+      title_ = other.title_ != null ? other.title_.Clone() : null;
+      subscriptionButton_ = other.subscriptionButton_ != null ? other.subscriptionButton_.Clone() : null;
+      navigationEndpoint_ = other.navigationEndpoint_ != null ? other.navigationEndpoint_.Clone() : null;
+      subscriberCountText_ = other.subscriberCountText_ != null ? other.subscriberCountText_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoOwnerRenderer Clone() {
+      return new VideoOwnerRenderer(this);
+    }
+
+    /// <summary>Field number for the "thumbnail" field.</summary>
+    public const int ThumbnailFieldNumber = 1;
+    private global::InnerTube.Protobuf.Thumbnails thumbnail_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Thumbnails Thumbnail {
+      get { return thumbnail_; }
+      set {
+        thumbnail_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "title" field.</summary>
+    public const int TitleFieldNumber = 2;
+    private global::InnerTube.Protobuf.Endpoints.Text title_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text Title {
+      get { return title_; }
+      set {
+        title_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "subscriptionButton" field.</summary>
+    public const int SubscriptionButtonFieldNumber = 3;
+    private global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Types.SubscriptionButton subscriptionButton_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Types.SubscriptionButton SubscriptionButton {
+      get { return subscriptionButton_; }
+      set {
+        subscriptionButton_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "navigationEndpoint" field.</summary>
+    public const int NavigationEndpointFieldNumber = 4;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint navigationEndpoint_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint NavigationEndpoint {
+      get { return navigationEndpoint_; }
+      set {
+        navigationEndpoint_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "subscriberCountText" field.</summary>
+    public const int SubscriberCountTextFieldNumber = 5;
+    private global::InnerTube.Protobuf.Endpoints.Text subscriberCountText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text SubscriberCountText {
+      get { return subscriberCountText_; }
+      set {
+        subscriberCountText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 8;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as VideoOwnerRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(VideoOwnerRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Thumbnail, other.Thumbnail)) return false;
+      if (!object.Equals(Title, other.Title)) return false;
+      if (!object.Equals(SubscriptionButton, other.SubscriptionButton)) return false;
+      if (!object.Equals(NavigationEndpoint, other.NavigationEndpoint)) return false;
+      if (!object.Equals(SubscriberCountText, other.SubscriberCountText)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (thumbnail_ != null) hash ^= Thumbnail.GetHashCode();
+      if (title_ != null) hash ^= Title.GetHashCode();
+      if (subscriptionButton_ != null) hash ^= SubscriptionButton.GetHashCode();
+      if (navigationEndpoint_ != null) hash ^= NavigationEndpoint.GetHashCode();
+      if (subscriberCountText_ != null) hash ^= SubscriberCountText.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (thumbnail_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Thumbnail);
+      }
+      if (title_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Title);
+      }
+      if (subscriptionButton_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(SubscriptionButton);
+      }
+      if (navigationEndpoint_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(NavigationEndpoint);
+      }
+      if (subscriberCountText_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(SubscriberCountText);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (thumbnail_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Thumbnail);
+      }
+      if (title_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Title);
+      }
+      if (subscriptionButton_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(SubscriptionButton);
+      }
+      if (navigationEndpoint_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(NavigationEndpoint);
+      }
+      if (subscriberCountText_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(SubscriberCountText);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(66);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (thumbnail_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Thumbnail);
+      }
+      if (title_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Title);
+      }
+      if (subscriptionButton_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SubscriptionButton);
+      }
+      if (navigationEndpoint_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(NavigationEndpoint);
+      }
+      if (subscriberCountText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SubscriberCountText);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(VideoOwnerRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.thumbnail_ != null) {
+        if (thumbnail_ == null) {
+          Thumbnail = new global::InnerTube.Protobuf.Thumbnails();
+        }
+        Thumbnail.MergeFrom(other.Thumbnail);
+      }
+      if (other.title_ != null) {
+        if (title_ == null) {
+          Title = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        Title.MergeFrom(other.Title);
+      }
+      if (other.subscriptionButton_ != null) {
+        if (subscriptionButton_ == null) {
+          SubscriptionButton = new global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Types.SubscriptionButton();
+        }
+        SubscriptionButton.MergeFrom(other.SubscriptionButton);
+      }
+      if (other.navigationEndpoint_ != null) {
+        if (navigationEndpoint_ == null) {
+          NavigationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        NavigationEndpoint.MergeFrom(other.NavigationEndpoint);
+      }
+      if (other.subscriberCountText_ != null) {
+        if (subscriberCountText_ == null) {
+          SubscriberCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        SubscriberCountText.MergeFrom(other.SubscriberCountText);
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (thumbnail_ == null) {
+              Thumbnail = new global::InnerTube.Protobuf.Thumbnails();
+            }
+            input.ReadMessage(Thumbnail);
+            break;
+          }
+          case 18: {
+            if (title_ == null) {
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Title);
+            break;
+          }
+          case 26: {
+            if (subscriptionButton_ == null) {
+              SubscriptionButton = new global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Types.SubscriptionButton();
+            }
+            input.ReadMessage(SubscriptionButton);
+            break;
+          }
+          case 34: {
+            if (navigationEndpoint_ == null) {
+              NavigationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(NavigationEndpoint);
+            break;
+          }
+          case 42: {
+            if (subscriberCountText_ == null) {
+              SubscriberCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(SubscriberCountText);
+            break;
+          }
+          case 66: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (thumbnail_ == null) {
+              Thumbnail = new global::InnerTube.Protobuf.Thumbnails();
+            }
+            input.ReadMessage(Thumbnail);
+            break;
+          }
+          case 18: {
+            if (title_ == null) {
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Title);
+            break;
+          }
+          case 26: {
+            if (subscriptionButton_ == null) {
+              SubscriptionButton = new global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Types.SubscriptionButton();
+            }
+            input.ReadMessage(SubscriptionButton);
+            break;
+          }
+          case 34: {
+            if (navigationEndpoint_ == null) {
+              NavigationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(NavigationEndpoint);
+            break;
+          }
+          case 42: {
+            if (subscriberCountText_ == null) {
+              SubscriberCountText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(SubscriberCountText);
+            break;
+          }
+          case 66: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the VideoOwnerRenderer message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class SubscriptionButton : pb::IMessage<SubscriptionButton>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<SubscriptionButton> _parser = new pb::MessageParser<SubscriptionButton>(() => new SubscriptionButton());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<SubscriptionButton> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::InnerTube.Protobuf.Renderers.VideoOwnerRenderer.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public SubscriptionButton() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public SubscriptionButton(SubscriptionButton other) : this() {
+          type_ = other.type_;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public SubscriptionButton Clone() {
+          return new SubscriptionButton(this);
+        }
+
+        /// <summary>Field number for the "type" field.</summary>
+        public const int TypeFieldNumber = 1;
+        private int type_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int Type {
+          get { return type_; }
+          set {
+            type_ = value;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as SubscriptionButton);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(SubscriptionButton other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (Type != other.Type) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (Type != 0) hash ^= Type.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (Type != 0) {
+            output.WriteRawTag(8);
+            output.WriteInt32(Type);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (Type != 0) {
+            output.WriteRawTag(8);
+            output.WriteInt32(Type);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (Type != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeInt32Size(Type);
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(SubscriptionButton other) {
+          if (other == null) {
+            return;
+          }
+          if (other.Type != 0) {
+            Type = other.Type;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 8: {
+                Type = input.ReadInt32();
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 8: {
+                Type = input.ReadInt32();
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+    }
+    #endregion
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SecondaryResults : pb::IMessage<SecondaryResults>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SecondaryResults> _parser = new pb::MessageParser<SecondaryResults>(() => new SecondaryResults());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SecondaryResults> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SecondaryResults() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SecondaryResults(SecondaryResults other) : this() {
+      results_ = other.results_.Clone();
+      trackingParams_ = other.trackingParams_;
+      targetId_ = other.targetId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SecondaryResults Clone() {
+      return new SecondaryResults(this);
+    }
+
+    /// <summary>Field number for the "results" field.</summary>
+    public const int ResultsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_results_codec
+        = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> results_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> Results {
+      get { return results_; }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 4;
+    private readonly static pb::ByteString TrackingParamsDefaultValue = pb::ByteString.Empty;
+
+    private pb::ByteString trackingParams_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_ ?? TrackingParamsDefaultValue; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "trackingParams" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTrackingParams {
+      get { return trackingParams_ != null; }
+    }
+    /// <summary>Clears the value of the "trackingParams" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTrackingParams() {
+      trackingParams_ = null;
+    }
+
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 6;
+    private readonly static string TargetIdDefaultValue = "";
+
+    private string targetId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TargetId {
+      get { return targetId_ ?? TargetIdDefaultValue; }
+      set {
+        targetId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "targetId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTargetId {
+      get { return targetId_ != null; }
+    }
+    /// <summary>Clears the value of the "targetId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTargetId() {
+      targetId_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SecondaryResults);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SecondaryResults other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!results_.Equals(other.results_)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (TargetId != other.TargetId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= results_.GetHashCode();
+      if (HasTrackingParams) hash ^= TrackingParams.GetHashCode();
+      if (HasTargetId) hash ^= TargetId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      results_.WriteTo(output, _repeated_results_codec);
+      if (HasTrackingParams) {
+        output.WriteRawTag(34);
+        output.WriteBytes(TrackingParams);
+      }
+      if (HasTargetId) {
+        output.WriteRawTag(50);
+        output.WriteString(TargetId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      results_.WriteTo(ref output, _repeated_results_codec);
+      if (HasTrackingParams) {
+        output.WriteRawTag(34);
+        output.WriteBytes(TrackingParams);
+      }
+      if (HasTargetId) {
+        output.WriteRawTag(50);
+        output.WriteString(TargetId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += results_.CalculateSize(_repeated_results_codec);
+      if (HasTrackingParams) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (HasTargetId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TargetId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SecondaryResults other) {
+      if (other == null) {
+        return;
+      }
+      results_.Add(other.results_);
+      if (other.HasTrackingParams) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.HasTargetId) {
+        TargetId = other.TargetId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            results_.AddEntriesFrom(input, _repeated_results_codec);
+            break;
+          }
+          case 34: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 50: {
+            TargetId = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            results_.AddEntriesFrom(ref input, _repeated_results_codec);
+            break;
+          }
+          case 34: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 50: {
+            TargetId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class TwoColumnWatchNextResults : pb::IMessage<TwoColumnWatchNextResults>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<TwoColumnWatchNextResults> _parser = new pb::MessageParser<TwoColumnWatchNextResults>(() => new TwoColumnWatchNextResults());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<TwoColumnWatchNextResults> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[8]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TwoColumnWatchNextResults() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TwoColumnWatchNextResults(TwoColumnWatchNextResults other) : this() {
+      results_ = other.results_ != null ? other.results_.Clone() : null;
+      secondaryResults_ = other.secondaryResults_ != null ? other.secondaryResults_.Clone() : null;
+      autoplay_ = other.autoplay_ != null ? other.autoplay_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public TwoColumnWatchNextResults Clone() {
+      return new TwoColumnWatchNextResults(this);
+    }
+
+    /// <summary>Field number for the "results" field.</summary>
+    public const int ResultsFieldNumber = 1;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper results_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper Results {
+      get { return results_; }
+      set {
+        results_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "secondaryResults" field.</summary>
+    public const int SecondaryResultsFieldNumber = 2;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper secondaryResults_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper SecondaryResults {
+      get { return secondaryResults_; }
+      set {
+        secondaryResults_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "autoplay" field.</summary>
+    public const int AutoplayFieldNumber = 4;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper autoplay_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper Autoplay {
+      get { return autoplay_; }
+      set {
+        autoplay_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as TwoColumnWatchNextResults);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(TwoColumnWatchNextResults other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Results, other.Results)) return false;
+      if (!object.Equals(SecondaryResults, other.SecondaryResults)) return false;
+      if (!object.Equals(Autoplay, other.Autoplay)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (results_ != null) hash ^= Results.GetHashCode();
+      if (secondaryResults_ != null) hash ^= SecondaryResults.GetHashCode();
+      if (autoplay_ != null) hash ^= Autoplay.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (results_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Results);
+      }
+      if (secondaryResults_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(SecondaryResults);
+      }
+      if (autoplay_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Autoplay);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (results_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Results);
+      }
+      if (secondaryResults_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(SecondaryResults);
+      }
+      if (autoplay_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(Autoplay);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (results_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Results);
+      }
+      if (secondaryResults_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SecondaryResults);
+      }
+      if (autoplay_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Autoplay);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(TwoColumnWatchNextResults other) {
+      if (other == null) {
+        return;
+      }
+      if (other.results_ != null) {
+        if (results_ == null) {
+          Results = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        Results.MergeFrom(other.Results);
+      }
+      if (other.secondaryResults_ != null) {
+        if (secondaryResults_ == null) {
+          SecondaryResults = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        SecondaryResults.MergeFrom(other.SecondaryResults);
+      }
+      if (other.autoplay_ != null) {
+        if (autoplay_ == null) {
+          Autoplay = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        Autoplay.MergeFrom(other.Autoplay);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (results_ == null) {
+              Results = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Results);
+            break;
+          }
+          case 18: {
+            if (secondaryResults_ == null) {
+              SecondaryResults = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(SecondaryResults);
+            break;
+          }
+          case 34: {
+            if (autoplay_ == null) {
+              Autoplay = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Autoplay);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (results_ == null) {
+              Results = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Results);
+            break;
+          }
+          case 18: {
+            if (secondaryResults_ == null) {
+              SecondaryResults = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(SecondaryResults);
+            break;
+          }
+          case 34: {
+            if (autoplay_ == null) {
+              Autoplay = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Autoplay);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SubscribeButtonRenderer : pb::IMessage<SubscribeButtonRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SubscribeButtonRenderer> _parser = new pb::MessageParser<SubscribeButtonRenderer>(() => new SubscribeButtonRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SubscribeButtonRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SubscribeButtonRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SubscribeButtonRenderer(SubscribeButtonRenderer other) : this() {
+      buttonText_ = other.buttonText_ != null ? other.buttonText_.Clone() : null;
+      subscribed_ = other.subscribed_;
+      enabled_ = other.enabled_;
+      type_ = other.type_;
+      channelId_ = other.channelId_;
+      showPreferences_ = other.showPreferences_;
+      subscribedButtonText_ = other.subscribedButtonText_ != null ? other.subscribedButtonText_.Clone() : null;
+      unsubscribedButtonText_ = other.unsubscribedButtonText_ != null ? other.unsubscribedButtonText_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      unsubscribeButtonText_ = other.unsubscribeButtonText_ != null ? other.unsubscribeButtonText_.Clone() : null;
+      subscribeAccessibility_ = other.subscribeAccessibility_ != null ? other.subscribeAccessibility_.Clone() : null;
+      unsubscribeAccessibility_ = other.unsubscribeAccessibility_ != null ? other.unsubscribeAccessibility_.Clone() : null;
+      notificationPreferenceButton_ = other.notificationPreferenceButton_ != null ? other.notificationPreferenceButton_.Clone() : null;
+      targetId_ = other.targetId_;
+      subscribedEntityKey_ = other.subscribedEntityKey_;
+      onSubscribeEndpoints_ = other.onSubscribeEndpoints_.Clone();
+      onUnsubscribeEndpoints_ = other.onUnsubscribeEndpoints_.Clone();
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SubscribeButtonRenderer Clone() {
+      return new SubscribeButtonRenderer(this);
+    }
+
+    /// <summary>Field number for the "buttonText" field.</summary>
+    public const int ButtonTextFieldNumber = 1;
+    private global::InnerTube.Protobuf.Endpoints.Text buttonText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ButtonText {
+      get { return buttonText_; }
+      set {
+        buttonText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "subscribed" field.</summary>
+    public const int SubscribedFieldNumber = 3;
+    private bool subscribed_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Subscribed {
+      get { return subscribed_; }
+      set {
+        subscribed_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "enabled" field.</summary>
+    public const int EnabledFieldNumber = 4;
+    private bool enabled_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Enabled {
+      get { return enabled_; }
+      set {
+        enabled_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 6;
+    private int type_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "channelId" field.</summary>
+    public const int ChannelIdFieldNumber = 7;
+    private string channelId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ChannelId {
+      get { return channelId_; }
+      set {
+        channelId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "showPreferences" field.</summary>
+    public const int ShowPreferencesFieldNumber = 8;
+    private bool showPreferences_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool ShowPreferences {
+      get { return showPreferences_; }
+      set {
+        showPreferences_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "subscribedButtonText" field.</summary>
+    public const int SubscribedButtonTextFieldNumber = 12;
+    private global::InnerTube.Protobuf.Endpoints.Text subscribedButtonText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text SubscribedButtonText {
+      get { return subscribedButtonText_; }
+      set {
+        subscribedButtonText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "unsubscribedButtonText" field.</summary>
+    public const int UnsubscribedButtonTextFieldNumber = 13;
+    private global::InnerTube.Protobuf.Endpoints.Text unsubscribedButtonText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text UnsubscribedButtonText {
+      get { return unsubscribedButtonText_; }
+      set {
+        unsubscribedButtonText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 15;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "unsubscribeButtonText" field.</summary>
+    public const int UnsubscribeButtonTextFieldNumber = 16;
+    private global::InnerTube.Protobuf.Endpoints.Text unsubscribeButtonText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text UnsubscribeButtonText {
+      get { return unsubscribeButtonText_; }
+      set {
+        unsubscribeButtonText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "subscribeAccessibility" field.</summary>
+    public const int SubscribeAccessibilityFieldNumber = 25;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper subscribeAccessibility_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper SubscribeAccessibility {
+      get { return subscribeAccessibility_; }
+      set {
+        subscribeAccessibility_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "unsubscribeAccessibility" field.</summary>
+    public const int UnsubscribeAccessibilityFieldNumber = 26;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper unsubscribeAccessibility_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper UnsubscribeAccessibility {
+      get { return unsubscribeAccessibility_; }
+      set {
+        unsubscribeAccessibility_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "notificationPreferenceButton" field.</summary>
+    public const int NotificationPreferenceButtonFieldNumber = 27;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper notificationPreferenceButton_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper NotificationPreferenceButton {
+      get { return notificationPreferenceButton_; }
+      set {
+        notificationPreferenceButton_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 31;
+    private string targetId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TargetId {
+      get { return targetId_; }
+      set {
+        targetId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "subscribedEntityKey" field.</summary>
+    public const int SubscribedEntityKeyFieldNumber = 36;
+    private string subscribedEntityKey_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SubscribedEntityKey {
+      get { return subscribedEntityKey_; }
+      set {
+        subscribedEntityKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "onSubscribeEndpoints" field.</summary>
+    public const int OnSubscribeEndpointsFieldNumber = 38;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Endpoints.Endpoint> _repeated_onSubscribeEndpoints_codec
+        = pb::FieldCodec.ForMessage(306, global::InnerTube.Protobuf.Endpoints.Endpoint.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.Endpoint> onSubscribeEndpoints_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.Endpoint>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.Endpoint> OnSubscribeEndpoints {
+      get { return onSubscribeEndpoints_; }
+    }
+
+    /// <summary>Field number for the "onUnsubscribeEndpoints" field.</summary>
+    public const int OnUnsubscribeEndpointsFieldNumber = 39;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Endpoints.Endpoint> _repeated_onUnsubscribeEndpoints_codec
+        = pb::FieldCodec.ForMessage(314, global::InnerTube.Protobuf.Endpoints.Endpoint.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.Endpoint> onUnsubscribeEndpoints_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.Endpoint>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.Endpoint> OnUnsubscribeEndpoints {
+      get { return onUnsubscribeEndpoints_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SubscribeButtonRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SubscribeButtonRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(ButtonText, other.ButtonText)) return false;
+      if (Subscribed != other.Subscribed) return false;
+      if (Enabled != other.Enabled) return false;
+      if (Type != other.Type) return false;
+      if (ChannelId != other.ChannelId) return false;
+      if (ShowPreferences != other.ShowPreferences) return false;
+      if (!object.Equals(SubscribedButtonText, other.SubscribedButtonText)) return false;
+      if (!object.Equals(UnsubscribedButtonText, other.UnsubscribedButtonText)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (!object.Equals(UnsubscribeButtonText, other.UnsubscribeButtonText)) return false;
+      if (!object.Equals(SubscribeAccessibility, other.SubscribeAccessibility)) return false;
+      if (!object.Equals(UnsubscribeAccessibility, other.UnsubscribeAccessibility)) return false;
+      if (!object.Equals(NotificationPreferenceButton, other.NotificationPreferenceButton)) return false;
+      if (TargetId != other.TargetId) return false;
+      if (SubscribedEntityKey != other.SubscribedEntityKey) return false;
+      if(!onSubscribeEndpoints_.Equals(other.onSubscribeEndpoints_)) return false;
+      if(!onUnsubscribeEndpoints_.Equals(other.onUnsubscribeEndpoints_)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (buttonText_ != null) hash ^= ButtonText.GetHashCode();
+      if (Subscribed != false) hash ^= Subscribed.GetHashCode();
+      if (Enabled != false) hash ^= Enabled.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
+      if (ChannelId.Length != 0) hash ^= ChannelId.GetHashCode();
+      if (ShowPreferences != false) hash ^= ShowPreferences.GetHashCode();
+      if (subscribedButtonText_ != null) hash ^= SubscribedButtonText.GetHashCode();
+      if (unsubscribedButtonText_ != null) hash ^= UnsubscribedButtonText.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (unsubscribeButtonText_ != null) hash ^= UnsubscribeButtonText.GetHashCode();
+      if (subscribeAccessibility_ != null) hash ^= SubscribeAccessibility.GetHashCode();
+      if (unsubscribeAccessibility_ != null) hash ^= UnsubscribeAccessibility.GetHashCode();
+      if (notificationPreferenceButton_ != null) hash ^= NotificationPreferenceButton.GetHashCode();
+      if (TargetId.Length != 0) hash ^= TargetId.GetHashCode();
+      if (SubscribedEntityKey.Length != 0) hash ^= SubscribedEntityKey.GetHashCode();
+      hash ^= onSubscribeEndpoints_.GetHashCode();
+      hash ^= onUnsubscribeEndpoints_.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (buttonText_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ButtonText);
+      }
+      if (Subscribed != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Subscribed);
+      }
+      if (Enabled != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(Enabled);
+      }
+      if (Type != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Type);
+      }
+      if (ChannelId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ChannelId);
+      }
+      if (ShowPreferences != false) {
+        output.WriteRawTag(64);
+        output.WriteBool(ShowPreferences);
+      }
+      if (subscribedButtonText_ != null) {
+        output.WriteRawTag(98);
+        output.WriteMessage(SubscribedButtonText);
+      }
+      if (unsubscribedButtonText_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(UnsubscribedButtonText);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(122);
+        output.WriteBytes(TrackingParams);
+      }
+      if (unsubscribeButtonText_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(UnsubscribeButtonText);
+      }
+      if (subscribeAccessibility_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(SubscribeAccessibility);
+      }
+      if (unsubscribeAccessibility_ != null) {
+        output.WriteRawTag(210, 1);
+        output.WriteMessage(UnsubscribeAccessibility);
+      }
+      if (notificationPreferenceButton_ != null) {
+        output.WriteRawTag(218, 1);
+        output.WriteMessage(NotificationPreferenceButton);
+      }
+      if (TargetId.Length != 0) {
+        output.WriteRawTag(250, 1);
+        output.WriteString(TargetId);
+      }
+      if (SubscribedEntityKey.Length != 0) {
+        output.WriteRawTag(162, 2);
+        output.WriteString(SubscribedEntityKey);
+      }
+      onSubscribeEndpoints_.WriteTo(output, _repeated_onSubscribeEndpoints_codec);
+      onUnsubscribeEndpoints_.WriteTo(output, _repeated_onUnsubscribeEndpoints_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (buttonText_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ButtonText);
+      }
+      if (Subscribed != false) {
+        output.WriteRawTag(24);
+        output.WriteBool(Subscribed);
+      }
+      if (Enabled != false) {
+        output.WriteRawTag(32);
+        output.WriteBool(Enabled);
+      }
+      if (Type != 0) {
+        output.WriteRawTag(48);
+        output.WriteInt32(Type);
+      }
+      if (ChannelId.Length != 0) {
+        output.WriteRawTag(58);
+        output.WriteString(ChannelId);
+      }
+      if (ShowPreferences != false) {
+        output.WriteRawTag(64);
+        output.WriteBool(ShowPreferences);
+      }
+      if (subscribedButtonText_ != null) {
+        output.WriteRawTag(98);
+        output.WriteMessage(SubscribedButtonText);
+      }
+      if (unsubscribedButtonText_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(UnsubscribedButtonText);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(122);
+        output.WriteBytes(TrackingParams);
+      }
+      if (unsubscribeButtonText_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(UnsubscribeButtonText);
+      }
+      if (subscribeAccessibility_ != null) {
+        output.WriteRawTag(202, 1);
+        output.WriteMessage(SubscribeAccessibility);
+      }
+      if (unsubscribeAccessibility_ != null) {
+        output.WriteRawTag(210, 1);
+        output.WriteMessage(UnsubscribeAccessibility);
+      }
+      if (notificationPreferenceButton_ != null) {
+        output.WriteRawTag(218, 1);
+        output.WriteMessage(NotificationPreferenceButton);
+      }
+      if (TargetId.Length != 0) {
+        output.WriteRawTag(250, 1);
+        output.WriteString(TargetId);
+      }
+      if (SubscribedEntityKey.Length != 0) {
+        output.WriteRawTag(162, 2);
+        output.WriteString(SubscribedEntityKey);
+      }
+      onSubscribeEndpoints_.WriteTo(ref output, _repeated_onSubscribeEndpoints_codec);
+      onUnsubscribeEndpoints_.WriteTo(ref output, _repeated_onUnsubscribeEndpoints_codec);
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (buttonText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ButtonText);
+      }
+      if (Subscribed != false) {
+        size += 1 + 1;
+      }
+      if (Enabled != false) {
+        size += 1 + 1;
+      }
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Type);
+      }
+      if (ChannelId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ChannelId);
+      }
+      if (ShowPreferences != false) {
+        size += 1 + 1;
+      }
+      if (subscribedButtonText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SubscribedButtonText);
+      }
+      if (unsubscribedButtonText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UnsubscribedButtonText);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (unsubscribeButtonText_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(UnsubscribeButtonText);
+      }
+      if (subscribeAccessibility_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(SubscribeAccessibility);
+      }
+      if (unsubscribeAccessibility_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(UnsubscribeAccessibility);
+      }
+      if (notificationPreferenceButton_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(NotificationPreferenceButton);
+      }
+      if (TargetId.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(TargetId);
+      }
+      if (SubscribedEntityKey.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(SubscribedEntityKey);
+      }
+      size += onSubscribeEndpoints_.CalculateSize(_repeated_onSubscribeEndpoints_codec);
+      size += onUnsubscribeEndpoints_.CalculateSize(_repeated_onUnsubscribeEndpoints_codec);
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SubscribeButtonRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.buttonText_ != null) {
+        if (buttonText_ == null) {
+          ButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ButtonText.MergeFrom(other.ButtonText);
+      }
+      if (other.Subscribed != false) {
+        Subscribed = other.Subscribed;
+      }
+      if (other.Enabled != false) {
+        Enabled = other.Enabled;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
+      }
+      if (other.ChannelId.Length != 0) {
+        ChannelId = other.ChannelId;
+      }
+      if (other.ShowPreferences != false) {
+        ShowPreferences = other.ShowPreferences;
+      }
+      if (other.subscribedButtonText_ != null) {
+        if (subscribedButtonText_ == null) {
+          SubscribedButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        SubscribedButtonText.MergeFrom(other.SubscribedButtonText);
+      }
+      if (other.unsubscribedButtonText_ != null) {
+        if (unsubscribedButtonText_ == null) {
+          UnsubscribedButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        UnsubscribedButtonText.MergeFrom(other.UnsubscribedButtonText);
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.unsubscribeButtonText_ != null) {
+        if (unsubscribeButtonText_ == null) {
+          UnsubscribeButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        UnsubscribeButtonText.MergeFrom(other.UnsubscribeButtonText);
+      }
+      if (other.subscribeAccessibility_ != null) {
+        if (subscribeAccessibility_ == null) {
+          SubscribeAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        SubscribeAccessibility.MergeFrom(other.SubscribeAccessibility);
+      }
+      if (other.unsubscribeAccessibility_ != null) {
+        if (unsubscribeAccessibility_ == null) {
+          UnsubscribeAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        UnsubscribeAccessibility.MergeFrom(other.UnsubscribeAccessibility);
+      }
+      if (other.notificationPreferenceButton_ != null) {
+        if (notificationPreferenceButton_ == null) {
+          NotificationPreferenceButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        NotificationPreferenceButton.MergeFrom(other.NotificationPreferenceButton);
+      }
+      if (other.TargetId.Length != 0) {
+        TargetId = other.TargetId;
+      }
+      if (other.SubscribedEntityKey.Length != 0) {
+        SubscribedEntityKey = other.SubscribedEntityKey;
+      }
+      onSubscribeEndpoints_.Add(other.onSubscribeEndpoints_);
+      onUnsubscribeEndpoints_.Add(other.onUnsubscribeEndpoints_);
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (buttonText_ == null) {
+              ButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ButtonText);
+            break;
+          }
+          case 24: {
+            Subscribed = input.ReadBool();
+            break;
+          }
+          case 32: {
+            Enabled = input.ReadBool();
+            break;
+          }
+          case 48: {
+            Type = input.ReadInt32();
+            break;
+          }
+          case 58: {
+            ChannelId = input.ReadString();
+            break;
+          }
+          case 64: {
+            ShowPreferences = input.ReadBool();
+            break;
+          }
+          case 98: {
+            if (subscribedButtonText_ == null) {
+              SubscribedButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(SubscribedButtonText);
+            break;
+          }
+          case 106: {
+            if (unsubscribedButtonText_ == null) {
+              UnsubscribedButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(UnsubscribedButtonText);
+            break;
+          }
+          case 122: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 130: {
+            if (unsubscribeButtonText_ == null) {
+              UnsubscribeButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(UnsubscribeButtonText);
+            break;
+          }
+          case 202: {
+            if (subscribeAccessibility_ == null) {
+              SubscribeAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(SubscribeAccessibility);
+            break;
+          }
+          case 210: {
+            if (unsubscribeAccessibility_ == null) {
+              UnsubscribeAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(UnsubscribeAccessibility);
+            break;
+          }
+          case 218: {
+            if (notificationPreferenceButton_ == null) {
+              NotificationPreferenceButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(NotificationPreferenceButton);
+            break;
+          }
+          case 250: {
+            TargetId = input.ReadString();
+            break;
+          }
+          case 290: {
+            SubscribedEntityKey = input.ReadString();
+            break;
+          }
+          case 306: {
+            onSubscribeEndpoints_.AddEntriesFrom(input, _repeated_onSubscribeEndpoints_codec);
+            break;
+          }
+          case 314: {
+            onUnsubscribeEndpoints_.AddEntriesFrom(input, _repeated_onUnsubscribeEndpoints_codec);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (buttonText_ == null) {
+              ButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ButtonText);
+            break;
+          }
+          case 24: {
+            Subscribed = input.ReadBool();
+            break;
+          }
+          case 32: {
+            Enabled = input.ReadBool();
+            break;
+          }
+          case 48: {
+            Type = input.ReadInt32();
+            break;
+          }
+          case 58: {
+            ChannelId = input.ReadString();
+            break;
+          }
+          case 64: {
+            ShowPreferences = input.ReadBool();
+            break;
+          }
+          case 98: {
+            if (subscribedButtonText_ == null) {
+              SubscribedButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(SubscribedButtonText);
+            break;
+          }
+          case 106: {
+            if (unsubscribedButtonText_ == null) {
+              UnsubscribedButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(UnsubscribedButtonText);
+            break;
+          }
+          case 122: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 130: {
+            if (unsubscribeButtonText_ == null) {
+              UnsubscribeButtonText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(UnsubscribeButtonText);
+            break;
+          }
+          case 202: {
+            if (subscribeAccessibility_ == null) {
+              SubscribeAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(SubscribeAccessibility);
+            break;
+          }
+          case 210: {
+            if (unsubscribeAccessibility_ == null) {
+              UnsubscribeAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(UnsubscribeAccessibility);
+            break;
+          }
+          case 218: {
+            if (notificationPreferenceButton_ == null) {
+              NotificationPreferenceButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(NotificationPreferenceButton);
+            break;
+          }
+          case 250: {
+            TargetId = input.ReadString();
+            break;
+          }
+          case 290: {
+            SubscribedEntityKey = input.ReadString();
+            break;
+          }
+          case 306: {
+            onSubscribeEndpoints_.AddEntriesFrom(ref input, _repeated_onSubscribeEndpoints_codec);
+            break;
+          }
+          case 314: {
+            onUnsubscribeEndpoints_.AddEntriesFrom(ref input, _repeated_onUnsubscribeEndpoints_codec);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class PlayerStoryboardSpecRenderer : pb::IMessage<PlayerStoryboardSpecRenderer>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2099,7 +7704,7 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[2]; }
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2363,7 +7968,7 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[3]; }
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2434,10 +8039,10 @@ namespace InnerTube.Protobuf.Renderers {
 
     /// <summary>Field number for the "title" field.</summary>
     public const int TitleFieldNumber = 3;
-    private global::InnerTube.Protobuf.Text title_;
+    private global::InnerTube.Protobuf.Endpoints.Text title_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Text Title {
+    public global::InnerTube.Protobuf.Endpoints.Text Title {
       get { return title_; }
       set {
         title_ = value;
@@ -2446,10 +8051,10 @@ namespace InnerTube.Protobuf.Renderers {
 
     /// <summary>Field number for the "description" field.</summary>
     public const int DescriptionFieldNumber = 4;
-    private global::InnerTube.Protobuf.Text description_;
+    private global::InnerTube.Protobuf.Endpoints.Text description_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Text Description {
+    public global::InnerTube.Protobuf.Endpoints.Text Description {
       get { return description_; }
       set {
         description_ = value;
@@ -2885,13 +8490,13 @@ namespace InnerTube.Protobuf.Renderers {
       }
       if (other.title_ != null) {
         if (title_ == null) {
-          Title = new global::InnerTube.Protobuf.Text();
+          Title = new global::InnerTube.Protobuf.Endpoints.Text();
         }
         Title.MergeFrom(other.Title);
       }
       if (other.description_ != null) {
         if (description_ == null) {
-          Description = new global::InnerTube.Protobuf.Text();
+          Description = new global::InnerTube.Protobuf.Endpoints.Text();
         }
         Description.MergeFrom(other.Description);
       }
@@ -2960,14 +8565,14 @@ namespace InnerTube.Protobuf.Renderers {
           }
           case 26: {
             if (title_ == null) {
-              Title = new global::InnerTube.Protobuf.Text();
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Title);
             break;
           }
           case 34: {
             if (description_ == null) {
-              Description = new global::InnerTube.Protobuf.Text();
+              Description = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Description);
             break;
@@ -3051,14 +8656,14 @@ namespace InnerTube.Protobuf.Renderers {
           }
           case 26: {
             if (title_ == null) {
-              Title = new global::InnerTube.Protobuf.Text();
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Title);
             break;
           }
           case 34: {
             if (description_ == null) {
-              Description = new global::InnerTube.Protobuf.Text();
+              Description = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Description);
             break;
@@ -3391,21 +8996,21 @@ namespace InnerTube.Protobuf.Renderers {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
-  public sealed partial class CardCollectionRenderer : pb::IMessage<CardCollectionRenderer>
+  public sealed partial class ShareButtonViewModel : pb::IMessage<ShareButtonViewModel>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
   #endif
   {
-    private static readonly pb::MessageParser<CardCollectionRenderer> _parser = new pb::MessageParser<CardCollectionRenderer>(() => new CardCollectionRenderer());
+    private static readonly pb::MessageParser<ShareButtonViewModel> _parser = new pb::MessageParser<ShareButtonViewModel>(() => new ShareButtonViewModel());
     private pb::UnknownFieldSet _unknownFields;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public static pb::MessageParser<CardCollectionRenderer> Parser { get { return _parser; } }
+    public static pb::MessageParser<ShareButtonViewModel> Parser { get { return _parser; } }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[4]; }
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3416,7 +9021,7 @@ namespace InnerTube.Protobuf.Renderers {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CardCollectionRenderer() {
+    public ShareButtonViewModel() {
       OnConstruction();
     }
 
@@ -3424,86 +9029,87 @@ namespace InnerTube.Protobuf.Renderers {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CardCollectionRenderer(CardCollectionRenderer other) : this() {
-      cards_ = other.cards_.Clone();
-      headerText_ = other.headerText_ != null ? other.headerText_.Clone() : null;
-      allowTeaserDismiss_ = other.allowTeaserDismiss_;
-      logIconVisibilityUpdates_ = other.logIconVisibilityUpdates_;
+    public ShareButtonViewModel(ShareButtonViewModel other) : this() {
+      title_ = other.title_ != null ? other.title_.Clone() : null;
+      accessibilityText_ = other.accessibilityText_;
+      accessibilityData_ = other.accessibilityData_ != null ? other.accessibilityData_.Clone() : null;
+      onTap_ = other.onTap_ != null ? other.onTap_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public CardCollectionRenderer Clone() {
-      return new CardCollectionRenderer(this);
+    public ShareButtonViewModel Clone() {
+      return new ShareButtonViewModel(this);
     }
 
-    /// <summary>Field number for the "cards" field.</summary>
-    public const int CardsFieldNumber = 1;
-    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_cards_codec
-        = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
-    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> cards_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    /// <summary>Field number for the "title" field.</summary>
+    public const int TitleFieldNumber = 5;
+    private global::InnerTube.Protobuf.Endpoints.Text title_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> Cards {
-      get { return cards_; }
-    }
-
-    /// <summary>Field number for the "headerText" field.</summary>
-    public const int HeaderTextFieldNumber = 13;
-    private global::InnerTube.Protobuf.Text headerText_;
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
-    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Text HeaderText {
-      get { return headerText_; }
+    public global::InnerTube.Protobuf.Endpoints.Text Title {
+      get { return title_; }
       set {
-        headerText_ = value;
+        title_ = value;
       }
     }
 
-    /// <summary>Field number for the "allowTeaserDismiss" field.</summary>
-    public const int AllowTeaserDismissFieldNumber = 17;
-    private bool allowTeaserDismiss_;
+    /// <summary>Field number for the "accessibilityText" field.</summary>
+    public const int AccessibilityTextFieldNumber = 11;
+    private string accessibilityText_ = "";
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool AllowTeaserDismiss {
-      get { return allowTeaserDismiss_; }
+    public string AccessibilityText {
+      get { return accessibilityText_; }
       set {
-        allowTeaserDismiss_ = value;
+        accessibilityText_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
       }
     }
 
-    /// <summary>Field number for the "logIconVisibilityUpdates" field.</summary>
-    public const int LogIconVisibilityUpdatesFieldNumber = 20;
-    private bool logIconVisibilityUpdates_;
+    /// <summary>Field number for the "accessibilityData" field.</summary>
+    public const int AccessibilityDataFieldNumber = 16;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper accessibilityData_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool LogIconVisibilityUpdates {
-      get { return logIconVisibilityUpdates_; }
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper AccessibilityData {
+      get { return accessibilityData_; }
       set {
-        logIconVisibilityUpdates_ = value;
+        accessibilityData_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "onTap" field.</summary>
+    public const int OnTapFieldNumber = 7;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint onTap_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint OnTap {
+      get { return onTap_; }
+      set {
+        onTap_ = value;
       }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
-      return Equals(other as CardCollectionRenderer);
+      return Equals(other as ShareButtonViewModel);
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public bool Equals(CardCollectionRenderer other) {
+    public bool Equals(ShareButtonViewModel other) {
       if (ReferenceEquals(other, null)) {
         return false;
       }
       if (ReferenceEquals(other, this)) {
         return true;
       }
-      if(!cards_.Equals(other.cards_)) return false;
-      if (!object.Equals(HeaderText, other.HeaderText)) return false;
-      if (AllowTeaserDismiss != other.AllowTeaserDismiss) return false;
-      if (LogIconVisibilityUpdates != other.LogIconVisibilityUpdates) return false;
+      if (!object.Equals(Title, other.Title)) return false;
+      if (AccessibilityText != other.AccessibilityText) return false;
+      if (!object.Equals(AccessibilityData, other.AccessibilityData)) return false;
+      if (!object.Equals(OnTap, other.OnTap)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -3511,10 +9117,10 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
-      hash ^= cards_.GetHashCode();
-      if (headerText_ != null) hash ^= HeaderText.GetHashCode();
-      if (AllowTeaserDismiss != false) hash ^= AllowTeaserDismiss.GetHashCode();
-      if (LogIconVisibilityUpdates != false) hash ^= LogIconVisibilityUpdates.GetHashCode();
+      if (title_ != null) hash ^= Title.GetHashCode();
+      if (AccessibilityText.Length != 0) hash ^= AccessibilityText.GetHashCode();
+      if (accessibilityData_ != null) hash ^= AccessibilityData.GetHashCode();
+      if (onTap_ != null) hash ^= OnTap.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -3533,18 +9139,21 @@ namespace InnerTube.Protobuf.Renderers {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
-      cards_.WriteTo(output, _repeated_cards_codec);
-      if (headerText_ != null) {
-        output.WriteRawTag(106);
-        output.WriteMessage(HeaderText);
+      if (title_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Title);
       }
-      if (AllowTeaserDismiss != false) {
-        output.WriteRawTag(136, 1);
-        output.WriteBool(AllowTeaserDismiss);
+      if (onTap_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(OnTap);
       }
-      if (LogIconVisibilityUpdates != false) {
-        output.WriteRawTag(160, 1);
-        output.WriteBool(LogIconVisibilityUpdates);
+      if (AccessibilityText.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(AccessibilityText);
+      }
+      if (accessibilityData_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(AccessibilityData);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
@@ -3556,18 +9165,21 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
-      cards_.WriteTo(ref output, _repeated_cards_codec);
-      if (headerText_ != null) {
-        output.WriteRawTag(106);
-        output.WriteMessage(HeaderText);
+      if (title_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(Title);
       }
-      if (AllowTeaserDismiss != false) {
-        output.WriteRawTag(136, 1);
-        output.WriteBool(AllowTeaserDismiss);
+      if (onTap_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(OnTap);
       }
-      if (LogIconVisibilityUpdates != false) {
-        output.WriteRawTag(160, 1);
-        output.WriteBool(LogIconVisibilityUpdates);
+      if (AccessibilityText.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(AccessibilityText);
+      }
+      if (accessibilityData_ != null) {
+        output.WriteRawTag(130, 1);
+        output.WriteMessage(AccessibilityData);
       }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
@@ -3579,15 +9191,17 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
-      size += cards_.CalculateSize(_repeated_cards_codec);
-      if (headerText_ != null) {
-        size += 1 + pb::CodedOutputStream.ComputeMessageSize(HeaderText);
+      if (title_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Title);
       }
-      if (AllowTeaserDismiss != false) {
-        size += 2 + 1;
+      if (AccessibilityText.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccessibilityText);
       }
-      if (LogIconVisibilityUpdates != false) {
-        size += 2 + 1;
+      if (accessibilityData_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(AccessibilityData);
+      }
+      if (onTap_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OnTap);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -3597,22 +9211,373 @@ namespace InnerTube.Protobuf.Renderers {
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public void MergeFrom(CardCollectionRenderer other) {
+    public void MergeFrom(ShareButtonViewModel other) {
       if (other == null) {
         return;
       }
-      cards_.Add(other.cards_);
-      if (other.headerText_ != null) {
-        if (headerText_ == null) {
-          HeaderText = new global::InnerTube.Protobuf.Text();
+      if (other.title_ != null) {
+        if (title_ == null) {
+          Title = new global::InnerTube.Protobuf.Endpoints.Text();
         }
-        HeaderText.MergeFrom(other.HeaderText);
+        Title.MergeFrom(other.Title);
       }
-      if (other.AllowTeaserDismiss != false) {
-        AllowTeaserDismiss = other.AllowTeaserDismiss;
+      if (other.AccessibilityText.Length != 0) {
+        AccessibilityText = other.AccessibilityText;
       }
-      if (other.LogIconVisibilityUpdates != false) {
-        LogIconVisibilityUpdates = other.LogIconVisibilityUpdates;
+      if (other.accessibilityData_ != null) {
+        if (accessibilityData_ == null) {
+          AccessibilityData = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        AccessibilityData.MergeFrom(other.AccessibilityData);
+      }
+      if (other.onTap_ != null) {
+        if (onTap_ == null) {
+          OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        OnTap.MergeFrom(other.OnTap);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 42: {
+            if (title_ == null) {
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Title);
+            break;
+          }
+          case 58: {
+            if (onTap_ == null) {
+              OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(OnTap);
+            break;
+          }
+          case 90: {
+            AccessibilityText = input.ReadString();
+            break;
+          }
+          case 130: {
+            if (accessibilityData_ == null) {
+              AccessibilityData = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(AccessibilityData);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 42: {
+            if (title_ == null) {
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Title);
+            break;
+          }
+          case 58: {
+            if (onTap_ == null) {
+              OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(OnTap);
+            break;
+          }
+          case 90: {
+            AccessibilityText = input.ReadString();
+            break;
+          }
+          case 130: {
+            if (accessibilityData_ == null) {
+              AccessibilityData = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(AccessibilityData);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MenuRenderer : pb::IMessage<MenuRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MenuRenderer> _parser = new pb::MessageParser<MenuRenderer>(() => new MenuRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MenuRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[13]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuRenderer(MenuRenderer other) : this() {
+      items_ = other.items_.Clone();
+      topLevelButtons_ = other.topLevelButtons_.Clone();
+      accessibility_ = other.accessibility_ != null ? other.accessibility_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      targetId_ = other.targetId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuRenderer Clone() {
+      return new MenuRenderer(this);
+    }
+
+    /// <summary>Field number for the "items" field.</summary>
+    public const int ItemsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_items_codec
+        = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> items_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> Items {
+      get { return items_; }
+    }
+
+    /// <summary>Field number for the "topLevelButtons" field.</summary>
+    public const int TopLevelButtonsFieldNumber = 6;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_topLevelButtons_codec
+        = pb::FieldCodec.ForMessage(50, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> topLevelButtons_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> TopLevelButtons {
+      get { return topLevelButtons_; }
+    }
+
+    /// <summary>Field number for the "accessibility" field.</summary>
+    public const int AccessibilityFieldNumber = 10;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper accessibility_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper Accessibility {
+      get { return accessibility_; }
+      set {
+        accessibility_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 4;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 11;
+    private readonly static string TargetIdDefaultValue = "";
+
+    private string targetId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TargetId {
+      get { return targetId_ ?? TargetIdDefaultValue; }
+      set {
+        targetId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "targetId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTargetId {
+      get { return targetId_ != null; }
+    }
+    /// <summary>Clears the value of the "targetId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTargetId() {
+      targetId_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MenuRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MenuRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!items_.Equals(other.items_)) return false;
+      if(!topLevelButtons_.Equals(other.topLevelButtons_)) return false;
+      if (!object.Equals(Accessibility, other.Accessibility)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (TargetId != other.TargetId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= items_.GetHashCode();
+      hash ^= topLevelButtons_.GetHashCode();
+      if (accessibility_ != null) hash ^= Accessibility.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (HasTargetId) hash ^= TargetId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      items_.WriteTo(output, _repeated_items_codec);
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteBytes(TrackingParams);
+      }
+      topLevelButtons_.WriteTo(output, _repeated_topLevelButtons_codec);
+      if (accessibility_ != null) {
+        output.WriteRawTag(82);
+        output.WriteMessage(Accessibility);
+      }
+      if (HasTargetId) {
+        output.WriteRawTag(90);
+        output.WriteString(TargetId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      items_.WriteTo(ref output, _repeated_items_codec);
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteBytes(TrackingParams);
+      }
+      topLevelButtons_.WriteTo(ref output, _repeated_topLevelButtons_codec);
+      if (accessibility_ != null) {
+        output.WriteRawTag(82);
+        output.WriteMessage(Accessibility);
+      }
+      if (HasTargetId) {
+        output.WriteRawTag(90);
+        output.WriteString(TargetId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += items_.CalculateSize(_repeated_items_codec);
+      size += topLevelButtons_.CalculateSize(_repeated_topLevelButtons_codec);
+      if (accessibility_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Accessibility);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (HasTargetId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TargetId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MenuRenderer other) {
+      if (other == null) {
+        return;
+      }
+      items_.Add(other.items_);
+      topLevelButtons_.Add(other.topLevelButtons_);
+      if (other.accessibility_ != null) {
+        if (accessibility_ == null) {
+          Accessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        Accessibility.MergeFrom(other.Accessibility);
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.HasTargetId) {
+        TargetId = other.TargetId;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -3630,22 +9595,26 @@ namespace InnerTube.Protobuf.Renderers {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
           case 10: {
-            cards_.AddEntriesFrom(input, _repeated_cards_codec);
+            items_.AddEntriesFrom(input, _repeated_items_codec);
             break;
           }
-          case 106: {
-            if (headerText_ == null) {
-              HeaderText = new global::InnerTube.Protobuf.Text();
+          case 34: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 50: {
+            topLevelButtons_.AddEntriesFrom(input, _repeated_topLevelButtons_codec);
+            break;
+          }
+          case 82: {
+            if (accessibility_ == null) {
+              Accessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
             }
-            input.ReadMessage(HeaderText);
+            input.ReadMessage(Accessibility);
             break;
           }
-          case 136: {
-            AllowTeaserDismiss = input.ReadBool();
-            break;
-          }
-          case 160: {
-            LogIconVisibilityUpdates = input.ReadBool();
+          case 90: {
+            TargetId = input.ReadString();
             break;
           }
         }
@@ -3664,22 +9633,964 @@ namespace InnerTube.Protobuf.Renderers {
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
           case 10: {
-            cards_.AddEntriesFrom(ref input, _repeated_cards_codec);
+            items_.AddEntriesFrom(ref input, _repeated_items_codec);
             break;
           }
-          case 106: {
-            if (headerText_ == null) {
-              HeaderText = new global::InnerTube.Protobuf.Text();
+          case 34: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 50: {
+            topLevelButtons_.AddEntriesFrom(ref input, _repeated_topLevelButtons_codec);
+            break;
+          }
+          case 82: {
+            if (accessibility_ == null) {
+              Accessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
             }
-            input.ReadMessage(HeaderText);
+            input.ReadMessage(Accessibility);
             break;
           }
-          case 136: {
-            AllowTeaserDismiss = input.ReadBool();
+          case 90: {
+            TargetId = input.ReadString();
             break;
           }
-          case 160: {
-            LogIconVisibilityUpdates = input.ReadBool();
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MenuNavigationItemRenderer : pb::IMessage<MenuNavigationItemRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MenuNavigationItemRenderer> _parser = new pb::MessageParser<MenuNavigationItemRenderer>(() => new MenuNavigationItemRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MenuNavigationItemRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[14]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuNavigationItemRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuNavigationItemRenderer(MenuNavigationItemRenderer other) : this() {
+      text_ = other.text_ != null ? other.text_.Clone() : null;
+      icon_ = other.icon_ != null ? other.icon_.Clone() : null;
+      endpoint_ = other.endpoint_ != null ? other.endpoint_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuNavigationItemRenderer Clone() {
+      return new MenuNavigationItemRenderer(this);
+    }
+
+    /// <summary>Field number for the "text" field.</summary>
+    public const int TextFieldNumber = 1;
+    private global::InnerTube.Protobuf.Endpoints.Text text_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text Text {
+      get { return text_; }
+      set {
+        text_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "icon" field.</summary>
+    public const int IconFieldNumber = 2;
+    private global::InnerTube.Protobuf.Icon icon_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Icon Icon {
+      get { return icon_; }
+      set {
+        icon_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "endpoint" field.</summary>
+    public const int EndpointFieldNumber = 3;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint endpoint_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint Endpoint {
+      get { return endpoint_; }
+      set {
+        endpoint_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MenuNavigationItemRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MenuNavigationItemRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Text, other.Text)) return false;
+      if (!object.Equals(Icon, other.Icon)) return false;
+      if (!object.Equals(Endpoint, other.Endpoint)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (text_ != null) hash ^= Text.GetHashCode();
+      if (icon_ != null) hash ^= Icon.GetHashCode();
+      if (endpoint_ != null) hash ^= Endpoint.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (text_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Text);
+      }
+      if (icon_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Icon);
+      }
+      if (endpoint_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Endpoint);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (text_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Text);
+      }
+      if (icon_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Icon);
+      }
+      if (endpoint_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(Endpoint);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (text_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Text);
+      }
+      if (icon_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Icon);
+      }
+      if (endpoint_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Endpoint);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MenuNavigationItemRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.text_ != null) {
+        if (text_ == null) {
+          Text = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        Text.MergeFrom(other.Text);
+      }
+      if (other.icon_ != null) {
+        if (icon_ == null) {
+          Icon = new global::InnerTube.Protobuf.Icon();
+        }
+        Icon.MergeFrom(other.Icon);
+      }
+      if (other.endpoint_ != null) {
+        if (endpoint_ == null) {
+          Endpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        Endpoint.MergeFrom(other.Endpoint);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+          case 18: {
+            if (icon_ == null) {
+              Icon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(Icon);
+            break;
+          }
+          case 26: {
+            if (endpoint_ == null) {
+              Endpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(Endpoint);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+          case 18: {
+            if (icon_ == null) {
+              Icon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(Icon);
+            break;
+          }
+          case 26: {
+            if (endpoint_ == null) {
+              Endpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(Endpoint);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MenuServiceItemRenderer : pb::IMessage<MenuServiceItemRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MenuServiceItemRenderer> _parser = new pb::MessageParser<MenuServiceItemRenderer>(() => new MenuServiceItemRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MenuServiceItemRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[15]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuServiceItemRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuServiceItemRenderer(MenuServiceItemRenderer other) : this() {
+      text_ = other.text_ != null ? other.text_.Clone() : null;
+      icon_ = other.icon_ != null ? other.icon_.Clone() : null;
+      serviceEndpoint_ = other.serviceEndpoint_ != null ? other.serviceEndpoint_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      hasSeparator_ = other.hasSeparator_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuServiceItemRenderer Clone() {
+      return new MenuServiceItemRenderer(this);
+    }
+
+    /// <summary>Field number for the "text" field.</summary>
+    public const int TextFieldNumber = 1;
+    private global::InnerTube.Protobuf.Endpoints.Text text_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text Text {
+      get { return text_; }
+      set {
+        text_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "icon" field.</summary>
+    public const int IconFieldNumber = 2;
+    private global::InnerTube.Protobuf.Icon icon_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Icon Icon {
+      get { return icon_; }
+      set {
+        icon_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "serviceEndpoint" field.</summary>
+    public const int ServiceEndpointFieldNumber = 3;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint serviceEndpoint_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint ServiceEndpoint {
+      get { return serviceEndpoint_; }
+      set {
+        serviceEndpoint_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 5;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "hasSeparator" field.</summary>
+    public const int HasSeparatorFieldNumber = 12;
+    private bool hasSeparator_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSeparator {
+      get { return hasSeparator_; }
+      set {
+        hasSeparator_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MenuServiceItemRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MenuServiceItemRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Text, other.Text)) return false;
+      if (!object.Equals(Icon, other.Icon)) return false;
+      if (!object.Equals(ServiceEndpoint, other.ServiceEndpoint)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (HasSeparator != other.HasSeparator) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (text_ != null) hash ^= Text.GetHashCode();
+      if (icon_ != null) hash ^= Icon.GetHashCode();
+      if (serviceEndpoint_ != null) hash ^= ServiceEndpoint.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (HasSeparator != false) hash ^= HasSeparator.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (text_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Text);
+      }
+      if (icon_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Icon);
+      }
+      if (serviceEndpoint_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ServiceEndpoint);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteBytes(TrackingParams);
+      }
+      if (HasSeparator != false) {
+        output.WriteRawTag(96);
+        output.WriteBool(HasSeparator);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (text_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Text);
+      }
+      if (icon_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Icon);
+      }
+      if (serviceEndpoint_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ServiceEndpoint);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteBytes(TrackingParams);
+      }
+      if (HasSeparator != false) {
+        output.WriteRawTag(96);
+        output.WriteBool(HasSeparator);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (text_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Text);
+      }
+      if (icon_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Icon);
+      }
+      if (serviceEndpoint_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ServiceEndpoint);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (HasSeparator != false) {
+        size += 1 + 1;
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MenuServiceItemRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.text_ != null) {
+        if (text_ == null) {
+          Text = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        Text.MergeFrom(other.Text);
+      }
+      if (other.icon_ != null) {
+        if (icon_ == null) {
+          Icon = new global::InnerTube.Protobuf.Icon();
+        }
+        Icon.MergeFrom(other.Icon);
+      }
+      if (other.serviceEndpoint_ != null) {
+        if (serviceEndpoint_ == null) {
+          ServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        ServiceEndpoint.MergeFrom(other.ServiceEndpoint);
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.HasSeparator != false) {
+        HasSeparator = other.HasSeparator;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+          case 18: {
+            if (icon_ == null) {
+              Icon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(Icon);
+            break;
+          }
+          case 26: {
+            if (serviceEndpoint_ == null) {
+              ServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ServiceEndpoint);
+            break;
+          }
+          case 42: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 96: {
+            HasSeparator = input.ReadBool();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+          case 18: {
+            if (icon_ == null) {
+              Icon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(Icon);
+            break;
+          }
+          case 26: {
+            if (serviceEndpoint_ == null) {
+              ServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ServiceEndpoint);
+            break;
+          }
+          case 42: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 96: {
+            HasSeparator = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class VideoViewCountRenderer : pb::IMessage<VideoViewCountRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<VideoViewCountRenderer> _parser = new pb::MessageParser<VideoViewCountRenderer>(() => new VideoViewCountRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<VideoViewCountRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[16]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoViewCountRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoViewCountRenderer(VideoViewCountRenderer other) : this() {
+      viewCount_ = other.viewCount_ != null ? other.viewCount_.Clone() : null;
+      shortViewCount_ = other.shortViewCount_ != null ? other.shortViewCount_.Clone() : null;
+      originalViewCount_ = other.originalViewCount_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoViewCountRenderer Clone() {
+      return new VideoViewCountRenderer(this);
+    }
+
+    /// <summary>Field number for the "viewCount" field.</summary>
+    public const int ViewCountFieldNumber = 1;
+    private global::InnerTube.Protobuf.Endpoints.Text viewCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ViewCount {
+      get { return viewCount_; }
+      set {
+        viewCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "shortViewCount" field.</summary>
+    public const int ShortViewCountFieldNumber = 4;
+    private global::InnerTube.Protobuf.Endpoints.Text shortViewCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ShortViewCount {
+      get { return shortViewCount_; }
+      set {
+        shortViewCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "originalViewCount" field.</summary>
+    public const int OriginalViewCountFieldNumber = 9;
+    private int originalViewCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int OriginalViewCount {
+      get { return originalViewCount_; }
+      set {
+        originalViewCount_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as VideoViewCountRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(VideoViewCountRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(ViewCount, other.ViewCount)) return false;
+      if (!object.Equals(ShortViewCount, other.ShortViewCount)) return false;
+      if (OriginalViewCount != other.OriginalViewCount) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (viewCount_ != null) hash ^= ViewCount.GetHashCode();
+      if (shortViewCount_ != null) hash ^= ShortViewCount.GetHashCode();
+      if (OriginalViewCount != 0) hash ^= OriginalViewCount.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (viewCount_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ViewCount);
+      }
+      if (shortViewCount_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(ShortViewCount);
+      }
+      if (OriginalViewCount != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(OriginalViewCount);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (viewCount_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(ViewCount);
+      }
+      if (shortViewCount_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(ShortViewCount);
+      }
+      if (OriginalViewCount != 0) {
+        output.WriteRawTag(72);
+        output.WriteInt32(OriginalViewCount);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (viewCount_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ViewCount);
+      }
+      if (shortViewCount_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShortViewCount);
+      }
+      if (OriginalViewCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(OriginalViewCount);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(VideoViewCountRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.viewCount_ != null) {
+        if (viewCount_ == null) {
+          ViewCount = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ViewCount.MergeFrom(other.ViewCount);
+      }
+      if (other.shortViewCount_ != null) {
+        if (shortViewCount_ == null) {
+          ShortViewCount = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ShortViewCount.MergeFrom(other.ShortViewCount);
+      }
+      if (other.OriginalViewCount != 0) {
+        OriginalViewCount = other.OriginalViewCount;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (viewCount_ == null) {
+              ViewCount = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ViewCount);
+            break;
+          }
+          case 34: {
+            if (shortViewCount_ == null) {
+              ShortViewCount = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShortViewCount);
+            break;
+          }
+          case 72: {
+            OriginalViewCount = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (viewCount_ == null) {
+              ViewCount = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ViewCount);
+            break;
+          }
+          case 34: {
+            if (shortViewCount_ == null) {
+              ShortViewCount = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShortViewCount);
+            break;
+          }
+          case 72: {
+            OriginalViewCount = input.ReadInt32();
             break;
           }
         }
@@ -3704,7 +10615,7 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[5]; }
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3880,6 +10791,2986 @@ namespace InnerTube.Protobuf.Renderers {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MetadataRowContainerRenderer : pb::IMessage<MetadataRowContainerRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MetadataRowContainerRenderer> _parser = new pb::MessageParser<MetadataRowContainerRenderer>(() => new MetadataRowContainerRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MetadataRowContainerRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[18]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MetadataRowContainerRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MetadataRowContainerRenderer(MetadataRowContainerRenderer other) : this() {
+      collapsedItemCount_ = other.collapsedItemCount_;
+      trackingParams_ = other.trackingParams_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MetadataRowContainerRenderer Clone() {
+      return new MetadataRowContainerRenderer(this);
+    }
+
+    /// <summary>Field number for the "collapsedItemCount" field.</summary>
+    public const int CollapsedItemCountFieldNumber = 2;
+    private int collapsedItemCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CollapsedItemCount {
+      get { return collapsedItemCount_; }
+      set {
+        collapsedItemCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 4;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MetadataRowContainerRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MetadataRowContainerRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (CollapsedItemCount != other.CollapsedItemCount) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (CollapsedItemCount != 0) hash ^= CollapsedItemCount.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (CollapsedItemCount != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(CollapsedItemCount);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (CollapsedItemCount != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(CollapsedItemCount);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (CollapsedItemCount != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CollapsedItemCount);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MetadataRowContainerRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.CollapsedItemCount != 0) {
+        CollapsedItemCount = other.CollapsedItemCount;
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 16: {
+            CollapsedItemCount = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 16: {
+            CollapsedItemCount = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LikeButtonViewModel : pb::IMessage<LikeButtonViewModel>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LikeButtonViewModel> _parser = new pb::MessageParser<LikeButtonViewModel>(() => new LikeButtonViewModel());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LikeButtonViewModel> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[19]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeButtonViewModel() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeButtonViewModel(LikeButtonViewModel other) : this() {
+      icon_ = other.icon_ != null ? other.icon_.Clone() : null;
+      text_ = other.text_ != null ? other.text_.Clone() : null;
+      toggledText_ = other.toggledText_ != null ? other.toggledText_.Clone() : null;
+      accessibilityText_ = other.accessibilityText_ != null ? other.accessibilityText_.Clone() : null;
+      tooltip_ = other.tooltip_;
+      toggledTooltip_ = other.toggledTooltip_;
+      toggledAccessibilityText_ = other.toggledAccessibilityText_ != null ? other.toggledAccessibilityText_.Clone() : null;
+      endpoint_ = other.endpoint_ != null ? other.endpoint_.Clone() : null;
+      identifier_ = other.identifier_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeButtonViewModel Clone() {
+      return new LikeButtonViewModel(this);
+    }
+
+    /// <summary>Field number for the "icon" field.</summary>
+    public const int IconFieldNumber = 1;
+    private global::InnerTube.Protobuf.Icon icon_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Icon Icon {
+      get { return icon_; }
+      set {
+        icon_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "text" field.</summary>
+    public const int TextFieldNumber = 6;
+    private global::InnerTube.Protobuf.Endpoints.Text text_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text Text {
+      get { return text_; }
+      set {
+        text_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "toggledText" field.</summary>
+    public const int ToggledTextFieldNumber = 9;
+    private global::InnerTube.Protobuf.Endpoints.Text toggledText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ToggledText {
+      get { return toggledText_; }
+      set {
+        toggledText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "accessibilityText" field.</summary>
+    public const int AccessibilityTextFieldNumber = 11;
+    private global::InnerTube.Protobuf.AccessibilityData accessibilityText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.AccessibilityData AccessibilityText {
+      get { return accessibilityText_; }
+      set {
+        accessibilityText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "tooltip" field.</summary>
+    public const int TooltipFieldNumber = 14;
+    private string tooltip_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Tooltip {
+      get { return tooltip_; }
+      set {
+        tooltip_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "toggledTooltip" field.</summary>
+    public const int ToggledTooltipFieldNumber = 15;
+    private string toggledTooltip_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ToggledTooltip {
+      get { return toggledTooltip_; }
+      set {
+        toggledTooltip_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "toggledAccessibilityText" field.</summary>
+    public const int ToggledAccessibilityTextFieldNumber = 19;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper toggledAccessibilityText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper ToggledAccessibilityText {
+      get { return toggledAccessibilityText_; }
+      set {
+        toggledAccessibilityText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "endpoint" field.</summary>
+    public const int EndpointFieldNumber = 17;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint endpoint_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint Endpoint {
+      get { return endpoint_; }
+      set {
+        endpoint_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "identifier" field.</summary>
+    public const int IdentifierFieldNumber = 24;
+    private string identifier_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Identifier {
+      get { return identifier_; }
+      set {
+        identifier_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LikeButtonViewModel);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LikeButtonViewModel other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Icon, other.Icon)) return false;
+      if (!object.Equals(Text, other.Text)) return false;
+      if (!object.Equals(ToggledText, other.ToggledText)) return false;
+      if (!object.Equals(AccessibilityText, other.AccessibilityText)) return false;
+      if (Tooltip != other.Tooltip) return false;
+      if (ToggledTooltip != other.ToggledTooltip) return false;
+      if (!object.Equals(ToggledAccessibilityText, other.ToggledAccessibilityText)) return false;
+      if (!object.Equals(Endpoint, other.Endpoint)) return false;
+      if (Identifier != other.Identifier) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (icon_ != null) hash ^= Icon.GetHashCode();
+      if (text_ != null) hash ^= Text.GetHashCode();
+      if (toggledText_ != null) hash ^= ToggledText.GetHashCode();
+      if (accessibilityText_ != null) hash ^= AccessibilityText.GetHashCode();
+      if (Tooltip.Length != 0) hash ^= Tooltip.GetHashCode();
+      if (ToggledTooltip.Length != 0) hash ^= ToggledTooltip.GetHashCode();
+      if (toggledAccessibilityText_ != null) hash ^= ToggledAccessibilityText.GetHashCode();
+      if (endpoint_ != null) hash ^= Endpoint.GetHashCode();
+      if (Identifier.Length != 0) hash ^= Identifier.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (icon_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Icon);
+      }
+      if (text_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Text);
+      }
+      if (toggledText_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(ToggledText);
+      }
+      if (accessibilityText_ != null) {
+        output.WriteRawTag(90);
+        output.WriteMessage(AccessibilityText);
+      }
+      if (Tooltip.Length != 0) {
+        output.WriteRawTag(114);
+        output.WriteString(Tooltip);
+      }
+      if (ToggledTooltip.Length != 0) {
+        output.WriteRawTag(122);
+        output.WriteString(ToggledTooltip);
+      }
+      if (endpoint_ != null) {
+        output.WriteRawTag(138, 1);
+        output.WriteMessage(Endpoint);
+      }
+      if (toggledAccessibilityText_ != null) {
+        output.WriteRawTag(154, 1);
+        output.WriteMessage(ToggledAccessibilityText);
+      }
+      if (Identifier.Length != 0) {
+        output.WriteRawTag(194, 1);
+        output.WriteString(Identifier);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (icon_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Icon);
+      }
+      if (text_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(Text);
+      }
+      if (toggledText_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(ToggledText);
+      }
+      if (accessibilityText_ != null) {
+        output.WriteRawTag(90);
+        output.WriteMessage(AccessibilityText);
+      }
+      if (Tooltip.Length != 0) {
+        output.WriteRawTag(114);
+        output.WriteString(Tooltip);
+      }
+      if (ToggledTooltip.Length != 0) {
+        output.WriteRawTag(122);
+        output.WriteString(ToggledTooltip);
+      }
+      if (endpoint_ != null) {
+        output.WriteRawTag(138, 1);
+        output.WriteMessage(Endpoint);
+      }
+      if (toggledAccessibilityText_ != null) {
+        output.WriteRawTag(154, 1);
+        output.WriteMessage(ToggledAccessibilityText);
+      }
+      if (Identifier.Length != 0) {
+        output.WriteRawTag(194, 1);
+        output.WriteString(Identifier);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (icon_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Icon);
+      }
+      if (text_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Text);
+      }
+      if (toggledText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ToggledText);
+      }
+      if (accessibilityText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AccessibilityText);
+      }
+      if (Tooltip.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tooltip);
+      }
+      if (ToggledTooltip.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ToggledTooltip);
+      }
+      if (toggledAccessibilityText_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(ToggledAccessibilityText);
+      }
+      if (endpoint_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(Endpoint);
+      }
+      if (Identifier.Length != 0) {
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(Identifier);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LikeButtonViewModel other) {
+      if (other == null) {
+        return;
+      }
+      if (other.icon_ != null) {
+        if (icon_ == null) {
+          Icon = new global::InnerTube.Protobuf.Icon();
+        }
+        Icon.MergeFrom(other.Icon);
+      }
+      if (other.text_ != null) {
+        if (text_ == null) {
+          Text = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        Text.MergeFrom(other.Text);
+      }
+      if (other.toggledText_ != null) {
+        if (toggledText_ == null) {
+          ToggledText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ToggledText.MergeFrom(other.ToggledText);
+      }
+      if (other.accessibilityText_ != null) {
+        if (accessibilityText_ == null) {
+          AccessibilityText = new global::InnerTube.Protobuf.AccessibilityData();
+        }
+        AccessibilityText.MergeFrom(other.AccessibilityText);
+      }
+      if (other.Tooltip.Length != 0) {
+        Tooltip = other.Tooltip;
+      }
+      if (other.ToggledTooltip.Length != 0) {
+        ToggledTooltip = other.ToggledTooltip;
+      }
+      if (other.toggledAccessibilityText_ != null) {
+        if (toggledAccessibilityText_ == null) {
+          ToggledAccessibilityText = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        ToggledAccessibilityText.MergeFrom(other.ToggledAccessibilityText);
+      }
+      if (other.endpoint_ != null) {
+        if (endpoint_ == null) {
+          Endpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        Endpoint.MergeFrom(other.Endpoint);
+      }
+      if (other.Identifier.Length != 0) {
+        Identifier = other.Identifier;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (icon_ == null) {
+              Icon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(Icon);
+            break;
+          }
+          case 50: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+          case 74: {
+            if (toggledText_ == null) {
+              ToggledText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ToggledText);
+            break;
+          }
+          case 90: {
+            if (accessibilityText_ == null) {
+              AccessibilityText = new global::InnerTube.Protobuf.AccessibilityData();
+            }
+            input.ReadMessage(AccessibilityText);
+            break;
+          }
+          case 114: {
+            Tooltip = input.ReadString();
+            break;
+          }
+          case 122: {
+            ToggledTooltip = input.ReadString();
+            break;
+          }
+          case 138: {
+            if (endpoint_ == null) {
+              Endpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(Endpoint);
+            break;
+          }
+          case 154: {
+            if (toggledAccessibilityText_ == null) {
+              ToggledAccessibilityText = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(ToggledAccessibilityText);
+            break;
+          }
+          case 194: {
+            Identifier = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (icon_ == null) {
+              Icon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(Icon);
+            break;
+          }
+          case 50: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+          case 74: {
+            if (toggledText_ == null) {
+              ToggledText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ToggledText);
+            break;
+          }
+          case 90: {
+            if (accessibilityText_ == null) {
+              AccessibilityText = new global::InnerTube.Protobuf.AccessibilityData();
+            }
+            input.ReadMessage(AccessibilityText);
+            break;
+          }
+          case 114: {
+            Tooltip = input.ReadString();
+            break;
+          }
+          case 122: {
+            ToggledTooltip = input.ReadString();
+            break;
+          }
+          case 138: {
+            if (endpoint_ == null) {
+              Endpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(Endpoint);
+            break;
+          }
+          case 154: {
+            if (toggledAccessibilityText_ == null) {
+              ToggledAccessibilityText = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(ToggledAccessibilityText);
+            break;
+          }
+          case 194: {
+            Identifier = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class VideoPrimaryInfoRenderer : pb::IMessage<VideoPrimaryInfoRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<VideoPrimaryInfoRenderer> _parser = new pb::MessageParser<VideoPrimaryInfoRenderer>(() => new VideoPrimaryInfoRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<VideoPrimaryInfoRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[20]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoPrimaryInfoRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoPrimaryInfoRenderer(VideoPrimaryInfoRenderer other) : this() {
+      title_ = other.title_ != null ? other.title_.Clone() : null;
+      viewCount_ = other.viewCount_ != null ? other.viewCount_.Clone() : null;
+      videoActions_ = other.videoActions_ != null ? other.videoActions_.Clone() : null;
+      dateText_ = other.dateText_ != null ? other.dateText_.Clone() : null;
+      relativeDateText_ = other.relativeDateText_ != null ? other.relativeDateText_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoPrimaryInfoRenderer Clone() {
+      return new VideoPrimaryInfoRenderer(this);
+    }
+
+    /// <summary>Field number for the "title" field.</summary>
+    public const int TitleFieldNumber = 1;
+    private global::InnerTube.Protobuf.Endpoints.Text title_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text Title {
+      get { return title_; }
+      set {
+        title_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "viewCount" field.</summary>
+    public const int ViewCountFieldNumber = 3;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper viewCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper ViewCount {
+      get { return viewCount_; }
+      set {
+        viewCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "videoActions" field.</summary>
+    public const int VideoActionsFieldNumber = 4;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper videoActions_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper VideoActions {
+      get { return videoActions_; }
+      set {
+        videoActions_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dateText" field.</summary>
+    public const int DateTextFieldNumber = 14;
+    private global::InnerTube.Protobuf.Endpoints.Text dateText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text DateText {
+      get { return dateText_; }
+      set {
+        dateText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "relativeDateText" field.</summary>
+    public const int RelativeDateTextFieldNumber = 21;
+    private global::InnerTube.Protobuf.Endpoints.Text relativeDateText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text RelativeDateText {
+      get { return relativeDateText_; }
+      set {
+        relativeDateText_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as VideoPrimaryInfoRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(VideoPrimaryInfoRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Title, other.Title)) return false;
+      if (!object.Equals(ViewCount, other.ViewCount)) return false;
+      if (!object.Equals(VideoActions, other.VideoActions)) return false;
+      if (!object.Equals(DateText, other.DateText)) return false;
+      if (!object.Equals(RelativeDateText, other.RelativeDateText)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (title_ != null) hash ^= Title.GetHashCode();
+      if (viewCount_ != null) hash ^= ViewCount.GetHashCode();
+      if (videoActions_ != null) hash ^= VideoActions.GetHashCode();
+      if (dateText_ != null) hash ^= DateText.GetHashCode();
+      if (relativeDateText_ != null) hash ^= RelativeDateText.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (title_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Title);
+      }
+      if (viewCount_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ViewCount);
+      }
+      if (videoActions_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(VideoActions);
+      }
+      if (dateText_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(DateText);
+      }
+      if (relativeDateText_ != null) {
+        output.WriteRawTag(170, 1);
+        output.WriteMessage(RelativeDateText);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (title_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Title);
+      }
+      if (viewCount_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ViewCount);
+      }
+      if (videoActions_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(VideoActions);
+      }
+      if (dateText_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(DateText);
+      }
+      if (relativeDateText_ != null) {
+        output.WriteRawTag(170, 1);
+        output.WriteMessage(RelativeDateText);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (title_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Title);
+      }
+      if (viewCount_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ViewCount);
+      }
+      if (videoActions_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(VideoActions);
+      }
+      if (dateText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(DateText);
+      }
+      if (relativeDateText_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(RelativeDateText);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(VideoPrimaryInfoRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.title_ != null) {
+        if (title_ == null) {
+          Title = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        Title.MergeFrom(other.Title);
+      }
+      if (other.viewCount_ != null) {
+        if (viewCount_ == null) {
+          ViewCount = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        ViewCount.MergeFrom(other.ViewCount);
+      }
+      if (other.videoActions_ != null) {
+        if (videoActions_ == null) {
+          VideoActions = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        VideoActions.MergeFrom(other.VideoActions);
+      }
+      if (other.dateText_ != null) {
+        if (dateText_ == null) {
+          DateText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        DateText.MergeFrom(other.DateText);
+      }
+      if (other.relativeDateText_ != null) {
+        if (relativeDateText_ == null) {
+          RelativeDateText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        RelativeDateText.MergeFrom(other.RelativeDateText);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (title_ == null) {
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Title);
+            break;
+          }
+          case 26: {
+            if (viewCount_ == null) {
+              ViewCount = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(ViewCount);
+            break;
+          }
+          case 34: {
+            if (videoActions_ == null) {
+              VideoActions = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(VideoActions);
+            break;
+          }
+          case 114: {
+            if (dateText_ == null) {
+              DateText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(DateText);
+            break;
+          }
+          case 170: {
+            if (relativeDateText_ == null) {
+              RelativeDateText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(RelativeDateText);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (title_ == null) {
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Title);
+            break;
+          }
+          case 26: {
+            if (viewCount_ == null) {
+              ViewCount = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(ViewCount);
+            break;
+          }
+          case 34: {
+            if (videoActions_ == null) {
+              VideoActions = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(VideoActions);
+            break;
+          }
+          case 114: {
+            if (dateText_ == null) {
+              DateText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(DateText);
+            break;
+          }
+          case 170: {
+            if (relativeDateText_ == null) {
+              RelativeDateText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(RelativeDateText);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class VideoSecondaryInfoRenderer : pb::IMessage<VideoSecondaryInfoRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<VideoSecondaryInfoRenderer> _parser = new pb::MessageParser<VideoSecondaryInfoRenderer>(() => new VideoSecondaryInfoRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<VideoSecondaryInfoRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[21]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoSecondaryInfoRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoSecondaryInfoRenderer(VideoSecondaryInfoRenderer other) : this() {
+      owner_ = other.owner_ != null ? other.owner_.Clone() : null;
+      subscribeButton_ = other.subscribeButton_ != null ? other.subscribeButton_.Clone() : null;
+      metadataRowContainer_ = other.metadataRowContainer_ != null ? other.metadataRowContainer_.Clone() : null;
+      showMoreText_ = other.showMoreText_ != null ? other.showMoreText_.Clone() : null;
+      showLessText_ = other.showLessText_ != null ? other.showLessText_.Clone() : null;
+      defaultExpanded_ = other.defaultExpanded_;
+      descriptionCollapsedLines_ = other.descriptionCollapsedLines_;
+      showMoreCommand_ = other.showMoreCommand_ != null ? other.showMoreCommand_.Clone() : null;
+      showLessCommand_ = other.showLessCommand_ != null ? other.showLessCommand_.Clone() : null;
+      attributedDescription_ = other.attributedDescription_ != null ? other.attributedDescription_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public VideoSecondaryInfoRenderer Clone() {
+      return new VideoSecondaryInfoRenderer(this);
+    }
+
+    /// <summary>Field number for the "owner" field.</summary>
+    public const int OwnerFieldNumber = 1;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper owner_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper Owner {
+      get { return owner_; }
+      set {
+        owner_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "subscribeButton" field.</summary>
+    public const int SubscribeButtonFieldNumber = 4;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper subscribeButton_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper SubscribeButton {
+      get { return subscribeButton_; }
+      set {
+        subscribeButton_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "metadataRowContainer" field.</summary>
+    public const int MetadataRowContainerFieldNumber = 5;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper metadataRowContainer_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper MetadataRowContainer {
+      get { return metadataRowContainer_; }
+      set {
+        metadataRowContainer_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "showMoreText" field.</summary>
+    public const int ShowMoreTextFieldNumber = 6;
+    private global::InnerTube.Protobuf.Endpoints.Text showMoreText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ShowMoreText {
+      get { return showMoreText_; }
+      set {
+        showMoreText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "showLessText" field.</summary>
+    public const int ShowLessTextFieldNumber = 7;
+    private global::InnerTube.Protobuf.Endpoints.Text showLessText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text ShowLessText {
+      get { return showLessText_; }
+      set {
+        showLessText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "defaultExpanded" field.</summary>
+    public const int DefaultExpandedFieldNumber = 10;
+    private bool defaultExpanded_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool DefaultExpanded {
+      get { return defaultExpanded_; }
+      set {
+        defaultExpanded_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "descriptionCollapsedLines" field.</summary>
+    public const int DescriptionCollapsedLinesFieldNumber = 11;
+    private int descriptionCollapsedLines_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int DescriptionCollapsedLines {
+      get { return descriptionCollapsedLines_; }
+      set {
+        descriptionCollapsedLines_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "showMoreCommand" field.</summary>
+    public const int ShowMoreCommandFieldNumber = 12;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint showMoreCommand_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint ShowMoreCommand {
+      get { return showMoreCommand_; }
+      set {
+        showMoreCommand_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "showLessCommand" field.</summary>
+    public const int ShowLessCommandFieldNumber = 14;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint showLessCommand_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint ShowLessCommand {
+      get { return showLessCommand_; }
+      set {
+        showLessCommand_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "attributedDescription" field.</summary>
+    public const int AttributedDescriptionFieldNumber = 15;
+    private global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription attributedDescription_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription AttributedDescription {
+      get { return attributedDescription_; }
+      set {
+        attributedDescription_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as VideoSecondaryInfoRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(VideoSecondaryInfoRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Owner, other.Owner)) return false;
+      if (!object.Equals(SubscribeButton, other.SubscribeButton)) return false;
+      if (!object.Equals(MetadataRowContainer, other.MetadataRowContainer)) return false;
+      if (!object.Equals(ShowMoreText, other.ShowMoreText)) return false;
+      if (!object.Equals(ShowLessText, other.ShowLessText)) return false;
+      if (DefaultExpanded != other.DefaultExpanded) return false;
+      if (DescriptionCollapsedLines != other.DescriptionCollapsedLines) return false;
+      if (!object.Equals(ShowMoreCommand, other.ShowMoreCommand)) return false;
+      if (!object.Equals(ShowLessCommand, other.ShowLessCommand)) return false;
+      if (!object.Equals(AttributedDescription, other.AttributedDescription)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (owner_ != null) hash ^= Owner.GetHashCode();
+      if (subscribeButton_ != null) hash ^= SubscribeButton.GetHashCode();
+      if (metadataRowContainer_ != null) hash ^= MetadataRowContainer.GetHashCode();
+      if (showMoreText_ != null) hash ^= ShowMoreText.GetHashCode();
+      if (showLessText_ != null) hash ^= ShowLessText.GetHashCode();
+      if (DefaultExpanded != false) hash ^= DefaultExpanded.GetHashCode();
+      if (DescriptionCollapsedLines != 0) hash ^= DescriptionCollapsedLines.GetHashCode();
+      if (showMoreCommand_ != null) hash ^= ShowMoreCommand.GetHashCode();
+      if (showLessCommand_ != null) hash ^= ShowLessCommand.GetHashCode();
+      if (attributedDescription_ != null) hash ^= AttributedDescription.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (owner_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Owner);
+      }
+      if (subscribeButton_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(SubscribeButton);
+      }
+      if (metadataRowContainer_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(MetadataRowContainer);
+      }
+      if (showMoreText_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(ShowMoreText);
+      }
+      if (showLessText_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(ShowLessText);
+      }
+      if (DefaultExpanded != false) {
+        output.WriteRawTag(80);
+        output.WriteBool(DefaultExpanded);
+      }
+      if (DescriptionCollapsedLines != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(DescriptionCollapsedLines);
+      }
+      if (showMoreCommand_ != null) {
+        output.WriteRawTag(98);
+        output.WriteMessage(ShowMoreCommand);
+      }
+      if (showLessCommand_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(ShowLessCommand);
+      }
+      if (attributedDescription_ != null) {
+        output.WriteRawTag(122);
+        output.WriteMessage(AttributedDescription);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (owner_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Owner);
+      }
+      if (subscribeButton_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(SubscribeButton);
+      }
+      if (metadataRowContainer_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(MetadataRowContainer);
+      }
+      if (showMoreText_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(ShowMoreText);
+      }
+      if (showLessText_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(ShowLessText);
+      }
+      if (DefaultExpanded != false) {
+        output.WriteRawTag(80);
+        output.WriteBool(DefaultExpanded);
+      }
+      if (DescriptionCollapsedLines != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(DescriptionCollapsedLines);
+      }
+      if (showMoreCommand_ != null) {
+        output.WriteRawTag(98);
+        output.WriteMessage(ShowMoreCommand);
+      }
+      if (showLessCommand_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(ShowLessCommand);
+      }
+      if (attributedDescription_ != null) {
+        output.WriteRawTag(122);
+        output.WriteMessage(AttributedDescription);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (owner_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Owner);
+      }
+      if (subscribeButton_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SubscribeButton);
+      }
+      if (metadataRowContainer_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MetadataRowContainer);
+      }
+      if (showMoreText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShowMoreText);
+      }
+      if (showLessText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShowLessText);
+      }
+      if (DefaultExpanded != false) {
+        size += 1 + 1;
+      }
+      if (DescriptionCollapsedLines != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(DescriptionCollapsedLines);
+      }
+      if (showMoreCommand_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShowMoreCommand);
+      }
+      if (showLessCommand_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ShowLessCommand);
+      }
+      if (attributedDescription_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AttributedDescription);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(VideoSecondaryInfoRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.owner_ != null) {
+        if (owner_ == null) {
+          Owner = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        Owner.MergeFrom(other.Owner);
+      }
+      if (other.subscribeButton_ != null) {
+        if (subscribeButton_ == null) {
+          SubscribeButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        SubscribeButton.MergeFrom(other.SubscribeButton);
+      }
+      if (other.metadataRowContainer_ != null) {
+        if (metadataRowContainer_ == null) {
+          MetadataRowContainer = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        MetadataRowContainer.MergeFrom(other.MetadataRowContainer);
+      }
+      if (other.showMoreText_ != null) {
+        if (showMoreText_ == null) {
+          ShowMoreText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ShowMoreText.MergeFrom(other.ShowMoreText);
+      }
+      if (other.showLessText_ != null) {
+        if (showLessText_ == null) {
+          ShowLessText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        ShowLessText.MergeFrom(other.ShowLessText);
+      }
+      if (other.DefaultExpanded != false) {
+        DefaultExpanded = other.DefaultExpanded;
+      }
+      if (other.DescriptionCollapsedLines != 0) {
+        DescriptionCollapsedLines = other.DescriptionCollapsedLines;
+      }
+      if (other.showMoreCommand_ != null) {
+        if (showMoreCommand_ == null) {
+          ShowMoreCommand = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        ShowMoreCommand.MergeFrom(other.ShowMoreCommand);
+      }
+      if (other.showLessCommand_ != null) {
+        if (showLessCommand_ == null) {
+          ShowLessCommand = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        ShowLessCommand.MergeFrom(other.ShowLessCommand);
+      }
+      if (other.attributedDescription_ != null) {
+        if (attributedDescription_ == null) {
+          AttributedDescription = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription();
+        }
+        AttributedDescription.MergeFrom(other.AttributedDescription);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (owner_ == null) {
+              Owner = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Owner);
+            break;
+          }
+          case 34: {
+            if (subscribeButton_ == null) {
+              SubscribeButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(SubscribeButton);
+            break;
+          }
+          case 42: {
+            if (metadataRowContainer_ == null) {
+              MetadataRowContainer = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(MetadataRowContainer);
+            break;
+          }
+          case 50: {
+            if (showMoreText_ == null) {
+              ShowMoreText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShowMoreText);
+            break;
+          }
+          case 58: {
+            if (showLessText_ == null) {
+              ShowLessText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShowLessText);
+            break;
+          }
+          case 80: {
+            DefaultExpanded = input.ReadBool();
+            break;
+          }
+          case 88: {
+            DescriptionCollapsedLines = input.ReadInt32();
+            break;
+          }
+          case 98: {
+            if (showMoreCommand_ == null) {
+              ShowMoreCommand = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ShowMoreCommand);
+            break;
+          }
+          case 114: {
+            if (showLessCommand_ == null) {
+              ShowLessCommand = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ShowLessCommand);
+            break;
+          }
+          case 122: {
+            if (attributedDescription_ == null) {
+              AttributedDescription = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription();
+            }
+            input.ReadMessage(AttributedDescription);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (owner_ == null) {
+              Owner = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(Owner);
+            break;
+          }
+          case 34: {
+            if (subscribeButton_ == null) {
+              SubscribeButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(SubscribeButton);
+            break;
+          }
+          case 42: {
+            if (metadataRowContainer_ == null) {
+              MetadataRowContainer = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(MetadataRowContainer);
+            break;
+          }
+          case 50: {
+            if (showMoreText_ == null) {
+              ShowMoreText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShowMoreText);
+            break;
+          }
+          case 58: {
+            if (showLessText_ == null) {
+              ShowLessText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(ShowLessText);
+            break;
+          }
+          case 80: {
+            DefaultExpanded = input.ReadBool();
+            break;
+          }
+          case 88: {
+            DescriptionCollapsedLines = input.ReadInt32();
+            break;
+          }
+          case 98: {
+            if (showMoreCommand_ == null) {
+              ShowMoreCommand = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ShowMoreCommand);
+            break;
+          }
+          case 114: {
+            if (showLessCommand_ == null) {
+              ShowLessCommand = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ShowLessCommand);
+            break;
+          }
+          case 122: {
+            if (attributedDescription_ == null) {
+              AttributedDescription = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription();
+            }
+            input.ReadMessage(AttributedDescription);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the VideoSecondaryInfoRenderer message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class AttributedDescription : pb::IMessage<AttributedDescription>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<AttributedDescription> _parser = new pb::MessageParser<AttributedDescription>(() => new AttributedDescription());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<AttributedDescription> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public AttributedDescription() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public AttributedDescription(AttributedDescription other) : this() {
+          content_ = other.content_;
+          commandRuns_ = other.commandRuns_.Clone();
+          styleRuns_ = other.styleRuns_.Clone();
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public AttributedDescription Clone() {
+          return new AttributedDescription(this);
+        }
+
+        /// <summary>Field number for the "content" field.</summary>
+        public const int ContentFieldNumber = 1;
+        private string content_ = "";
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string Content {
+          get { return content_; }
+          set {
+            content_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+
+        /// <summary>Field number for the "commandRuns" field.</summary>
+        public const int CommandRunsFieldNumber = 5;
+        private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun> _repeated_commandRuns_codec
+            = pb::FieldCodec.ForMessage(42, global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun.Parser);
+        private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun> commandRuns_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun> CommandRuns {
+          get { return commandRuns_; }
+        }
+
+        /// <summary>Field number for the "styleRuns" field.</summary>
+        public const int StyleRunsFieldNumber = 6;
+        private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun> _repeated_styleRuns_codec
+            = pb::FieldCodec.ForMessage(50, global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Parser);
+        private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun> styleRuns_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun> StyleRuns {
+          get { return styleRuns_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as AttributedDescription);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(AttributedDescription other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (Content != other.Content) return false;
+          if(!commandRuns_.Equals(other.commandRuns_)) return false;
+          if(!styleRuns_.Equals(other.styleRuns_)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (Content.Length != 0) hash ^= Content.GetHashCode();
+          hash ^= commandRuns_.GetHashCode();
+          hash ^= styleRuns_.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (Content.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteString(Content);
+          }
+          commandRuns_.WriteTo(output, _repeated_commandRuns_codec);
+          styleRuns_.WriteTo(output, _repeated_styleRuns_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (Content.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteString(Content);
+          }
+          commandRuns_.WriteTo(ref output, _repeated_commandRuns_codec);
+          styleRuns_.WriteTo(ref output, _repeated_styleRuns_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (Content.Length != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeStringSize(Content);
+          }
+          size += commandRuns_.CalculateSize(_repeated_commandRuns_codec);
+          size += styleRuns_.CalculateSize(_repeated_styleRuns_codec);
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(AttributedDescription other) {
+          if (other == null) {
+            return;
+          }
+          if (other.Content.Length != 0) {
+            Content = other.Content;
+          }
+          commandRuns_.Add(other.commandRuns_);
+          styleRuns_.Add(other.styleRuns_);
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                Content = input.ReadString();
+                break;
+              }
+              case 42: {
+                commandRuns_.AddEntriesFrom(input, _repeated_commandRuns_codec);
+                break;
+              }
+              case 50: {
+                styleRuns_.AddEntriesFrom(input, _repeated_styleRuns_codec);
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 10: {
+                Content = input.ReadString();
+                break;
+              }
+              case 42: {
+                commandRuns_.AddEntriesFrom(ref input, _repeated_commandRuns_codec);
+                break;
+              }
+              case 50: {
+                styleRuns_.AddEntriesFrom(ref input, _repeated_styleRuns_codec);
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the AttributedDescription message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static partial class Types {
+          [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+          public sealed partial class CommandRun : pb::IMessage<CommandRun>
+          #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              , pb::IBufferMessage
+          #endif
+          {
+            private static readonly pb::MessageParser<CommandRun> _parser = new pb::MessageParser<CommandRun>(() => new CommandRun());
+            private pb::UnknownFieldSet _unknownFields;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static pb::MessageParser<CommandRun> Parser { get { return _parser; } }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static pbr::MessageDescriptor Descriptor {
+              get { return global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Descriptor.NestedTypes[0]; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            pbr::MessageDescriptor pb::IMessage.Descriptor {
+              get { return Descriptor; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public CommandRun() {
+              OnConstruction();
+            }
+
+            partial void OnConstruction();
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public CommandRun(CommandRun other) : this() {
+              startIndex_ = other.startIndex_;
+              length_ = other.length_;
+              command_ = other.command_ != null ? other.command_.Clone() : null;
+              _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public CommandRun Clone() {
+              return new CommandRun(this);
+            }
+
+            /// <summary>Field number for the "startIndex" field.</summary>
+            public const int StartIndexFieldNumber = 1;
+            private int startIndex_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int StartIndex {
+              get { return startIndex_; }
+              set {
+                startIndex_ = value;
+              }
+            }
+
+            /// <summary>Field number for the "length" field.</summary>
+            public const int LengthFieldNumber = 2;
+            private int length_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int Length {
+              get { return length_; }
+              set {
+                length_ = value;
+              }
+            }
+
+            /// <summary>Field number for the "command" field.</summary>
+            public const int CommandFieldNumber = 3;
+            private global::InnerTube.Protobuf.Endpoints.Endpoint command_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public global::InnerTube.Protobuf.Endpoints.Endpoint Command {
+              get { return command_; }
+              set {
+                command_ = value;
+              }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override bool Equals(object other) {
+              return Equals(other as CommandRun);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public bool Equals(CommandRun other) {
+              if (ReferenceEquals(other, null)) {
+                return false;
+              }
+              if (ReferenceEquals(other, this)) {
+                return true;
+              }
+              if (StartIndex != other.StartIndex) return false;
+              if (Length != other.Length) return false;
+              if (!object.Equals(Command, other.Command)) return false;
+              return Equals(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override int GetHashCode() {
+              int hash = 1;
+              if (StartIndex != 0) hash ^= StartIndex.GetHashCode();
+              if (Length != 0) hash ^= Length.GetHashCode();
+              if (command_ != null) hash ^= Command.GetHashCode();
+              if (_unknownFields != null) {
+                hash ^= _unknownFields.GetHashCode();
+              }
+              return hash;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override string ToString() {
+              return pb::JsonFormatter.ToDiagnosticString(this);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void WriteTo(pb::CodedOutputStream output) {
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              output.WriteRawMessage(this);
+            #else
+              if (StartIndex != 0) {
+                output.WriteRawTag(8);
+                output.WriteInt32(StartIndex);
+              }
+              if (Length != 0) {
+                output.WriteRawTag(16);
+                output.WriteInt32(Length);
+              }
+              if (command_ != null) {
+                output.WriteRawTag(26);
+                output.WriteMessage(Command);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(output);
+              }
+            #endif
+            }
+
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+              if (StartIndex != 0) {
+                output.WriteRawTag(8);
+                output.WriteInt32(StartIndex);
+              }
+              if (Length != 0) {
+                output.WriteRawTag(16);
+                output.WriteInt32(Length);
+              }
+              if (command_ != null) {
+                output.WriteRawTag(26);
+                output.WriteMessage(Command);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(ref output);
+              }
+            }
+            #endif
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int CalculateSize() {
+              int size = 0;
+              if (StartIndex != 0) {
+                size += 1 + pb::CodedOutputStream.ComputeInt32Size(StartIndex);
+              }
+              if (Length != 0) {
+                size += 1 + pb::CodedOutputStream.ComputeInt32Size(Length);
+              }
+              if (command_ != null) {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(Command);
+              }
+              if (_unknownFields != null) {
+                size += _unknownFields.CalculateSize();
+              }
+              return size;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void MergeFrom(CommandRun other) {
+              if (other == null) {
+                return;
+              }
+              if (other.StartIndex != 0) {
+                StartIndex = other.StartIndex;
+              }
+              if (other.Length != 0) {
+                Length = other.Length;
+              }
+              if (other.command_ != null) {
+                if (command_ == null) {
+                  Command = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+                }
+                Command.MergeFrom(other.Command);
+              }
+              _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void MergeFrom(pb::CodedInputStream input) {
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              input.ReadRawMessage(this);
+            #else
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                    break;
+                  case 8: {
+                    StartIndex = input.ReadInt32();
+                    break;
+                  }
+                  case 16: {
+                    Length = input.ReadInt32();
+                    break;
+                  }
+                  case 26: {
+                    if (command_ == null) {
+                      Command = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+                    }
+                    input.ReadMessage(Command);
+                    break;
+                  }
+                }
+              }
+            #endif
+            }
+
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                    break;
+                  case 8: {
+                    StartIndex = input.ReadInt32();
+                    break;
+                  }
+                  case 16: {
+                    Length = input.ReadInt32();
+                    break;
+                  }
+                  case 26: {
+                    if (command_ == null) {
+                      Command = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+                    }
+                    input.ReadMessage(Command);
+                    break;
+                  }
+                }
+              }
+            }
+            #endif
+
+          }
+
+          [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+          public sealed partial class StyleRun : pb::IMessage<StyleRun>
+          #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              , pb::IBufferMessage
+          #endif
+          {
+            private static readonly pb::MessageParser<StyleRun> _parser = new pb::MessageParser<StyleRun>(() => new StyleRun());
+            private pb::UnknownFieldSet _unknownFields;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static pb::MessageParser<StyleRun> Parser { get { return _parser; } }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static pbr::MessageDescriptor Descriptor {
+              get { return global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Descriptor.NestedTypes[1]; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            pbr::MessageDescriptor pb::IMessage.Descriptor {
+              get { return Descriptor; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public StyleRun() {
+              OnConstruction();
+            }
+
+            partial void OnConstruction();
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public StyleRun(StyleRun other) : this() {
+              startIndex_ = other.startIndex_;
+              length_ = other.length_;
+              styleRunExtensions_ = other.styleRunExtensions_ != null ? other.styleRunExtensions_.Clone() : null;
+              fontName_ = other.fontName_;
+              _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public StyleRun Clone() {
+              return new StyleRun(this);
+            }
+
+            /// <summary>Field number for the "startIndex" field.</summary>
+            public const int StartIndexFieldNumber = 1;
+            private int startIndex_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int StartIndex {
+              get { return startIndex_; }
+              set {
+                startIndex_ = value;
+              }
+            }
+
+            /// <summary>Field number for the "length" field.</summary>
+            public const int LengthFieldNumber = 2;
+            private int length_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int Length {
+              get { return length_; }
+              set {
+                length_ = value;
+              }
+            }
+
+            /// <summary>Field number for the "styleRunExtensions" field.</summary>
+            public const int StyleRunExtensionsFieldNumber = 10;
+            private global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions styleRunExtensions_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions StyleRunExtensions {
+              get { return styleRunExtensions_; }
+              set {
+                styleRunExtensions_ = value;
+              }
+            }
+
+            /// <summary>Field number for the "fontName" field.</summary>
+            public const int FontNameFieldNumber = 14;
+            private string fontName_ = "";
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public string FontName {
+              get { return fontName_; }
+              set {
+                fontName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+              }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override bool Equals(object other) {
+              return Equals(other as StyleRun);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public bool Equals(StyleRun other) {
+              if (ReferenceEquals(other, null)) {
+                return false;
+              }
+              if (ReferenceEquals(other, this)) {
+                return true;
+              }
+              if (StartIndex != other.StartIndex) return false;
+              if (Length != other.Length) return false;
+              if (!object.Equals(StyleRunExtensions, other.StyleRunExtensions)) return false;
+              if (FontName != other.FontName) return false;
+              return Equals(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override int GetHashCode() {
+              int hash = 1;
+              if (StartIndex != 0) hash ^= StartIndex.GetHashCode();
+              if (Length != 0) hash ^= Length.GetHashCode();
+              if (styleRunExtensions_ != null) hash ^= StyleRunExtensions.GetHashCode();
+              if (FontName.Length != 0) hash ^= FontName.GetHashCode();
+              if (_unknownFields != null) {
+                hash ^= _unknownFields.GetHashCode();
+              }
+              return hash;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override string ToString() {
+              return pb::JsonFormatter.ToDiagnosticString(this);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void WriteTo(pb::CodedOutputStream output) {
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              output.WriteRawMessage(this);
+            #else
+              if (StartIndex != 0) {
+                output.WriteRawTag(8);
+                output.WriteInt32(StartIndex);
+              }
+              if (Length != 0) {
+                output.WriteRawTag(16);
+                output.WriteInt32(Length);
+              }
+              if (styleRunExtensions_ != null) {
+                output.WriteRawTag(82);
+                output.WriteMessage(StyleRunExtensions);
+              }
+              if (FontName.Length != 0) {
+                output.WriteRawTag(114);
+                output.WriteString(FontName);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(output);
+              }
+            #endif
+            }
+
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+              if (StartIndex != 0) {
+                output.WriteRawTag(8);
+                output.WriteInt32(StartIndex);
+              }
+              if (Length != 0) {
+                output.WriteRawTag(16);
+                output.WriteInt32(Length);
+              }
+              if (styleRunExtensions_ != null) {
+                output.WriteRawTag(82);
+                output.WriteMessage(StyleRunExtensions);
+              }
+              if (FontName.Length != 0) {
+                output.WriteRawTag(114);
+                output.WriteString(FontName);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(ref output);
+              }
+            }
+            #endif
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int CalculateSize() {
+              int size = 0;
+              if (StartIndex != 0) {
+                size += 1 + pb::CodedOutputStream.ComputeInt32Size(StartIndex);
+              }
+              if (Length != 0) {
+                size += 1 + pb::CodedOutputStream.ComputeInt32Size(Length);
+              }
+              if (styleRunExtensions_ != null) {
+                size += 1 + pb::CodedOutputStream.ComputeMessageSize(StyleRunExtensions);
+              }
+              if (FontName.Length != 0) {
+                size += 1 + pb::CodedOutputStream.ComputeStringSize(FontName);
+              }
+              if (_unknownFields != null) {
+                size += _unknownFields.CalculateSize();
+              }
+              return size;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void MergeFrom(StyleRun other) {
+              if (other == null) {
+                return;
+              }
+              if (other.StartIndex != 0) {
+                StartIndex = other.StartIndex;
+              }
+              if (other.Length != 0) {
+                Length = other.Length;
+              }
+              if (other.styleRunExtensions_ != null) {
+                if (styleRunExtensions_ == null) {
+                  StyleRunExtensions = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions();
+                }
+                StyleRunExtensions.MergeFrom(other.StyleRunExtensions);
+              }
+              if (other.FontName.Length != 0) {
+                FontName = other.FontName;
+              }
+              _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void MergeFrom(pb::CodedInputStream input) {
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              input.ReadRawMessage(this);
+            #else
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                    break;
+                  case 8: {
+                    StartIndex = input.ReadInt32();
+                    break;
+                  }
+                  case 16: {
+                    Length = input.ReadInt32();
+                    break;
+                  }
+                  case 82: {
+                    if (styleRunExtensions_ == null) {
+                      StyleRunExtensions = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions();
+                    }
+                    input.ReadMessage(StyleRunExtensions);
+                    break;
+                  }
+                  case 114: {
+                    FontName = input.ReadString();
+                    break;
+                  }
+                }
+              }
+            #endif
+            }
+
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                    break;
+                  case 8: {
+                    StartIndex = input.ReadInt32();
+                    break;
+                  }
+                  case 16: {
+                    Length = input.ReadInt32();
+                    break;
+                  }
+                  case 82: {
+                    if (styleRunExtensions_ == null) {
+                      StyleRunExtensions = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions();
+                    }
+                    input.ReadMessage(StyleRunExtensions);
+                    break;
+                  }
+                  case 114: {
+                    FontName = input.ReadString();
+                    break;
+                  }
+                }
+              }
+            }
+            #endif
+
+            #region Nested types
+            /// <summary>Container for nested types declared in the StyleRun message type.</summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static partial class Types {
+              [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+              public sealed partial class Extensions : pb::IMessage<Extensions>
+              #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                  , pb::IBufferMessage
+              #endif
+              {
+                private static readonly pb::MessageParser<Extensions> _parser = new pb::MessageParser<Extensions>(() => new Extensions());
+                private pb::UnknownFieldSet _unknownFields;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public static pb::MessageParser<Extensions> Parser { get { return _parser; } }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public static pbr::MessageDescriptor Descriptor {
+                  get { return global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Descriptor.NestedTypes[0]; }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                pbr::MessageDescriptor pb::IMessage.Descriptor {
+                  get { return Descriptor; }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public Extensions() {
+                  OnConstruction();
+                }
+
+                partial void OnConstruction();
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public Extensions(Extensions other) : this() {
+                  styleRunColorMapExtension_ = other.styleRunColorMapExtension_ != null ? other.styleRunColorMapExtension_.Clone() : null;
+                  _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public Extensions Clone() {
+                  return new Extensions(this);
+                }
+
+                /// <summary>Field number for the "styleRunColorMapExtension" field.</summary>
+                public const int StyleRunColorMapExtensionFieldNumber = 289753726;
+                private global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Types.ColorMapExtension styleRunColorMapExtension_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Types.ColorMapExtension StyleRunColorMapExtension {
+                  get { return styleRunColorMapExtension_; }
+                  set {
+                    styleRunColorMapExtension_ = value;
+                  }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public override bool Equals(object other) {
+                  return Equals(other as Extensions);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public bool Equals(Extensions other) {
+                  if (ReferenceEquals(other, null)) {
+                    return false;
+                  }
+                  if (ReferenceEquals(other, this)) {
+                    return true;
+                  }
+                  if (!object.Equals(StyleRunColorMapExtension, other.StyleRunColorMapExtension)) return false;
+                  return Equals(_unknownFields, other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public override int GetHashCode() {
+                  int hash = 1;
+                  if (styleRunColorMapExtension_ != null) hash ^= StyleRunColorMapExtension.GetHashCode();
+                  if (_unknownFields != null) {
+                    hash ^= _unknownFields.GetHashCode();
+                  }
+                  return hash;
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public override string ToString() {
+                  return pb::JsonFormatter.ToDiagnosticString(this);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public void WriteTo(pb::CodedOutputStream output) {
+                #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                  output.WriteRawMessage(this);
+                #else
+                  if (styleRunColorMapExtension_ != null) {
+                    output.WriteRawTag(242, 167, 169, 209, 8);
+                    output.WriteMessage(StyleRunColorMapExtension);
+                  }
+                  if (_unknownFields != null) {
+                    _unknownFields.WriteTo(output);
+                  }
+                #endif
+                }
+
+                #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+                  if (styleRunColorMapExtension_ != null) {
+                    output.WriteRawTag(242, 167, 169, 209, 8);
+                    output.WriteMessage(StyleRunColorMapExtension);
+                  }
+                  if (_unknownFields != null) {
+                    _unknownFields.WriteTo(ref output);
+                  }
+                }
+                #endif
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public int CalculateSize() {
+                  int size = 0;
+                  if (styleRunColorMapExtension_ != null) {
+                    size += 5 + pb::CodedOutputStream.ComputeMessageSize(StyleRunColorMapExtension);
+                  }
+                  if (_unknownFields != null) {
+                    size += _unknownFields.CalculateSize();
+                  }
+                  return size;
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public void MergeFrom(Extensions other) {
+                  if (other == null) {
+                    return;
+                  }
+                  if (other.styleRunColorMapExtension_ != null) {
+                    if (styleRunColorMapExtension_ == null) {
+                      StyleRunColorMapExtension = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Types.ColorMapExtension();
+                    }
+                    StyleRunColorMapExtension.MergeFrom(other.StyleRunColorMapExtension);
+                  }
+                  _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public void MergeFrom(pb::CodedInputStream input) {
+                #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                  input.ReadRawMessage(this);
+                #else
+                  uint tag;
+                  while ((tag = input.ReadTag()) != 0) {
+                    switch(tag) {
+                      default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                      case 2318029810: {
+                        if (styleRunColorMapExtension_ == null) {
+                          StyleRunColorMapExtension = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Types.ColorMapExtension();
+                        }
+                        input.ReadMessage(StyleRunColorMapExtension);
+                        break;
+                      }
+                    }
+                  }
+                #endif
+                }
+
+                #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+                  uint tag;
+                  while ((tag = input.ReadTag()) != 0) {
+                    switch(tag) {
+                      default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                      case 2318029810: {
+                        if (styleRunColorMapExtension_ == null) {
+                          StyleRunColorMapExtension = new global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Types.ColorMapExtension();
+                        }
+                        input.ReadMessage(StyleRunColorMapExtension);
+                        break;
+                      }
+                    }
+                  }
+                }
+                #endif
+
+                #region Nested types
+                /// <summary>Container for nested types declared in the Extensions message type.</summary>
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public static partial class Types {
+                  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+                  public sealed partial class ColorMapExtension : pb::IMessage<ColorMapExtension>
+                  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                      , pb::IBufferMessage
+                  #endif
+                  {
+                    private static readonly pb::MessageParser<ColorMapExtension> _parser = new pb::MessageParser<ColorMapExtension>(() => new ColorMapExtension());
+                    private pb::UnknownFieldSet _unknownFields;
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public static pb::MessageParser<ColorMapExtension> Parser { get { return _parser; } }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public static pbr::MessageDescriptor Descriptor {
+                      get { return global::InnerTube.Protobuf.Renderers.VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.StyleRun.Types.Extensions.Descriptor.NestedTypes[0]; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    pbr::MessageDescriptor pb::IMessage.Descriptor {
+                      get { return Descriptor; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public ColorMapExtension() {
+                      OnConstruction();
+                    }
+
+                    partial void OnConstruction();
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public ColorMapExtension(ColorMapExtension other) : this() {
+                      colorMap_ = other.colorMap_.Clone();
+                      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public ColorMapExtension Clone() {
+                      return new ColorMapExtension(this);
+                    }
+
+                    /// <summary>Field number for the "colorMap" field.</summary>
+                    public const int ColorMapFieldNumber = 1;
+                    private static readonly pbc::MapField<string, uint>.Codec _map_colorMap_codec
+                        = new pbc::MapField<string, uint>.Codec(pb::FieldCodec.ForString(10, ""), pb::FieldCodec.ForUInt32(16, 0), 10);
+                    private readonly pbc::MapField<string, uint> colorMap_ = new pbc::MapField<string, uint>();
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public pbc::MapField<string, uint> ColorMap {
+                      get { return colorMap_; }
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public override bool Equals(object other) {
+                      return Equals(other as ColorMapExtension);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public bool Equals(ColorMapExtension other) {
+                      if (ReferenceEquals(other, null)) {
+                        return false;
+                      }
+                      if (ReferenceEquals(other, this)) {
+                        return true;
+                      }
+                      if (!ColorMap.Equals(other.ColorMap)) return false;
+                      return Equals(_unknownFields, other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public override int GetHashCode() {
+                      int hash = 1;
+                      hash ^= ColorMap.GetHashCode();
+                      if (_unknownFields != null) {
+                        hash ^= _unknownFields.GetHashCode();
+                      }
+                      return hash;
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public override string ToString() {
+                      return pb::JsonFormatter.ToDiagnosticString(this);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public void WriteTo(pb::CodedOutputStream output) {
+                    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                      output.WriteRawMessage(this);
+                    #else
+                      colorMap_.WriteTo(output, _map_colorMap_codec);
+                      if (_unknownFields != null) {
+                        _unknownFields.WriteTo(output);
+                      }
+                    #endif
+                    }
+
+                    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+                      colorMap_.WriteTo(ref output, _map_colorMap_codec);
+                      if (_unknownFields != null) {
+                        _unknownFields.WriteTo(ref output);
+                      }
+                    }
+                    #endif
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public int CalculateSize() {
+                      int size = 0;
+                      size += colorMap_.CalculateSize(_map_colorMap_codec);
+                      if (_unknownFields != null) {
+                        size += _unknownFields.CalculateSize();
+                      }
+                      return size;
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public void MergeFrom(ColorMapExtension other) {
+                      if (other == null) {
+                        return;
+                      }
+                      colorMap_.MergeFrom(other.colorMap_);
+                      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+                    }
+
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    public void MergeFrom(pb::CodedInputStream input) {
+                    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                      input.ReadRawMessage(this);
+                    #else
+                      uint tag;
+                      while ((tag = input.ReadTag()) != 0) {
+                        switch(tag) {
+                          default:
+                            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                            break;
+                          case 10: {
+                            colorMap_.AddEntriesFrom(input, _map_colorMap_codec);
+                            break;
+                          }
+                        }
+                      }
+                    #endif
+                    }
+
+                    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+                      uint tag;
+                      while ((tag = input.ReadTag()) != 0) {
+                        switch(tag) {
+                          default:
+                            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                            break;
+                          case 10: {
+                            colorMap_.AddEntriesFrom(ref input, _map_colorMap_codec);
+                            break;
+                          }
+                        }
+                      }
+                    }
+                    #endif
+
+                  }
+
+                }
+                #endregion
+
+              }
+
+            }
+            #endregion
+
+          }
+
+        }
+        #endregion
+
+      }
+
+    }
+    #endregion
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class EndscreenRenderer : pb::IMessage<EndscreenRenderer>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -3894,7 +13785,7 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[6]; }
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4110,7 +14001,7 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[7]; }
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4265,10 +14156,10 @@ namespace InnerTube.Protobuf.Renderers {
 
     /// <summary>Field number for the "title" field.</summary>
     public const int TitleFieldNumber = 12;
-    private global::InnerTube.Protobuf.Text title_;
+    private global::InnerTube.Protobuf.Endpoints.Text title_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Text Title {
+    public global::InnerTube.Protobuf.Endpoints.Text Title {
       get { return title_; }
       set {
         title_ = value;
@@ -4277,10 +14168,10 @@ namespace InnerTube.Protobuf.Renderers {
 
     /// <summary>Field number for the "metadata" field.</summary>
     public const int MetadataFieldNumber = 13;
-    private global::InnerTube.Protobuf.Text metadata_;
+    private global::InnerTube.Protobuf.Endpoints.Text metadata_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Text Metadata {
+    public global::InnerTube.Protobuf.Endpoints.Text Metadata {
       get { return metadata_; }
       set {
         metadata_ = value;
@@ -4289,10 +14180,10 @@ namespace InnerTube.Protobuf.Renderers {
 
     /// <summary>Field number for the "callToAction" field.</summary>
     public const int CallToActionFieldNumber = 14;
-    private global::InnerTube.Protobuf.Text callToAction_;
+    private global::InnerTube.Protobuf.Endpoints.Text callToAction_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Text CallToAction {
+    public global::InnerTube.Protobuf.Endpoints.Text CallToAction {
       get { return callToAction_; }
       set {
         callToAction_ = value;
@@ -4301,10 +14192,10 @@ namespace InnerTube.Protobuf.Renderers {
 
     /// <summary>Field number for the "dismiss" field.</summary>
     public const int DismissFieldNumber = 15;
-    private global::InnerTube.Protobuf.Text dismiss_;
+    private global::InnerTube.Protobuf.Endpoints.Text dismiss_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Text Dismiss {
+    public global::InnerTube.Protobuf.Endpoints.Text Dismiss {
       get { return dismiss_; }
       set {
         dismiss_ = value;
@@ -4662,25 +14553,25 @@ namespace InnerTube.Protobuf.Renderers {
       }
       if (other.title_ != null) {
         if (title_ == null) {
-          Title = new global::InnerTube.Protobuf.Text();
+          Title = new global::InnerTube.Protobuf.Endpoints.Text();
         }
         Title.MergeFrom(other.Title);
       }
       if (other.metadata_ != null) {
         if (metadata_ == null) {
-          Metadata = new global::InnerTube.Protobuf.Text();
+          Metadata = new global::InnerTube.Protobuf.Endpoints.Text();
         }
         Metadata.MergeFrom(other.Metadata);
       }
       if (other.callToAction_ != null) {
         if (callToAction_ == null) {
-          CallToAction = new global::InnerTube.Protobuf.Text();
+          CallToAction = new global::InnerTube.Protobuf.Endpoints.Text();
         }
         CallToAction.MergeFrom(other.CallToAction);
       }
       if (other.dismiss_ != null) {
         if (dismiss_ == null) {
-          Dismiss = new global::InnerTube.Protobuf.Text();
+          Dismiss = new global::InnerTube.Protobuf.Endpoints.Text();
         }
         Dismiss.MergeFrom(other.Dismiss);
       }
@@ -4758,28 +14649,28 @@ namespace InnerTube.Protobuf.Renderers {
           }
           case 98: {
             if (title_ == null) {
-              Title = new global::InnerTube.Protobuf.Text();
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Title);
             break;
           }
           case 106: {
             if (metadata_ == null) {
-              Metadata = new global::InnerTube.Protobuf.Text();
+              Metadata = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Metadata);
             break;
           }
           case 114: {
             if (callToAction_ == null) {
-              CallToAction = new global::InnerTube.Protobuf.Text();
+              CallToAction = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(CallToAction);
             break;
           }
           case 122: {
             if (dismiss_ == null) {
-              Dismiss = new global::InnerTube.Protobuf.Text();
+              Dismiss = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Dismiss);
             break;
@@ -4861,28 +14752,28 @@ namespace InnerTube.Protobuf.Renderers {
           }
           case 98: {
             if (title_ == null) {
-              Title = new global::InnerTube.Protobuf.Text();
+              Title = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Title);
             break;
           }
           case 106: {
             if (metadata_ == null) {
-              Metadata = new global::InnerTube.Protobuf.Text();
+              Metadata = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Metadata);
             break;
           }
           case 114: {
             if (callToAction_ == null) {
-              CallToAction = new global::InnerTube.Protobuf.Text();
+              CallToAction = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(CallToAction);
             break;
           }
           case 122: {
             if (dismiss_ == null) {
-              Dismiss = new global::InnerTube.Protobuf.Text();
+              Dismiss = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Dismiss);
             break;
@@ -4943,7 +14834,7 @@ namespace InnerTube.Protobuf.Renderers {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[8]; }
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[24]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4976,10 +14867,10 @@ namespace InnerTube.Protobuf.Renderers {
 
     /// <summary>Field number for the "text" field.</summary>
     public const int TextFieldNumber = 1;
-    private global::InnerTube.Protobuf.Text text_;
+    private global::InnerTube.Protobuf.Endpoints.Text text_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Text Text {
+    public global::InnerTube.Protobuf.Endpoints.Text Text {
       get { return text_; }
       set {
         text_ = value;
@@ -5098,7 +14989,7 @@ namespace InnerTube.Protobuf.Renderers {
       }
       if (other.text_ != null) {
         if (text_ == null) {
-          Text = new global::InnerTube.Protobuf.Text();
+          Text = new global::InnerTube.Protobuf.Endpoints.Text();
         }
         Text.MergeFrom(other.Text);
       }
@@ -5122,7 +15013,7 @@ namespace InnerTube.Protobuf.Renderers {
             break;
           case 10: {
             if (text_ == null) {
-              Text = new global::InnerTube.Protobuf.Text();
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Text);
             break;
@@ -5148,13 +15039,4367 @@ namespace InnerTube.Protobuf.Renderers {
             break;
           case 10: {
             if (text_ == null) {
-              Text = new global::InnerTube.Protobuf.Text();
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
             }
             input.ReadMessage(Text);
             break;
           }
           case 16: {
             Style = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ThumbnailOverlayToggleButtonRenderer : pb::IMessage<ThumbnailOverlayToggleButtonRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ThumbnailOverlayToggleButtonRenderer> _parser = new pb::MessageParser<ThumbnailOverlayToggleButtonRenderer>(() => new ThumbnailOverlayToggleButtonRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ThumbnailOverlayToggleButtonRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[25]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ThumbnailOverlayToggleButtonRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ThumbnailOverlayToggleButtonRenderer(ThumbnailOverlayToggleButtonRenderer other) : this() {
+      isToggled_ = other.isToggled_;
+      untoggledIcon_ = other.untoggledIcon_ != null ? other.untoggledIcon_.Clone() : null;
+      toggledIcon_ = other.toggledIcon_ != null ? other.toggledIcon_.Clone() : null;
+      untoggledTooltip_ = other.untoggledTooltip_;
+      toggledTooltip_ = other.toggledTooltip_;
+      untoggledServiceEndpoint_ = other.untoggledServiceEndpoint_ != null ? other.untoggledServiceEndpoint_.Clone() : null;
+      toggledServiceEndpoint_ = other.toggledServiceEndpoint_ != null ? other.toggledServiceEndpoint_.Clone() : null;
+      untoggledAccessibility_ = other.untoggledAccessibility_ != null ? other.untoggledAccessibility_.Clone() : null;
+      toggledAccessibility_ = other.toggledAccessibility_ != null ? other.toggledAccessibility_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ThumbnailOverlayToggleButtonRenderer Clone() {
+      return new ThumbnailOverlayToggleButtonRenderer(this);
+    }
+
+    /// <summary>Field number for the "isToggled" field.</summary>
+    public const int IsToggledFieldNumber = 1;
+    private bool isToggled_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IsToggled {
+      get { return isToggled_; }
+      set {
+        isToggled_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "untoggledIcon" field.</summary>
+    public const int UntoggledIconFieldNumber = 2;
+    private global::InnerTube.Protobuf.Icon untoggledIcon_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Icon UntoggledIcon {
+      get { return untoggledIcon_; }
+      set {
+        untoggledIcon_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "toggledIcon" field.</summary>
+    public const int ToggledIconFieldNumber = 3;
+    private global::InnerTube.Protobuf.Icon toggledIcon_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Icon ToggledIcon {
+      get { return toggledIcon_; }
+      set {
+        toggledIcon_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "untoggledTooltip" field.</summary>
+    public const int UntoggledTooltipFieldNumber = 4;
+    private string untoggledTooltip_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string UntoggledTooltip {
+      get { return untoggledTooltip_; }
+      set {
+        untoggledTooltip_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "toggledTooltip" field.</summary>
+    public const int ToggledTooltipFieldNumber = 5;
+    private string toggledTooltip_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string ToggledTooltip {
+      get { return toggledTooltip_; }
+      set {
+        toggledTooltip_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "untoggledServiceEndpoint" field.</summary>
+    public const int UntoggledServiceEndpointFieldNumber = 6;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint untoggledServiceEndpoint_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint UntoggledServiceEndpoint {
+      get { return untoggledServiceEndpoint_; }
+      set {
+        untoggledServiceEndpoint_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "toggledServiceEndpoint" field.</summary>
+    public const int ToggledServiceEndpointFieldNumber = 7;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint toggledServiceEndpoint_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint ToggledServiceEndpoint {
+      get { return toggledServiceEndpoint_; }
+      set {
+        toggledServiceEndpoint_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "untoggledAccessibility" field.</summary>
+    public const int UntoggledAccessibilityFieldNumber = 8;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper untoggledAccessibility_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper UntoggledAccessibility {
+      get { return untoggledAccessibility_; }
+      set {
+        untoggledAccessibility_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "toggledAccessibility" field.</summary>
+    public const int ToggledAccessibilityFieldNumber = 9;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper toggledAccessibility_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper ToggledAccessibility {
+      get { return toggledAccessibility_; }
+      set {
+        toggledAccessibility_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 12;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ThumbnailOverlayToggleButtonRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ThumbnailOverlayToggleButtonRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (IsToggled != other.IsToggled) return false;
+      if (!object.Equals(UntoggledIcon, other.UntoggledIcon)) return false;
+      if (!object.Equals(ToggledIcon, other.ToggledIcon)) return false;
+      if (UntoggledTooltip != other.UntoggledTooltip) return false;
+      if (ToggledTooltip != other.ToggledTooltip) return false;
+      if (!object.Equals(UntoggledServiceEndpoint, other.UntoggledServiceEndpoint)) return false;
+      if (!object.Equals(ToggledServiceEndpoint, other.ToggledServiceEndpoint)) return false;
+      if (!object.Equals(UntoggledAccessibility, other.UntoggledAccessibility)) return false;
+      if (!object.Equals(ToggledAccessibility, other.ToggledAccessibility)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (IsToggled != false) hash ^= IsToggled.GetHashCode();
+      if (untoggledIcon_ != null) hash ^= UntoggledIcon.GetHashCode();
+      if (toggledIcon_ != null) hash ^= ToggledIcon.GetHashCode();
+      if (UntoggledTooltip.Length != 0) hash ^= UntoggledTooltip.GetHashCode();
+      if (ToggledTooltip.Length != 0) hash ^= ToggledTooltip.GetHashCode();
+      if (untoggledServiceEndpoint_ != null) hash ^= UntoggledServiceEndpoint.GetHashCode();
+      if (toggledServiceEndpoint_ != null) hash ^= ToggledServiceEndpoint.GetHashCode();
+      if (untoggledAccessibility_ != null) hash ^= UntoggledAccessibility.GetHashCode();
+      if (toggledAccessibility_ != null) hash ^= ToggledAccessibility.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (IsToggled != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(IsToggled);
+      }
+      if (untoggledIcon_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(UntoggledIcon);
+      }
+      if (toggledIcon_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ToggledIcon);
+      }
+      if (UntoggledTooltip.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(UntoggledTooltip);
+      }
+      if (ToggledTooltip.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(ToggledTooltip);
+      }
+      if (untoggledServiceEndpoint_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(UntoggledServiceEndpoint);
+      }
+      if (toggledServiceEndpoint_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(ToggledServiceEndpoint);
+      }
+      if (untoggledAccessibility_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(UntoggledAccessibility);
+      }
+      if (toggledAccessibility_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(ToggledAccessibility);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (IsToggled != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(IsToggled);
+      }
+      if (untoggledIcon_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(UntoggledIcon);
+      }
+      if (toggledIcon_ != null) {
+        output.WriteRawTag(26);
+        output.WriteMessage(ToggledIcon);
+      }
+      if (UntoggledTooltip.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(UntoggledTooltip);
+      }
+      if (ToggledTooltip.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(ToggledTooltip);
+      }
+      if (untoggledServiceEndpoint_ != null) {
+        output.WriteRawTag(50);
+        output.WriteMessage(UntoggledServiceEndpoint);
+      }
+      if (toggledServiceEndpoint_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(ToggledServiceEndpoint);
+      }
+      if (untoggledAccessibility_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(UntoggledAccessibility);
+      }
+      if (toggledAccessibility_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(ToggledAccessibility);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(98);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (IsToggled != false) {
+        size += 1 + 1;
+      }
+      if (untoggledIcon_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UntoggledIcon);
+      }
+      if (toggledIcon_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ToggledIcon);
+      }
+      if (UntoggledTooltip.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(UntoggledTooltip);
+      }
+      if (ToggledTooltip.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(ToggledTooltip);
+      }
+      if (untoggledServiceEndpoint_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UntoggledServiceEndpoint);
+      }
+      if (toggledServiceEndpoint_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ToggledServiceEndpoint);
+      }
+      if (untoggledAccessibility_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UntoggledAccessibility);
+      }
+      if (toggledAccessibility_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ToggledAccessibility);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ThumbnailOverlayToggleButtonRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.IsToggled != false) {
+        IsToggled = other.IsToggled;
+      }
+      if (other.untoggledIcon_ != null) {
+        if (untoggledIcon_ == null) {
+          UntoggledIcon = new global::InnerTube.Protobuf.Icon();
+        }
+        UntoggledIcon.MergeFrom(other.UntoggledIcon);
+      }
+      if (other.toggledIcon_ != null) {
+        if (toggledIcon_ == null) {
+          ToggledIcon = new global::InnerTube.Protobuf.Icon();
+        }
+        ToggledIcon.MergeFrom(other.ToggledIcon);
+      }
+      if (other.UntoggledTooltip.Length != 0) {
+        UntoggledTooltip = other.UntoggledTooltip;
+      }
+      if (other.ToggledTooltip.Length != 0) {
+        ToggledTooltip = other.ToggledTooltip;
+      }
+      if (other.untoggledServiceEndpoint_ != null) {
+        if (untoggledServiceEndpoint_ == null) {
+          UntoggledServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        UntoggledServiceEndpoint.MergeFrom(other.UntoggledServiceEndpoint);
+      }
+      if (other.toggledServiceEndpoint_ != null) {
+        if (toggledServiceEndpoint_ == null) {
+          ToggledServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        ToggledServiceEndpoint.MergeFrom(other.ToggledServiceEndpoint);
+      }
+      if (other.untoggledAccessibility_ != null) {
+        if (untoggledAccessibility_ == null) {
+          UntoggledAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        UntoggledAccessibility.MergeFrom(other.UntoggledAccessibility);
+      }
+      if (other.toggledAccessibility_ != null) {
+        if (toggledAccessibility_ == null) {
+          ToggledAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        ToggledAccessibility.MergeFrom(other.ToggledAccessibility);
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            IsToggled = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (untoggledIcon_ == null) {
+              UntoggledIcon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(UntoggledIcon);
+            break;
+          }
+          case 26: {
+            if (toggledIcon_ == null) {
+              ToggledIcon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(ToggledIcon);
+            break;
+          }
+          case 34: {
+            UntoggledTooltip = input.ReadString();
+            break;
+          }
+          case 42: {
+            ToggledTooltip = input.ReadString();
+            break;
+          }
+          case 50: {
+            if (untoggledServiceEndpoint_ == null) {
+              UntoggledServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(UntoggledServiceEndpoint);
+            break;
+          }
+          case 58: {
+            if (toggledServiceEndpoint_ == null) {
+              ToggledServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ToggledServiceEndpoint);
+            break;
+          }
+          case 66: {
+            if (untoggledAccessibility_ == null) {
+              UntoggledAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(UntoggledAccessibility);
+            break;
+          }
+          case 74: {
+            if (toggledAccessibility_ == null) {
+              ToggledAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(ToggledAccessibility);
+            break;
+          }
+          case 98: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            IsToggled = input.ReadBool();
+            break;
+          }
+          case 18: {
+            if (untoggledIcon_ == null) {
+              UntoggledIcon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(UntoggledIcon);
+            break;
+          }
+          case 26: {
+            if (toggledIcon_ == null) {
+              ToggledIcon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(ToggledIcon);
+            break;
+          }
+          case 34: {
+            UntoggledTooltip = input.ReadString();
+            break;
+          }
+          case 42: {
+            ToggledTooltip = input.ReadString();
+            break;
+          }
+          case 50: {
+            if (untoggledServiceEndpoint_ == null) {
+              UntoggledServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(UntoggledServiceEndpoint);
+            break;
+          }
+          case 58: {
+            if (toggledServiceEndpoint_ == null) {
+              ToggledServiceEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ToggledServiceEndpoint);
+            break;
+          }
+          case 66: {
+            if (untoggledAccessibility_ == null) {
+              UntoggledAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(UntoggledAccessibility);
+            break;
+          }
+          case 74: {
+            if (toggledAccessibility_ == null) {
+              ToggledAccessibility = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(ToggledAccessibility);
+            break;
+          }
+          case 98: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MetadataBadgeRenderer : pb::IMessage<MetadataBadgeRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MetadataBadgeRenderer> _parser = new pb::MessageParser<MetadataBadgeRenderer>(() => new MetadataBadgeRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MetadataBadgeRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[26]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MetadataBadgeRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MetadataBadgeRenderer(MetadataBadgeRenderer other) : this() {
+      icon_ = other.icon_ != null ? other.icon_.Clone() : null;
+      style_ = other.style_;
+      label_ = other.label_;
+      tooltip_ = other.tooltip_;
+      trackingParams_ = other.trackingParams_;
+      accessibilityData_ = other.accessibilityData_ != null ? other.accessibilityData_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MetadataBadgeRenderer Clone() {
+      return new MetadataBadgeRenderer(this);
+    }
+
+    /// <summary>Field number for the "icon" field.</summary>
+    public const int IconFieldNumber = 1;
+    private global::InnerTube.Protobuf.Icon icon_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Icon Icon {
+      get { return icon_; }
+      set {
+        icon_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "style" field.</summary>
+    public const int StyleFieldNumber = 2;
+    private int style_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Style {
+      get { return style_; }
+      set {
+        style_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "label" field.</summary>
+    public const int LabelFieldNumber = 3;
+    private readonly static string LabelDefaultValue = "";
+
+    private string label_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Label {
+      get { return label_ ?? LabelDefaultValue; }
+      set {
+        label_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "label" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLabel {
+      get { return label_ != null; }
+    }
+    /// <summary>Clears the value of the "label" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLabel() {
+      label_ = null;
+    }
+
+    /// <summary>Field number for the "tooltip" field.</summary>
+    public const int TooltipFieldNumber = 4;
+    private readonly static string TooltipDefaultValue = "";
+
+    private string tooltip_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Tooltip {
+      get { return tooltip_ ?? TooltipDefaultValue; }
+      set {
+        tooltip_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "tooltip" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasTooltip {
+      get { return tooltip_ != null; }
+    }
+    /// <summary>Clears the value of the "tooltip" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearTooltip() {
+      tooltip_ = null;
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 6;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "accessibilityData" field.</summary>
+    public const int AccessibilityDataFieldNumber = 7;
+    private global::InnerTube.Protobuf.AccessibilityData accessibilityData_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.AccessibilityData AccessibilityData {
+      get { return accessibilityData_; }
+      set {
+        accessibilityData_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MetadataBadgeRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MetadataBadgeRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Icon, other.Icon)) return false;
+      if (Style != other.Style) return false;
+      if (Label != other.Label) return false;
+      if (Tooltip != other.Tooltip) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (!object.Equals(AccessibilityData, other.AccessibilityData)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (icon_ != null) hash ^= Icon.GetHashCode();
+      if (Style != 0) hash ^= Style.GetHashCode();
+      if (HasLabel) hash ^= Label.GetHashCode();
+      if (HasTooltip) hash ^= Tooltip.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (accessibilityData_ != null) hash ^= AccessibilityData.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (icon_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Icon);
+      }
+      if (Style != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Style);
+      }
+      if (HasLabel) {
+        output.WriteRawTag(26);
+        output.WriteString(Label);
+      }
+      if (HasTooltip) {
+        output.WriteRawTag(34);
+        output.WriteString(Tooltip);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(TrackingParams);
+      }
+      if (accessibilityData_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(AccessibilityData);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (icon_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Icon);
+      }
+      if (Style != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Style);
+      }
+      if (HasLabel) {
+        output.WriteRawTag(26);
+        output.WriteString(Label);
+      }
+      if (HasTooltip) {
+        output.WriteRawTag(34);
+        output.WriteString(Tooltip);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(TrackingParams);
+      }
+      if (accessibilityData_ != null) {
+        output.WriteRawTag(58);
+        output.WriteMessage(AccessibilityData);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (icon_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Icon);
+      }
+      if (Style != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Style);
+      }
+      if (HasLabel) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Label);
+      }
+      if (HasTooltip) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Tooltip);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (accessibilityData_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(AccessibilityData);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MetadataBadgeRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.icon_ != null) {
+        if (icon_ == null) {
+          Icon = new global::InnerTube.Protobuf.Icon();
+        }
+        Icon.MergeFrom(other.Icon);
+      }
+      if (other.Style != 0) {
+        Style = other.Style;
+      }
+      if (other.HasLabel) {
+        Label = other.Label;
+      }
+      if (other.HasTooltip) {
+        Tooltip = other.Tooltip;
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.accessibilityData_ != null) {
+        if (accessibilityData_ == null) {
+          AccessibilityData = new global::InnerTube.Protobuf.AccessibilityData();
+        }
+        AccessibilityData.MergeFrom(other.AccessibilityData);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (icon_ == null) {
+              Icon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(Icon);
+            break;
+          }
+          case 16: {
+            Style = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            Label = input.ReadString();
+            break;
+          }
+          case 34: {
+            Tooltip = input.ReadString();
+            break;
+          }
+          case 50: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 58: {
+            if (accessibilityData_ == null) {
+              AccessibilityData = new global::InnerTube.Protobuf.AccessibilityData();
+            }
+            input.ReadMessage(AccessibilityData);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (icon_ == null) {
+              Icon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(Icon);
+            break;
+          }
+          case 16: {
+            Style = input.ReadInt32();
+            break;
+          }
+          case 26: {
+            Label = input.ReadString();
+            break;
+          }
+          case 34: {
+            Tooltip = input.ReadString();
+            break;
+          }
+          case 50: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 58: {
+            if (accessibilityData_ == null) {
+              AccessibilityData = new global::InnerTube.Protobuf.AccessibilityData();
+            }
+            input.ReadMessage(AccessibilityData);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SubscriptionNotificationToggleButtonRenderer : pb::IMessage<SubscriptionNotificationToggleButtonRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SubscriptionNotificationToggleButtonRenderer> _parser = new pb::MessageParser<SubscriptionNotificationToggleButtonRenderer>(() => new SubscriptionNotificationToggleButtonRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SubscriptionNotificationToggleButtonRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[27]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SubscriptionNotificationToggleButtonRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SubscriptionNotificationToggleButtonRenderer(SubscriptionNotificationToggleButtonRenderer other) : this() {
+      states_ = other.states_.Clone();
+      currentStateId_ = other.currentStateId_;
+      trackingParams_ = other.trackingParams_;
+      command_ = other.command_ != null ? other.command_.Clone() : null;
+      targetId_ = other.targetId_;
+      secondaryIcon_ = other.secondaryIcon_ != null ? other.secondaryIcon_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SubscriptionNotificationToggleButtonRenderer Clone() {
+      return new SubscriptionNotificationToggleButtonRenderer(this);
+    }
+
+    /// <summary>Field number for the "states" field.</summary>
+    public const int StatesFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State> _repeated_states_codec
+        = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State> states_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State> States {
+      get { return states_; }
+    }
+
+    /// <summary>Field number for the "currentStateId" field.</summary>
+    public const int CurrentStateIdFieldNumber = 2;
+    private int currentStateId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CurrentStateId {
+      get { return currentStateId_; }
+      set {
+        currentStateId_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 6;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "command" field.</summary>
+    public const int CommandFieldNumber = 10;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint command_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint Command {
+      get { return command_; }
+      set {
+        command_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 11;
+    private string targetId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TargetId {
+      get { return targetId_; }
+      set {
+        targetId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "secondaryIcon" field.</summary>
+    public const int SecondaryIconFieldNumber = 13;
+    private global::InnerTube.Protobuf.Icon secondaryIcon_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Icon SecondaryIcon {
+      get { return secondaryIcon_; }
+      set {
+        secondaryIcon_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SubscriptionNotificationToggleButtonRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SubscriptionNotificationToggleButtonRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if(!states_.Equals(other.states_)) return false;
+      if (CurrentStateId != other.CurrentStateId) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (!object.Equals(Command, other.Command)) return false;
+      if (TargetId != other.TargetId) return false;
+      if (!object.Equals(SecondaryIcon, other.SecondaryIcon)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      hash ^= states_.GetHashCode();
+      if (CurrentStateId != 0) hash ^= CurrentStateId.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (command_ != null) hash ^= Command.GetHashCode();
+      if (TargetId.Length != 0) hash ^= TargetId.GetHashCode();
+      if (secondaryIcon_ != null) hash ^= SecondaryIcon.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      states_.WriteTo(output, _repeated_states_codec);
+      if (CurrentStateId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(CurrentStateId);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(TrackingParams);
+      }
+      if (command_ != null) {
+        output.WriteRawTag(82);
+        output.WriteMessage(Command);
+      }
+      if (TargetId.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(TargetId);
+      }
+      if (secondaryIcon_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(SecondaryIcon);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      states_.WriteTo(ref output, _repeated_states_codec);
+      if (CurrentStateId != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(CurrentStateId);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(TrackingParams);
+      }
+      if (command_ != null) {
+        output.WriteRawTag(82);
+        output.WriteMessage(Command);
+      }
+      if (TargetId.Length != 0) {
+        output.WriteRawTag(90);
+        output.WriteString(TargetId);
+      }
+      if (secondaryIcon_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(SecondaryIcon);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      size += states_.CalculateSize(_repeated_states_codec);
+      if (CurrentStateId != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(CurrentStateId);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (command_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Command);
+      }
+      if (TargetId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TargetId);
+      }
+      if (secondaryIcon_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(SecondaryIcon);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SubscriptionNotificationToggleButtonRenderer other) {
+      if (other == null) {
+        return;
+      }
+      states_.Add(other.states_);
+      if (other.CurrentStateId != 0) {
+        CurrentStateId = other.CurrentStateId;
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.command_ != null) {
+        if (command_ == null) {
+          Command = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        Command.MergeFrom(other.Command);
+      }
+      if (other.TargetId.Length != 0) {
+        TargetId = other.TargetId;
+      }
+      if (other.secondaryIcon_ != null) {
+        if (secondaryIcon_ == null) {
+          SecondaryIcon = new global::InnerTube.Protobuf.Icon();
+        }
+        SecondaryIcon.MergeFrom(other.SecondaryIcon);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            states_.AddEntriesFrom(input, _repeated_states_codec);
+            break;
+          }
+          case 16: {
+            CurrentStateId = input.ReadInt32();
+            break;
+          }
+          case 50: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 82: {
+            if (command_ == null) {
+              Command = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(Command);
+            break;
+          }
+          case 90: {
+            TargetId = input.ReadString();
+            break;
+          }
+          case 106: {
+            if (secondaryIcon_ == null) {
+              SecondaryIcon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(SecondaryIcon);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            states_.AddEntriesFrom(ref input, _repeated_states_codec);
+            break;
+          }
+          case 16: {
+            CurrentStateId = input.ReadInt32();
+            break;
+          }
+          case 50: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 82: {
+            if (command_ == null) {
+              Command = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(Command);
+            break;
+          }
+          case 90: {
+            TargetId = input.ReadString();
+            break;
+          }
+          case 106: {
+            if (secondaryIcon_ == null) {
+              SecondaryIcon = new global::InnerTube.Protobuf.Icon();
+            }
+            input.ReadMessage(SecondaryIcon);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the SubscriptionNotificationToggleButtonRenderer message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class State : pb::IMessage<State>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<State> _parser = new pb::MessageParser<State>(() => new State());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<State> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public State() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public State(State other) : this() {
+          stateId_ = other.stateId_;
+          nextStateId_ = other.nextStateId_;
+          state_ = other.state_ != null ? other.state_.Clone() : null;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public State Clone() {
+          return new State(this);
+        }
+
+        /// <summary>Field number for the "stateId" field.</summary>
+        public const int StateIdFieldNumber = 1;
+        private int stateId_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int StateId {
+          get { return stateId_; }
+          set {
+            stateId_ = value;
+          }
+        }
+
+        /// <summary>Field number for the "nextStateId" field.</summary>
+        public const int NextStateIdFieldNumber = 2;
+        private int nextStateId_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int NextStateId {
+          get { return nextStateId_; }
+          set {
+            nextStateId_ = value;
+          }
+        }
+
+        /// <summary>Field number for the "state" field.</summary>
+        public const int State_FieldNumber = 3;
+        private global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper state_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper State_ {
+          get { return state_; }
+          set {
+            state_ = value;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as State);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(State other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (StateId != other.StateId) return false;
+          if (NextStateId != other.NextStateId) return false;
+          if (!object.Equals(State_, other.State_)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (StateId != 0) hash ^= StateId.GetHashCode();
+          if (NextStateId != 0) hash ^= NextStateId.GetHashCode();
+          if (state_ != null) hash ^= State_.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (StateId != 0) {
+            output.WriteRawTag(8);
+            output.WriteInt32(StateId);
+          }
+          if (NextStateId != 0) {
+            output.WriteRawTag(16);
+            output.WriteInt32(NextStateId);
+          }
+          if (state_ != null) {
+            output.WriteRawTag(26);
+            output.WriteMessage(State_);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (StateId != 0) {
+            output.WriteRawTag(8);
+            output.WriteInt32(StateId);
+          }
+          if (NextStateId != 0) {
+            output.WriteRawTag(16);
+            output.WriteInt32(NextStateId);
+          }
+          if (state_ != null) {
+            output.WriteRawTag(26);
+            output.WriteMessage(State_);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (StateId != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeInt32Size(StateId);
+          }
+          if (NextStateId != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeInt32Size(NextStateId);
+          }
+          if (state_ != null) {
+            size += 1 + pb::CodedOutputStream.ComputeMessageSize(State_);
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(State other) {
+          if (other == null) {
+            return;
+          }
+          if (other.StateId != 0) {
+            StateId = other.StateId;
+          }
+          if (other.NextStateId != 0) {
+            NextStateId = other.NextStateId;
+          }
+          if (other.state_ != null) {
+            if (state_ == null) {
+              State_ = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper();
+            }
+            State_.MergeFrom(other.State_);
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 8: {
+                StateId = input.ReadInt32();
+                break;
+              }
+              case 16: {
+                NextStateId = input.ReadInt32();
+                break;
+              }
+              case 26: {
+                if (state_ == null) {
+                  State_ = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper();
+                }
+                input.ReadMessage(State_);
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 8: {
+                StateId = input.ReadInt32();
+                break;
+              }
+              case 16: {
+                NextStateId = input.ReadInt32();
+                break;
+              }
+              case 26: {
+                if (state_ == null) {
+                  State_ = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper();
+                }
+                input.ReadMessage(State_);
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+        #region Nested types
+        /// <summary>Container for nested types declared in the State message type.</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static partial class Types {
+          [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+          public sealed partial class StateWrapper : pb::IMessage<StateWrapper>
+          #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              , pb::IBufferMessage
+          #endif
+          {
+            private static readonly pb::MessageParser<StateWrapper> _parser = new pb::MessageParser<StateWrapper>(() => new StateWrapper());
+            private pb::UnknownFieldSet _unknownFields;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static pb::MessageParser<StateWrapper> Parser { get { return _parser; } }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static pbr::MessageDescriptor Descriptor {
+              get { return global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Descriptor.NestedTypes[0]; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            pbr::MessageDescriptor pb::IMessage.Descriptor {
+              get { return Descriptor; }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public StateWrapper() {
+              OnConstruction();
+            }
+
+            partial void OnConstruction();
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public StateWrapper(StateWrapper other) : this() {
+              buttonRenderer_ = other.buttonRenderer_ != null ? other.buttonRenderer_.Clone() : null;
+              _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public StateWrapper Clone() {
+              return new StateWrapper(this);
+            }
+
+            /// <summary>Field number for the "buttonRenderer" field.</summary>
+            public const int ButtonRendererFieldNumber = 65153809;
+            private global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Types.State buttonRenderer_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Types.State ButtonRenderer {
+              get { return buttonRenderer_; }
+              set {
+                buttonRenderer_ = value;
+              }
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override bool Equals(object other) {
+              return Equals(other as StateWrapper);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public bool Equals(StateWrapper other) {
+              if (ReferenceEquals(other, null)) {
+                return false;
+              }
+              if (ReferenceEquals(other, this)) {
+                return true;
+              }
+              if (!object.Equals(ButtonRenderer, other.ButtonRenderer)) return false;
+              return Equals(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override int GetHashCode() {
+              int hash = 1;
+              if (buttonRenderer_ != null) hash ^= ButtonRenderer.GetHashCode();
+              if (_unknownFields != null) {
+                hash ^= _unknownFields.GetHashCode();
+              }
+              return hash;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public override string ToString() {
+              return pb::JsonFormatter.ToDiagnosticString(this);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void WriteTo(pb::CodedOutputStream output) {
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              output.WriteRawMessage(this);
+            #else
+              if (buttonRenderer_ != null) {
+                output.WriteRawTag(138, 177, 197, 248, 1);
+                output.WriteMessage(ButtonRenderer);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(output);
+              }
+            #endif
+            }
+
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+              if (buttonRenderer_ != null) {
+                output.WriteRawTag(138, 177, 197, 248, 1);
+                output.WriteMessage(ButtonRenderer);
+              }
+              if (_unknownFields != null) {
+                _unknownFields.WriteTo(ref output);
+              }
+            }
+            #endif
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public int CalculateSize() {
+              int size = 0;
+              if (buttonRenderer_ != null) {
+                size += 5 + pb::CodedOutputStream.ComputeMessageSize(ButtonRenderer);
+              }
+              if (_unknownFields != null) {
+                size += _unknownFields.CalculateSize();
+              }
+              return size;
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void MergeFrom(StateWrapper other) {
+              if (other == null) {
+                return;
+              }
+              if (other.buttonRenderer_ != null) {
+                if (buttonRenderer_ == null) {
+                  ButtonRenderer = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Types.State();
+                }
+                ButtonRenderer.MergeFrom(other.ButtonRenderer);
+              }
+              _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+            }
+
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public void MergeFrom(pb::CodedInputStream input) {
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+              input.ReadRawMessage(this);
+            #else
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                    break;
+                  case 521230474: {
+                    if (buttonRenderer_ == null) {
+                      ButtonRenderer = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Types.State();
+                    }
+                    input.ReadMessage(ButtonRenderer);
+                    break;
+                  }
+                }
+              }
+            #endif
+            }
+
+            #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+              uint tag;
+              while ((tag = input.ReadTag()) != 0) {
+                switch(tag) {
+                  default:
+                    _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                    break;
+                  case 521230474: {
+                    if (buttonRenderer_ == null) {
+                      ButtonRenderer = new global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Types.State();
+                    }
+                    input.ReadMessage(ButtonRenderer);
+                    break;
+                  }
+                }
+              }
+            }
+            #endif
+
+            #region Nested types
+            /// <summary>Container for nested types declared in the StateWrapper message type.</summary>
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public static partial class Types {
+              [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+              public sealed partial class State : pb::IMessage<State>
+              #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                  , pb::IBufferMessage
+              #endif
+              {
+                private static readonly pb::MessageParser<State> _parser = new pb::MessageParser<State>(() => new State());
+                private pb::UnknownFieldSet _unknownFields;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public static pb::MessageParser<State> Parser { get { return _parser; } }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public static pbr::MessageDescriptor Descriptor {
+                  get { return global::InnerTube.Protobuf.Renderers.SubscriptionNotificationToggleButtonRenderer.Types.State.Types.StateWrapper.Descriptor.NestedTypes[0]; }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                pbr::MessageDescriptor pb::IMessage.Descriptor {
+                  get { return Descriptor; }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public State() {
+                  OnConstruction();
+                }
+
+                partial void OnConstruction();
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public State(State other) : this() {
+                  style_ = other.style_;
+                  size_ = other.size_;
+                  isDisabled_ = other.isDisabled_;
+                  icon_ = other.icon_ != null ? other.icon_.Clone() : null;
+                  accessibility_ = other.accessibility_ != null ? other.accessibility_.Clone() : null;
+                  trackingParams_ = other.trackingParams_;
+                  accessibilityData_ = other.accessibilityData_ != null ? other.accessibilityData_.Clone() : null;
+                  _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public State Clone() {
+                  return new State(this);
+                }
+
+                /// <summary>Field number for the "style" field.</summary>
+                public const int StyleFieldNumber = 1;
+                private int style_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public int Style {
+                  get { return style_; }
+                  set {
+                    style_ = value;
+                  }
+                }
+
+                /// <summary>Field number for the "size" field.</summary>
+                public const int SizeFieldNumber = 2;
+                private int size_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public int Size {
+                  get { return size_; }
+                  set {
+                    size_ = value;
+                  }
+                }
+
+                /// <summary>Field number for the "isDisabled" field.</summary>
+                public const int IsDisabledFieldNumber = 3;
+                private bool isDisabled_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public bool IsDisabled {
+                  get { return isDisabled_; }
+                  set {
+                    isDisabled_ = value;
+                  }
+                }
+
+                /// <summary>Field number for the "icon" field.</summary>
+                public const int IconFieldNumber = 8;
+                private global::InnerTube.Protobuf.Icon icon_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public global::InnerTube.Protobuf.Icon Icon {
+                  get { return icon_; }
+                  set {
+                    icon_ = value;
+                  }
+                }
+
+                /// <summary>Field number for the "accessibility" field.</summary>
+                public const int AccessibilityFieldNumber = 10;
+                private global::InnerTube.Protobuf.AccessibilityData accessibility_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public global::InnerTube.Protobuf.AccessibilityData Accessibility {
+                  get { return accessibility_; }
+                  set {
+                    accessibility_ = value;
+                  }
+                }
+
+                /// <summary>Field number for the "trackingParams" field.</summary>
+                public const int TrackingParamsFieldNumber = 13;
+                private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public pb::ByteString TrackingParams {
+                  get { return trackingParams_; }
+                  set {
+                    trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+                  }
+                }
+
+                /// <summary>Field number for the "accessibilityData" field.</summary>
+                public const int AccessibilityDataFieldNumber = 16;
+                private global::InnerTube.Protobuf.Renderers.RendererWrapper accessibilityData_;
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public global::InnerTube.Protobuf.Renderers.RendererWrapper AccessibilityData {
+                  get { return accessibilityData_; }
+                  set {
+                    accessibilityData_ = value;
+                  }
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public override bool Equals(object other) {
+                  return Equals(other as State);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public bool Equals(State other) {
+                  if (ReferenceEquals(other, null)) {
+                    return false;
+                  }
+                  if (ReferenceEquals(other, this)) {
+                    return true;
+                  }
+                  if (Style != other.Style) return false;
+                  if (Size != other.Size) return false;
+                  if (IsDisabled != other.IsDisabled) return false;
+                  if (!object.Equals(Icon, other.Icon)) return false;
+                  if (!object.Equals(Accessibility, other.Accessibility)) return false;
+                  if (TrackingParams != other.TrackingParams) return false;
+                  if (!object.Equals(AccessibilityData, other.AccessibilityData)) return false;
+                  return Equals(_unknownFields, other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public override int GetHashCode() {
+                  int hash = 1;
+                  if (Style != 0) hash ^= Style.GetHashCode();
+                  if (Size != 0) hash ^= Size.GetHashCode();
+                  if (IsDisabled != false) hash ^= IsDisabled.GetHashCode();
+                  if (icon_ != null) hash ^= Icon.GetHashCode();
+                  if (accessibility_ != null) hash ^= Accessibility.GetHashCode();
+                  if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+                  if (accessibilityData_ != null) hash ^= AccessibilityData.GetHashCode();
+                  if (_unknownFields != null) {
+                    hash ^= _unknownFields.GetHashCode();
+                  }
+                  return hash;
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public override string ToString() {
+                  return pb::JsonFormatter.ToDiagnosticString(this);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public void WriteTo(pb::CodedOutputStream output) {
+                #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                  output.WriteRawMessage(this);
+                #else
+                  if (Style != 0) {
+                    output.WriteRawTag(8);
+                    output.WriteInt32(Style);
+                  }
+                  if (Size != 0) {
+                    output.WriteRawTag(16);
+                    output.WriteInt32(Size);
+                  }
+                  if (IsDisabled != false) {
+                    output.WriteRawTag(24);
+                    output.WriteBool(IsDisabled);
+                  }
+                  if (icon_ != null) {
+                    output.WriteRawTag(66);
+                    output.WriteMessage(Icon);
+                  }
+                  if (accessibility_ != null) {
+                    output.WriteRawTag(82);
+                    output.WriteMessage(Accessibility);
+                  }
+                  if (TrackingParams.Length != 0) {
+                    output.WriteRawTag(106);
+                    output.WriteBytes(TrackingParams);
+                  }
+                  if (accessibilityData_ != null) {
+                    output.WriteRawTag(130, 1);
+                    output.WriteMessage(AccessibilityData);
+                  }
+                  if (_unknownFields != null) {
+                    _unknownFields.WriteTo(output);
+                  }
+                #endif
+                }
+
+                #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+                  if (Style != 0) {
+                    output.WriteRawTag(8);
+                    output.WriteInt32(Style);
+                  }
+                  if (Size != 0) {
+                    output.WriteRawTag(16);
+                    output.WriteInt32(Size);
+                  }
+                  if (IsDisabled != false) {
+                    output.WriteRawTag(24);
+                    output.WriteBool(IsDisabled);
+                  }
+                  if (icon_ != null) {
+                    output.WriteRawTag(66);
+                    output.WriteMessage(Icon);
+                  }
+                  if (accessibility_ != null) {
+                    output.WriteRawTag(82);
+                    output.WriteMessage(Accessibility);
+                  }
+                  if (TrackingParams.Length != 0) {
+                    output.WriteRawTag(106);
+                    output.WriteBytes(TrackingParams);
+                  }
+                  if (accessibilityData_ != null) {
+                    output.WriteRawTag(130, 1);
+                    output.WriteMessage(AccessibilityData);
+                  }
+                  if (_unknownFields != null) {
+                    _unknownFields.WriteTo(ref output);
+                  }
+                }
+                #endif
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public int CalculateSize() {
+                  int size = 0;
+                  if (Style != 0) {
+                    size += 1 + pb::CodedOutputStream.ComputeInt32Size(Style);
+                  }
+                  if (Size != 0) {
+                    size += 1 + pb::CodedOutputStream.ComputeInt32Size(Size);
+                  }
+                  if (IsDisabled != false) {
+                    size += 1 + 1;
+                  }
+                  if (icon_ != null) {
+                    size += 1 + pb::CodedOutputStream.ComputeMessageSize(Icon);
+                  }
+                  if (accessibility_ != null) {
+                    size += 1 + pb::CodedOutputStream.ComputeMessageSize(Accessibility);
+                  }
+                  if (TrackingParams.Length != 0) {
+                    size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+                  }
+                  if (accessibilityData_ != null) {
+                    size += 2 + pb::CodedOutputStream.ComputeMessageSize(AccessibilityData);
+                  }
+                  if (_unknownFields != null) {
+                    size += _unknownFields.CalculateSize();
+                  }
+                  return size;
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public void MergeFrom(State other) {
+                  if (other == null) {
+                    return;
+                  }
+                  if (other.Style != 0) {
+                    Style = other.Style;
+                  }
+                  if (other.Size != 0) {
+                    Size = other.Size;
+                  }
+                  if (other.IsDisabled != false) {
+                    IsDisabled = other.IsDisabled;
+                  }
+                  if (other.icon_ != null) {
+                    if (icon_ == null) {
+                      Icon = new global::InnerTube.Protobuf.Icon();
+                    }
+                    Icon.MergeFrom(other.Icon);
+                  }
+                  if (other.accessibility_ != null) {
+                    if (accessibility_ == null) {
+                      Accessibility = new global::InnerTube.Protobuf.AccessibilityData();
+                    }
+                    Accessibility.MergeFrom(other.Accessibility);
+                  }
+                  if (other.TrackingParams.Length != 0) {
+                    TrackingParams = other.TrackingParams;
+                  }
+                  if (other.accessibilityData_ != null) {
+                    if (accessibilityData_ == null) {
+                      AccessibilityData = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+                    }
+                    AccessibilityData.MergeFrom(other.AccessibilityData);
+                  }
+                  _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+                }
+
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                public void MergeFrom(pb::CodedInputStream input) {
+                #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                  input.ReadRawMessage(this);
+                #else
+                  uint tag;
+                  while ((tag = input.ReadTag()) != 0) {
+                    switch(tag) {
+                      default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                        break;
+                      case 8: {
+                        Style = input.ReadInt32();
+                        break;
+                      }
+                      case 16: {
+                        Size = input.ReadInt32();
+                        break;
+                      }
+                      case 24: {
+                        IsDisabled = input.ReadBool();
+                        break;
+                      }
+                      case 66: {
+                        if (icon_ == null) {
+                          Icon = new global::InnerTube.Protobuf.Icon();
+                        }
+                        input.ReadMessage(Icon);
+                        break;
+                      }
+                      case 82: {
+                        if (accessibility_ == null) {
+                          Accessibility = new global::InnerTube.Protobuf.AccessibilityData();
+                        }
+                        input.ReadMessage(Accessibility);
+                        break;
+                      }
+                      case 106: {
+                        TrackingParams = input.ReadBytes();
+                        break;
+                      }
+                      case 130: {
+                        if (accessibilityData_ == null) {
+                          AccessibilityData = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+                        }
+                        input.ReadMessage(AccessibilityData);
+                        break;
+                      }
+                    }
+                  }
+                #endif
+                }
+
+                #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+                [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+                [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+                void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+                  uint tag;
+                  while ((tag = input.ReadTag()) != 0) {
+                    switch(tag) {
+                      default:
+                        _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                        break;
+                      case 8: {
+                        Style = input.ReadInt32();
+                        break;
+                      }
+                      case 16: {
+                        Size = input.ReadInt32();
+                        break;
+                      }
+                      case 24: {
+                        IsDisabled = input.ReadBool();
+                        break;
+                      }
+                      case 66: {
+                        if (icon_ == null) {
+                          Icon = new global::InnerTube.Protobuf.Icon();
+                        }
+                        input.ReadMessage(Icon);
+                        break;
+                      }
+                      case 82: {
+                        if (accessibility_ == null) {
+                          Accessibility = new global::InnerTube.Protobuf.AccessibilityData();
+                        }
+                        input.ReadMessage(Accessibility);
+                        break;
+                      }
+                      case 106: {
+                        TrackingParams = input.ReadBytes();
+                        break;
+                      }
+                      case 130: {
+                        if (accessibilityData_ == null) {
+                          AccessibilityData = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+                        }
+                        input.ReadMessage(AccessibilityData);
+                        break;
+                      }
+                    }
+                  }
+                }
+                #endif
+
+              }
+
+            }
+            #endregion
+
+          }
+
+        }
+        #endregion
+
+      }
+
+    }
+    #endregion
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ContinuationItemRenderer : pb::IMessage<ContinuationItemRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ContinuationItemRenderer> _parser = new pb::MessageParser<ContinuationItemRenderer>(() => new ContinuationItemRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ContinuationItemRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[28]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ContinuationItemRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ContinuationItemRenderer(ContinuationItemRenderer other) : this() {
+      trigger_ = other.trigger_;
+      continuationEndpoint_ = other.continuationEndpoint_ != null ? other.continuationEndpoint_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ContinuationItemRenderer Clone() {
+      return new ContinuationItemRenderer(this);
+    }
+
+    /// <summary>Field number for the "trigger" field.</summary>
+    public const int TriggerFieldNumber = 1;
+    private int trigger_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Trigger {
+      get { return trigger_; }
+      set {
+        trigger_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "continuationEndpoint" field.</summary>
+    public const int ContinuationEndpointFieldNumber = 2;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint continuationEndpoint_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint ContinuationEndpoint {
+      get { return continuationEndpoint_; }
+      set {
+        continuationEndpoint_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ContinuationItemRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ContinuationItemRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Trigger != other.Trigger) return false;
+      if (!object.Equals(ContinuationEndpoint, other.ContinuationEndpoint)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Trigger != 0) hash ^= Trigger.GetHashCode();
+      if (continuationEndpoint_ != null) hash ^= ContinuationEndpoint.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Trigger != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Trigger);
+      }
+      if (continuationEndpoint_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(ContinuationEndpoint);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Trigger != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Trigger);
+      }
+      if (continuationEndpoint_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(ContinuationEndpoint);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Trigger != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Trigger);
+      }
+      if (continuationEndpoint_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ContinuationEndpoint);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ContinuationItemRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Trigger != 0) {
+        Trigger = other.Trigger;
+      }
+      if (other.continuationEndpoint_ != null) {
+        if (continuationEndpoint_ == null) {
+          ContinuationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        ContinuationEndpoint.MergeFrom(other.ContinuationEndpoint);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Trigger = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            if (continuationEndpoint_ == null) {
+              ContinuationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ContinuationEndpoint);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Trigger = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            if (continuationEndpoint_ == null) {
+              ContinuationEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(ContinuationEndpoint);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ThumbnailOverlayNowPlayingRenderer : pb::IMessage<ThumbnailOverlayNowPlayingRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ThumbnailOverlayNowPlayingRenderer> _parser = new pb::MessageParser<ThumbnailOverlayNowPlayingRenderer>(() => new ThumbnailOverlayNowPlayingRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ThumbnailOverlayNowPlayingRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[29]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ThumbnailOverlayNowPlayingRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ThumbnailOverlayNowPlayingRenderer(ThumbnailOverlayNowPlayingRenderer other) : this() {
+      text_ = other.text_ != null ? other.text_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ThumbnailOverlayNowPlayingRenderer Clone() {
+      return new ThumbnailOverlayNowPlayingRenderer(this);
+    }
+
+    /// <summary>Field number for the "text" field.</summary>
+    public const int TextFieldNumber = 1;
+    private global::InnerTube.Protobuf.Endpoints.Text text_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text Text {
+      get { return text_; }
+      set {
+        text_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ThumbnailOverlayNowPlayingRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ThumbnailOverlayNowPlayingRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(Text, other.Text)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (text_ != null) hash ^= Text.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (text_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Text);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (text_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(Text);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (text_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Text);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ThumbnailOverlayNowPlayingRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.text_ != null) {
+        if (text_ == null) {
+          Text = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        Text.MergeFrom(other.Text);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (text_ == null) {
+              Text = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(Text);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class CommentsEntryPointHeaderRenderer : pb::IMessage<CommentsEntryPointHeaderRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CommentsEntryPointHeaderRenderer> _parser = new pb::MessageParser<CommentsEntryPointHeaderRenderer>(() => new CommentsEntryPointHeaderRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CommentsEntryPointHeaderRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[30]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CommentsEntryPointHeaderRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CommentsEntryPointHeaderRenderer(CommentsEntryPointHeaderRenderer other) : this() {
+      headerText_ = other.headerText_ != null ? other.headerText_.Clone() : null;
+      onTap_ = other.onTap_ != null ? other.onTap_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      commentCount_ = other.commentCount_ != null ? other.commentCount_.Clone() : null;
+      contentRenderer_ = other.contentRenderer_ != null ? other.contentRenderer_.Clone() : null;
+      targetId_ = other.targetId_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CommentsEntryPointHeaderRenderer Clone() {
+      return new CommentsEntryPointHeaderRenderer(this);
+    }
+
+    /// <summary>Field number for the "headerText" field.</summary>
+    public const int HeaderTextFieldNumber = 1;
+    private global::InnerTube.Protobuf.Endpoints.Text headerText_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text HeaderText {
+      get { return headerText_; }
+      set {
+        headerText_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "onTap" field.</summary>
+    public const int OnTapFieldNumber = 2;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint onTap_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint OnTap {
+      get { return onTap_; }
+      set {
+        onTap_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 3;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "commentCount" field.</summary>
+    public const int CommentCountFieldNumber = 5;
+    private global::InnerTube.Protobuf.Endpoints.Text commentCount_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text CommentCount {
+      get { return commentCount_; }
+      set {
+        commentCount_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "contentRenderer" field.</summary>
+    public const int ContentRendererFieldNumber = 12;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper contentRenderer_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper ContentRenderer {
+      get { return contentRenderer_; }
+      set {
+        contentRenderer_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "targetId" field.</summary>
+    public const int TargetIdFieldNumber = 13;
+    private string targetId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string TargetId {
+      get { return targetId_; }
+      set {
+        targetId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CommentsEntryPointHeaderRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CommentsEntryPointHeaderRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(HeaderText, other.HeaderText)) return false;
+      if (!object.Equals(OnTap, other.OnTap)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (!object.Equals(CommentCount, other.CommentCount)) return false;
+      if (!object.Equals(ContentRenderer, other.ContentRenderer)) return false;
+      if (TargetId != other.TargetId) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (headerText_ != null) hash ^= HeaderText.GetHashCode();
+      if (onTap_ != null) hash ^= OnTap.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (commentCount_ != null) hash ^= CommentCount.GetHashCode();
+      if (contentRenderer_ != null) hash ^= ContentRenderer.GetHashCode();
+      if (TargetId.Length != 0) hash ^= TargetId.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (headerText_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(HeaderText);
+      }
+      if (onTap_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(OnTap);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteBytes(TrackingParams);
+      }
+      if (commentCount_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(CommentCount);
+      }
+      if (contentRenderer_ != null) {
+        output.WriteRawTag(98);
+        output.WriteMessage(ContentRenderer);
+      }
+      if (TargetId.Length != 0) {
+        output.WriteRawTag(106);
+        output.WriteString(TargetId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (headerText_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(HeaderText);
+      }
+      if (onTap_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(OnTap);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteBytes(TrackingParams);
+      }
+      if (commentCount_ != null) {
+        output.WriteRawTag(42);
+        output.WriteMessage(CommentCount);
+      }
+      if (contentRenderer_ != null) {
+        output.WriteRawTag(98);
+        output.WriteMessage(ContentRenderer);
+      }
+      if (TargetId.Length != 0) {
+        output.WriteRawTag(106);
+        output.WriteString(TargetId);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (headerText_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(HeaderText);
+      }
+      if (onTap_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OnTap);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (commentCount_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(CommentCount);
+      }
+      if (contentRenderer_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ContentRenderer);
+      }
+      if (TargetId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(TargetId);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CommentsEntryPointHeaderRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.headerText_ != null) {
+        if (headerText_ == null) {
+          HeaderText = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        HeaderText.MergeFrom(other.HeaderText);
+      }
+      if (other.onTap_ != null) {
+        if (onTap_ == null) {
+          OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        OnTap.MergeFrom(other.OnTap);
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.commentCount_ != null) {
+        if (commentCount_ == null) {
+          CommentCount = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        CommentCount.MergeFrom(other.CommentCount);
+      }
+      if (other.contentRenderer_ != null) {
+        if (contentRenderer_ == null) {
+          ContentRenderer = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        ContentRenderer.MergeFrom(other.ContentRenderer);
+      }
+      if (other.TargetId.Length != 0) {
+        TargetId = other.TargetId;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (headerText_ == null) {
+              HeaderText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(HeaderText);
+            break;
+          }
+          case 18: {
+            if (onTap_ == null) {
+              OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(OnTap);
+            break;
+          }
+          case 26: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 42: {
+            if (commentCount_ == null) {
+              CommentCount = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(CommentCount);
+            break;
+          }
+          case 98: {
+            if (contentRenderer_ == null) {
+              ContentRenderer = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(ContentRenderer);
+            break;
+          }
+          case 106: {
+            TargetId = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (headerText_ == null) {
+              HeaderText = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(HeaderText);
+            break;
+          }
+          case 18: {
+            if (onTap_ == null) {
+              OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(OnTap);
+            break;
+          }
+          case 26: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 42: {
+            if (commentCount_ == null) {
+              CommentCount = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(CommentCount);
+            break;
+          }
+          case 98: {
+            if (contentRenderer_ == null) {
+              ContentRenderer = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(ContentRenderer);
+            break;
+          }
+          case 106: {
+            TargetId = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class MenuFlexibleItemRenderer : pb::IMessage<MenuFlexibleItemRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<MenuFlexibleItemRenderer> _parser = new pb::MessageParser<MenuFlexibleItemRenderer>(() => new MenuFlexibleItemRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<MenuFlexibleItemRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[31]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuFlexibleItemRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuFlexibleItemRenderer(MenuFlexibleItemRenderer other) : this() {
+      menuItem_ = other.menuItem_ != null ? other.menuItem_.Clone() : null;
+      topLevelButton_ = other.topLevelButton_ != null ? other.topLevelButton_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public MenuFlexibleItemRenderer Clone() {
+      return new MenuFlexibleItemRenderer(this);
+    }
+
+    /// <summary>Field number for the "menuItem" field.</summary>
+    public const int MenuItemFieldNumber = 1;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper menuItem_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper MenuItem {
+      get { return menuItem_; }
+      set {
+        menuItem_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "topLevelButton" field.</summary>
+    public const int TopLevelButtonFieldNumber = 2;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper topLevelButton_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper TopLevelButton {
+      get { return topLevelButton_; }
+      set {
+        topLevelButton_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as MenuFlexibleItemRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(MenuFlexibleItemRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(MenuItem, other.MenuItem)) return false;
+      if (!object.Equals(TopLevelButton, other.TopLevelButton)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (menuItem_ != null) hash ^= MenuItem.GetHashCode();
+      if (topLevelButton_ != null) hash ^= TopLevelButton.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (menuItem_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(MenuItem);
+      }
+      if (topLevelButton_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(TopLevelButton);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (menuItem_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(MenuItem);
+      }
+      if (topLevelButton_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(TopLevelButton);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (menuItem_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(MenuItem);
+      }
+      if (topLevelButton_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(TopLevelButton);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(MenuFlexibleItemRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.menuItem_ != null) {
+        if (menuItem_ == null) {
+          MenuItem = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        MenuItem.MergeFrom(other.MenuItem);
+      }
+      if (other.topLevelButton_ != null) {
+        if (topLevelButton_ == null) {
+          TopLevelButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        TopLevelButton.MergeFrom(other.TopLevelButton);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (menuItem_ == null) {
+              MenuItem = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(MenuItem);
+            break;
+          }
+          case 18: {
+            if (topLevelButton_ == null) {
+              TopLevelButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(TopLevelButton);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (menuItem_ == null) {
+              MenuItem = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(MenuItem);
+            break;
+          }
+          case 18: {
+            if (topLevelButton_ == null) {
+              TopLevelButton = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(TopLevelButton);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class CommentsEntryPointTeaserRenderer : pb::IMessage<CommentsEntryPointTeaserRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<CommentsEntryPointTeaserRenderer> _parser = new pb::MessageParser<CommentsEntryPointTeaserRenderer>(() => new CommentsEntryPointTeaserRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<CommentsEntryPointTeaserRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[32]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CommentsEntryPointTeaserRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CommentsEntryPointTeaserRenderer(CommentsEntryPointTeaserRenderer other) : this() {
+      teaserAvatar_ = other.teaserAvatar_ != null ? other.teaserAvatar_.Clone() : null;
+      teaserContent_ = other.teaserContent_ != null ? other.teaserContent_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public CommentsEntryPointTeaserRenderer Clone() {
+      return new CommentsEntryPointTeaserRenderer(this);
+    }
+
+    /// <summary>Field number for the "teaserAvatar" field.</summary>
+    public const int TeaserAvatarFieldNumber = 1;
+    private global::InnerTube.Protobuf.Thumbnails teaserAvatar_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Thumbnails TeaserAvatar {
+      get { return teaserAvatar_; }
+      set {
+        teaserAvatar_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "teaserContent" field.</summary>
+    public const int TeaserContentFieldNumber = 2;
+    private global::InnerTube.Protobuf.Endpoints.Text teaserContent_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Text TeaserContent {
+      get { return teaserContent_; }
+      set {
+        teaserContent_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 3;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as CommentsEntryPointTeaserRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(CommentsEntryPointTeaserRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(TeaserAvatar, other.TeaserAvatar)) return false;
+      if (!object.Equals(TeaserContent, other.TeaserContent)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (teaserAvatar_ != null) hash ^= TeaserAvatar.GetHashCode();
+      if (teaserContent_ != null) hash ^= TeaserContent.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (teaserAvatar_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(TeaserAvatar);
+      }
+      if (teaserContent_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(TeaserContent);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (teaserAvatar_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(TeaserAvatar);
+      }
+      if (teaserContent_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(TeaserContent);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteBytes(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (teaserAvatar_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(TeaserAvatar);
+      }
+      if (teaserContent_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(TeaserContent);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(CommentsEntryPointTeaserRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.teaserAvatar_ != null) {
+        if (teaserAvatar_ == null) {
+          TeaserAvatar = new global::InnerTube.Protobuf.Thumbnails();
+        }
+        TeaserAvatar.MergeFrom(other.TeaserAvatar);
+      }
+      if (other.teaserContent_ != null) {
+        if (teaserContent_ == null) {
+          TeaserContent = new global::InnerTube.Protobuf.Endpoints.Text();
+        }
+        TeaserContent.MergeFrom(other.TeaserContent);
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (teaserAvatar_ == null) {
+              TeaserAvatar = new global::InnerTube.Protobuf.Thumbnails();
+            }
+            input.ReadMessage(TeaserAvatar);
+            break;
+          }
+          case 18: {
+            if (teaserContent_ == null) {
+              TeaserContent = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(TeaserContent);
+            break;
+          }
+          case 26: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (teaserAvatar_ == null) {
+              TeaserAvatar = new global::InnerTube.Protobuf.Thumbnails();
+            }
+            input.ReadMessage(TeaserAvatar);
+            break;
+          }
+          case 18: {
+            if (teaserContent_ == null) {
+              TeaserContent = new global::InnerTube.Protobuf.Endpoints.Text();
+            }
+            input.ReadMessage(TeaserContent);
+            break;
+          }
+          case 26: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SegmentedLikeDislikeButtonViewModel : pb::IMessage<SegmentedLikeDislikeButtonViewModel>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SegmentedLikeDislikeButtonViewModel> _parser = new pb::MessageParser<SegmentedLikeDislikeButtonViewModel>(() => new SegmentedLikeDislikeButtonViewModel());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SegmentedLikeDislikeButtonViewModel> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[33]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SegmentedLikeDislikeButtonViewModel() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SegmentedLikeDislikeButtonViewModel(SegmentedLikeDislikeButtonViewModel other) : this() {
+      likeButtonViewModel_ = other.likeButtonViewModel_ != null ? other.likeButtonViewModel_.Clone() : null;
+      dislikeButtonViewModel_ = other.dislikeButtonViewModel_ != null ? other.dislikeButtonViewModel_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SegmentedLikeDislikeButtonViewModel Clone() {
+      return new SegmentedLikeDislikeButtonViewModel(this);
+    }
+
+    /// <summary>Field number for the "likeButtonViewModel" field.</summary>
+    public const int LikeButtonViewModelFieldNumber = 1;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper likeButtonViewModel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper LikeButtonViewModel {
+      get { return likeButtonViewModel_; }
+      set {
+        likeButtonViewModel_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "dislikeButtonViewModel" field.</summary>
+    public const int DislikeButtonViewModelFieldNumber = 2;
+    private global::InnerTube.Protobuf.Renderers.RendererWrapper dislikeButtonViewModel_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Renderers.RendererWrapper DislikeButtonViewModel {
+      get { return dislikeButtonViewModel_; }
+      set {
+        dislikeButtonViewModel_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SegmentedLikeDislikeButtonViewModel);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SegmentedLikeDislikeButtonViewModel other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(LikeButtonViewModel, other.LikeButtonViewModel)) return false;
+      if (!object.Equals(DislikeButtonViewModel, other.DislikeButtonViewModel)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (likeButtonViewModel_ != null) hash ^= LikeButtonViewModel.GetHashCode();
+      if (dislikeButtonViewModel_ != null) hash ^= DislikeButtonViewModel.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (likeButtonViewModel_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(LikeButtonViewModel);
+      }
+      if (dislikeButtonViewModel_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(DislikeButtonViewModel);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (likeButtonViewModel_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(LikeButtonViewModel);
+      }
+      if (dislikeButtonViewModel_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(DislikeButtonViewModel);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (likeButtonViewModel_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LikeButtonViewModel);
+      }
+      if (dislikeButtonViewModel_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(DislikeButtonViewModel);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SegmentedLikeDislikeButtonViewModel other) {
+      if (other == null) {
+        return;
+      }
+      if (other.likeButtonViewModel_ != null) {
+        if (likeButtonViewModel_ == null) {
+          LikeButtonViewModel = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        LikeButtonViewModel.MergeFrom(other.LikeButtonViewModel);
+      }
+      if (other.dislikeButtonViewModel_ != null) {
+        if (dislikeButtonViewModel_ == null) {
+          DislikeButtonViewModel = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+        }
+        DislikeButtonViewModel.MergeFrom(other.DislikeButtonViewModel);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (likeButtonViewModel_ == null) {
+              LikeButtonViewModel = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(LikeButtonViewModel);
+            break;
+          }
+          case 18: {
+            if (dislikeButtonViewModel_ == null) {
+              DislikeButtonViewModel = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(DislikeButtonViewModel);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (likeButtonViewModel_ == null) {
+              LikeButtonViewModel = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(LikeButtonViewModel);
+            break;
+          }
+          case 18: {
+            if (dislikeButtonViewModel_ == null) {
+              DislikeButtonViewModel = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+            }
+            input.ReadMessage(DislikeButtonViewModel);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class SaveButtonViewModel : pb::IMessage<SaveButtonViewModel>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<SaveButtonViewModel> _parser = new pb::MessageParser<SaveButtonViewModel>(() => new SaveButtonViewModel());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<SaveButtonViewModel> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor.MessageTypes[34]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SaveButtonViewModel() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SaveButtonViewModel(SaveButtonViewModel other) : this() {
+      iconName_ = other.iconName_;
+      title_ = other.title_;
+      onTap_ = other.onTap_ != null ? other.onTap_.Clone() : null;
+      accessibilityText_ = other.accessibilityText_;
+      style_ = other.style_;
+      type_ = other.type_;
+      buttonSize_ = other.buttonSize_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public SaveButtonViewModel Clone() {
+      return new SaveButtonViewModel(this);
+    }
+
+    /// <summary>Field number for the "iconName" field.</summary>
+    public const int IconNameFieldNumber = 2;
+    private string iconName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string IconName {
+      get { return iconName_; }
+      set {
+        iconName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "title" field.</summary>
+    public const int TitleFieldNumber = 3;
+    private string title_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Title {
+      get { return title_; }
+      set {
+        title_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "onTap" field.</summary>
+    public const int OnTapFieldNumber = 4;
+    private global::InnerTube.Protobuf.Endpoints.Endpoint onTap_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.Endpoint OnTap {
+      get { return onTap_; }
+      set {
+        onTap_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "accessibilityText" field.</summary>
+    public const int AccessibilityTextFieldNumber = 5;
+    private string accessibilityText_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string AccessibilityText {
+      get { return accessibilityText_; }
+      set {
+        accessibilityText_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "style" field.</summary>
+    public const int StyleFieldNumber = 7;
+    private int style_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Style {
+      get { return style_; }
+      set {
+        style_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "type" field.</summary>
+    public const int TypeFieldNumber = 11;
+    private int type_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Type {
+      get { return type_; }
+      set {
+        type_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "buttonSize" field.</summary>
+    public const int ButtonSizeFieldNumber = 13;
+    private int buttonSize_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int ButtonSize {
+      get { return buttonSize_; }
+      set {
+        buttonSize_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as SaveButtonViewModel);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(SaveButtonViewModel other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (IconName != other.IconName) return false;
+      if (Title != other.Title) return false;
+      if (!object.Equals(OnTap, other.OnTap)) return false;
+      if (AccessibilityText != other.AccessibilityText) return false;
+      if (Style != other.Style) return false;
+      if (Type != other.Type) return false;
+      if (ButtonSize != other.ButtonSize) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (IconName.Length != 0) hash ^= IconName.GetHashCode();
+      if (Title.Length != 0) hash ^= Title.GetHashCode();
+      if (onTap_ != null) hash ^= OnTap.GetHashCode();
+      if (AccessibilityText.Length != 0) hash ^= AccessibilityText.GetHashCode();
+      if (Style != 0) hash ^= Style.GetHashCode();
+      if (Type != 0) hash ^= Type.GetHashCode();
+      if (ButtonSize != 0) hash ^= ButtonSize.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (IconName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(IconName);
+      }
+      if (Title.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Title);
+      }
+      if (onTap_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(OnTap);
+      }
+      if (AccessibilityText.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(AccessibilityText);
+      }
+      if (Style != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(Style);
+      }
+      if (Type != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(Type);
+      }
+      if (ButtonSize != 0) {
+        output.WriteRawTag(104);
+        output.WriteInt32(ButtonSize);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (IconName.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(IconName);
+      }
+      if (Title.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(Title);
+      }
+      if (onTap_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(OnTap);
+      }
+      if (AccessibilityText.Length != 0) {
+        output.WriteRawTag(42);
+        output.WriteString(AccessibilityText);
+      }
+      if (Style != 0) {
+        output.WriteRawTag(56);
+        output.WriteInt32(Style);
+      }
+      if (Type != 0) {
+        output.WriteRawTag(88);
+        output.WriteInt32(Type);
+      }
+      if (ButtonSize != 0) {
+        output.WriteRawTag(104);
+        output.WriteInt32(ButtonSize);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (IconName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(IconName);
+      }
+      if (Title.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Title);
+      }
+      if (onTap_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(OnTap);
+      }
+      if (AccessibilityText.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(AccessibilityText);
+      }
+      if (Style != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Style);
+      }
+      if (Type != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Type);
+      }
+      if (ButtonSize != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(ButtonSize);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(SaveButtonViewModel other) {
+      if (other == null) {
+        return;
+      }
+      if (other.IconName.Length != 0) {
+        IconName = other.IconName;
+      }
+      if (other.Title.Length != 0) {
+        Title = other.Title;
+      }
+      if (other.onTap_ != null) {
+        if (onTap_ == null) {
+          OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+        }
+        OnTap.MergeFrom(other.OnTap);
+      }
+      if (other.AccessibilityText.Length != 0) {
+        AccessibilityText = other.AccessibilityText;
+      }
+      if (other.Style != 0) {
+        Style = other.Style;
+      }
+      if (other.Type != 0) {
+        Type = other.Type;
+      }
+      if (other.ButtonSize != 0) {
+        ButtonSize = other.ButtonSize;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 18: {
+            IconName = input.ReadString();
+            break;
+          }
+          case 26: {
+            Title = input.ReadString();
+            break;
+          }
+          case 34: {
+            if (onTap_ == null) {
+              OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(OnTap);
+            break;
+          }
+          case 42: {
+            AccessibilityText = input.ReadString();
+            break;
+          }
+          case 56: {
+            Style = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            Type = input.ReadInt32();
+            break;
+          }
+          case 104: {
+            ButtonSize = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 18: {
+            IconName = input.ReadString();
+            break;
+          }
+          case 26: {
+            Title = input.ReadString();
+            break;
+          }
+          case 34: {
+            if (onTap_ == null) {
+              OnTap = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+            }
+            input.ReadMessage(OnTap);
+            break;
+          }
+          case 42: {
+            AccessibilityText = input.ReadString();
+            break;
+          }
+          case 56: {
+            Style = input.ReadInt32();
+            break;
+          }
+          case 88: {
+            Type = input.ReadInt32();
+            break;
+          }
+          case 104: {
+            ButtonSize = input.ReadInt32();
             break;
           }
         }
