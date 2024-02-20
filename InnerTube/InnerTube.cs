@@ -1,7 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using InnerTube.Exceptions;
-using InnerTube.Protobuf.Requests;
+using InnerTube.Protobuf.Responses;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace InnerTube;

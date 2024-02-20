@@ -2,7 +2,7 @@ using System.Diagnostics;
 using System.Text;
 using InnerTube.Exceptions;
 using InnerTube.Protobuf.Renderers;
-using InnerTube.Protobuf.Requests;
+using InnerTube.Protobuf.Responses;
 
 namespace InnerTube.Tests;
 
