@@ -248,9 +248,9 @@ public class PlayerTests
 		sb.AppendLine("Id: " + next.CurrentVideoEndpoint.WatchEndpoint.VideoId);
 		sb.AppendLine("Title: " + Utils.ReadRuns(primary.Title));
 		sb.AppendLine("Channel: " +
-		              $"[{secondary.Owner.VideoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.BrowseId}]" +
+		              $"[{secondary.Owner.VideoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
 		              Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.Title) +
-		              $"({Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.SubscriberCountText)})");
+		              $" ({Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.SubscriberCountText)})");
 		sb.AppendLine("DateText: " + Utils.ReadRuns(primary.RelativeDateText));
 		sb.AppendLine("ViewCount: " +
 		              (primary.ViewCount.VideoViewCountRenderer.HasOriginalViewCount &&
@@ -275,10 +275,7 @@ public class PlayerTests
 				.AppendLine($"  Thumbnail: [{avatar.Width}x{avatar.Height}] {avatar.Url}")
 				.AppendLine("  Content: " + Utils.ReadRuns(teaserComment.TeaserContent));
 		}
-
-		Assert.Pass(sb.ToString());
 		/*
-
 		sb.AppendLine("\n== CHAPTERS");
 		if (next.Chapters != null)
 		{
@@ -289,16 +286,12 @@ public class PlayerTests
 		{
 			sb.AppendLine("No chapters available");
 		}
-
+		*/
 		sb.AppendLine("\n== RECOMMENDED");
-		foreach (IRenderer renderer in next.Recommended)
-		{
-			sb.AppendLine("->\t" + string.Join("\n\t",
-				(renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
-		}
+		foreach (RendererWrapper? renderer in next.Contents.TwoColumnWatchNextResults.SecondaryResults.SecondaryResults.Results)
+			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
 
 		Assert.Pass(sb.ToString());
-		*/
 	}
 
 	[TestCase("CBQSKRILMlFPNDBIalJIMnfAAQDIAQDgAQOiAg0o____________AUAA-AIAGAAqmAsyczZMNnd5ckNBcW9DQW9EOGo0QUNnM0NQZ29JcFBXZDF1UzM1WmwwQ2czQ1Bnb0l0SXppd3YzZno2TmpDZzNDUGdvSTY1RHprY1hnOXR3RkNnN0NQZ3NJck1HcHRLaW04ZnVpQVFvT3dqNExDUGJSZzYtUHdfX2V4UUVLRHNJLUN3aXI4WnpSd3FEbjZMQUJDZzdDUGdzSTlvSDBpc245cDVYVkFRb093ajRMQ1BUMTA1anR3OEtDX3dFS0RjSS1DZ2pOM1l5aThQVFB1Z1VLRGNJLUNnakg5OTdSdTRqMjdoQUtEY0ktQ2dpOS1jR0c3N1NONGlBS0RzSS1Dd2o3cHA3bnVON3N2UFFCQ2c3Q1Bnc0luSnp3aktmeTVfamFBUW9Od2o0S0NNZU4yYnV4clpydmJBb053ajRLQ0lPcTA2LTM3c2VpQXdvTXdqNEpDTWJac2ZqeDlfNGxDZzNDUGdvSXZ1S0V1OEN4LS1rS0NnM0NQZ29JbkltaXk5ZTU5dkV6Q2c3Q1Bnc0kwSUwyd3B5dnNPV3FBUW9Od2o0S0NKZXVpSlQ4NHFXd0FRb053ajRLQ09MYzZjLV9ucC05U1FvT3dqNExDSXlRX19qWnJMVFk4QUVLQV9JLUFBb053ajRLQ1A3U3NJMnZzWUdZSEFvRDhqNEFDaF9TUGh3S0dsSkVSVTFKUVhSYU4zZFRibVZzTm1waFQyNDBjVjlwUjNWbkNnUHlQZ0FLRHNJLUN3akY1cHZXMGZ1bms4NEJDZ1B5UGdBS0RjSS1DZ2prc2RLbnFhM0FfbE1LQV9JLUFBb053ajRLQ0lQZTRlLUkwcUxpT1FvRDhqNEFDZzdDUGdzSXlkVC1nY3pPai1MS0FRb0Q4ajRBQ2czQ1Bnb0lxcC15cWZyQXpyaHRDZ1B5UGdBS0RzSS1Dd2lya2MzQ204LU56bzRCQ2dQeVBnQUtEc0ktQ3dpYzFLcjZ1TG1ELUw0QkNnUHlQZ0FLRHNJLUN3alA5ZUMzcVpxLXBPb0JDZ1B5UGdBS0RjSS1DZ2pzNmNHMzlPYXY5bmtLQV9JLUFBb093ajRMQ05qTHJ2REZ3WS1icUFFS0FfSS1BQW9Od2o0S0NLLTJ5YVdobGQzNVlBb0Q4ajRBQ2czQ1Bnb0lzcDNGbE5yaTJOUmpDZ1B5UGdBS0RzSS1Dd2lsbjlYSXBhT3JrdGNCQ2dQeVBnQUtEc0ktQ3dqcXRLdWExNm1ua3ZrQkNnUHlQZ0FLRGNJLUNnaXI3OWUzejVmUzYxUUtBX0ktQUFvT3dqNExDSzIxanRUNXFiLWctZ0VLQV9JLUFBb0owajRHQ2dSU1JFMU5DZ1B5UGdBS0RjSS1DZ2lxOThqNW1hM1dxblVTRlFBWEdSc2RIeUVqSlNjcEt5MHZNVE0xTnprN1BSb0VDQUFRQVJvRUNBQVFBaG9FQ0FBUUF4b0VDQUFRQkJvRUNBQVFCUm9FQ0FBUUJob0VDQUFRQnhvRUNBQVFDQm9FQ0FBUUNSb0VDQUFRQ2hvRUNBQVFDeG9FQ0FBUURCb0VDQUFRRFJvRUNBQVFEaG9FQ0FBUUR4b0VDQUFRRUJvRUNBQVFFUm9FQ0FBUUVob0VDQUFRRXhvRUNBQVFGQm9FQ0FBUUZSb0VDQUFRRmhvRUNCY1FHQm9FQ0JrUUdob0VDQnNRSEJvRUNCMFFIaG9FQ0I4UUlCb0VDQ0VRSWhvRUNDTVFKQm9FQ0NVUUpob0VDQ2NRS0JvRUNDa1FLaG9FQ0NzUUxCb0VDQzBRTGhvRUNDOFFNQm9FQ0RFUU1ob0VDRE1RTkJvRUNEVVFOaG9FQ0RjUU9Cb0VDRGtRT2hvRUNEc1FQQm9FQ0QwUVBpb1ZBQmNaR3gwZklTTWxKeWtyTFM4eE16VTNPVHM5ag93YXRjaC1uZXh0LWZlZWQ%3D")]

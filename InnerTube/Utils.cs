@@ -1,5 +1,6 @@
 ﻿using System.Collections.Specialized;
 using System.Globalization;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Web;
 using Google.Protobuf;
@@ -395,5 +396,38 @@ public static class Utils
 		};
 
 		return ToBase64UrlString(continuation.ToByteArray());
+	}
+
+	public static string SerializeRenderer(RendererWrapper? renderer)
+	{
+		if (renderer == null) return "[Renderer is null]";
+
+		switch (renderer.RendererCase)
+		{
+			case RendererWrapper.RendererOneofCase.None:
+				return $"[Unknown Renderer]\n{Convert.ToBase64String(renderer.ToByteArray())}";
+			case RendererWrapper.RendererOneofCase.CompactVideoRenderer:
+			{
+				CompactVideoRenderer video = renderer.CompactVideoRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[CompactVideoRenderer] [{video.VideoId}] {ReadRuns(video.Text)}")
+					.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
+						video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
+					.AppendLine("Owner: " +
+					            $"[{video.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+					            video.LongBylineText.Runs[0].Text)
+					.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})" + string.Join("",
+						video.OwnerBadges.Select(x => $"\n- {SerializeRenderer(x)}")))
+					.AppendLine("Duration: " + video.LengthText.SimpleText)
+					.AppendLine("ViewCount: " + video.ViewCountText.SimpleText)
+					.AppendLine("ShortViewCount: " + video.ShortViewCountText.SimpleText)
+					.AppendLine("PublishDate: " + video.PublishedTimeText.SimpleText)
+					.AppendLine($"Badges: ({video.Badges.Count})" +
+					            string.Join("", video.Badges.Select(x => $"\n- {SerializeRenderer(x)}")));
+				return sb.ToString();
+			}
+			default:
+				return $"[Unknown RendererCase={renderer.RendererCase}]";
+		}
 	}
 }
