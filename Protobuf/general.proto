@@ -5,6 +5,8 @@ package InnerTube.Protobuf;
 message Thumbnails {
   repeated Thumbnail thumbnails = 1;
   optional AccessibilityWrapper accessibility = 4;
+  optional ColorPalette lightColorPalette = 13;
+  optional ColorPalette darkColorPalette = 14;
 }
 
 message Thumbnail {
@@ -23,4 +25,13 @@ message AccessibilityData {
 
 message AccessibilityWrapper {
   AccessibilityData accessibilityData = 75730170;
+}
+
+message ColorPalette {
+  int64 section1Color = 1;
+  int64 section2Color = 2;
+  int64 section3Color = 3;
+  int64 primaryTitleColor = 5;
+  int64 secondaryTitleColor = 6;
+  int64 section4Color = 10;
 }

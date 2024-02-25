@@ -2,6 +2,7 @@ syntax = "proto3";
 
 package InnerTube.Protobuf.Renderers;
 
+import "google/protobuf/wrappers.proto";
 import "general.proto";
 import "endpoints.proto";
 
@@ -34,9 +35,13 @@ message RendererWrapper {
     ThumbnailOverlayToggleButtonRenderer thumbnailOverlayToggleButtonRenderer = 128231774;
     MetadataBadgeRenderer metadataBadgeRenderer = 128361622;
     SubscriptionNotificationToggleButtonRenderer subscriptionNotificationToggleButtonRenderer = 136076983;
+    EngagementPanelSectionListRenderer engagementPanelSectionListRenderer = 138681066;
+    EngagementPanelTitleHeaderRenderer engagementPanelTitleHeaderRenderer = 138681548;
     ContinuationItemRenderer continuationItemRenderer = 159495980;
     ThumbnailOverlayNowPlayingRenderer thumbnailOverlayNowPlayingRenderer = 228343999;
     CommentsEntryPointHeaderRenderer commentsEntryPointHeaderRenderer = 275947328;
+    MacroMarkersListItemRenderer macroMarkersListItemRenderer = 307450214;
+    MacroMarkersListRenderer macroMarkersListRenderer = 309482905;
     MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
     ToggleButtonViewModel toggleButtonViewModel = 479644279;
@@ -376,6 +381,28 @@ message SubscriptionNotificationToggleButtonRenderer {
   Icon secondaryIcon = 13;
 }
 
+message EngagementPanelSectionListRenderer {
+  message LoggingDirectives {
+    bytes trackingParams = 1;
+    google.protobuf.Int32Value visibility = 4;
+    bool enableDisplayloggerExperiment = 11;
+  }
+
+  optional string panelIdentifier = 1;
+  optional RendererWrapper header = 2;
+  optional RendererWrapper content = 3;
+  string targetId = 8;
+  int32 visibility = 9;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message EngagementPanelTitleHeaderRenderer {
+  Endpoints.Text title = 1;
+  string subtitle = 5;
+  RendererWrapper visibilityButton = 8;
+  bytes trackingParams = 12;
+}
+
 message ContinuationItemRenderer {
   int32 trigger = 1;
   Endpoints.Endpoint continuationEndpoint = 2;
@@ -392,6 +419,27 @@ message CommentsEntryPointHeaderRenderer {
   Endpoints.Text commentCount = 5;
   RendererWrapper contentRenderer = 12;
   string targetId = 13;
+}
+
+message MacroMarkersListItemRenderer {
+  Endpoints.Text title = 1;
+  Endpoints.Text timeDescription = 2;
+  Thumbnails thumbnail = 5;
+  Endpoints.Endpoint onTap = 6;
+  bytes trackingParams = 9;
+  RendererWrapper shareButton = 12;
+  RendererWrapper repeatButton = 13;
+  string macroMarkerRepeatStateEntityKey = 14;
+  Endpoints.Endpoint endRepeatCommand = 15; 
+  string playerStateEntityKey = 16;
+  int32 carouselType = 18;
+  ColorPalette lightColorPalette = 19;
+  ColorPalette darkColorPalette = 20;
+  string timeDescriptionA11yLabel = 21;
+}
+
+message MacroMarkersListRenderer {
+  repeated RendererWrapper contents = 1;
 }
 
 message MenuFlexibleItemRenderer {
@@ -421,7 +469,7 @@ message LikeButtonViewModel {
 
   RendererWrapper toggleButtonViewModel = 1;
   string likeStatusEntityKey = 3;
-  LikeStatusEntity likeStatusEntity = 6;  
+  LikeStatusEntity likeStatusEntity = 6;
 }
 
 message DislikeButtonViewModel {

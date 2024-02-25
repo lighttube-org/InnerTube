@@ -276,18 +276,20 @@ public class PlayerTests
 				.AppendLine("  Content: " + Utils.ReadRuns(teaserComment.TeaserContent));
 		}
 
-		/*
 		sb.AppendLine("\n== CHAPTERS");
-		if (next.Chapters != null)
+		MacroMarkersListRenderer? chapterEngagementPanel = next.EngagementPanels.FirstOrDefault(x =>
+				x.EngagementPanelSectionListRenderer.TargetId == "engagement-panel-macro-markers-description-chapters")
+			?.EngagementPanelSectionListRenderer?.Content?.MacroMarkersListRenderer;
+		if (chapterEngagementPanel != null)
 		{
-			foreach (ChapterRenderer chapter in next.Chapters)
-				sb.AppendLine($"- [{TimeSpan.FromMilliseconds(chapter.TimeRangeStartMillis)}] {chapter.Title}");
+			foreach (MacroMarkersListItemRenderer chapter in chapterEngagementPanel.Contents.Select(x => x.MacroMarkersListItemRenderer))
+				sb.AppendLine($"- [{TimeSpan.FromSeconds(chapter.OnTap.WatchEndpoint.StartTimeSeconds)}] {Utils.ReadRuns(chapter.Title)}");
 		}
 		else
 		{
-			sb.AppendLine("No chapters available");
+			sb.AppendLine("-> No chapters available");
 		}
-		*/
+
 		sb.AppendLine("\n== RECOMMENDED");
 		// NOTE: for age restricted videos, the first SecondaryResults is null
 		if (next.Contents.TwoColumnWatchNextResults.SecondaryResults != null)

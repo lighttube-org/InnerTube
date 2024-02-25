@@ -24,24 +24,32 @@ namespace InnerTube.Protobuf {
     static GeneralReflection() {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
-            "Cg1nZW5lcmFsLnByb3RvEhJJbm5lclR1YmUuUHJvdG9idWYilwEKClRodW1i",
+            "Cg1nZW5lcmFsLnByb3RvEhJJbm5lclR1YmUuUHJvdG9idWYixQIKClRodW1i",
             "bmFpbHMSMQoKdGh1bWJuYWlscxgBIAMoCzIdLklubmVyVHViZS5Qcm90b2J1",
             "Zi5UaHVtYm5haWwSRAoNYWNjZXNzaWJpbGl0eRgEIAEoCzIoLklubmVyVHVi",
-            "ZS5Qcm90b2J1Zi5BY2Nlc3NpYmlsaXR5V3JhcHBlckgAiAEBQhAKDl9hY2Nl",
-            "c3NpYmlsaXR5IjcKCVRodW1ibmFpbBILCgN1cmwYASABKAkSDQoFd2lkdGgY",
-            "AiABKAUSDgoGaGVpZ2h0GAMgASgFIhgKBEljb24SEAoIaWNvblR5cGUYASAB",
-            "KAUiIgoRQWNjZXNzaWJpbGl0eURhdGESDQoFbGFiZWwYAiABKAkiWwoUQWNj",
-            "ZXNzaWJpbGl0eVdyYXBwZXISQwoRYWNjZXNzaWJpbGl0eURhdGEY+pmOJCAB",
-            "KAsyJS5Jbm5lclR1YmUuUHJvdG9idWYuQWNjZXNzaWJpbGl0eURhdGFiBnBy",
-            "b3RvMw=="));
+            "ZS5Qcm90b2J1Zi5BY2Nlc3NpYmlsaXR5V3JhcHBlckgAiAEBEkAKEWxpZ2h0",
+            "Q29sb3JQYWxldHRlGA0gASgLMiAuSW5uZXJUdWJlLlByb3RvYnVmLkNvbG9y",
+            "UGFsZXR0ZUgBiAEBEj8KEGRhcmtDb2xvclBhbGV0dGUYDiABKAsyIC5Jbm5l",
+            "clR1YmUuUHJvdG9idWYuQ29sb3JQYWxldHRlSAKIAQFCEAoOX2FjY2Vzc2li",
+            "aWxpdHlCFAoSX2xpZ2h0Q29sb3JQYWxldHRlQhMKEV9kYXJrQ29sb3JQYWxl",
+            "dHRlIjcKCVRodW1ibmFpbBILCgN1cmwYASABKAkSDQoFd2lkdGgYAiABKAUS",
+            "DgoGaGVpZ2h0GAMgASgFIhgKBEljb24SEAoIaWNvblR5cGUYASABKAUiIgoR",
+            "QWNjZXNzaWJpbGl0eURhdGESDQoFbGFiZWwYAiABKAkiWwoUQWNjZXNzaWJp",
+            "bGl0eVdyYXBwZXISQwoRYWNjZXNzaWJpbGl0eURhdGEY+pmOJCABKAsyJS5J",
+            "bm5lclR1YmUuUHJvdG9idWYuQWNjZXNzaWJpbGl0eURhdGEiogEKDENvbG9y",
+            "UGFsZXR0ZRIVCg1zZWN0aW9uMUNvbG9yGAEgASgDEhUKDXNlY3Rpb24yQ29s",
+            "b3IYAiABKAMSFQoNc2VjdGlvbjNDb2xvchgDIAEoAxIZChFwcmltYXJ5VGl0",
+            "bGVDb2xvchgFIAEoAxIbChNzZWNvbmRhcnlUaXRsZUNvbG9yGAYgASgDEhUK",
+            "DXNlY3Rpb240Q29sb3IYCiABKANiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Thumbnails), global::InnerTube.Protobuf.Thumbnails.Parser, new[]{ "Thumbnails_", "Accessibility" }, new[]{ "Accessibility" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Thumbnails), global::InnerTube.Protobuf.Thumbnails.Parser, new[]{ "Thumbnails_", "Accessibility", "LightColorPalette", "DarkColorPalette" }, new[]{ "Accessibility", "LightColorPalette", "DarkColorPalette" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Thumbnail), global::InnerTube.Protobuf.Thumbnail.Parser, new[]{ "Url", "Width", "Height" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Icon), global::InnerTube.Protobuf.Icon.Parser, new[]{ "IconType" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.AccessibilityData), global::InnerTube.Protobuf.AccessibilityData.Parser, new[]{ "Label" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.AccessibilityWrapper), global::InnerTube.Protobuf.AccessibilityWrapper.Parser, new[]{ "AccessibilityData" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.AccessibilityWrapper), global::InnerTube.Protobuf.AccessibilityWrapper.Parser, new[]{ "AccessibilityData" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.ColorPalette), global::InnerTube.Protobuf.ColorPalette.Parser, new[]{ "Section1Color", "Section2Color", "Section3Color", "PrimaryTitleColor", "SecondaryTitleColor", "Section4Color" }, null, null, null, null)
           }));
     }
     #endregion
@@ -85,6 +93,8 @@ namespace InnerTube.Protobuf {
     public Thumbnails(Thumbnails other) : this() {
       thumbnails_ = other.thumbnails_.Clone();
       accessibility_ = other.accessibility_ != null ? other.accessibility_.Clone() : null;
+      lightColorPalette_ = other.lightColorPalette_ != null ? other.lightColorPalette_.Clone() : null;
+      darkColorPalette_ = other.darkColorPalette_ != null ? other.darkColorPalette_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -117,6 +127,30 @@ namespace InnerTube.Protobuf {
       }
     }
 
+    /// <summary>Field number for the "lightColorPalette" field.</summary>
+    public const int LightColorPaletteFieldNumber = 13;
+    private global::InnerTube.Protobuf.ColorPalette lightColorPalette_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.ColorPalette LightColorPalette {
+      get { return lightColorPalette_; }
+      set {
+        lightColorPalette_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "darkColorPalette" field.</summary>
+    public const int DarkColorPaletteFieldNumber = 14;
+    private global::InnerTube.Protobuf.ColorPalette darkColorPalette_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.ColorPalette DarkColorPalette {
+      get { return darkColorPalette_; }
+      set {
+        darkColorPalette_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -134,6 +168,8 @@ namespace InnerTube.Protobuf {
       }
       if(!thumbnails_.Equals(other.thumbnails_)) return false;
       if (!object.Equals(Accessibility, other.Accessibility)) return false;
+      if (!object.Equals(LightColorPalette, other.LightColorPalette)) return false;
+      if (!object.Equals(DarkColorPalette, other.DarkColorPalette)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -143,6 +179,8 @@ namespace InnerTube.Protobuf {
       int hash = 1;
       hash ^= thumbnails_.GetHashCode();
       if (accessibility_ != null) hash ^= Accessibility.GetHashCode();
+      if (lightColorPalette_ != null) hash ^= LightColorPalette.GetHashCode();
+      if (darkColorPalette_ != null) hash ^= DarkColorPalette.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -166,6 +204,14 @@ namespace InnerTube.Protobuf {
         output.WriteRawTag(34);
         output.WriteMessage(Accessibility);
       }
+      if (lightColorPalette_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(LightColorPalette);
+      }
+      if (darkColorPalette_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(DarkColorPalette);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -181,6 +227,14 @@ namespace InnerTube.Protobuf {
         output.WriteRawTag(34);
         output.WriteMessage(Accessibility);
       }
+      if (lightColorPalette_ != null) {
+        output.WriteRawTag(106);
+        output.WriteMessage(LightColorPalette);
+      }
+      if (darkColorPalette_ != null) {
+        output.WriteRawTag(114);
+        output.WriteMessage(DarkColorPalette);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -194,6 +248,12 @@ namespace InnerTube.Protobuf {
       size += thumbnails_.CalculateSize(_repeated_thumbnails_codec);
       if (accessibility_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Accessibility);
+      }
+      if (lightColorPalette_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(LightColorPalette);
+      }
+      if (darkColorPalette_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(DarkColorPalette);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -213,6 +273,18 @@ namespace InnerTube.Protobuf {
           Accessibility = new global::InnerTube.Protobuf.AccessibilityWrapper();
         }
         Accessibility.MergeFrom(other.Accessibility);
+      }
+      if (other.lightColorPalette_ != null) {
+        if (lightColorPalette_ == null) {
+          LightColorPalette = new global::InnerTube.Protobuf.ColorPalette();
+        }
+        LightColorPalette.MergeFrom(other.LightColorPalette);
+      }
+      if (other.darkColorPalette_ != null) {
+        if (darkColorPalette_ == null) {
+          DarkColorPalette = new global::InnerTube.Protobuf.ColorPalette();
+        }
+        DarkColorPalette.MergeFrom(other.DarkColorPalette);
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -240,6 +312,20 @@ namespace InnerTube.Protobuf {
             input.ReadMessage(Accessibility);
             break;
           }
+          case 106: {
+            if (lightColorPalette_ == null) {
+              LightColorPalette = new global::InnerTube.Protobuf.ColorPalette();
+            }
+            input.ReadMessage(LightColorPalette);
+            break;
+          }
+          case 114: {
+            if (darkColorPalette_ == null) {
+              DarkColorPalette = new global::InnerTube.Protobuf.ColorPalette();
+            }
+            input.ReadMessage(DarkColorPalette);
+            break;
+          }
         }
       }
     #endif
@@ -264,6 +350,20 @@ namespace InnerTube.Protobuf {
               Accessibility = new global::InnerTube.Protobuf.AccessibilityWrapper();
             }
             input.ReadMessage(Accessibility);
+            break;
+          }
+          case 106: {
+            if (lightColorPalette_ == null) {
+              LightColorPalette = new global::InnerTube.Protobuf.ColorPalette();
+            }
+            input.ReadMessage(LightColorPalette);
+            break;
+          }
+          case 114: {
+            if (darkColorPalette_ == null) {
+              DarkColorPalette = new global::InnerTube.Protobuf.ColorPalette();
+            }
+            input.ReadMessage(DarkColorPalette);
             break;
           }
         }
@@ -1107,6 +1207,381 @@ namespace InnerTube.Protobuf {
               AccessibilityData = new global::InnerTube.Protobuf.AccessibilityData();
             }
             input.ReadMessage(AccessibilityData);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ColorPalette : pb::IMessage<ColorPalette>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ColorPalette> _parser = new pb::MessageParser<ColorPalette>(() => new ColorPalette());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ColorPalette> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.GeneralReflection.Descriptor.MessageTypes[5]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ColorPalette() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ColorPalette(ColorPalette other) : this() {
+      section1Color_ = other.section1Color_;
+      section2Color_ = other.section2Color_;
+      section3Color_ = other.section3Color_;
+      primaryTitleColor_ = other.primaryTitleColor_;
+      secondaryTitleColor_ = other.secondaryTitleColor_;
+      section4Color_ = other.section4Color_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ColorPalette Clone() {
+      return new ColorPalette(this);
+    }
+
+    /// <summary>Field number for the "section1Color" field.</summary>
+    public const int Section1ColorFieldNumber = 1;
+    private long section1Color_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Section1Color {
+      get { return section1Color_; }
+      set {
+        section1Color_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "section2Color" field.</summary>
+    public const int Section2ColorFieldNumber = 2;
+    private long section2Color_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Section2Color {
+      get { return section2Color_; }
+      set {
+        section2Color_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "section3Color" field.</summary>
+    public const int Section3ColorFieldNumber = 3;
+    private long section3Color_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Section3Color {
+      get { return section3Color_; }
+      set {
+        section3Color_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "primaryTitleColor" field.</summary>
+    public const int PrimaryTitleColorFieldNumber = 5;
+    private long primaryTitleColor_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long PrimaryTitleColor {
+      get { return primaryTitleColor_; }
+      set {
+        primaryTitleColor_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "secondaryTitleColor" field.</summary>
+    public const int SecondaryTitleColorFieldNumber = 6;
+    private long secondaryTitleColor_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long SecondaryTitleColor {
+      get { return secondaryTitleColor_; }
+      set {
+        secondaryTitleColor_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "section4Color" field.</summary>
+    public const int Section4ColorFieldNumber = 10;
+    private long section4Color_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public long Section4Color {
+      get { return section4Color_; }
+      set {
+        section4Color_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ColorPalette);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ColorPalette other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Section1Color != other.Section1Color) return false;
+      if (Section2Color != other.Section2Color) return false;
+      if (Section3Color != other.Section3Color) return false;
+      if (PrimaryTitleColor != other.PrimaryTitleColor) return false;
+      if (SecondaryTitleColor != other.SecondaryTitleColor) return false;
+      if (Section4Color != other.Section4Color) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Section1Color != 0L) hash ^= Section1Color.GetHashCode();
+      if (Section2Color != 0L) hash ^= Section2Color.GetHashCode();
+      if (Section3Color != 0L) hash ^= Section3Color.GetHashCode();
+      if (PrimaryTitleColor != 0L) hash ^= PrimaryTitleColor.GetHashCode();
+      if (SecondaryTitleColor != 0L) hash ^= SecondaryTitleColor.GetHashCode();
+      if (Section4Color != 0L) hash ^= Section4Color.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Section1Color != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(Section1Color);
+      }
+      if (Section2Color != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Section2Color);
+      }
+      if (Section3Color != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(Section3Color);
+      }
+      if (PrimaryTitleColor != 0L) {
+        output.WriteRawTag(40);
+        output.WriteInt64(PrimaryTitleColor);
+      }
+      if (SecondaryTitleColor != 0L) {
+        output.WriteRawTag(48);
+        output.WriteInt64(SecondaryTitleColor);
+      }
+      if (Section4Color != 0L) {
+        output.WriteRawTag(80);
+        output.WriteInt64(Section4Color);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Section1Color != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(Section1Color);
+      }
+      if (Section2Color != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Section2Color);
+      }
+      if (Section3Color != 0L) {
+        output.WriteRawTag(24);
+        output.WriteInt64(Section3Color);
+      }
+      if (PrimaryTitleColor != 0L) {
+        output.WriteRawTag(40);
+        output.WriteInt64(PrimaryTitleColor);
+      }
+      if (SecondaryTitleColor != 0L) {
+        output.WriteRawTag(48);
+        output.WriteInt64(SecondaryTitleColor);
+      }
+      if (Section4Color != 0L) {
+        output.WriteRawTag(80);
+        output.WriteInt64(Section4Color);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Section1Color != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Section1Color);
+      }
+      if (Section2Color != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Section2Color);
+      }
+      if (Section3Color != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Section3Color);
+      }
+      if (PrimaryTitleColor != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(PrimaryTitleColor);
+      }
+      if (SecondaryTitleColor != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(SecondaryTitleColor);
+      }
+      if (Section4Color != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Section4Color);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ColorPalette other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Section1Color != 0L) {
+        Section1Color = other.Section1Color;
+      }
+      if (other.Section2Color != 0L) {
+        Section2Color = other.Section2Color;
+      }
+      if (other.Section3Color != 0L) {
+        Section3Color = other.Section3Color;
+      }
+      if (other.PrimaryTitleColor != 0L) {
+        PrimaryTitleColor = other.PrimaryTitleColor;
+      }
+      if (other.SecondaryTitleColor != 0L) {
+        SecondaryTitleColor = other.SecondaryTitleColor;
+      }
+      if (other.Section4Color != 0L) {
+        Section4Color = other.Section4Color;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Section1Color = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            Section2Color = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            Section3Color = input.ReadInt64();
+            break;
+          }
+          case 40: {
+            PrimaryTitleColor = input.ReadInt64();
+            break;
+          }
+          case 48: {
+            SecondaryTitleColor = input.ReadInt64();
+            break;
+          }
+          case 80: {
+            Section4Color = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Section1Color = input.ReadInt64();
+            break;
+          }
+          case 16: {
+            Section2Color = input.ReadInt64();
+            break;
+          }
+          case 24: {
+            Section3Color = input.ReadInt64();
+            break;
+          }
+          case 40: {
+            PrimaryTitleColor = input.ReadInt64();
+            break;
+          }
+          case 48: {
+            SecondaryTitleColor = input.ReadInt64();
+            break;
+          }
+          case 80: {
+            Section4Color = input.ReadInt64();
             break;
           }
         }

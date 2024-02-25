@@ -77,6 +77,8 @@ message WatchEndpoint {
   string videoId = 1;
   optional string playlistId = 2;
   optional string params = 5;
+  optional bool continuePlayback = 6;
+  optional float startTimeSeconds = 7;
   optional string playerParams = 9;
   optional bool nofollow = 17;
   optional WatchEndpointSupportedOnesieConfig watchEndpointSupportedOnesieConfig = 79857908;
