@@ -134,13 +134,13 @@ public class InnerTube
 			language, region, true));
 	}
 
-	public async Task<string> GetNextAsync(string videoId, bool contentCheckOk, bool captionsRequested, string language = "en", string region = "US")
+	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk, bool captionsRequested, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("videoId", videoId)
 			.AddValue("contentCheckOk", contentCheckOk)
 			.AddValue("racyCheckOk", contentCheckOk)
 			.AddValue("captionsRequested", captionsRequested);
-		return Convert.ToBase64String(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
+		return NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
 	}
 }

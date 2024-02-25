@@ -1,6 +1,9 @@
 using System.Diagnostics;
 using System.Text;
+using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
+using InnerTube.Formatters;
+using InnerTube.Protobuf;
 using InnerTube.Protobuf.Renderers;
 using InnerTube.Protobuf.Responses;
 
@@ -225,20 +228,56 @@ public class PlayerTests
 	[TestCase("jUUe6TuRlgU", Description = "Chapters")]
 	public async Task GetVideoNext(string videoId)
 	{
-		Assert.Pass(await _innerTube.GetNextAsync(videoId, true, false));
-		/*
-		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);
-
+		NextResponse next = await _innerTube.GetNextAsync(videoId, true, true);
 		StringBuilder sb = new();
 
-		sb.AppendLine("== DETAILS")
-			.AppendLine("Id: " + next.Id)
-			.AppendLine("Title: " + next.Title)
-			.AppendLine("Channel: " + next.Channel)
-			.AppendLine("DateText: " + next.DateText)
-			.AppendLine("ViewCount: " + next.ViewCount)
-			.AppendLine("LikeCount: " + next.LikeCount)
-			.AppendLine("Description:\n" + string.Join('\n', next.Description.Split("\n").Select(x => $"\t{x}")));
+		RepeatedField<RendererWrapper> firstColumnResults =
+			next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results;
+		VideoPrimaryInfoRenderer primary = firstColumnResults.First(x =>
+			x.RendererCase == RendererWrapper.RendererOneofCase.VideoPrimaryInfoRenderer).VideoPrimaryInfoRenderer;
+		VideoSecondaryInfoRenderer secondary = firstColumnResults.First(x =>
+			x.RendererCase == RendererWrapper.RendererOneofCase.VideoSecondaryInfoRenderer).VideoSecondaryInfoRenderer;
+		CommentsEntryPointHeaderRenderer commentsEntryPoint = firstColumnResults.First(x =>
+				x.RendererCase == RendererWrapper.RendererOneofCase.ItemSectionRenderer &&
+				x.ItemSectionRenderer.SectionIdentifier == "comments-entry-point").ItemSectionRenderer.Contents[0]
+			.CommentsEntryPointHeaderRenderer;
+
+		Utils.Formatter = new MarkdownFormatter();
+
+		sb.AppendLine("== DETAILS");
+		sb.AppendLine("Id: " + next.CurrentVideoEndpoint.WatchEndpoint.VideoId);
+		sb.AppendLine("Title: " + Utils.ReadRuns(primary.Title));
+		sb.AppendLine("Channel: " +
+		              $"[{secondary.Owner.VideoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.BrowseId}]" +
+		              Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.Title) +
+		              $"({Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.SubscriberCountText)})");
+		sb.AppendLine("DateText: " + Utils.ReadRuns(primary.RelativeDateText));
+		sb.AppendLine("ViewCount: " +
+		              (primary.ViewCount.VideoViewCountRenderer.HasOriginalViewCount &&
+		               primary.ViewCount.VideoViewCountRenderer.OriginalViewCount != 0
+			              ? primary.ViewCount.VideoViewCountRenderer.OriginalViewCount.ToString()
+			              : Utils.ReadRuns(primary.ViewCount.VideoViewCountRenderer.ViewCount)));
+		sb.AppendLine("LikeCount: " + primary.VideoActions.MenuRenderer.TopLevelButtons
+			.First(x => x.RendererCase == RendererWrapper.RendererOneofCase.SegmentedLikeDislikeButtonViewModel)
+			.SegmentedLikeDislikeButtonViewModel.LikeButtonViewModel.LikeButtonViewModel.ToggleButtonViewModel
+			.ToggleButtonViewModel.DefaultButtonViewModel.ButtonViewModel.Title);
+		sb.AppendLine("Description:\n" + Utils.ReadAttributedDescription(secondary.AttributedDescription, true));
+
+		CommentsEntryPointTeaserRenderer? teaserComment =
+			commentsEntryPoint.ContentRenderer?.CommentsEntryPointTeaserRenderer;
+		sb.AppendLine("\n== COMMENTS")
+			.AppendLine("CommentCount: " + Utils.ReadRuns(commentsEntryPoint.CommentCount));
+		if (teaserComment == null) sb.AppendLine("TeaserComment: null");
+		else
+		{
+			Thumbnail avatar = teaserComment.TeaserAvatar.Thumbnails_.First();
+			sb.AppendLine("TeaserComment: ")
+				.AppendLine($"  Thumbnail: [{avatar.Width}x{avatar.Height}] {avatar.Url}")
+				.AppendLine("  Content: " + Utils.ReadRuns(teaserComment.TeaserContent));
+		}
+
+		Assert.Pass(sb.ToString());
+		/*
 
 		sb.AppendLine("\n== CHAPTERS");
 		if (next.Chapters != null)
@@ -250,10 +289,6 @@ public class PlayerTests
 		{
 			sb.AppendLine("No chapters available");
 		}
-
-		sb.AppendLine("\n== COMMENTS")
-			.AppendLine("CommentCount: " + next.CommentCount)
-			.AppendLine("CommentsContinuation: " + next.CommentsContinuation);
 
 		sb.AppendLine("\n== RECOMMENDED");
 		foreach (IRenderer renderer in next.Recommended)

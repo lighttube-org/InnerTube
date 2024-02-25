@@ -26,7 +26,6 @@ message RendererWrapper {
     PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
     MetadataRowContainerRenderer metadataRowContainerRenderer = 71271859;
     AccessibilityData accessibilityData = 75730170;
-    LikeButtonViewModel likeButtonViewModel = 79971800;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
     VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
     EndscreenRenderer endscreenRenderer = 106301526;
@@ -40,8 +39,11 @@ message RendererWrapper {
     CommentsEntryPointHeaderRenderer commentsEntryPointHeaderRenderer = 275947328;
     MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
-    SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 452133865;
-    SaveButtonViewModel saveButtonViewModel = 461054335;
+    ToggleButtonViewModel toggleButtonViewModel = 479644279;
+    LikeButtonViewModel likeButtonViewModel = 484585818;
+    DislikeButtonViewModel dislikeButtonViewModel = 484590786;
+    SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 484586709;
+    ButtonViewModel buttonViewModel = 461054335;
   }
 }
 
@@ -203,10 +205,11 @@ message ShareButtonViewModel {
 
 message MenuRenderer {
   repeated RendererWrapper items = 1;
+  bytes trackingParams = 4;
   repeated RendererWrapper topLevelButtons = 6;
   RendererWrapper accessibility = 10;
-  bytes trackingParams = 4;
   optional string targetId = 11;
+  repeated RendererWrapper flexibleItems = 20;
 }
 
 message MenuNavigationItemRenderer {
@@ -226,7 +229,7 @@ message MenuServiceItemRenderer {
 message VideoViewCountRenderer {
   Endpoints.Text viewCount = 1;
   Endpoints.Text shortViewCount = 4;
-  int32 originalViewCount = 9;
+  optional int32 originalViewCount = 9;
 }
 
 message PlayerLiveStoryboardSpecRenderer {
@@ -236,18 +239,6 @@ message PlayerLiveStoryboardSpecRenderer {
 message MetadataRowContainerRenderer {
   int32 collapsedItemCount = 2;
   bytes trackingParams = 4;
-}
-
-message LikeButtonViewModel {
-  Icon icon = 1;
-  Endpoints.Text text = 6;
-  Endpoints.Text toggledText = 9;
-  AccessibilityData accessibilityText = 11;
-  string tooltip = 14;
-  string toggledTooltip = 15;
-  RendererWrapper toggledAccessibilityText = 19;
-  Endpoints.Endpoint endpoint = 17;
-  string identifier = 24;
 }
 
 message VideoPrimaryInfoRenderer {
@@ -414,17 +405,45 @@ message CommentsEntryPointTeaserRenderer {
   bytes trackingParams = 3;
 }
 
+message ToggleButtonViewModel {
+  RendererWrapper defaultButtonViewModel = 1;
+  RendererWrapper toggledButtonViewModel = 2;
+  string identifier = 4;
+  bytes trackingParams = 5;
+  bool isTogglingDisabled = 7;
+}
+
+message LikeButtonViewModel {
+  message LikeStatusEntity {
+    string key = 1;
+    int32 likeStatus = 2;
+  }
+
+  RendererWrapper toggleButtonViewModel = 1;
+  string likeStatusEntityKey = 3;
+  LikeStatusEntity likeStatusEntity = 6;  
+}
+
+message DislikeButtonViewModel {
+  RendererWrapper toggleButtonViewModel = 1;
+  string dislikeEntityKey = 3;
+}
+
 message SegmentedLikeDislikeButtonViewModel {
   RendererWrapper likeButtonViewModel = 1;
   RendererWrapper dislikeButtonViewModel = 2;
 }
 
-message SaveButtonViewModel {
+message ButtonViewModel {
   string iconName = 2;
   string title = 3;
   Endpoints.Endpoint onTap = 4;
   string accessibilityText = 5;
   int32 style = 7;
+  bytes trackingParams = 8;
+  bool isFullWidth = 10;
   int32 type = 11;
   int32 buttonSize = 13;
+  optional string accessibilityId = 17;
+  optional string tooltip = 39;
 }

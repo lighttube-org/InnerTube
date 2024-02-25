@@ -4,6 +4,8 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Google.Protobuf;
 using InnerTube.Formatters;
+using InnerTube.Protobuf.Endpoints;
+using InnerTube.Protobuf.Renderers;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
@@ -32,6 +34,35 @@ public static class Utils
 		{
 			return default;
 		}
+	}
+
+	public static string ReadRuns(Text? text, bool includeFormatting = false)
+	{
+		if (text == null) return "";
+
+		if (text.HasSimpleText) return text.SimpleText;
+
+		// TODO: check for .label
+
+		if (text.Runs.Count > 0)
+		{
+			string str = "";
+
+			foreach (Text.Types.Run run in text.Runs)
+			{
+				if (!includeFormatting)
+				{
+					str += run.Text;
+					continue;
+				}
+
+				// todo: apply formatting
+			}
+
+			return str;
+		}
+
+		return text.ToString();
 	}
 
 	public static string ReadText(JObject? richText, bool includeFormatting = false)
@@ -138,7 +169,8 @@ public static class Utils
 		return urls;
 	}
 
-	public static Uri? ParseLiveStoryboardSpec(string? specStr) => specStr is null ? null : new Uri(specStr.Replace("$M", "0"));
+	public static Uri? ParseLiveStoryboardSpec(string? specStr) =>
+		specStr is null ? null : new Uri(specStr.Replace("$M", "0"));
 
 	public static TimeSpan ParseDuration(string duration)
 	{
@@ -202,6 +234,45 @@ public static class Utils
 			"" => ChannelTabs.Search,
 			var _ => ChannelTabs.Home
 		};
+
+	public static string ReadAttributedDescription(
+		VideoSecondaryInfoRenderer.Types.AttributedDescription attributedDescription, bool includeFormatting = false)
+	{
+		if (string.IsNullOrEmpty(attributedDescription.Content)) return "";
+
+		string text = attributedDescription.Content ?? "";
+
+		if (!includeFormatting) return text;
+		if (attributedDescription.CommandRuns.Count == 0) return text;
+
+		foreach (VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun run in attributedDescription
+			         .CommandRuns.Reverse())
+		{
+			string replacement = text.Substring(run.StartIndex, run.Length);
+			switch (run.Command.InnertubeCommand.EndpointTypeCase)
+			{
+				case Endpoint.EndpointTypeOneofCase.UrlEndpoint:
+					replacement = Formatter.FormatUrl(replacement,
+						UnwrapRedirectUrl(run.Command.InnertubeCommand.UrlEndpoint.Url));
+					break;
+
+				case Endpoint.EndpointTypeOneofCase.WatchEndpoint:
+					string url = "https://youtube.com/watch?v=" + run.Command.InnertubeCommand.WatchEndpoint.VideoId;
+					if (run.Command.InnertubeCommand.WatchEndpoint.HasPlaylistId)
+						url += "&list=" + run.Command.InnertubeCommand.WatchEndpoint.PlaylistId;
+					if (run.Command.InnertubeCommand.WatchEndpoint.HasPlayerParams)
+						url += "&pp=" + run.Command.InnertubeCommand.WatchEndpoint.PlayerParams;
+					replacement = Formatter.FormatUrl(replacement, url);
+					break;
+			}
+
+			text = text
+				.Remove(run.StartIndex, run.Length)
+				.Insert(run.StartIndex, replacement);
+		}
+
+		return Formatter.HandleLineBreaks(text);
+	}
 
 	public static string? ReadAttributedText(JObject attributedText, bool includeFormatting = false)
 	{

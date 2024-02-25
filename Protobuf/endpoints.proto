@@ -76,8 +76,8 @@ message WatchEndpoint {
 
   string videoId = 1;
   optional string playlistId = 2;
-  string params = 5;
-  string playerParams = 9;
+  optional string params = 5;
+  optional string playerParams = 9;
   optional bool nofollow = 17;
   optional WatchEndpointSupportedOnesieConfig watchEndpointSupportedOnesieConfig = 79857908;
   optional PrefetchHintConfigWrapper watchEndpointSupportedPrefetchConfig = 68146959;
