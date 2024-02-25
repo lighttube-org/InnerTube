@@ -141,8 +141,8 @@ message SecondaryResults {
 
 message TwoColumnWatchNextResults {
   RendererWrapper results = 1;
-  RendererWrapper secondaryResults = 2;
-  RendererWrapper autoplay = 4;
+  optional RendererWrapper secondaryResults = 2;
+  optional RendererWrapper autoplay = 4;
 }
 
 message SubscribeButtonRenderer {

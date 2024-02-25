@@ -275,6 +275,7 @@ public class PlayerTests
 				.AppendLine($"  Thumbnail: [{avatar.Width}x{avatar.Height}] {avatar.Url}")
 				.AppendLine("  Content: " + Utils.ReadRuns(teaserComment.TeaserContent));
 		}
+
 		/*
 		sb.AppendLine("\n== CHAPTERS");
 		if (next.Chapters != null)
@@ -288,8 +289,13 @@ public class PlayerTests
 		}
 		*/
 		sb.AppendLine("\n== RECOMMENDED");
-		foreach (RendererWrapper? renderer in next.Contents.TwoColumnWatchNextResults.SecondaryResults.SecondaryResults.Results)
-			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
+		// NOTE: for age restricted videos, the first SecondaryResults is null
+		if (next.Contents.TwoColumnWatchNextResults.SecondaryResults != null)
+			foreach (RendererWrapper? renderer in next.Contents.TwoColumnWatchNextResults.SecondaryResults
+				         .SecondaryResults.Results)
+				sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
+		else
+			sb.AppendLine("-> No recommendations");
 
 		Assert.Pass(sb.ToString());
 	}
