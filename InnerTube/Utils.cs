@@ -237,9 +237,9 @@ public static class Utils
 		};
 
 	public static string ReadAttributedDescription(
-		VideoSecondaryInfoRenderer.Types.AttributedDescription attributedDescription, bool includeFormatting = false)
+		VideoSecondaryInfoRenderer.Types.AttributedDescription? attributedDescription, bool includeFormatting = false)
 	{
-		if (string.IsNullOrEmpty(attributedDescription.Content)) return "";
+		if (string.IsNullOrEmpty(attributedDescription?.Content)) return "";
 
 		string text = attributedDescription.Content ?? "";
 
