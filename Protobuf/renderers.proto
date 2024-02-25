@@ -79,9 +79,9 @@ message CompactVideoRenderer {
   Thumbnails thumbnail = 2;
   Endpoints.Text text = 3;
   Endpoints.Text longBylineText = 4;
-  Endpoints.Text publishedTimeText = 5;
+  optional Endpoints.Text publishedTimeText = 5;
   Endpoints.Text viewCountText = 6;
-  Endpoints.Text lengthText = 7;
+  optional Endpoints.Text lengthText = 7;
   Endpoints.Endpoint navigationEndpoint = 8;
   Endpoints.Text shortBylineText = 10;
   repeated RendererWrapper badges = 13;

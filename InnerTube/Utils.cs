@@ -418,10 +418,10 @@ public static class Utils
 					            video.LongBylineText.Runs[0].Text)
 					.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})" + string.Join("",
 						video.OwnerBadges.Select(x => $"\n- {SerializeRenderer(x)}")))
-					.AppendLine("Duration: " + video.LengthText.SimpleText)
+					.AppendLine("Duration: " + video.LengthText?.SimpleText)
 					.AppendLine("ViewCount: " + video.ViewCountText.SimpleText)
 					.AppendLine("ShortViewCount: " + video.ShortViewCountText.SimpleText)
-					.AppendLine("PublishDate: " + video.PublishedTimeText.SimpleText)
+					.AppendLine("PublishDate: " + video.PublishedTimeText?.SimpleText)
 					.AppendLine($"Badges: ({video.Badges.Count})" +
 					            string.Join("", video.Badges.Select(x => $"\n- {SerializeRenderer(x)}")));
 				return sb.ToString();
