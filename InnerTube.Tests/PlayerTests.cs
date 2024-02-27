@@ -237,10 +237,11 @@ public class PlayerTests
 			x.RendererCase == RendererWrapper.RendererOneofCase.VideoPrimaryInfoRenderer).VideoPrimaryInfoRenderer;
 		VideoSecondaryInfoRenderer secondary = firstColumnResults.First(x =>
 			x.RendererCase == RendererWrapper.RendererOneofCase.VideoSecondaryInfoRenderer).VideoSecondaryInfoRenderer;
-		CommentsEntryPointHeaderRenderer commentsEntryPoint = firstColumnResults.First(x =>
-				x.RendererCase == RendererWrapper.RendererOneofCase.ItemSectionRenderer &&
-				x.ItemSectionRenderer.SectionIdentifier == "comments-entry-point").ItemSectionRenderer.Contents[0]
-			.CommentsEntryPointHeaderRenderer;
+		RendererWrapper commentsSection = firstColumnResults.First(x =>
+			x.RendererCase == RendererWrapper.RendererOneofCase.ItemSectionRenderer &&
+			x.ItemSectionRenderer.SectionIdentifier.StartsWith("comment")).ItemSectionRenderer.Contents[0];
+		CommentsEntryPointHeaderRenderer? commentsEntryPoint = commentsSection.CommentsEntryPointHeaderRenderer;
+		MessageRenderer? commentsMessage = commentsSection.MessageRenderer;
 
 		Utils.Formatter = new MarkdownFormatter();
 
@@ -252,28 +253,36 @@ public class PlayerTests
 		              Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.Title) +
 		              $" ({Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.SubscriberCountText)})");
 		sb.AppendLine("DateText: " + Utils.ReadRuns(primary.RelativeDateText));
-		sb.AppendLine("ViewCount: " +
-		              (primary.ViewCount.VideoViewCountRenderer.HasOriginalViewCount &&
-		               primary.ViewCount.VideoViewCountRenderer.OriginalViewCount != 0
-			              ? primary.ViewCount.VideoViewCountRenderer.OriginalViewCount.ToString()
-			              : Utils.ReadRuns(primary.ViewCount.VideoViewCountRenderer.ViewCount)));
+		sb.AppendLine("ViewCount: " + (primary.ViewCount != null
+			? primary.ViewCount.VideoViewCountRenderer.HasOriginalViewCount &&
+			  primary.ViewCount.VideoViewCountRenderer.OriginalViewCount != 0
+				? primary.ViewCount.VideoViewCountRenderer.OriginalViewCount.ToString()
+				: Utils.ReadRuns(primary.ViewCount.VideoViewCountRenderer.ViewCount)
+			: "0"));
 		sb.AppendLine("LikeCount: " + primary.VideoActions.MenuRenderer.TopLevelButtons
 			.First(x => x.RendererCase == RendererWrapper.RendererOneofCase.SegmentedLikeDislikeButtonViewModel)
 			.SegmentedLikeDislikeButtonViewModel.LikeButtonViewModel.LikeButtonViewModel.ToggleButtonViewModel
 			.ToggleButtonViewModel.DefaultButtonViewModel.ButtonViewModel.Title);
 		sb.AppendLine("Description:\n" + Utils.ReadAttributedDescription(secondary.AttributedDescription, true));
 
-		CommentsEntryPointTeaserRenderer? teaserComment =
-			commentsEntryPoint.ContentRenderer?.CommentsEntryPointTeaserRenderer;
-		sb.AppendLine("\n== COMMENTS")
-			.AppendLine("CommentCount: " + Utils.ReadRuns(commentsEntryPoint.CommentCount));
-		if (teaserComment == null) sb.AppendLine("TeaserComment: null");
-		else
+		sb.AppendLine("\n== COMMENTS");
+		if (commentsEntryPoint != null)
 		{
-			Thumbnail avatar = teaserComment.TeaserAvatar.Thumbnails_.First();
-			sb.AppendLine("TeaserComment: ")
-				.AppendLine($"  Thumbnail: [{avatar.Width}x{avatar.Height}] {avatar.Url}")
-				.AppendLine("  Content: " + Utils.ReadRuns(teaserComment.TeaserContent));
+			CommentsEntryPointTeaserRenderer? teaserComment =
+				commentsEntryPoint.ContentRenderer?.CommentsEntryPointTeaserRenderer;
+			sb.AppendLine("CommentCount: " + Utils.ReadRuns(commentsEntryPoint.CommentCount));
+			if (teaserComment == null) sb.AppendLine("TeaserComment: null");
+			else
+			{
+				Thumbnail avatar = teaserComment.TeaserAvatar.Thumbnails_.First();
+				sb.AppendLine("TeaserComment: ")
+					.AppendLine($"  Thumbnail: [{avatar.Width}x{avatar.Height}] {avatar.Url}")
+					.AppendLine("  Content: " + Utils.ReadRuns(teaserComment.TeaserContent));
+			}
+		}
+		else if (commentsMessage != null)
+		{
+			sb.AppendLine("Message: " + Utils.ReadRuns(commentsMessage.Text));
 		}
 
 		sb.AppendLine("\n== CHAPTERS");
@@ -282,8 +291,10 @@ public class PlayerTests
 			?.EngagementPanelSectionListRenderer?.Content?.MacroMarkersListRenderer;
 		if (chapterEngagementPanel != null)
 		{
-			foreach (MacroMarkersListItemRenderer chapter in chapterEngagementPanel.Contents.Select(x => x.MacroMarkersListItemRenderer))
-				sb.AppendLine($"- [{TimeSpan.FromSeconds(chapter.OnTap.WatchEndpoint.StartTimeSeconds)}] {Utils.ReadRuns(chapter.Title)}");
+			foreach (MacroMarkersListItemRenderer chapter in chapterEngagementPanel.Contents.Select(x =>
+				         x.MacroMarkersListItemRenderer))
+				sb.AppendLine(
+					$"- [{TimeSpan.FromSeconds(chapter.OnTap.WatchEndpoint.StartTimeSeconds)}] {Utils.ReadRuns(chapter.Title)}");
 		}
 		else
 		{

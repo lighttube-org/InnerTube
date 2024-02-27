@@ -12,12 +12,14 @@ message RendererWrapper {
     ResultsContainer resultsContainer = 49399797;
     ItemSectionRenderer itemSectionRenderer = 50195462;
     CompactVideoRenderer compactVideoRenderer = 50630979;
+    CompactPlaylistRenderer compactPlaylistRenderer = 50742631;
     PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
     VideoOwnerRenderer videoOwnerRenderer = 51779708;
     SecondaryResults secondaryResults = 51779776;
     TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
+    MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
     ShareButtonViewModel shareButtonViewModel = 65153809;
     MenuRenderer menuRenderer = 66439850;
@@ -26,11 +28,14 @@ message RendererWrapper {
     VideoViewCountRenderer videoViewCountRenderer = 70044402;
     PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
     MetadataRowContainerRenderer metadataRowContainerRenderer = 71271859;
+    PlaylistVideoThumbnailRenderer playlistVideoThumbnailRenderer = 72426341;
     AccessibilityData accessibilityData = 75730170;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
     VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
     EndscreenRenderer endscreenRenderer = 106301526;
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
+    ThumbnailOverlayBottomPanelRenderer thumbnailOverlayBottomPanelRenderer  = 109635582;
+    ThumbnailOverlayHoverTextRenderer thumbnailOverlayHoverTextRenderer  = 107250266;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
     ThumbnailOverlayToggleButtonRenderer thumbnailOverlayToggleButtonRenderer = 128231774;
     MetadataBadgeRenderer metadataBadgeRenderer = 128361622;
@@ -65,6 +70,7 @@ message Autoplay {
 
 message ResultsContainer {
   repeated RendererWrapper results = 1;
+  optional bytes trackingParams = 4;
 }
 
 message ItemSectionRenderer {
@@ -92,6 +98,24 @@ message CompactVideoRenderer {
   RendererWrapper menu = 25;
   repeated RendererWrapper thumbnailOverlays = 32;
   RendererWrapper accessibility = 36;
+}
+
+message CompactPlaylistRenderer {
+  string playlistId = 1;
+  Thumbnails thumbnail = 2;
+  Endpoints.Text title = 3;
+  Endpoints.Text shortBylineText = 4;
+  Endpoints.Text videoCountText = 5;
+  Endpoints.Endpoint navigationEndpoint = 6;
+  Endpoints.Text videoCountShortText = 9;
+  bytes trackingParams = 12;
+  Thumbnails sidebarThumbnails = 13;
+  Endpoints.Text thumbnailText = 15;
+  repeated RendererWrapper badges = 16;
+  string shareUrl = 19;
+  RendererWrapper thumbnailRenderer = 20;
+  Endpoints.Text longBylineText = 21;
+  RendererWrapper thumbnailOverlays = 25;
 }
 
 message PlayerCaptionsTracklistRenderer {
@@ -176,6 +200,11 @@ message PlayerStoryboardSpecRenderer {
   int32 highResolutionRecommendedLevel = 7;
 }
 
+message MessageRenderer {
+  Endpoints.Text text = 1;
+  bytes trackingParams = 4;
+}
+
 message PlayerMicroformatRenderer {
   message Embed {
     string embedUrl = 1;
@@ -194,7 +223,7 @@ message PlayerMicroformatRenderer {
   repeated string availableCountries = 10;
   bool isUnlisted = 11;
   bool hasYpcMetadata = 12;
-  string viewCount = 14;
+  optional string viewCount = 14;
   string category = 15;
   string publishDate = 16;
   string ownerChannelName = 17;
@@ -244,6 +273,11 @@ message PlayerLiveStoryboardSpecRenderer {
 message MetadataRowContainerRenderer {
   int32 collapsedItemCount = 2;
   bytes trackingParams = 4;
+}
+
+message PlaylistVideoThumbnailRenderer {
+  Thumbnails thumbnail = 1;
+  bytes trackingParams = 3;
 }
 
 message VideoPrimaryInfoRenderer {
@@ -324,6 +358,16 @@ message EndscreenElementRenderer {
   InnerTube.Protobuf.Endpoints.Endpoint endpoint = 16;
   string id = 31;
   RendererWrapper thumbnailOverlays = 32;
+}
+
+message ThumbnailOverlayBottomPanelRenderer {
+  Endpoints.Text text = 1;
+  Icon icon = 2;
+}
+
+message ThumbnailOverlayHoverTextRenderer {
+  Endpoints.Text text = 1;
+  Icon icon = 2;
 }
 
 message ThumbnailOverlayTimeStatusRenderer {

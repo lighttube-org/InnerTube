@@ -5,14 +5,22 @@ package InnerTube.Protobuf;
 message Thumbnails {
   repeated Thumbnail thumbnails = 1;
   optional AccessibilityWrapper accessibility = 4;
+  optional Color sampledThumbnailColor = 12;
   optional ColorPalette lightColorPalette = 13;
   optional ColorPalette darkColorPalette = 14;
+  optional ColorPalette vibrantColorPalette = 18;
 }
 
 message Thumbnail {
   string url = 1;
   int32 width = 2;
   int32 height = 3;
+}
+
+message Color {
+  int32 red = 1;
+  int32 green = 2;
+  int32 blue = 3;
 }
 
 message Icon {
@@ -28,10 +36,12 @@ message AccessibilityWrapper {
 }
 
 message ColorPalette {
-  int64 section1Color = 1;
-  int64 section2Color = 2;
-  int64 section3Color = 3;
-  int64 primaryTitleColor = 5;
-  int64 secondaryTitleColor = 6;
-  int64 section4Color = 10;
+  optional int64 section1Color = 1;
+  optional int64 section2Color = 2;
+  optional int64 section3Color = 3;
+  optional int64 primaryTitleColor = 5;
+  optional int64 secondaryTitleColor = 6;
+  optional int64 iconInactiveColor = 9;
+  optional int64 section4Color = 10;
+  optional int64 iconDisabledColor = 12;
 }

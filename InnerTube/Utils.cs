@@ -416,14 +416,25 @@ public static class Utils
 					.AppendLine("Owner: " +
 					            $"[{video.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
 					            video.LongBylineText.Runs[0].Text)
-					.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})" + string.Join("",
-						video.OwnerBadges.Select(x => $"\n- {SerializeRenderer(x)}")))
+					.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
+						video.OwnerBadges.Select(x => $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}")).TrimStart())
 					.AppendLine("Duration: " + video.LengthText?.SimpleText)
 					.AppendLine("ViewCount: " + video.ViewCountText.SimpleText)
 					.AppendLine("ShortViewCount: " + video.ShortViewCountText.SimpleText)
 					.AppendLine("PublishDate: " + video.PublishedTimeText?.SimpleText)
-					.AppendLine($"Badges: ({video.Badges.Count})" +
-					            string.Join("", video.Badges.Select(x => $"\n- {SerializeRenderer(x)}")));
+					.AppendLine($"Badges: ({video.Badges.Count})\n- " +
+					            string.Join("", video.Badges.Select(x => $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}")).TrimStart());
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.MetadataBadgeRenderer:
+			{
+				MetadataBadgeRenderer badge = renderer.MetadataBadgeRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[MetadataBadgeRenderer]")
+					.AppendLine("Icon: " + badge.Icon?.IconType ?? "<no icon>")
+					.AppendLine("Style: " + badge.Style)
+					.AppendLine("Label: " + badge.Label ?? "<no label>")
+					.AppendLine("Tooltip: " + badge.Tooltip ?? "<no tooltip>");
 				return sb.ToString();
 			}
 			default:

@@ -10,6 +10,7 @@ import "general.proto";
 message Text {
   message Run {
     string text = 1;
+    bool bold = 2;
     optional Endpoint navigationEndpoint = 5;
   }
 
@@ -73,6 +74,13 @@ message WatchEndpoint {
     // pretty sure we need a oneof here
     optional PrefetchHintConfig prefetchHintConfig = 68429767;
   }
+  message LoggingContext {
+    message VssLoggingContext {
+      string serializedContextData = 1;
+    }
+
+    optional VssLoggingContext vssLoggingContext = 1;
+  }
 
   string videoId = 1;
   optional string playlistId = 2;
@@ -83,6 +91,7 @@ message WatchEndpoint {
   optional bool nofollow = 17;
   optional WatchEndpointSupportedOnesieConfig watchEndpointSupportedOnesieConfig = 79857908;
   optional PrefetchHintConfigWrapper watchEndpointSupportedPrefetchConfig = 68146959;
+  optional LoggingContext loggingContext = 26;
 }
 
 message UrlEndpoint {
