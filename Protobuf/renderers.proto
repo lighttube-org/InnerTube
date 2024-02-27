@@ -17,6 +17,7 @@ message RendererWrapper {
     VideoOwnerRenderer videoOwnerRenderer = 51779708;
     SecondaryResults secondaryResults = 51779776;
     TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
+    CompactRadioRenderer compactRadioRenderer = 53170873;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
     MessageRenderer messageRenderer = 58508690;
@@ -172,6 +173,21 @@ message TwoColumnWatchNextResults {
   RendererWrapper results = 1;
   optional RendererWrapper secondaryResults = 2;
   optional RendererWrapper autoplay = 4;
+}
+
+message CompactRadioRenderer {
+  string playlistId = 1;
+  Thumbnails thumbnail = 2;
+  Endpoints.Text title = 3;
+  Endpoints.Endpoint navigationEndpoint = 5;
+  Endpoints.Text videoCountText = 7;
+  Endpoints.Endpoint secondaryNavigationEndpoint = 9;
+  Endpoints.Text longBylineText = 11;
+  bytes trackingParams = 12;
+  Endpoints.Text thumbnailText = 14;
+  Endpoints.Text videoCountShortText = 15;
+  string shareUrl = 17;
+  RendererWrapper thumbnailOverlays = 19;
 }
 
 message SubscribeButtonRenderer {
