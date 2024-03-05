@@ -426,6 +426,32 @@ public static class Utils
 					            string.Join("", video.Badges.Select(x => $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}")).TrimStart());
 				return sb.ToString();
 			}
+			case RendererWrapper.RendererOneofCase.CompactRadioRenderer:
+			{
+				CompactRadioRenderer radio = renderer.CompactRadioRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[CompactVideoRenderer] [{radio.PlaylistId}] {ReadRuns(radio.Title)}")
+					.AppendLine($"Thumbnail: ({radio.Thumbnail.Thumbnails_.Count})" + string.Join("",
+						radio.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
+					.AppendLine("Subtitle: " + ReadRuns(radio.LongBylineText))
+					.AppendLine("VideoCount: " + radio.VideoCountText?.SimpleText)
+					.AppendLine("VideoCountShort: " + radio.VideoCountShortText?.SimpleText);
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.CompactPlaylistRenderer:
+			{
+				CompactPlaylistRenderer playlist = renderer.CompactPlaylistRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[CompactVideoRenderer] [{playlist.PlaylistId}] {ReadRuns(playlist.Title)}")
+					.AppendLine($"Thumbnail: ({playlist.Thumbnail.Thumbnails_.Count})" + string.Join("",
+						playlist.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
+					.AppendLine("Owner: " +
+					            $"[{playlist.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+					            playlist.LongBylineText.Runs[0].Text)
+					.AppendLine("VideoCount: " + playlist.VideoCountText?.SimpleText)
+					.AppendLine("VideoCountShort: " + playlist.VideoCountShortText?.SimpleText);
+				return sb.ToString();
+			}
 			case RendererWrapper.RendererOneofCase.MetadataBadgeRenderer:
 			{
 				MetadataBadgeRenderer badge = renderer.MetadataBadgeRenderer;
@@ -436,6 +462,10 @@ public static class Utils
 					.AppendLine("Label: " + badge.Label ?? "<no label>")
 					.AppendLine("Tooltip: " + badge.Tooltip ?? "<no tooltip>");
 				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.ContinuationItemRenderer:
+			{
+				return "[ContinuationItemRenderer]";
 			}
 			default:
 				return $"[Unknown RendererCase={renderer.RendererCase}]";
