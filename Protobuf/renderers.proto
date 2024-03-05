@@ -162,6 +162,7 @@ message VideoOwnerRenderer {
   Endpoints.Endpoint navigationEndpoint = 4;
   Endpoints.Text subscriberCountText = 5;
   bytes trackingParams = 8;
+  repeated RendererWrapper badges = 10;
 }
 
 message SecondaryResults {
@@ -315,6 +316,8 @@ message VideoPrimaryInfoRenderer {
   Endpoints.Text title = 1;
   RendererWrapper viewCount = 3;
   RendererWrapper videoActions = 4;
+  bytes trackingParams = 7;
+  repeated RendererWrapper badges = 11;
   Endpoints.Text dateText = 14;
   Endpoints.Text relativeDateText = 21;
 }
