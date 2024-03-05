@@ -20,6 +20,7 @@ message RendererWrapper {
     CompactRadioRenderer compactRadioRenderer = 53170873;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
+    CompactMovieRenderer compactMovieRenderer = 58485276;
     MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
     ShareButtonViewModel shareButtonViewModel = 65153809;
@@ -214,6 +215,20 @@ message PlayerStoryboardSpecRenderer {
   string spec = 1;
   int32 recommendedLevel = 3;
   int32 highResolutionRecommendedLevel = 7;
+}
+
+message CompactMovieRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Endpoints.Text title = 3;
+  Endpoints.Text shortBylineText = 5;
+  Endpoints.Text lengthText = 9;
+  Endpoints.Endpoint navigationEndpoint = 10;
+  repeated RendererWrapper badges = 11;
+  bytes trackingParams = 16;
+  bool useVerticalPoster = 29;
+  Endpoints.Text topMetadataItems = 30;
+  repeated RendererWrapper thumbnailOverlays = 33; 
 }
 
 message MessageRenderer {

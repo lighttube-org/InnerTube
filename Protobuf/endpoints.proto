@@ -12,6 +12,12 @@ message Text {
     string text = 1;
     bool bold = 2;
     optional Endpoint navigationEndpoint = 5;
+    optional LoggingDirectives loggingDirectives = 999;
+  }
+  
+  message LoggingDirectives {
+    bytes trackingParams = 1;
+    google.protobuf.Int32Value visibility = 4;
   }
 
   repeated Run runs = 1;

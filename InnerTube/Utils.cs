@@ -417,20 +417,25 @@ public static class Utils
 					            $"[{video.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
 					            video.LongBylineText.Runs[0].Text)
 					.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
-						video.OwnerBadges.Select(x => $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}")).TrimStart())
+							video.OwnerBadges.Select(x =>
+								$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+						.TrimStart())
 					.AppendLine("Duration: " + video.LengthText?.SimpleText)
 					.AppendLine("ViewCount: " + video.ViewCountText.SimpleText)
 					.AppendLine("ShortViewCount: " + video.ShortViewCountText.SimpleText)
 					.AppendLine("PublishDate: " + video.PublishedTimeText?.SimpleText)
 					.AppendLine($"Badges: ({video.Badges.Count})\n- " +
-					            string.Join("", video.Badges.Select(x => $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}")).TrimStart());
+					            string.Join("",
+							            video.Badges.Select(x =>
+								            $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+						            .TrimStart());
 				return sb.ToString();
 			}
 			case RendererWrapper.RendererOneofCase.CompactRadioRenderer:
 			{
 				CompactRadioRenderer radio = renderer.CompactRadioRenderer;
 				StringBuilder sb = new();
-				sb.AppendLine($"[CompactVideoRenderer] [{radio.PlaylistId}] {ReadRuns(radio.Title)}")
+				sb.AppendLine($"[CompactRadioRenderer] [{radio.PlaylistId}] {ReadRuns(radio.Title)}")
 					.AppendLine($"Thumbnail: ({radio.Thumbnail.Thumbnails_.Count})" + string.Join("",
 						radio.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
 					.AppendLine("Subtitle: " + ReadRuns(radio.LongBylineText))
@@ -442,7 +447,7 @@ public static class Utils
 			{
 				CompactPlaylistRenderer playlist = renderer.CompactPlaylistRenderer;
 				StringBuilder sb = new();
-				sb.AppendLine($"[CompactVideoRenderer] [{playlist.PlaylistId}] {ReadRuns(playlist.Title)}")
+				sb.AppendLine($"[CompactPlaylistRenderer] [{playlist.PlaylistId}] {ReadRuns(playlist.Title)}")
 					.AppendLine($"Thumbnail: ({playlist.Thumbnail.Thumbnails_.Count})" + string.Join("",
 						playlist.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
 					.AppendLine("Owner: " +
@@ -450,6 +455,25 @@ public static class Utils
 					            playlist.LongBylineText.Runs[0].Text)
 					.AppendLine("VideoCount: " + playlist.VideoCountText?.SimpleText)
 					.AppendLine("VideoCountShort: " + playlist.VideoCountShortText?.SimpleText);
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.CompactMovieRenderer:
+			{
+				CompactMovieRenderer movie = renderer.CompactMovieRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[CompactMovieRenderer] [{movie.VideoId}] {ReadRuns(movie.Title)}")
+					.AppendLine($"Thumbnail: ({movie.Thumbnail.Thumbnails_.Count})" + string.Join("",
+						movie.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
+					.AppendLine("TopMetadataItems: " + ReadRuns(movie.TopMetadataItems))
+					.AppendLine("Owner: " +
+					            $"[{movie.ShortBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+					            movie.ShortBylineText.Runs[0].Text)
+					.AppendLine("Length: " + movie.LengthText?.SimpleText)
+					.AppendLine($"Badges: ({movie.Badges.Count})\n" +
+					            string.Join("\n",
+							            movie.Badges.Select(x =>
+								            $"- {string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}")).TrimStart()}"))
+						            .TrimStart());
 				return sb.ToString();
 			}
 			case RendererWrapper.RendererOneofCase.MetadataBadgeRenderer:
