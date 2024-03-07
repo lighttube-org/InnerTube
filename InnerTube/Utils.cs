@@ -5,8 +5,8 @@ using System.Text.RegularExpressions;
 using System.Web;
 using Google.Protobuf;
 using InnerTube.Formatters;
-using InnerTube.Protobuf.Endpoints;
-using InnerTube.Protobuf.Renderers;
+using InnerTube.Protobuf;
+using InnerTube.Protobuf.Params;
 using Newtonsoft.Json.Linq;
 
 namespace InnerTube;

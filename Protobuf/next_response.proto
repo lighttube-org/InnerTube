@@ -2,14 +2,14 @@ syntax = "proto3";
 
 package InnerTube.Protobuf.Responses;
 
-import "renderers.proto";
 import "general.proto";
-import "endpoints.proto";
 
 message NextResponse {
-  InnerTube.Protobuf.Renderers.RendererWrapper contents = 7;
-  InnerTube.Protobuf.Endpoints.Endpoint currentVideoEndpoint = 9;
-  repeated InnerTube.Protobuf.Renderers.RendererWrapper engagementPanels = 25;
+  RendererWrapper contents = 7;
+  Endpoint currentVideoEndpoint = 9;
+  bytes trackingParams = 13;
+  repeated Endpoint onResponseReceivedEndpoints = 21;
+  repeated RendererWrapper engagementPanels = 25;
   FrameworkUpdates frameworkUpdates = 777;
 }
 

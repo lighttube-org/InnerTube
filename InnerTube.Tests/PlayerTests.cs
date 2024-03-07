@@ -4,7 +4,7 @@ using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
 using InnerTube.Formatters;
 using InnerTube.Protobuf;
-using InnerTube.Protobuf.Renderers;
+using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
 
 namespace InnerTube.Tests;
@@ -262,7 +262,7 @@ public class PlayerTests
 		sb.AppendLine("LikeCount: " + primary.VideoActions.MenuRenderer.TopLevelButtons
 			.First(x => x.RendererCase == RendererWrapper.RendererOneofCase.SegmentedLikeDislikeButtonViewModel)
 			.SegmentedLikeDislikeButtonViewModel.LikeButtonViewModel.LikeButtonViewModel.ToggleButtonViewModel
-			.ToggleButtonViewModel.DefaultButtonViewModel.ButtonViewModel.Title);
+			.ToggleButtonViewModel.DefaultButtonViewModel.ButtonViewModel2.Title);
 		sb.AppendLine("Description:\n" + Utils.ReadAttributedDescription(secondary.AttributedDescription, true));
 
 		sb.AppendLine("\n== COMMENTS");
@@ -334,7 +334,8 @@ public class PlayerTests
 	public async Task GetVideoNextWithPlaylist(string videoId, string playlistId, int? playlistIndex,
 		string? playlistParams)
 	{
-		NextResponse next = await _innerTube.GetNextAsync(videoId, true, true, playlistId, playlistIndex, playlistParams);
+		NextResponse next =
+			await _innerTube.GetNextAsync(videoId, true, true, playlistId, playlistIndex, playlistParams);
 		if (next.Contents.TwoColumnWatchNextResults.Playlist == null)
 		{
 			Assert.Fail("Playlist is null");
@@ -344,7 +345,8 @@ public class PlayerTests
 		Playlist playlist = next.Contents.TwoColumnWatchNextResults.Playlist.Playlist!;
 		StringBuilder sb = new();
 		sb.AppendLine($"[{playlist.PlaylistId}] {playlist.Title}")
-			.AppendLine($"[{playlist.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " + playlist.LongBylineText.Runs[0].Text)
+			.AppendLine($"[{playlist.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+			            playlist.LongBylineText.Runs[0].Text)
 			.AppendLine($"{playlist.CurrentIndex} ({playlist.LocalCurrentIndex}) / {playlist.TotalVideos}")
 			.AppendLine($"IsCourse: {playlist.IsCourse}")
 			.AppendLine($"IsInfinite: {playlist.IsInfinite}");
@@ -412,19 +414,18 @@ public class PlayerTests
 		*/
 	}
 
-	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
-	public async Task GetVideoCommentsProtobuf(string videoId)
+	[TestCase("BaW_jenozKc", 0, Description = "Regular video comments")]
+	[TestCase("BaW_jenozKc", 1, Description = "Regular video comments")]
+	public async Task GetVideoCommentsProtobuf(string videoId, int sortOrder)
 	{
-		/*
-		InnerTubeContinuationResponse comments =
-			await _innerTube.GetVideoCommentsAsync(videoId, CommentsContext.Types.SortOrder.TopComments);
+		NextResponse comments = await _innerTube.ContinueNextAsync(Utils.PackCommentsContinuation(videoId,
+			(CommentsContext.Types.SortOrder)sortOrder));
 
 		StringBuilder sb = new();
-		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
-		sb.AppendLine($"\nContinuation: {comments.Continuation?[..20]}...");
+//		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
+//		sb.AppendLine($"\nContinuation: {comments.Continuation?[..20]}...");
 
 		Assert.Pass(sb.ToString());
-		*/
 	}
 
 

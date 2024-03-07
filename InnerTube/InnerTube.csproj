@@ -27,16 +27,5 @@
 
     <ItemGroup>
         <None Include="../README.md" Pack="true" PackagePath="" />
-        <None Include="../youtube.proto" Pack="false" PackagePath="" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Content Include="..\Protobuf\player_response.proto">
-        <Link>ProtobufFiles\player_response.proto</Link>
-      </Content>
-      <Content Include="..\Protobuf\request.proto">
-        <Link>ProtobufFiles\request.proto</Link>
-      </Content>
-    </ItemGroup>
-
 </Project>

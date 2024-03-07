@@ -25,21 +25,22 @@ namespace InnerTube.Protobuf.Responses {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChNuZXh0X3Jlc3BvbnNlLnByb3RvEhxJbm5lclR1YmUuUHJvdG9idWYuUmVz",
-            "cG9uc2VzGg9yZW5kZXJlcnMucHJvdG8aDWdlbmVyYWwucHJvdG8aD2VuZHBv",
-            "aW50cy5wcm90byKpAgoMTmV4dFJlc3BvbnNlEj8KCGNvbnRlbnRzGAcgASgL",
-            "Mi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBw",
-            "ZXISRAoUY3VycmVudFZpZGVvRW5kcG9pbnQYCSABKAsyJi5Jbm5lclR1YmUu",
-            "UHJvdG9idWYuRW5kcG9pbnRzLkVuZHBvaW50EkcKEGVuZ2FnZW1lbnRQYW5l",
-            "bHMYGSADKAsyLS5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRl",
-            "cmVyV3JhcHBlchJJChBmcmFtZXdvcmtVcGRhdGVzGIkGIAEoCzIuLklubmVy",
-            "VHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuRnJhbWV3b3JrVXBkYXRlcyJeChBG",
-            "cmFtZXdvcmtVcGRhdGVzEkoKEWVudGl0eUJhdGNoVXBkYXRlGAEgASgLMi8u",
-            "SW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5FbnRpdHlCYXRjaFVwZGF0",
-            "ZSITChFFbnRpdHlCYXRjaFVwZGF0ZWIGcHJvdG8z"));
+            "cG9uc2VzGg1nZW5lcmFsLnByb3RvIuYCCgxOZXh0UmVzcG9uc2USNQoIY29u",
+            "dGVudHMYByABKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJXcmFw",
+            "cGVyEjoKFGN1cnJlbnRWaWRlb0VuZHBvaW50GAkgASgLMhwuSW5uZXJUdWJl",
+            "LlByb3RvYnVmLkVuZHBvaW50EhYKDnRyYWNraW5nUGFyYW1zGA0gASgMEkEK",
+            "G29uUmVzcG9uc2VSZWNlaXZlZEVuZHBvaW50cxgVIAMoCzIcLklubmVyVHVi",
+            "ZS5Qcm90b2J1Zi5FbmRwb2ludBI9ChBlbmdhZ2VtZW50UGFuZWxzGBkgAygL",
+            "MiMuSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVyV3JhcHBlchJJChBmcmFt",
+            "ZXdvcmtVcGRhdGVzGIkGIAEoCzIuLklubmVyVHViZS5Qcm90b2J1Zi5SZXNw",
+            "b25zZXMuRnJhbWV3b3JrVXBkYXRlcyJeChBGcmFtZXdvcmtVcGRhdGVzEkoK",
+            "EWVudGl0eUJhdGNoVXBkYXRlGAEgASgLMi8uSW5uZXJUdWJlLlByb3RvYnVm",
+            "LlJlc3BvbnNlcy5FbnRpdHlCYXRjaFVwZGF0ZSITChFFbnRpdHlCYXRjaFVw",
+            "ZGF0ZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor, global::InnerTube.Protobuf.GeneralReflection.Descriptor, global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.NextResponse), global::InnerTube.Protobuf.Responses.NextResponse.Parser, new[]{ "Contents", "CurrentVideoEndpoint", "EngagementPanels", "FrameworkUpdates" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.NextResponse), global::InnerTube.Protobuf.Responses.NextResponse.Parser, new[]{ "Contents", "CurrentVideoEndpoint", "TrackingParams", "OnResponseReceivedEndpoints", "EngagementPanels", "FrameworkUpdates" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.FrameworkUpdates), global::InnerTube.Protobuf.Responses.FrameworkUpdates.Parser, new[]{ "EntityBatchUpdate" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.EntityBatchUpdate), global::InnerTube.Protobuf.Responses.EntityBatchUpdate.Parser, null, null, null, null, null)
           }));
@@ -85,6 +86,8 @@ namespace InnerTube.Protobuf.Responses {
     public NextResponse(NextResponse other) : this() {
       contents_ = other.contents_ != null ? other.contents_.Clone() : null;
       currentVideoEndpoint_ = other.currentVideoEndpoint_ != null ? other.currentVideoEndpoint_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      onResponseReceivedEndpoints_ = other.onResponseReceivedEndpoints_.Clone();
       engagementPanels_ = other.engagementPanels_.Clone();
       frameworkUpdates_ = other.frameworkUpdates_ != null ? other.frameworkUpdates_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
@@ -98,10 +101,10 @@ namespace InnerTube.Protobuf.Responses {
 
     /// <summary>Field number for the "contents" field.</summary>
     public const int ContentsFieldNumber = 7;
-    private global::InnerTube.Protobuf.Renderers.RendererWrapper contents_;
+    private global::InnerTube.Protobuf.RendererWrapper contents_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Renderers.RendererWrapper Contents {
+    public global::InnerTube.Protobuf.RendererWrapper Contents {
       get { return contents_; }
       set {
         contents_ = value;
@@ -110,24 +113,47 @@ namespace InnerTube.Protobuf.Responses {
 
     /// <summary>Field number for the "currentVideoEndpoint" field.</summary>
     public const int CurrentVideoEndpointFieldNumber = 9;
-    private global::InnerTube.Protobuf.Endpoints.Endpoint currentVideoEndpoint_;
+    private global::InnerTube.Protobuf.Endpoint currentVideoEndpoint_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Endpoints.Endpoint CurrentVideoEndpoint {
+    public global::InnerTube.Protobuf.Endpoint CurrentVideoEndpoint {
       get { return currentVideoEndpoint_; }
       set {
         currentVideoEndpoint_ = value;
       }
     }
 
-    /// <summary>Field number for the "engagementPanels" field.</summary>
-    public const int EngagementPanelsFieldNumber = 25;
-    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Renderers.RendererWrapper> _repeated_engagementPanels_codec
-        = pb::FieldCodec.ForMessage(202, global::InnerTube.Protobuf.Renderers.RendererWrapper.Parser);
-    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> engagementPanels_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper>();
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 13;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public pbc::RepeatedField<global::InnerTube.Protobuf.Renderers.RendererWrapper> EngagementPanels {
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "onResponseReceivedEndpoints" field.</summary>
+    public const int OnResponseReceivedEndpointsFieldNumber = 21;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Endpoint> _repeated_onResponseReceivedEndpoints_codec
+        = pb::FieldCodec.ForMessage(170, global::InnerTube.Protobuf.Endpoint.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Endpoint> onResponseReceivedEndpoints_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Endpoint>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Endpoint> OnResponseReceivedEndpoints {
+      get { return onResponseReceivedEndpoints_; }
+    }
+
+    /// <summary>Field number for the "engagementPanels" field.</summary>
+    public const int EngagementPanelsFieldNumber = 25;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.RendererWrapper> _repeated_engagementPanels_codec
+        = pb::FieldCodec.ForMessage(202, global::InnerTube.Protobuf.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.RendererWrapper> engagementPanels_ = new pbc::RepeatedField<global::InnerTube.Protobuf.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.RendererWrapper> EngagementPanels {
       get { return engagementPanels_; }
     }
 
@@ -160,6 +186,8 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (!object.Equals(Contents, other.Contents)) return false;
       if (!object.Equals(CurrentVideoEndpoint, other.CurrentVideoEndpoint)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if(!onResponseReceivedEndpoints_.Equals(other.onResponseReceivedEndpoints_)) return false;
       if(!engagementPanels_.Equals(other.engagementPanels_)) return false;
       if (!object.Equals(FrameworkUpdates, other.FrameworkUpdates)) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -171,6 +199,8 @@ namespace InnerTube.Protobuf.Responses {
       int hash = 1;
       if (contents_ != null) hash ^= Contents.GetHashCode();
       if (currentVideoEndpoint_ != null) hash ^= CurrentVideoEndpoint.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      hash ^= onResponseReceivedEndpoints_.GetHashCode();
       hash ^= engagementPanels_.GetHashCode();
       if (frameworkUpdates_ != null) hash ^= FrameworkUpdates.GetHashCode();
       if (_unknownFields != null) {
@@ -199,6 +229,11 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(74);
         output.WriteMessage(CurrentVideoEndpoint);
       }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(106);
+        output.WriteBytes(TrackingParams);
+      }
+      onResponseReceivedEndpoints_.WriteTo(output, _repeated_onResponseReceivedEndpoints_codec);
       engagementPanels_.WriteTo(output, _repeated_engagementPanels_codec);
       if (frameworkUpdates_ != null) {
         output.WriteRawTag(202, 48);
@@ -222,6 +257,11 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(74);
         output.WriteMessage(CurrentVideoEndpoint);
       }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(106);
+        output.WriteBytes(TrackingParams);
+      }
+      onResponseReceivedEndpoints_.WriteTo(ref output, _repeated_onResponseReceivedEndpoints_codec);
       engagementPanels_.WriteTo(ref output, _repeated_engagementPanels_codec);
       if (frameworkUpdates_ != null) {
         output.WriteRawTag(202, 48);
@@ -243,6 +283,10 @@ namespace InnerTube.Protobuf.Responses {
       if (currentVideoEndpoint_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(CurrentVideoEndpoint);
       }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      size += onResponseReceivedEndpoints_.CalculateSize(_repeated_onResponseReceivedEndpoints_codec);
       size += engagementPanels_.CalculateSize(_repeated_engagementPanels_codec);
       if (frameworkUpdates_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(FrameworkUpdates);
@@ -261,16 +305,20 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (other.contents_ != null) {
         if (contents_ == null) {
-          Contents = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+          Contents = new global::InnerTube.Protobuf.RendererWrapper();
         }
         Contents.MergeFrom(other.Contents);
       }
       if (other.currentVideoEndpoint_ != null) {
         if (currentVideoEndpoint_ == null) {
-          CurrentVideoEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+          CurrentVideoEndpoint = new global::InnerTube.Protobuf.Endpoint();
         }
         CurrentVideoEndpoint.MergeFrom(other.CurrentVideoEndpoint);
       }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      onResponseReceivedEndpoints_.Add(other.onResponseReceivedEndpoints_);
       engagementPanels_.Add(other.engagementPanels_);
       if (other.frameworkUpdates_ != null) {
         if (frameworkUpdates_ == null) {
@@ -295,16 +343,24 @@ namespace InnerTube.Protobuf.Responses {
             break;
           case 58: {
             if (contents_ == null) {
-              Contents = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Contents = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Contents);
             break;
           }
           case 74: {
             if (currentVideoEndpoint_ == null) {
-              CurrentVideoEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+              CurrentVideoEndpoint = new global::InnerTube.Protobuf.Endpoint();
             }
             input.ReadMessage(CurrentVideoEndpoint);
+            break;
+          }
+          case 106: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 170: {
+            onResponseReceivedEndpoints_.AddEntriesFrom(input, _repeated_onResponseReceivedEndpoints_codec);
             break;
           }
           case 202: {
@@ -335,16 +391,24 @@ namespace InnerTube.Protobuf.Responses {
             break;
           case 58: {
             if (contents_ == null) {
-              Contents = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Contents = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Contents);
             break;
           }
           case 74: {
             if (currentVideoEndpoint_ == null) {
-              CurrentVideoEndpoint = new global::InnerTube.Protobuf.Endpoints.Endpoint();
+              CurrentVideoEndpoint = new global::InnerTube.Protobuf.Endpoint();
             }
             input.ReadMessage(CurrentVideoEndpoint);
+            break;
+          }
+          case 106: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 170: {
+            onResponseReceivedEndpoints_.AddEntriesFrom(ref input, _repeated_onResponseReceivedEndpoints_codec);
             break;
           }
           case 202: {

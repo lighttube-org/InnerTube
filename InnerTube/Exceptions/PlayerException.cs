@@ -1,5 +1,4 @@
-﻿using InnerTube.Protobuf.Requests;
-using InnerTube.Protobuf.Responses;
+﻿using InnerTube.Protobuf.Responses;
 
 namespace InnerTube.Exceptions;
 

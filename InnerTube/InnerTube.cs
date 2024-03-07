@@ -1,8 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json.Nodes;
 using InnerTube.Exceptions;
-using InnerTube.Protobuf.Renderers;
+using InnerTube.Protobuf;
 using InnerTube.Protobuf.Responses;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -162,5 +161,12 @@ public class InnerTube
 			}
 		}
 		return next;
+	}
+
+	public async Task<NextResponse> ContinueNextAsync(string continuation, string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+		return NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
 	}
 }

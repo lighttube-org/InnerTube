@@ -25,61 +25,60 @@ namespace InnerTube.Protobuf.Responses {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChVwbGF5ZXJfcmVzcG9uc2UucHJvdG8SHElubmVyVHViZS5Qcm90b2J1Zi5S",
-            "ZXNwb25zZXMaD3JlbmRlcmVycy5wcm90bxoNZ2VuZXJhbC5wcm90byK8BAoO",
-            "UGxheWVyUmVzcG9uc2USSgoRcGxheWFiaWxpdHlTdGF0dXMYAiABKAsyLy5J",
-            "bm5lclR1YmUuUHJvdG9idWYuUmVzcG9uc2VzLlBsYXlhYmlsaXR5U3RhdHVz",
-            "EkIKDXN0cmVhbWluZ0RhdGEYBCABKAsyKy5Jbm5lclR1YmUuUHJvdG9idWYu",
-            "UmVzcG9uc2VzLlN0cmVhbWluZ0RhdGESRAoIY2FwdGlvbnMYCiABKAsyLS5J",
-            "bm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJzLlJlbmRlcmVyV3JhcHBlckgA",
-            "iAEBEkAKDHZpZGVvRGV0YWlscxgLIAEoCzIqLklubmVyVHViZS5Qcm90b2J1",
-            "Zi5SZXNwb25zZXMuVmlkZW9EZXRhaWxzEkcKC3N0b3J5Ym9hcmRzGBAgASgL",
-            "Mi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5kZXJlcldyYXBw",
-            "ZXJIAYgBARJHCgttaWNyb2Zvcm1hdBgTIAEoCzItLklubmVyVHViZS5Qcm90",
-            "b2J1Zi5SZW5kZXJlcnMuUmVuZGVyZXJXcmFwcGVySAKIAQESRQoJZW5kc2Ny",
-            "ZWVuGCAgASgLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVycy5SZW5k",
-            "ZXJlcldyYXBwZXJIA4gBAUILCglfY2FwdGlvbnNCDgoMX3N0b3J5Ym9hcmRz",
-            "Qg4KDF9taWNyb2Zvcm1hdEIMCgpfZW5kc2NyZWVuIsMCChFQbGF5YWJpbGl0",
-            "eVN0YXR1cxJGCgZzdGF0dXMYASABKA4yNi5Jbm5lclR1YmUuUHJvdG9idWYu",
-            "UmVzcG9uc2VzLlBsYXlhYmlsaXR5U3RhdHVzLlN0YXR1cxITCgZyZWFzb24Y",
-            "AiABKAlIAIgBARIcCg9wbGF5YWJsZUluRW1iZWQYCSABKAhIAYgBARIWCglz",
-            "dWJyZWFzb24YFiABKAlIAogBARIaCg1jb250ZXh0UGFyYW1zGB8gASgJSAOI",
-            "AQEiQAoGU3RhdHVzEgYKAk9LEAASEgoOTE9HSU5fUkVRVUlSRUQQAxIaChZD",
-            "T05URU5UX0NIRUNLX1JFUVVJUkVEEARCCQoHX3JlYXNvbkISChBfcGxheWFi",
-            "bGVJbkVtYmVkQgwKCl9zdWJyZWFzb25CEAoOX2NvbnRleHRQYXJhbXMigQIK",
-            "DVN0cmVhbWluZ0RhdGESGAoQZXhwaXJlc0luU2Vjb25kcxgBIAEoBRI1Cgdm",
-            "b3JtYXRzGAIgAygLMiQuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5G",
-            "b3JtYXQSPQoPYWRhcHRpdmVGb3JtYXRzGAMgAygLMiQuSW5uZXJUdWJlLlBy",
-            "b3RvYnVmLlJlc3BvbnNlcy5Gb3JtYXQSHAoPZGFzaE1hbmlmZXN0VXJsGAQg",
-            "ASgJSACIAQESGwoOaGxzTWFuaWZlc3RVcmwYBSABKAlIAYgBAUISChBfZGFz",
-            "aE1hbmlmZXN0VXJsQhEKD19obHNNYW5pZmVzdFVybCKwBQoGRm9ybWF0EgwK",
-            "BGl0YWcYASABKAUSCwoDdXJsGAIgASgJEgwKBG1pbWUYBSABKAkSDwoHYml0",
-            "cmF0ZRgGIAEoBRINCgV3aWR0aBgHIAEoBRIOCgZoZWlnaHQYCCABKAUSOwoJ",
-            "aW5pdFJhbmdlGAkgASgLMiMuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNl",
-            "cy5SYW5nZUgAiAEBEjwKCmluZGV4UmFuZ2UYCiABKAsyIy5Jbm5lclR1YmUu",
-            "UHJvdG9idWYuUmVzcG9uc2VzLlJhbmdlSAGIAQESFAoMbGFzdE1vZGlmaWVk",
-            "GAsgASgEEhUKDWNvbnRlbnRMZW5ndGgYDCABKAQSDwoHcXVhbGl0eRgQIAEo",
-            "CRILCgNmcHMYGSABKAUSEgoFeHRhZ3MYFyABKAxIAogBARIUCgxxdWFsaXR5",
-            "TGFiZWwYGiABKAkSQQoKYXVkaW9UcmFjaxgcIAEoCzIoLklubmVyVHViZS5Q",
-            "cm90b2J1Zi5SZXNwb25zZXMuQXVkaW9UcmFja0gDiAEBEhYKDmF2ZXJhZ2VC",
-            "aXRyYXRlGB8gASgFEhEKCWNvbG9ySW5mbxghIAEoDBIXCg9oaWdoUmVwbGlj",
-            "YXRpb24YJyABKAgSGAoQYXBwcm94RHVyYXRpb25NcxgsIAEoBRIcCg9hdWRp",
-            "b1NhbXBsZVJhdGUYLSABKAVIBIgBARIaCg1hdWRpb0NoYW5uZWxzGC4gASgF",
-            "SAWIAQESFwoKbG91ZG5lc3NEYhgvIAEoAkgGiAEBQgwKCl9pbml0UmFuZ2VC",
-            "DQoLX2luZGV4UmFuZ2VCCAoGX3h0YWdzQg0KC19hdWRpb1RyYWNrQhIKEF9h",
-            "dWRpb1NhbXBsZVJhdGVCEAoOX2F1ZGlvQ2hhbm5lbHNCDQoLX2xvdWRuZXNz",
-            "RGIiIwoFUmFuZ2USDQoFc3RhcnQYAyABKAUSCwoDZW5kGAQgASgFIkUKCkF1",
-            "ZGlvVHJhY2sSEwoLZGlzcGxheU5hbWUYBCABKAkSCgoCaWQYBSABKAkSFgoO",
-            "YXVkaW9Jc0RlZmF1bHQYBiABKAgi4gIKDFZpZGVvRGV0YWlscxIPCgd2aWRl",
-            "b0lkGAEgASgJEg0KBXRpdGxlGA8gASgJEhUKDWxlbmd0aFNlY29uZHMYECAB",
-            "KAUSEAoIa2V5d29yZHMYEiADKAkSEQoJY2hhbm5lbElkGBMgASgJEhYKDmlz",
-            "T3duZXJWaWV3aW5nGBQgASgIEhgKEHNob3J0RGVzY3JpcHRpb24YFSABKAkS",
-            "EwoLaXNDcmF3bGFibGUYFiABKAgSMQoJdGh1bWJuYWlsGBkgASgLMh4uSW5u",
-            "ZXJUdWJlLlByb3RvYnVmLlRodW1ibmFpbHMSFAoMYWxsb3dSYXRpbmdzGB8g",
-            "ASgIEhEKCXZpZXdDb3VudBggIAEoCRIRCglpc1ByaXZhdGUYJSABKAgSDgoG",
-            "YXV0aG9yGCEgASgJEhkKEWlzVW5wbHVnZ2VkQ29ycHVzGCYgASgIEhUKDWlz",
-            "TGl2ZUNvbnRlbnQYKSABKAhiBnByb3RvMw=="));
+            "ZXNwb25zZXMaDWdlbmVyYWwucHJvdG8ilAQKDlBsYXllclJlc3BvbnNlEkoK",
+            "EXBsYXlhYmlsaXR5U3RhdHVzGAIgASgLMi8uSW5uZXJUdWJlLlByb3RvYnVm",
+            "LlJlc3BvbnNlcy5QbGF5YWJpbGl0eVN0YXR1cxJCCg1zdHJlYW1pbmdEYXRh",
+            "GAQgASgLMisuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5TdHJlYW1p",
+            "bmdEYXRhEjoKCGNhcHRpb25zGAogASgLMiMuSW5uZXJUdWJlLlByb3RvYnVm",
+            "LlJlbmRlcmVyV3JhcHBlckgAiAEBEkAKDHZpZGVvRGV0YWlscxgLIAEoCzIq",
+            "LklubmVyVHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuVmlkZW9EZXRhaWxzEj0K",
+            "C3N0b3J5Ym9hcmRzGBAgASgLMiMuSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRl",
+            "cmVyV3JhcHBlckgBiAEBEj0KC21pY3JvZm9ybWF0GBMgASgLMiMuSW5uZXJU",
+            "dWJlLlByb3RvYnVmLlJlbmRlcmVyV3JhcHBlckgCiAEBEjsKCWVuZHNjcmVl",
+            "bhggIAEoCzIjLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcldyYXBwZXJI",
+            "A4gBAUILCglfY2FwdGlvbnNCDgoMX3N0b3J5Ym9hcmRzQg4KDF9taWNyb2Zv",
+            "cm1hdEIMCgpfZW5kc2NyZWVuIsMCChFQbGF5YWJpbGl0eVN0YXR1cxJGCgZz",
+            "dGF0dXMYASABKA4yNi5Jbm5lclR1YmUuUHJvdG9idWYuUmVzcG9uc2VzLlBs",
+            "YXlhYmlsaXR5U3RhdHVzLlN0YXR1cxITCgZyZWFzb24YAiABKAlIAIgBARIc",
+            "Cg9wbGF5YWJsZUluRW1iZWQYCSABKAhIAYgBARIWCglzdWJyZWFzb24YFiAB",
+            "KAlIAogBARIaCg1jb250ZXh0UGFyYW1zGB8gASgJSAOIAQEiQAoGU3RhdHVz",
+            "EgYKAk9LEAASEgoOTE9HSU5fUkVRVUlSRUQQAxIaChZDT05URU5UX0NIRUNL",
+            "X1JFUVVJUkVEEARCCQoHX3JlYXNvbkISChBfcGxheWFibGVJbkVtYmVkQgwK",
+            "Cl9zdWJyZWFzb25CEAoOX2NvbnRleHRQYXJhbXMigQIKDVN0cmVhbWluZ0Rh",
+            "dGESGAoQZXhwaXJlc0luU2Vjb25kcxgBIAEoBRI1Cgdmb3JtYXRzGAIgAygL",
+            "MiQuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5Gb3JtYXQSPQoPYWRh",
+            "cHRpdmVGb3JtYXRzGAMgAygLMiQuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3Bv",
+            "bnNlcy5Gb3JtYXQSHAoPZGFzaE1hbmlmZXN0VXJsGAQgASgJSACIAQESGwoO",
+            "aGxzTWFuaWZlc3RVcmwYBSABKAlIAYgBAUISChBfZGFzaE1hbmlmZXN0VXJs",
+            "QhEKD19obHNNYW5pZmVzdFVybCKwBQoGRm9ybWF0EgwKBGl0YWcYASABKAUS",
+            "CwoDdXJsGAIgASgJEgwKBG1pbWUYBSABKAkSDwoHYml0cmF0ZRgGIAEoBRIN",
+            "CgV3aWR0aBgHIAEoBRIOCgZoZWlnaHQYCCABKAUSOwoJaW5pdFJhbmdlGAkg",
+            "ASgLMiMuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5SYW5nZUgAiAEB",
+            "EjwKCmluZGV4UmFuZ2UYCiABKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYuUmVz",
+            "cG9uc2VzLlJhbmdlSAGIAQESFAoMbGFzdE1vZGlmaWVkGAsgASgEEhUKDWNv",
+            "bnRlbnRMZW5ndGgYDCABKAQSDwoHcXVhbGl0eRgQIAEoCRILCgNmcHMYGSAB",
+            "KAUSEgoFeHRhZ3MYFyABKAxIAogBARIUCgxxdWFsaXR5TGFiZWwYGiABKAkS",
+            "QQoKYXVkaW9UcmFjaxgcIAEoCzIoLklubmVyVHViZS5Qcm90b2J1Zi5SZXNw",
+            "b25zZXMuQXVkaW9UcmFja0gDiAEBEhYKDmF2ZXJhZ2VCaXRyYXRlGB8gASgF",
+            "EhEKCWNvbG9ySW5mbxghIAEoDBIXCg9oaWdoUmVwbGljYXRpb24YJyABKAgS",
+            "GAoQYXBwcm94RHVyYXRpb25NcxgsIAEoBRIcCg9hdWRpb1NhbXBsZVJhdGUY",
+            "LSABKAVIBIgBARIaCg1hdWRpb0NoYW5uZWxzGC4gASgFSAWIAQESFwoKbG91",
+            "ZG5lc3NEYhgvIAEoAkgGiAEBQgwKCl9pbml0UmFuZ2VCDQoLX2luZGV4UmFu",
+            "Z2VCCAoGX3h0YWdzQg0KC19hdWRpb1RyYWNrQhIKEF9hdWRpb1NhbXBsZVJh",
+            "dGVCEAoOX2F1ZGlvQ2hhbm5lbHNCDQoLX2xvdWRuZXNzRGIiIwoFUmFuZ2US",
+            "DQoFc3RhcnQYAyABKAUSCwoDZW5kGAQgASgFIkUKCkF1ZGlvVHJhY2sSEwoL",
+            "ZGlzcGxheU5hbWUYBCABKAkSCgoCaWQYBSABKAkSFgoOYXVkaW9Jc0RlZmF1",
+            "bHQYBiABKAgi4gIKDFZpZGVvRGV0YWlscxIPCgd2aWRlb0lkGAEgASgJEg0K",
+            "BXRpdGxlGA8gASgJEhUKDWxlbmd0aFNlY29uZHMYECABKAUSEAoIa2V5d29y",
+            "ZHMYEiADKAkSEQoJY2hhbm5lbElkGBMgASgJEhYKDmlzT3duZXJWaWV3aW5n",
+            "GBQgASgIEhgKEHNob3J0RGVzY3JpcHRpb24YFSABKAkSEwoLaXNDcmF3bGFi",
+            "bGUYFiABKAgSMQoJdGh1bWJuYWlsGBkgASgLMh4uSW5uZXJUdWJlLlByb3Rv",
+            "YnVmLlRodW1ibmFpbHMSFAoMYWxsb3dSYXRpbmdzGB8gASgIEhEKCXZpZXdD",
+            "b3VudBggIAEoCRIRCglpc1ByaXZhdGUYJSABKAgSDgoGYXV0aG9yGCEgASgJ",
+            "EhkKEWlzVW5wbHVnZ2VkQ29ycHVzGCYgASgIEhUKDWlzTGl2ZUNvbnRlbnQY",
+            "KSABKAhiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
-          new pbr::FileDescriptor[] { global::InnerTube.Protobuf.Renderers.RenderersReflection.Descriptor, global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
+          new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayerResponse), global::InnerTube.Protobuf.Responses.PlayerResponse.Parser, new[]{ "PlayabilityStatus", "StreamingData", "Captions", "VideoDetails", "Storyboards", "Microformat", "Endscreen" }, new[]{ "Captions", "Storyboards", "Microformat", "Endscreen" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus), global::InnerTube.Protobuf.Responses.PlayabilityStatus.Parser, new[]{ "Status", "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status) }, null, null),
@@ -174,10 +173,10 @@ namespace InnerTube.Protobuf.Responses {
 
     /// <summary>Field number for the "captions" field.</summary>
     public const int CaptionsFieldNumber = 10;
-    private global::InnerTube.Protobuf.Renderers.RendererWrapper captions_;
+    private global::InnerTube.Protobuf.RendererWrapper captions_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Renderers.RendererWrapper Captions {
+    public global::InnerTube.Protobuf.RendererWrapper Captions {
       get { return captions_; }
       set {
         captions_ = value;
@@ -198,10 +197,10 @@ namespace InnerTube.Protobuf.Responses {
 
     /// <summary>Field number for the "storyboards" field.</summary>
     public const int StoryboardsFieldNumber = 16;
-    private global::InnerTube.Protobuf.Renderers.RendererWrapper storyboards_;
+    private global::InnerTube.Protobuf.RendererWrapper storyboards_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Renderers.RendererWrapper Storyboards {
+    public global::InnerTube.Protobuf.RendererWrapper Storyboards {
       get { return storyboards_; }
       set {
         storyboards_ = value;
@@ -210,10 +209,10 @@ namespace InnerTube.Protobuf.Responses {
 
     /// <summary>Field number for the "microformat" field.</summary>
     public const int MicroformatFieldNumber = 19;
-    private global::InnerTube.Protobuf.Renderers.RendererWrapper microformat_;
+    private global::InnerTube.Protobuf.RendererWrapper microformat_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Renderers.RendererWrapper Microformat {
+    public global::InnerTube.Protobuf.RendererWrapper Microformat {
       get { return microformat_; }
       set {
         microformat_ = value;
@@ -222,10 +221,10 @@ namespace InnerTube.Protobuf.Responses {
 
     /// <summary>Field number for the "endscreen" field.</summary>
     public const int EndscreenFieldNumber = 32;
-    private global::InnerTube.Protobuf.Renderers.RendererWrapper endscreen_;
+    private global::InnerTube.Protobuf.RendererWrapper endscreen_;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
-    public global::InnerTube.Protobuf.Renderers.RendererWrapper Endscreen {
+    public global::InnerTube.Protobuf.RendererWrapper Endscreen {
       get { return endscreen_; }
       set {
         endscreen_ = value;
@@ -409,7 +408,7 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (other.captions_ != null) {
         if (captions_ == null) {
-          Captions = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+          Captions = new global::InnerTube.Protobuf.RendererWrapper();
         }
         Captions.MergeFrom(other.Captions);
       }
@@ -421,19 +420,19 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (other.storyboards_ != null) {
         if (storyboards_ == null) {
-          Storyboards = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+          Storyboards = new global::InnerTube.Protobuf.RendererWrapper();
         }
         Storyboards.MergeFrom(other.Storyboards);
       }
       if (other.microformat_ != null) {
         if (microformat_ == null) {
-          Microformat = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+          Microformat = new global::InnerTube.Protobuf.RendererWrapper();
         }
         Microformat.MergeFrom(other.Microformat);
       }
       if (other.endscreen_ != null) {
         if (endscreen_ == null) {
-          Endscreen = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+          Endscreen = new global::InnerTube.Protobuf.RendererWrapper();
         }
         Endscreen.MergeFrom(other.Endscreen);
       }
@@ -468,7 +467,7 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 82: {
             if (captions_ == null) {
-              Captions = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Captions = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Captions);
             break;
@@ -482,21 +481,21 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 130: {
             if (storyboards_ == null) {
-              Storyboards = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Storyboards = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Storyboards);
             break;
           }
           case 154: {
             if (microformat_ == null) {
-              Microformat = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Microformat = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Microformat);
             break;
           }
           case 258: {
             if (endscreen_ == null) {
-              Endscreen = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Endscreen = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Endscreen);
             break;
@@ -532,7 +531,7 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 82: {
             if (captions_ == null) {
-              Captions = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Captions = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Captions);
             break;
@@ -546,21 +545,21 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 130: {
             if (storyboards_ == null) {
-              Storyboards = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Storyboards = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Storyboards);
             break;
           }
           case 154: {
             if (microformat_ == null) {
-              Microformat = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Microformat = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Microformat);
             break;
           }
           case 258: {
             if (endscreen_ == null) {
-              Endscreen = new global::InnerTube.Protobuf.Renderers.RendererWrapper();
+              Endscreen = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Endscreen);
             break;

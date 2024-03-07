@@ -2,18 +2,17 @@ syntax = "proto3";
 
 package InnerTube.Protobuf.Responses;
 
-import "renderers.proto";
 import "general.proto";
 
 message PlayerResponse {
   //bytes context = 1;
   PlayabilityStatus playabilityStatus = 2;
   StreamingData streamingData = 4;
-  optional InnerTube.Protobuf.Renderers.RendererWrapper captions = 10;
+  optional RendererWrapper captions = 10;
   VideoDetails videoDetails = 11;
-  optional InnerTube.Protobuf.Renderers.RendererWrapper storyboards = 16;
-  optional InnerTube.Protobuf.Renderers.RendererWrapper microformat = 19;
-  optional InnerTube.Protobuf.Renderers.RendererWrapper endscreen = 32;
+  optional RendererWrapper storyboards = 16;
+  optional RendererWrapper microformat = 19;
+  optional RendererWrapper endscreen = 32;
 }
 
 message PlayabilityStatus {
