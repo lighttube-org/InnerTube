@@ -1,5 +1,6 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json.Nodes;
 using InnerTube.Exceptions;
 using InnerTube.Protobuf.Renderers;
 using InnerTube.Protobuf.Responses;
@@ -59,7 +60,7 @@ public class InnerTube
 		hrm.Headers.Add("X-Youtube-Client-Name", ((int)client).ToString());
 		hrm.Headers.Add("X-Youtube-Client-Version", client switch
 		{
-			RequestClient.WEB => "2.20220809.02.00",
+			RequestClient.WEB => "2.20240304.00.00",
 			RequestClient.ANDROID => "19.09.4",
 			RequestClient.IOS => "19.09.4",
 			var _ => ""
