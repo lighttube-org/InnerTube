@@ -382,48 +382,20 @@ public class PlayerTests
 		Assert.Fail("Didn't throw an exception");
 	}
 
-	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
-	[TestCase(
-		"Eg0SC3F1STZnNEhwZVBjGAYyVSIuIgtxdUk2ZzRIcGVQYzAAeAKqAhpVZ3p3MnBIQXR1VW9xamRLbUtWNEFhQUJBZzABQiFlbmdhZ2VtZW50LXBhbmVsLWNvbW1lbnRzLXNlY3Rpb24%3D",
-		Description = "Contains pinned & hearted comments")]
-	[TestCase("Eg0SC2tZd0Ita1p5TlU0GAYyJSIRIgtrWXdCLWtaeU5VNDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D",
-		Description = "Contains authors with badges")]
-	[TestCase("5UCz9i2K9gY", Description = "Has unescaped HTML tags")]
-	public async Task GetVideoComments(string videoId)
-	{
-		/*
-		InnerTubeContinuationResponse comments;
-		if (videoId.Length == 11)
-		{
-			InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);
-			if (next.CommentsContinuation is null) Assert.Fail("Video did not contain a comment continuation token");
-			comments = await _innerTube.GetVideoCommentsAsync(next.CommentsContinuation!);
-		}
-		else
-		{
-			comments = await _innerTube.GetVideoCommentsAsync(videoId!);
-		}
-
-		StringBuilder sb = new();
-
-		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
-
-		sb.AppendLine($"\nContinuation: {comments.Continuation?.Substring(0, 20)}...");
-
-		Assert.Pass(sb.ToString());
-		*/
-	}
-
 	[TestCase("BaW_jenozKc", 0, Description = "Regular video comments")]
 	[TestCase("BaW_jenozKc", 1, Description = "Regular video comments")]
-	public async Task GetVideoCommentsProtobuf(string videoId, int sortOrder)
+	[TestCase("5UCz9i2K9gY", 0, Description = "Has unescaped HTML tags")]
+	[TestCase("quI6g4HpePc", 0, Description = "Contains pinned & hearted comments")]
+	[TestCase("kYwB-kZyNU4", 0, Description = "Contains authors with badges")]
+	public async Task GetVideoComments(string videoId, int sortOrder)
 	{
 		NextResponse comments = await _innerTube.ContinueNextAsync(Utils.PackCommentsContinuation(videoId,
 			(CommentsContext.Types.SortOrder)sortOrder));
 
 		StringBuilder sb = new();
-//		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
-//		sb.AppendLine($"\nContinuation: {comments.Continuation?[..20]}...");
+		foreach (RendererWrapper? renderer in comments.OnResponseReceivedEndpoints[1].ReloadContinuationItemsCommand
+			         .ContinuationItems)
+			sb.AppendLine(Utils.SerializeRenderer(renderer));
 
 		Assert.Pass(sb.ToString());
 	}

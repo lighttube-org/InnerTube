@@ -57,7 +57,32 @@ public static class Utils
 					continue;
 				}
 
-				// todo: apply formatting
+				string currentString = Formatter.Sanitize(run.Text);
+				if (run.Bold)
+					currentString = Formatter.FormatBold(currentString);
+
+				if (run.NavigationEndpoint != null)
+				{
+					switch (run.NavigationEndpoint.EndpointTypeCase)
+					{
+						case Endpoint.EndpointTypeOneofCase.UrlEndpoint:
+							currentString = Formatter.FormatUrl(currentString,
+								UnwrapRedirectUrl(run.NavigationEndpoint.UrlEndpoint.Url));
+							break;
+						case Endpoint.EndpointTypeOneofCase.WatchEndpoint:
+							string url = "https://youtube.com/watch?v=" + run.NavigationEndpoint.WatchEndpoint.VideoId;
+							if (run.NavigationEndpoint.WatchEndpoint.HasPlaylistId)
+								url += "&list=" + run.NavigationEndpoint.WatchEndpoint.PlaylistId;
+							if (run.NavigationEndpoint.WatchEndpoint.HasPlayerParams)
+								url += "&pp=" + run.NavigationEndpoint.WatchEndpoint.PlayerParams;
+							if (run.NavigationEndpoint.WatchEndpoint.HasStartTimeSeconds)
+								url += "&t=" + run.NavigationEndpoint.WatchEndpoint.StartTimeSeconds;
+							currentString = Formatter.FormatUrl(currentString, url);
+							break;
+					}
+				}
+				
+				str += currentString;
 			}
 
 			return str;
@@ -263,6 +288,8 @@ public static class Utils
 						url += "&list=" + run.Command.InnertubeCommand.WatchEndpoint.PlaylistId;
 					if (run.Command.InnertubeCommand.WatchEndpoint.HasPlayerParams)
 						url += "&pp=" + run.Command.InnertubeCommand.WatchEndpoint.PlayerParams;
+					if (run.Command.InnertubeCommand.WatchEndpoint.HasStartTimeSeconds)
+						url += "&t=" + run.Command.InnertubeCommand.WatchEndpoint.StartTimeSeconds;
 					replacement = Formatter.FormatUrl(replacement, url);
 					break;
 			}
@@ -491,13 +518,30 @@ public static class Utils
 			{
 				PlaylistPanelVideoRenderer video = renderer.PlaylistPanelVideoRenderer;
 				StringBuilder sb = new();
-				sb.AppendLine($"[CompactVideoRenderer] [{ReadRuns(video.IndexText)}] [{video.VideoId}] {ReadRuns(video.Title)}")
+				sb.AppendLine(
+						$"[CompactVideoRenderer] [{ReadRuns(video.IndexText)}] [{video.VideoId}] {ReadRuns(video.Title)}")
 					.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
 						video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
 					.AppendLine("Owner: " +
 					            $"[{video.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
 					            video.LongBylineText.Runs[0].Text)
 					.AppendLine("Duration: " + video.LengthText?.SimpleText);
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.CommentThreadRenderer:
+			{
+				return "[CommentThreadRenderer] " +
+				       string.Join("\n",
+						       SerializeRenderer(renderer.CommentThreadRenderer.Comment).Split("\n")
+							       .Select(x => $"  {x}"))
+					       .TrimStart();
+			}
+			case RendererWrapper.RendererOneofCase.CommentRenderer:
+			{
+				CommentRenderer comment = renderer.CommentRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[CommentRenderer] [{comment.CommentId}] {ReadRuns(comment.AuthorText)}")
+					.AppendLine(ReadRuns(comment.ContentText, true));
 				return sb.ToString();
 			}
 			case RendererWrapper.RendererOneofCase.ContinuationItemRenderer:

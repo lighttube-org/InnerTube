@@ -66,6 +66,20 @@ message ColorPalette {
   optional int64 iconDisabledColor = 12;
 }
 
+message LoggingDirectives {
+  bytes trackingParams = 1;
+  google.protobuf.Int32Value visibility = 4;
+  bool enableDisplayloggerExperiment = 11;
+}
+
+message CustomEmoji {
+  string emojiId = 1;
+  repeated string shortcuts = 2;
+  repeated string searchTerms = 3;
+  Thumbnails image = 5;
+  bool isCustomEmoji = 6;
+}
+
 // ===============================================================
 // ==================    RENDERERS    ============================
 // ===============================================================
@@ -89,28 +103,38 @@ message RendererWrapper {
     CompactMovieRenderer compactMovieRenderer = 58485276;
     MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
+    CommentThreadRenderer commentThreadRenderer = 62285833;
+    CommentRenderer commentRenderer = 62285947;
+    CommentRepliesRenderer commentRepliesRenderer = 65060753;
     ButtonViewModel buttonViewModel = 65153809;
     MenuRenderer menuRenderer = 66439850;
     MenuNavigationItemRenderer menuNavigationItemRenderer = 66441108;
     MenuServiceItemRenderer menuServiceItemRenderer = 66441155;
+    CommentActionButtonsRenderer commentActionButtonsRenderer = 66744747;
     VideoViewCountRenderer videoViewCountRenderer = 70044402;
     PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
     MetadataRowContainerRenderer metadataRowContainerRenderer = 71271859;
     PlaylistVideoThumbnailRenderer playlistVideoThumbnailRenderer = 72426341;
     AccessibilityData accessibilityData = 75730170;
+    SortFilterSubMenuRenderer sortFilterSubMenuRenderer = 76818770;
     ToggleMenuServiceItemRenderer toggleMenuServiceItemRenderer = 78861357;
     ToggleButtonRenderer toggleButtonRenderer = 79971800;
     BackgroundPromoRenderer backgroundPromoRenderer = 94317419;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
     VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
+    CommentsHeaderRenderer commentsHeaderRenderer = 105977417;
     EndscreenRenderer endscreenRenderer = 106301526;
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
     ThumbnailOverlayBottomPanelRenderer thumbnailOverlayBottomPanelRenderer = 109635582;
     ThumbnailOverlayHoverTextRenderer thumbnailOverlayHoverTextRenderer = 107250266;
+    BasicColorPaletteData basicColorPaletteData = 118483990;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
     SlimMetadataToggleButtonRenderer slimMetadataToggleButtonRenderer = 124608045;
+    AuthorCommentBadgeRenderer authorCommentBadgeRenderer = 127214311;
     ThumbnailOverlayToggleButtonRenderer thumbnailOverlayToggleButtonRenderer = 128231774;
     MetadataBadgeRenderer metadataBadgeRenderer = 128361622;
+    PinnedCommentBadgeRenderer pinnedCommentBadgeRenderer = 126313810;
+    CreatorHeartRenderer creatorHeartRenderer = 128905810;
     SubscriptionNotificationToggleButtonRenderer subscriptionNotificationToggleButtonRenderer = 136076983;
     ToggleButtonSupportedData toggleButtonSupportedData = 136527600;
     EngagementPanelSectionListRenderer engagementPanelSectionListRenderer = 138681066;
@@ -380,6 +404,44 @@ message PlayerMicroformatRenderer {
   string uploadDate = 19;
 }
 
+message CommentThreadRenderer {
+  RendererWrapper comment = 1;
+  RendererWrapper replies = 2;
+  bytes trackingParams = 6;
+  int32 renderingPriority = 13;
+  bool isModeratedElqComment = 24;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message CommentRenderer {
+  Text authorText = 1;
+  Thumbnails authorThumbnail = 2;
+  Endpoint authorEndpoint = 3;
+  Text contentText = 4;
+  Text publishedTimeText = 5;
+  bool isLiked = 6;
+  string commentId = 9;
+  RendererWrapper actionButtons = 10;
+  bool authorIsChannelOwner = 11;
+  int32 voteStatus = 17;
+  bytes trackingParams = 19;
+  Text voteCount = 28;
+  RendererWrapper pinnedCommentBadge = 33;
+  RendererWrapper expandButton = 34;
+  RendererWrapper collapseButton = 35;
+  RendererWrapper authorCommentBadge = 39;
+  int32 replyCount = 82;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message CommentRepliesRenderer {
+  repeated RendererWrapper continuationItemRenderer = 1;
+  bytes trackingParams = 4;
+  RendererWrapper viewReplies = 16;
+  RendererWrapper hideReplies = 17;
+  string targetId = 21;
+}
+
 message ButtonViewModel {
   optional int32 style = 1;
   optional int32 size = 2;
@@ -388,10 +450,12 @@ message ButtonViewModel {
   optional Endpoint onTap = 7;
   optional Icon icon = 8;
   optional Endpoint navigationEndpoint = 9;
+  optional AccessibilityData accessibility = 10;
   optional string accessibilityText = 11;
   optional bytes trackingParams = 13;
   optional RendererWrapper accessibilityData = 16;
   optional Endpoint command = 19;
+  int32 iconPosition = 22;
 }
 
 message MenuRenderer {
@@ -417,6 +481,16 @@ message MenuServiceItemRenderer {
   bool hasSeparator = 12;
 }
 
+message CommentActionButtonsRenderer {
+  RendererWrapper likeButton = 1;
+  RendererWrapper replyButton = 2;
+  RendererWrapper dislikeButton = 7;
+  bytes trackingParams = 8;
+  optional RendererWrapper creatorHeart = 15;
+  int64 protoCreationMs = 16;
+  int32 style = 18;
+}
+
 message VideoViewCountRenderer {
   Text viewCount = 1;
   Text shortViewCount = 4;
@@ -435,6 +509,22 @@ message MetadataRowContainerRenderer {
 message PlaylistVideoThumbnailRenderer {
   Thumbnails thumbnail = 1;
   bytes trackingParams = 3;
+}
+
+message SortFilterSubMenuRenderer {
+  message SubMenuItem {
+    string title = 1;
+    bool selected = 2;
+    Endpoint serviceEndpoint = 5;
+    bytes trackingParams = 13;
+  }
+
+  repeated SubMenuItem subMenuItems = 1;
+  string title = 2;
+  Icon icon = 3;
+  RendererWrapper accessibility = 4;
+  string tooltip = 5;
+  bytes trackingParams = 7;
 }
 
 message ToggleMenuServiceItemRenderer {
@@ -458,6 +548,7 @@ message ToggleButtonRenderer {
   Icon toggledIcon = 8;
   Endpoint toggledServiceEndpoint = 10;
   AccessibilityData accessibility = 11;
+  Endpoint defaultNavigationEndpoint = 17;
   RendererWrapper accessibilityData = 19;
   RendererWrapper toggledAccessibilityData = 20;
   RendererWrapper toggleButtonSupportedData = 21;
@@ -525,6 +616,19 @@ message VideoSecondaryInfoRenderer {
   AttributedDescription attributedDescription = 15;
 }
 
+message CommentsHeaderRenderer {
+  Text countText = 1;
+  RendererWrapper createRenderer = 2;
+  RendererWrapper sortMenu = 3;
+  bytes trackingParams = 7;
+  Text titleText = 10;
+  Text commentsCount = 11;
+  bool showSeparator = 25;
+  repeated CustomEmoji customEmojis = 27;
+  string unicodeEmojisUrl = 28;
+  LoggingDirectives loggingDirectives = 999;
+}
+
 message EndscreenRenderer {
   repeated RendererWrapper elements = 1;
   int32 startMs = 2;
@@ -567,6 +671,10 @@ message ThumbnailOverlayHoverTextRenderer {
   Icon icon = 2;
 }
 
+message BasicColorPaletteData {
+  int64 foregroundTitleColor = 2;
+}
+
 message ThumbnailOverlayTimeStatusRenderer {
   Text text = 1;
   int32 style = 2;
@@ -578,6 +686,13 @@ message SlimMetadataToggleButtonRenderer {
   bool isDislike = 21;
   RendererWrapper button = 26;
   string likeStatusEntityKey = 27;
+}
+
+message AuthorCommentBadgeRenderer {
+  Icon icon = 1;
+  Text authorText = 3;
+  Endpoint authorEndpoint = 4;
+  string iconTooltip = 5;
 }
 
 message ThumbnailOverlayToggleButtonRenderer {
@@ -600,6 +715,24 @@ message MetadataBadgeRenderer {
   optional string tooltip = 4;
   bytes trackingParams = 6;
   optional AccessibilityData accessibilityData = 7;
+}
+
+message PinnedCommentBadgeRenderer {
+  Icon icon = 1;
+  Text label = 2;
+  RendererWrapper color = 3;
+}
+
+message CreatorHeartRenderer {
+  Thumbnails creatorThumbnail = 1;
+  Icon heartIcon = 2;
+  RendererWrapper heartColor = 3;
+  string heartedTooltip = 4;
+  bool isHearted = 5;
+  bool isEnabled = 6;
+  RendererWrapper heartedAccessibility = 9;
+  RendererWrapper unheartedAccessibility = 10;
+  string kennedyHeartColorString = 11;
 }
 
 message SubscriptionNotificationToggleButtonRenderer {
@@ -635,12 +768,6 @@ message ToggleButtonSupportedData {
 }
 
 message EngagementPanelSectionListRenderer {
-  message LoggingDirectives {
-    bytes trackingParams = 1;
-    google.protobuf.Int32Value visibility = 4;
-    bool enableDisplayloggerExperiment = 11;
-  }
-
   optional string panelIdentifier = 1;
   optional RendererWrapper header = 2;
   optional RendererWrapper content = 3;
@@ -797,6 +924,8 @@ message Endpoint {
     AddToPlaylistCommand addToPlaylistCommand = 243789987;
     ChangeEngagementPanelVisibilityAction changeEngagementPanelVisibilityAction = 247256721;
     ContinuationCommand continuationCommand = 280298060;
+    ReloadContinuationItemsCommand reloadContinuationItemsCommand = 293675513;
+    ShowReloadUiCommand showReloadUiCommand = 297946747;
     EntityUpdateCommand entityUpdateCommand = 300347778;
     ScrollToEngagementPanelCommand scrollToEngagementPanelCommand = 344410484;
   }
@@ -910,6 +1039,12 @@ message ModifyChannelNotificationPreferenceEndpoint {
   string params = 1;
 }
 
+message ReloadContinuationItemsCommand {
+  string targetId = 1;
+  int32 slot = 3;
+  repeated RendererWrapper continuationItems = 2;
+}
+
 message ModalEndpoint {
   message ButtonWrapper {
     message Button {
@@ -948,6 +1083,7 @@ message SerialCommand {
 message ContinuationCommand {
   string token = 1;
   int32 request = 2;
+  repeated Endpoint command = 3;
 }
 
 message LogGestureCommand {
@@ -1030,6 +1166,10 @@ message ShareEntityServiceEndpoint {
 
 message CommandExecutorCommand {
   repeated Endpoint commands = 1;
+}
+
+message ShowReloadUiCommand {
+  string targetId = 1;
 }
 
 message EntityUpdateCommand {
