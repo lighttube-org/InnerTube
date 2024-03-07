@@ -364,10 +364,9 @@ public class PlayerTests
 	[TestCase("mVp-gQuCJI8", Description = "A private video")]
 	public async Task DontGetVideoNext(string videoId)
 	{
-		/*
 		try
 		{
-			await _innerTube.GetVideoAsync(videoId);
+			await _innerTube.GetNextAsync(videoId, false, false);
 		}
 		catch (InnerTubeException e)
 		{
@@ -379,7 +378,6 @@ public class PlayerTests
 		}
 
 		Assert.Fail("Didn't throw an exception");
-		*/
 	}
 
 	[TestCase("BaW_jenozKc", Description = "Regular video comments")]

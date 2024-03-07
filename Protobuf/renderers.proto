@@ -36,6 +36,7 @@ message RendererWrapper {
     AccessibilityData accessibilityData = 75730170;
     ToggleMenuServiceItemRenderer toggleMenuServiceItemRenderer = 78861357;
     ToggleButtonRenderer toggleButtonRenderer = 79971800;
+    BackgroundPromoRenderer backgroundPromoRenderer = 94317419;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
     VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
     EndscreenRenderer endscreenRenderer = 106301526;
@@ -318,10 +319,11 @@ message PlayerMicroformatRenderer {
 message ButtonViewModel {
   optional int32 style = 1;
   optional int32 size = 2;
-  bool isDisabled = 3;
+  optional bool isDisabled = 3;
   optional Endpoints.Text title = 5;
   optional Endpoints.Endpoint onTap = 7;
   optional Icon icon = 8;
+  optional Endpoints.Endpoint navigationEndpoint = 9; 
   optional string accessibilityText = 11;
   optional bytes trackingParams = 13;
   optional RendererWrapper accessibilityData = 16;
@@ -399,6 +401,14 @@ message ToggleButtonRenderer {
   string defaultTooltip = 14;
   string toggledTooltip = 15;
   google.protobuf.Int32Value tooggledStyle = 16;
+}
+
+message BackgroundPromoRenderer {
+  Endpoints.Text text = 1;
+  bytes trackingParams = 6;
+  Thumbnails thumbnail = 7;
+  RendererWrapper ctaButton = 8;
+  google.protobuf.Int32Value style = 9;
 }
 
 message VideoPrimaryInfoRenderer {

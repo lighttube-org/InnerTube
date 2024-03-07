@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using InnerTube.Exceptions;
+using InnerTube.Protobuf.Renderers;
 using InnerTube.Protobuf.Responses;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -144,6 +145,21 @@ public class InnerTube
 		if (playlistId != null) postData.AddValue("playlistId", playlistId);
 		if (playlistIndex != null) postData.AddValue("playlistIndex", playlistIndex);
 		if (playlistParams != null) postData.AddValue("params", playlistParams);
-		return NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
+		NextResponse next = NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
+		if (next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results.Count == 0)
+		{
+			throw new InnerTubeException("Empty response, video is either deleted or private");
+		}
+		RendererWrapper parent = next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results[0];
+		if (parent.RendererCase ==
+		    RendererWrapper.RendererOneofCase.ItemSectionRenderer)
+		{
+			if (parent.ItemSectionRenderer.Contents[0].RendererCase ==
+			    RendererWrapper.RendererOneofCase.BackgroundPromoRenderer)
+			{
+				throw new InnerTubeException(Utils.ReadRuns(parent.ItemSectionRenderer.Contents[0].BackgroundPromoRenderer.Text));
+			}
+		}
+		return next;
 	}
 }
