@@ -37,7 +37,7 @@ namespace InnerTube.Protobuf.Endpoints {
             "dmlnYXRpb25FbmRwb2ludEIUChJfbG9nZ2luZ0RpcmVjdGl2ZXMaXAoRTG9n",
             "Z2luZ0RpcmVjdGl2ZXMSFgoOdHJhY2tpbmdQYXJhbXMYASABKAwSLwoKdmlz",
             "aWJpbGl0eRgEIAEoCzIbLmdvb2dsZS5wcm90b2J1Zi5JbnQzMlZhbHVlQg0K",
-            "C19zaW1wbGVUZXh0Iq4QCghFbmRwb2ludBIbChNjbGlja1RyYWNraW5nUGFy",
+            "C19zaW1wbGVUZXh0IqQSCghFbmRwb2ludBIbChNjbGlja1RyYWNraW5nUGFy",
             "YW1zGAIgASgMEk8KD2NvbW1hbmRNZXRhZGF0YRgEIAEoCzI2LklubmVyVHVi",
             "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQuQ29tbWFuZE1ldGFkYXRh",
             "EkcKDXdhdGNoRW5kcG9pbnQYjdWbFyABKAsyKy5Jbm5lclR1YmUuUHJvdG9i",
@@ -46,189 +46,220 @@ namespace InnerTube.Protobuf.Endpoints {
             "cG9pbnRIABJJCg5icm93c2VFbmRwb2ludBiK1JsXIAEoCzIsLklubmVyVHVi",
             "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuQnJvd3NlRW5kcG9pbnRIABJJCg5zaWdu",
             "SW5FbmRwb2ludBi/7dkXIAEoCzIsLklubmVyVHViZS5Qcm90b2J1Zi5FbmRw",
-            "b2ludHMuU2lnbkluRW5kcG9pbnRIABJVChRwbGF5bGlzdEVkaXRFbmRwb2lu",
-            "dBjN4vYcIAEoCzIyLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuUGxh",
-            "eWxpc3RFZGl0RW5kcG9pbnRIABJPChFzdWJzY3JpYmVFbmRwb2ludBjlofMg",
-            "IAEoCzIvLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuU3Vic2NyaWJl",
-            "RW5kcG9pbnRIABJTChN1bnN1YnNjcmliZUVuZHBvaW50GJmi8yAgASgLMjEu",
-            "SW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5VbnN1YnNjcmliZUVuZHBv",
-            "aW50SAASgwEKK21vZGlmeUNoYW5uZWxOb3RpZmljYXRpb25QcmVmZXJlbmNl",
-            "RW5kcG9pbnQYiY2BKyABKAsySS5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9p",
-            "bnRzLk1vZGlmeUNoYW5uZWxOb3RpZmljYXRpb25QcmVmZXJlbmNlRW5kcG9p",
-            "bnRIABJHCg1tb2RhbEVuZHBvaW50GIeW6zIgASgLMisuSW5uZXJUdWJlLlBy",
-            "b3RvYnVmLkVuZHBvaW50cy5Nb2RhbEVuZHBvaW50SAASVwoVc2lnbmFsU2Vy",
-            "dmljZUVuZHBvaW50GOuKojsgASgLMjMuSW5uZXJUdWJlLlByb3RvYnVmLkVu",
-            "ZHBvaW50cy5TaWduYWxTZXJ2aWNlRW5kcG9pbnRIABJnCh1jcmVhdGVQbGF5",
-            "bGlzdFNlcnZpY2VFbmRwb2ludBjMgb47IAEoCzI7LklubmVyVHViZS5Qcm90",
-            "b2J1Zi5FbmRwb2ludHMuQ3JlYXRlUGxheWxpc3RTZXJ2aWNlRW5kcG9pbnRI",
-            "ABJLCg9vcGVuUG9wdXBBY3Rpb24Y2MGiPSABKAsyLS5Jbm5lclR1YmUuUHJv",
-            "dG9idWYuRW5kcG9pbnRzLk9wZW5Qb3B1cEFjdGlvbkgAEkUKEGlubmVydHVi",
-            "ZUNvbW1hbmQY1pXpUCABKAsyJi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9p",
-            "bnRzLkVuZHBvaW50SAASRwoNc2VyaWFsQ29tbWFuZBjgqp9RIAEoCzIrLklu",
-            "bmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuU2VyaWFsQ29tbWFuZEgAEmEK",
-            "GnNoYXJlRW50aXR5U2VydmljZUVuZHBvaW50GJywz1EgASgLMjguSW5uZXJU",
-            "dWJlLlByb3RvYnVmLkVuZHBvaW50cy5TaGFyZUVudGl0eVNlcnZpY2VFbmRw",
-            "b2ludEgAElkKFmNvbW1hbmRFeGVjdXRvckNvbW1hbmQY3p2DUyABKAsyNC5J",
-            "bm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLkNvbW1hbmRFeGVjdXRvckNv",
-            "bW1hbmRIABJPChFsb2dHZXN0dXJlQ29tbWFuZBibjaVzIAEoCzIvLklubmVy",
-            "VHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuTG9nR2VzdHVyZUNvbW1hbmRIABJV",
-            "ChRhZGRUb1BsYXlsaXN0Q29tbWFuZBij4Z90IAEoCzIyLklubmVyVHViZS5Q",
-            "cm90b2J1Zi5FbmRwb2ludHMuQWRkVG9QbGF5bGlzdENvbW1hbmRIABJ3CiVj",
-            "aGFuZ2VFbmdhZ2VtZW50UGFuZWxWaXNpYmlsaXR5QWN0aW9uGJGt83UgASgL",
-            "MkMuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5DaGFuZ2VFbmdhZ2Vt",
-            "ZW50UGFuZWxWaXNpYmlsaXR5QWN0aW9uSAASVAoTY29udGludWF0aW9uQ29t",
-            "bWFuZBjMhNSFASABKAsyMS5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRz",
-            "LkNvbnRpbnVhdGlvbkNvbW1hbmRIABJqCh5zY3JvbGxUb0VuZ2FnZW1lbnRQ",
-            "YW5lbENvbW1hbmQY9JKdpAEgASgLMjwuSW5uZXJUdWJlLlByb3RvYnVmLkVu",
-            "ZHBvaW50cy5TY3JvbGxUb0VuZ2FnZW1lbnRQYW5lbENvbW1hbmRIABp0Cg9D",
-            "b21tYW5kTWV0YWRhdGESUQoSd2ViQ29tbWFuZE1ldGFkYXRhGN6F6VQgASgL",
-            "MjAuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5XZWJDb21tYW5kTWV0",
-            "YWRhdGFIAEIOCgxtZXRhZGF0YVR5cGVCDgoMZW5kcG9pbnRUeXBlIoMMCg1X",
-            "YXRjaEVuZHBvaW50Eg8KB3ZpZGVvSWQYASABKAkSFwoKcGxheWxpc3RJZBgC",
-            "IAEoCUgAiAEBEhMKBnBhcmFtcxgFIAEoCUgBiAEBEh0KEGNvbnRpbnVlUGxh",
-            "eWJhY2sYBiABKAhIAogBARIdChBzdGFydFRpbWVTZWNvbmRzGAcgASgCSAOI",
-            "AQESGQoMcGxheWVyUGFyYW1zGAkgASgJSASIAQESFQoIbm9mb2xsb3cYESAB",
-            "KAhIBYgBARKCAQoid2F0Y2hFbmRwb2ludFN1cHBvcnRlZE9uZXNpZUNvbmZp",
-            "Zxj0kYomIAEoCzJOLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuV2F0",
-            "Y2hFbmRwb2ludC5XYXRjaEVuZHBvaW50U3VwcG9ydGVkT25lc2llQ29uZmln",
-            "SAaIAQESewokd2F0Y2hFbmRwb2ludFN1cHBvcnRlZFByZWZldGNoQ29uZmln",
-            "GI+uvyAgASgLMkUuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5XYXRj",
-            "aEVuZHBvaW50LlByZWZldGNoSGludENvbmZpZ1dyYXBwZXJIB4gBARJXCg5s",
-            "b2dnaW5nQ29udGV4dBgaIAEoCzI6LklubmVyVHViZS5Qcm90b2J1Zi5FbmRw",
-            "b2ludHMuV2F0Y2hFbmRwb2ludC5Mb2dnaW5nQ29udGV4dEgIiAEBGr8CCiJX",
-            "YXRjaEVuZHBvaW50U3VwcG9ydGVkT25lc2llQ29uZmlnEpMBChlodG1sNVBs",
-            "YXliYWNrT25lc2llQ29uZmlnGNfL7n8gASgLMmguSW5uZXJUdWJlLlByb3Rv",
-            "YnVmLkVuZHBvaW50cy5XYXRjaEVuZHBvaW50LldhdGNoRW5kcG9pbnRTdXBw",
-            "b3J0ZWRPbmVzaWVDb25maWcuSHRtbDVQbGF5YmFja09uZXNpZUNvbmZpZ0gA",
-            "iAEBGmUKGUh0bWw1UGxheWJhY2tPbmVzaWVDb25maWcSNwoMY29tbW9uQ29u",
-            "ZmlnGAEgASgLMhwuZ29vZ2xlLnByb3RvYnVmLlN0cmluZ1ZhbHVlSACIAQFC",
-            "DwoNX2NvbW1vbkNvbmZpZ0IcChpfaHRtbDVQbGF5YmFja09uZXNpZUNvbmZp",
-            "ZxqVAgoZUHJlZmV0Y2hIaW50Q29uZmlnV3JhcHBlchJ8ChJwcmVmZXRjaEhp",
-            "bnRDb25maWcYx8/QICABKAsyWC5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9p",
-            "bnRzLldhdGNoRW5kcG9pbnQuUHJlZmV0Y2hIaW50Q29uZmlnV3JhcHBlci5Q",
-            "cmVmZXRjaEhpbnRDb25maWdIAIgBARpjChJQcmVmZXRjaEhpbnRDb25maWcS",
-            "GAoQcHJlZmV0Y2hQcmlvcml0eRgBIAEoBRIzCitjb3VudGRvd25VaVJlbGF0",
-            "aXZlU2Vjb25kc1ByZWZldGNoQ29uZGl0aW9uGAUgASgDQhUKE19wcmVmZXRj",
-            "aEhpbnRDb25maWcayAEKDkxvZ2dpbmdDb250ZXh0EmwKEXZzc0xvZ2dpbmdD",
-            "b250ZXh0GAEgASgLMkwuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5X",
-            "YXRjaEVuZHBvaW50LkxvZ2dpbmdDb250ZXh0LlZzc0xvZ2dpbmdDb250ZXh0",
-            "SACIAQEaMgoRVnNzTG9nZ2luZ0NvbnRleHQSHQoVc2VyaWFsaXplZENvbnRl",
-            "eHREYXRhGAEgASgJQhQKEl92c3NMb2dnaW5nQ29udGV4dEINCgtfcGxheWxp",
-            "c3RJZEIJCgdfcGFyYW1zQhMKEV9jb250aW51ZVBsYXliYWNrQhMKEV9zdGFy",
-            "dFRpbWVTZWNvbmRzQg8KDV9wbGF5ZXJQYXJhbXNCCwoJX25vZm9sbG93QiUK",
-            "I193YXRjaEVuZHBvaW50U3VwcG9ydGVkT25lc2llQ29uZmlnQicKJV93YXRj",
-            "aEVuZHBvaW50U3VwcG9ydGVkUHJlZmV0Y2hDb25maWdCEQoPX2xvZ2dpbmdD",
-            "b250ZXh0Ik4KC1VybEVuZHBvaW50EgsKA3VybBgBIAEoCRIOCgZ0YXJnZXQY",
-            "AiABKAUSFQoIbm9mb2xsb3cYESABKAhIAIgBAUILCglfbm9mb2xsb3ciVgoO",
-            "QnJvd3NlRW5kcG9pbnQSEAoIYnJvd3NlSWQYAiABKAkSHQoQY2Fub25pY2Fs",
-            "QmFzZVVybBgEIAEoCUgAiAEBQhMKEV9jYW5vbmljYWxCYXNlVXJsIl8KDlNp",
-            "Z25JbkVuZHBvaW50EjwKDG5leHRFbmRwb2ludBgCIAEoCzImLklubmVyVHVi",
-            "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQSDwoHaWRhbVRhZxgIIAEo",
-            "CSK+AQoUUGxheWxpc3RFZGl0RW5kcG9pbnQSEgoKcGxheWxpc3RJZBgBIAEo",
-            "CRJKCgdhY3Rpb25zGAIgAygLMjkuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBv",
-            "aW50cy5QbGF5bGlzdEVkaXRFbmRwb2ludC5BY3Rpb24aRgoGQWN0aW9uEhQK",
-            "DGFkZGVkVmlkZW9JZBgCIAEoCRIOCgZhY3Rpb24YBiABKAUSFgoOcmVtb3Zl",
-            "ZFZpZGVvSWQYESABKAkiNwoRU3Vic2NyaWJlRW5kcG9pbnQSEgoKY2hhbm5l",
-            "bElkcxgBIAMoCRIOCgZwYXJhbXMYAyABKAkiQQoTVW5zdWJzY3JpYmVFbmRw",
-            "b2ludBISCgpjaGFubmVsSWRzGAEgAygJEhYKDnRyYWNraW5nUGFyYW1zGAQg",
-            "ASgMIj0KK01vZGlmeUNoYW5uZWxOb3RpZmljYXRpb25QcmVmZXJlbmNlRW5k",
-            "cG9pbnQSDgoGcGFyYW1zGAEgASgJIt8GCg1Nb2RhbEVuZHBvaW50EnIKHm1v",
-            "ZGFsV2l0aFRpdGxlQW5kQnV0dG9uV3JhcHBlchgBIAEoCzJKLklubmVyVHVi",
-            "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuTW9kYWxFbmRwb2ludC5Nb2RhbFdpdGhU",
-            "aXRsZUFuZEJ1dHRvbldyYXBwZXIa3gIKDUJ1dHRvbldyYXBwZXISWgoNYnV0",
-            "dG9uV3JhcHBlchiR1ogfIAEoCzJALklubmVyVHViZS5Qcm90b2J1Zi5FbmRw",
-            "b2ludHMuTW9kYWxFbmRwb2ludC5CdXR0b25XcmFwcGVyLkJ1dHRvbhrwAQoG",
-            "QnV0dG9uEg0KBXN0eWxlGAEgASgFEgwKBHNpemUYAiABKAUSEgoKaXNEaXNh",
-            "YmxlZBgDIAEoCBIwCgR0ZXh0GAUgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVm",
-            "LkVuZHBvaW50cy5UZXh0Ej8KD3NlcnZpY2VFbmRwb2ludBgHIAEoCzImLklu",
-            "bmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQSQgoSbmF2aWdh",
-            "dGlvbkVuZHBvaW50GAkgASgLMiYuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBv",
-            "aW50cy5FbmRwb2ludBr4AgoeTW9kYWxXaXRoVGl0bGVBbmRCdXR0b25XcmFw",
-            "cGVyEoYBChdtb2RhbFdpdGhUaXRsZUFuZEJ1dHRvbhiIlusyIAEoCzJiLklu",
-            "bmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuTW9kYWxFbmRwb2ludC5Nb2Rh",
-            "bFdpdGhUaXRsZUFuZEJ1dHRvbldyYXBwZXIuTW9kYWxXaXRoVGl0bGVBbmRC",
-            "dXR0b24azAEKF01vZGFsV2l0aFRpdGxlQW5kQnV0dG9uEjEKBXRpdGxlGAEg",
-            "ASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5UZXh0EjMKB2Nv",
-            "bnRlbnQYAiABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLlRl",
-            "eHQSSQoGYnV0dG9uGAMgASgLMjkuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBv",
-            "aW50cy5Nb2RhbEVuZHBvaW50LkJ1dHRvbldyYXBwZXIiYQoVU2lnbmFsU2Vy",
-            "dmljZUVuZHBvaW50Eg4KBnNpZ25hbBgBIAEoBRI4Cghjb21tYW5kcxgCIAMo",
-            "CzImLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQiSQoN",
-            "U2VyaWFsQ29tbWFuZBI4Cghjb21tYW5kcxgBIAMoCzImLklubmVyVHViZS5Q",
-            "cm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQiNQoTQ29udGludWF0aW9uQ29t",
-            "bWFuZBINCgV0b2tlbhgBIAEoCRIPCgdyZXF1ZXN0GAIgASgFIkAKEUxvZ0dl",
-            "c3R1cmVDb21tYW5kEhMKC2dlc3R1cmVUeXBlGAEgASgFEhYKDnRyYWNraW5n",
-            "UGFyYW1zGAIgASgMIr8BChRBZGRUb1BsYXlsaXN0Q29tbWFuZBIWCg5vcGVu",
-            "TWluaXBsYXllchgBIAEoCBIVCg1vcGVuTGlzdFBhbmVsGAIgASgIEg8KB3Zp",
-            "ZGVvSWQYAyABKAkSEAoIbGlzdFR5cGUYBSABKAUSQwoTb25DcmVhdGVMaXN0",
-            "Q29tbWFuZBgGIAEoCzImLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMu",
-            "RW5kcG9pbnQSEAoIdmlkZW9JZHMYCCADKAkiTQolQ2hhbmdlRW5nYWdlbWVu",
-            "dFBhbmVsVmlzaWJpbGl0eUFjdGlvbhIQCgh0YXJnZXRJZBgBIAEoCRISCgp2",
-            "aXNpYmlsaXR5GAIgASgFIkEKHUNyZWF0ZVBsYXlsaXN0U2VydmljZUVuZHBv",
-            "aW50EhAKCHZpZGVvSWRzGAEgAygJEg4KBnBhcmFtcxgEIAEoCSKbDgoPT3Bl",
-            "blBvcHVwQWN0aW9uElUKBXBvcHVwGAEgASgLMkYuSW5uZXJUdWJlLlByb3Rv",
-            "YnVmLkVuZHBvaW50cy5PcGVuUG9wdXBBY3Rpb24uTWVudVBvcHVwUmVuZGVy",
-            "ZXJXcmFwcGVyEhEKCXBvcHVwVHlwZRgCIAEoBRIQCghiZVJldXNlZBgHIAEo",
-            "CBqLDQoYTWVudVBvcHVwUmVuZGVyZXJXcmFwcGVyEngKEW1lbnVQb3B1cFJl",
-            "bmRlcmVyGKKl80QgASgLMlguSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50",
-            "cy5PcGVuUG9wdXBBY3Rpb24uTWVudVBvcHVwUmVuZGVyZXJXcmFwcGVyLk1l",
-            "bnVQb3B1cFJlbmRlcmVySAASgAEKFWNvbmZpcm1EaWFsb2dSZW5kZXJlchih",
-            "psgeIAEoCzJcLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuT3BlblBv",
-            "cHVwQWN0aW9uLk1lbnVQb3B1cFJlbmRlcmVyV3JhcHBlci5Db25maXJtRGlh",
-            "bG9nUmVuZGVyZXJIABKIAQoZdW5pZmllZFNoYXJlUGFuZWxSZW5kZXJlchjJ",
-            "sewpIAEoCzJgLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuT3BlblBv",
-            "cHVwQWN0aW9uLk1lbnVQb3B1cFJlbmRlcmVyV3JhcHBlci5VbmlmaWVkU2hh",
-            "cmVQYW5lbFJlbmRlcmVySAASigEKGm5vdGlmaWNhdGlvbkFjdGlvblJlbmRl",
-            "cmVyGJz36y0gASgLMmEuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5P",
-            "cGVuUG9wdXBBY3Rpb24uTWVudVBvcHVwUmVuZGVyZXJXcmFwcGVyLk5vdGlm",
-            "aWNhdGlvbkFjdGlvblJlbmRlcmVySAAa2QQKEU1lbnVQb3B1cFJlbmRlcmVy",
-            "EoYBCgVpdGVtcxgBIAMoCzJ3LklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2lu",
-            "dHMuT3BlblBvcHVwQWN0aW9uLk1lbnVQb3B1cFJlbmRlcmVyV3JhcHBlci5N",
-            "ZW51UG9wdXBSZW5kZXJlci5NZW51U2VydmljZUl0ZW1SZW5kZXJlcldyYXBw",
-            "ZXIaugMKHk1lbnVTZXJ2aWNlSXRlbVJlbmRlcmVyV3JhcHBlchK0AQoXbWVu",
-            "dVNlcnZpY2VJdGVtUmVuZGVyZXIYw5/XHyABKAsyjwEuSW5uZXJUdWJlLlBy",
-            "b3RvYnVmLkVuZHBvaW50cy5PcGVuUG9wdXBBY3Rpb24uTWVudVBvcHVwUmVu",
-            "ZGVyZXJXcmFwcGVyLk1lbnVQb3B1cFJlbmRlcmVyLk1lbnVTZXJ2aWNlSXRl",
-            "bVJlbmRlcmVyV3JhcHBlci5NZW51U2VydmljZUl0ZW1SZW5kZXJlchrgAQoX",
-            "TWVudVNlcnZpY2VJdGVtUmVuZGVyZXISMAoEdGV4dBgBIAEoCzIiLklubmVy",
-            "VHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuVGV4dBImCgRpY29uGAIgASgLMhgu",
-            "SW5uZXJUdWJlLlByb3RvYnVmLkljb24SPwoPc2VydmljZUVuZHBvaW50GAMg",
-            "ASgLMiYuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5FbmRwb2ludBIW",
-            "Cg50cmFja2luZ1BhcmFtcxgFIAEoDBISCgppc1NlbGVjdGVkGA0gASgIGqcC",
-            "ChVDb25maXJtRGlhbG9nUmVuZGVyZXISFgoOdHJhY2tpbmdQYXJhbXMYByAB",
-            "KAwSOgoOZGlhbG9nTWVzc2FnZXMYCCABKAsyIi5Jbm5lclR1YmUuUHJvdG9i",
-            "dWYuRW5kcG9pbnRzLlRleHQSUAoNY29uZmlybUJ1dHRvbhgMIAEoCzI5Lklu",
+            "b2ludHMuU2lnbkluRW5kcG9pbnRIABJXChV3YXRjaFBsYXlsaXN0RW5kcG9p",
+            "bnQYyr6OGSABKAsyMy5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLldh",
+            "dGNoUGxheWxpc3RFbmRwb2ludEgAElUKFHBsYXlsaXN0RWRpdEVuZHBvaW50",
+            "GM3i9hwgASgLMjIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5QbGF5",
+            "bGlzdEVkaXRFbmRwb2ludEgAEkUKDGxpa2VFbmRwb2ludBie8o4eIAEoCzIq",
+            "LklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuTGlrZUVuZHBvaW50SAAS",
+            "TwoRc3Vic2NyaWJlRW5kcG9pbnQY5aHzICABKAsyLy5Jbm5lclR1YmUuUHJv",
+            "dG9idWYuRW5kcG9pbnRzLlN1YnNjcmliZUVuZHBvaW50SAASUwoTdW5zdWJz",
+            "Y3JpYmVFbmRwb2ludBiZovMgIAEoCzIxLklubmVyVHViZS5Qcm90b2J1Zi5F",
+            "bmRwb2ludHMuVW5zdWJzY3JpYmVFbmRwb2ludEgAEoMBCittb2RpZnlDaGFu",
+            "bmVsTm90aWZpY2F0aW9uUHJlZmVyZW5jZUVuZHBvaW50GImNgSsgASgLMkku",
+            "SW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5Nb2RpZnlDaGFubmVsTm90",
+            "aWZpY2F0aW9uUHJlZmVyZW5jZUVuZHBvaW50SAASRwoNbW9kYWxFbmRwb2lu",
+            "dBiHlusyIAEoCzIrLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuTW9k",
+            "YWxFbmRwb2ludEgAElcKFXNpZ25hbFNlcnZpY2VFbmRwb2ludBjriqI7IAEo",
+            "CzIzLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuU2lnbmFsU2Vydmlj",
+            "ZUVuZHBvaW50SAASZwodY3JlYXRlUGxheWxpc3RTZXJ2aWNlRW5kcG9pbnQY",
+            "zIG+OyABKAsyOy5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLkNyZWF0",
+            "ZVBsYXlsaXN0U2VydmljZUVuZHBvaW50SAASSwoPb3BlblBvcHVwQWN0aW9u",
+            "GNjBoj0gASgLMi0uSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5PcGVu",
+            "UG9wdXBBY3Rpb25IABJFChBpbm5lcnR1YmVDb21tYW5kGNaV6VAgASgLMiYu",
+            "SW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5FbmRwb2ludEgAEkcKDXNl",
+            "cmlhbENvbW1hbmQY4KqfUSABKAsyKy5Jbm5lclR1YmUuUHJvdG9idWYuRW5k",
+            "cG9pbnRzLlNlcmlhbENvbW1hbmRIABJhChpzaGFyZUVudGl0eVNlcnZpY2VF",
+            "bmRwb2ludBicsM9RIAEoCzI4LklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2lu",
+            "dHMuU2hhcmVFbnRpdHlTZXJ2aWNlRW5kcG9pbnRIABJZChZjb21tYW5kRXhl",
+            "Y3V0b3JDb21tYW5kGN6dg1MgASgLMjQuSW5uZXJUdWJlLlByb3RvYnVmLkVu",
+            "ZHBvaW50cy5Db21tYW5kRXhlY3V0b3JDb21tYW5kSAASTwoRbG9nR2VzdHVy",
+            "ZUNvbW1hbmQYm42lcyABKAsyLy5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9p",
+            "bnRzLkxvZ0dlc3R1cmVDb21tYW5kSAASVQoUYWRkVG9QbGF5bGlzdENvbW1h",
+            "bmQYo+GfdCABKAsyMi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLkFk",
+            "ZFRvUGxheWxpc3RDb21tYW5kSAASdwolY2hhbmdlRW5nYWdlbWVudFBhbmVs",
+            "VmlzaWJpbGl0eUFjdGlvbhiRrfN1IAEoCzJDLklubmVyVHViZS5Qcm90b2J1",
+            "Zi5FbmRwb2ludHMuQ2hhbmdlRW5nYWdlbWVudFBhbmVsVmlzaWJpbGl0eUFj",
+            "dGlvbkgAElQKE2NvbnRpbnVhdGlvbkNvbW1hbmQYzITUhQEgASgLMjEuSW5u",
+            "ZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5Db250aW51YXRpb25Db21tYW5k",
+            "SAASVAoTZW50aXR5VXBkYXRlQ29tbWFuZBiC45uPASABKAsyMS5Jbm5lclR1",
+            "YmUuUHJvdG9idWYuRW5kcG9pbnRzLkVudGl0eVVwZGF0ZUNvbW1hbmRIABJq",
+            "Ch5zY3JvbGxUb0VuZ2FnZW1lbnRQYW5lbENvbW1hbmQY9JKdpAEgASgLMjwu",
+            "SW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5TY3JvbGxUb0VuZ2FnZW1l",
+            "bnRQYW5lbENvbW1hbmRIABp0Cg9Db21tYW5kTWV0YWRhdGESUQoSd2ViQ29t",
+            "bWFuZE1ldGFkYXRhGN6F6VQgASgLMjAuSW5uZXJUdWJlLlByb3RvYnVmLkVu",
+            "ZHBvaW50cy5XZWJDb21tYW5kTWV0YWRhdGFIAEIOCgxtZXRhZGF0YVR5cGVC",
+            "DgoMZW5kcG9pbnRUeXBlIr8BCgdQYXlsb2FkEkoKEGxpa2VTdGF0dXNFbnRp",
+            "dHkYPiABKAsyLi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLkxpa2VT",
+            "dGF0dXNFbnRpdHlIABJZChdwbGF5bGlzdExvb3BTdGF0ZUVudGl0eRjiAiAB",
+            "KAsyNS5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLlBsYXlsaXN0TG9v",
+            "cFN0YXRlRW50aXR5SABCDQoLcGF5bG9hZFR5cGUijA0KDVdhdGNoRW5kcG9p",
+            "bnQSDwoHdmlkZW9JZBgBIAEoCRIXCgpwbGF5bGlzdElkGAIgASgJSACIAQES",
+            "EgoFaW5kZXgYAyABKAVIAYgBARITCgZwYXJhbXMYBSABKAlIAogBARIdChBj",
+            "b250aW51ZVBsYXliYWNrGAYgASgISAOIAQESHQoQc3RhcnRUaW1lU2Vjb25k",
+            "cxgHIAEoAkgEiAEBEhkKDHBsYXllclBhcmFtcxgJIAEoCUgFiAEBEh8KEnBs",
+            "YXlsaXN0U2V0VmlkZW9JZBgNIAEoCUgGiAEBEhUKCG5vZm9sbG93GBEgASgI",
+            "SAeIAQESggEKIndhdGNoRW5kcG9pbnRTdXBwb3J0ZWRPbmVzaWVDb25maWcY",
+            "9JGKJiABKAsyTi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLldhdGNo",
+            "RW5kcG9pbnQuV2F0Y2hFbmRwb2ludFN1cHBvcnRlZE9uZXNpZUNvbmZpZ0gI",
+            "iAEBEnsKJHdhdGNoRW5kcG9pbnRTdXBwb3J0ZWRQcmVmZXRjaENvbmZpZxiP",
+            "rr8gIAEoCzJFLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuV2F0Y2hF",
+            "bmRwb2ludC5QcmVmZXRjaEhpbnRDb25maWdXcmFwcGVySAmIAQESVwoObG9n",
+            "Z2luZ0NvbnRleHQYGiABKAsyOi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9p",
+            "bnRzLldhdGNoRW5kcG9pbnQuTG9nZ2luZ0NvbnRleHRICogBARq/AgoiV2F0",
+            "Y2hFbmRwb2ludFN1cHBvcnRlZE9uZXNpZUNvbmZpZxKTAQoZaHRtbDVQbGF5",
+            "YmFja09uZXNpZUNvbmZpZxjXy+5/IAEoCzJoLklubmVyVHViZS5Qcm90b2J1",
+            "Zi5FbmRwb2ludHMuV2F0Y2hFbmRwb2ludC5XYXRjaEVuZHBvaW50U3VwcG9y",
+            "dGVkT25lc2llQ29uZmlnLkh0bWw1UGxheWJhY2tPbmVzaWVDb25maWdIAIgB",
+            "ARplChlIdG1sNVBsYXliYWNrT25lc2llQ29uZmlnEjcKDGNvbW1vbkNvbmZp",
+            "ZxgBIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5TdHJpbmdWYWx1ZUgAiAEBQg8K",
+            "DV9jb21tb25Db25maWdCHAoaX2h0bWw1UGxheWJhY2tPbmVzaWVDb25maWca",
+            "yAIKGVByZWZldGNoSGludENvbmZpZ1dyYXBwZXISfAoScHJlZmV0Y2hIaW50",
+            "Q29uZmlnGMfP0CAgASgLMlguSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50",
+            "cy5XYXRjaEVuZHBvaW50LlByZWZldGNoSGludENvbmZpZ1dyYXBwZXIuUHJl",
+            "ZmV0Y2hIaW50Q29uZmlnSACIAQEalQEKElByZWZldGNoSGludENvbmZpZxIY",
+            "ChBwcmVmZXRjaFByaW9yaXR5GAEgASgFEjAKKHBsYXliYWNrUmVsYXRpdmVT",
+            "ZWNvbmRzUHJlZmV0Y2hDb25kaXRpb24YBCABKAMSMworY291bnRkb3duVWlS",
+            "ZWxhdGl2ZVNlY29uZHNQcmVmZXRjaENvbmRpdGlvbhgFIAEoA0IVChNfcHJl",
+            "ZmV0Y2hIaW50Q29uZmlnGsgBCg5Mb2dnaW5nQ29udGV4dBJsChF2c3NMb2dn",
+            "aW5nQ29udGV4dBgBIAEoCzJMLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2lu",
+            "dHMuV2F0Y2hFbmRwb2ludC5Mb2dnaW5nQ29udGV4dC5Wc3NMb2dnaW5nQ29u",
+            "dGV4dEgAiAEBGjIKEVZzc0xvZ2dpbmdDb250ZXh0Eh0KFXNlcmlhbGl6ZWRD",
+            "b250ZXh0RGF0YRgBIAEoCUIUChJfdnNzTG9nZ2luZ0NvbnRleHRCDQoLX3Bs",
+            "YXlsaXN0SWRCCAoGX2luZGV4QgkKB19wYXJhbXNCEwoRX2NvbnRpbnVlUGxh",
+            "eWJhY2tCEwoRX3N0YXJ0VGltZVNlY29uZHNCDwoNX3BsYXllclBhcmFtc0IV",
+            "ChNfcGxheWxpc3RTZXRWaWRlb0lkQgsKCV9ub2ZvbGxvd0IlCiNfd2F0Y2hF",
+            "bmRwb2ludFN1cHBvcnRlZE9uZXNpZUNvbmZpZ0InCiVfd2F0Y2hFbmRwb2lu",
+            "dFN1cHBvcnRlZFByZWZldGNoQ29uZmlnQhEKD19sb2dnaW5nQ29udGV4dCJO",
+            "CgtVcmxFbmRwb2ludBILCgN1cmwYASABKAkSDgoGdGFyZ2V0GAIgASgFEhUK",
+            "CG5vZm9sbG93GBEgASgISACIAQFCCwoJX25vZm9sbG93IlYKDkJyb3dzZUVu",
+            "ZHBvaW50EhAKCGJyb3dzZUlkGAIgASgJEh0KEGNhbm9uaWNhbEJhc2VVcmwY",
+            "BCABKAlIAIgBAUITChFfY2Fub25pY2FsQmFzZVVybCJfCg5TaWduSW5FbmRw",
+            "b2ludBI8CgxuZXh0RW5kcG9pbnQYAiABKAsyJi5Jbm5lclR1YmUuUHJvdG9i",
+            "dWYuRW5kcG9pbnRzLkVuZHBvaW50Eg8KB2lkYW1UYWcYCCABKAkiSgoVV2F0",
+            "Y2hQbGF5bGlzdEVuZHBvaW50EhIKCnBsYXlsaXN0SWQYASABKAkSDQoFaW5k",
+            "ZXgYAiABKAUSDgoGcGFyYW1zGAQgASgJIr4BChRQbGF5bGlzdEVkaXRFbmRw",
+            "b2ludBISCgpwbGF5bGlzdElkGAEgASgJEkoKB2FjdGlvbnMYAiADKAsyOS5J",
+            "bm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLlBsYXlsaXN0RWRpdEVuZHBv",
+            "aW50LkFjdGlvbhpGCgZBY3Rpb24SFAoMYWRkZWRWaWRlb0lkGAIgASgJEg4K",
+            "BmFjdGlvbhgGIAEoBRIWCg5yZW1vdmVkVmlkZW9JZBgRIAEoCSLdAQoMTGlr",
+            "ZUVuZHBvaW50Eg4KBnN0YXR1cxgBIAEoBRJBCgZ0YXJnZXQYAiABKAsyMS5J",
+            "bm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLkxpa2VFbmRwb2ludC5UYXJn",
+            "ZXQSFwoKbGlrZVBhcmFtcxgIIAEoCUgAiAEBGlIKBlRhcmdldBIUCgd2aWRl",
+            "b0lkGAEgASgJSACIAQESFwoKcGxheWxpc3RJZBgCIAEoCUgBiAEBQgoKCF92",
+            "aWRlb0lkQg0KC19wbGF5bGlzdElkQg0KC19saWtlUGFyYW1zIjcKEVN1YnNj",
+            "cmliZUVuZHBvaW50EhIKCmNoYW5uZWxJZHMYASADKAkSDgoGcGFyYW1zGAMg",
+            "ASgJIkEKE1Vuc3Vic2NyaWJlRW5kcG9pbnQSEgoKY2hhbm5lbElkcxgBIAMo",
+            "CRIWCg50cmFja2luZ1BhcmFtcxgEIAEoDCI9CitNb2RpZnlDaGFubmVsTm90",
+            "aWZpY2F0aW9uUHJlZmVyZW5jZUVuZHBvaW50Eg4KBnBhcmFtcxgBIAEoCSLf",
+            "BgoNTW9kYWxFbmRwb2ludBJyCh5tb2RhbFdpdGhUaXRsZUFuZEJ1dHRvbldy",
+            "YXBwZXIYASABKAsySi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLk1v",
+            "ZGFsRW5kcG9pbnQuTW9kYWxXaXRoVGl0bGVBbmRCdXR0b25XcmFwcGVyGt4C",
+            "Cg1CdXR0b25XcmFwcGVyEloKDWJ1dHRvbldyYXBwZXIYkdaIHyABKAsyQC5J",
+            "bm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLk1vZGFsRW5kcG9pbnQuQnV0",
+            "dG9uV3JhcHBlci5CdXR0b24a8AEKBkJ1dHRvbhINCgVzdHlsZRgBIAEoBRIM",
+            "CgRzaXplGAIgASgFEhIKCmlzRGlzYWJsZWQYAyABKAgSMAoEdGV4dBgFIAEo",
+            "CzIiLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuVGV4dBI/Cg9zZXJ2",
+            "aWNlRW5kcG9pbnQYByABKAsyJi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9p",
+            "bnRzLkVuZHBvaW50EkIKEm5hdmlnYXRpb25FbmRwb2ludBgJIAEoCzImLklu",
+            "bmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuRW5kcG9pbnQa+AIKHk1vZGFs",
+            "V2l0aFRpdGxlQW5kQnV0dG9uV3JhcHBlchKGAQoXbW9kYWxXaXRoVGl0bGVB",
+            "bmRCdXR0b24YiJbrMiABKAsyYi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9p",
+            "bnRzLk1vZGFsRW5kcG9pbnQuTW9kYWxXaXRoVGl0bGVBbmRCdXR0b25XcmFw",
+            "cGVyLk1vZGFsV2l0aFRpdGxlQW5kQnV0dG9uGswBChdNb2RhbFdpdGhUaXRs",
+            "ZUFuZEJ1dHRvbhIxCgV0aXRsZRgBIAEoCzIiLklubmVyVHViZS5Qcm90b2J1",
+            "Zi5FbmRwb2ludHMuVGV4dBIzCgdjb250ZW50GAIgASgLMiIuSW5uZXJUdWJl",
+            "LlByb3RvYnVmLkVuZHBvaW50cy5UZXh0EkkKBmJ1dHRvbhgDIAEoCzI5Lklu",
             "bmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuTW9kYWxFbmRwb2ludC5CdXR0",
-            "b25XcmFwcGVyEk8KDGNhbmNlbEJ1dHRvbhgNIAEoCzI5LklubmVyVHViZS5Q",
-            "cm90b2J1Zi5FbmRwb2ludHMuTW9kYWxFbmRwb2ludC5CdXR0b25XcmFwcGVy",
-            "EhcKD3ByaW1hcnlJc0NhbmNlbBgTIAEoCBpuChpOb3RpZmljYXRpb25BY3Rp",
-            "b25SZW5kZXJlchI4CgxyZXNwb25zZVRleHQYASABKAsyIi5Jbm5lclR1YmUu",
-            "UHJvdG9idWYuRW5kcG9pbnRzLlRleHQSFgoOdHJhY2tpbmdQYXJhbXMYBCAB",
-            "KAwaTwoZVW5pZmllZFNoYXJlUGFuZWxSZW5kZXJlchIWCg50cmFja2luZ1Bh",
-            "cmFtcxgGIAEoDBIaChJzaG93TG9hZGluZ1NwaW5uZXIYDyABKAhCEwoRcG9w",
-            "dXBSZW5kZXJlclR5cGUidQoaU2hhcmVFbnRpdHlTZXJ2aWNlRW5kcG9pbnQS",
-            "HQoVc2VyaWFsaXplZFNoYXJlRW50aXR5GAEgASgJEjgKCGNvbW1hbmRzGAQg",
-            "AygLMiYuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5FbmRwb2ludCJS",
-            "ChZDb21tYW5kRXhlY3V0b3JDb21tYW5kEjgKCGNvbW1hbmRzGAEgAygLMiYu",
-            "SW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5FbmRwb2ludCIyCh5TY3Jv",
-            "bGxUb0VuZ2FnZW1lbnRQYW5lbENvbW1hbmQSEAoIdGFyZ2V0SWQYASABKAki",
-            "ggEKEldlYkNvbW1hbmRNZXRhZGF0YRILCgN1cmwYASABKAkSEAoIc2VuZFBv",
-            "c3QYAiABKAgSEwoLd2ViUGFnZVR5cGUYAyABKAUSGAoQaWdub3JlTmF2aWdh",
-            "dGlvbhgEIAEoCBIOCgZyb290VmUYBSABKAUSDgoGYXBpVXJsGAcgASgJYgZw",
-            "cm90bzM="));
+            "b25XcmFwcGVyImEKFVNpZ25hbFNlcnZpY2VFbmRwb2ludBIOCgZzaWduYWwY",
+            "ASABKAUSOAoIY29tbWFuZHMYAiADKAsyJi5Jbm5lclR1YmUuUHJvdG9idWYu",
+            "RW5kcG9pbnRzLkVuZHBvaW50IkkKDVNlcmlhbENvbW1hbmQSOAoIY29tbWFu",
+            "ZHMYASADKAsyJi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLkVuZHBv",
+            "aW50IjUKE0NvbnRpbnVhdGlvbkNvbW1hbmQSDQoFdG9rZW4YASABKAkSDwoH",
+            "cmVxdWVzdBgCIAEoBSJAChFMb2dHZXN0dXJlQ29tbWFuZBITCgtnZXN0dXJl",
+            "VHlwZRgBIAEoBRIWCg50cmFja2luZ1BhcmFtcxgCIAEoDCK/AQoUQWRkVG9Q",
+            "bGF5bGlzdENvbW1hbmQSFgoOb3Blbk1pbmlwbGF5ZXIYASABKAgSFQoNb3Bl",
+            "bkxpc3RQYW5lbBgCIAEoCBIPCgd2aWRlb0lkGAMgASgJEhAKCGxpc3RUeXBl",
+            "GAUgASgFEkMKE29uQ3JlYXRlTGlzdENvbW1hbmQYBiABKAsyJi5Jbm5lclR1",
+            "YmUuUHJvdG9idWYuRW5kcG9pbnRzLkVuZHBvaW50EhAKCHZpZGVvSWRzGAgg",
+            "AygJIk0KJUNoYW5nZUVuZ2FnZW1lbnRQYW5lbFZpc2liaWxpdHlBY3Rpb24S",
+            "EAoIdGFyZ2V0SWQYASABKAkSEgoKdmlzaWJpbGl0eRgCIAEoBSJBCh1DcmVh",
+            "dGVQbGF5bGlzdFNlcnZpY2VFbmRwb2ludBIQCgh2aWRlb0lkcxgBIAMoCRIO",
+            "CgZwYXJhbXMYBCABKAkimw4KD09wZW5Qb3B1cEFjdGlvbhJVCgVwb3B1cBgB",
+            "IAEoCzJGLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuT3BlblBvcHVw",
+            "QWN0aW9uLk1lbnVQb3B1cFJlbmRlcmVyV3JhcHBlchIRCglwb3B1cFR5cGUY",
+            "AiABKAUSEAoIYmVSZXVzZWQYByABKAgaiw0KGE1lbnVQb3B1cFJlbmRlcmVy",
+            "V3JhcHBlchJ4ChFtZW51UG9wdXBSZW5kZXJlchiipfNEIAEoCzJYLklubmVy",
+            "VHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuT3BlblBvcHVwQWN0aW9uLk1lbnVQ",
+            "b3B1cFJlbmRlcmVyV3JhcHBlci5NZW51UG9wdXBSZW5kZXJlckgAEoABChVj",
+            "b25maXJtRGlhbG9nUmVuZGVyZXIYoabIHiABKAsyXC5Jbm5lclR1YmUuUHJv",
+            "dG9idWYuRW5kcG9pbnRzLk9wZW5Qb3B1cEFjdGlvbi5NZW51UG9wdXBSZW5k",
+            "ZXJlcldyYXBwZXIuQ29uZmlybURpYWxvZ1JlbmRlcmVySAASiAEKGXVuaWZp",
+            "ZWRTaGFyZVBhbmVsUmVuZGVyZXIYybHsKSABKAsyYC5Jbm5lclR1YmUuUHJv",
+            "dG9idWYuRW5kcG9pbnRzLk9wZW5Qb3B1cEFjdGlvbi5NZW51UG9wdXBSZW5k",
+            "ZXJlcldyYXBwZXIuVW5pZmllZFNoYXJlUGFuZWxSZW5kZXJlckgAEooBChpu",
+            "b3RpZmljYXRpb25BY3Rpb25SZW5kZXJlchic9+stIAEoCzJhLklubmVyVHVi",
+            "ZS5Qcm90b2J1Zi5FbmRwb2ludHMuT3BlblBvcHVwQWN0aW9uLk1lbnVQb3B1",
+            "cFJlbmRlcmVyV3JhcHBlci5Ob3RpZmljYXRpb25BY3Rpb25SZW5kZXJlckgA",
+            "GtkEChFNZW51UG9wdXBSZW5kZXJlchKGAQoFaXRlbXMYASADKAsydy5Jbm5l",
+            "clR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLk9wZW5Qb3B1cEFjdGlvbi5NZW51",
+            "UG9wdXBSZW5kZXJlcldyYXBwZXIuTWVudVBvcHVwUmVuZGVyZXIuTWVudVNl",
+            "cnZpY2VJdGVtUmVuZGVyZXJXcmFwcGVyGroDCh5NZW51U2VydmljZUl0ZW1S",
+            "ZW5kZXJlcldyYXBwZXIStAEKF21lbnVTZXJ2aWNlSXRlbVJlbmRlcmVyGMOf",
+            "1x8gASgLMo8BLklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludHMuT3BlblBv",
+            "cHVwQWN0aW9uLk1lbnVQb3B1cFJlbmRlcmVyV3JhcHBlci5NZW51UG9wdXBS",
+            "ZW5kZXJlci5NZW51U2VydmljZUl0ZW1SZW5kZXJlcldyYXBwZXIuTWVudVNl",
+            "cnZpY2VJdGVtUmVuZGVyZXIa4AEKF01lbnVTZXJ2aWNlSXRlbVJlbmRlcmVy",
+            "EjAKBHRleHQYASABKAsyIi5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRz",
+            "LlRleHQSJgoEaWNvbhgCIAEoCzIYLklubmVyVHViZS5Qcm90b2J1Zi5JY29u",
+            "Ej8KD3NlcnZpY2VFbmRwb2ludBgDIAEoCzImLklubmVyVHViZS5Qcm90b2J1",
+            "Zi5FbmRwb2ludHMuRW5kcG9pbnQSFgoOdHJhY2tpbmdQYXJhbXMYBSABKAwS",
+            "EgoKaXNTZWxlY3RlZBgNIAEoCBqnAgoVQ29uZmlybURpYWxvZ1JlbmRlcmVy",
+            "EhYKDnRyYWNraW5nUGFyYW1zGAcgASgMEjoKDmRpYWxvZ01lc3NhZ2VzGAgg",
+            "ASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5UZXh0ElAKDWNv",
+            "bmZpcm1CdXR0b24YDCABKAsyOS5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9p",
+            "bnRzLk1vZGFsRW5kcG9pbnQuQnV0dG9uV3JhcHBlchJPCgxjYW5jZWxCdXR0",
+            "b24YDSABKAsyOS5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRzLk1vZGFs",
+            "RW5kcG9pbnQuQnV0dG9uV3JhcHBlchIXCg9wcmltYXJ5SXNDYW5jZWwYEyAB",
+            "KAgabgoaTm90aWZpY2F0aW9uQWN0aW9uUmVuZGVyZXISOAoMcmVzcG9uc2VU",
+            "ZXh0GAEgASgLMiIuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50cy5UZXh0",
+            "EhYKDnRyYWNraW5nUGFyYW1zGAQgASgMGk8KGVVuaWZpZWRTaGFyZVBhbmVs",
+            "UmVuZGVyZXISFgoOdHJhY2tpbmdQYXJhbXMYBiABKAwSGgoSc2hvd0xvYWRp",
+            "bmdTcGlubmVyGA8gASgIQhMKEXBvcHVwUmVuZGVyZXJUeXBlInUKGlNoYXJl",
+            "RW50aXR5U2VydmljZUVuZHBvaW50Eh0KFXNlcmlhbGl6ZWRTaGFyZUVudGl0",
+            "eRgBIAEoCRI4Cghjb21tYW5kcxgEIAMoCzImLklubmVyVHViZS5Qcm90b2J1",
+            "Zi5FbmRwb2ludHMuRW5kcG9pbnQiUgoWQ29tbWFuZEV4ZWN1dG9yQ29tbWFu",
+            "ZBI4Cghjb21tYW5kcxgBIAMoCzImLklubmVyVHViZS5Qcm90b2J1Zi5FbmRw",
+            "b2ludHMuRW5kcG9pbnQisgIKE0VudGl0eVVwZGF0ZUNvbW1hbmQSWAoRZW50",
+            "aXR5QmF0Y2hVcGRhdGUYASABKAsyPS5Jbm5lclR1YmUuUHJvdG9idWYuRW5k",
+            "cG9pbnRzLkVudGl0eVVwZGF0ZUNvbW1hbmQuQmF0Y2hVcGRhdGUaXAoLQmF0",
+            "Y2hVcGRhdGUSTQoJbXV0YXRpb25zGAEgAygLMjouSW5uZXJUdWJlLlByb3Rv",
+            "YnVmLkVuZHBvaW50cy5FbnRpdHlVcGRhdGVDb21tYW5kLk11dGF0aW9uGmMK",
+            "CE11dGF0aW9uEhEKCWVudGl0eUtleRgBIAEoCRIMCgR0eXBlGAIgASgFEjYK",
+            "B3BheWxvYWQYAyABKAsyJS5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnRz",
+            "LlBheWxvYWQiMgoeU2Nyb2xsVG9FbmdhZ2VtZW50UGFuZWxDb21tYW5kEhAK",
+            "CHRhcmdldElkGAEgASgJIoIBChJXZWJDb21tYW5kTWV0YWRhdGESCwoDdXJs",
+            "GAEgASgJEhAKCHNlbmRQb3N0GAIgASgIEhMKC3dlYlBhZ2VUeXBlGAMgASgF",
+            "EhgKEGlnbm9yZU5hdmlnYXRpb24YBCABKAgSDgoGcm9vdFZlGAUgASgFEg4K",
+            "BmFwaVVybBgHIAEoCSIzChBMaWtlU3RhdHVzRW50aXR5EgsKA2tleRgBIAEo",
+            "CRISCgpsaWtlU3RhdHVzGAIgASgFIjUKF1BsYXlsaXN0TG9vcFN0YXRlRW50",
+            "aXR5EgsKA2tleRgBIAEoCRINCgVzdGF0ZRgCIAEoBWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::Google.Protobuf.WellKnownTypes.WrappersReflection.Descriptor, global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.Text), global::InnerTube.Protobuf.Endpoints.Text.Parser, new[]{ "Runs", "Accessibility", "SimpleText" }, new[]{ "SimpleText" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.Text.Types.Run), global::InnerTube.Protobuf.Endpoints.Text.Types.Run.Parser, new[]{ "Text", "Bold", "NavigationEndpoint", "LoggingDirectives" }, new[]{ "NavigationEndpoint", "LoggingDirectives" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.Text.Types.LoggingDirectives), global::InnerTube.Protobuf.Endpoints.Text.Types.LoggingDirectives.Parser, new[]{ "TrackingParams", "Visibility" }, null, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.Endpoint), global::InnerTube.Protobuf.Endpoints.Endpoint.Parser, new[]{ "ClickTrackingParams", "CommandMetadata", "WatchEndpoint", "UrlEndpoint", "BrowseEndpoint", "SignInEndpoint", "PlaylistEditEndpoint", "SubscribeEndpoint", "UnsubscribeEndpoint", "ModifyChannelNotificationPreferenceEndpoint", "ModalEndpoint", "SignalServiceEndpoint", "CreatePlaylistServiceEndpoint", "OpenPopupAction", "InnertubeCommand", "SerialCommand", "ShareEntityServiceEndpoint", "CommandExecutorCommand", "LogGestureCommand", "AddToPlaylistCommand", "ChangeEngagementPanelVisibilityAction", "ContinuationCommand", "ScrollToEngagementPanelCommand" }, new[]{ "EndpointType" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.Endpoint.Types.CommandMetadata), global::InnerTube.Protobuf.Endpoints.Endpoint.Types.CommandMetadata.Parser, new[]{ "WebCommandMetadata" }, new[]{ "MetadataType" }, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Parser, new[]{ "VideoId", "PlaylistId", "Params", "ContinuePlayback", "StartTimeSeconds", "PlayerParams", "Nofollow", "WatchEndpointSupportedOnesieConfig", "WatchEndpointSupportedPrefetchConfig", "LoggingContext" }, new[]{ "PlaylistId", "Params", "ContinuePlayback", "StartTimeSeconds", "PlayerParams", "Nofollow", "WatchEndpointSupportedOnesieConfig", "WatchEndpointSupportedPrefetchConfig", "LoggingContext" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.WatchEndpointSupportedOnesieConfig), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.WatchEndpointSupportedOnesieConfig.Parser, new[]{ "Html5PlaybackOnesieConfig" }, new[]{ "Html5PlaybackOnesieConfig" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.WatchEndpointSupportedOnesieConfig.Types.Html5PlaybackOnesieConfig), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.WatchEndpointSupportedOnesieConfig.Types.Html5PlaybackOnesieConfig.Parser, new[]{ "CommonConfig" }, new[]{ "CommonConfig" }, null, null, null)}),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.PrefetchHintConfigWrapper), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.PrefetchHintConfigWrapper.Parser, new[]{ "PrefetchHintConfig" }, new[]{ "PrefetchHintConfig" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.PrefetchHintConfigWrapper.Types.PrefetchHintConfig), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.PrefetchHintConfigWrapper.Types.PrefetchHintConfig.Parser, new[]{ "PrefetchPriority", "CountdownUiRelativeSecondsPrefetchCondition" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.Endpoint), global::InnerTube.Protobuf.Endpoints.Endpoint.Parser, new[]{ "ClickTrackingParams", "CommandMetadata", "WatchEndpoint", "UrlEndpoint", "BrowseEndpoint", "SignInEndpoint", "WatchPlaylistEndpoint", "PlaylistEditEndpoint", "LikeEndpoint", "SubscribeEndpoint", "UnsubscribeEndpoint", "ModifyChannelNotificationPreferenceEndpoint", "ModalEndpoint", "SignalServiceEndpoint", "CreatePlaylistServiceEndpoint", "OpenPopupAction", "InnertubeCommand", "SerialCommand", "ShareEntityServiceEndpoint", "CommandExecutorCommand", "LogGestureCommand", "AddToPlaylistCommand", "ChangeEngagementPanelVisibilityAction", "ContinuationCommand", "EntityUpdateCommand", "ScrollToEngagementPanelCommand" }, new[]{ "EndpointType" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.Endpoint.Types.CommandMetadata), global::InnerTube.Protobuf.Endpoints.Endpoint.Types.CommandMetadata.Parser, new[]{ "WebCommandMetadata" }, new[]{ "MetadataType" }, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.Payload), global::InnerTube.Protobuf.Endpoints.Payload.Parser, new[]{ "LikeStatusEntity", "PlaylistLoopStateEntity" }, new[]{ "PayloadType" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Parser, new[]{ "VideoId", "PlaylistId", "Index", "Params", "ContinuePlayback", "StartTimeSeconds", "PlayerParams", "PlaylistSetVideoId", "Nofollow", "WatchEndpointSupportedOnesieConfig", "WatchEndpointSupportedPrefetchConfig", "LoggingContext" }, new[]{ "PlaylistId", "Index", "Params", "ContinuePlayback", "StartTimeSeconds", "PlayerParams", "PlaylistSetVideoId", "Nofollow", "WatchEndpointSupportedOnesieConfig", "WatchEndpointSupportedPrefetchConfig", "LoggingContext" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.WatchEndpointSupportedOnesieConfig), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.WatchEndpointSupportedOnesieConfig.Parser, new[]{ "Html5PlaybackOnesieConfig" }, new[]{ "Html5PlaybackOnesieConfig" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.WatchEndpointSupportedOnesieConfig.Types.Html5PlaybackOnesieConfig), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.WatchEndpointSupportedOnesieConfig.Types.Html5PlaybackOnesieConfig.Parser, new[]{ "CommonConfig" }, new[]{ "CommonConfig" }, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.PrefetchHintConfigWrapper), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.PrefetchHintConfigWrapper.Parser, new[]{ "PrefetchHintConfig" }, new[]{ "PrefetchHintConfig" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.PrefetchHintConfigWrapper.Types.PrefetchHintConfig), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.PrefetchHintConfigWrapper.Types.PrefetchHintConfig.Parser, new[]{ "PrefetchPriority", "PlaybackRelativeSecondsPrefetchCondition", "CountdownUiRelativeSecondsPrefetchCondition" }, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.LoggingContext), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.LoggingContext.Parser, new[]{ "VssLoggingContext" }, new[]{ "VssLoggingContext" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.LoggingContext.Types.VssLoggingContext), global::InnerTube.Protobuf.Endpoints.WatchEndpoint.Types.LoggingContext.Types.VssLoggingContext.Parser, new[]{ "SerializedContextData" }, null, null, null, null)})}),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.UrlEndpoint), global::InnerTube.Protobuf.Endpoints.UrlEndpoint.Parser, new[]{ "Url", "Target", "Nofollow" }, new[]{ "Nofollow" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.BrowseEndpoint), global::InnerTube.Protobuf.Endpoints.BrowseEndpoint.Parser, new[]{ "BrowseId", "CanonicalBaseUrl" }, new[]{ "CanonicalBaseUrl" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.SignInEndpoint), global::InnerTube.Protobuf.Endpoints.SignInEndpoint.Parser, new[]{ "NextEndpoint", "IdamTag" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint), global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint.Parser, new[]{ "PlaylistId", "Index", "Params" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint), global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint.Parser, new[]{ "PlaylistId", "Actions" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint.Types.Action), global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint.Types.Action.Parser, new[]{ "AddedVideoId", "Action_", "RemovedVideoId" }, null, null, null, null)}),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.LikeEndpoint), global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Parser, new[]{ "Status", "Target", "LikeParams" }, new[]{ "LikeParams" }, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Types.Target), global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Types.Target.Parser, new[]{ "VideoId", "PlaylistId" }, new[]{ "VideoId", "PlaylistId" }, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.SubscribeEndpoint), global::InnerTube.Protobuf.Endpoints.SubscribeEndpoint.Parser, new[]{ "ChannelIds", "Params" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.UnsubscribeEndpoint), global::InnerTube.Protobuf.Endpoints.UnsubscribeEndpoint.Parser, new[]{ "ChannelIds", "TrackingParams" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.ModifyChannelNotificationPreferenceEndpoint), global::InnerTube.Protobuf.Endpoints.ModifyChannelNotificationPreferenceEndpoint.Parser, new[]{ "Params" }, null, null, null, null),
@@ -247,8 +278,12 @@ namespace InnerTube.Protobuf.Endpoints {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.OpenPopupAction.Types.MenuPopupRendererWrapper.Types.UnifiedSharePanelRenderer), global::InnerTube.Protobuf.Endpoints.OpenPopupAction.Types.MenuPopupRendererWrapper.Types.UnifiedSharePanelRenderer.Parser, new[]{ "TrackingParams", "ShowLoadingSpinner" }, null, null, null, null)})}),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.ShareEntityServiceEndpoint), global::InnerTube.Protobuf.Endpoints.ShareEntityServiceEndpoint.Parser, new[]{ "SerializedShareEntity", "Commands" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.CommandExecutorCommand), global::InnerTube.Protobuf.Endpoints.CommandExecutorCommand.Parser, new[]{ "Commands" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand), global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Parser, new[]{ "EntityBatchUpdate" }, null, null, null, new pbr::GeneratedClrTypeInfo[] { new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.BatchUpdate), global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.BatchUpdate.Parser, new[]{ "Mutations" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.Mutation), global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.Mutation.Parser, new[]{ "EntityKey", "Type", "Payload" }, null, null, null, null)}),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.ScrollToEngagementPanelCommand), global::InnerTube.Protobuf.Endpoints.ScrollToEngagementPanelCommand.Parser, new[]{ "TargetId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WebCommandMetadata), global::InnerTube.Protobuf.Endpoints.WebCommandMetadata.Parser, new[]{ "Url", "SendPost", "WebPageType", "IgnoreNavigation", "RootVe", "ApiUrl" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.WebCommandMetadata), global::InnerTube.Protobuf.Endpoints.WebCommandMetadata.Parser, new[]{ "Url", "SendPost", "WebPageType", "IgnoreNavigation", "RootVe", "ApiUrl" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.LikeStatusEntity), global::InnerTube.Protobuf.Endpoints.LikeStatusEntity.Parser, new[]{ "Key", "LikeStatus" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity), global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity.Parser, new[]{ "Key", "State" }, null, null, null, null)
           }));
     }
     #endregion
@@ -1147,8 +1182,14 @@ namespace InnerTube.Protobuf.Endpoints {
         case EndpointTypeOneofCase.SignInEndpoint:
           SignInEndpoint = other.SignInEndpoint.Clone();
           break;
+        case EndpointTypeOneofCase.WatchPlaylistEndpoint:
+          WatchPlaylistEndpoint = other.WatchPlaylistEndpoint.Clone();
+          break;
         case EndpointTypeOneofCase.PlaylistEditEndpoint:
           PlaylistEditEndpoint = other.PlaylistEditEndpoint.Clone();
+          break;
+        case EndpointTypeOneofCase.LikeEndpoint:
+          LikeEndpoint = other.LikeEndpoint.Clone();
           break;
         case EndpointTypeOneofCase.SubscribeEndpoint:
           SubscribeEndpoint = other.SubscribeEndpoint.Clone();
@@ -1194,6 +1235,9 @@ namespace InnerTube.Protobuf.Endpoints {
           break;
         case EndpointTypeOneofCase.ContinuationCommand:
           ContinuationCommand = other.ContinuationCommand.Clone();
+          break;
+        case EndpointTypeOneofCase.EntityUpdateCommand:
+          EntityUpdateCommand = other.EntityUpdateCommand.Clone();
           break;
         case EndpointTypeOneofCase.ScrollToEngagementPanelCommand:
           ScrollToEngagementPanelCommand = other.ScrollToEngagementPanelCommand.Clone();
@@ -1281,6 +1325,18 @@ namespace InnerTube.Protobuf.Endpoints {
       }
     }
 
+    /// <summary>Field number for the "watchPlaylistEndpoint" field.</summary>
+    public const int WatchPlaylistEndpointFieldNumber = 52666186;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint WatchPlaylistEndpoint {
+      get { return endpointTypeCase_ == EndpointTypeOneofCase.WatchPlaylistEndpoint ? (global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint) endpointType_ : null; }
+      set {
+        endpointType_ = value;
+        endpointTypeCase_ = value == null ? EndpointTypeOneofCase.None : EndpointTypeOneofCase.WatchPlaylistEndpoint;
+      }
+    }
+
     /// <summary>Field number for the "playlistEditEndpoint" field.</summary>
     public const int PlaylistEditEndpointFieldNumber = 60666189;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1290,6 +1346,18 @@ namespace InnerTube.Protobuf.Endpoints {
       set {
         endpointType_ = value;
         endpointTypeCase_ = value == null ? EndpointTypeOneofCase.None : EndpointTypeOneofCase.PlaylistEditEndpoint;
+      }
+    }
+
+    /// <summary>Field number for the "likeEndpoint" field.</summary>
+    public const int LikeEndpointFieldNumber = 63158558;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.LikeEndpoint LikeEndpoint {
+      get { return endpointTypeCase_ == EndpointTypeOneofCase.LikeEndpoint ? (global::InnerTube.Protobuf.Endpoints.LikeEndpoint) endpointType_ : null; }
+      set {
+        endpointType_ = value;
+        endpointTypeCase_ = value == null ? EndpointTypeOneofCase.None : EndpointTypeOneofCase.LikeEndpoint;
       }
     }
 
@@ -1473,6 +1541,18 @@ namespace InnerTube.Protobuf.Endpoints {
       }
     }
 
+    /// <summary>Field number for the "entityUpdateCommand" field.</summary>
+    public const int EntityUpdateCommandFieldNumber = 300347778;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand EntityUpdateCommand {
+      get { return endpointTypeCase_ == EndpointTypeOneofCase.EntityUpdateCommand ? (global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand) endpointType_ : null; }
+      set {
+        endpointType_ = value;
+        endpointTypeCase_ = value == null ? EndpointTypeOneofCase.None : EndpointTypeOneofCase.EntityUpdateCommand;
+      }
+    }
+
     /// <summary>Field number for the "scrollToEngagementPanelCommand" field.</summary>
     public const int ScrollToEngagementPanelCommandFieldNumber = 344410484;
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1493,7 +1573,9 @@ namespace InnerTube.Protobuf.Endpoints {
       UrlEndpoint = 49679253,
       BrowseEndpoint = 48687626,
       SignInEndpoint = 49706687,
+      WatchPlaylistEndpoint = 52666186,
       PlaylistEditEndpoint = 60666189,
+      LikeEndpoint = 63158558,
       SubscribeEndpoint = 68997349,
       UnsubscribeEndpoint = 68997401,
       ModifyChannelNotificationPreferenceEndpoint = 90195593,
@@ -1509,6 +1591,7 @@ namespace InnerTube.Protobuf.Endpoints {
       AddToPlaylistCommand = 243789987,
       ChangeEngagementPanelVisibilityAction = 247256721,
       ContinuationCommand = 280298060,
+      EntityUpdateCommand = 300347778,
       ScrollToEngagementPanelCommand = 344410484,
     }
     private EndpointTypeOneofCase endpointTypeCase_ = EndpointTypeOneofCase.None;
@@ -1546,7 +1629,9 @@ namespace InnerTube.Protobuf.Endpoints {
       if (!object.Equals(UrlEndpoint, other.UrlEndpoint)) return false;
       if (!object.Equals(BrowseEndpoint, other.BrowseEndpoint)) return false;
       if (!object.Equals(SignInEndpoint, other.SignInEndpoint)) return false;
+      if (!object.Equals(WatchPlaylistEndpoint, other.WatchPlaylistEndpoint)) return false;
       if (!object.Equals(PlaylistEditEndpoint, other.PlaylistEditEndpoint)) return false;
+      if (!object.Equals(LikeEndpoint, other.LikeEndpoint)) return false;
       if (!object.Equals(SubscribeEndpoint, other.SubscribeEndpoint)) return false;
       if (!object.Equals(UnsubscribeEndpoint, other.UnsubscribeEndpoint)) return false;
       if (!object.Equals(ModifyChannelNotificationPreferenceEndpoint, other.ModifyChannelNotificationPreferenceEndpoint)) return false;
@@ -1562,6 +1647,7 @@ namespace InnerTube.Protobuf.Endpoints {
       if (!object.Equals(AddToPlaylistCommand, other.AddToPlaylistCommand)) return false;
       if (!object.Equals(ChangeEngagementPanelVisibilityAction, other.ChangeEngagementPanelVisibilityAction)) return false;
       if (!object.Equals(ContinuationCommand, other.ContinuationCommand)) return false;
+      if (!object.Equals(EntityUpdateCommand, other.EntityUpdateCommand)) return false;
       if (!object.Equals(ScrollToEngagementPanelCommand, other.ScrollToEngagementPanelCommand)) return false;
       if (EndpointTypeCase != other.EndpointTypeCase) return false;
       return Equals(_unknownFields, other._unknownFields);
@@ -1577,7 +1663,9 @@ namespace InnerTube.Protobuf.Endpoints {
       if (endpointTypeCase_ == EndpointTypeOneofCase.UrlEndpoint) hash ^= UrlEndpoint.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.BrowseEndpoint) hash ^= BrowseEndpoint.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.SignInEndpoint) hash ^= SignInEndpoint.GetHashCode();
+      if (endpointTypeCase_ == EndpointTypeOneofCase.WatchPlaylistEndpoint) hash ^= WatchPlaylistEndpoint.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.PlaylistEditEndpoint) hash ^= PlaylistEditEndpoint.GetHashCode();
+      if (endpointTypeCase_ == EndpointTypeOneofCase.LikeEndpoint) hash ^= LikeEndpoint.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.SubscribeEndpoint) hash ^= SubscribeEndpoint.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.UnsubscribeEndpoint) hash ^= UnsubscribeEndpoint.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.ModifyChannelNotificationPreferenceEndpoint) hash ^= ModifyChannelNotificationPreferenceEndpoint.GetHashCode();
@@ -1593,6 +1681,7 @@ namespace InnerTube.Protobuf.Endpoints {
       if (endpointTypeCase_ == EndpointTypeOneofCase.AddToPlaylistCommand) hash ^= AddToPlaylistCommand.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.ChangeEngagementPanelVisibilityAction) hash ^= ChangeEngagementPanelVisibilityAction.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.ContinuationCommand) hash ^= ContinuationCommand.GetHashCode();
+      if (endpointTypeCase_ == EndpointTypeOneofCase.EntityUpdateCommand) hash ^= EntityUpdateCommand.GetHashCode();
       if (endpointTypeCase_ == EndpointTypeOneofCase.ScrollToEngagementPanelCommand) hash ^= ScrollToEngagementPanelCommand.GetHashCode();
       hash ^= (int) endpointTypeCase_;
       if (_unknownFields != null) {
@@ -1637,9 +1726,17 @@ namespace InnerTube.Protobuf.Endpoints {
         output.WriteRawTag(250, 235, 206, 189, 1);
         output.WriteMessage(SignInEndpoint);
       }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.WatchPlaylistEndpoint) {
+        output.WriteRawTag(210, 244, 243, 200, 1);
+        output.WriteMessage(WatchPlaylistEndpoint);
+      }
       if (endpointTypeCase_ == EndpointTypeOneofCase.PlaylistEditEndpoint) {
         output.WriteRawTag(234, 148, 182, 231, 1);
         output.WriteMessage(PlaylistEditEndpoint);
+      }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.LikeEndpoint) {
+        output.WriteRawTag(242, 145, 247, 240, 1);
+        output.WriteMessage(LikeEndpoint);
       }
       if (endpointTypeCase_ == EndpointTypeOneofCase.SubscribeEndpoint) {
         output.WriteRawTag(170, 142, 154, 135, 2);
@@ -1700,6 +1797,10 @@ namespace InnerTube.Protobuf.Endpoints {
       if (endpointTypeCase_ == EndpointTypeOneofCase.ContinuationCommand) {
         output.WriteRawTag(226, 164, 160, 173, 8);
         output.WriteMessage(ContinuationCommand);
+      }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.EntityUpdateCommand) {
+        output.WriteRawTag(146, 152, 222, 249, 8);
+        output.WriteMessage(EntityUpdateCommand);
       }
       if (endpointTypeCase_ == EndpointTypeOneofCase.ScrollToEngagementPanelCommand) {
         output.WriteRawTag(162, 151, 233, 161, 10);
@@ -1739,9 +1840,17 @@ namespace InnerTube.Protobuf.Endpoints {
         output.WriteRawTag(250, 235, 206, 189, 1);
         output.WriteMessage(SignInEndpoint);
       }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.WatchPlaylistEndpoint) {
+        output.WriteRawTag(210, 244, 243, 200, 1);
+        output.WriteMessage(WatchPlaylistEndpoint);
+      }
       if (endpointTypeCase_ == EndpointTypeOneofCase.PlaylistEditEndpoint) {
         output.WriteRawTag(234, 148, 182, 231, 1);
         output.WriteMessage(PlaylistEditEndpoint);
+      }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.LikeEndpoint) {
+        output.WriteRawTag(242, 145, 247, 240, 1);
+        output.WriteMessage(LikeEndpoint);
       }
       if (endpointTypeCase_ == EndpointTypeOneofCase.SubscribeEndpoint) {
         output.WriteRawTag(170, 142, 154, 135, 2);
@@ -1803,6 +1912,10 @@ namespace InnerTube.Protobuf.Endpoints {
         output.WriteRawTag(226, 164, 160, 173, 8);
         output.WriteMessage(ContinuationCommand);
       }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.EntityUpdateCommand) {
+        output.WriteRawTag(146, 152, 222, 249, 8);
+        output.WriteMessage(EntityUpdateCommand);
+      }
       if (endpointTypeCase_ == EndpointTypeOneofCase.ScrollToEngagementPanelCommand) {
         output.WriteRawTag(162, 151, 233, 161, 10);
         output.WriteMessage(ScrollToEngagementPanelCommand);
@@ -1835,8 +1948,14 @@ namespace InnerTube.Protobuf.Endpoints {
       if (endpointTypeCase_ == EndpointTypeOneofCase.SignInEndpoint) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(SignInEndpoint);
       }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.WatchPlaylistEndpoint) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(WatchPlaylistEndpoint);
+      }
       if (endpointTypeCase_ == EndpointTypeOneofCase.PlaylistEditEndpoint) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(PlaylistEditEndpoint);
+      }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.LikeEndpoint) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(LikeEndpoint);
       }
       if (endpointTypeCase_ == EndpointTypeOneofCase.SubscribeEndpoint) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(SubscribeEndpoint);
@@ -1882,6 +2001,9 @@ namespace InnerTube.Protobuf.Endpoints {
       }
       if (endpointTypeCase_ == EndpointTypeOneofCase.ContinuationCommand) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(ContinuationCommand);
+      }
+      if (endpointTypeCase_ == EndpointTypeOneofCase.EntityUpdateCommand) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(EntityUpdateCommand);
       }
       if (endpointTypeCase_ == EndpointTypeOneofCase.ScrollToEngagementPanelCommand) {
         size += 5 + pb::CodedOutputStream.ComputeMessageSize(ScrollToEngagementPanelCommand);
@@ -1932,11 +2054,23 @@ namespace InnerTube.Protobuf.Endpoints {
           }
           SignInEndpoint.MergeFrom(other.SignInEndpoint);
           break;
+        case EndpointTypeOneofCase.WatchPlaylistEndpoint:
+          if (WatchPlaylistEndpoint == null) {
+            WatchPlaylistEndpoint = new global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint();
+          }
+          WatchPlaylistEndpoint.MergeFrom(other.WatchPlaylistEndpoint);
+          break;
         case EndpointTypeOneofCase.PlaylistEditEndpoint:
           if (PlaylistEditEndpoint == null) {
             PlaylistEditEndpoint = new global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint();
           }
           PlaylistEditEndpoint.MergeFrom(other.PlaylistEditEndpoint);
+          break;
+        case EndpointTypeOneofCase.LikeEndpoint:
+          if (LikeEndpoint == null) {
+            LikeEndpoint = new global::InnerTube.Protobuf.Endpoints.LikeEndpoint();
+          }
+          LikeEndpoint.MergeFrom(other.LikeEndpoint);
           break;
         case EndpointTypeOneofCase.SubscribeEndpoint:
           if (SubscribeEndpoint == null) {
@@ -2028,6 +2162,12 @@ namespace InnerTube.Protobuf.Endpoints {
           }
           ContinuationCommand.MergeFrom(other.ContinuationCommand);
           break;
+        case EndpointTypeOneofCase.EntityUpdateCommand:
+          if (EntityUpdateCommand == null) {
+            EntityUpdateCommand = new global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand();
+          }
+          EntityUpdateCommand.MergeFrom(other.EntityUpdateCommand);
+          break;
         case EndpointTypeOneofCase.ScrollToEngagementPanelCommand:
           if (ScrollToEngagementPanelCommand == null) {
             ScrollToEngagementPanelCommand = new global::InnerTube.Protobuf.Endpoints.ScrollToEngagementPanelCommand();
@@ -2098,6 +2238,15 @@ namespace InnerTube.Protobuf.Endpoints {
             SignInEndpoint = subBuilder;
             break;
           }
+          case 421329490: {
+            global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint subBuilder = new global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint();
+            if (endpointTypeCase_ == EndpointTypeOneofCase.WatchPlaylistEndpoint) {
+              subBuilder.MergeFrom(WatchPlaylistEndpoint);
+            }
+            input.ReadMessage(subBuilder);
+            WatchPlaylistEndpoint = subBuilder;
+            break;
+          }
           case 485329514: {
             global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint subBuilder = new global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint();
             if (endpointTypeCase_ == EndpointTypeOneofCase.PlaylistEditEndpoint) {
@@ -2105,6 +2254,15 @@ namespace InnerTube.Protobuf.Endpoints {
             }
             input.ReadMessage(subBuilder);
             PlaylistEditEndpoint = subBuilder;
+            break;
+          }
+          case 505268466: {
+            global::InnerTube.Protobuf.Endpoints.LikeEndpoint subBuilder = new global::InnerTube.Protobuf.Endpoints.LikeEndpoint();
+            if (endpointTypeCase_ == EndpointTypeOneofCase.LikeEndpoint) {
+              subBuilder.MergeFrom(LikeEndpoint);
+            }
+            input.ReadMessage(subBuilder);
+            LikeEndpoint = subBuilder;
             break;
           }
           case 551978794: {
@@ -2240,6 +2398,15 @@ namespace InnerTube.Protobuf.Endpoints {
             }
             input.ReadMessage(subBuilder);
             ContinuationCommand = subBuilder;
+            break;
+          }
+          case 2402782226: {
+            global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand subBuilder = new global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand();
+            if (endpointTypeCase_ == EndpointTypeOneofCase.EntityUpdateCommand) {
+              subBuilder.MergeFrom(EntityUpdateCommand);
+            }
+            input.ReadMessage(subBuilder);
+            EntityUpdateCommand = subBuilder;
             break;
           }
           case 2755283874: {
@@ -2313,6 +2480,15 @@ namespace InnerTube.Protobuf.Endpoints {
             SignInEndpoint = subBuilder;
             break;
           }
+          case 421329490: {
+            global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint subBuilder = new global::InnerTube.Protobuf.Endpoints.WatchPlaylistEndpoint();
+            if (endpointTypeCase_ == EndpointTypeOneofCase.WatchPlaylistEndpoint) {
+              subBuilder.MergeFrom(WatchPlaylistEndpoint);
+            }
+            input.ReadMessage(subBuilder);
+            WatchPlaylistEndpoint = subBuilder;
+            break;
+          }
           case 485329514: {
             global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint subBuilder = new global::InnerTube.Protobuf.Endpoints.PlaylistEditEndpoint();
             if (endpointTypeCase_ == EndpointTypeOneofCase.PlaylistEditEndpoint) {
@@ -2320,6 +2496,15 @@ namespace InnerTube.Protobuf.Endpoints {
             }
             input.ReadMessage(subBuilder);
             PlaylistEditEndpoint = subBuilder;
+            break;
+          }
+          case 505268466: {
+            global::InnerTube.Protobuf.Endpoints.LikeEndpoint subBuilder = new global::InnerTube.Protobuf.Endpoints.LikeEndpoint();
+            if (endpointTypeCase_ == EndpointTypeOneofCase.LikeEndpoint) {
+              subBuilder.MergeFrom(LikeEndpoint);
+            }
+            input.ReadMessage(subBuilder);
+            LikeEndpoint = subBuilder;
             break;
           }
           case 551978794: {
@@ -2455,6 +2640,15 @@ namespace InnerTube.Protobuf.Endpoints {
             }
             input.ReadMessage(subBuilder);
             ContinuationCommand = subBuilder;
+            break;
+          }
+          case 2402782226: {
+            global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand subBuilder = new global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand();
+            if (endpointTypeCase_ == EndpointTypeOneofCase.EntityUpdateCommand) {
+              subBuilder.MergeFrom(EntityUpdateCommand);
+            }
+            input.ReadMessage(subBuilder);
+            EntityUpdateCommand = subBuilder;
             break;
           }
           case 2755283874: {
@@ -2715,6 +2909,292 @@ namespace InnerTube.Protobuf.Endpoints {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class Payload : pb::IMessage<Payload>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<Payload> _parser = new pb::MessageParser<Payload>(() => new Payload());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<Payload> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[2]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Payload() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Payload(Payload other) : this() {
+      switch (other.PayloadTypeCase) {
+        case PayloadTypeOneofCase.LikeStatusEntity:
+          LikeStatusEntity = other.LikeStatusEntity.Clone();
+          break;
+        case PayloadTypeOneofCase.PlaylistLoopStateEntity:
+          PlaylistLoopStateEntity = other.PlaylistLoopStateEntity.Clone();
+          break;
+      }
+
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public Payload Clone() {
+      return new Payload(this);
+    }
+
+    /// <summary>Field number for the "likeStatusEntity" field.</summary>
+    public const int LikeStatusEntityFieldNumber = 62;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.LikeStatusEntity LikeStatusEntity {
+      get { return payloadTypeCase_ == PayloadTypeOneofCase.LikeStatusEntity ? (global::InnerTube.Protobuf.Endpoints.LikeStatusEntity) payloadType_ : null; }
+      set {
+        payloadType_ = value;
+        payloadTypeCase_ = value == null ? PayloadTypeOneofCase.None : PayloadTypeOneofCase.LikeStatusEntity;
+      }
+    }
+
+    /// <summary>Field number for the "playlistLoopStateEntity" field.</summary>
+    public const int PlaylistLoopStateEntityFieldNumber = 354;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity PlaylistLoopStateEntity {
+      get { return payloadTypeCase_ == PayloadTypeOneofCase.PlaylistLoopStateEntity ? (global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity) payloadType_ : null; }
+      set {
+        payloadType_ = value;
+        payloadTypeCase_ = value == null ? PayloadTypeOneofCase.None : PayloadTypeOneofCase.PlaylistLoopStateEntity;
+      }
+    }
+
+    private object payloadType_;
+    /// <summary>Enum of possible cases for the "payloadType" oneof.</summary>
+    public enum PayloadTypeOneofCase {
+      None = 0,
+      LikeStatusEntity = 62,
+      PlaylistLoopStateEntity = 354,
+    }
+    private PayloadTypeOneofCase payloadTypeCase_ = PayloadTypeOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PayloadTypeOneofCase PayloadTypeCase {
+      get { return payloadTypeCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPayloadType() {
+      payloadTypeCase_ = PayloadTypeOneofCase.None;
+      payloadType_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as Payload);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(Payload other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(LikeStatusEntity, other.LikeStatusEntity)) return false;
+      if (!object.Equals(PlaylistLoopStateEntity, other.PlaylistLoopStateEntity)) return false;
+      if (PayloadTypeCase != other.PayloadTypeCase) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (payloadTypeCase_ == PayloadTypeOneofCase.LikeStatusEntity) hash ^= LikeStatusEntity.GetHashCode();
+      if (payloadTypeCase_ == PayloadTypeOneofCase.PlaylistLoopStateEntity) hash ^= PlaylistLoopStateEntity.GetHashCode();
+      hash ^= (int) payloadTypeCase_;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (payloadTypeCase_ == PayloadTypeOneofCase.LikeStatusEntity) {
+        output.WriteRawTag(242, 3);
+        output.WriteMessage(LikeStatusEntity);
+      }
+      if (payloadTypeCase_ == PayloadTypeOneofCase.PlaylistLoopStateEntity) {
+        output.WriteRawTag(146, 22);
+        output.WriteMessage(PlaylistLoopStateEntity);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (payloadTypeCase_ == PayloadTypeOneofCase.LikeStatusEntity) {
+        output.WriteRawTag(242, 3);
+        output.WriteMessage(LikeStatusEntity);
+      }
+      if (payloadTypeCase_ == PayloadTypeOneofCase.PlaylistLoopStateEntity) {
+        output.WriteRawTag(146, 22);
+        output.WriteMessage(PlaylistLoopStateEntity);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (payloadTypeCase_ == PayloadTypeOneofCase.LikeStatusEntity) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(LikeStatusEntity);
+      }
+      if (payloadTypeCase_ == PayloadTypeOneofCase.PlaylistLoopStateEntity) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(PlaylistLoopStateEntity);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(Payload other) {
+      if (other == null) {
+        return;
+      }
+      switch (other.PayloadTypeCase) {
+        case PayloadTypeOneofCase.LikeStatusEntity:
+          if (LikeStatusEntity == null) {
+            LikeStatusEntity = new global::InnerTube.Protobuf.Endpoints.LikeStatusEntity();
+          }
+          LikeStatusEntity.MergeFrom(other.LikeStatusEntity);
+          break;
+        case PayloadTypeOneofCase.PlaylistLoopStateEntity:
+          if (PlaylistLoopStateEntity == null) {
+            PlaylistLoopStateEntity = new global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity();
+          }
+          PlaylistLoopStateEntity.MergeFrom(other.PlaylistLoopStateEntity);
+          break;
+      }
+
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 498: {
+            global::InnerTube.Protobuf.Endpoints.LikeStatusEntity subBuilder = new global::InnerTube.Protobuf.Endpoints.LikeStatusEntity();
+            if (payloadTypeCase_ == PayloadTypeOneofCase.LikeStatusEntity) {
+              subBuilder.MergeFrom(LikeStatusEntity);
+            }
+            input.ReadMessage(subBuilder);
+            LikeStatusEntity = subBuilder;
+            break;
+          }
+          case 2834: {
+            global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity subBuilder = new global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity();
+            if (payloadTypeCase_ == PayloadTypeOneofCase.PlaylistLoopStateEntity) {
+              subBuilder.MergeFrom(PlaylistLoopStateEntity);
+            }
+            input.ReadMessage(subBuilder);
+            PlaylistLoopStateEntity = subBuilder;
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 498: {
+            global::InnerTube.Protobuf.Endpoints.LikeStatusEntity subBuilder = new global::InnerTube.Protobuf.Endpoints.LikeStatusEntity();
+            if (payloadTypeCase_ == PayloadTypeOneofCase.LikeStatusEntity) {
+              subBuilder.MergeFrom(LikeStatusEntity);
+            }
+            input.ReadMessage(subBuilder);
+            LikeStatusEntity = subBuilder;
+            break;
+          }
+          case 2834: {
+            global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity subBuilder = new global::InnerTube.Protobuf.Endpoints.PlaylistLoopStateEntity();
+            if (payloadTypeCase_ == PayloadTypeOneofCase.PlaylistLoopStateEntity) {
+              subBuilder.MergeFrom(PlaylistLoopStateEntity);
+            }
+            input.ReadMessage(subBuilder);
+            PlaylistLoopStateEntity = subBuilder;
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class WatchEndpoint : pb::IMessage<WatchEndpoint>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -2730,7 +3210,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[2]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2753,10 +3233,12 @@ namespace InnerTube.Protobuf.Endpoints {
       _hasBits0 = other._hasBits0;
       videoId_ = other.videoId_;
       playlistId_ = other.playlistId_;
+      index_ = other.index_;
       params_ = other.params_;
       continuePlayback_ = other.continuePlayback_;
       startTimeSeconds_ = other.startTimeSeconds_;
       playerParams_ = other.playerParams_;
+      playlistSetVideoId_ = other.playlistSetVideoId_;
       nofollow_ = other.nofollow_;
       watchEndpointSupportedOnesieConfig_ = other.watchEndpointSupportedOnesieConfig_ != null ? other.watchEndpointSupportedOnesieConfig_.Clone() : null;
       watchEndpointSupportedPrefetchConfig_ = other.watchEndpointSupportedPrefetchConfig_ != null ? other.watchEndpointSupportedPrefetchConfig_.Clone() : null;
@@ -2808,6 +3290,33 @@ namespace InnerTube.Protobuf.Endpoints {
       playlistId_ = null;
     }
 
+    /// <summary>Field number for the "index" field.</summary>
+    public const int IndexFieldNumber = 3;
+    private readonly static int IndexDefaultValue = 0;
+
+    private int index_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Index {
+      get { if ((_hasBits0 & 1) != 0) { return index_; } else { return IndexDefaultValue; } }
+      set {
+        _hasBits0 |= 1;
+        index_ = value;
+      }
+    }
+    /// <summary>Gets whether the "index" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasIndex {
+      get { return (_hasBits0 & 1) != 0; }
+    }
+    /// <summary>Clears the value of the "index" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearIndex() {
+      _hasBits0 &= ~1;
+    }
+
     /// <summary>Field number for the "params" field.</summary>
     public const int ParamsFieldNumber = 5;
     private readonly static string ParamsDefaultValue = "";
@@ -2842,9 +3351,9 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool ContinuePlayback {
-      get { if ((_hasBits0 & 1) != 0) { return continuePlayback_; } else { return ContinuePlaybackDefaultValue; } }
+      get { if ((_hasBits0 & 2) != 0) { return continuePlayback_; } else { return ContinuePlaybackDefaultValue; } }
       set {
-        _hasBits0 |= 1;
+        _hasBits0 |= 2;
         continuePlayback_ = value;
       }
     }
@@ -2852,13 +3361,13 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasContinuePlayback {
-      get { return (_hasBits0 & 1) != 0; }
+      get { return (_hasBits0 & 2) != 0; }
     }
     /// <summary>Clears the value of the "continuePlayback" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearContinuePlayback() {
-      _hasBits0 &= ~1;
+      _hasBits0 &= ~2;
     }
 
     /// <summary>Field number for the "startTimeSeconds" field.</summary>
@@ -2869,9 +3378,9 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public float StartTimeSeconds {
-      get { if ((_hasBits0 & 2) != 0) { return startTimeSeconds_; } else { return StartTimeSecondsDefaultValue; } }
+      get { if ((_hasBits0 & 4) != 0) { return startTimeSeconds_; } else { return StartTimeSecondsDefaultValue; } }
       set {
-        _hasBits0 |= 2;
+        _hasBits0 |= 4;
         startTimeSeconds_ = value;
       }
     }
@@ -2879,13 +3388,13 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasStartTimeSeconds {
-      get { return (_hasBits0 & 2) != 0; }
+      get { return (_hasBits0 & 4) != 0; }
     }
     /// <summary>Clears the value of the "startTimeSeconds" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearStartTimeSeconds() {
-      _hasBits0 &= ~2;
+      _hasBits0 &= ~4;
     }
 
     /// <summary>Field number for the "playerParams" field.</summary>
@@ -2914,6 +3423,32 @@ namespace InnerTube.Protobuf.Endpoints {
       playerParams_ = null;
     }
 
+    /// <summary>Field number for the "playlistSetVideoId" field.</summary>
+    public const int PlaylistSetVideoIdFieldNumber = 13;
+    private readonly static string PlaylistSetVideoIdDefaultValue = "";
+
+    private string playlistSetVideoId_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string PlaylistSetVideoId {
+      get { return playlistSetVideoId_ ?? PlaylistSetVideoIdDefaultValue; }
+      set {
+        playlistSetVideoId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "playlistSetVideoId" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasPlaylistSetVideoId {
+      get { return playlistSetVideoId_ != null; }
+    }
+    /// <summary>Clears the value of the "playlistSetVideoId" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearPlaylistSetVideoId() {
+      playlistSetVideoId_ = null;
+    }
+
     /// <summary>Field number for the "nofollow" field.</summary>
     public const int NofollowFieldNumber = 17;
     private readonly static bool NofollowDefaultValue = false;
@@ -2922,9 +3457,9 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool Nofollow {
-      get { if ((_hasBits0 & 4) != 0) { return nofollow_; } else { return NofollowDefaultValue; } }
+      get { if ((_hasBits0 & 8) != 0) { return nofollow_; } else { return NofollowDefaultValue; } }
       set {
-        _hasBits0 |= 4;
+        _hasBits0 |= 8;
         nofollow_ = value;
       }
     }
@@ -2932,13 +3467,13 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public bool HasNofollow {
-      get { return (_hasBits0 & 4) != 0; }
+      get { return (_hasBits0 & 8) != 0; }
     }
     /// <summary>Clears the value of the "nofollow" field</summary>
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearNofollow() {
-      _hasBits0 &= ~4;
+      _hasBits0 &= ~8;
     }
 
     /// <summary>Field number for the "watchEndpointSupportedOnesieConfig" field.</summary>
@@ -2994,10 +3529,12 @@ namespace InnerTube.Protobuf.Endpoints {
       }
       if (VideoId != other.VideoId) return false;
       if (PlaylistId != other.PlaylistId) return false;
+      if (Index != other.Index) return false;
       if (Params != other.Params) return false;
       if (ContinuePlayback != other.ContinuePlayback) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(StartTimeSeconds, other.StartTimeSeconds)) return false;
       if (PlayerParams != other.PlayerParams) return false;
+      if (PlaylistSetVideoId != other.PlaylistSetVideoId) return false;
       if (Nofollow != other.Nofollow) return false;
       if (!object.Equals(WatchEndpointSupportedOnesieConfig, other.WatchEndpointSupportedOnesieConfig)) return false;
       if (!object.Equals(WatchEndpointSupportedPrefetchConfig, other.WatchEndpointSupportedPrefetchConfig)) return false;
@@ -3011,10 +3548,12 @@ namespace InnerTube.Protobuf.Endpoints {
       int hash = 1;
       if (VideoId.Length != 0) hash ^= VideoId.GetHashCode();
       if (HasPlaylistId) hash ^= PlaylistId.GetHashCode();
+      if (HasIndex) hash ^= Index.GetHashCode();
       if (HasParams) hash ^= Params.GetHashCode();
       if (HasContinuePlayback) hash ^= ContinuePlayback.GetHashCode();
       if (HasStartTimeSeconds) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(StartTimeSeconds);
       if (HasPlayerParams) hash ^= PlayerParams.GetHashCode();
+      if (HasPlaylistSetVideoId) hash ^= PlaylistSetVideoId.GetHashCode();
       if (HasNofollow) hash ^= Nofollow.GetHashCode();
       if (watchEndpointSupportedOnesieConfig_ != null) hash ^= WatchEndpointSupportedOnesieConfig.GetHashCode();
       if (watchEndpointSupportedPrefetchConfig_ != null) hash ^= WatchEndpointSupportedPrefetchConfig.GetHashCode();
@@ -3045,6 +3584,10 @@ namespace InnerTube.Protobuf.Endpoints {
         output.WriteRawTag(18);
         output.WriteString(PlaylistId);
       }
+      if (HasIndex) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Index);
+      }
       if (HasParams) {
         output.WriteRawTag(42);
         output.WriteString(Params);
@@ -3060,6 +3603,10 @@ namespace InnerTube.Protobuf.Endpoints {
       if (HasPlayerParams) {
         output.WriteRawTag(74);
         output.WriteString(PlayerParams);
+      }
+      if (HasPlaylistSetVideoId) {
+        output.WriteRawTag(106);
+        output.WriteString(PlaylistSetVideoId);
       }
       if (HasNofollow) {
         output.WriteRawTag(136, 1);
@@ -3095,6 +3642,10 @@ namespace InnerTube.Protobuf.Endpoints {
         output.WriteRawTag(18);
         output.WriteString(PlaylistId);
       }
+      if (HasIndex) {
+        output.WriteRawTag(24);
+        output.WriteInt32(Index);
+      }
       if (HasParams) {
         output.WriteRawTag(42);
         output.WriteString(Params);
@@ -3110,6 +3661,10 @@ namespace InnerTube.Protobuf.Endpoints {
       if (HasPlayerParams) {
         output.WriteRawTag(74);
         output.WriteString(PlayerParams);
+      }
+      if (HasPlaylistSetVideoId) {
+        output.WriteRawTag(106);
+        output.WriteString(PlaylistSetVideoId);
       }
       if (HasNofollow) {
         output.WriteRawTag(136, 1);
@@ -3143,6 +3698,9 @@ namespace InnerTube.Protobuf.Endpoints {
       if (HasPlaylistId) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(PlaylistId);
       }
+      if (HasIndex) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Index);
+      }
       if (HasParams) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Params);
       }
@@ -3154,6 +3712,9 @@ namespace InnerTube.Protobuf.Endpoints {
       }
       if (HasPlayerParams) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(PlayerParams);
+      }
+      if (HasPlaylistSetVideoId) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlaylistSetVideoId);
       }
       if (HasNofollow) {
         size += 2 + 1;
@@ -3185,6 +3746,9 @@ namespace InnerTube.Protobuf.Endpoints {
       if (other.HasPlaylistId) {
         PlaylistId = other.PlaylistId;
       }
+      if (other.HasIndex) {
+        Index = other.Index;
+      }
       if (other.HasParams) {
         Params = other.Params;
       }
@@ -3196,6 +3760,9 @@ namespace InnerTube.Protobuf.Endpoints {
       }
       if (other.HasPlayerParams) {
         PlayerParams = other.PlayerParams;
+      }
+      if (other.HasPlaylistSetVideoId) {
+        PlaylistSetVideoId = other.PlaylistSetVideoId;
       }
       if (other.HasNofollow) {
         Nofollow = other.Nofollow;
@@ -3241,6 +3808,10 @@ namespace InnerTube.Protobuf.Endpoints {
             PlaylistId = input.ReadString();
             break;
           }
+          case 24: {
+            Index = input.ReadInt32();
+            break;
+          }
           case 42: {
             Params = input.ReadString();
             break;
@@ -3255,6 +3826,10 @@ namespace InnerTube.Protobuf.Endpoints {
           }
           case 74: {
             PlayerParams = input.ReadString();
+            break;
+          }
+          case 106: {
+            PlaylistSetVideoId = input.ReadString();
             break;
           }
           case 136: {
@@ -3305,6 +3880,10 @@ namespace InnerTube.Protobuf.Endpoints {
             PlaylistId = input.ReadString();
             break;
           }
+          case 24: {
+            Index = input.ReadInt32();
+            break;
+          }
           case 42: {
             Params = input.ReadString();
             break;
@@ -3319,6 +3898,10 @@ namespace InnerTube.Protobuf.Endpoints {
           }
           case 74: {
             PlayerParams = input.ReadString();
+            break;
+          }
+          case 106: {
+            PlaylistSetVideoId = input.ReadString();
             break;
           }
           case 136: {
@@ -4008,6 +4591,7 @@ namespace InnerTube.Protobuf.Endpoints {
             [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
             public PrefetchHintConfig(PrefetchHintConfig other) : this() {
               prefetchPriority_ = other.prefetchPriority_;
+              playbackRelativeSecondsPrefetchCondition_ = other.playbackRelativeSecondsPrefetchCondition_;
               countdownUiRelativeSecondsPrefetchCondition_ = other.countdownUiRelativeSecondsPrefetchCondition_;
               _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
             }
@@ -4027,6 +4611,18 @@ namespace InnerTube.Protobuf.Endpoints {
               get { return prefetchPriority_; }
               set {
                 prefetchPriority_ = value;
+              }
+            }
+
+            /// <summary>Field number for the "playbackRelativeSecondsPrefetchCondition" field.</summary>
+            public const int PlaybackRelativeSecondsPrefetchConditionFieldNumber = 4;
+            private long playbackRelativeSecondsPrefetchCondition_;
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+            [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+            public long PlaybackRelativeSecondsPrefetchCondition {
+              get { return playbackRelativeSecondsPrefetchCondition_; }
+              set {
+                playbackRelativeSecondsPrefetchCondition_ = value;
               }
             }
 
@@ -4058,6 +4654,7 @@ namespace InnerTube.Protobuf.Endpoints {
                 return true;
               }
               if (PrefetchPriority != other.PrefetchPriority) return false;
+              if (PlaybackRelativeSecondsPrefetchCondition != other.PlaybackRelativeSecondsPrefetchCondition) return false;
               if (CountdownUiRelativeSecondsPrefetchCondition != other.CountdownUiRelativeSecondsPrefetchCondition) return false;
               return Equals(_unknownFields, other._unknownFields);
             }
@@ -4067,6 +4664,7 @@ namespace InnerTube.Protobuf.Endpoints {
             public override int GetHashCode() {
               int hash = 1;
               if (PrefetchPriority != 0) hash ^= PrefetchPriority.GetHashCode();
+              if (PlaybackRelativeSecondsPrefetchCondition != 0L) hash ^= PlaybackRelativeSecondsPrefetchCondition.GetHashCode();
               if (CountdownUiRelativeSecondsPrefetchCondition != 0L) hash ^= CountdownUiRelativeSecondsPrefetchCondition.GetHashCode();
               if (_unknownFields != null) {
                 hash ^= _unknownFields.GetHashCode();
@@ -4090,6 +4688,10 @@ namespace InnerTube.Protobuf.Endpoints {
                 output.WriteRawTag(8);
                 output.WriteInt32(PrefetchPriority);
               }
+              if (PlaybackRelativeSecondsPrefetchCondition != 0L) {
+                output.WriteRawTag(32);
+                output.WriteInt64(PlaybackRelativeSecondsPrefetchCondition);
+              }
               if (CountdownUiRelativeSecondsPrefetchCondition != 0L) {
                 output.WriteRawTag(40);
                 output.WriteInt64(CountdownUiRelativeSecondsPrefetchCondition);
@@ -4108,6 +4710,10 @@ namespace InnerTube.Protobuf.Endpoints {
                 output.WriteRawTag(8);
                 output.WriteInt32(PrefetchPriority);
               }
+              if (PlaybackRelativeSecondsPrefetchCondition != 0L) {
+                output.WriteRawTag(32);
+                output.WriteInt64(PlaybackRelativeSecondsPrefetchCondition);
+              }
               if (CountdownUiRelativeSecondsPrefetchCondition != 0L) {
                 output.WriteRawTag(40);
                 output.WriteInt64(CountdownUiRelativeSecondsPrefetchCondition);
@@ -4124,6 +4730,9 @@ namespace InnerTube.Protobuf.Endpoints {
               int size = 0;
               if (PrefetchPriority != 0) {
                 size += 1 + pb::CodedOutputStream.ComputeInt32Size(PrefetchPriority);
+              }
+              if (PlaybackRelativeSecondsPrefetchCondition != 0L) {
+                size += 1 + pb::CodedOutputStream.ComputeInt64Size(PlaybackRelativeSecondsPrefetchCondition);
               }
               if (CountdownUiRelativeSecondsPrefetchCondition != 0L) {
                 size += 1 + pb::CodedOutputStream.ComputeInt64Size(CountdownUiRelativeSecondsPrefetchCondition);
@@ -4142,6 +4751,9 @@ namespace InnerTube.Protobuf.Endpoints {
               }
               if (other.PrefetchPriority != 0) {
                 PrefetchPriority = other.PrefetchPriority;
+              }
+              if (other.PlaybackRelativeSecondsPrefetchCondition != 0L) {
+                PlaybackRelativeSecondsPrefetchCondition = other.PlaybackRelativeSecondsPrefetchCondition;
               }
               if (other.CountdownUiRelativeSecondsPrefetchCondition != 0L) {
                 CountdownUiRelativeSecondsPrefetchCondition = other.CountdownUiRelativeSecondsPrefetchCondition;
@@ -4165,6 +4777,10 @@ namespace InnerTube.Protobuf.Endpoints {
                     PrefetchPriority = input.ReadInt32();
                     break;
                   }
+                  case 32: {
+                    PlaybackRelativeSecondsPrefetchCondition = input.ReadInt64();
+                    break;
+                  }
                   case 40: {
                     CountdownUiRelativeSecondsPrefetchCondition = input.ReadInt64();
                     break;
@@ -4186,6 +4802,10 @@ namespace InnerTube.Protobuf.Endpoints {
                     break;
                   case 8: {
                     PrefetchPriority = input.ReadInt32();
+                    break;
+                  }
+                  case 32: {
+                    PlaybackRelativeSecondsPrefetchCondition = input.ReadInt64();
                     break;
                   }
                   case 40: {
@@ -4622,7 +5242,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[3]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4902,7 +5522,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[4]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5143,7 +5763,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[5]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5365,6 +5985,270 @@ namespace InnerTube.Protobuf.Endpoints {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class WatchPlaylistEndpoint : pb::IMessage<WatchPlaylistEndpoint>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<WatchPlaylistEndpoint> _parser = new pb::MessageParser<WatchPlaylistEndpoint>(() => new WatchPlaylistEndpoint());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<WatchPlaylistEndpoint> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[7]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public WatchPlaylistEndpoint() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public WatchPlaylistEndpoint(WatchPlaylistEndpoint other) : this() {
+      playlistId_ = other.playlistId_;
+      index_ = other.index_;
+      params_ = other.params_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public WatchPlaylistEndpoint Clone() {
+      return new WatchPlaylistEndpoint(this);
+    }
+
+    /// <summary>Field number for the "playlistId" field.</summary>
+    public const int PlaylistIdFieldNumber = 1;
+    private string playlistId_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string PlaylistId {
+      get { return playlistId_; }
+      set {
+        playlistId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "index" field.</summary>
+    public const int IndexFieldNumber = 2;
+    private int index_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Index {
+      get { return index_; }
+      set {
+        index_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "params" field.</summary>
+    public const int ParamsFieldNumber = 4;
+    private string params_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Params {
+      get { return params_; }
+      set {
+        params_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as WatchPlaylistEndpoint);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(WatchPlaylistEndpoint other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (PlaylistId != other.PlaylistId) return false;
+      if (Index != other.Index) return false;
+      if (Params != other.Params) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (PlaylistId.Length != 0) hash ^= PlaylistId.GetHashCode();
+      if (Index != 0) hash ^= Index.GetHashCode();
+      if (Params.Length != 0) hash ^= Params.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (PlaylistId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(PlaylistId);
+      }
+      if (Index != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Index);
+      }
+      if (Params.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Params);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (PlaylistId.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(PlaylistId);
+      }
+      if (Index != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(Index);
+      }
+      if (Params.Length != 0) {
+        output.WriteRawTag(34);
+        output.WriteString(Params);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (PlaylistId.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(PlaylistId);
+      }
+      if (Index != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Index);
+      }
+      if (Params.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Params);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(WatchPlaylistEndpoint other) {
+      if (other == null) {
+        return;
+      }
+      if (other.PlaylistId.Length != 0) {
+        PlaylistId = other.PlaylistId;
+      }
+      if (other.Index != 0) {
+        Index = other.Index;
+      }
+      if (other.Params.Length != 0) {
+        Params = other.Params;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            PlaylistId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Index = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            Params = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            PlaylistId = input.ReadString();
+            break;
+          }
+          case 16: {
+            Index = input.ReadInt32();
+            break;
+          }
+          case 34: {
+            Params = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class PlaylistEditEndpoint : pb::IMessage<PlaylistEditEndpoint>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5379,7 +6263,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[6]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -5853,6 +6737,556 @@ namespace InnerTube.Protobuf.Endpoints {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LikeEndpoint : pb::IMessage<LikeEndpoint>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LikeEndpoint> _parser = new pb::MessageParser<LikeEndpoint>(() => new LikeEndpoint());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LikeEndpoint> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeEndpoint() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeEndpoint(LikeEndpoint other) : this() {
+      status_ = other.status_;
+      target_ = other.target_ != null ? other.target_.Clone() : null;
+      likeParams_ = other.likeParams_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeEndpoint Clone() {
+      return new LikeEndpoint(this);
+    }
+
+    /// <summary>Field number for the "status" field.</summary>
+    public const int StatusFieldNumber = 1;
+    private int status_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int Status {
+      get { return status_; }
+      set {
+        status_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "target" field.</summary>
+    public const int TargetFieldNumber = 2;
+    private global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Types.Target target_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Types.Target Target {
+      get { return target_; }
+      set {
+        target_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "likeParams" field.</summary>
+    public const int LikeParamsFieldNumber = 8;
+    private readonly static string LikeParamsDefaultValue = "";
+
+    private string likeParams_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string LikeParams {
+      get { return likeParams_ ?? LikeParamsDefaultValue; }
+      set {
+        likeParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "likeParams" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasLikeParams {
+      get { return likeParams_ != null; }
+    }
+    /// <summary>Clears the value of the "likeParams" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearLikeParams() {
+      likeParams_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LikeEndpoint);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LikeEndpoint other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Status != other.Status) return false;
+      if (!object.Equals(Target, other.Target)) return false;
+      if (LikeParams != other.LikeParams) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Status != 0) hash ^= Status.GetHashCode();
+      if (target_ != null) hash ^= Target.GetHashCode();
+      if (HasLikeParams) hash ^= LikeParams.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Status != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Status);
+      }
+      if (target_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Target);
+      }
+      if (HasLikeParams) {
+        output.WriteRawTag(66);
+        output.WriteString(LikeParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Status != 0) {
+        output.WriteRawTag(8);
+        output.WriteInt32(Status);
+      }
+      if (target_ != null) {
+        output.WriteRawTag(18);
+        output.WriteMessage(Target);
+      }
+      if (HasLikeParams) {
+        output.WriteRawTag(66);
+        output.WriteString(LikeParams);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Status != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(Status);
+      }
+      if (target_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(Target);
+      }
+      if (HasLikeParams) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(LikeParams);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LikeEndpoint other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Status != 0) {
+        Status = other.Status;
+      }
+      if (other.target_ != null) {
+        if (target_ == null) {
+          Target = new global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Types.Target();
+        }
+        Target.MergeFrom(other.Target);
+      }
+      if (other.HasLikeParams) {
+        LikeParams = other.LikeParams;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 8: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            if (target_ == null) {
+              Target = new global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Types.Target();
+            }
+            input.ReadMessage(Target);
+            break;
+          }
+          case 66: {
+            LikeParams = input.ReadString();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 8: {
+            Status = input.ReadInt32();
+            break;
+          }
+          case 18: {
+            if (target_ == null) {
+              Target = new global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Types.Target();
+            }
+            input.ReadMessage(Target);
+            break;
+          }
+          case 66: {
+            LikeParams = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the LikeEndpoint message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class Target : pb::IMessage<Target>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<Target> _parser = new pb::MessageParser<Target>(() => new Target());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Target> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::InnerTube.Protobuf.Endpoints.LikeEndpoint.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Target() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Target(Target other) : this() {
+          videoId_ = other.videoId_;
+          playlistId_ = other.playlistId_;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Target Clone() {
+          return new Target(this);
+        }
+
+        /// <summary>Field number for the "videoId" field.</summary>
+        public const int VideoIdFieldNumber = 1;
+        private readonly static string VideoIdDefaultValue = "";
+
+        private string videoId_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string VideoId {
+          get { return videoId_ ?? VideoIdDefaultValue; }
+          set {
+            videoId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+        /// <summary>Gets whether the "videoId" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool HasVideoId {
+          get { return videoId_ != null; }
+        }
+        /// <summary>Clears the value of the "videoId" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void ClearVideoId() {
+          videoId_ = null;
+        }
+
+        /// <summary>Field number for the "playlistId" field.</summary>
+        public const int PlaylistIdFieldNumber = 2;
+        private readonly static string PlaylistIdDefaultValue = "";
+
+        private string playlistId_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string PlaylistId {
+          get { return playlistId_ ?? PlaylistIdDefaultValue; }
+          set {
+            playlistId_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+        /// <summary>Gets whether the "playlistId" field is set</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool HasPlaylistId {
+          get { return playlistId_ != null; }
+        }
+        /// <summary>Clears the value of the "playlistId" field</summary>
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void ClearPlaylistId() {
+          playlistId_ = null;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as Target);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Target other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (VideoId != other.VideoId) return false;
+          if (PlaylistId != other.PlaylistId) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (HasVideoId) hash ^= VideoId.GetHashCode();
+          if (HasPlaylistId) hash ^= PlaylistId.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (HasVideoId) {
+            output.WriteRawTag(10);
+            output.WriteString(VideoId);
+          }
+          if (HasPlaylistId) {
+            output.WriteRawTag(18);
+            output.WriteString(PlaylistId);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (HasVideoId) {
+            output.WriteRawTag(10);
+            output.WriteString(VideoId);
+          }
+          if (HasPlaylistId) {
+            output.WriteRawTag(18);
+            output.WriteString(PlaylistId);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (HasVideoId) {
+            size += 1 + pb::CodedOutputStream.ComputeStringSize(VideoId);
+          }
+          if (HasPlaylistId) {
+            size += 1 + pb::CodedOutputStream.ComputeStringSize(PlaylistId);
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Target other) {
+          if (other == null) {
+            return;
+          }
+          if (other.HasVideoId) {
+            VideoId = other.VideoId;
+          }
+          if (other.HasPlaylistId) {
+            PlaylistId = other.PlaylistId;
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                VideoId = input.ReadString();
+                break;
+              }
+              case 18: {
+                PlaylistId = input.ReadString();
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 10: {
+                VideoId = input.ReadString();
+                break;
+              }
+              case 18: {
+                PlaylistId = input.ReadString();
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+    }
+    #endregion
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class SubscribeEndpoint : pb::IMessage<SubscribeEndpoint>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -5867,7 +7301,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[7]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[10]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6083,7 +7517,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[8]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[11]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6299,7 +7733,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[9]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[12]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -6489,7 +7923,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[10]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[13]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -7803,7 +9237,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[11]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[14]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8019,7 +9453,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[12]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[15]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8198,7 +9632,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[13]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[16]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8425,7 +9859,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[14]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[17]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -8652,7 +10086,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[15]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[18]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9025,7 +10459,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[16]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[19]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9252,7 +10686,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[17]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[20]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -9468,7 +10902,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[18]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[21]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11736,7 +13170,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[19]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[22]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -11952,7 +13386,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[20]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[23]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12117,6 +13551,665 @@ namespace InnerTube.Protobuf.Endpoints {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class EntityUpdateCommand : pb::IMessage<EntityUpdateCommand>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<EntityUpdateCommand> _parser = new pb::MessageParser<EntityUpdateCommand>(() => new EntityUpdateCommand());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<EntityUpdateCommand> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[24]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public EntityUpdateCommand() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public EntityUpdateCommand(EntityUpdateCommand other) : this() {
+      entityBatchUpdate_ = other.entityBatchUpdate_ != null ? other.entityBatchUpdate_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public EntityUpdateCommand Clone() {
+      return new EntityUpdateCommand(this);
+    }
+
+    /// <summary>Field number for the "entityBatchUpdate" field.</summary>
+    public const int EntityBatchUpdateFieldNumber = 1;
+    private global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.BatchUpdate entityBatchUpdate_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.BatchUpdate EntityBatchUpdate {
+      get { return entityBatchUpdate_; }
+      set {
+        entityBatchUpdate_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as EntityUpdateCommand);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(EntityUpdateCommand other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(EntityBatchUpdate, other.EntityBatchUpdate)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (entityBatchUpdate_ != null) hash ^= EntityBatchUpdate.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (entityBatchUpdate_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(EntityBatchUpdate);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (entityBatchUpdate_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(EntityBatchUpdate);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (entityBatchUpdate_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(EntityBatchUpdate);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(EntityUpdateCommand other) {
+      if (other == null) {
+        return;
+      }
+      if (other.entityBatchUpdate_ != null) {
+        if (entityBatchUpdate_ == null) {
+          EntityBatchUpdate = new global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.BatchUpdate();
+        }
+        EntityBatchUpdate.MergeFrom(other.EntityBatchUpdate);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            if (entityBatchUpdate_ == null) {
+              EntityBatchUpdate = new global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.BatchUpdate();
+            }
+            input.ReadMessage(EntityBatchUpdate);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            if (entityBatchUpdate_ == null) {
+              EntityBatchUpdate = new global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.BatchUpdate();
+            }
+            input.ReadMessage(EntityBatchUpdate);
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+    #region Nested types
+    /// <summary>Container for nested types declared in the EntityUpdateCommand message type.</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static partial class Types {
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class BatchUpdate : pb::IMessage<BatchUpdate>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<BatchUpdate> _parser = new pb::MessageParser<BatchUpdate>(() => new BatchUpdate());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<BatchUpdate> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Descriptor.NestedTypes[0]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public BatchUpdate() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public BatchUpdate(BatchUpdate other) : this() {
+          mutations_ = other.mutations_.Clone();
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public BatchUpdate Clone() {
+          return new BatchUpdate(this);
+        }
+
+        /// <summary>Field number for the "mutations" field.</summary>
+        public const int MutationsFieldNumber = 1;
+        private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.Mutation> _repeated_mutations_codec
+            = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.Mutation.Parser);
+        private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.Mutation> mutations_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.Mutation>();
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public pbc::RepeatedField<global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Types.Mutation> Mutations {
+          get { return mutations_; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as BatchUpdate);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(BatchUpdate other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if(!mutations_.Equals(other.mutations_)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          hash ^= mutations_.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          mutations_.WriteTo(output, _repeated_mutations_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          mutations_.WriteTo(ref output, _repeated_mutations_codec);
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          size += mutations_.CalculateSize(_repeated_mutations_codec);
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(BatchUpdate other) {
+          if (other == null) {
+            return;
+          }
+          mutations_.Add(other.mutations_);
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                mutations_.AddEntriesFrom(input, _repeated_mutations_codec);
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 10: {
+                mutations_.AddEntriesFrom(ref input, _repeated_mutations_codec);
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+      [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+      public sealed partial class Mutation : pb::IMessage<Mutation>
+      #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          , pb::IBufferMessage
+      #endif
+      {
+        private static readonly pb::MessageParser<Mutation> _parser = new pb::MessageParser<Mutation>(() => new Mutation());
+        private pb::UnknownFieldSet _unknownFields;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pb::MessageParser<Mutation> Parser { get { return _parser; } }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public static pbr::MessageDescriptor Descriptor {
+          get { return global::InnerTube.Protobuf.Endpoints.EntityUpdateCommand.Descriptor.NestedTypes[1]; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        pbr::MessageDescriptor pb::IMessage.Descriptor {
+          get { return Descriptor; }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Mutation() {
+          OnConstruction();
+        }
+
+        partial void OnConstruction();
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Mutation(Mutation other) : this() {
+          entityKey_ = other.entityKey_;
+          type_ = other.type_;
+          payload_ = other.payload_ != null ? other.payload_.Clone() : null;
+          _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public Mutation Clone() {
+          return new Mutation(this);
+        }
+
+        /// <summary>Field number for the "entityKey" field.</summary>
+        public const int EntityKeyFieldNumber = 1;
+        private string entityKey_ = "";
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public string EntityKey {
+          get { return entityKey_; }
+          set {
+            entityKey_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+          }
+        }
+
+        /// <summary>Field number for the "type" field.</summary>
+        public const int TypeFieldNumber = 2;
+        private int type_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int Type {
+          get { return type_; }
+          set {
+            type_ = value;
+          }
+        }
+
+        /// <summary>Field number for the "payload" field.</summary>
+        public const int PayloadFieldNumber = 3;
+        private global::InnerTube.Protobuf.Endpoints.Payload payload_;
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public global::InnerTube.Protobuf.Endpoints.Payload Payload {
+          get { return payload_; }
+          set {
+            payload_ = value;
+          }
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override bool Equals(object other) {
+          return Equals(other as Mutation);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public bool Equals(Mutation other) {
+          if (ReferenceEquals(other, null)) {
+            return false;
+          }
+          if (ReferenceEquals(other, this)) {
+            return true;
+          }
+          if (EntityKey != other.EntityKey) return false;
+          if (Type != other.Type) return false;
+          if (!object.Equals(Payload, other.Payload)) return false;
+          return Equals(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override int GetHashCode() {
+          int hash = 1;
+          if (EntityKey.Length != 0) hash ^= EntityKey.GetHashCode();
+          if (Type != 0) hash ^= Type.GetHashCode();
+          if (payload_ != null) hash ^= Payload.GetHashCode();
+          if (_unknownFields != null) {
+            hash ^= _unknownFields.GetHashCode();
+          }
+          return hash;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public override string ToString() {
+          return pb::JsonFormatter.ToDiagnosticString(this);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void WriteTo(pb::CodedOutputStream output) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          output.WriteRawMessage(this);
+        #else
+          if (EntityKey.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteString(EntityKey);
+          }
+          if (Type != 0) {
+            output.WriteRawTag(16);
+            output.WriteInt32(Type);
+          }
+          if (payload_ != null) {
+            output.WriteRawTag(26);
+            output.WriteMessage(Payload);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(output);
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+          if (EntityKey.Length != 0) {
+            output.WriteRawTag(10);
+            output.WriteString(EntityKey);
+          }
+          if (Type != 0) {
+            output.WriteRawTag(16);
+            output.WriteInt32(Type);
+          }
+          if (payload_ != null) {
+            output.WriteRawTag(26);
+            output.WriteMessage(Payload);
+          }
+          if (_unknownFields != null) {
+            _unknownFields.WriteTo(ref output);
+          }
+        }
+        #endif
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public int CalculateSize() {
+          int size = 0;
+          if (EntityKey.Length != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeStringSize(EntityKey);
+          }
+          if (Type != 0) {
+            size += 1 + pb::CodedOutputStream.ComputeInt32Size(Type);
+          }
+          if (payload_ != null) {
+            size += 1 + pb::CodedOutputStream.ComputeMessageSize(Payload);
+          }
+          if (_unknownFields != null) {
+            size += _unknownFields.CalculateSize();
+          }
+          return size;
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(Mutation other) {
+          if (other == null) {
+            return;
+          }
+          if (other.EntityKey.Length != 0) {
+            EntityKey = other.EntityKey;
+          }
+          if (other.Type != 0) {
+            Type = other.Type;
+          }
+          if (other.payload_ != null) {
+            if (payload_ == null) {
+              Payload = new global::InnerTube.Protobuf.Endpoints.Payload();
+            }
+            Payload.MergeFrom(other.Payload);
+          }
+          _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+        }
+
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        public void MergeFrom(pb::CodedInputStream input) {
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+          input.ReadRawMessage(this);
+        #else
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+                break;
+              case 10: {
+                EntityKey = input.ReadString();
+                break;
+              }
+              case 16: {
+                Type = input.ReadInt32();
+                break;
+              }
+              case 26: {
+                if (payload_ == null) {
+                  Payload = new global::InnerTube.Protobuf.Endpoints.Payload();
+                }
+                input.ReadMessage(Payload);
+                break;
+              }
+            }
+          }
+        #endif
+        }
+
+        #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+        [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+        void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+          uint tag;
+          while ((tag = input.ReadTag()) != 0) {
+            switch(tag) {
+              default:
+                _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+                break;
+              case 10: {
+                EntityKey = input.ReadString();
+                break;
+              }
+              case 16: {
+                Type = input.ReadInt32();
+                break;
+              }
+              case 26: {
+                if (payload_ == null) {
+                  Payload = new global::InnerTube.Protobuf.Endpoints.Payload();
+                }
+                input.ReadMessage(Payload);
+                break;
+              }
+            }
+          }
+        }
+        #endif
+
+      }
+
+    }
+    #endregion
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class ScrollToEngagementPanelCommand : pb::IMessage<ScrollToEngagementPanelCommand>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -12131,7 +14224,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[21]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[25]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12321,7 +14414,7 @@ namespace InnerTube.Protobuf.Endpoints {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[22]; }
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[26]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -12672,6 +14765,460 @@ namespace InnerTube.Protobuf.Endpoints {
           }
           case 58: {
             ApiUrl = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class LikeStatusEntity : pb::IMessage<LikeStatusEntity>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<LikeStatusEntity> _parser = new pb::MessageParser<LikeStatusEntity>(() => new LikeStatusEntity());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<LikeStatusEntity> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[27]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeStatusEntity() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeStatusEntity(LikeStatusEntity other) : this() {
+      key_ = other.key_;
+      likeStatus_ = other.likeStatus_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public LikeStatusEntity Clone() {
+      return new LikeStatusEntity(this);
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 1;
+    private string key_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "likeStatus" field.</summary>
+    public const int LikeStatusFieldNumber = 2;
+    private int likeStatus_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int LikeStatus {
+      get { return likeStatus_; }
+      set {
+        likeStatus_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as LikeStatusEntity);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(LikeStatusEntity other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Key != other.Key) return false;
+      if (LikeStatus != other.LikeStatus) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (LikeStatus != 0) hash ^= LikeStatus.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Key.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Key);
+      }
+      if (LikeStatus != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(LikeStatus);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Key.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Key);
+      }
+      if (LikeStatus != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(LikeStatus);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (LikeStatus != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(LikeStatus);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(LikeStatusEntity other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      if (other.LikeStatus != 0) {
+        LikeStatus = other.LikeStatus;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 16: {
+            LikeStatus = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 16: {
+            LikeStatus = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class PlaylistLoopStateEntity : pb::IMessage<PlaylistLoopStateEntity>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<PlaylistLoopStateEntity> _parser = new pb::MessageParser<PlaylistLoopStateEntity>(() => new PlaylistLoopStateEntity());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<PlaylistLoopStateEntity> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Endpoints.EndpointsReflection.Descriptor.MessageTypes[28]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PlaylistLoopStateEntity() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PlaylistLoopStateEntity(PlaylistLoopStateEntity other) : this() {
+      key_ = other.key_;
+      state_ = other.state_;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public PlaylistLoopStateEntity Clone() {
+      return new PlaylistLoopStateEntity(this);
+    }
+
+    /// <summary>Field number for the "key" field.</summary>
+    public const int KeyFieldNumber = 1;
+    private string key_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string Key {
+      get { return key_; }
+      set {
+        key_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "state" field.</summary>
+    public const int StateFieldNumber = 2;
+    private int state_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int State {
+      get { return state_; }
+      set {
+        state_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as PlaylistLoopStateEntity);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(PlaylistLoopStateEntity other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Key != other.Key) return false;
+      if (State != other.State) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Key.Length != 0) hash ^= Key.GetHashCode();
+      if (State != 0) hash ^= State.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (Key.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Key);
+      }
+      if (State != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(State);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (Key.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Key);
+      }
+      if (State != 0) {
+        output.WriteRawTag(16);
+        output.WriteInt32(State);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (Key.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Key);
+      }
+      if (State != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeInt32Size(State);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(PlaylistLoopStateEntity other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Key.Length != 0) {
+        Key = other.Key;
+      }
+      if (other.State != 0) {
+        State = other.State;
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 16: {
+            State = input.ReadInt32();
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 10: {
+            Key = input.ReadString();
+            break;
+          }
+          case 16: {
+            State = input.ReadInt32();
             break;
           }
         }

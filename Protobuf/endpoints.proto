@@ -14,7 +14,7 @@ message Text {
     optional Endpoint navigationEndpoint = 5;
     optional LoggingDirectives loggingDirectives = 999;
   }
-  
+
   message LoggingDirectives {
     bytes trackingParams = 1;
     google.protobuf.Int32Value visibility = 4;
@@ -40,7 +40,9 @@ message Endpoint {
     UrlEndpoint urlEndpoint = 49679253;
     BrowseEndpoint browseEndpoint = 48687626;
     SignInEndpoint signInEndpoint = 49706687;
+    WatchPlaylistEndpoint watchPlaylistEndpoint = 52666186;
     PlaylistEditEndpoint playlistEditEndpoint = 60666189;
+    LikeEndpoint likeEndpoint = 63158558;
     SubscribeEndpoint subscribeEndpoint = 68997349;
     UnsubscribeEndpoint unsubscribeEndpoint = 68997401;
     ModifyChannelNotificationPreferenceEndpoint modifyChannelNotificationPreferenceEndpoint = 90195593;
@@ -56,7 +58,15 @@ message Endpoint {
     AddToPlaylistCommand addToPlaylistCommand = 243789987;
     ChangeEngagementPanelVisibilityAction changeEngagementPanelVisibilityAction = 247256721;
     ContinuationCommand continuationCommand = 280298060;
+    EntityUpdateCommand entityUpdateCommand = 300347778;
     ScrollToEngagementPanelCommand scrollToEngagementPanelCommand = 344410484;
+  }
+}
+
+message Payload {
+  oneof payloadType {
+    LikeStatusEntity likeStatusEntity = 62;
+    PlaylistLoopStateEntity playlistLoopStateEntity = 354;
   }
 }
 
@@ -74,6 +84,7 @@ message WatchEndpoint {
   message PrefetchHintConfigWrapper {
     message PrefetchHintConfig {
       int32 prefetchPriority = 1;
+      int64 playbackRelativeSecondsPrefetchCondition = 4;
       int64 countdownUiRelativeSecondsPrefetchCondition = 5;
     }
 
@@ -90,10 +101,12 @@ message WatchEndpoint {
 
   string videoId = 1;
   optional string playlistId = 2;
+  optional int32 index = 3;
   optional string params = 5;
   optional bool continuePlayback = 6;
   optional float startTimeSeconds = 7;
   optional string playerParams = 9;
+  optional string playlistSetVideoId = 13;
   optional bool nofollow = 17;
   optional WatchEndpointSupportedOnesieConfig watchEndpointSupportedOnesieConfig = 79857908;
   optional PrefetchHintConfigWrapper watchEndpointSupportedPrefetchConfig = 68146959;
@@ -116,6 +129,12 @@ message SignInEndpoint {
   string idamTag = 8;
 }
 
+message WatchPlaylistEndpoint {
+  string playlistId = 1;
+  int32 index = 2;
+  string params = 4;
+}
+
 message PlaylistEditEndpoint {
   message Action {
     string addedVideoId = 2;
@@ -125,6 +144,17 @@ message PlaylistEditEndpoint {
 
   string playlistId = 1;
   repeated Action actions = 2;
+}
+
+message LikeEndpoint {
+  message Target {
+    optional string videoId = 1;
+    optional string playlistId = 2;
+  }
+
+  int32 status = 1;
+  Target target = 2;
+  optional string likeParams = 8;
 }
 
 message SubscribeEndpoint {
@@ -263,6 +293,20 @@ message CommandExecutorCommand {
   repeated Endpoint commands = 1;
 }
 
+message EntityUpdateCommand {
+  message BatchUpdate {
+    repeated Mutation mutations = 1;
+  }
+
+  message Mutation {
+    string entityKey = 1;
+    int32 type = 2;
+    Payload payload = 3;
+  }
+
+  BatchUpdate entityBatchUpdate = 1;
+}
+
 message ScrollToEngagementPanelCommand {
   string targetId = 1;
 }
@@ -274,4 +318,14 @@ message WebCommandMetadata {
   bool ignoreNavigation = 4;
   int32 rootVe = 5;
   string apiUrl = 7;
+}
+
+message LikeStatusEntity {
+  string key = 1;
+  int32 likeStatus = 2;
+}
+
+message PlaylistLoopStateEntity {
+  string key = 1;
+  int32 state = 2;
 }

@@ -487,6 +487,19 @@ public static class Utils
 					.AppendLine("Tooltip: " + badge.Tooltip ?? "<no tooltip>");
 				return sb.ToString();
 			}
+			case RendererWrapper.RendererOneofCase.PlaylistPanelVideoRenderer:
+			{
+				PlaylistPanelVideoRenderer video = renderer.PlaylistPanelVideoRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[CompactVideoRenderer] [{ReadRuns(video.IndexText)}] [{video.VideoId}] {ReadRuns(video.Title)}")
+					.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
+						video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
+					.AppendLine("Owner: " +
+					            $"[{video.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+					            video.LongBylineText.Runs[0].Text)
+					.AppendLine("Duration: " + video.LengthText?.SimpleText);
+				return sb.ToString();
+			}
 			case RendererWrapper.RendererOneofCase.ContinuationItemRenderer:
 			{
 				return "[ContinuationItemRenderer]";

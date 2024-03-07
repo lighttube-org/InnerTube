@@ -128,19 +128,22 @@ public class InnerTube
 			.AddValue("racyCheckOk", contentCheckOk);
 
 		if (client == RequestClient.ANDROID)
-			postData.AddValue("params", "CgIQBg");
+			postData.AddValue("params", "CgIQBg"); // also try adding 70:1 here to get movie trailers
 
 		return PlayerResponse.Parser.ParseFrom(await MakeRequest(client, "player", postData,
 			language, region, true));
 	}
 
-	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk, bool captionsRequested, string language = "en", string region = "US")
+	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk, bool captionsRequested, string? playlistId = null, int? playlistIndex = null, string? playlistParams = null, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("videoId", videoId)
 			.AddValue("contentCheckOk", contentCheckOk)
 			.AddValue("racyCheckOk", contentCheckOk)
 			.AddValue("captionsRequested", captionsRequested);
+		if (playlistId != null) postData.AddValue("playlistId", playlistId);
+		if (playlistIndex != null) postData.AddValue("playlistIndex", playlistIndex);
+		if (playlistParams != null) postData.AddValue("params", playlistParams);
 		return NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
 	}
 }

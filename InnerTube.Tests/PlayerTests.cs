@@ -334,31 +334,28 @@ public class PlayerTests
 	public async Task GetVideoNextWithPlaylist(string videoId, string playlistId, int? playlistIndex,
 		string? playlistParams)
 	{
-		/*
-		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId, playlistId, playlistIndex, playlistParams);
-		if (next.Playlist is null)
+		NextResponse next = await _innerTube.GetNextAsync(videoId, true, true, playlistId, playlistIndex, playlistParams);
+		if (next.Contents.TwoColumnWatchNextResults.Playlist == null)
 		{
 			Assert.Fail("Playlist is null");
 			return;
 		}
 
+		Playlist playlist = next.Contents.TwoColumnWatchNextResults.Playlist.Playlist!;
 		StringBuilder sb = new();
-
-		sb.AppendLine($"[{next.Playlist.PlaylistId}] {next.Playlist.Title}")
-			.AppendLine($"{next.Playlist.Channel}")
-			.AppendLine(
-				$"{next.Playlist.CurrentIndex} ({next.Playlist.LocalCurrentIndex}) / {next.Playlist.TotalVideos}")
-			.AppendLine($"IsCourse: {next.Playlist.IsCourse}")
-			.AppendLine($"IsInfinite: {next.Playlist.IsInfinite}");
+		sb.AppendLine($"[{playlist.PlaylistId}] {playlist.Title}")
+			.AppendLine($"[{playlist.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " + playlist.LongBylineText.Runs[0].Text)
+			.AppendLine($"{playlist.CurrentIndex} ({playlist.LocalCurrentIndex}) / {playlist.TotalVideos}")
+			.AppendLine($"IsCourse: {playlist.IsCourse}")
+			.AppendLine($"IsInfinite: {playlist.IsInfinite}");
 
 		sb.AppendLine()
 			.AppendLine("== VIDEOS");
 
-		foreach (PlaylistPanelVideoRenderer video in next.Playlist.Videos)
-			sb.AppendLine(video.ToString());
+		foreach (RendererWrapper? renderer in playlist.Contents)
+			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
 
 		Assert.Pass(sb.ToString());
-		*/
 	}
 
 	[TestCase("1234567890a", Description = "An ID I just made up")]

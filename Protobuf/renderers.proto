@@ -12,8 +12,10 @@ message RendererWrapper {
     ResultsContainer resultsContainer = 49399797;
     ItemSectionRenderer itemSectionRenderer = 50195462;
     CompactVideoRenderer compactVideoRenderer = 50630979;
+    Playlist playlist = 50631000;
     CompactPlaylistRenderer compactPlaylistRenderer = 50742631;
     PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
+    PlaylistPanelVideoRenderer playlistPanelVideoRenderer = 51779701;
     VideoOwnerRenderer videoOwnerRenderer = 51779708;
     SecondaryResults secondaryResults = 51779776;
     TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
@@ -23,7 +25,7 @@ message RendererWrapper {
     CompactMovieRenderer compactMovieRenderer = 58485276;
     MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
-    ShareButtonViewModel shareButtonViewModel = 65153809;
+    ButtonViewModel buttonViewModel = 65153809;
     MenuRenderer menuRenderer = 66439850;
     MenuNavigationItemRenderer menuNavigationItemRenderer = 66441108;
     MenuServiceItemRenderer menuServiceItemRenderer = 66441155;
@@ -32,16 +34,20 @@ message RendererWrapper {
     MetadataRowContainerRenderer metadataRowContainerRenderer = 71271859;
     PlaylistVideoThumbnailRenderer playlistVideoThumbnailRenderer = 72426341;
     AccessibilityData accessibilityData = 75730170;
+    ToggleMenuServiceItemRenderer toggleMenuServiceItemRenderer = 78861357;
+    ToggleButtonRenderer toggleButtonRenderer = 79971800;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
     VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
     EndscreenRenderer endscreenRenderer = 106301526;
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
-    ThumbnailOverlayBottomPanelRenderer thumbnailOverlayBottomPanelRenderer  = 109635582;
-    ThumbnailOverlayHoverTextRenderer thumbnailOverlayHoverTextRenderer  = 107250266;
+    ThumbnailOverlayBottomPanelRenderer thumbnailOverlayBottomPanelRenderer = 109635582;
+    ThumbnailOverlayHoverTextRenderer thumbnailOverlayHoverTextRenderer = 107250266;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
+    SlimMetadataToggleButtonRenderer slimMetadataToggleButtonRenderer = 124608045;
     ThumbnailOverlayToggleButtonRenderer thumbnailOverlayToggleButtonRenderer = 128231774;
     MetadataBadgeRenderer metadataBadgeRenderer = 128361622;
     SubscriptionNotificationToggleButtonRenderer subscriptionNotificationToggleButtonRenderer = 136076983;
+    ToggleButtonSupportedData toggleButtonSupportedData = 136527600;
     EngagementPanelSectionListRenderer engagementPanelSectionListRenderer = 138681066;
     EngagementPanelTitleHeaderRenderer engagementPanelTitleHeaderRenderer = 138681548;
     ContinuationItemRenderer continuationItemRenderer = 159495980;
@@ -50,12 +56,14 @@ message RendererWrapper {
     MacroMarkersListItemRenderer macroMarkersListItemRenderer = 307450214;
     MacroMarkersListRenderer macroMarkersListRenderer = 309482905;
     MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
+    PlaylistLoopButtonRenderer playlistLoopButtonRenderer = 404843388;
+    PlaylistLoopButtonStateRenderer playlistLoopButtonStateRenderer = 404843395;
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
     ToggleButtonViewModel toggleButtonViewModel = 479644279;
     LikeButtonViewModel likeButtonViewModel = 484585818;
     DislikeButtonViewModel dislikeButtonViewModel = 484590786;
     SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 484586709;
-    ButtonViewModel buttonViewModel = 461054335;
+    ButtonViewModel2 buttonViewModel2 = 461054335;
   }
 }
 
@@ -63,11 +71,14 @@ message Autoplay {
   message Set {
     int32 mode = 1;
     Endpoints.Endpoint autoplayVideo = 2;
+    optional Endpoints.Endpoint nextButtonVideo = 3;
+    optional Endpoints.Endpoint previousButtonVideo = 4;
   }
 
   repeated Set sets = 1;
   int32 countdownSecs = 3;
   bytes trackingParams = 11;
+  repeated Set modifiedSets = 6;
 }
 
 message ResultsContainer {
@@ -100,6 +111,28 @@ message CompactVideoRenderer {
   RendererWrapper menu = 25;
   repeated RendererWrapper thumbnailOverlays = 32;
   RendererWrapper accessibility = 36;
+}
+
+message Playlist {
+  string title = 1;
+  repeated RendererWrapper contents = 2;
+  int32 currentIndex = 3;
+  string playlistId = 5;
+  int32 totalVideos = 6;
+  bool isInfinite = 8;
+  string playlistShareUrl = 13;
+  Endpoints.Text shortBylineText = 16;
+  Endpoints.Text longBylineText = 17;
+  Endpoints.Text totalVideosText = 18;
+  bytes trackingParams = 20;
+  Endpoints.Text titleText = 22;
+  Endpoints.Endpoint endpoint = 24;
+  RendererWrapper menu = 26;
+  int32 localCurrentIndex = 27;
+  RendererWrapper playlistButtons = 30;
+  Endpoints.Text videoCountText = 36;
+  bool isCourse = 38;
+  Endpoints.Text nextVideoLabel = 40;
 }
 
 message CompactPlaylistRenderer {
@@ -151,6 +184,25 @@ message PlayerCaptionsTracklistRenderer {
   int32 defaultAudioTrackIndex = 4;
 }
 
+message PlaylistPanelVideoRenderer {
+  Endpoints.Text title = 1;
+  Endpoints.Text longBylineText = 2;
+  Thumbnails thumbnail = 3;
+  Endpoints.Text lengthText = 4;
+  Endpoints.Text indexText = 5;
+  bool selected = 6;
+  Endpoints.Endpoint navigationEndpoint = 7;
+  string videoId = 10;
+  Endpoints.Text shortBylineText = 12;
+  bytes trackingParams = 15;
+  RendererWrapper menu = 19;
+  repeated RendererWrapper thumbnailOverlays = 24;
+  string playlistSetVideoId = 26;
+  repeated RendererWrapper actionButtons = 32;
+  ColorPalette lightColorPalette = 34;
+  ColorPalette darkColorPalette = 35;
+}
+
 message VideoOwnerRenderer {
   message SubscriptionButton {
     int32 type = 1;
@@ -174,6 +226,7 @@ message SecondaryResults {
 message TwoColumnWatchNextResults {
   RendererWrapper results = 1;
   optional RendererWrapper secondaryResults = 2;
+  optional RendererWrapper playlist = 3;
   optional RendererWrapper autoplay = 4;
 }
 
@@ -229,7 +282,7 @@ message CompactMovieRenderer {
   bytes trackingParams = 16;
   bool useVerticalPoster = 29;
   Endpoints.Text topMetadataItems = 30;
-  repeated RendererWrapper thumbnailOverlays = 33; 
+  repeated RendererWrapper thumbnailOverlays = 33;
 }
 
 message MessageRenderer {
@@ -262,11 +315,17 @@ message PlayerMicroformatRenderer {
   string uploadDate = 19;
 }
 
-message ShareButtonViewModel {
-  Endpoints.Text title = 5;
-  string accessibilityText = 11;
-  RendererWrapper accessibilityData = 16;
+message ButtonViewModel {
+  optional int32 style = 1;
+  optional int32 size = 2;
+  bool isDisabled = 3;
+  optional Endpoints.Text title = 5;
   optional Endpoints.Endpoint onTap = 7;
+  optional Icon icon = 8;
+  optional string accessibilityText = 11;
+  optional bytes trackingParams = 13;
+  optional RendererWrapper accessibilityData = 16;
+  optional Endpoints.Endpoint command = 19;
 }
 
 message MenuRenderer {
@@ -310,6 +369,36 @@ message MetadataRowContainerRenderer {
 message PlaylistVideoThumbnailRenderer {
   Thumbnails thumbnail = 1;
   bytes trackingParams = 3;
+}
+
+message ToggleMenuServiceItemRenderer {
+  Endpoints.Text defaultText = 1;
+  Icon defaultIcon = 2;
+  Endpoints.Endpoint defaultServiceEndpoint = 3;
+  Endpoints.Text toggledText = 4;
+  Icon toggledIcon = 5;
+  Endpoints.Endpoint toggledServiceEndpoint = 6;
+  bytes trackingParams = 8;
+  bool isToggled = 11;
+}
+
+message ToggleButtonRenderer {
+  google.protobuf.Int32Value style = 1;
+  google.protobuf.Int32Value size = 2;
+  bool isToggled = 3;
+  bool isDisabled = 4;
+  Icon defaultIcon = 5;
+  Endpoints.Endpoint defaultServiceEndpoint = 7;
+  Icon toggledIcon = 8;
+  Endpoints.Endpoint toggledServiceEndpoint = 10;
+  AccessibilityData accessibility = 11;
+  RendererWrapper accessibilityData = 19;
+  RendererWrapper toggledAccessibilityData = 20;
+  RendererWrapper toggleButtonSupportedData = 21;
+  bytes trackingParams = 13;
+  string defaultTooltip = 14;
+  string toggledTooltip = 15;
+  google.protobuf.Int32Value tooggledStyle = 16;
 }
 
 message VideoPrimaryInfoRenderer {
@@ -409,6 +498,14 @@ message ThumbnailOverlayTimeStatusRenderer {
   int32 style = 2;
 }
 
+message SlimMetadataToggleButtonRenderer {
+  int32 likeStatus = 19;
+  bool isLike = 20;
+  bool isDislike = 21;
+  RendererWrapper button = 26;
+  string likeStatusEntityKey = 27;
+}
+
 message ThumbnailOverlayToggleButtonRenderer {
   bool isToggled = 1;
   Icon untoggledIcon = 2;
@@ -457,6 +554,10 @@ message SubscriptionNotificationToggleButtonRenderer {
   Endpoints.Endpoint command = 10;
   string targetId = 11;
   Icon secondaryIcon = 13;
+}
+
+message ToggleButtonSupportedData {
+  int32 id = 1;
 }
 
 message EngagementPanelSectionListRenderer {
@@ -508,7 +609,7 @@ message MacroMarkersListItemRenderer {
   RendererWrapper shareButton = 12;
   RendererWrapper repeatButton = 13;
   string macroMarkerRepeatStateEntityKey = 14;
-  Endpoints.Endpoint endRepeatCommand = 15; 
+  Endpoints.Endpoint endRepeatCommand = 15;
   string playerStateEntityKey = 16;
   int32 carouselType = 18;
   ColorPalette lightColorPalette = 19;
@@ -523,6 +624,17 @@ message MacroMarkersListRenderer {
 message MenuFlexibleItemRenderer {
   RendererWrapper menuItem = 1;
   RendererWrapper topLevelButton = 2;
+}
+
+message PlaylistLoopButtonRenderer {
+  repeated RendererWrapper states = 1;
+  int32 currentState = 2;
+  string playlistLoopStateEntityKey = 3;
+}
+
+message PlaylistLoopButtonStateRenderer {
+  int32 state = 1;
+  RendererWrapper button = 2;
 }
 
 message CommentsEntryPointTeaserRenderer {
@@ -560,7 +672,7 @@ message SegmentedLikeDislikeButtonViewModel {
   RendererWrapper dislikeButtonViewModel = 2;
 }
 
-message ButtonViewModel {
+message ButtonViewModel2 {
   string iconName = 2;
   string title = 3;
   Endpoints.Endpoint onTap = 4;
