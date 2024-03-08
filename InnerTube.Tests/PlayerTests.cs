@@ -418,25 +418,17 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
-
-	[TestCase("astISOttCQ0", Description = "Video with comments disabled")]
-	public void DontGetVideoCommentsProtobuf(string videoId)
+	[TestCase("there's no way they will accept this as a continuation key", false, Description = "Self explanatory")]
+	[TestCase("astISOttCQ0", true, Description = "Video with comments disabled")]
+	public async Task DontGetVideoComments(string continuationToken, bool isVideoId)
 	{
-		/*
-		Assert.Catch(() =>
-		{
-			_ = _innerTube.GetVideoCommentsAsync(videoId, CommentsContext.Types.SortOrder.TopComments).Result;
-		});
-		*/
-	}
-
-	[TestCase("there's no way they will accept this as a continuation key", Description = "Self explanatory")]
-	public async Task DontGetVideoComments(string continuationToken)
-	{
-		/*
 		try
 		{
-			await _innerTube.GetVideoCommentsAsync(continuationToken);
+			if (isVideoId)
+				await _innerTube.ContinueNextAsync(Utils.PackCommentsContinuation(continuationToken,
+					CommentsContext.Types.SortOrder.TopComments));
+			else
+				await _innerTube.ContinueNextAsync(continuationToken);
 		}
 		catch (InnerTubeException e)
 		{
@@ -452,6 +444,5 @@ public class PlayerTests
 		}
 
 		Assert.Fail("Didn't throw an exception");
-		*/
 	}
 }

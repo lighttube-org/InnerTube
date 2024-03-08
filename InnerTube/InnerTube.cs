@@ -88,14 +88,17 @@ public class InnerTube
 
 		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
-		Task<PlayerResponse> webResponse =	GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB);
-		Task<PlayerResponse> androidResponse =	GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.ANDROID);
-		Task<PlayerResponse> iosResponse =	GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS);
+		Task<PlayerResponse> webResponse =
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB);
+		Task<PlayerResponse> androidResponse =
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.ANDROID);
+		Task<PlayerResponse> iosResponse =
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS);
 
 		PlayerResponse webPlayer = await webResponse;
 		PlayerResponse androidPlayer = await androidResponse;
 		PlayerResponse iosPlayer = await iosResponse;
-		
+
 		if (webPlayer.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
 			throw new PlayerException(androidPlayer.PlayabilityStatus.Status, androidPlayer.PlayabilityStatus.Reason,
 				androidPlayer.PlayabilityStatus.Subreason);
@@ -110,7 +113,8 @@ public class InnerTube
 			Size = 1,
 			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, webPlayer.VideoDetails.LengthSeconds)),
 			AbsoluteExpirationRelativeToNow =
-				TimeSpan.FromSeconds(Math.Max(3600, webPlayer.StreamingData!.ExpiresInSeconds - webPlayer.VideoDetails.LengthSeconds))
+				TimeSpan.FromSeconds(Math.Max(3600,
+					webPlayer.StreamingData!.ExpiresInSeconds - webPlayer.VideoDetails.LengthSeconds))
 		});
 		return webPlayer;
 	}
@@ -135,7 +139,9 @@ public class InnerTube
 			language, region, true));
 	}
 
-	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk, bool captionsRequested, string? playlistId = null, int? playlistIndex = null, string? playlistParams = null, string language = "en", string region = "US")
+	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk, bool captionsRequested,
+		string? playlistId = null, int? playlistIndex = null, string? playlistParams = null, string language = "en",
+		string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("videoId", videoId)
@@ -145,11 +151,13 @@ public class InnerTube
 		if (playlistId != null) postData.AddValue("playlistId", playlistId);
 		if (playlistIndex != null) postData.AddValue("playlistIndex", playlistIndex);
 		if (playlistParams != null) postData.AddValue("params", playlistParams);
-		NextResponse next = NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
+		NextResponse next =
+			NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
 		if (next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results.Count == 0)
 		{
 			throw new InnerTubeException("Empty response, video is either deleted or private");
 		}
+
 		RendererWrapper parent = next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results[0];
 		if (parent.RendererCase ==
 		    RendererWrapper.RendererOneofCase.ItemSectionRenderer)
@@ -157,9 +165,11 @@ public class InnerTube
 			if (parent.ItemSectionRenderer.Contents[0].RendererCase ==
 			    RendererWrapper.RendererOneofCase.BackgroundPromoRenderer)
 			{
-				throw new InnerTubeException(Utils.ReadRuns(parent.ItemSectionRenderer.Contents[0].BackgroundPromoRenderer.Text));
+				throw new InnerTubeException(Utils.ReadRuns(parent.ItemSectionRenderer.Contents[0]
+					.BackgroundPromoRenderer.Text));
 			}
 		}
+
 		return next;
 	}
 
@@ -167,6 +177,23 @@ public class InnerTube
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("continuation", continuation);
-		return NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
+		NextResponse next =
+			NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
+		if (next.Contents != null)
+		{
+			RendererWrapper parent = next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results[0];
+			if (parent.RendererCase != RendererWrapper.RendererOneofCase.ItemSectionRenderer) return next;
+			if (parent.ItemSectionRenderer.Contents[0].RendererCase ==
+			    RendererWrapper.RendererOneofCase.BackgroundPromoRenderer)
+			{
+				throw new InnerTubeException(
+					Utils.ReadRuns(parent.ItemSectionRenderer.Contents[0].BackgroundPromoRenderer.Text));
+			}
+		}
+
+		if (next.OnResponseReceivedEndpoints.Count == 0)
+			throw new InnerTubeException("No data returned from YouTube");
+
+		return next;
 	}
 }
