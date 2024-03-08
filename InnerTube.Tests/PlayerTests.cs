@@ -387,15 +387,33 @@ public class PlayerTests
 	[TestCase("5UCz9i2K9gY", 0, Description = "Has unescaped HTML tags")]
 	[TestCase("quI6g4HpePc", 0, Description = "Contains pinned & hearted comments")]
 	[TestCase("kYwB-kZyNU4", 0, Description = "Contains authors with badges")]
+	[TestCase(
+		"Eg0SC0JhV19qZW5vektjGAYy4QIKtwJnZXRfcmFua2VkX3N0cmVhbXMtLUNxY0JDSUFFRlJlMzBUZ2FuQUVLbHdFSTJGOFFnQVFZQnlLTUFYc2JQLW9iVGg1MkxWQnlUZklTWUh4TWlZSm9lQUJta2VKQUNNVnFNakUwQjlhMEl0S01SaFJXSFJIaU9XaUNpc19LY1BuVm1tRGVNLXRTMENyR0RPMFNwZE55WVZrUGYtdFJYVkFHT2ZBMmo4Smg2VXlTWERfZ2UxWkduYkVEcXlXTk9NdklBUk5RajlDQjZhSmJDS3FZdlVlQlNOeEkxdHQ1TVZRd2lXMmpvWG1tRnlwS0s0QVZ2M2dRRUJRU0JRaUlJQmdBRWdVSXFDQVlBQklGQ0ljZ0dBQVNCUWlKSUJnQUVnY0loU0FRRkJnQkVnY0lseUFRQ3hnQUdBQSIRIgtCYVdfamVub3pLYzAAeAEoFEIQY29tbWVudHMtc2VjdGlvbg%3D%3D",
+		-1, Description = "Continuation")]
 	public async Task GetVideoComments(string videoId, int sortOrder)
 	{
-		NextResponse comments = await _innerTube.ContinueNextAsync(Utils.PackCommentsContinuation(videoId,
-			(CommentsContext.Types.SortOrder)sortOrder));
+		NextResponse comments = sortOrder >= 0
+			? await _innerTube.ContinueNextAsync(Utils.PackCommentsContinuation(videoId,
+				(CommentsContext.Types.SortOrder)sortOrder))
+			: await _innerTube.ContinueNextAsync(videoId);
 
 		StringBuilder sb = new();
-		foreach (RendererWrapper? renderer in comments.OnResponseReceivedEndpoints[1].ReloadContinuationItemsCommand
-			         .ContinuationItems)
-			sb.AppendLine(Utils.SerializeRenderer(renderer));
+		foreach (Endpoint endpoint in comments.OnResponseReceivedEndpoints)
+		{
+			switch (endpoint.EndpointTypeCase)
+			{
+				case Endpoint.EndpointTypeOneofCase.ReloadContinuationItemsCommand:
+					if (endpoint.ReloadContinuationItemsCommand.Slot == 1)
+						foreach (RendererWrapper? renderer in endpoint.ReloadContinuationItemsCommand.ContinuationItems)
+							sb.AppendLine(Utils.SerializeRenderer(renderer));
+					break;
+				case Endpoint.EndpointTypeOneofCase.AppendContinuationItemsAction:
+					if (endpoint.AppendContinuationItemsAction.TargetId == "comments-section")
+						foreach (RendererWrapper? renderer in endpoint.AppendContinuationItemsAction.ContinuationItems)
+							sb.AppendLine(Utils.SerializeRenderer(renderer));
+					break;
+			}
+		}
 
 		Assert.Pass(sb.ToString());
 	}

@@ -546,7 +546,7 @@ public static class Utils
 			}
 			case RendererWrapper.RendererOneofCase.ContinuationItemRenderer:
 			{
-				return "[ContinuationItemRenderer]";
+				return "[ContinuationItemRenderer] " + renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token;
 			}
 			default:
 				return $"[Unknown RendererCase={renderer.RendererCase}]";

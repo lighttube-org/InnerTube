@@ -916,6 +916,7 @@ message Endpoint {
     SignalServiceEndpoint signalServiceEndpoint = 124290411;
     CreatePlaylistServiceEndpoint createPlaylistServiceEndpoint = 124747980;
     OpenPopupAction openPopupAction = 128491736;
+    AppendContinuationItemsAction appendContinuationItemsAction = 160980450;
     Endpoint innertubeCommand = 169495254;
     SerialCommand serialCommand = 170382688;
     ShareEntityServiceEndpoint shareEntityServiceEndpoint = 171169820;
@@ -1074,6 +1075,11 @@ message ModalEndpoint {
 message SignalServiceEndpoint {
   int32 signal = 1;
   repeated Endpoint commands = 2;
+}
+
+message AppendContinuationItemsAction {
+  repeated RendererWrapper continuationItems = 2;
+  string targetId = 3;
 }
 
 message SerialCommand {
