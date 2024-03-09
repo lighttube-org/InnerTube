@@ -59,13 +59,13 @@ public class InnerTube
 		hrm.Headers.Add("X-Youtube-Client-Version", client switch
 		{
 			RequestClient.WEB => "2.20220809.02.00",
-			RequestClient.ANDROID => "17.31.4",
-			RequestClient.IOS => "17.31.4",
+			RequestClient.ANDROID => "19.09.4",
+			RequestClient.IOS => "19.09.4",
 			var _ => ""
 		});
 		hrm.Headers.Add("Origin", "https://www.youtube.com");
 		if (client == RequestClient.ANDROID)
-			hrm.Headers.Add("User-Agent", "com.google.android.youtube/17.31.35 (Linux; U; Android 11) gzip");
+			hrm.Headers.Add("User-Agent", "com.google.android.youtube/19.09.4 (Linux; U; Android 11) gzip");
 
 		HttpResponseMessage ytPlayerRequest = await HttpClient.SendAsync(hrm);
 		if (!ytPlayerRequest.IsSuccessStatusCode)
