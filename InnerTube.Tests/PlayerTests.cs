@@ -19,13 +19,13 @@ public class PlayerTests
 		_innerTube = new InnerTube();
 	}
 
-	[TestCase("BaW_jenozKc", true, Description = "Load a video with an HLS manifest")]
-	[TestCase("J6Ga4wciA2k", true, Description = "Load a video with the endscreen & info cards")]
-	[TestCase("jfKfPfyJRdk", true, Description = "Load a livestream")]
-	[TestCase("9gIXoaB-Jik", true, Description = "Video with WEBSITE endscreen item")]
-	[TestCase("4ZX9T0kWb4Y", true, Description = "Video with multiple audio tracks")]
-	[TestCase("-UBaW1OIgTo", true, Description = "EndScreenItem ctor")]
-	[TestCase("UoBFuLMlDkw", true, Description = "Video with cards")]
+	[TestCase("BaW_jenozKc", true, TestName = "Load a video with an HLS manifest")]
+	[TestCase("J6Ga4wciA2k", true, TestName = "Load a video with the endscreen & info cards")]
+	[TestCase("jfKfPfyJRdk", true, TestName = "Load a livestream")]
+	[TestCase("9gIXoaB-Jik", true, TestName = "Video with WEBSITE endscreen item")]
+	[TestCase("4ZX9T0kWb4Y", true, TestName = "Video with multiple audio tracks")]
+	[TestCase("-UBaW1OIgTo", true, TestName = "EndScreenItem ctor")]
+	[TestCase("UoBFuLMlDkw", true, TestName = "Video with cards")]
 	public async Task GetPlayer(string videoId, bool contentCheckOk)
 	{
 		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk);
@@ -185,8 +185,8 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("V6kJKxvbgZ0", true, false, Description = "Age restricted video")]
-	[TestCase("LACbVhgtx9I", false, false, Description = "Video that includes self-harm topics")]
+	[TestCase("V6kJKxvbgZ0", true, false, TestName = "Age restricted video")]
+	[TestCase("LACbVhgtx9I", false, false, TestName = "Video that includes self-harm topics")]
 	public async Task FailPlayer(string videoId, bool contentCheckOk, bool includeHls)
 	{
 		try
@@ -217,15 +217,15 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("BaW_jenozKc", Description = "Regular video")]
-	[TestCase("V6kJKxvbgZ0", Description = "Age restricted video")]
-	[TestCase("LACbVhgtx9I", Description = "Video that includes self-harm topics")]
-	[TestCase("Atvsg_zogxo", Description = "something broke CompactPlaylistRenderer")]
-	[TestCase("t6cZn-Fvwa0", Description = "Video with comments disabled")]
-	[TestCase("jPhJbKBuNnA", Description = "Video with watchEndpoint in attributedDescription")]
-	[TestCase("UoBFuLMlDkw", Description = "Video with more special stuff in attributedDescription")]
-	[TestCase("llrBX6FpMpM", Description = "compactMovieRenderer")]
-	[TestCase("jUUe6TuRlgU", Description = "Chapters")]
+	[TestCase("BaW_jenozKc", TestName = "Regular video")]
+	[TestCase("V6kJKxvbgZ0", TestName = "Age restricted video")]
+	[TestCase("LACbVhgtx9I", TestName = "Video that includes self-harm topics")]
+	[TestCase("Atvsg_zogxo", TestName = "something broke CompactPlaylistRenderer")]
+	[TestCase("t6cZn-Fvwa0", TestName = "Video with comments disabled")]
+	[TestCase("jPhJbKBuNnA", TestName = "Video with watchEndpoint in attributedDescription")]
+	[TestCase("UoBFuLMlDkw", TestName = "Video with more special stuff in attributedDescription")]
+	[TestCase("llrBX6FpMpM", TestName = "compactMovieRenderer")]
+	[TestCase("jUUe6TuRlgU", TestName = "Chapters")]
 	public async Task GetVideoNext(string videoId)
 	{
 		NextResponse next = await _innerTube.GetNextAsync(videoId, true, true);
@@ -360,10 +360,10 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("1234567890a", Description = "An ID I just made up")]
-	[TestCase("a62882basgl", Description = "Another ID I just made up")]
-	[TestCase("32nkdvLq3oQ", Description = "A deleted video")]
-	[TestCase("mVp-gQuCJI8", Description = "A private video")]
+	[TestCase("1234567890a", TestName = "An ID I just made up")]
+	[TestCase("a62882basgl", TestName = "Another ID I just made up")]
+	[TestCase("32nkdvLq3oQ", TestName = "A deleted video")]
+	[TestCase("mVp-gQuCJI8", TestName = "A private video")]
 	public async Task DontGetVideoNext(string videoId)
 	{
 		try
@@ -382,14 +382,14 @@ public class PlayerTests
 		Assert.Fail("Didn't throw an exception");
 	}
 
-	[TestCase("BaW_jenozKc", 0, Description = "Regular video comments")]
-	[TestCase("BaW_jenozKc", 1, Description = "Regular video comments")]
-	[TestCase("5UCz9i2K9gY", 0, Description = "Has unescaped HTML tags")]
-	[TestCase("quI6g4HpePc", 0, Description = "Contains pinned & hearted comments")]
-	[TestCase("kYwB-kZyNU4", 0, Description = "Contains authors with badges")]
+	[TestCase("BaW_jenozKc", 0, TestName = "Regular video comments")]
+	[TestCase("BaW_jenozKc", 1, TestName = "Regular video comments")]
+	[TestCase("5UCz9i2K9gY", 0, TestName = "Has unescaped HTML tags")]
+	[TestCase("quI6g4HpePc", 0, TestName = "Contains pinned & hearted comments")]
+	[TestCase("kYwB-kZyNU4", 0, TestName = "Contains authors with badges")]
 	[TestCase(
 		"Eg0SC0JhV19qZW5vektjGAYy4QIKtwJnZXRfcmFua2VkX3N0cmVhbXMtLUNxY0JDSUFFRlJlMzBUZ2FuQUVLbHdFSTJGOFFnQVFZQnlLTUFYc2JQLW9iVGg1MkxWQnlUZklTWUh4TWlZSm9lQUJta2VKQUNNVnFNakUwQjlhMEl0S01SaFJXSFJIaU9XaUNpc19LY1BuVm1tRGVNLXRTMENyR0RPMFNwZE55WVZrUGYtdFJYVkFHT2ZBMmo4Smg2VXlTWERfZ2UxWkduYkVEcXlXTk9NdklBUk5RajlDQjZhSmJDS3FZdlVlQlNOeEkxdHQ1TVZRd2lXMmpvWG1tRnlwS0s0QVZ2M2dRRUJRU0JRaUlJQmdBRWdVSXFDQVlBQklGQ0ljZ0dBQVNCUWlKSUJnQUVnY0loU0FRRkJnQkVnY0lseUFRQ3hnQUdBQSIRIgtCYVdfamVub3pLYzAAeAEoFEIQY29tbWVudHMtc2VjdGlvbg%3D%3D",
-		-1, Description = "Continuation")]
+		-1, TestName = "Continuation")]
 	public async Task GetVideoComments(string videoId, int sortOrder)
 	{
 		NextResponse comments = sortOrder >= 0
@@ -418,8 +418,8 @@ public class PlayerTests
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("there's no way they will accept this as a continuation key", false, Description = "Self explanatory")]
-	[TestCase("astISOttCQ0", true, Description = "Video with comments disabled")]
+	[TestCase("there's no way they will accept this as a continuation key", false, TestName = "Self explanatory")]
+	[TestCase("astISOttCQ0", true, TestName = "Video with comments disabled")]
 	public async Task DontGetVideoComments(string continuationToken, bool isVideoId)
 	{
 		try
