@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Responses;
+
+import "general.proto";
+
+message SearchResponse {
+  int64 estimatedResults = 2;
+  RendererWrapper contents = 4;
+  bytes trackingParams = 9;
+  RendererWrapper header = 13;
+  repeated string refinements = 22;
+  string targetId = 30;
+}

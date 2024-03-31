@@ -80,6 +80,12 @@ message CustomEmoji {
   bool isCustomEmoji = 6;
 }
 
+message DetailedMetadataSnippets {
+  Text snippetText = 1;
+  Text snippetHoverText = 2;
+  bool maxOneLine = 3;
+}
+
 // ===============================================================
 // ==================    RENDERERS    ============================
 // ===============================================================
@@ -89,6 +95,7 @@ message RendererWrapper {
     Autoplay autoplay = 46659098;
     ResultsContainer resultsContainer = 49399797;
     ItemSectionRenderer itemSectionRenderer = 50195462;
+    VideoRenderer videoRenderer = 50577878;
     CompactVideoRenderer compactVideoRenderer = 50630979;
     Playlist playlist = 50631000;
     CompactPlaylistRenderer compactPlaylistRenderer = 50742631;
@@ -100,6 +107,7 @@ message RendererWrapper {
     CompactRadioRenderer compactRadioRenderer = 53170873;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
+    TwoColumnSearchResultsRenderer twoColumnSearchResultsRenderer = 50848250;
     CompactMovieRenderer compactMovieRenderer = 58485276;
     MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
@@ -111,6 +119,7 @@ message RendererWrapper {
     MenuNavigationItemRenderer menuNavigationItemRenderer = 66441108;
     MenuServiceItemRenderer menuServiceItemRenderer = 66441155;
     CommentActionButtonsRenderer commentActionButtonsRenderer = 66744747;
+    SearchSubMenuRenderer searchSubMenuRenderer = 69655246;
     VideoViewCountRenderer videoViewCountRenderer = 70044402;
     PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
     MetadataRowContainerRenderer metadataRowContainerRenderer = 71271859;
@@ -121,6 +130,7 @@ message RendererWrapper {
     ToggleButtonRenderer toggleButtonRenderer = 79971800;
     BackgroundPromoRenderer backgroundPromoRenderer = 94317419;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
+    ChannelThumbnailWithLinkRenderer channelThumbnailWithLinkRenderer = 100346611;
     VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
     CommentsHeaderRenderer commentsHeaderRenderer = 105977417;
     EndscreenRenderer endscreenRenderer = 106301526;
@@ -145,6 +155,7 @@ message RendererWrapper {
     MacroMarkersListItemRenderer macroMarkersListItemRenderer = 307450214;
     MacroMarkersListRenderer macroMarkersListRenderer = 309482905;
     MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
+    ThumbnailOverlayLoadingPreviewRenderer thumbnailOverlayLoadingPreviewRenderer = 367662231;
     PlaylistLoopButtonRenderer playlistLoopButtonRenderer = 404843388;
     PlaylistLoopButtonStateRenderer playlistLoopButtonStateRenderer = 404843395;
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
@@ -173,6 +184,9 @@ message Autoplay {
 message ResultsContainer {
   repeated RendererWrapper results = 1;
   optional bytes trackingParams = 4;
+  RendererWrapper subMenu = 5;
+  bool hideBottomSeparator = 11;
+  optional string targetId = 13;
 }
 
 message ItemSectionRenderer {
@@ -180,6 +194,30 @@ message ItemSectionRenderer {
   optional bytes trackingParams = 4;
   optional string sectionIdentifier = 7;
   optional string targetId = 13;
+}
+
+message VideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text longBylineText = 5;
+  Text publishedTimeText = 6;
+  Text lengthText = 7;
+  Text viewCountText = 8;
+  Endpoint navigationEndpoint = 9;
+  repeated RendererWrapper badges = 10;
+  repeated RendererWrapper ownerBadges = 11;
+  Text ownerText = 15;
+  Text shortBylineText = 18;
+  bytes trackingParams = 21;
+  bool showActionMenu = 25;
+  Text shortViewCountText = 26;
+  RendererWrapper menu = 28;
+  RendererWrapper channelThumbnailSupportedRenderers = 33;
+  repeated RendererWrapper thumbnailOverlays = 34;
+  DetailedMetadataSnippets detailedMetadataSnippets = 49;
+  Endpoint inlinePlaybackEndpoint = 50;
+  string searchVideoResultEntityKey = 55;
 }
 
 message CompactVideoRenderer {
@@ -360,6 +398,10 @@ message PlayerStoryboardSpecRenderer {
   int32 highResolutionRecommendedLevel = 7;
 }
 
+message TwoColumnSearchResultsRenderer {
+  RendererWrapper primaryContents = 1;
+}
+
 message CompactMovieRenderer {
   string videoId = 1;
   Thumbnails thumbnail = 2;
@@ -491,6 +533,10 @@ message CommentActionButtonsRenderer {
   int32 style = 18;
 }
 
+message SearchSubMenuRenderer {
+  bytes trackingParams = 6;
+}
+
 message VideoViewCountRenderer {
   Text viewCount = 1;
   Text shortViewCount = 4;
@@ -574,6 +620,12 @@ message VideoPrimaryInfoRenderer {
   repeated RendererWrapper badges = 11;
   Text dateText = 14;
   Text relativeDateText = 21;
+}
+
+message ChannelThumbnailWithLinkRenderer {
+  Thumbnail thumbnail = 1;
+  Endpoint navigationEndpoint = 2;
+  RendererWrapper accessibility = 3;
 }
 
 message VideoSecondaryInfoRenderer {
@@ -786,6 +838,7 @@ message EngagementPanelTitleHeaderRenderer {
 message ContinuationItemRenderer {
   int32 trigger = 1;
   Endpoint continuationEndpoint = 2;
+  optional LoggingDirectives loggingDirectives = 999;
 }
 
 message ThumbnailOverlayNowPlayingRenderer {
@@ -825,6 +878,10 @@ message MacroMarkersListRenderer {
 message MenuFlexibleItemRenderer {
   RendererWrapper menuItem = 1;
   RendererWrapper topLevelButton = 2;
+}
+
+message ThumbnailOverlayLoadingPreviewRenderer {
+  Text text = 1;
 }
 
 message PlaylistLoopButtonRenderer {
@@ -980,6 +1037,7 @@ message WatchEndpoint {
   optional WatchEndpointSupportedOnesieConfig watchEndpointSupportedOnesieConfig = 79857908;
   optional PrefetchHintConfigWrapper watchEndpointSupportedPrefetchConfig = 68146959;
   optional LoggingContext loggingContext = 26;
+  map<string, string> playerExtraUrlParams = 18;
 }
 
 message UrlEndpoint {

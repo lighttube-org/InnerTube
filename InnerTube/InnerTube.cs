@@ -1,7 +1,9 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
+using Google.Protobuf;
 using InnerTube.Exceptions;
 using InnerTube.Protobuf;
+using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -195,5 +197,16 @@ public class InnerTube
 			throw new InnerTubeException("No data returned from YouTube");
 
 		return next;
+	}
+
+	public async Task<byte[]> SearchAsync(string query, SearchParams? param = null, string language = "en",
+		string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("query", query);
+		
+		if (param != null)
+			postData.AddValue("params", Convert.ToBase64String(param.ToByteArray()));
+		return await MakeRequest(RequestClient.WEB, "search", postData, language, region);
 	}
 }
