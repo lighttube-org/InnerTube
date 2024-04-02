@@ -138,7 +138,7 @@ public class InnerTube
 			.AddValue("racyCheckOk", contentCheckOk);
 
 		if (client == RequestClient.ANDROID)
-			postData.AddValue("params", "CgIQBg");
+			postData.AddValue("params", "CgIIAdgDAQ%3D%3D");
 
 		return await MakeRequest(client, "player", postData,
 			language, region, true);
