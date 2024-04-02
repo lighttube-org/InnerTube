@@ -230,6 +230,23 @@ public class InnerTube
 	}
 
 	/// <summary>
+	/// Continues the video recommendations from the last continuation token
+	/// </summary>
+	/// <param name="continuation">Continuation token received from GetVideoAsync</param>
+	/// <param name="language">Language of the content</param>
+	/// <param name="region">Region of the content</param>
+	/// <returns>List of recommended content for the video that belongs to the specified key</returns>
+	public async Task<InnerTubeContinuationResponse> ContinueVideoAsync(string continuation,
+		string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+
+		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
+		return InnerTubeContinuationResponse.GetFromNext(nextResponse);
+	}
+
+	/// <summary>
 	/// Gets the comments of a video from a comment continuation token that can be received from GetVideoAsync
 	/// </summary>
 	/// <param name="commentsContinuation">Continuation token received from GetVideoAsync</param>
