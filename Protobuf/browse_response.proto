@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Responses;
+
+import "general.proto";
+
+message BrowseResponse {
+  RendererWrapper contents = 9;
+  optional RendererWrapper header = 13;
+  optional RendererWrapper metadata = 15;
+  optional RendererWrapper microformat = 27;
+}
