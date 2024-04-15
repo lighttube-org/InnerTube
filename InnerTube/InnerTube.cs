@@ -215,8 +215,6 @@ public class InnerTube
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("continuation", continuation);
-		var b = await MakeRequest(RequestClient.WEB, "search", postData, language, region);
-		await File.WriteAllBytesAsync("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/continuesearch.bin", b);
-		return SearchResponse.Parser.ParseFrom(b);
+		return SearchResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "search", postData, language, region));
 	}
 }
