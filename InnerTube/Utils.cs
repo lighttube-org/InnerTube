@@ -433,6 +433,32 @@ public static class Utils
 		{
 			case RendererWrapper.RendererOneofCase.None:
 				return $"[Unknown Renderer]\n{Convert.ToBase64String(renderer.ToByteArray())}";
+			case RendererWrapper.RendererOneofCase.VideoRenderer:
+			{
+				VideoRenderer video = renderer.VideoRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[VideoRenderer] [{video.VideoId}] {ReadRuns(video.Title)}");
+				sb.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
+					video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+				sb.AppendLine("Owner: " +
+				              $"[{video.OwnerText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+				              video.OwnerText.Runs[0].Text);
+				sb.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
+						video.OwnerBadges.Select(x =>
+							$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+					.TrimStart());
+				sb.AppendLine("Duration: " + video.LengthText?.SimpleText);
+				sb.AppendLine("ViewCount: " + video.ViewCountText.SimpleText);
+				sb.AppendLine("ShortViewCount: " + video.ShortViewCountText.SimpleText);
+				sb.AppendLine("PublishDate: " + video.PublishedTimeText?.SimpleText);
+				sb.AppendLine($"Badges: ({video.Badges.Count})\n- " +
+				              string.Join("",
+						              video.Badges.Select(x =>
+							              $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+					              .TrimStart());
+				sb.AppendLine(ReadRuns(video.DetailedMetadataSnippets?.SnippetText));
+				return sb.ToString();
+			}
 			case RendererWrapper.RendererOneofCase.CompactVideoRenderer:
 			{
 				CompactVideoRenderer video = renderer.CompactVideoRenderer;
@@ -503,6 +529,23 @@ public static class Utils
 						            .TrimStart());
 				return sb.ToString();
 			}
+			case RendererWrapper.RendererOneofCase.ChannelRenderer:
+			{
+				ChannelRenderer channel = renderer.ChannelRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[ChannelRenderer] [{channel.ChannelId}] {ReadRuns(channel.Title)}")
+					.AppendLine($"Thumbnail: ({channel.Thumbnail.Thumbnails_.Count})" + string.Join("",
+						channel.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
+					.AppendLine("VideoCountText*: " + ReadRuns(channel.VideoCountText))
+					.AppendLine("SubscriberCountText*: " + ReadRuns(channel.SubscriberCountText))
+					.AppendLine($"Badges: ({channel.OwnerBadges.Count})\n" +
+					            string.Join("\n",
+							            channel.OwnerBadges.Select(x =>
+								            $"- {string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}")).TrimStart()}"))
+						            .TrimStart())
+					.AppendLine("DescriptionSnippet:\n" + ReadRuns(channel.DescriptionSnippet));
+				return sb.ToString();
+			}
 			case RendererWrapper.RendererOneofCase.MetadataBadgeRenderer:
 			{
 				MetadataBadgeRenderer badge = renderer.MetadataBadgeRenderer;
@@ -547,6 +590,80 @@ public static class Utils
 			case RendererWrapper.RendererOneofCase.ContinuationItemRenderer:
 			{
 				return "[ContinuationItemRenderer] " + renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token;
+			}
+			case RendererWrapper.RendererOneofCase.MessageRenderer:
+			{
+				MessageRenderer message = renderer.MessageRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[MessageRenderer] {ReadRuns(message.Text)}");
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.BackgroundPromoRenderer:
+			{
+				BackgroundPromoRenderer bpr = renderer.BackgroundPromoRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[BackgroundPromoRenderer] {ReadRuns(bpr.Text)}");
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.DidYouMeanRenderer:
+			{
+				DidYouMeanRenderer dymr = renderer.DidYouMeanRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[DidYouMeanRenderer] \"{ReadRuns(dymr.DidYouMean)}\" \"{ReadRuns(dymr.CorrectedQuery)}\"");
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.ShowingResultsForRenderer:
+			{
+				ShowingResultsForRenderer srfr = renderer.ShowingResultsForRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[ShowingResultsForRenderer] \"{ReadRuns(srfr.ShowingResultsFor)}\" \"{ReadRuns(srfr.CorrectedQuery)}\"");
+				sb.AppendLine($"\"{ReadRuns(srfr.SearchInsteadFor)}\" \"{ReadRuns(srfr.OriginalQuery)}\"");
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.ShelfRenderer:
+			{
+				ShelfRenderer shelf = renderer.ShelfRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[ShelfRenderer] {ReadRuns(shelf.Title)}");
+				IEnumerable<RendererWrapper> items = shelf.Content.RendererCase switch
+				{
+					RendererWrapper.RendererOneofCase.VerticalListRenderer => shelf.Content.VerticalListRenderer.Items,
+					_ =>
+					[
+						new RendererWrapper
+						{
+							MessageRenderer = new MessageRenderer
+							{
+								Text = new Text
+								{
+									SimpleText = $"INNERTUBE: Unknown RendererCase: {shelf.Content.RendererCase}"
+								}
+							}
+						}
+					]
+				};
+				foreach (RendererWrapper item in items) 
+					sb.AppendLine(string.Join("\n", SerializeRenderer(item).Split("\n").Select(x => $"  {x}")));
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.ReelShelfRenderer:
+			{
+				ReelShelfRenderer reelShelf = renderer.ReelShelfRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[ReelShelfRenderer] {ReadRuns(reelShelf.Title)}");
+				foreach (RendererWrapper item in reelShelf.Items) 
+					sb.AppendLine(string.Join("\n", SerializeRenderer(item).Split("\n").Select(x => $"  {x}")));
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.ReelItemRenderer:
+			{
+				ReelItemRenderer reel = renderer.ReelItemRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[ReelItemRenderer] [{reel.VideoId}] {ReadRuns(reel.Headline)}");
+				sb.AppendLine($"Thumbnail: ({reel.Thumbnail.Thumbnails_.Count})" + string.Join("",
+					reel.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+				sb.AppendLine("ViewCount: " + reel.ViewCountText.SimpleText);
+				return sb.ToString();
 			}
 			default:
 				return $"[Unknown RendererCase={renderer.RendererCase}]";

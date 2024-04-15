@@ -199,7 +199,7 @@ public class InnerTube
 		return next;
 	}
 
-	public async Task<byte[]> SearchAsync(string query, SearchParams? param = null, string language = "en",
+	public async Task<SearchResponse> SearchAsync(string query, SearchParams? param = null, string language = "en",
 		string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
@@ -207,6 +207,6 @@ public class InnerTube
 		
 		if (param != null)
 			postData.AddValue("params", Convert.ToBase64String(param.ToByteArray()));
-		return await MakeRequest(RequestClient.WEB, "search", postData, language, region);
+		return SearchResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "search", postData, language, region));
 	}
 }

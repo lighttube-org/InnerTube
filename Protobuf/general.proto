@@ -102,22 +102,26 @@ message RendererWrapper {
     SearchFilterGroupRenderer searchFilterGroupRenderer = 47602288;
     ResultsContainer resultsContainer = 49399797;
     ItemSectionRenderer itemSectionRenderer = 50195462;
+    ChildVideoRenderer childVideoRenderer = 50524046;
     VideoRenderer videoRenderer = 50577878;
     ChannelRenderer channelRenderer = 50590275;
     CompactVideoRenderer compactVideoRenderer = 50630979;
     Playlist playlist = 50631000;
+    PlaylistRenderer playlistRenderer = 50732276;
     CompactPlaylistRenderer compactPlaylistRenderer = 50742631;
+    TwoColumnSearchResultsRenderer twoColumnSearchResultsRenderer = 50848250;
     PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
     PlaylistPanelVideoRenderer playlistPanelVideoRenderer = 51779701;
     VideoOwnerRenderer videoOwnerRenderer = 51779708;
     SecondaryResults secondaryResults = 51779776;
     TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
     ShelfRenderer shelfRenderer = 51845067;
-    VerticalListRenderer verticalListRenderer = 57988071;
     CompactRadioRenderer compactRadioRenderer = 53170873;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
+    ShowingResultsForRenderer showingResultsForRenderer = 55504968;
+    DidYouMeanRenderer didYouMeanRenderer = 55641975;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
-    TwoColumnSearchResultsRenderer twoColumnSearchResultsRenderer = 50848250;
+    VerticalListRenderer verticalListRenderer = 57988071;
     CompactMovieRenderer compactMovieRenderer = 58485276;
     MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
@@ -229,6 +233,13 @@ message ItemSectionRenderer {
   optional string targetId = 13;
 }
 
+message ChildVideoRenderer{
+  Text title = 1;
+  Endpoint navigationEndpoint = 2;
+  Text lengthText = 3;
+  string videoId = 5;
+}
+
 message VideoRenderer {
   string videoId = 1;
   Thumbnails thumbnail = 2;
@@ -258,9 +269,11 @@ message ChannelRenderer {
   Text title = 2;
   Endpoint navigationEndpoint = 3;
   Thumbnails thumbnail = 4;
+  optional Text descriptionSnippet = 5;
   Text shortBylineText = 6;
   Text videoCountText = 7;
   SubscriptionButton subscriptionButton = 10;
+  repeated RendererWrapper ownerBadges = 11;
   Text subscriberCountText = 12;
   RendererWrapper subscribeButton = 17;
   bytes trackingParams = 18;
@@ -309,6 +322,24 @@ message Playlist {
   Text nextVideoLabel = 40;
 }
 
+message PlaylistRenderer {
+  string playlistId = 1;
+  Text title = 2;
+  repeated Thumbnails thumbnails = 3;
+  int32 videoCount = 4;
+  Endpoint navigationEndpoint = 5;
+  Text viewPlaylistText = 6;
+  Text shortBylineText = 7;
+  repeated RendererWrapper videos = 9;
+  Text videoCountText = 13;
+  bytes trackingParams = 15;
+  Text thumbnailText = 16;
+  Text longBylineText = 17;
+  repeated RendererWrapper ownerBadges = 18;
+  RendererWrapper thumbnailRenderer = 20;
+  RendererWrapper thumbnailOverlays = 23;
+}
+
 message CompactPlaylistRenderer {
   string playlistId = 1;
   Thumbnails thumbnail = 2;
@@ -325,6 +356,10 @@ message CompactPlaylistRenderer {
   RendererWrapper thumbnailRenderer = 20;
   Text longBylineText = 21;
   RendererWrapper thumbnailOverlays = 25;
+}
+
+message TwoColumnSearchResultsRenderer {
+  RendererWrapper primaryContents = 1;
 }
 
 message PlayerCaptionsTracklistRenderer {
@@ -406,13 +441,6 @@ message ShelfRenderer {
   bytes trackingParams = 15;
 }
 
-message VerticalListRenderer {
-  repeated RendererWrapper items = 1;
-  int32 collapsedItemCount = 2;
-  Text collapsedStateButtonText = 3;
-  bytes trackingParams = 7;
-}
-
 message CompactRadioRenderer {
   string playlistId = 1;
   Thumbnails thumbnail = 2;
@@ -448,14 +476,34 @@ message SubscribeButtonRenderer {
   repeated Endpoint onUnsubscribeEndpoints = 39;
 }
 
+message ShowingResultsForRenderer {
+  Text showingResultsFor = 1;
+  Text correctedQuery = 2;
+  Endpoint correctedQueryEndpoint = 3;
+  Text searchInsteadFor = 4;
+  Text originalQuery = 5;
+  Endpoint originalQueryEndpoint = 6;
+  bytes trackingParams = 8;
+}
+
+message DidYouMeanRenderer {
+  Text didYouMean = 1;
+  Text correctedQuery = 2;
+  Endpoint correctedQueryEndpoint = 3;
+  bytes trackingParams = 5;
+}
+
 message PlayerStoryboardSpecRenderer {
   string spec = 1;
   int32 recommendedLevel = 3;
   int32 highResolutionRecommendedLevel = 7;
 }
 
-message TwoColumnSearchResultsRenderer {
-  RendererWrapper primaryContents = 1;
+message VerticalListRenderer {
+  repeated RendererWrapper items = 1;
+  int32 collapsedItemCount = 2;
+  Text collapsedStateButtonText = 3;
+  bytes trackingParams = 7;
 }
 
 message CompactMovieRenderer {
