@@ -36,9 +36,16 @@ public class SearchTests
 		};
 		SearchResponse results = await _innerTube.SearchAsync(query, param);
 		StringBuilder sb = new();
+		sb.AppendLine("\n== METADATA");
+		sb.AppendLine($"EstimatedResults: {results.EstimatedResults}");
+		sb.AppendLine($"Chips: {string.Join(", ", results.Header.SearchHeaderRenderer.ChipBar?.ChipCloudRenderer?.Chips?.Select(x => Utils.ReadRuns(x.ChipCloudChipRenderer.Text)) ?? [])}");
+		sb.AppendLine("Refinements:");
+		foreach (string resultsRefinement in results.Refinements) 
+			sb.AppendLine("- " + resultsRefinement);
+		
 		sb.AppendLine("\n== RESULTS");
 		foreach (RendererWrapper? renderer in results.Contents.TwoColumnSearchResultsRenderer.PrimaryContents
-			         .ResultsContainer.Results.SelectMany(x => x.ItemSectionRenderer.Contents))
+			         .ResultsContainer.Results.SelectMany(x => x.ItemSectionRenderer?.Contents ?? []))
 			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
 		Assert.Pass(sb.ToString());
 	}
