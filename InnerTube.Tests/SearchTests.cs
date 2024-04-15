@@ -77,7 +77,7 @@ public class SearchTests
 				WatchCardHeroVideoRenderer cta = card.CallToAction.WatchCardHeroVideoRenderer;
 				sb.AppendLine("\n=== CALL TO ACTION");
 				sb.AppendLine("Title/Accessibility: " + cta.Accessibility.AccessibilityData.Label);
-				sb.AppendLine("Video ID: " + cta.NavigationEndpoint.WatchEndpoint?.VideoId ?? "<null>");
+				sb.AppendLine("Video ID: " + (cta.NavigationEndpoint.WatchEndpoint?.VideoId ?? "<null>"));
 				sb.AppendLine("Hero Image:");
 				sb.AppendLine($"- Left Thumbnail: ({cta.HeroImage.CollageHeroImageRenderer.LeftThumbnail.Thumbnails_.Count})" + string.Join("",
 					cta.HeroImage.CollageHeroImageRenderer.LeftThumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
@@ -85,8 +85,51 @@ public class SearchTests
 					cta.HeroImage.CollageHeroImageRenderer.TopRightThumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
 				sb.AppendLine($"- Bottom Right: ({cta.HeroImage.CollageHeroImageRenderer.BottomRightThumbnail.Thumbnails_.Count})" + string.Join("",
 					cta.HeroImage.CollageHeroImageRenderer.BottomRightThumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
-				
-				
+
+				sb.AppendLine("\n=== SECTIONS");
+				foreach (RendererWrapper section in card.Sections)
+				{
+					for (int i = 0; i < section.WatchCardSectionSequenceRenderer.Lists.Count; i++)
+					{
+						RendererWrapper list = section.WatchCardSectionSequenceRenderer.Lists[i];
+						string? title = null;
+						if (section.WatchCardSectionSequenceRenderer.ListTitles.Count > i) 
+							title = Utils.ReadRuns(section.WatchCardSectionSequenceRenderer.ListTitles[i]);
+						sb.AppendLine("Title: " + (title ?? "<no title>"));
+						
+						switch (list.RendererCase)
+						{
+							case RendererWrapper.RendererOneofCase.VerticalWatchCardListRenderer:
+							{
+								VerticalWatchCardListRenderer l = list.VerticalWatchCardListRenderer;
+								foreach (RendererWrapper renderer in l.Items)
+								{
+									sb.AppendLine(
+										$"[{renderer.WatchCardCompactVideoRenderer.NavigationEndpoint.WatchEndpoint.VideoId}] " +
+										Utils.ReadRuns(renderer.WatchCardCompactVideoRenderer.Title));
+									sb.Append(Utils.ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle));
+									sb.Append("       ");
+									sb.AppendLine(Utils.ReadRuns(renderer.WatchCardCompactVideoRenderer.LengthText));
+								}
+								break;
+							}
+							case RendererWrapper.RendererOneofCase.HorizontalCardListRenderer:
+							{
+								HorizontalCardListRenderer l = list.HorizontalCardListRenderer;
+								foreach (RendererWrapper renderer in l.Cards)
+								{
+									sb.AppendLine($"[{renderer.SearchRefinementCardRenderer.Thumbnail.Thumbnails_[0].Url}]");
+									sb.AppendLine(Utils.ReadRuns(renderer.SearchRefinementCardRenderer.Query));
+								}
+								break;
+							}
+							default:
+								sb.AppendLine("Unknown RendererCase: " + list.RendererCase);
+								break;
+						}
+					}
+					sb.AppendLine();
+				}
 				
 				Assert.Pass(sb.ToString());
 				break;
