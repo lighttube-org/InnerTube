@@ -15,16 +15,16 @@ public class SearchTests
 		_innerTube = new InnerTube();
 	}
 
-	[TestCase("big buck bunny", null, Description = "Just a normal search")]
-	[TestCase("big bcuk bunny", null, Description = "Search with a typo")]
-	[TestCase("big bcuk bunny", "exact", Description = "Force to search with the typo")]
-	[TestCase("technoblade skyblock", "playlist", Description = "Used to get playlistRenderer")]
-	[TestCase("lofi radio", null, Description = "Used to get live videos")]
-	[TestCase("technoblade", null, Description = "didYouMeanRenderer & channelRenderer")]
-	[TestCase("O'zbekcha Kuylar 2020, Vol. 2", null, Description = "epic broken playlist")]
-	[TestCase("cars 2", "movie", Description = "movieRenderer")]
-	[TestCase("", "exact", Description = "backgroundPromoRenderer")]
-	[TestCase("vpn", null, Description = "adSlotRenderer")]
+	[TestCase("big buck bunny", null, TestName = "Just a normal search")]
+	[TestCase("big bcuk bunny", null, TestName = "Search with a typo")]
+	[TestCase("big bcuk bunny", "exact", TestName = "Force to search with the typo")]
+	[TestCase("technoblade skyblock", "playlist", TestName = "Used to get playlistRenderer")]
+	[TestCase("lofi radio", null, TestName = "Used to get live videos")]
+	[TestCase("technoblade", null, TestName = "didYouMeanRenderer & channelRenderer")]
+	[TestCase("O'zbekcha Kuylar 2020, Vol. 2", null, TestName = "epic broken playlist")]
+	[TestCase("cars 2", "movie", TestName = "movieRenderer")]
+	[TestCase("", "exact", TestName = "backgroundPromoRenderer")]
+	[TestCase("vpn", null, TestName = "adSlotRenderer")]
 	public async Task Search(string query, string paramArgs)
 	{
 		SearchParams? param = paramArgs switch
