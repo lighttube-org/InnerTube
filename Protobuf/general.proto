@@ -87,9 +87,15 @@ message DetailedMetadataSnippets {
   Text snippetHoverText = 2;
   bool maxOneLine = 3;
 }
+
 message SubscriptionButton {
   optional int32 type = 1;
   optional bool subscribed = 3;
+}
+
+message SurfaceIdentifier {
+  int32 surface = 1;
+  string tag = 3;
 }
 
 // ===============================================================
@@ -98,6 +104,8 @@ message SubscriptionButton {
 
 message RendererWrapper {
   oneof renderer {
+    ChannelHeaderLinksViewModel channelHeaderLinksViewModel = 1022;
+    C4TabbedHeaderRenderer c4TabbedHeaderRenderer = 46407682;
     Autoplay autoplay = 46659098;
     SearchFilterRenderer searchFilterRenderer = 47550566;
     SearchFilterGroupRenderer searchFilterGroupRenderer = 47602288;
@@ -111,21 +119,28 @@ message RendererWrapper {
     PlaylistRenderer playlistRenderer = 50732276;
     CompactPlaylistRenderer compactPlaylistRenderer = 50742631;
     TwoColumnSearchResultsRenderer twoColumnSearchResultsRenderer = 50848250;
+    HorizontalListRenderer horizontalListRenderer = 51431404;
     PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
     PlaylistPanelVideoRenderer playlistPanelVideoRenderer = 51779701;
     VideoOwnerRenderer videoOwnerRenderer = 51779708;
     SecondaryResults secondaryResults = 51779776;
     TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
     ShelfRenderer shelfRenderer = 51845067;
+    TwoColumnBrowseResultsRenderer twoColumnBrowseResultsRenderer = 52123031;
     CompactRadioRenderer compactRadioRenderer = 53170873;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     ShowingResultsForRenderer showingResultsForRenderer = 55504968;
     DidYouMeanRenderer didYouMeanRenderer = 55641975;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
+    ChannelMetadataRenderer channelMetadataRenderer = 57075253;
     VerticalListRenderer verticalListRenderer = 57988071;
+    TabRenderer tabRenderer = 58174010;
     CompactMovieRenderer compactMovieRenderer = 58485276;
     MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
+    ChannelVideoPlayerRenderer channelVideoPlayerRenderer = 60408738;
+    GridVideoRenderer gridVideoRenderer = 60373625;
+    ExpandableTabRenderer expandableTabRenderer = 62070496;
     CommentThreadRenderer commentThreadRenderer = 62285833;
     CommentRenderer commentRenderer = 62285947;
     PromotedVideoRenderer promotedVideoRenderer = 62887855;
@@ -141,6 +156,7 @@ message RendererWrapper {
     PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
     MetadataRowContainerRenderer metadataRowContainerRenderer = 71271859;
     PlaylistVideoThumbnailRenderer playlistVideoThumbnailRenderer = 72426341;
+    MicroformatDataRenderer microformatDataRenderer = 75249450;
     AccessibilityData accessibilityData = 75730170;
     SortFilterSubMenuRenderer sortFilterSubMenuRenderer = 76818770;
     SearchPyvRenderer searchPyvRenderer = 77536014;
@@ -198,11 +214,45 @@ message RendererWrapper {
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
     ButtonViewModel2 buttonViewModel2 = 461054335;
     ToggleButtonViewModel toggleButtonViewModel = 479644279;
+    ChannelTaglineRenderer channelTaglineRenderer = 482604211;
     LikeButtonViewModel likeButtonViewModel = 484585818;
     DislikeButtonViewModel dislikeButtonViewModel = 484590786;
     SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 484586709;
     SearchHeaderRenderer searchHeaderRenderer = 485224057;
   }
+}
+
+message ChannelHeaderLinksViewModel {
+  message Link {
+    message Run {
+      int32 startIndex = 1;
+      int32 length = 2;
+      Endpoint onTap = 3;
+    }
+    string content = 1;
+    repeated Run commandRuns = 5;
+  }
+  Link firstLink = 5;
+  Link more = 6;
+}
+
+message C4TabbedHeaderRenderer {
+  string channelId = 5;
+  string title = 6;
+  Endpoint navigationEndpoint = 7;
+  Thumbnails avatar = 9;
+  Thumbnails banner = 10;
+  repeated RendererWrapper badges = 13;
+  repeated RendererWrapper headerLinks = 15;
+  RendererWrapper subscribeButton = 18;
+  Text subscriberCountText = 22;
+  Thumbnails tvBanner = 24;
+  Thumbnails mobileBanner = 25;
+  bytes trackingParams = 27;
+  Text channelHandleText = 59;
+  int32 style = 60;
+  Text videosCountText = 61;
+  RendererWrapper tagline = 62;
 }
 
 message Autoplay {
@@ -239,6 +289,7 @@ message ResultsContainer {
   RendererWrapper subMenu = 5;
   bool hideBottomSeparator = 11;
   optional string targetId = 13;
+  optional google.protobuf.BoolValue scrollPaneStyle = 27;
 }
 
 message ItemSectionRenderer {
@@ -378,6 +429,14 @@ message TwoColumnSearchResultsRenderer {
   RendererWrapper secondaryContents = 4;
 }
 
+message HorizontalListRenderer {
+  repeated RendererWrapper items = 1;
+  bytes trackingParams = 4;
+  int32 visibleItemCount = 7;
+  RendererWrapper nextButton = 11;
+  RendererWrapper previousButton = 12;
+}
+
 message PlayerCaptionsTracklistRenderer {
   message Caption {
     string baseUrl = 1;
@@ -457,6 +516,10 @@ message ShelfRenderer {
   bytes trackingParams = 15;
 }
 
+message TwoColumnBrowseResultsRenderer {
+  repeated RendererWrapper tabs = 3;
+}
+
 message CompactRadioRenderer {
   string playlistId = 1;
   Thumbnails thumbnail = 2;
@@ -515,11 +578,36 @@ message PlayerStoryboardSpecRenderer {
   int32 highResolutionRecommendedLevel = 7;
 }
 
+message ChannelMetadataRenderer {
+  string title = 1;
+  string description = 2;
+  string rssUrl = 3;
+  string externalId = 8;
+  string keywords = 11;
+  repeated string ownerUrls = 12;
+  Thumbnails avatar = 14;
+  string channelUrl = 15;
+  bool isFamilySafe = 16;
+  repeated string availableCountryCodes = 18;
+  string androidDeepLink = 21;
+  string androidAppindexingLink = 24;
+  string iosAppindexingLink = 25;
+  string vanityChannelUrl = 27;
+}
+
 message VerticalListRenderer {
   repeated RendererWrapper items = 1;
   int32 collapsedItemCount = 2;
   Text collapsedStateButtonText = 3;
   bytes trackingParams = 7;
+}
+
+message TabRenderer {
+  Endpoint endpoint = 1;
+  string title = 2;
+  bool selected = 3;
+  RendererWrapper content = 4;
+  bytes trackingParams = 14;
 }
 
 message CompactMovieRenderer {
@@ -564,6 +652,37 @@ message PlayerMicroformatRenderer {
   string publishDate = 16;
   string ownerChannelName = 17;
   string uploadDate = 19;
+}
+
+message ChannelVideoPlayerRenderer {
+  string videoId = 1;
+  Text title = 2;
+  Text description = 3;
+  Text viewCountText = 4;
+  Text publishedTimeText = 5;
+  Text readMoreText = 6;
+}
+
+message GridVideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text publishedTimeText = 5;
+  Text viewCountText = 6;
+  Endpoint navigationEndpoint = 8;
+  Text shortBylineText = 10;
+  repeated RendererWrapper badges = 13;
+  repeated RendererWrapper ownerBadges = 15;
+  bytes trackingParams = 17;
+  Text shortViewCountText = 22;
+  RendererWrapper menu = 24;
+  repeated RendererWrapper thumbnailOverlays = 28;
+}
+
+message ExpandableTabRenderer {
+  Endpoint endpoint = 1;
+  string title = 2;
+  bool selected = 3;
 }
 
 message CommentThreadRenderer {
@@ -704,6 +823,32 @@ message MetadataRowContainerRenderer {
 message PlaylistVideoThumbnailRenderer {
   Thumbnails thumbnail = 1;
   bytes trackingParams = 3;
+}
+
+message MicroformatDataRenderer {
+  string urlCanonical = 1;
+  string title = 2;
+  string description = 3;
+  Thumbnails thumbnail = 4;
+  string siteName = 5;
+  string appName = 6;
+  string androidPackage = 7;
+  string iosAppStoreId = 9;
+  string iosAppArguments = 10;
+  string ogType = 12;
+  string urlApplinksWeb = 13;
+  string urlApplinksIos = 14;
+  string urlApplinksAndroid = 15;
+  string urlTwitterIos = 16;
+  string urlTwitterAndroid = 17;
+  string twitterCardType = 18;
+  string twitterSiteHandle = 19;
+  string schemaDotOrgType = 20;
+  bool noindex = 21;
+  bool unlisted = 22;
+  bool familySafe = 24;
+  repeated string availableCountries = 26;
+  repeated google.protobuf.StringValue linkAlternates = 33;
 }
 
 message SortFilterSubMenuRenderer {
@@ -1076,6 +1221,7 @@ message EngagementPanelSectionListRenderer {
   optional RendererWrapper content = 3;
   string targetId = 8;
   int32 visibility = 9;
+  optional SurfaceIdentifier identifier = 18; 
   LoggingDirectives loggingDirectives = 999;
 }
 
@@ -1189,7 +1335,7 @@ message AdSlotRenderer {
   message Content {
     RendererWrapper fulfilledLayout = 1;
   }
-  
+
   message SlotMetadata {
     message SlotLoggingData {
       bytes serializedSlotAdServingDataEntry = 1;
@@ -1216,7 +1362,7 @@ message InFeedAdLayoutRenderer {
     int32 layoutType = 2;
     LayoutLoggingData adLayoutLoggingData = 3;
   }
-  
+
   Metadata adLayoutMetadata = 1;
   RendererWrapper renderingContent = 2;
 }
@@ -1247,6 +1393,14 @@ message ToggleButtonViewModel {
   string identifier = 4;
   bytes trackingParams = 5;
   bool isTogglingDisabled = 7;
+}
+
+message ChannelTaglineRenderer {
+  string content = 1;
+  int32 maxLines = 2;
+  string moreLabel = 3;
+  Endpoint moreEndpoint = 4;
+  Icon moreIcon = 5;
 }
 
 message LikeButtonViewModel {
@@ -1307,6 +1461,7 @@ message Endpoint {
     SignalServiceEndpoint signalServiceEndpoint = 124290411;
     CreatePlaylistServiceEndpoint createPlaylistServiceEndpoint = 124747980;
     OpenPopupAction openPopupAction = 128491736;
+    ShowEngagementPanelEndpoint showEngagementPanelEndpoint = 138681778;
     ReelWatchEndpoint reelWatchEndpoint = 139608561;
     AppendContinuationItemsAction appendContinuationItemsAction = 160980450;
     Endpoint innertubeCommand = 169495254;
@@ -1394,6 +1549,7 @@ message UrlEndpoint {
 
 message BrowseEndpoint {
   string browseId = 2;
+  optional string params = 3;
   optional string canonicalBaseUrl = 4;
 }
 
@@ -1467,6 +1623,7 @@ message ModalEndpoint {
       Text text = 5;
       Endpoint serviceEndpoint = 7;
       Endpoint navigationEndpoint = 9;
+      bytes trackingParams = 13;
     }
 
     Button buttonWrapper = 65153809;
@@ -1487,6 +1644,18 @@ message ModalEndpoint {
 message SignalServiceEndpoint {
   int32 signal = 1;
   repeated Endpoint commands = 2;
+}
+
+message ShowEngagementPanelEndpoint {
+  message Configs {
+    message PopupPresentationConfig {
+      int32 popupType = 1;
+    }
+    PopupPresentationConfig engagementPanelPopupPresentationConfig = 1;
+  }
+  RendererWrapper engagementPanel = 2;
+  SurfaceIdentifier identifier = 10;
+  Configs engagementPanelPresentationConfigs = 12;
 }
 
 message ReelWatchEndpoint {
