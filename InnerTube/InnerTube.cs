@@ -39,8 +39,7 @@ public class InnerTube
 		string language, string region, bool authorized = false)
 	{
 		string url = $"https://youtubei.googleapis.com/youtubei/v1/{endpoint}";
-		//url += "?alt=proto";
-		url += "?prettyPrint=false&alt=json";
+		url += "?alt=proto";
 		if (!authorized || Authorization?.Type != AuthorizationType.REFRESH_TOKEN)
 			url += $"&key={ApiKey}";
 
@@ -74,8 +73,7 @@ public class InnerTube
 		HttpResponseMessage ytPlayerRequest = await HttpClient.SendAsync(hrm);
 		if (!ytPlayerRequest.IsSuccessStatusCode)
 			throw new RequestException(ytPlayerRequest.StatusCode, await ytPlayerRequest.Content.ReadAsStringAsync());
-		await File.WriteAllTextAsync("AD.json", await ytPlayerRequest.Content.ReadAsStringAsync());
-		return [];//await ytPlayerRequest.Content.ReadAsByteArrayAsync();
+		return await ytPlayerRequest.Content.ReadAsByteArrayAsync();
 	}
 
 	/// <summary>
