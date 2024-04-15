@@ -24,6 +24,7 @@ message Text {
 
 message Thumbnails {
   repeated Thumbnail thumbnails = 1;
+  optional int64 placeholderColor = 2;
   optional AccessibilityWrapper accessibility = 4;
   optional bool isOriginalAspectRatio = 11;
   optional Color sampledThumbnailColor = 12;
@@ -130,6 +131,7 @@ message RendererWrapper {
     PromotedVideoRenderer promotedVideoRenderer = 62887855;
     CommentRepliesRenderer commentRepliesRenderer = 65060753;
     ButtonViewModel buttonViewModel = 65153809;
+    SecondarySearchContainerRenderer secondarySearchContainerRenderer = 65750403;
     MenuRenderer menuRenderer = 66439850;
     MenuNavigationItemRenderer menuNavigationItemRenderer = 66441108;
     MenuServiceItemRenderer menuServiceItemRenderer = 66441155;
@@ -157,9 +159,16 @@ message RendererWrapper {
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
     ThumbnailOverlayBottomPanelRenderer thumbnailOverlayBottomPanelRenderer = 109635582;
     ThumbnailOverlayHoverTextRenderer thumbnailOverlayHoverTextRenderer = 107250266;
+    TitleAndButtonListHeaderRenderer titleAndButtonListHeaderRenderer = 112067016;
+    VerticalWatchCardListRenderer verticalWatchCardListRenderer = 117337765;
+    WatchCardSectionSequenceRenderer watchCardSectionSequenceRenderer = 117548244;
+    WatchCardRichHeaderRenderer watchCardRichHeaderRenderer = 117928329;
     BasicColorPaletteData basicColorPaletteData = 118483990;
+    UniversalWatchCardRenderer universalWatchCardRenderer = 119956144;
     RichListHeaderRenderer richListHeaderRenderer = 120280839;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
+    WatchCardHeroVideoRenderer watchCardHeroVideoRenderer = 122710540;
+    WatchCardCompactVideoRenderer watchCardCompactVideoRenderer = 122814739;
     SlimMetadataToggleButtonRenderer slimMetadataToggleButtonRenderer = 124608045;
     AuthorCommentBadgeRenderer authorCommentBadgeRenderer = 127214311;
     ThumbnailOverlayToggleButtonRenderer thumbnailOverlayToggleButtonRenderer = 128231774;
@@ -171,6 +180,8 @@ message RendererWrapper {
     EngagementPanelSectionListRenderer engagementPanelSectionListRenderer = 138681066;
     EngagementPanelTitleHeaderRenderer engagementPanelTitleHeaderRenderer = 138681548;
     ReelPlayerOverlayRenderer reelPlayerOverlayRenderer = 139970731;
+    CallToActionButtonRenderer callToActionButtonRenderer = 154950953;
+    CollageHeroImageRenderer collageHeroImageRenderer = 155492686;
     ReelItemRenderer reelItemRenderer = 158884182;
     ContinuationItemRenderer continuationItemRenderer = 159495980;
     ReelShelfRenderer reelShelfRenderer = 187049775;
@@ -364,6 +375,7 @@ message CompactPlaylistRenderer {
 
 message TwoColumnSearchResultsRenderer {
   RendererWrapper primaryContents = 1;
+  RendererWrapper secondaryContents = 4;
 }
 
 message PlayerCaptionsTracklistRenderer {
@@ -630,6 +642,11 @@ message ButtonViewModel {
   int32 iconPosition = 22;
 }
 
+message SecondarySearchContainerRenderer {
+  repeated RendererWrapper contents = 1;
+  bytes trackingParams = 3;
+}
+
 message MenuRenderer {
   repeated RendererWrapper items = 1;
   bytes trackingParams = 4;
@@ -763,6 +780,7 @@ message SearchRefinementCardRenderer {
   Text query = 2;
   Endpoint searchEndpoint = 3;
   bytes trackingParams = 4;
+  optional google.protobuf.Int32Value searchRefinementCardRendererStyle = 6;
 }
 
 message ChipCloudChipRenderer {
@@ -893,8 +911,47 @@ message ThumbnailOverlayHoverTextRenderer {
   Icon icon = 2;
 }
 
+message TitleAndButtonListHeaderRenderer {
+  Text title = 1;
+  bytes trackingParams = 5;
+}
+
+message VerticalWatchCardListRenderer {
+  repeated RendererWrapper items = 2;
+  bytes trackingParams = 6;
+}
+
+message WatchCardSectionSequenceRenderer {
+  repeated RendererWrapper lists = 1;
+  repeated Text listTitles = 2;
+  bytes trackingParams = 4;
+}
+
+message WatchCardRichHeaderRenderer {
+  Text title = 1;
+  Endpoint titleNavigationEndpoint = 2;
+  Text subtitle = 3;
+  Thumbnails avatar = 5;
+  RendererWrapper colorSupportedDatas = 6;
+  bytes trackingParams = 8;
+  RendererWrapper titleBadge = 12;
+  RendererWrapper darkThemeColorSupportedDatas = 13;
+  int32 style = 15;
+  repeated RendererWrapper callToActionButtons = 16;
+}
+
 message BasicColorPaletteData {
+  int64 backgroundColor = 1;
   int64 foregroundTitleColor = 2;
+  int64 foregroundBodyColor = 3;
+}
+
+message UniversalWatchCardRenderer {
+  RendererWrapper header = 1;
+  RendererWrapper callToAction = 2;
+  repeated RendererWrapper sections = 3;
+  Text collapsedLabel = 5;
+  bytes trackingParams = 9;
 }
 
 message RichListHeaderRenderer {
@@ -906,6 +963,24 @@ message RichListHeaderRenderer {
 message ThumbnailOverlayTimeStatusRenderer {
   Text text = 1;
   int32 style = 2;
+}
+
+message WatchCardHeroVideoRenderer {
+  Endpoint navigationEndpoint = 2;
+  bytes trackingParams = 7;
+  RendererWrapper callToActionButton = 10;
+  RendererWrapper heroImage = 11;
+  RendererWrapper accessibility = 12;
+}
+
+message WatchCardCompactVideoRenderer {
+  Text title = 2;
+  Text subtitle = 3;
+  Text lengthText = 4;
+  Endpoint navigationEndpoint = 5;
+  bytes trackingParams = 7;
+  int32 style = 11;
+  Text byline = 14;
 }
 
 message SlimMetadataToggleButtonRenderer {
@@ -1015,6 +1090,18 @@ message ReelPlayerOverlayRenderer {
   int32 style = 12;
   bytes trackingParams = 16;
   int32 reelPlayerNavigationModel = 20;
+}
+
+message CallToActionButtonRenderer {
+  Text label = 1;
+  Icon icon = 2;
+  int32 style = 3;
+}
+
+message CollageHeroImageRenderer {
+  Thumbnails leftThumbnail = 1;
+  Thumbnails topRightThumbnail = 2;
+  Thumbnails bottomRightThumbnail = 3;
 }
 
 message ReelItemRenderer {

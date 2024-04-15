@@ -49,4 +49,52 @@ public class SearchTests
 			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
 		Assert.Pass(sb.ToString());
 	}
+
+	[TestCase("ずっと真夜中でいいのに。ZUTOMAYO", TestName = "Artist sidebar #1")]
+	public async Task Sidebar(string query)
+	{
+		SearchResponse results = await _innerTube.SearchAsync(query);
+		StringBuilder sb = new();
+		if (results.Contents.TwoColumnSearchResultsRenderer.SecondaryContents is null) 
+			Assert.Inconclusive("/!\\ Second column does not exist");
+		
+		switch (results.Contents.TwoColumnSearchResultsRenderer.SecondaryContents.SecondarySearchContainerRenderer.Contents[0].RendererCase)
+		{
+			case RendererWrapper.RendererOneofCase.UniversalWatchCardRenderer:
+			{
+				UniversalWatchCardRenderer card = results.Contents.TwoColumnSearchResultsRenderer.SecondaryContents
+					.SecondarySearchContainerRenderer.Contents[0].UniversalWatchCardRenderer;
+				WatchCardRichHeaderRenderer header = card.Header.WatchCardRichHeaderRenderer;
+				sb.AppendLine("=== HEADER");
+				sb.AppendLine("Title: " + Utils.ReadRuns(header.Title));
+				sb.AppendLine("Subtitle: " + Utils.ReadRuns(header.Subtitle));
+				sb.AppendLine($"Avatar: ({header.Avatar.Thumbnails_.Count})" + string.Join("",
+					header.Avatar.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+				sb.AppendLine("- PlaceholderColor: #" + Convert.ToHexString(BitConverter.GetBytes(header.Avatar.PlaceholderColor).Take(4).ToArray()));
+				sb.AppendLine("TitleBadge: " + string.Join("\n            - ", Utils.SerializeRenderer(header.TitleBadge).Trim().Split("\n")));
+
+				
+				WatchCardHeroVideoRenderer cta = card.CallToAction.WatchCardHeroVideoRenderer;
+				sb.AppendLine("\n=== CALL TO ACTION");
+				sb.AppendLine("Title/Accessibility: " + cta.Accessibility.AccessibilityData.Label);
+				sb.AppendLine("Video ID: " + cta.NavigationEndpoint.WatchEndpoint?.VideoId ?? "<null>");
+				sb.AppendLine("Hero Image:");
+				sb.AppendLine($"- Left Thumbnail: ({cta.HeroImage.CollageHeroImageRenderer.LeftThumbnail.Thumbnails_.Count})" + string.Join("",
+					cta.HeroImage.CollageHeroImageRenderer.LeftThumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+				sb.AppendLine($"- Top Right:: ({cta.HeroImage.CollageHeroImageRenderer.TopRightThumbnail.Thumbnails_.Count})" + string.Join("",
+					cta.HeroImage.CollageHeroImageRenderer.TopRightThumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+				sb.AppendLine($"- Bottom Right: ({cta.HeroImage.CollageHeroImageRenderer.BottomRightThumbnail.Thumbnails_.Count})" + string.Join("",
+					cta.HeroImage.CollageHeroImageRenderer.BottomRightThumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+				
+				
+				
+				Assert.Pass(sb.ToString());
+				break;
+			}
+			default:
+				Assert.Inconclusive("/!\\ Unknown RendererCase: " + results.Contents.TwoColumnSearchResultsRenderer
+					.SecondaryContents.SecondarySearchContainerRenderer.Contents[0].RendererCase);
+				break;
+		}
+	}
 }
