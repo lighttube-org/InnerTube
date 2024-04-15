@@ -38,7 +38,7 @@ public class SearchTests
 		StringBuilder sb = new();
 		sb.AppendLine("\n== RESULTS");
 		foreach (RendererWrapper? renderer in results.Contents.TwoColumnSearchResultsRenderer.PrimaryContents
-			         .ResultsContainer.Results[0].ItemSectionRenderer.Contents)
+			         .ResultsContainer.Results.SelectMany(x => x.ItemSectionRenderer.Contents))
 			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
 		Assert.Pass(sb.ToString());
 	}

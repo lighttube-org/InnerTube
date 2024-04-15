@@ -127,6 +127,7 @@ message RendererWrapper {
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
     CommentThreadRenderer commentThreadRenderer = 62285833;
     CommentRenderer commentRenderer = 62285947;
+    PromotedVideoRenderer promotedVideoRenderer = 62887855;
     CommentRepliesRenderer commentRepliesRenderer = 65060753;
     ButtonViewModel buttonViewModel = 65153809;
     MenuRenderer menuRenderer = 66439850;
@@ -140,6 +141,7 @@ message RendererWrapper {
     PlaylistVideoThumbnailRenderer playlistVideoThumbnailRenderer = 72426341;
     AccessibilityData accessibilityData = 75730170;
     SortFilterSubMenuRenderer sortFilterSubMenuRenderer = 76818770;
+    SearchPyvRenderer searchPyvRenderer = 77536014;
     ToggleMenuServiceItemRenderer toggleMenuServiceItemRenderer = 78861357;
     ToggleButtonRenderer toggleButtonRenderer = 79971800;
     HorizontalCardListRenderer horizontalCardListRenderer = 88962895;
@@ -180,6 +182,8 @@ message RendererWrapper {
     ThumbnailOverlayLoadingPreviewRenderer thumbnailOverlayLoadingPreviewRenderer = 367662231;
     PlaylistLoopButtonRenderer playlistLoopButtonRenderer = 404843388;
     PlaylistLoopButtonStateRenderer playlistLoopButtonStateRenderer = 404843395;
+    AdSlotRenderer adSlotRenderer = 424701016;
+    InFeedAdLayoutRenderer inFeedAdLayoutRenderer = 425953177;
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
     ButtonViewModel2 buttonViewModel2 = 461054335;
     ToggleButtonViewModel toggleButtonViewModel = 479644279;
@@ -580,6 +584,28 @@ message CommentRenderer {
   LoggingDirectives loggingDirectives = 999;
 }
 
+/* This renderer isnt complete */
+/* Free PR */
+message PromotedVideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text description = 4;
+  Text longBylineText = 5;
+  Text shortBylineText = 6;
+  Text lengthText = 8;
+  Endpoint navigationEndpoint = 9;
+  RendererWrapper ctaRenderer = 10;
+  repeated string impressionUrls = 11;
+  repeated string clickTrackingUrls = 12;
+  bytes trackingParams = 16;
+  RendererWrapper menu = 19;
+  repeated RendererWrapper thumbnailOverlays = 22;
+  bytes activeView = 25;
+  string adPlaybackContextParams = 30;
+  RendererWrapper adBadge = 31;
+}
+
 message CommentRepliesRenderer {
   repeated RendererWrapper continuationItemRenderer = 1;
   bytes trackingParams = 4;
@@ -677,6 +703,11 @@ message SortFilterSubMenuRenderer {
   RendererWrapper accessibility = 4;
   string tooltip = 5;
   bytes trackingParams = 7;
+}
+
+message SearchPyvRenderer {
+  repeated RendererWrapper ads = 1;
+  bytes trackingParams = 3;
 }
 
 message ToggleMenuServiceItemRenderer {
@@ -1065,6 +1096,42 @@ message PlaylistLoopButtonRenderer {
 message PlaylistLoopButtonStateRenderer {
   int32 state = 1;
   RendererWrapper button = 2;
+}
+
+message AdSlotRenderer {
+  message Content {
+    RendererWrapper fulfilledLayout = 1;
+  }
+  
+  message SlotMetadata {
+    message SlotLoggingData {
+      bytes serializedSlotAdServingDataEntry = 1;
+    }
+
+    string slotId = 1;
+    int32 slotType = 2;
+    int32 slotPhysicalPosition = 3;
+    SlotLoggingData adSlotLoggingData = 4;
+  }
+
+  SlotMetadata adSlotMetadata = 1;
+  Content fulfillmentContent = 2;
+  bool enablePacfLoggingWeb = 3;
+}
+
+message InFeedAdLayoutRenderer {
+  message Metadata {
+    message LayoutLoggingData {
+      bytes serializedAdServingDataEntry = 1;
+    }
+
+    string layoutId = 1;
+    int32 layoutType = 2;
+    LayoutLoggingData adLayoutLoggingData = 3;
+  }
+  
+  Metadata adLayoutMetadata = 1;
+  RendererWrapper renderingContent = 2;
 }
 
 message CommentsEntryPointTeaserRenderer {
