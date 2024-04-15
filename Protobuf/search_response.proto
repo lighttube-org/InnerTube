@@ -10,5 +10,6 @@ message SearchResponse {
   bytes trackingParams = 9;
   RendererWrapper header = 13;
   repeated string refinements = 22;
+  Endpoint onResponseReceivedCommands = 26;
   string targetId = 30;
 }

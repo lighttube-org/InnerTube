@@ -209,4 +209,14 @@ public class InnerTube
 			postData.AddValue("params", Convert.ToBase64String(param.ToByteArray()));
 		return SearchResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "search", postData, language, region));
 	}
+
+	public async Task<SearchResponse> ContinueSearchAsync(string continuation, string language = "en",
+		string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+		var b = await MakeRequest(RequestClient.WEB, "search", postData, language, region);
+		await File.WriteAllBytesAsync("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/continuesearch.bin", b);
+		return SearchResponse.Parser.ParseFrom(b);
+	}
 }

@@ -50,6 +50,20 @@ public class SearchTests
 		Assert.Pass(sb.ToString());
 	}
 
+	[TestCase(
+		"EtEEEgh6dXRvbWF5bxrYA1NCU0NBUmhWUTJOa0xVZFBkbXc1UkdSNVVGWklVWGg1TlRoaVQzZUNBUXRCZEhaeloxOTZiMmQ0YjRJQkMxUjRWV3hvWTJwSVdtVXdnZ0VMUWxaMmRsVkhVREJOUm5lQ0FRczBVV1ZRY25ZeU5GUkNWWUlCQ3paUFF6a3liM2h6TkdkQmdnRUxaR05QZDJvdFVVVmZXa1dDQVJwU1JFVk5WMWhXU1dwbk9HNW5NRlp1WlRWVGJHdDVPVU5RVVlJQklsQk1TV1J5WWpOWlgxUTJkMk4yUkhNeGMzUkJNazFCZW1GWlRHSlpWMFZ1ZGtLQ0FRdGxOVXhoUzNoS1ZtVldTWUlCQzNWbmNIbDNaVE0wWHpNd2dnRUxSMHBKTkVkMk4wNWliVVdDQVF0UWRXUjFlRGxTUzB3NVNZSUJDekkxT0hGVlFVazNjbU5yZ2dFTFJXeHVlRnAwYVVKRWRuT0NBUXRKT0RoUWNrVXRTMVZRYTRJQkMxZGtiR3c1VURscFkwcFZnZ0VMV2xWM1lYVmtkemhvZERDQ0FRdEhRVUl5TmtkblNqaFdPSUlCQzFsbmJVWkpWazlTTVMxSnNnRUdDZ1FJSFJBQzZnRUVDQUVRSXclM0QlM0SSAmkvc2VhcmNoP29xPXp1dG9tYXlvJmdzX2w9eW91dHViZS4xMi4uLjAuMC4wLjE5NDYuMC4wLjAuMC4wLjAuMC4wLi4wLjAuLi4uMC4uLjFhYy4uNjQueW91dHViZS4uMC4wLjAuLi4uMC4YgeDoGCILc2VhcmNoLWZlZWQ%3D",
+		TestName = "i hope this continuation token also never expires")]
+	public async Task ContinueSearchAsync(string continuation)
+	{
+		SearchResponse results = await _innerTube.ContinueSearchAsync(continuation);
+		StringBuilder sb = new();
+		sb.AppendLine("\n== RESULTS");
+		foreach (RendererWrapper? renderer in results.OnResponseReceivedCommands.AppendContinuationItemsAction
+			         .ContinuationItems.SelectMany(x => x.ItemSectionRenderer?.Contents ?? []))
+			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
+		Assert.Pass(sb.ToString());
+	}
+
 	[TestCase("ずっと真夜中でいいのに。ZUTOMAYO", TestName = "Artist sidebar #1")]
 	public async Task Sidebar(string query)
 	{

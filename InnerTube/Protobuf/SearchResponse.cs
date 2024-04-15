@@ -25,16 +25,17 @@ namespace InnerTube.Protobuf.Responses {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChVzZWFyY2hfcmVzcG9uc2UucHJvdG8SHElubmVyVHViZS5Qcm90b2J1Zi5S",
-            "ZXNwb25zZXMaDWdlbmVyYWwucHJvdG8i1QEKDlNlYXJjaFJlc3BvbnNlEhgK",
+            "ZXNwb25zZXMaDWdlbmVyYWwucHJvdG8ilwIKDlNlYXJjaFJlc3BvbnNlEhgK",
             "EGVzdGltYXRlZFJlc3VsdHMYAiABKAMSNQoIY29udGVudHMYBCABKAsyIy5J",
             "bm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJXcmFwcGVyEhYKDnRyYWNraW5n",
             "UGFyYW1zGAkgASgMEjMKBmhlYWRlchgNIAEoCzIjLklubmVyVHViZS5Qcm90",
-            "b2J1Zi5SZW5kZXJlcldyYXBwZXISEwoLcmVmaW5lbWVudHMYFiADKAkSEAoI",
-            "dGFyZ2V0SWQYHiABKAliBnByb3RvMw=="));
+            "b2J1Zi5SZW5kZXJlcldyYXBwZXISEwoLcmVmaW5lbWVudHMYFiADKAkSQAoa",
+            "b25SZXNwb25zZVJlY2VpdmVkQ29tbWFuZHMYGiABKAsyHC5Jbm5lclR1YmUu",
+            "UHJvdG9idWYuRW5kcG9pbnQSEAoIdGFyZ2V0SWQYHiABKAliBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.SearchResponse), global::InnerTube.Protobuf.Responses.SearchResponse.Parser, new[]{ "EstimatedResults", "Contents", "TrackingParams", "Header", "Refinements", "TargetId" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.SearchResponse), global::InnerTube.Protobuf.Responses.SearchResponse.Parser, new[]{ "EstimatedResults", "Contents", "TrackingParams", "Header", "Refinements", "OnResponseReceivedCommands", "TargetId" }, null, null, null, null)
           }));
     }
     #endregion
@@ -81,6 +82,7 @@ namespace InnerTube.Protobuf.Responses {
       trackingParams_ = other.trackingParams_;
       header_ = other.header_ != null ? other.header_.Clone() : null;
       refinements_ = other.refinements_.Clone();
+      onResponseReceivedCommands_ = other.onResponseReceivedCommands_ != null ? other.onResponseReceivedCommands_.Clone() : null;
       targetId_ = other.targetId_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -150,6 +152,18 @@ namespace InnerTube.Protobuf.Responses {
       get { return refinements_; }
     }
 
+    /// <summary>Field number for the "onResponseReceivedCommands" field.</summary>
+    public const int OnResponseReceivedCommandsFieldNumber = 26;
+    private global::InnerTube.Protobuf.Endpoint onResponseReceivedCommands_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoint OnResponseReceivedCommands {
+      get { return onResponseReceivedCommands_; }
+      set {
+        onResponseReceivedCommands_ = value;
+      }
+    }
+
     /// <summary>Field number for the "targetId" field.</summary>
     public const int TargetIdFieldNumber = 30;
     private string targetId_ = "";
@@ -182,6 +196,7 @@ namespace InnerTube.Protobuf.Responses {
       if (TrackingParams != other.TrackingParams) return false;
       if (!object.Equals(Header, other.Header)) return false;
       if(!refinements_.Equals(other.refinements_)) return false;
+      if (!object.Equals(OnResponseReceivedCommands, other.OnResponseReceivedCommands)) return false;
       if (TargetId != other.TargetId) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -195,6 +210,7 @@ namespace InnerTube.Protobuf.Responses {
       if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
       if (header_ != null) hash ^= Header.GetHashCode();
       hash ^= refinements_.GetHashCode();
+      if (onResponseReceivedCommands_ != null) hash ^= OnResponseReceivedCommands.GetHashCode();
       if (TargetId.Length != 0) hash ^= TargetId.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -231,6 +247,10 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteMessage(Header);
       }
       refinements_.WriteTo(output, _repeated_refinements_codec);
+      if (onResponseReceivedCommands_ != null) {
+        output.WriteRawTag(210, 1);
+        output.WriteMessage(OnResponseReceivedCommands);
+      }
       if (TargetId.Length != 0) {
         output.WriteRawTag(242, 1);
         output.WriteString(TargetId);
@@ -262,6 +282,10 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteMessage(Header);
       }
       refinements_.WriteTo(ref output, _repeated_refinements_codec);
+      if (onResponseReceivedCommands_ != null) {
+        output.WriteRawTag(210, 1);
+        output.WriteMessage(OnResponseReceivedCommands);
+      }
       if (TargetId.Length != 0) {
         output.WriteRawTag(242, 1);
         output.WriteString(TargetId);
@@ -289,6 +313,9 @@ namespace InnerTube.Protobuf.Responses {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Header);
       }
       size += refinements_.CalculateSize(_repeated_refinements_codec);
+      if (onResponseReceivedCommands_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(OnResponseReceivedCommands);
+      }
       if (TargetId.Length != 0) {
         size += 2 + pb::CodedOutputStream.ComputeStringSize(TargetId);
       }
@@ -323,6 +350,12 @@ namespace InnerTube.Protobuf.Responses {
         Header.MergeFrom(other.Header);
       }
       refinements_.Add(other.refinements_);
+      if (other.onResponseReceivedCommands_ != null) {
+        if (onResponseReceivedCommands_ == null) {
+          OnResponseReceivedCommands = new global::InnerTube.Protobuf.Endpoint();
+        }
+        OnResponseReceivedCommands.MergeFrom(other.OnResponseReceivedCommands);
+      }
       if (other.TargetId.Length != 0) {
         TargetId = other.TargetId;
       }
@@ -365,6 +398,13 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 178: {
             refinements_.AddEntriesFrom(input, _repeated_refinements_codec);
+            break;
+          }
+          case 210: {
+            if (onResponseReceivedCommands_ == null) {
+              OnResponseReceivedCommands = new global::InnerTube.Protobuf.Endpoint();
+            }
+            input.ReadMessage(OnResponseReceivedCommands);
             break;
           }
           case 242: {
@@ -410,6 +450,13 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 178: {
             refinements_.AddEntriesFrom(ref input, _repeated_refinements_codec);
+            break;
+          }
+          case 210: {
+            if (onResponseReceivedCommands_ == null) {
+              OnResponseReceivedCommands = new global::InnerTube.Protobuf.Endpoint();
+            }
+            input.ReadMessage(OnResponseReceivedCommands);
             break;
           }
           case 242: {
