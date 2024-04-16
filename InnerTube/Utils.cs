@@ -441,8 +441,8 @@ public static class Utils
 				sb.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
 					video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
 				sb.AppendLine("Owner: " +
-				              $"[{video.OwnerText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
-				              video.OwnerText.Runs[0].Text);
+				              $"[{video.OwnerText?.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+				              video.OwnerText?.Runs[0].Text);
 				sb.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
 						video.OwnerBadges.Select(x =>
 							$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
@@ -705,8 +705,11 @@ public static class Utils
 				return sb.ToString();
 			}
 			case RendererWrapper.RendererOneofCase.ItemSectionRenderer:
-				return "[ItemSectionRenderer]\n" +
-				       string.Join('\n', renderer.ItemSectionRenderer.Contents.Select(SerializeRenderer));
+				return "[ItemSectionRenderer]\n" + string.Join('\n',
+					renderer.ItemSectionRenderer.Contents.Select(x =>
+						SerializeRenderer(x).Split("\n").Select(x => $"  {x}")));
+			case RendererWrapper.RendererOneofCase.RichItemRenderer:
+				return "[RichItemRenderer] " + SerializeRenderer(renderer.RichItemRenderer.Content);
 			default:
 				return $"[Unknown RendererCase={renderer.RendererCase}]";
 		}

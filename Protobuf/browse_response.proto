@@ -9,4 +9,5 @@ message BrowseResponse {
   optional RendererWrapper header = 13;
   optional RendererWrapper metadata = 15;
   optional RendererWrapper microformat = 27;
+  Endpoint onResponseReceivedActions = 30;
 }

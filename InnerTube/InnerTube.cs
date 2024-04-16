@@ -224,4 +224,11 @@ public class InnerTube
 			.AddValue("browseId", browseId);
 		return BrowseResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "browse", postData, language, region));
 	}
+
+	public async Task<BrowseResponse> ContinueBrowseAsync(string continuation, string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+		return BrowseResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "browse", postData, language, region));
+	}
 }

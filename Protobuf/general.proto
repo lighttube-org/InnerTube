@@ -228,6 +228,7 @@ message RendererWrapper {
     ContinuationItemRenderer continuationItemRenderer = 159495980;
     ReelShelfRenderer reelShelfRenderer = 187049775;
     ThumbnailOverlayNowPlayingRenderer thumbnailOverlayNowPlayingRenderer = 228343999;
+    RichItemRenderer richItemRenderer = 258632786;
     CommentsEntryPointHeaderRenderer commentsEntryPointHeaderRenderer = 275947328;
     MacroMarkersListItemRenderer macroMarkersListItemRenderer = 307450214;
     MacroMarkersListRenderer macroMarkersListRenderer = 309482905;
@@ -1269,6 +1270,11 @@ message ReelShelfRenderer {
 
 message ThumbnailOverlayNowPlayingRenderer {
   Text text = 1;
+}
+
+message RichItemRenderer {
+  RendererWrapper content = 1;
+  bytes trackingParams = 3;
 }
 
 message CommentsEntryPointHeaderRenderer {
