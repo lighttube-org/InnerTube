@@ -227,7 +227,9 @@ message RendererWrapper {
     ReelItemRenderer reelItemRenderer = 158884182;
     ContinuationItemRenderer continuationItemRenderer = 159495980;
     ReelShelfRenderer reelShelfRenderer = 187049775;
+    FeedFilterChipBarRenderer feedFilterChipBarRenderer = 213380311;
     ThumbnailOverlayNowPlayingRenderer thumbnailOverlayNowPlayingRenderer = 228343999;
+    RichGridRenderer richGridRenderer = 255072793;
     RichItemRenderer richItemRenderer = 258632786;
     CommentsEntryPointHeaderRenderer commentsEntryPointHeaderRenderer = 275947328;
     MacroMarkersListItemRenderer macroMarkersListItemRenderer = 307450214;
@@ -1268,8 +1270,24 @@ message ReelShelfRenderer {
   repeated RendererWrapper items = 3;
 }
 
+message FeedFilterChipBarRenderer {
+  repeated RendererWrapper contents = 1;
+  bytes trackingParams = 4;
+  RendererWrapper nextButton = 7;
+  RendererWrapper previousButton = 8;
+  int32 styleType = 10;
+}
+
 message ThumbnailOverlayNowPlayingRenderer {
   Text text = 1;
+}
+
+message RichGridRenderer {
+  repeated RendererWrapper contents = 1;
+  bytes trackingParams = 3;
+  RendererWrapper header = 6;
+  string targetId = 7;
+  int32 style = 12;
 }
 
 message RichItemRenderer {

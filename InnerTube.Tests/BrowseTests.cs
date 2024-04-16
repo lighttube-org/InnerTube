@@ -32,7 +32,7 @@ public class BrowseTests
 	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Store, null)]
 	public async Task GetChannel(string channelId, ChannelTabs channelTab, string query)
 	{
-		BrowseResponse channel = await _innerTube.BrowseAsync(channelId);
+		BrowseResponse channel = await _innerTube.BrowseAsync(channelId, Utils.GetParams(channelTab));
 
 		StringBuilder sb = new();
 		sb.AppendLine("=== HEADER");
@@ -105,7 +105,7 @@ public class BrowseTests
 			channel.Contents.TwoColumnBrowseResultsRenderer.Tabs.Select(x => x.RendererCase switch
 		{
 			RendererWrapper.RendererOneofCase.TabRenderer => (x.TabRenderer.Selected,
-				x.TabRenderer.Content?.ResultsContainer.Results),
+				x.TabRenderer.Content?.ResultsContainer?.Results ?? x.TabRenderer.Content?.RichGridRenderer.Contents),
 			RendererWrapper.RendererOneofCase.ExpandableTabRenderer => (x.ExpandableTabRenderer.Selected, []),
 			_ => (false, [])
 		});
