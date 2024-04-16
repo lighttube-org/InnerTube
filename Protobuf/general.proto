@@ -97,6 +97,32 @@ message SurfaceIdentifier {
   int32 surface = 1;
   string tag = 3;
 }
+message AttributedDescription {
+  message CommandRun {
+    int32 startIndex = 1;
+    int32 length = 2;
+    Endpoint command = 3;
+  }
+
+  message StyleRun {
+    message Extensions {
+      message ColorMapExtension {
+        map<string, uint32> colorMap = 1;
+      }
+
+      ColorMapExtension styleRunColorMapExtension = 289753726;
+    }
+
+    int32 startIndex = 1;
+    int32 length = 2;
+    Extensions styleRunExtensions = 10;
+    string fontName = 14;
+  }
+
+  string content = 1;
+  repeated CommandRun commandRuns = 5;
+  repeated StyleRun styleRuns = 6;
+}
 
 // ===============================================================
 // ==================    RENDERERS    ============================
@@ -223,17 +249,8 @@ message RendererWrapper {
 }
 
 message ChannelHeaderLinksViewModel {
-  message Link {
-    message Run {
-      int32 startIndex = 1;
-      int32 length = 2;
-      Endpoint onTap = 3;
-    }
-    string content = 1;
-    repeated Run commandRuns = 5;
-  }
-  Link firstLink = 5;
-  Link more = 6;
+  AttributedDescription firstLink = 5;
+  AttributedDescription more = 6;
 }
 
 message C4TabbedHeaderRenderer {
@@ -962,33 +979,6 @@ message ChannelThumbnailWithLinkRenderer {
 }
 
 message VideoSecondaryInfoRenderer {
-  message AttributedDescription {
-    message CommandRun {
-      int32 startIndex = 1;
-      int32 length = 2;
-      Endpoint command = 3;
-    }
-
-    message StyleRun {
-      message Extensions {
-        message ColorMapExtension {
-          map<string, uint32> colorMap = 1;
-        }
-
-        ColorMapExtension styleRunColorMapExtension = 289753726;
-      }
-
-      int32 startIndex = 1;
-      int32 length = 2;
-      Extensions styleRunExtensions = 10;
-      string fontName = 14;
-    }
-
-    string content = 1;
-    repeated CommandRun commandRuns = 5;
-    repeated StyleRun styleRuns = 6;
-  }
-
   RendererWrapper owner = 1;
   RendererWrapper subscribeButton = 4;
   RendererWrapper metadataRowContainer = 5;

@@ -218,12 +218,10 @@ public class InnerTube
 		return SearchResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "search", postData, language, region));
 	}
 
-	public async Task<byte[]> BrowseAsync(string browseId, string language = "en", string region = "US")
+	public async Task<BrowseResponse> BrowseAsync(string browseId, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("browseId", browseId);
-		var b = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
-		await File.WriteAllBytesAsync($"/home/kuylar/Projects/DotNet/InnerTube/Protobuf/browse_{browseId}.bin", b);
-		return b;
+		return BrowseResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "browse", postData, language, region));
 	}
 }

@@ -1,5 +1,9 @@
 using System.Text;
+using Google.Protobuf;
+using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
+using InnerTube.Protobuf;
+using InnerTube.Protobuf.Responses;
 
 namespace InnerTube.Tests;
 
@@ -26,35 +30,85 @@ public class BrowseTests
 	[TestCase("@LinusTechTips", (int)ChannelTabs.Podcasts, null)]
 	[TestCase("@daftpunk", (int)ChannelTabs.Releases, null)]
 	[TestCase("@ZUTOMAYO", (int)ChannelTabs.Store, null)]
-	public async Task GetChannel(string channelId, ChannelTabs tab, string query)
+	public async Task GetChannel(string channelId, ChannelTabs channelTab, string query)
 	{
-		await _innerTube.BrowseAsync("UCcd-GOvl9DdyPVHQxy58bOw");
-		/*try
+		BrowseResponse channel = await _innerTube.BrowseAsync("UCcd-GOvl9DdyPVHQxy58bOw");
+
+		StringBuilder sb = new();
+
+		sb.AppendLine("=== HEADER");
+		C4TabbedHeaderRenderer? header = channel.Header?.C4TabbedHeaderRenderer;
+		if (header is null) sb.AppendLine("<null>");
+		else
 		{
-			InnerTubeChannelResponse channel = await _innerTube.GetChannelAsync(channelId, tab, query);
-
-			StringBuilder sb = new();
-
-			sb
-				.AppendLine("== HEADER")
-				.AppendLine(channel.Header?.ToString() ?? "== NO HEADER ==")
-				.AppendLine()
-				.AppendLine("== TABS")
-				.AppendLine(string.Join(" | ", channel.EnabledTabs))
-				.AppendLine()
-				.AppendLine("== METADATA")
-				.AppendLine(channel.Metadata.ToString())
-				.AppendLine()
-				.AppendLine("== CONTENTS");
-
-			foreach (IRenderer renderer in channel.Contents)
-				sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
-			Assert.Pass(sb.ToString());
+			sb.AppendLine("Channel ID: " + header.ChannelId);
+			sb.AppendLine("Title: " + header.Title);
+			sb.AppendLine("Handle: " + Utils.ReadRuns(header.ChannelHandleText));
+			sb.AppendLine("Subscribers: " + Utils.ReadRuns(header.SubscriberCountText));
+			sb.AppendLine("Videos: " + Utils.ReadRuns(header.VideosCountText));
+			sb.AppendLine($"Tagline: {header.Tagline.ChannelTaglineRenderer.Content}");
+			sb.AppendLine($"Avatar: ({header.Avatar.Thumbnails_.Count})" + string.Join("",
+					header.Avatar.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"Banner: ({header.Banner.Thumbnails_.Count})" + string.Join("",
+					header.Banner.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"MobileBanner: ({header.MobileBanner.Thumbnails_.Count})" + string.Join("",
+					header.MobileBanner.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"TVBanner: ({header.TvBanner.Thumbnails_.Count})" + string.Join("",
+					header.TvBanner.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"Badges: ({header.Badges.Count})\n- " + string.Join("",
+				header.Badges.Select(x =>
+					string.Join("\n  ", Utils.SerializeRenderer(x).Trim().Split("\n")))));
+			sb.AppendLine("Links:");
+			sb.AppendLine("- First: " + Utils.ReadAttributedDescription(header.HeaderLinks[0].ChannelHeaderLinksViewModel.FirstLink, true));
+			sb.AppendLine("- More: " + Utils.ReadAttributedDescription(header.HeaderLinks[0].ChannelHeaderLinksViewModel.More, true));
 		}
-		catch (RequestException e)
+
+		sb.AppendLine("\n=== TABS");
+		foreach (IMessage? message in channel.Contents.TwoColumnBrowseResultsRenderer.Tabs.Select(x => (IMessage)x.TabRenderer ?? x.ExpandableTabRenderer))
 		{
-			Assert.Fail($"{e.Message}\n{e.JsonResponse}");
-		}*/
+			switch (message)
+			{
+				case TabRenderer tab:
+					sb.AppendLine($"- {tab.Title} {(tab.Selected ? "(Selected)" : "")}");
+					break;
+				case ExpandableTabRenderer etab:
+					sb.AppendLine($"- {etab.Title} {(etab.Selected ? "(Selected)" : "")}");
+					break;
+				default:
+					sb.AppendLine("- Unexpected renderer: " + message.GetType().Name);
+					break;
+			}
+		}
+
+		sb.AppendLine("\n=== METADATA");
+		ChannelMetadataRenderer metadata = channel.Metadata.ChannelMetadataRenderer;
+		sb.AppendLine($"Title: {metadata.Title}");
+		sb.AppendLine($"RssUrl: {metadata.RssUrl}");
+		sb.AppendLine($"ExternalId: {metadata.ExternalId}");
+		sb.AppendLine($"OwnerUrls: {string.Join(", ", metadata.OwnerUrls)}");
+		sb.AppendLine($"Avatar: ({metadata.Avatar.Thumbnails_.Count})" + string.Join("",
+			metadata.Avatar.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+		sb.AppendLine($"ChannelUrl: {metadata.ChannelUrl}");
+		sb.AppendLine($"IsFamilySafe: {metadata.IsFamilySafe}");
+		sb.AppendLine($"AvailableCountryCodes: ({metadata.AvailableCountryCodes.Count}) {string.Join(", ", metadata.AvailableCountryCodes)}");
+		sb.AppendLine($"AndroidDeepLink: {metadata.AndroidDeepLink}");
+		sb.AppendLine($"AndroidAppindexingLink: {metadata.AndroidAppindexingLink}");
+		sb.AppendLine($"IosAppindexingLink: {metadata.IosAppindexingLink}");
+		sb.AppendLine($"VanityChannelUrl: {metadata.VanityChannelUrl}");
+		sb.AppendLine("\n=== CONTENTS");
+
+		IEnumerable<(bool Selected, RepeatedField<RendererWrapper>? Results)> tabs =
+			channel.Contents.TwoColumnBrowseResultsRenderer.Tabs.Select(x => x.RendererCase switch
+		{
+			RendererWrapper.RendererOneofCase.TabRenderer => (x.TabRenderer.Selected,
+				x.TabRenderer.Content?.ResultsContainer.Results),
+			RendererWrapper.RendererOneofCase.ExpandableTabRenderer => (x.ExpandableTabRenderer.Selected, []),
+			_ => (false, [])
+		});
+		RepeatedField<RendererWrapper> selectedTab = tabs.FirstOrDefault(x => x.Selected).Results ?? [];
+		foreach (RendererWrapper renderer in selectedTab)
+			sb.AppendLine(Utils.SerializeRenderer(renderer));
+		Assert.Pass(sb.ToString());
 	}
 	/*
 	[TestCase("4qmFsgLzCBIYVUNwZDUwSnpRQXVvcHdTR1FRQ21KSDh3GtYIOGdhNkJocTNCbnEwQmdxdkJncUdCa0ZXU21GdFJqSlJkRGxsU0VRdFQySjZTVlJVWVRsS1EzazVVRzVhVldsalRqY3dUM1JXVUMxS1lUTTJTblptZEZRd09HZGFjbUpUY1ZWQkxVZFZWRk5VY2xwdFdDMHRha1pIUXpac2NWUjFaSE5TVTFCWWRFczBRVkYwVVRWdVpWTmpObmhOY1Y5aGNYQklabG8zZFVkdU1FVTBPRW93TW5sb1ZtczNRVkpHVVMxWVluZFlTamhPWHpOTFIxcGlkbVJVTXpWdFQyaFBOVlZ0V0haQlNsOUNTR3BZTjBGVmVHaHpUVlJYTFd0MFVFcElXVTFJV1ZoclFuQnFkR2hpUTFsU2RsWnRUbTh4YXpWNFJpMVNSWE5GTkVoMFFucElMV2RoYWtSMWFVZDZNekJ4VXpkV2IwNUtVamQ1TWxsd1NHZEdOM2x2TXpSSmJGSkRhakp6WlhGc2J6QmtiRVJUZWtvemRUSkhhalpGTFc1NWVscExaV2RFWlc4d2JsSmZXakY0TjA1bE5HNUhURU5LVGs1SmJHeEtTVjl5UmpKQ2NsZERjV1l5VlhaUGVFNXpRVFZFV1VaSk9DMVBjSGRqZW01WVdVOUhjRXRGVVc1WlRIb3lTbFUzYmpsWVZpMU9hMFowZVVGdVVXWXdlbDlTUkRsUWRWQTVTRXB2U0ROclZtdEpNamRoTVVGUlRWcE1kMGQwZG5CRlpuRTFTRnBJUzFad05UWnNia0p5YVhobU5HcHZORWRpTTJVMk1uVmpNa05uUmxRNGRYUXlRVGhDYldkWmNtUmtlSGx5YlRsUmVGUk1WQzFKT1ZCSU5FMWlZVEpsZGtwV09ISnJla2htUTJkS1ZVcFFkREZ4UldOVlJIcExTSFZGZG5wcmRVbFNjVkp4YUhkWGVqbFhZa2RyZEdac0xYRk9RVlZ0TkRGc1ZFRTNlVzVHWldWUVprWkVSako2TW1JMlVYTlNiR0Z0VERJek1IQm1RbkZSWlhwNFVWTXpZelkwVW5KRU4weFVkblZHYzBaWlJFSkVhVk0wVEVVek15MDNhbk40WTIxRVlVUkxRMVZrUkdScVVrMXllRVZxUzJGME1tWmhTR2MwWVZwdFJGWjZZVmhYZURKb1QyNUtVek56ZDNkb09FWjRkWFY2Y1ZKTlFtWTFVbEp3Tm1aVWRVVnlZV1EyVEZwVlNFOXlNa2gyYUUxclIwNUxSRFZGUkY5U1p6QlVXRUpmUzFWVlpucG5WV0Z2YTFWbWRsQkllVXh3TFVSMGREbExlRWRpTFc5aGJWZFlaa2wyUzFwRFNHaHZlV1V5U0ZSeU5sVlFTMGRYU0dkSU1sWnljelZSWmtWWGRYVnZNRXBhU0VoMGIzRXdaeElrTmpVelltSTJPV1F0TURBd01DMHlOemswTFRnNE5UZ3ROVGd5TkRJNVl6WmhOMlZqR0FFJTNE")]

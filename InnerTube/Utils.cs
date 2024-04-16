@@ -261,8 +261,8 @@ public static class Utils
 			var _ => ChannelTabs.Home
 		};
 
-	public static string ReadAttributedDescription(
-		VideoSecondaryInfoRenderer.Types.AttributedDescription? attributedDescription, bool includeFormatting = false)
+	public static string ReadAttributedDescription(AttributedDescription? attributedDescription,
+		bool includeFormatting = false)
 	{
 		if (string.IsNullOrEmpty(attributedDescription?.Content)) return "";
 
@@ -271,7 +271,7 @@ public static class Utils
 		if (!includeFormatting) return text;
 		if (attributedDescription.CommandRuns.Count == 0) return text;
 
-		foreach (VideoSecondaryInfoRenderer.Types.AttributedDescription.Types.CommandRun run in attributedDescription
+		foreach (AttributedDescription.Types.CommandRun run in attributedDescription
 			         .CommandRuns.Reverse())
 		{
 			string replacement = text.Substring(run.StartIndex, run.Length);
@@ -484,6 +484,44 @@ public static class Utils
 						            .TrimStart());
 				return sb.ToString();
 			}
+			case RendererWrapper.RendererOneofCase.GridVideoRenderer:
+			{
+				GridVideoRenderer video = renderer.GridVideoRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[GridVideoRenderer] [{video.VideoId}] {ReadRuns(video.Title)}");
+				sb.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
+					video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+				sb.AppendLine("Owner: " +
+				              $"[{video.ShortBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+				              video.ShortBylineText.Runs[0].Text);
+				sb.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
+						video.OwnerBadges.Select(x =>
+							$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+					.TrimStart());
+				sb.AppendLine("Duration: " + ReadRuns(video.ThumbnailOverlays.FirstOrDefault(x =>
+						x.RendererCase == RendererWrapper.RendererOneofCase.ThumbnailOverlayTimeStatusRenderer)
+					?.ThumbnailOverlayTimeStatusRenderer.Text));
+				sb.AppendLine("ViewCount: " + ReadRuns(video.ViewCountText));
+				sb.AppendLine("ShortViewCount: " + ReadRuns(video.ShortViewCountText));
+				sb.AppendLine("PublishDate: " + ReadRuns(video.PublishedTimeText));
+				sb.AppendLine($"Badges: ({video.Badges.Count})\n- " +
+				              string.Join("",
+						              video.Badges.Select(x =>
+							              $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+					              .TrimStart());
+				return sb.ToString();
+			}
+			case RendererWrapper.RendererOneofCase.ChannelVideoPlayerRenderer:
+			{
+				ChannelVideoPlayerRenderer video = renderer.ChannelVideoPlayerRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[ChannelVideoPlayerRenderer] [{video.VideoId}] {ReadRuns(video.Title)}");
+				sb.AppendLine("ViewCount: " + video.ViewCountText.SimpleText);
+				sb.AppendLine("ShortViewCount: " + video.ViewCountText.SimpleText);
+				sb.AppendLine("PublishDate: " + video.PublishedTimeText?.SimpleText);
+				sb.AppendLine(ReadRuns(video.Description));
+				return sb.ToString();
+			}
 			case RendererWrapper.RendererOneofCase.CompactRadioRenderer:
 			{
 				CompactRadioRenderer radio = renderer.CompactRadioRenderer;
@@ -562,7 +600,7 @@ public static class Utils
 				PlaylistPanelVideoRenderer video = renderer.PlaylistPanelVideoRenderer;
 				StringBuilder sb = new();
 				sb.AppendLine(
-						$"[CompactVideoRenderer] [{ReadRuns(video.IndexText)}] [{video.VideoId}] {ReadRuns(video.Title)}")
+						$"[PlaylistPanelVideoRenderer] [{ReadRuns(video.IndexText)}] [{video.VideoId}] {ReadRuns(video.Title)}")
 					.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
 						video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")))
 					.AppendLine("Owner: " +
@@ -628,6 +666,7 @@ public static class Utils
 				IEnumerable<RendererWrapper> items = shelf.Content.RendererCase switch
 				{
 					RendererWrapper.RendererOneofCase.VerticalListRenderer => shelf.Content.VerticalListRenderer.Items,
+					RendererWrapper.RendererOneofCase.HorizontalListRenderer => shelf.Content.HorizontalListRenderer.Items,
 					_ =>
 					[
 						new RendererWrapper
@@ -665,6 +704,9 @@ public static class Utils
 				sb.AppendLine("ViewCount: " + reel.ViewCountText.SimpleText);
 				return sb.ToString();
 			}
+			case RendererWrapper.RendererOneofCase.ItemSectionRenderer:
+				return "[ItemSectionRenderer]\n" +
+				       string.Join('\n', renderer.ItemSectionRenderer.Contents.Select(SerializeRenderer));
 			default:
 				return $"[Unknown RendererCase={renderer.RendererCase}]";
 		}
