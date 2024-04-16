@@ -26,13 +26,13 @@ public class BrowseTests
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Channels, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.About, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Search, "skyblock")]
-	[TestCase("@kuylardev", (int)ChannelTabs.Home, null)]
-	[TestCase("@LinusTechTips", (int)ChannelTabs.Podcasts, null)]
-	[TestCase("@daftpunk", (int)ChannelTabs.Releases, null)]
-	[TestCase("@ZUTOMAYO", (int)ChannelTabs.Store, null)]
+	[TestCase("UCRS3ZUNqkEyTd9XZEphFRMA", (int)ChannelTabs.Home, null)]
+	[TestCase("UCXuqSBlHAE6Xw-yeJA0Tunw", (int)ChannelTabs.Podcasts, null)]
+	[TestCase("UC_kRDKYrUlrbtrSiyu5Tflg", (int)ChannelTabs.Releases, null)]
+	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Store, null)]
 	public async Task GetChannel(string channelId, ChannelTabs channelTab, string query)
 	{
-		BrowseResponse channel = await _innerTube.BrowseAsync("UCcd-GOvl9DdyPVHQxy58bOw");
+		BrowseResponse channel = await _innerTube.BrowseAsync(channelId);
 
 		StringBuilder sb = new();
 
@@ -59,8 +59,13 @@ public class BrowseTests
 				header.Badges.Select(x =>
 					string.Join("\n  ", Utils.SerializeRenderer(x).Trim().Split("\n")))));
 			sb.AppendLine("Links:");
-			sb.AppendLine("- First: " + Utils.ReadAttributedDescription(header.HeaderLinks[0].ChannelHeaderLinksViewModel.FirstLink, true));
-			sb.AppendLine("- More: " + Utils.ReadAttributedDescription(header.HeaderLinks[0].ChannelHeaderLinksViewModel.More, true));
+			if (header.HeaderLinks.Count > 0)
+			{
+				sb.AppendLine("- First: " + Utils.ReadAttributedDescription(header.HeaderLinks[0].ChannelHeaderLinksViewModel.FirstLink, true));
+				sb.AppendLine("- More: " + Utils.ReadAttributedDescription(header.HeaderLinks[0].ChannelHeaderLinksViewModel.More, true));
+			}
+			else
+				sb.AppendLine("- No links");
 		}
 
 		sb.AppendLine("\n=== TABS");

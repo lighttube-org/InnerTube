@@ -492,8 +492,8 @@ public static class Utils
 				sb.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
 					video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
 				sb.AppendLine("Owner: " +
-				              $"[{video.ShortBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
-				              video.ShortBylineText.Runs[0].Text);
+				              $"[{video.ShortBylineText?.Runs?[0]?.NavigationEndpoint?.BrowseEndpoint?.BrowseId}] " +
+				              video.ShortBylineText?.Runs?[0]?.Text);
 				sb.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
 						video.OwnerBadges.Select(x =>
 							$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
