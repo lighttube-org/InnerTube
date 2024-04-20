@@ -459,6 +459,25 @@ public static class Utils
 				sb.AppendLine(ReadRuns(video.DetailedMetadataSnippets?.SnippetText));
 				return sb.ToString();
 			}
+			case RendererWrapper.RendererOneofCase.PlaylistVideoRenderer:
+			{
+				PlaylistVideoRenderer video = renderer.PlaylistVideoRenderer;
+				StringBuilder sb = new();
+				sb.AppendLine($"[PlaylistVideoRenderer] [{video.VideoId}] {ReadRuns(video.Title)}");
+				sb.AppendLine($"Thumbnail: ({video.Thumbnail.Thumbnails_.Count})" + string.Join("",
+					video.Thumbnail.Thumbnails_.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+				sb.AppendLine("Owner: " +
+				              $"[{video.ShortBylineText?.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+				              video.ShortBylineText?.Runs[0].Text);
+				sb.AppendLine("Duration: " + video.LengthSeconds);
+				sb.AppendLine("VideoInfo: " + ReadRuns(video.VideoInfo));
+				if (video.VideoInfo?.Runs.Count > 0)
+				{
+					sb.AppendLine("-> ViewCount: " + video.VideoInfo.Runs[0].Text);
+					sb.AppendLine("-> PublishDate: " + video.VideoInfo.Runs[2].Text);
+				}
+				return sb.ToString();
+			}
 			case RendererWrapper.RendererOneofCase.CompactVideoRenderer:
 			{
 				CompactVideoRenderer video = renderer.CompactVideoRenderer;
@@ -707,9 +726,13 @@ public static class Utils
 			case RendererWrapper.RendererOneofCase.ItemSectionRenderer:
 				return "[ItemSectionRenderer]\n" + string.Join('\n',
 					renderer.ItemSectionRenderer.Contents.Select(x =>
-						SerializeRenderer(x).Split("\n").Select(x => $"  {x}")));
+						string.Join('\n', SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))));
 			case RendererWrapper.RendererOneofCase.RichItemRenderer:
 				return "[RichItemRenderer] " + SerializeRenderer(renderer.RichItemRenderer.Content);
+			case RendererWrapper.RendererOneofCase.AlertWithButtonRenderer:
+			{
+				return "[AlertWithButtonRenderer] [" + renderer.AlertWithButtonRenderer.Type + "] " + ReadRuns(renderer.AlertWithButtonRenderer.Text);
+			}
 			default:
 				return $"[Unknown RendererCase={renderer.RendererCase}]";
 		}

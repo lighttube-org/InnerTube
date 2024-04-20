@@ -128,53 +128,52 @@ public class BrowseTests
 		Assert.Pass(sb.ToString());
 	}
 	
-	/*
-	[TestCase("UCfba251A_nwl141Ahgt16", Description = "Invalid ID")]
-	public async Task FailChannel(string playlistId)
-	{
-		try
-		{
-			await _innerTube.GetChannelAsync(playlistId);
-			Assert.Fail("Exception not thrown");
-		}
-		catch (InnerTubeException e)
-		{
-			Assert.Pass(e.ToString());
-		}
-		catch (Exception e)
-		{
-			Assert.Fail(e.ToString());
-		}
-	}
-
-	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false)]
-	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true)]
-	[TestCase("PLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF", false, Description = "Intentionally empty playlist")]
+	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false, TestName = "Playlist")]
+	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true, TestName = "Playlist with unavailable videos")]
+	[TestCase("PLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF", false, TestName = "Intentionally empty playlist")]
 	public async Task GetPlaylist(string playlistId, bool includeUnavailable)
 	{
-		InnerTubePlaylist playlist = await _innerTube.GetPlaylistAsync(playlistId, includeUnavailable);
-
+		BrowseResponse playlist =
+			await _innerTube.BrowseAsync(playlistId.StartsWith("VL") ? playlistId : "VL" + playlistId,
+				includeUnavailable ? "wgYCCAA%3D" : null);
 		StringBuilder sb = new();
-		sb.AppendLine(playlist.Id);
-		if (playlist.Alerts.Any())
+		
+		await File.WriteAllBytesAsync("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/playlist.bin", playlist.ToByteArray());
+		
+		sb.AppendLine("=== HEADER");
+		PlaylistHeaderRenderer? header = playlist.Header?.PlaylistHeaderRenderer;
+		if (header is null) sb.AppendLine("<null>");
+		else
 		{
-			sb.AppendLine()
-				.AppendLine("/!\\ ALERTS");
-
-			foreach (string alert in playlist.Alerts) 
-				sb.AppendLine("->\t" + alert);
+			sb.AppendLine("Playlist ID: " + header.PlaylistId);
+			sb.AppendLine("Title: " + Utils.ReadRuns(header.Title));
+			sb.AppendLine("Description: " + Utils.ReadRuns(header.DescriptionText));
+			sb.AppendLine("Owner: " + Utils.ReadRuns(header.OwnerText));
+			sb.AppendLine("NumVideos: " + Utils.ReadRuns(header.NumVideosText));
+			sb.AppendLine("ViewCount: " + Utils.ReadRuns(header.ViewCountText));
+			sb.AppendLine("Privacy: " + header.Privacy);
+			sb.AppendLine("Byline: " + string.Join(" | ", header.Byline.PlaylistBylineRenderer.Text.Select(x => Utils.ReadRuns(x))));
+			sb.AppendLine("Gradient: LIGHT     DARK");
+			foreach (GradientConfig config in header.CinematicContainer?.CinematicContainerRenderer.GradientColorConfig ?? [])
+				sb.AppendLine($"-  [{Math.Round(config.StartLocation * 100).ToString().PadLeft(3, ' ')}%]" +
+				              $" #{Convert.ToHexString(BitConverter.GetBytes(config.LightThemeColor)[..4])}" +
+				              $" #{Convert.ToHexString(BitConverter.GetBytes(config.DarkThemeColor)[..4])}");
 		}
 
-		sb.AppendLine(playlist.Sidebar.ToString());
-		
-		foreach (PlaylistVideoRenderer renderer in playlist.Videos)
-			sb.AppendLine("->\t" + string.Join("\n\t", renderer.ToString().Split("\n")));
+		sb.AppendLine($"\n=== ALERTS ({playlist.Alerts.Count})");
+		foreach (RendererWrapper renderer in playlist.Alerts)
+			sb.AppendLine(Utils.SerializeRenderer(renderer));
 
-		sb.AppendLine($"Continuation: {string.Join("", playlist.Continuation?.ToString() ?? "<no continuation>")}");
-		
+		sb.AppendLine("\n=== CONTENTS");
+		RepeatedField<RendererWrapper> selectedTab = playlist.Contents.TwoColumnBrowseResultsRenderer.Tabs
+			.FirstOrDefault(x => x.TabRenderer.Selected)?.TabRenderer.Content.ResultsContainer.Results[0]
+			.ItemSectionRenderer.Contents[0].PlaylistVideoListRenderer?.Contents ?? [];
+		foreach (RendererWrapper renderer in selectedTab)
+			sb.AppendLine(Utils.SerializeRenderer(renderer));
 		Assert.Pass(sb.ToString());
 	}
 
+	/*
 	[TestCase("VLPLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", 100)]
 	public async Task ContinuePlaylist(string playlistId, int skipAmount)
 	{

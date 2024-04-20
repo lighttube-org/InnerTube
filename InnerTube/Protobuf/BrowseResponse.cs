@@ -25,19 +25,20 @@ namespace InnerTube.Protobuf.Responses {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChVicm93c2VfcmVzcG9uc2UucHJvdG8SHElubmVyVHViZS5Qcm90b2J1Zi5S",
-            "ZXNwb25zZXMaDWdlbmVyYWwucHJvdG8i5QIKDkJyb3dzZVJlc3BvbnNlEjUK",
+            "ZXNwb25zZXMaDWdlbmVyYWwucHJvdG8imgMKDkJyb3dzZVJlc3BvbnNlEjUK",
             "CGNvbnRlbnRzGAkgASgLMiMuSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVy",
             "V3JhcHBlchI4CgZoZWFkZXIYDSABKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYu",
-            "UmVuZGVyZXJXcmFwcGVySACIAQESOgoIbWV0YWRhdGEYDyABKAsyIy5Jbm5l",
-            "clR1YmUuUHJvdG9idWYuUmVuZGVyZXJXcmFwcGVySAGIAQESPQoLbWljcm9m",
-            "b3JtYXQYGyABKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYuUmVuZGVyZXJXcmFw",
-            "cGVySAKIAQESPwoZb25SZXNwb25zZVJlY2VpdmVkQWN0aW9ucxgeIAEoCzIc",
-            "LklubmVyVHViZS5Qcm90b2J1Zi5FbmRwb2ludEIJCgdfaGVhZGVyQgsKCV9t",
-            "ZXRhZGF0YUIOCgxfbWljcm9mb3JtYXRiBnByb3RvMw=="));
+            "UmVuZGVyZXJXcmFwcGVySACIAQESMwoGYWxlcnRzGA4gAygLMiMuSW5uZXJU",
+            "dWJlLlByb3RvYnVmLlJlbmRlcmVyV3JhcHBlchI6CghtZXRhZGF0YRgPIAEo",
+            "CzIjLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcldyYXBwZXJIAYgBARI9",
+            "CgttaWNyb2Zvcm1hdBgbIAEoCzIjLklubmVyVHViZS5Qcm90b2J1Zi5SZW5k",
+            "ZXJlcldyYXBwZXJIAogBARI/ChlvblJlc3BvbnNlUmVjZWl2ZWRBY3Rpb25z",
+            "GB4gASgLMhwuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50QgkKB19oZWFk",
+            "ZXJCCwoJX21ldGFkYXRhQg4KDF9taWNyb2Zvcm1hdGIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.BrowseResponse), global::InnerTube.Protobuf.Responses.BrowseResponse.Parser, new[]{ "Contents", "Header", "Metadata", "Microformat", "OnResponseReceivedActions" }, new[]{ "Header", "Metadata", "Microformat" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.BrowseResponse), global::InnerTube.Protobuf.Responses.BrowseResponse.Parser, new[]{ "Contents", "Header", "Alerts", "Metadata", "Microformat", "OnResponseReceivedActions" }, new[]{ "Header", "Metadata", "Microformat" }, null, null, null)
           }));
     }
     #endregion
@@ -81,6 +82,7 @@ namespace InnerTube.Protobuf.Responses {
     public BrowseResponse(BrowseResponse other) : this() {
       contents_ = other.contents_ != null ? other.contents_.Clone() : null;
       header_ = other.header_ != null ? other.header_.Clone() : null;
+      alerts_ = other.alerts_.Clone();
       metadata_ = other.metadata_ != null ? other.metadata_.Clone() : null;
       microformat_ = other.microformat_ != null ? other.microformat_.Clone() : null;
       onResponseReceivedActions_ = other.onResponseReceivedActions_ != null ? other.onResponseReceivedActions_.Clone() : null;
@@ -115,6 +117,17 @@ namespace InnerTube.Protobuf.Responses {
       set {
         header_ = value;
       }
+    }
+
+    /// <summary>Field number for the "alerts" field.</summary>
+    public const int AlertsFieldNumber = 14;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.RendererWrapper> _repeated_alerts_codec
+        = pb::FieldCodec.ForMessage(114, global::InnerTube.Protobuf.RendererWrapper.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.RendererWrapper> alerts_ = new pbc::RepeatedField<global::InnerTube.Protobuf.RendererWrapper>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.RendererWrapper> Alerts {
+      get { return alerts_; }
     }
 
     /// <summary>Field number for the "metadata" field.</summary>
@@ -170,6 +183,7 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (!object.Equals(Contents, other.Contents)) return false;
       if (!object.Equals(Header, other.Header)) return false;
+      if(!alerts_.Equals(other.alerts_)) return false;
       if (!object.Equals(Metadata, other.Metadata)) return false;
       if (!object.Equals(Microformat, other.Microformat)) return false;
       if (!object.Equals(OnResponseReceivedActions, other.OnResponseReceivedActions)) return false;
@@ -182,6 +196,7 @@ namespace InnerTube.Protobuf.Responses {
       int hash = 1;
       if (contents_ != null) hash ^= Contents.GetHashCode();
       if (header_ != null) hash ^= Header.GetHashCode();
+      hash ^= alerts_.GetHashCode();
       if (metadata_ != null) hash ^= Metadata.GetHashCode();
       if (microformat_ != null) hash ^= Microformat.GetHashCode();
       if (onResponseReceivedActions_ != null) hash ^= OnResponseReceivedActions.GetHashCode();
@@ -211,6 +226,7 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(106);
         output.WriteMessage(Header);
       }
+      alerts_.WriteTo(output, _repeated_alerts_codec);
       if (metadata_ != null) {
         output.WriteRawTag(122);
         output.WriteMessage(Metadata);
@@ -241,6 +257,7 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(106);
         output.WriteMessage(Header);
       }
+      alerts_.WriteTo(ref output, _repeated_alerts_codec);
       if (metadata_ != null) {
         output.WriteRawTag(122);
         output.WriteMessage(Metadata);
@@ -269,6 +286,7 @@ namespace InnerTube.Protobuf.Responses {
       if (header_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Header);
       }
+      size += alerts_.CalculateSize(_repeated_alerts_codec);
       if (metadata_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(Metadata);
       }
@@ -302,6 +320,7 @@ namespace InnerTube.Protobuf.Responses {
         }
         Header.MergeFrom(other.Header);
       }
+      alerts_.Add(other.alerts_);
       if (other.metadata_ != null) {
         if (metadata_ == null) {
           Metadata = new global::InnerTube.Protobuf.RendererWrapper();
@@ -347,6 +366,10 @@ namespace InnerTube.Protobuf.Responses {
               Header = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Header);
+            break;
+          }
+          case 114: {
+            alerts_.AddEntriesFrom(input, _repeated_alerts_codec);
             break;
           }
           case 122: {
@@ -397,6 +420,10 @@ namespace InnerTube.Protobuf.Responses {
               Header = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Header);
+            break;
+          }
+          case 114: {
+            alerts_.AddEntriesFrom(ref input, _repeated_alerts_codec);
             break;
           }
           case 122: {

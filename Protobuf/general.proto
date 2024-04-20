@@ -124,6 +124,20 @@ message AttributedDescription {
   repeated StyleRun styleRuns = 6;
 }
 
+message ShareData {
+  bool canShare = 1;
+}
+
+message EditableDetails {
+  bool canDelete = 3;
+}
+
+message GradientConfig {
+  uint64 lightThemeColor = 1;
+  uint64 darkThemeColor = 2;
+  float startLocation = 3;
+}
+
 // ===============================================================
 // ==================    RENDERERS    ============================
 // ===============================================================
@@ -154,6 +168,9 @@ message RendererWrapper {
     ShelfRenderer shelfRenderer = 51845067;
     TwoColumnBrowseResultsRenderer twoColumnBrowseResultsRenderer = 52123031;
     CompactRadioRenderer compactRadioRenderer = 53170873;
+    PlaylistHeaderRenderer playlistHeaderRenderer = 53272665;
+    PlaylistVideoRenderer playlistVideoRenderer = 53330184;
+    PlaylistVideoListRenderer playlistVideoListRenderer = 54681060;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     ShowingResultsForRenderer showingResultsForRenderer = 55504968;
     DidYouMeanRenderer didYouMeanRenderer = 55641975;
@@ -170,6 +187,7 @@ message RendererWrapper {
     CommentThreadRenderer commentThreadRenderer = 62285833;
     CommentRenderer commentRenderer = 62285947;
     PromotedVideoRenderer promotedVideoRenderer = 62887855;
+    PlaylistMetadataRenderer playlistMetadataRenderer = 63173126;
     CommentRepliesRenderer commentRepliesRenderer = 65060753;
     ButtonViewModel buttonViewModel = 65153809;
     SecondarySearchContainerRenderer secondarySearchContainerRenderer = 65750403;
@@ -192,6 +210,7 @@ message RendererWrapper {
     SearchRefinementCardRenderer searchRefinementCardRenderer = 88967868;
     ChipCloudRenderer chipCloudRenderer = 90823135;
     ChipCloudChipRenderer chipCloudChipRenderer = 91394224;
+    AlertWithButtonRenderer alertWithButtonRenderer = 93388040;
     BackgroundPromoRenderer backgroundPromoRenderer = 94317419;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
     ChannelThumbnailWithLinkRenderer channelThumbnailWithLinkRenderer = 100346611;
@@ -201,6 +220,7 @@ message RendererWrapper {
     EndscreenElementRenderer endscreenElementRenderer = 105860658;
     ThumbnailOverlayBottomPanelRenderer thumbnailOverlayBottomPanelRenderer = 109635582;
     ThumbnailOverlayHoverTextRenderer thumbnailOverlayHoverTextRenderer = 107250266;
+    HeroPlaylistThumbnailRenderer heroPlaylistThumbnailRenderer = 111638594;
     TitleAndButtonListHeaderRenderer titleAndButtonListHeaderRenderer = 112067016;
     VerticalWatchCardListRenderer verticalWatchCardListRenderer = 117337765;
     WatchCardSectionSequenceRenderer watchCardSectionSequenceRenderer = 117548244;
@@ -241,6 +261,8 @@ message RendererWrapper {
     AdSlotRenderer adSlotRenderer = 424701016;
     InFeedAdLayoutRenderer inFeedAdLayoutRenderer = 425953177;
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
+    CinematicContainerRenderer cinematicContainerRenderer = 455752576;
+    PlaylistBylineRenderer playlistBylineRenderer = 455964309;
     ButtonViewModel2 buttonViewModel2 = 461054335;
     ToggleButtonViewModel toggleButtonViewModel = 479644279;
     ChannelTaglineRenderer channelTaglineRenderer = 482604211;
@@ -315,6 +337,7 @@ message ResultsContainer {
 message ItemSectionRenderer {
   repeated RendererWrapper contents = 1;
   optional bytes trackingParams = 4;
+  optional RendererWrapper header = 5;
   optional string sectionIdentifier = 7;
   optional string targetId = 13;
 }
@@ -555,6 +578,59 @@ message CompactRadioRenderer {
   RendererWrapper thumbnailOverlays = 19;
 }
 
+message PlaylistHeaderRenderer {
+  string playlistId = 1;
+  Text title = 3;
+  Text numVideosText = 5;
+  Text descriptionText = 6;
+  Text ownerText = 7;
+  Text viewCountText = 8;
+  ShareData shareData = 11;
+  bool isEditable = 12;
+  int32 privacy = 16;
+  Endpoint ownerEndpoint = 17;
+  EditableDetails editableDetails = 18;
+  bytes trackingParams = 23;
+  repeated Endpoint serviceEndpoints = 24;
+  repeated Text stats = 32;
+  repeated Text briefStats = 33;
+  RendererWrapper playlistHeaderBanner = 44;
+  RendererWrapper saveButton = 46;
+  RendererWrapper shareButton = 47;
+  RendererWrapper moreActionsMenu = 55;
+  RendererWrapper playButton = 63;
+  RendererWrapper shufflePlayButton = 64;
+  Endpoint onDescriptionTap = 71;
+  RendererWrapper cinematicContainer = 73;
+  RendererWrapper byline = 74;
+  Text descriptionTapText = 79;
+}
+
+message PlaylistVideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text index = 4;
+  Text shortBylineText = 5;
+  Text lengthText = 6;
+  Endpoint navigationEndpoint = 7;
+  int64 lengthSeconds = 11;
+  bytes trackingParams = 17;
+  bool isPlayable = 18;
+  RendererWrapper menu = 19;
+  repeated RendererWrapper thumbnailOverlays = 25;
+  Text videoInfo = 37;
+}
+
+message PlaylistVideoListRenderer {
+  repeated RendererWrapper contents = 1;
+  string playlistId = 2;
+  bool isEditable = 3;
+  bool canReorder = 5;
+  bytes trackingParams = 9;
+  string targetId = 14;
+}
+
 message SubscribeButtonRenderer {
   Text buttonText = 1;
   bool subscribed = 3;
@@ -757,6 +833,13 @@ message PromotedVideoRenderer {
   RendererWrapper adBadge = 31;
 }
 
+message PlaylistMetadataRenderer {
+  string title = 1;
+  string description = 2;
+  string androidAppindexingLink = 6;
+  string iosAppindexingLink = 7;
+}
+
 message CommentRepliesRenderer {
   repeated RendererWrapper continuationItemRenderer = 1;
   bytes trackingParams = 4;
@@ -809,6 +892,7 @@ message MenuServiceItemRenderer {
   Endpoint serviceEndpoint = 3;
   bytes trackingParams = 5;
   bool hasSeparator = 12;
+  bool isSelected = 13;
 }
 
 message CommentActionButtonsRenderer {
@@ -957,6 +1041,12 @@ message ChipCloudChipRenderer {
   int32 location = 16;
 }
 
+message AlertWithButtonRenderer {
+  int32 type = 1;
+  Text text = 2;
+  RendererWrapper dismissButton = 6;
+}
+
 message BackgroundPromoRenderer {
   Text text = 1;
   bytes trackingParams = 6;
@@ -1047,6 +1137,14 @@ message ThumbnailOverlayBottomPanelRenderer {
 message ThumbnailOverlayHoverTextRenderer {
   Text text = 1;
   Icon icon = 2;
+}
+
+message HeroPlaylistThumbnailRenderer {
+  Thumbnails thumbnail = 1;
+  float maxRatio = 2;
+  bytes trackingParams = 4;
+  Endpoint onTap = 5;
+  repeated RendererWrapper thumbnailOverlays = 6;
 }
 
 message TitleAndButtonListHeaderRenderer {
@@ -1387,6 +1485,27 @@ message CommentsEntryPointTeaserRenderer {
   bytes trackingParams = 3;
 }
 
+message CinematicContainerRenderer {
+  message BackgroundConfig {
+    Thumbnails thumbnails = 1;
+  }
+  
+  message CinematicConfig {
+    uint64 lightThemeBackgroundColor = 1;
+    uint64 darkThemeBackgroundColor = 2;
+    uint64 colorSourcesSizeMultiplier = 4;
+    bool applyClientImageBlur = 5;
+  }
+  
+  BackgroundConfig backgroundImageConfig = 1;
+  repeated GradientConfig gradientColorConfig = 2;
+  CinematicConfig config = 4;
+}
+
+message PlaylistBylineRenderer {
+  repeated Text text = 1;
+}
+
 message ButtonViewModel2 {
   string iconName = 2;
   string title = 3;
@@ -1565,6 +1684,8 @@ message BrowseEndpoint {
   string browseId = 2;
   optional string params = 3;
   optional string canonicalBaseUrl = 4;
+  bool nofollow = 11;
+  int32 navigationType = 14;
 }
 
 message SignInEndpoint {
@@ -1726,19 +1847,7 @@ message CreatePlaylistServiceEndpoint {
 message OpenPopupAction {
   message Popup {
     message MenuPopupRenderer {
-      message MenuServiceItemRendererWrapper {
-        message MenuServiceItemRenderer {
-          Text text = 1;
-          Icon icon = 2;
-          Endpoint serviceEndpoint = 3;
-          bytes trackingParams = 5;
-          bool isSelected = 13;
-        }
-
-        MenuServiceItemRenderer menuServiceItemRenderer = 66441155;
-      }
-
-      repeated MenuServiceItemRendererWrapper items = 1;
+      repeated RendererWrapper items = 1;
     }
 
     message SearchFilterOptionsDialogRenderer {
@@ -1758,6 +1867,13 @@ message OpenPopupAction {
       Text responseText = 1;
       bytes trackingParams = 4;
     }
+    
+    message FancyDismissibleDialogRenderer {
+      Text dialogMessage = 1;
+      Text title = 2;
+      Text confirmLabel = 3;
+      bytes trackingParams = 7;
+    }
 
     message UnifiedSharePanelRenderer {
       bytes trackingParams = 6;
@@ -1768,6 +1884,7 @@ message OpenPopupAction {
       MenuPopupRenderer menuPopupRenderer = 144495266;
       SearchFilterOptionsDialogRenderer searchFilterOptionsDialogRenderer = 482016595;
       ConfirmDialogRenderer confirmDialogRenderer = 64099105;
+      FancyDismissibleDialogRenderer fancyDismissibleDialogRenderer = 85374086;
       UnifiedSharePanelRenderer unifiedSharePanelRenderer = 87759049;
       NotificationActionRenderer notificationActionRenderer = 96140188;
     }

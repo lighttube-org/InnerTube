@@ -7,6 +7,7 @@ import "general.proto";
 message BrowseResponse {
   RendererWrapper contents = 9;
   optional RendererWrapper header = 13;
+  repeated RendererWrapper alerts = 14;
   optional RendererWrapper metadata = 15;
   optional RendererWrapper microformat = 27;
   Endpoint onResponseReceivedActions = 30;
