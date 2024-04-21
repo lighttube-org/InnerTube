@@ -368,6 +368,7 @@ public static class Utils
 	public static int UnpackProtobufInt(string encoded) =>
 		IntContainer.Parser.ParseFrom(FromBase64UrlString(encoded)).Value;
 
+	// TODO: add "unavailable videos" flag
 	public static string PackPlaylistContinuation(string playlistId, int skipAmount)
 	{
 		PaginationInfo info = new()

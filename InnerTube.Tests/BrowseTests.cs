@@ -138,8 +138,6 @@ public class BrowseTests
 				includeUnavailable ? "wgYCCAA%3D" : null);
 		StringBuilder sb = new();
 		
-		await File.WriteAllBytesAsync("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/playlist.bin", playlist.ToByteArray());
-		
 		sb.AppendLine("=== HEADER");
 		PlaylistHeaderRenderer? header = playlist.Header?.PlaylistHeaderRenderer;
 		if (header is null) sb.AppendLine("<null>");
@@ -173,46 +171,29 @@ public class BrowseTests
 		Assert.Pass(sb.ToString());
 	}
 
-	/*
 	[TestCase("VLPLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", 100)]
 	public async Task ContinuePlaylist(string playlistId, int skipAmount)
 	{
-		InnerTubeContinuationResponse response = await _innerTube.ContinuePlaylistAsync(playlistId, skipAmount);
+		BrowseResponse playlist =
+			await _innerTube.ContinueBrowseAsync(Utils.PackPlaylistContinuation(playlistId, skipAmount));
+		
 		StringBuilder sb = new();
-		
-		foreach (IRenderer renderer in response.Contents)
-			sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
+		foreach (RendererWrapper renderer in playlist.OnResponseReceivedActions.AppendContinuationItemsAction
+			         .ContinuationItems)
+			sb.AppendLine(Utils.SerializeRenderer(renderer));
 
-		sb.AppendLine($"Continuation: {response.Continuation?.Substring(0, 20)}");
-		
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("q12f3g6ask2d5v71b4v7qıuysfqoh", Description = "Invalid ID")]
-	[TestCase("PLiDvcIUGEFPsDSRP5ErtC90k-gtzs2bNQ", Description = "Private playlist")]
-	public async Task FailPlaylist(string playlistId)
-	{
-		try
-		{
-			await _innerTube.GetPlaylistAsync(playlistId);
-			Assert.Fail("Exception not thrown");
-		}
-		catch (InnerTubeException e)
-		{
-			Assert.Pass(e.ToString());
-		}
-		catch (Exception e)
-		{
-			Assert.Fail(e.ToString());
-		}
-	}
-
+	/*
 	[TestCase("FEexplore")]
 	[TestCase("FEwhat_to_watch")]
 	public async Task Browse(string browseId)
 	{
 		InnerTubeExploreResponse innerTubeExploreResponse = await _innerTube.BrowseAsync(browseId);
 
+	   await File.WriteAllBytesAsync("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/playlist.bin", playlist.ToByteArray());
+	   
 		StringBuilder sb = new($"[{innerTubeExploreResponse.BrowseId}]\n");
 		sb.AppendLine("Contents:");
 		sb.AppendLine(innerTubeExploreResponse.Contents.ToString());
