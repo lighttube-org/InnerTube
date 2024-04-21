@@ -151,6 +151,7 @@ message RendererWrapper {
     SearchFilterGroupRenderer searchFilterGroupRenderer = 47602288;
     ResultsContainer resultsContainer = 49399797;
     ItemSectionRenderer itemSectionRenderer = 50195462;
+    FeedTabbedHeaderRenderer feedTabbedHeaderRenderer = 50236216;
     ChildVideoRenderer childVideoRenderer = 50524046;
     VideoRenderer videoRenderer = 50577878;
     ChannelRenderer channelRenderer = 50590275;
@@ -173,6 +174,7 @@ message RendererWrapper {
     PlaylistVideoListRenderer playlistVideoListRenderer = 54681060;
     SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
     ShowingResultsForRenderer showingResultsForRenderer = 55504968;
+    ExpandedShelfContentsRenderer expandedShelfContentsRenderer = 55636665;
     DidYouMeanRenderer didYouMeanRenderer = 55641975;
     PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
     ChannelMetadataRenderer channelMetadataRenderer = 57075253;
@@ -251,10 +253,14 @@ message RendererWrapper {
     ThumbnailOverlayNowPlayingRenderer thumbnailOverlayNowPlayingRenderer = 228343999;
     RichGridRenderer richGridRenderer = 255072793;
     RichItemRenderer richItemRenderer = 258632786;
+    RichSectionRenderer richSectionRenderer = 258669678;
     CommentsEntryPointHeaderRenderer commentsEntryPointHeaderRenderer = 275947328;
+    DestinationShelfRenderer destinationShelfRenderer = 277393168;
+    DestinationButtonRenderer destinationButtonRenderer = 277393771;
     MacroMarkersListItemRenderer macroMarkersListItemRenderer = 307450214;
     MacroMarkersListRenderer macroMarkersListRenderer = 309482905;
     MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
+    FeedNudgeRenderer feedNudgeRenderer = 362133374;
     ThumbnailOverlayLoadingPreviewRenderer thumbnailOverlayLoadingPreviewRenderer = 367662231;
     PlaylistLoopButtonRenderer playlistLoopButtonRenderer = 404843388;
     PlaylistLoopButtonStateRenderer playlistLoopButtonStateRenderer = 404843395;
@@ -340,6 +346,10 @@ message ItemSectionRenderer {
   optional RendererWrapper header = 5;
   optional string sectionIdentifier = 7;
   optional string targetId = 13;
+}
+
+message FeedTabbedHeaderRenderer {
+  Text title = 1;
 }
 
 message ChildVideoRenderer{
@@ -661,6 +671,10 @@ message ShowingResultsForRenderer {
   bytes trackingParams = 8;
 }
 
+message ExpandedShelfContentsRenderer {
+  repeated RendererWrapper items = 1;
+}
+
 message DidYouMeanRenderer {
   Text didYouMean = 1;
   Text correctedQuery = 2;
@@ -703,6 +717,7 @@ message TabRenderer {
   string title = 2;
   bool selected = 3;
   RendererWrapper content = 4;
+  string tabIdentifier = 11;
   bytes trackingParams = 14;
 }
 
@@ -1381,16 +1396,28 @@ message ThumbnailOverlayNowPlayingRenderer {
 }
 
 message RichGridRenderer {
+  message ReflowOpts {
+    int32 minimumRowsOfVideosAtStart = 1;
+    int32 minimumRowsOfVideosBetweenSections = 2;
+  }
+  
   repeated RendererWrapper contents = 1;
   bytes trackingParams = 3;
   RendererWrapper header = 6;
   string targetId = 7;
+  ReflowOpts reflowOptions = 10;
   int32 style = 12;
 }
 
 message RichItemRenderer {
   RendererWrapper content = 1;
   bytes trackingParams = 3;
+}
+
+message RichSectionRenderer {
+  RendererWrapper content = 1;
+  bytes trackingParams = 3;
+  bool fullBleed = 4;
 }
 
 message CommentsEntryPointHeaderRenderer {
@@ -1400,6 +1427,20 @@ message CommentsEntryPointHeaderRenderer {
   Text commentCount = 5;
   RendererWrapper contentRenderer = 12;
   string targetId = 13;
+}
+
+message DestinationShelfRenderer {
+  repeated RendererWrapper destinationButtons = 1;
+  string expandButtonText = 2;
+  bytes trackingParams = 4;
+}
+
+message DestinationButtonRenderer {
+  Text label = 1;
+  Thumbnails iconImage = 3;
+  Endpoint onTap = 4;
+  RendererWrapper accessibility = 6;
+  bytes trackingParams = 8;
 }
 
 message MacroMarkersListItemRenderer {
@@ -1426,6 +1467,13 @@ message MacroMarkersListRenderer {
 message MenuFlexibleItemRenderer {
   RendererWrapper menuItem = 1;
   RendererWrapper topLevelButton = 2;
+}
+
+message FeedNudgeRenderer {
+  Text title = 3;
+  Text subtitle = 4;
+  Endpoint impressionEndpoint = 8;
+  bytes trackingParams = 11;
 }
 
 message ThumbnailOverlayLoadingPreviewRenderer {
@@ -1586,6 +1634,7 @@ message Endpoint {
     WatchPlaylistEndpoint watchPlaylistEndpoint = 52666186;
     PlaylistEditEndpoint playlistEditEndpoint = 60666189;
     LikeEndpoint likeEndpoint = 63158558;
+    FeedbackEndpoint feedbackEndpoint = 65153809;
     SubscribeEndpoint subscribeEndpoint = 68997349;
     UnsubscribeEndpoint unsubscribeEndpoint = 68997401;
     UserFeedbackEndpoint userFeedbackEndpoint = 72579984;
@@ -1719,6 +1768,10 @@ message LikeEndpoint {
   int32 status = 1;
   Target target = 2;
   optional string likeParams = 8;
+}
+
+message FeedbackEndpoint {
+  string feedbackToken = 1;
 }
 
 message SubscribeEndpoint {

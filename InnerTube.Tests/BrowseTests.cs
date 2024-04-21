@@ -1,4 +1,6 @@
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Google.Protobuf;
 using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
@@ -185,23 +187,18 @@ public class BrowseTests
 		Assert.Pass(sb.ToString());
 	}
 
-	/*
 	[TestCase("FEexplore")]
 	[TestCase("FEwhat_to_watch")]
 	public async Task Browse(string browseId)
 	{
-		InnerTubeExploreResponse innerTubeExploreResponse = await _innerTube.BrowseAsync(browseId);
+		BrowseResponse browse = await _innerTube.BrowseAsync(browseId);
 
-	   await File.WriteAllBytesAsync("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/playlist.bin", playlist.ToByteArray());
-	   
-		StringBuilder sb = new($"[{innerTubeExploreResponse.BrowseId}]\n");
-		sb.AppendLine("Contents:");
-		sb.AppendLine(innerTubeExploreResponse.Contents.ToString());
-		sb.AppendLine();
-		sb.AppendLine("Header:");
-		sb.AppendLine(innerTubeExploreResponse.Header.ToString());
+	   //await File.WriteAllBytesAsync($"/home/kuylar/Projects/DotNet/InnerTube/Protobuf/{browseId}.bin", browse.ToByteArray());
 		
-		Assert.Pass(sb.ToString());
+		Assert.Pass(JsonSerializer.Serialize(browse, new JsonSerializerOptions
+		{
+			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+			WriteIndented = true
+		}));
 	}
-	*/
 }
