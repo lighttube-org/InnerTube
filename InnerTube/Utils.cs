@@ -149,7 +149,7 @@ public static class Utils
 		return "";
 	}
 
-	public static string UnwrapRedirectUrl(string url)
+	public static string? UnwrapRedirectUrl(string url)
 	{
 		if (url.StartsWith("https://www.youtube.com/redirect"))
 		{
@@ -395,12 +395,8 @@ public static class Utils
 			PlaylistContinuationContainer.Parser.ParseFrom(FromBase64UrlString(continuationKey));
 		PaginationInfo info =
 			PaginationInfo.Parser.ParseFrom(FromBase64UrlString(container.Continuation.PaginationInfo));
-		return new PlaylistContinuationInfo
-		{
-			InternalPlaylistId = container.Continuation.InternalPlaylistId,
-			PlaylistId = container.Continuation.PlaylistId,
-			ContinueFrom = UnpackProtobufInt(info.SkipAmountEncoded.Split(":").Last())
-		};
+		return new PlaylistContinuationInfo(container.Continuation.InternalPlaylistId,
+			container.Continuation.PlaylistId, UnpackProtobufInt(info.SkipAmountEncoded.Split(":").Last()));
 	}
 
 	public static string PackCommentsContinuation(string videoId, CommentsContext.Types.SortOrder sortOrder)

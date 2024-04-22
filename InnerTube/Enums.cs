@@ -22,16 +22,16 @@ public enum RequestClient
 /// <summary>
 /// Type of the end screen item 
 /// </summary>
-public enum EndScreenItemType
+public enum EndscreenItemType
 {
 	/// <summary>
 	/// Video item.
 	/// </summary>
-	Video,
+	Video = 1,
 	/// <summary>
 	/// Playlist item.
 	/// </summary>
-	Playlist,
+	Playlist = 2,
 	/// <summary>
 	/// Channel icon.
 	/// </summary>
@@ -39,11 +39,11 @@ public enum EndScreenItemType
 	/// <summary>
 	/// Channel icon.
 	/// </summary>
-	Channel,
+	Channel = 3,
 	/// <summary>
 	/// Link to an external source.
 	/// </summary>
-	Link
+	Link = 4
 }
 
 /// <summary>

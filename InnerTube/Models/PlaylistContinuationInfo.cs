@@ -1,10 +1,10 @@
 namespace InnerTube;
 
-public class PlaylistContinuationInfo
+public readonly struct PlaylistContinuationInfo(string internalPlaylistId, string playlistId, int continueFrom)
 {
-	public string InternalPlaylistId { get; set; }
-	public string PlaylistId { get; set; }
-	public int ContinueFrom { get; set; }
+	public string InternalPlaylistId { get; } = internalPlaylistId;
+	public string PlaylistId { get; } = playlistId;
+	public int ContinueFrom { get; } = continueFrom;
 
 	public override string ToString() => $"{InternalPlaylistId} | {PlaylistId} | {ContinueFrom}";
 }

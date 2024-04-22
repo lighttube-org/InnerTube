@@ -107,7 +107,7 @@ public class InnerTube
 
 		webPlayer.StreamingData = androidPlayer.StreamingData;
 		if (webPlayer.StreamingData != null && iosPlayer.StreamingData != null &&
-		    webPlayer.StreamingData.HasHlsManifestUrl && iosPlayer.StreamingData.HasHlsManifestUrl)
+		    !webPlayer.StreamingData.HasHlsManifestUrl && iosPlayer.StreamingData.HasHlsManifestUrl)
 			webPlayer.StreamingData.HlsManifestUrl = iosPlayer.StreamingData.HlsManifestUrl;
 
 		PlayerCache.Set(cacheId, webPlayer, new MemoryCacheEntryOptions
