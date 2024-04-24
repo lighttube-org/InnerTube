@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Text;
+using Google.Protobuf;
 using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
 using InnerTube.Formatters;
@@ -26,9 +27,11 @@ public class PlayerTests
 	[TestCase("4ZX9T0kWb4Y", true, TestName = "Video with multiple audio tracks")]
 	[TestCase("-UBaW1OIgTo", true, TestName = "EndScreenItem ctor")]
 	[TestCase("UoBFuLMlDkw", true, TestName = "Video with cards")]
+	[TestCase("Atvsg_zogxo", true, TestName = "Music video (Descramble result always throws an SSL error)")]
 	public async Task GetPlayer(string videoId, bool contentCheckOk)
 	{
 		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk);
+		await File.WriteAllBytesAsync($"/home/kuylar/Projects/DotNet/InnerTube/Protobuf/player_{videoId}.bin", player.ToByteArray());
 		StringBuilder sb = new();
 
 		sb.AppendLine("== DETAILS")
@@ -149,10 +152,11 @@ public class PlayerTests
 				.AppendLine("   MimeType: " + f.Mime)
 				.AppendLine("   Url: " + f.Url)
 				.AppendLine("   Quality: " + f.Quality)
-				//.AppendLine("   AudioQuality: " + f.AudioQuality)
+				.AppendLine("   AudioQuality: " + f.AudioQuality)
 				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
 				.AppendLine("   AudioChannels: " + f.AudioChannels)
-				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
+				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"))
+                .AppendLine("   SignatureCipher: " + f.SignatureCipher);
 		}
 
 		sb.AppendLine("== ADAPTIVE FORMATS");
@@ -170,10 +174,11 @@ public class PlayerTests
 				.AppendLine("   MimeType: " + f.Mime)
 				.AppendLine("   Url: " + f.Url)
 				.AppendLine("   Quality: " + f.Quality)
-				//.AppendLine("   AudioQuality: " + f.AudioQuality)
+				.AppendLine("   AudioQuality: " + f.AudioQuality)
 				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
 				.AppendLine("   AudioChannels: " + f.AudioChannels)
-				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
+				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"))
+                .AppendLine("   SignatureCipher: " + f.SignatureCipher);
 		}
 
 		sb.AppendLine("== OTHER")

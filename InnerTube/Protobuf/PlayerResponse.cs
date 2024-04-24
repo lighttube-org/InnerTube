@@ -51,7 +51,7 @@ namespace InnerTube.Protobuf.Responses {
             "bnNlcy5Gb3JtYXQSHAoPZGFzaE1hbmlmZXN0VXJsGAQgASgJSACIAQESGwoO",
             "aGxzTWFuaWZlc3RVcmwYBSABKAlIAYgBARIiChVzZXJ2ZXJBYnJTdHJlYW1p",
             "bmdVcmwYDyABKAlIAogBAUISChBfZGFzaE1hbmlmZXN0VXJsQhEKD19obHNN",
-            "YW5pZmVzdFVybEIYChZfc2VydmVyQWJyU3RyZWFtaW5nVXJsIo0GCgZGb3Jt",
+            "YW5pZmVzdFVybEIYChZfc2VydmVyQWJyU3RyZWFtaW5nVXJsIr8GCgZGb3Jt",
             "YXQSDAoEaXRhZxgBIAEoBRILCgN1cmwYAiABKAkSDAoEbWltZRgFIAEoCRIP",
             "CgdiaXRyYXRlGAYgASgFEg0KBXdpZHRoGAcgASgFEg4KBmhlaWdodBgIIAEo",
             "BRI7Cglpbml0UmFuZ2UYCSABKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYuUmVz",
@@ -66,29 +66,31 @@ namespace InnerTube.Protobuf.Responses {
             "cy5Gb3JtYXRDb2xvckluZm8SFwoPaGlnaFJlcGxpY2F0aW9uGCcgASgIEhQK",
             "DGF1ZGlvUXVhbGl0eRgrIAEoBRIYChBhcHByb3hEdXJhdGlvbk1zGCwgASgF",
             "EhwKD2F1ZGlvU2FtcGxlUmF0ZRgtIAEoBUgEiAEBEhoKDWF1ZGlvQ2hhbm5l",
-            "bHMYLiABKAVIBYgBARIXCgpsb3VkbmVzc0RiGC8gASgCSAaIAQFCDAoKX2lu",
-            "aXRSYW5nZUINCgtfaW5kZXhSYW5nZUIICgZfeHRhZ3NCDQoLX2F1ZGlvVHJh",
-            "Y2tCEgoQX2F1ZGlvU2FtcGxlUmF0ZUIQCg5fYXVkaW9DaGFubmVsc0INCgtf",
-            "bG91ZG5lc3NEYiJhCg9Gb3JtYXRDb2xvckluZm8SEQoJcHJpbWFyaWVzGAEg",
-            "ASgFEh8KF3RyYW5zZmVyQ2hhcmFjdGVyaXN0aWNzGAIgASgFEhoKEm1hdHJp",
-            "eENvZWZmaWNpZW50cxgDIAEoBSIjCgVSYW5nZRINCgVzdGFydBgDIAEoBRIL",
-            "CgNlbmQYBCABKAUiRQoKQXVkaW9UcmFjaxITCgtkaXNwbGF5TmFtZRgEIAEo",
-            "CRIKCgJpZBgFIAEoCRIWCg5hdWRpb0lzRGVmYXVsdBgGIAEoCCLiAgoMVmlk",
-            "ZW9EZXRhaWxzEg8KB3ZpZGVvSWQYASABKAkSDQoFdGl0bGUYDyABKAkSFQoN",
-            "bGVuZ3RoU2Vjb25kcxgQIAEoBRIQCghrZXl3b3JkcxgSIAMoCRIRCgljaGFu",
-            "bmVsSWQYEyABKAkSFgoOaXNPd25lclZpZXdpbmcYFCABKAgSGAoQc2hvcnRE",
-            "ZXNjcmlwdGlvbhgVIAEoCRITCgtpc0NyYXdsYWJsZRgWIAEoCBIxCgl0aHVt",
-            "Ym5haWwYGSABKAsyHi5Jbm5lclR1YmUuUHJvdG9idWYuVGh1bWJuYWlscxIU",
-            "CgxhbGxvd1JhdGluZ3MYHyABKAgSEQoJdmlld0NvdW50GCAgASgJEhEKCWlz",
-            "UHJpdmF0ZRglIAEoCBIOCgZhdXRob3IYISABKAkSGQoRaXNVbnBsdWdnZWRD",
-            "b3JwdXMYJiABKAgSFQoNaXNMaXZlQ29udGVudBgpIAEoCGIGcHJvdG8z"));
+            "bHMYLiABKAVIBYgBARIXCgpsb3VkbmVzc0RiGC8gASgCSAaIAQESHAoPc2ln",
+            "bmF0dXJlQ2lwaGVyGDAgASgJSAeIAQFCDAoKX2luaXRSYW5nZUINCgtfaW5k",
+            "ZXhSYW5nZUIICgZfeHRhZ3NCDQoLX2F1ZGlvVHJhY2tCEgoQX2F1ZGlvU2Ft",
+            "cGxlUmF0ZUIQCg5fYXVkaW9DaGFubmVsc0INCgtfbG91ZG5lc3NEYkISChBf",
+            "c2lnbmF0dXJlQ2lwaGVyImEKD0Zvcm1hdENvbG9ySW5mbxIRCglwcmltYXJp",
+            "ZXMYASABKAUSHwoXdHJhbnNmZXJDaGFyYWN0ZXJpc3RpY3MYAiABKAUSGgoS",
+            "bWF0cml4Q29lZmZpY2llbnRzGAMgASgFIiMKBVJhbmdlEg0KBXN0YXJ0GAMg",
+            "ASgFEgsKA2VuZBgEIAEoBSJFCgpBdWRpb1RyYWNrEhMKC2Rpc3BsYXlOYW1l",
+            "GAQgASgJEgoKAmlkGAUgASgJEhYKDmF1ZGlvSXNEZWZhdWx0GAYgASgIIuIC",
+            "CgxWaWRlb0RldGFpbHMSDwoHdmlkZW9JZBgBIAEoCRINCgV0aXRsZRgPIAEo",
+            "CRIVCg1sZW5ndGhTZWNvbmRzGBAgASgFEhAKCGtleXdvcmRzGBIgAygJEhEK",
+            "CWNoYW5uZWxJZBgTIAEoCRIWCg5pc093bmVyVmlld2luZxgUIAEoCBIYChBz",
+            "aG9ydERlc2NyaXB0aW9uGBUgASgJEhMKC2lzQ3Jhd2xhYmxlGBYgASgIEjEK",
+            "CXRodW1ibmFpbBgZIAEoCzIeLklubmVyVHViZS5Qcm90b2J1Zi5UaHVtYm5h",
+            "aWxzEhQKDGFsbG93UmF0aW5ncxgfIAEoCBIRCgl2aWV3Q291bnQYICABKAkS",
+            "EQoJaXNQcml2YXRlGCUgASgIEg4KBmF1dGhvchghIAEoCRIZChFpc1VucGx1",
+            "Z2dlZENvcnB1cxgmIAEoCBIVCg1pc0xpdmVDb250ZW50GCkgASgIYgZwcm90",
+            "bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayerResponse), global::InnerTube.Protobuf.Responses.PlayerResponse.Parser, new[]{ "PlayabilityStatus", "StreamingData", "Captions", "VideoDetails", "Storyboards", "Microformat", "Endscreen" }, new[]{ "Captions", "Storyboards", "Microformat", "Endscreen" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus), global::InnerTube.Protobuf.Responses.PlayabilityStatus.Parser, new[]{ "Status", "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.StreamingData), global::InnerTube.Protobuf.Responses.StreamingData.Parser, new[]{ "ExpiresInSeconds", "Formats", "AdaptiveFormats", "DashManifestUrl", "HlsManifestUrl", "ServerAbrStreamingUrl" }, new[]{ "DashManifestUrl", "HlsManifestUrl", "ServerAbrStreamingUrl" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Format), global::InnerTube.Protobuf.Responses.Format.Parser, new[]{ "Itag", "Url", "Mime", "Bitrate", "Width", "Height", "InitRange", "IndexRange", "LastModified", "ContentLength", "Quality", "Fps", "Xtags", "QualityLabel", "ProjectionType", "AudioTrack", "AverageBitrate", "ColorInfo", "HighReplication", "AudioQuality", "ApproxDurationMs", "AudioSampleRate", "AudioChannels", "LoudnessDb" }, new[]{ "InitRange", "IndexRange", "Xtags", "AudioTrack", "AudioSampleRate", "AudioChannels", "LoudnessDb" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Format), global::InnerTube.Protobuf.Responses.Format.Parser, new[]{ "Itag", "Url", "Mime", "Bitrate", "Width", "Height", "InitRange", "IndexRange", "LastModified", "ContentLength", "Quality", "Fps", "Xtags", "QualityLabel", "ProjectionType", "AudioTrack", "AverageBitrate", "ColorInfo", "HighReplication", "AudioQuality", "ApproxDurationMs", "AudioSampleRate", "AudioChannels", "LoudnessDb", "SignatureCipher" }, new[]{ "InitRange", "IndexRange", "Xtags", "AudioTrack", "AudioSampleRate", "AudioChannels", "LoudnessDb", "SignatureCipher" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.FormatColorInfo), global::InnerTube.Protobuf.Responses.FormatColorInfo.Parser, new[]{ "Primaries", "TransferCharacteristics", "MatrixCoefficients" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Range), global::InnerTube.Protobuf.Responses.Range.Parser, new[]{ "Start", "End" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.AudioTrack), global::InnerTube.Protobuf.Responses.AudioTrack.Parser, new[]{ "DisplayName", "Id", "AudioIsDefault" }, null, null, null, null),
@@ -1444,6 +1446,7 @@ namespace InnerTube.Protobuf.Responses {
       audioSampleRate_ = other.audioSampleRate_;
       audioChannels_ = other.audioChannels_;
       loudnessDb_ = other.loudnessDb_;
+      signatureCipher_ = other.signatureCipher_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -1800,6 +1803,32 @@ namespace InnerTube.Protobuf.Responses {
       _hasBits0 &= ~4;
     }
 
+    /// <summary>Field number for the "signatureCipher" field.</summary>
+    public const int SignatureCipherFieldNumber = 48;
+    private readonly static string SignatureCipherDefaultValue = "";
+
+    private string signatureCipher_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public string SignatureCipher {
+      get { return signatureCipher_ ?? SignatureCipherDefaultValue; }
+      set {
+        signatureCipher_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+    /// <summary>Gets whether the "signatureCipher" field is set</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool HasSignatureCipher {
+      get { return signatureCipher_ != null; }
+    }
+    /// <summary>Clears the value of the "signatureCipher" field</summary>
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearSignatureCipher() {
+      signatureCipher_ = null;
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -1839,6 +1868,7 @@ namespace InnerTube.Protobuf.Responses {
       if (AudioSampleRate != other.AudioSampleRate) return false;
       if (AudioChannels != other.AudioChannels) return false;
       if (!pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.Equals(LoudnessDb, other.LoudnessDb)) return false;
+      if (SignatureCipher != other.SignatureCipher) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -1870,6 +1900,7 @@ namespace InnerTube.Protobuf.Responses {
       if (HasAudioSampleRate) hash ^= AudioSampleRate.GetHashCode();
       if (HasAudioChannels) hash ^= AudioChannels.GetHashCode();
       if (HasLoudnessDb) hash ^= pbc::ProtobufEqualityComparers.BitwiseSingleEqualityComparer.GetHashCode(LoudnessDb);
+      if (HasSignatureCipher) hash ^= SignatureCipher.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -1984,6 +2015,10 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(253, 2);
         output.WriteFloat(LoudnessDb);
       }
+      if (HasSignatureCipher) {
+        output.WriteRawTag(130, 3);
+        output.WriteString(SignatureCipher);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2090,6 +2125,10 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(253, 2);
         output.WriteFloat(LoudnessDb);
       }
+      if (HasSignatureCipher) {
+        output.WriteRawTag(130, 3);
+        output.WriteString(SignatureCipher);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2171,6 +2210,9 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (HasLoudnessDb) {
         size += 2 + 4;
+      }
+      if (HasSignatureCipher) {
+        size += 2 + pb::CodedOutputStream.ComputeStringSize(SignatureCipher);
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2267,6 +2309,9 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (other.HasLoudnessDb) {
         LoudnessDb = other.LoudnessDb;
+      }
+      if (other.HasSignatureCipher) {
+        SignatureCipher = other.SignatureCipher;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2391,6 +2436,10 @@ namespace InnerTube.Protobuf.Responses {
             LoudnessDb = input.ReadFloat();
             break;
           }
+          case 386: {
+            SignatureCipher = input.ReadString();
+            break;
+          }
         }
       }
     #endif
@@ -2512,6 +2561,10 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 381: {
             LoudnessDb = input.ReadFloat();
+            break;
+          }
+          case 386: {
+            SignatureCipher = input.ReadString();
             break;
           }
         }

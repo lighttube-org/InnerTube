@@ -63,6 +63,7 @@ message Format {
   optional int32 audioSampleRate = 45;
   optional int32 audioChannels = 46;
   optional float loudnessDb = 47;
+  optional string signatureCipher = 48;
 }
 
 message FormatColorInfo {

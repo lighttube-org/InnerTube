@@ -5,6 +5,7 @@ using InnerTube.Exceptions;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
+using Microsoft.ClearScript.Util.Web;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace InnerTube;
@@ -18,6 +19,7 @@ public class InnerTube
 	internal readonly MemoryCache PlayerCache;
 	internal readonly string ApiKey;
 	internal readonly InnerTubeAuthorization? Authorization;
+	internal readonly SignatureSolver SignatureSolver = new();
 
 	/// <summary>
 	/// Initializes a new instance of InnerTube client.
@@ -86,29 +88,39 @@ public class InnerTube
 	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
 		string language = "en", string region = "US")
 	{
+		if (!SignatureSolver.Initialized)
+			await SignatureSolver.LoadLatestJs(videoId);
 		string cacheId = $"{videoId}_({language}_{region})";
 
 		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
 		Task<PlayerResponse> webResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB);
-		Task<PlayerResponse> androidResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.ANDROID);
+			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.WEB);
+		//Task<PlayerResponse> androidResponse =
+		//	GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.ANDROID);
 		Task<PlayerResponse> iosResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS);
+			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.IOS);
 
 		PlayerResponse webPlayer = await webResponse;
-		PlayerResponse androidPlayer = await androidResponse;
+		//PlayerResponse androidPlayer = await androidResponse;
 		PlayerResponse iosPlayer = await iosResponse;
 
 		if (webPlayer.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
-			throw new PlayerException(androidPlayer.PlayabilityStatus.Status, androidPlayer.PlayabilityStatus.Reason,
-				androidPlayer.PlayabilityStatus.Subreason);
+			throw new PlayerException(webPlayer.PlayabilityStatus.Status, webPlayer.PlayabilityStatus.Reason,
+				webPlayer.PlayabilityStatus.Subreason);
 
-		webPlayer.StreamingData = androidPlayer.StreamingData;
+		//webPlayer.StreamingData = androidPlayer.StreamingData;
 		if (webPlayer.StreamingData != null && iosPlayer.StreamingData != null &&
 		    !webPlayer.StreamingData.HasHlsManifestUrl && iosPlayer.StreamingData.HasHlsManifestUrl)
 			webPlayer.StreamingData.HlsManifestUrl = iosPlayer.StreamingData.HlsManifestUrl;
+
+		if (webPlayer.StreamingData != null)
+		{
+			foreach (Format format in webPlayer.StreamingData.Formats) 
+				SignatureSolver.DescrambleUrl(format);
+			foreach (Format format in webPlayer.StreamingData.AdaptiveFormats) 
+				SignatureSolver.DescrambleUrl(format);
+		}
 
 		PlayerCache.Set(cacheId, webPlayer, new MemoryCacheEntryOptions
 		{
@@ -121,12 +133,7 @@ public class InnerTube
 		return webPlayer;
 	}
 
-	// instead of trying hours to find a protobuf compilation for
-	// the params to get endscreen, cards, storyboards and non 403'ing
-	// video data at the same time i decided to just do the request
-	// in all clients. if someone finds a protobuf string that returns
-	// all those on the ANDROID client pls pr <3
-	private async Task<PlayerResponse> GetPlayerObjectAsync(string videoId, bool contentCheckOk, string language,
+	private async Task<PlayerResponse> GetPlayerObjectAsync(string videoId, bool contentCheckOk, int? signatureTimestamp, string language,
 		string region, RequestClient client)
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
@@ -134,8 +141,17 @@ public class InnerTube
 			.AddValue("contentCheckOk", contentCheckOk)
 			.AddValue("racyCheckOk", contentCheckOk);
 
-		if (client == RequestClient.ANDROID)
-			postData.AddValue("params", "CgIQBg"); // also try adding 70:1 here to get movie trailers
+		if (client == RequestClient.WEB && signatureTimestamp != null)
+		{
+			postData.AddValue("playbackContext", new Dictionary<string, object>
+			{
+				["contentPlaybackContext"] = new Dictionary<string, object>
+				{
+					["signatureTimestamp"] = signatureTimestamp,
+					["html5Preference"] = "HTML5_PREF_WANTS"
+				}
+			});	
+		}
 
 		return PlayerResponse.Parser.ParseFrom(await MakeRequest(client, "player", postData,
 			language, region, true));
