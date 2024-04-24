@@ -498,6 +498,7 @@ message PlayerCaptionsTracklistRenderer {
     string language = 4;
     string kind = 5;
     bool isTranslatable = 7;
+    string trackName = 11;
   }
 
   message CaptionAudioTrack {
@@ -519,6 +520,7 @@ message PlayerCaptionsTracklistRenderer {
   repeated CaptionAudioTrack audioTracks = 2;
   repeated TranslationLanguage translationLanguages = 3;
   int32 defaultAudioTrackIndex = 4;
+  Endpoint openTranscriptCommand = 7;
 }
 
 message PlaylistPanelVideoRenderer {
