@@ -1,5 +1,8 @@
+using Google.Protobuf.Collections;
 using InnerTube.Models;
+using InnerTube.Protobuf;
 using InnerTube.Protobuf.Responses;
+using InnerTube.Renderers;
 
 namespace InnerTube;
 
@@ -19,5 +22,22 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		NextResponse next = await InnerTube.GetNextAsync(videoId, contentCheckOk, true, playlistId, playlistIndex,
 			playlistParams, language, region);
 		return new InnerTubeVideo(next);
+	}
+
+	public async Task<ContinuationResponse> ContinueVideoRecommendationsAsync(string continuationKey, string language,
+		string region)
+	{
+		NextResponse next = await InnerTube.ContinueNextAsync(continuationKey, language, region);
+		RepeatedField<RendererWrapper> allItems = next.OnResponseReceivedEndpoints[0].AppendContinuationItemsAction
+			.ContinuationItems;
+		IEnumerable<RendererWrapper> items = allItems.Where(x =>
+			x.RendererCase != RendererWrapper.RendererOneofCase.ContinuationItemRenderer);
+		ContinuationItemRenderer? continuation = allItems.LastOrDefault(x =>
+			x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)?.ContinuationItemRenderer;
+		return new ContinuationResponse
+		{
+			ContinuationToken = continuation?.ContinuationEndpoint.ContinuationCommand.Token,
+			Results = Utils.ConvertRenderers(items)
+		};
 	}
 }
