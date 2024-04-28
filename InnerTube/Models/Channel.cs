@@ -2,7 +2,7 @@ using InnerTube.Protobuf;
 
 namespace InnerTube.Models;
 
-public readonly struct Channel(
+public class Channel(
 	string id,
 	string title,
 	string? handle,

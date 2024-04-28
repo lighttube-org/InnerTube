@@ -5,7 +5,7 @@ using Range = InnerTube.Protobuf.Responses.Range;
 
 namespace InnerTube;
 
-public readonly struct InnerTubePlayer(PlayerResponse player)
+public class InnerTubePlayer(PlayerResponse player)
 {
 	public VideoDetails Details { get; } = new(player);
 
@@ -27,7 +27,7 @@ public readonly struct InnerTubePlayer(PlayerResponse player)
 	public string? HlsManifestUrl { get; } = player.StreamingData?.HlsManifestUrl; 
 	public string? DashManifestUrl { get; } = player.StreamingData?.DashManifestUrl; 
 
-	public readonly struct VideoDetails(PlayerResponse player)
+	public class VideoDetails(PlayerResponse player)
 	{
 		public string Id { get; } = player.VideoDetails!.VideoId;
 		public string Title { get; } = player.VideoDetails!.Title;
@@ -56,14 +56,14 @@ public readonly struct InnerTubePlayer(PlayerResponse player)
 			null);
 	}
 
-	public readonly struct VideoEndscreen(EndscreenRenderer endscreen)
+	public class VideoEndscreen(EndscreenRenderer endscreen)
 	{
 		public IEnumerable<EndscreenItem> Items { get; } =
 			endscreen.Elements.Select(x => new EndscreenItem(x.EndscreenElementRenderer));
 		public long StartMs { get; } = endscreen.StartMs;
 	}
 
-	public readonly struct VideoStoryboard(RendererWrapper wrapper, long videoDuration)
+	public class VideoStoryboard(RendererWrapper wrapper, long videoDuration)
 	{
 		public int RecommendedLevel { get; } = wrapper.RendererCase switch
 		{
@@ -81,7 +81,7 @@ public readonly struct InnerTubePlayer(PlayerResponse player)
 		};
 	}
 
-	public readonly struct VideoCaption(PlayerCaptionsTracklistRenderer.Types.Caption caption)
+	public class VideoCaption(PlayerCaptionsTracklistRenderer.Types.Caption caption)
 	{
 		public string VssId { get; } = caption.VssId;
 		public string LanguageCode { get; } = caption.Language;

@@ -47,8 +47,8 @@ public class SimpleInnerTubeClientTests
 		if (player.Endscreen == null) sb.AppendLine("<no endscreen>");
 		else
 		{
-			sb.AppendLine($"StartMs: {player.Endscreen!.Value.StartMs}");
-			foreach (EndscreenItem item in player.Endscreen!.Value.Items)
+			sb.AppendLine($"StartMs: {player.Endscreen.StartMs}");
+			foreach (EndscreenItem item in player.Endscreen.Items)
 			{
 				sb.AppendLine($"-> [{item.Type}] {item.Title}")
 					.AppendLine($"   {item.Metadata}")
@@ -60,8 +60,8 @@ public class SimpleInnerTubeClientTests
 		if (player.Storyboard == null) sb.AppendLine("<no storyboard>");
 		else
 		{
-			sb.AppendLine($"RecommendedLevel: {player.Storyboard!.Value.RecommendedLevel}");
-			foreach ((int level, Uri url) in player.Storyboard!.Value.Levels) 
+			sb.AppendLine($"RecommendedLevel: {player.Storyboard.RecommendedLevel}");
+			foreach ((int level, Uri url) in player.Storyboard.Levels) 
 				sb.AppendLine($"-> [{level}] {url}");
 		}
 

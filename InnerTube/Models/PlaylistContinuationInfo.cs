@@ -1,6 +1,6 @@
 namespace InnerTube;
 
-public readonly struct PlaylistContinuationInfo(string internalPlaylistId, string playlistId, int continueFrom)
+public class PlaylistContinuationInfo(string internalPlaylistId, string playlistId, int continueFrom)
 {
 	public string InternalPlaylistId { get; } = internalPlaylistId;
 	public string PlaylistId { get; } = playlistId;
