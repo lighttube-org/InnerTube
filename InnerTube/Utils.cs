@@ -1,10 +1,13 @@
 ﻿using System.Collections.Specialized;
 using System.Globalization;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using System.Web;
 using Google.Protobuf;
 using InnerTube.Formatters;
+using InnerTube.Models;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
 using InnerTube.Renderers;
@@ -699,13 +702,128 @@ public static class Utils
 					ProtobufBytes = renderer.ToByteArray()
 				}
 			},
+			RendererWrapper.RendererOneofCase.VideoRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "videoRenderer",
+				Data = new VideoRendererData
+				{
+					Id = renderer.VideoRenderer.VideoId,
+					Title = ReadRuns(renderer.VideoRenderer.Title),
+					Thumbnails = renderer.VideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Author = Channel.From(renderer.VideoRenderer.OwnerText,
+						renderer.VideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
+					Duration = ParseDuration(renderer.VideoRenderer.LengthText?.SimpleText ?? "00:00"),
+					PublishedText = ReadRuns(renderer.VideoRenderer.PublishedTimeText),
+					ViewCountText = ReadRuns(renderer.VideoRenderer.ViewCountText),
+					Badges = renderer.VideoRenderer.Badges.Select(x => x.MetadataBadgeRenderer).ToArray(),
+					Description = ReadRuns(renderer.VideoRenderer.DetailedMetadataSnippets?.SnippetText)
+				}
+			},
+			RendererWrapper.RendererOneofCase.PlaylistVideoRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "playlistVideoRenderer",
+				Data = new VideoRendererData
+				{
+					Id = renderer.PlaylistVideoRenderer.VideoId,
+					Title = ReadRuns(renderer.PlaylistVideoRenderer.Title),
+					Thumbnails = renderer.PlaylistVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Author = Channel.From(renderer.PlaylistVideoRenderer.ShortBylineText),
+					Duration = ParseDuration(renderer.PlaylistVideoRenderer.LengthText?.SimpleText ?? "00:00"),
+					PublishedText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text
+						: "",
+					ViewCountText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text
+						: "",
+					Badges = [],
+					Description = null
+				}
+				
+			},
+			RendererWrapper.RendererOneofCase.CompactVideoRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "compactVideoRenderer",
+				Data = new VideoRendererData
+				{
+					Id = renderer.CompactVideoRenderer.VideoId,
+					Title = ReadRuns(renderer.CompactVideoRenderer.Text),
+					Thumbnails = renderer.CompactVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Author = Channel.From(renderer.CompactVideoRenderer.LongBylineText,
+						renderer.CompactVideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
+					Duration = ParseDuration(renderer.CompactVideoRenderer.LengthText?.SimpleText ?? "00:00"),
+					PublishedText = ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText),
+					ViewCountText = ReadRuns(renderer.CompactVideoRenderer.ViewCountText),
+					Badges = renderer.CompactVideoRenderer.Badges.Select(x => x.MetadataBadgeRenderer).ToArray(),
+					Description = null
+				}
+			},
+			RendererWrapper.RendererOneofCase.GridVideoRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "gridVideoRenderer",
+				Data = new VideoRendererData
+				{
+					Id = renderer.GridVideoRenderer.VideoId,
+					Title = ReadRuns(renderer.GridVideoRenderer.Title),
+					Thumbnails = renderer.GridVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Author = Channel.From(renderer.GridVideoRenderer.ShortBylineText,
+						renderer.GridVideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
+					Duration = ParseDuration(ReadRuns(renderer.GridVideoRenderer.ThumbnailOverlays
+						.FirstOrDefault(x =>
+							x.RendererCase == RendererWrapper.RendererOneofCase.ThumbnailOverlayTimeStatusRenderer)
+						?.ThumbnailOverlayTimeStatusRenderer.Text)),
+					PublishedText = ReadRuns(renderer.GridVideoRenderer.PublishedTimeText),
+					ViewCountText = ReadRuns(renderer.GridVideoRenderer.ViewCountText),
+					Badges = renderer.GridVideoRenderer.Badges.Select(x => x.MetadataBadgeRenderer).ToArray(),
+					Description = null
+				}
+			},
+			RendererWrapper.RendererOneofCase.ChannelVideoPlayerRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "channelVideoPlayerRenderer",
+				Data = new VideoRendererData
+				{
+					Id = renderer.ChannelVideoPlayerRenderer.VideoId,
+					Title = ReadRuns(renderer.ChannelVideoPlayerRenderer.Title),
+					Duration = TimeSpan.Zero,
+					PublishedText = ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText),
+					ViewCountText = ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText),
+					Badges = [],
+					Description = ReadRuns(renderer.ChannelVideoPlayerRenderer.Description)
+				}
+			},
+			RendererWrapper.RendererOneofCase.CompactMovieRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "compactMovieRenderer",
+				Data = new VideoRendererData
+				{
+					Id = renderer.CompactMovieRenderer.VideoId,
+					Title = ReadRuns(renderer.CompactMovieRenderer.Title),
+					Thumbnails = renderer.CompactMovieRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Author = Channel.From(renderer.CompactMovieRenderer.ShortBylineText),
+					Duration = ParseDuration(renderer.CompactMovieRenderer.LengthText?.SimpleText ?? "00:00"),
+					PublishedText = "",
+					ViewCountText = "",
+					Badges = renderer.CompactMovieRenderer.Badges.Select(x => x.MetadataBadgeRenderer)
+						.ToArray(),
+					Description = ReadRuns(renderer.CompactMovieRenderer.TopMetadataItems)
+				}
+			},
 			_ => new RendererContainer
 			{
 				Type = "unknown",
 				OriginalType = renderer.GetType().Name,
 				Data = new UnknownRendererData
 				{
-					Json = JsonSerializer.Serialize(renderer)
+					Json = JsonSerializer.Serialize(renderer, new JsonSerializerOptions
+					{
+						DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+					})
 				}
 			}
 		};

@@ -138,14 +138,16 @@ public class SimpleInnerTubeClientTests
 			sb.AppendLine("IsCourse: " + next.Playlist.IsCourse);
 			sb.AppendLine("IsInfinite: " + next.Playlist.IsInfinite);
 			foreach (RendererContainer renderer in next.Playlist.Videos)
-				sb.AppendLine($"-> [{renderer.GetType().Name}] " + string.Join("\n\t",renderer.Data.ToString()));
+				sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+				              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
 		}
 		else
 			sb.AppendLine("No playlist available");
 
 		sb.AppendLine("\n== RECOMMENDED");
 		foreach (RendererContainer renderer in next.Recommended)
-			sb.AppendLine($"-> [{renderer.GetType().Name}] " + string.Join("\n\t",renderer.Data.ToString()));
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
 
 		Assert.Pass(sb.ToString());
 	}

@@ -53,6 +53,7 @@ public class InnerTubePlayer(PlayerResponse player)
 			player.VideoDetails!.Author,
 			"@" + player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl.Split('@')[1],
 			null,
+			null,
 			null);
 	}
 
