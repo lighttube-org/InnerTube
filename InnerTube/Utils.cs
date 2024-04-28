@@ -768,6 +768,15 @@ public static partial class Utils
 					Description = ReadRuns(renderer.CompactMovieRenderer.TopMetadataItems)
 				}
 			},
+			RendererWrapper.RendererOneofCase.ContinuationItemRenderer => new RendererContainer
+			{
+				Type = "continuation",
+				OriginalType = "continuationItemRenderer",
+				Data = new ContinuationRenderer
+				{
+					ContinuationToken = renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token
+				}
+			},
 			_ => new RendererContainer
 			{
 				Type = "unknown",
