@@ -11,10 +11,6 @@ using InnerTube.Models;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
 using InnerTube.Renderers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using JsonConverter = System.Text.Json.Serialization.JsonConverter;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace InnerTube;
 
@@ -22,27 +18,6 @@ public static class Utils
 {
 	public static IFormatter Formatter = new HtmlFormatter();
 	private static readonly Regex NotDigitsRegex = new(@"\D");
-
-	public static T? GetFromJsonPath<T>(this JToken json, string jsonPath)
-	{
-		try
-		{
-			string[] properties = jsonPath.Split(".");
-			JToken? current = json;
-			foreach (string key in properties)
-			{
-				Match match = Regex.Match(key, @"\[([0-9]*)\]");
-				current = match.Success ? current[key.Split("[")[0]]?[int.Parse(match.Groups[1].Value)] : current[key];
-				if (current is null) break;
-			}
-
-			return current is null ? default : current.ToObject<T>();
-		}
-		catch
-		{
-			return default;
-		}
-	}
 
 	public static string ReadRuns(Text? text, bool includeFormatting = false)
 	{
