@@ -243,55 +243,16 @@ public static class Utils
 						url += "&t=" + run.Command.InnertubeCommand.WatchEndpoint.StartTimeSeconds;
 					replacement = Formatter.FormatUrl(replacement, url);
 					break;
+				
+				case Endpoint.EndpointTypeOneofCase.BrowseEndpoint:
+					replacement = Formatter.FormatUrl(replacement,
+						run.Command.InnertubeCommand.BrowseEndpoint.CanonicalBaseUrl);
+					break;
 			}
 
 			text = text
 				.Remove(run.StartIndex, run.Length)
 				.Insert(run.StartIndex, replacement);
-		}
-
-		return Formatter.HandleLineBreaks(text);
-	}
-
-	public static string? ReadAttributedText(JObject attributedText, bool includeFormatting = false)
-	{
-		if (!attributedText.ContainsKey("content")) return null;
-
-		string text = attributedText["content"]?.ToString() ?? "";
-
-		if (!includeFormatting) return text;
-		if (!attributedText.ContainsKey("commandRuns")) return text;
-
-		foreach (JToken run in (attributedText["commandRuns"]?.ToObject<JArray>() ?? new JArray()).Reverse())
-		{
-			int startIndex = run["startIndex"]?.ToObject<int>() ?? 0;
-			int length = run["length"]?.ToObject<int>() ?? 0;
-			string replacement = text.Substring(startIndex, length);
-			JObject command = run.GetFromJsonPath<JObject>("onTap.innertubeCommand") ?? new JObject();
-
-			if (command.ContainsKey("urlEndpoint"))
-			{
-				string url = UnwrapRedirectUrl(command.GetFromJsonPath<string>("urlEndpoint.url") ?? "");
-				replacement = Formatter.FormatUrl(replacement, url);
-			}
-
-			if (command.ContainsKey("watchEndpoint"))
-			{
-				string url = $"https://youtube.com/watch?v={command.GetFromJsonPath<string>("watchEndpoint.videoId")}";
-				if (command.GetFromJsonPath<bool>("watchEndpoint.continuePlayback"))
-					url += $"&t={command.GetFromJsonPath<int>("watchEndpoint.startTimeSeconds")}";
-				replacement = Formatter.FormatUrl(replacement, url);
-			}
-
-			if (command.ContainsKey("browseEndpoint"))
-			{
-				string url = $"https://youtube.com{command.GetFromJsonPath<string>("browseEndpoint.canonicalBaseUrl")}";
-				replacement = Formatter.FormatUrl(replacement, url);
-			}
-
-			text = text
-				.Remove(startIndex, length)
-				.Insert(startIndex, replacement);
 		}
 
 		return Formatter.HandleLineBreaks(text);
