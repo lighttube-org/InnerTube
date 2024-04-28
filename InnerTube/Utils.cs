@@ -7,7 +7,11 @@ using Google.Protobuf;
 using InnerTube.Formatters;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
+using InnerTube.Renderers;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using JsonConverter = System.Text.Json.Serialization.JsonConverter;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace InnerTube;
 
@@ -41,112 +45,56 @@ public static class Utils
 	{
 		if (text == null) return "";
 
-		if (text.HasSimpleText) return text.SimpleText;
+		if (text.HasSimpleText) return Formatter.HandleLineBreaks(text.SimpleText);
 
 		// TODO: check for .label
+		/*
+			if (richText.ContainsKey("label"))
+				return richText["label"]!.ToString();
+		 */
 
-		if (text.Runs.Count > 0)
+		if (text.Runs.Count <= 0) return text.ToString();
+		
+		string str = "";
+		foreach (Text.Types.Run run in text.Runs)
 		{
-			string str = "";
-
-			foreach (Text.Types.Run run in text.Runs)
+			if (!includeFormatting)
 			{
-				if (!includeFormatting)
-				{
-					str += run.Text;
-					continue;
-				}
-
-				string currentString = Formatter.Sanitize(run.Text);
-				if (run.Bold)
-					currentString = Formatter.FormatBold(currentString);
-
-				if (run.NavigationEndpoint != null)
-				{
-					switch (run.NavigationEndpoint.EndpointTypeCase)
-					{
-						case Endpoint.EndpointTypeOneofCase.UrlEndpoint:
-							currentString = Formatter.FormatUrl(currentString,
-								UnwrapRedirectUrl(run.NavigationEndpoint.UrlEndpoint.Url));
-							break;
-						case Endpoint.EndpointTypeOneofCase.WatchEndpoint:
-							string url = "https://youtube.com/watch?v=" + run.NavigationEndpoint.WatchEndpoint.VideoId;
-							if (run.NavigationEndpoint.WatchEndpoint.HasPlaylistId)
-								url += "&list=" + run.NavigationEndpoint.WatchEndpoint.PlaylistId;
-							if (run.NavigationEndpoint.WatchEndpoint.HasPlayerParams)
-								url += "&pp=" + run.NavigationEndpoint.WatchEndpoint.PlayerParams;
-							if (run.NavigationEndpoint.WatchEndpoint.HasStartTimeSeconds)
-								url += "&t=" + run.NavigationEndpoint.WatchEndpoint.StartTimeSeconds;
-							currentString = Formatter.FormatUrl(currentString, url);
-							break;
-					}
-				}
-				
-				str += currentString;
+				str += run.Text;
+				continue;
 			}
 
-			return str;
-		}
+			string currentString = Formatter.Sanitize(run.Text);
+			if (run.Bold)
+				currentString = Formatter.FormatBold(currentString);
 
-		return text.ToString();
-	}
-
-	public static string ReadText(JObject? richText, bool includeFormatting = false)
-	{
-		if (richText is null)
-			return "";
-
-		if (richText.ContainsKey("simpleText"))
-			return richText["simpleText"]!.ToString();
-
-		if (richText.ContainsKey("label"))
-			return richText["label"]!.ToString();
-
-		if (richText.ContainsKey("runs"))
-		{
-			JArray runs = richText["runs"]!.ToObject<JArray>()!;
-			string str = "";
-			foreach (JToken runToken in runs)
+			if (run.NavigationEndpoint != null)
 			{
-				JObject run = (JObject)runToken;
-
-				if (!includeFormatting)
+				switch (run.NavigationEndpoint.EndpointTypeCase)
 				{
-					str += run["text"];
-					continue;
-				}
-
-				string currentString = Formatter.Sanitize(run["text"]!.ToString());
-
-				if (run.ContainsKey("bold"))
-					currentString = Formatter.FormatBold(currentString);
-				else if (run.ContainsKey("bold"))
-					currentString = Formatter.FormatItalics(currentString);
-				else if (run.ContainsKey("navigationEndpoint"))
-				{
-					if (run["navigationEndpoint"]?["urlEndpoint"] is not null)
-					{
-						string url = run["navigationEndpoint"]?["urlEndpoint"]?["url"]?.ToString() ?? "";
-
-						currentString = Formatter.FormatUrl(currentString, UnwrapRedirectUrl(url));
-					}
-					else if (run["navigationEndpoint"]?["commandMetadata"] is not null)
-					{
-						string url = run["navigationEndpoint"]?["commandMetadata"]?["webCommandMetadata"]?["url"]
-							?.ToString() ?? "";
-						if (url.StartsWith('/'))
-							url = "https://youtube.com" + url;
+					case Endpoint.EndpointTypeOneofCase.UrlEndpoint:
+						string? target = UnwrapRedirectUrl(run.NavigationEndpoint.UrlEndpoint.Url);
+						if (target != null)
+							currentString = Formatter.FormatUrl(currentString, target);
+						break;
+					case Endpoint.EndpointTypeOneofCase.WatchEndpoint:
+						string url = "https://youtube.com/watch?v=" + run.NavigationEndpoint.WatchEndpoint.VideoId;
+						if (run.NavigationEndpoint.WatchEndpoint.HasPlaylistId)
+							url += "&list=" + run.NavigationEndpoint.WatchEndpoint.PlaylistId;
+						if (run.NavigationEndpoint.WatchEndpoint.HasPlayerParams)
+							url += "&pp=" + run.NavigationEndpoint.WatchEndpoint.PlayerParams;
+						if (run.NavigationEndpoint.WatchEndpoint.HasStartTimeSeconds)
+							url += "&t=" + run.NavigationEndpoint.WatchEndpoint.StartTimeSeconds;
 						currentString = Formatter.FormatUrl(currentString, url);
-					}
+						break;
 				}
-
-				str += currentString;
 			}
-
-			return Formatter.HandleLineBreaks(str);
+				
+			str += currentString;
 		}
 
-		return "";
+		return Formatter.HandleLineBreaks(str);
+
 	}
 
 	public static string? UnwrapRedirectUrl(string url)
@@ -269,12 +217,12 @@ public static class Utils
 		string text = attributedDescription.Content ?? "";
 
 		if (!includeFormatting) return text;
-		if (attributedDescription.CommandRuns.Count == 0) return text;
+		if (attributedDescription.CommandRuns.Count == 0) return Formatter.HandleLineBreaks(text);
 
 		foreach (AttributedDescription.Types.CommandRun run in attributedDescription
 			         .CommandRuns.Reverse())
 		{
-			string replacement = text.Substring(run.StartIndex, run.Length);
+			string replacement = Formatter.Sanitize(text.Substring(run.StartIndex, run.Length));
 			switch (run.Command.InnertubeCommand.EndpointTypeCase)
 			{
 				case Endpoint.EndpointTypeOneofCase.UrlEndpoint:
@@ -733,5 +681,33 @@ public static class Utils
 			default:
 				return $"[Unknown RendererCase={renderer.RendererCase}]";
 		}
+	}
+
+	public static RendererContainer[] ConvertRenderers(IEnumerable<RendererWrapper>? renderers) =>
+		renderers?.Select(ConvertRenderer).ToArray() ?? [];
+
+	public static RendererContainer ConvertRenderer(RendererWrapper renderer)
+	{
+		return renderer.RendererCase switch
+		{
+			RendererWrapper.RendererOneofCase.None => new RendererContainer
+			{
+				Type = "unknown",
+				OriginalType = "UnknownProtobufRenderer",
+				Data = new UnknownRendererData
+				{
+					ProtobufBytes = renderer.ToByteArray()
+				}
+			},
+			_ => new RendererContainer
+			{
+				Type = "unknown",
+				OriginalType = renderer.GetType().Name,
+				Data = new UnknownRendererData
+				{
+					Json = JsonSerializer.Serialize(renderer)
+				}
+			}
+		};
 	}
 }
