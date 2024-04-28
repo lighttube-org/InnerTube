@@ -14,10 +14,10 @@ using InnerTube.Renderers;
 
 namespace InnerTube;
 
-public static class Utils
+public static partial class Utils
 {
 	public static IFormatter Formatter = new HtmlFormatter();
-	private static readonly Regex NotDigitsRegex = new(@"\D");
+	private static readonly Regex NotDigitsRegex = GeneratedNotDigitsRegex();
 
 	public static string ReadRuns(Text? text, bool includeFormatting = false)
 	{
@@ -782,4 +782,7 @@ public static class Utils
 			}
 		};
 	}
+
+    [GeneratedRegex(@"\D")]
+    private static partial Regex GeneratedNotDigitsRegex();
 }
