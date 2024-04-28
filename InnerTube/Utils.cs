@@ -685,7 +685,7 @@ public static class Utils
 			{
 				Type = "video",
 				OriginalType = "playlistVideoRenderer",
-				Data = new VideoRendererData
+				Data = new PlaylistVideoRendererData
 				{
 					Id = renderer.PlaylistVideoRenderer.VideoId,
 					Title = ReadRuns(renderer.PlaylistVideoRenderer.Title),
@@ -699,9 +699,27 @@ public static class Utils
 						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text
 						: "",
 					Badges = [],
-					Description = null
+					Description = null,
+					VideoIndexText = ReadRuns(renderer.PlaylistVideoRenderer.Index)
 				}
-				
+			},
+			RendererWrapper.RendererOneofCase.PlaylistPanelVideoRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "playlistPanelVideoRenderer",
+				Data = new PlaylistVideoRendererData
+				{
+					Id = renderer.PlaylistPanelVideoRenderer.VideoId,
+					Title = ReadRuns(renderer.PlaylistPanelVideoRenderer.Title),
+					Thumbnails = renderer.PlaylistPanelVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Author = Channel.From(renderer.PlaylistPanelVideoRenderer.ShortBylineText),
+					Duration = ParseDuration(renderer.PlaylistPanelVideoRenderer.LengthText?.SimpleText ?? "00:00"),
+					PublishedText = "",
+					ViewCountText = "",
+					Badges = [],
+					Description = null,
+					VideoIndexText = ReadRuns(renderer.PlaylistPanelVideoRenderer.IndexText)
+				}
 			},
 			RendererWrapper.RendererOneofCase.CompactVideoRenderer => new RendererContainer
 			{
