@@ -75,8 +75,10 @@ public class InnerTubePlayer(PlayerResponse player)
 		{
 			RendererWrapper.RendererOneofCase.PlayerStoryboardSpecRenderer => Utils.ParseStoryboardSpec(wrapper
 				.PlayerStoryboardSpecRenderer.Spec, videoDuration),
-			RendererWrapper.RendererOneofCase.PlayerLiveStoryboardSpecRenderer => Utils.ParseStoryboardSpec(wrapper
-				.PlayerLiveStoryboardSpecRenderer.Spec, videoDuration),
+			RendererWrapper.RendererOneofCase.PlayerLiveStoryboardSpecRenderer => new Dictionary<int, Uri>
+			{
+				[0] = Utils.ParseLiveStoryboardSpec(wrapper.PlayerLiveStoryboardSpecRenderer.Spec)!
+			},
 			_ => new Dictionary<int, Uri>()
 		};
 	}
