@@ -1,6 +1,8 @@
+using Google.Protobuf;
 using Google.Protobuf.Collections;
 using InnerTube.Models;
 using InnerTube.Protobuf;
+using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
 using InnerTube.Renderers;
 
@@ -38,6 +40,45 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		{
 			ContinuationToken = continuation?.ContinuationEndpoint.ContinuationCommand.Token,
 			Results = Utils.ConvertRenderers(items)
+		};
+	}
+
+	// doesn't take language/region because comments don't have anything to localize server side
+	public async Task<ContinuationResponse> GetVideoCommentsAsync(string videoId,
+		CommentsContext.Types.SortOrder sortOrder) =>
+		await ContinueVideoCommentsAsync(Utils.PackCommentsContinuation(videoId, sortOrder));
+
+	public async Task<ContinuationResponse> ContinueVideoCommentsAsync(string continuationToken)
+	{
+		NextResponse next = await InnerTube.ContinueNextAsync(continuationToken);
+		RepeatedField<RendererWrapper>? continuationItems =
+			next.OnResponseReceivedEndpoints.LastOrDefault()?.ReloadContinuationItemsCommand?.ContinuationItems ?? 
+			next.OnResponseReceivedEndpoints.LastOrDefault()?.AppendContinuationItemsAction?.ContinuationItems;
+		Dictionary<string, Payload> mutations =
+			next.FrameworkUpdates.EntityBatchUpdate.Mutations.ToDictionary(x => x.EntityKey, x => x.Payload);
+		if (continuationItems == null) return new ContinuationResponse
+		{
+			ContinuationToken = null,
+			Results = []
+		};
+		return new ContinuationResponse
+		{
+			ContinuationToken = continuationItems
+				.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+				?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
+			Results = continuationItems
+				.Where(x => x.RendererCase == RendererWrapper.RendererOneofCase.CommentThreadRenderer)
+				.Select(x => new RendererContainer
+				{
+					Type = "comment",
+					OriginalType = "commentThreadRenderer",
+					Data = new CommentRendererData(
+						x.CommentThreadRenderer,
+						mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.CommentKey]
+							.CommentEntityPayload,
+						mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.ToolbarStateKey]
+							.EngagementToolbarStateEntityPayload)
+				}).ToArray()
 		};
 	}
 }

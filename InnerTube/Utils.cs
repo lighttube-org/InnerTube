@@ -772,7 +772,7 @@ public static partial class Utils
 			{
 				Type = "continuation",
 				OriginalType = "continuationItemRenderer",
-				Data = new ContinuationRenderer
+				Data = new ContinuationRendererData
 				{
 					ContinuationToken = renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token
 				}

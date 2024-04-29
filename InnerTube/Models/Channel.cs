@@ -6,14 +6,14 @@ public class Channel(
 	string id,
 	string title,
 	string? handle,
-	Thumbnails? avatar,
+	Thumbnail[] avatar,
 	string? subscribersText,
 	MetadataBadgeRenderer[]? badges)
 {
 	public string Id { get; } = id;
 	public string Title { get; } = title;
 	public string? Handle { get; } = handle;
-	public Thumbnail[]? Avatar { get; } = avatar?.Thumbnails_.ToArray();
+	public Thumbnail[]? Avatar { get; } = avatar;
 	public string? SubscribersText { get; } = subscribersText;
 	public MetadataBadgeRenderer[]? Badges { get; } = badges;
 
@@ -35,7 +35,7 @@ public class Channel(
 		new(id: videoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.BrowseId,
 			title: Utils.ReadRuns(videoOwnerRenderer.Title),
 			handle: TryGetHandle(videoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.CanonicalBaseUrl),
-			avatar: videoOwnerRenderer.Thumbnail,
+			avatar: videoOwnerRenderer.Thumbnail.Thumbnails_.ToArray(),
 			subscribersText: Utils.ReadRuns(videoOwnerRenderer.SubscriberCountText),
 			badges: badges);
 
@@ -55,6 +55,21 @@ public class Channel(
 			return null;
 		}
 	}
+
+	public static Channel From(CommentEntityPayload.Types.CommentAuthor commentAuthor) =>
+		new(id: commentAuthor.ChannelId,
+			title: commentAuthor.DisplayName,
+			handle: TryGetHandle(commentAuthor.ChannelCommand.InnertubeCommand.BrowseEndpoint.CanonicalBaseUrl),
+			avatar: [
+				new Thumbnail
+				{
+					Url = commentAuthor.AvatarThumbnailUrl,
+					Width = 88,
+					Height = 88
+				}
+			],
+			subscribersText: null,
+			badges: null); // TODO: badges
 
 	private static string? TryGetHandle(string url)
 	{

@@ -1,5 +1,6 @@
 using System.Text;
 using InnerTube.Models;
+using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
 using InnerTube.Renderers;
 
@@ -165,6 +166,41 @@ public class SimpleInnerTubeClientTests
 		foreach (RendererContainer renderer in continuationResponse.Results)
 			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
 			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+
+		Assert.Pass(sb.ToString());
+	}
+	
+	[TestCase("BaW_jenozKc", TestName = "Regular video comments")]
+	[TestCase("5UCz9i2K9gY", TestName = "Has unescaped HTML tags")]
+	[TestCase("quI6g4HpePc", TestName = "Contains pinned & hearted comments")]
+	[TestCase("kYwB-kZyNU4", TestName = "Contains authors with badges")]
+	public async Task GetVideoCommentsAsync(string token)
+	{
+		ContinuationResponse continuationResponse = await client.GetVideoCommentsAsync(token, CommentsContext.Types.SortOrder.TopComments);
+		
+		StringBuilder sb = new();
+		sb.AppendLine("== ITEMS");
+		foreach (RendererContainer renderer in continuationResponse.Results)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+		sb.AppendLine("\nContinuation: " + (continuationResponse.ContinuationToken ?? "<null>"));
+
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase(
+		"Eg0SC0JhV19qZW5vektjGAYy1QIKqwJnZXRfcmFua2VkX3N0cmVhbXMtLUNxY0JDSUFFRlJlMzBUZ2FuQUVLbHdFSTJGOFFnQVFZQnlLTUFmdXlxRzg0ZWRpMVFNazF5ZUNyWTBvVVJNTmpRQXNVQjBJb1ZwUEpGQjA3UEM4alFCMFI0amxvUWhNckkwdXRDZWFOVDkySlZqRm1hS2w5U29UUmNvS3ZySWVfTlMtN0M4b2d2OTJqY0ZpV1A0T1FqX2dXd2pMSzAzWW9uRnJTaUxPTUhEQUI5UVNDRGt3WDZlZTRZc2g4ZjM4VmtadWVjakV2aGdvT3NkRUVacDZHOFVKRmFRWHd6eDRFRUJRU0JRaW9JQmdBRWdVSWlDQVlBQklGQ0ljZ0dBQVNCUWlKSUJnQUVnY0loU0FRRkJnQkdBQSIRIgtCYVdfamVub3pLYzAAeAEoFEIQY29tbWVudHMtc2VjdGlvbg%3D%3D",
+		TestName = "Regular video comment continuation")]
+	public async Task ContinueVideoCommentsAsync(string continuationToken)
+	{
+		ContinuationResponse continuationResponse = await client.ContinueVideoCommentsAsync(continuationToken);
+		
+		StringBuilder sb = new();
+		sb.AppendLine("== ITEMS");
+		foreach (RendererContainer renderer in continuationResponse.Results)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+		sb.AppendLine("\nContinuation: " + (continuationResponse.ContinuationToken ?? "<null>"));
 
 		Assert.Pass(sb.ToString());
 	}

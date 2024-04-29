@@ -1,6 +1,6 @@
 namespace InnerTube.Renderers;
 
-public class ContinuationRenderer : IRendererData
+public class ContinuationRendererData : IRendererData
 {
 	public string ContinuationToken { get; set; }
 
