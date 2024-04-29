@@ -31,7 +31,6 @@ public class PlayerTests
 	public async Task GetPlayer(string videoId, bool contentCheckOk)
 	{
 		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk);
-		await File.WriteAllBytesAsync($"/home/kuylar/Projects/DotNet/InnerTube/Protobuf/player_{videoId}.bin", player.ToByteArray());
 		StringBuilder sb = new();
 
 		sb.AppendLine("== DETAILS")

@@ -192,8 +192,6 @@ public class BrowseTests
 	public async Task Browse(string browseId)
 	{
 		BrowseResponse browse = await _innerTube.BrowseAsync(browseId);
-
-	   //await File.WriteAllBytesAsync($"/home/kuylar/Projects/DotNet/InnerTube/Protobuf/{browseId}.bin", browse.ToByteArray());
 		
 		Assert.Pass(JsonSerializer.Serialize(browse, new JsonSerializerOptions
 		{

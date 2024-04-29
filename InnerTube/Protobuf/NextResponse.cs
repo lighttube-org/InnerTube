@@ -35,14 +35,15 @@ namespace InnerTube.Protobuf.Responses {
             "ZXdvcmtVcGRhdGVzGIkGIAEoCzIuLklubmVyVHViZS5Qcm90b2J1Zi5SZXNw",
             "b25zZXMuRnJhbWV3b3JrVXBkYXRlcyJeChBGcmFtZXdvcmtVcGRhdGVzEkoK",
             "EWVudGl0eUJhdGNoVXBkYXRlGAEgASgLMi8uSW5uZXJUdWJlLlByb3RvYnVm",
-            "LlJlc3BvbnNlcy5FbnRpdHlCYXRjaFVwZGF0ZSITChFFbnRpdHlCYXRjaFVw",
-            "ZGF0ZWIGcHJvdG8z"));
+            "LlJlc3BvbnNlcy5FbnRpdHlCYXRjaFVwZGF0ZSJYChFFbnRpdHlCYXRjaFVw",
+            "ZGF0ZRJDCgltdXRhdGlvbnMYASADKAsyMC5Jbm5lclR1YmUuUHJvdG9idWYu",
+            "RW50aXR5VXBkYXRlQ29tbWFuZC5NdXRhdGlvbmIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.NextResponse), global::InnerTube.Protobuf.Responses.NextResponse.Parser, new[]{ "Contents", "CurrentVideoEndpoint", "TrackingParams", "OnResponseReceivedEndpoints", "EngagementPanels", "FrameworkUpdates" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.FrameworkUpdates), global::InnerTube.Protobuf.Responses.FrameworkUpdates.Parser, new[]{ "EntityBatchUpdate" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.EntityBatchUpdate), global::InnerTube.Protobuf.Responses.EntityBatchUpdate.Parser, null, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.EntityBatchUpdate), global::InnerTube.Protobuf.Responses.EntityBatchUpdate.Parser, new[]{ "Mutations" }, null, null, null, null)
           }));
     }
     #endregion
@@ -663,6 +664,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public EntityBatchUpdate(EntityBatchUpdate other) : this() {
+      mutations_ = other.mutations_.Clone();
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -670,6 +672,17 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public EntityBatchUpdate Clone() {
       return new EntityBatchUpdate(this);
+    }
+
+    /// <summary>Field number for the "mutations" field.</summary>
+    public const int MutationsFieldNumber = 1;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.EntityUpdateCommand.Types.Mutation> _repeated_mutations_codec
+        = pb::FieldCodec.ForMessage(10, global::InnerTube.Protobuf.EntityUpdateCommand.Types.Mutation.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.EntityUpdateCommand.Types.Mutation> mutations_ = new pbc::RepeatedField<global::InnerTube.Protobuf.EntityUpdateCommand.Types.Mutation>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.EntityUpdateCommand.Types.Mutation> Mutations {
+      get { return mutations_; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -687,6 +700,7 @@ namespace InnerTube.Protobuf.Responses {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if(!mutations_.Equals(other.mutations_)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -694,6 +708,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      hash ^= mutations_.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -712,6 +727,7 @@ namespace InnerTube.Protobuf.Responses {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      mutations_.WriteTo(output, _repeated_mutations_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -722,6 +738,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      mutations_.WriteTo(ref output, _repeated_mutations_codec);
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -732,6 +749,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      size += mutations_.CalculateSize(_repeated_mutations_codec);
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
       }
@@ -744,6 +762,7 @@ namespace InnerTube.Protobuf.Responses {
       if (other == null) {
         return;
       }
+      mutations_.Add(other.mutations_);
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
 
@@ -759,6 +778,10 @@ namespace InnerTube.Protobuf.Responses {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 10: {
+            mutations_.AddEntriesFrom(input, _repeated_mutations_codec);
+            break;
+          }
         }
       }
     #endif
@@ -774,6 +797,10 @@ namespace InnerTube.Protobuf.Responses {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 10: {
+            mutations_.AddEntriesFrom(ref input, _repeated_mutations_codec);
+            break;
+          }
         }
       }
     }

@@ -18,5 +18,5 @@ message FrameworkUpdates {
 }
 
 message EntityBatchUpdate {
-  
+  repeated EntityUpdateCommand.Mutation mutations = 1;
 }
