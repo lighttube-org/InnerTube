@@ -51,34 +51,60 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 	public async Task<ContinuationResponse> ContinueVideoCommentsAsync(string continuationToken)
 	{
 		NextResponse next = await InnerTube.ContinueNextAsync(continuationToken);
-		RepeatedField<RendererWrapper>? continuationItems =
-			next.OnResponseReceivedEndpoints.LastOrDefault()?.ReloadContinuationItemsCommand?.ContinuationItems ?? 
-			next.OnResponseReceivedEndpoints.LastOrDefault()?.AppendContinuationItemsAction?.ContinuationItems;
-		Dictionary<string, Payload> mutations =
-			next.FrameworkUpdates.EntityBatchUpdate.Mutations.ToDictionary(x => x.EntityKey, x => x.Payload);
+		File.WriteAllBytes("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/comments.bin", next.ToByteArray());
+		RendererWrapper[]? continuationItems =
+			(next.OnResponseReceivedEndpoints.LastOrDefault()?.ReloadContinuationItemsCommand?.ContinuationItems ??
+			 next.OnResponseReceivedEndpoints.LastOrDefault()?.AppendContinuationItemsAction?.ContinuationItems)?
+			.Where(x => x.RendererCase is RendererWrapper.RendererOneofCase.CommentThreadRenderer
+				or RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+			.ToArray();
 		if (continuationItems == null) return new ContinuationResponse
 		{
 			ContinuationToken = null,
 			Results = []
 		};
-		return new ContinuationResponse
+		if (continuationItems[0].CommentThreadRenderer.Comment != null)
 		{
-			ContinuationToken = continuationItems
-				.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
-				?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
-			Results = continuationItems
-				.Where(x => x.RendererCase == RendererWrapper.RendererOneofCase.CommentThreadRenderer)
-				.Select(x => new RendererContainer
-				{
-					Type = "comment",
-					OriginalType = "commentThreadRenderer",
-					Data = new CommentRendererData(
-						x.CommentThreadRenderer,
-						mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.CommentKey]
-							.CommentEntityPayload,
-						mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.ToolbarStateKey]
-							.EngagementToolbarStateEntityPayload)
-				}).ToArray()
-		};
+			// CommentRenderer instead of ViewModels
+			return new ContinuationResponse
+			{
+				ContinuationToken = continuationItems
+					.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+					?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
+				Results = continuationItems
+					.Where(x => x.RendererCase == RendererWrapper.RendererOneofCase.CommentThreadRenderer)
+					.Select(x => new RendererContainer
+					{
+						Type = "comment",
+						OriginalType = "commentThreadRenderer",
+						Data = new CommentRendererData(x.CommentThreadRenderer)
+					}).ToArray()
+			};
+		}
+		else
+		{
+			// ViewModels <3
+			Dictionary<string, Payload> mutations =
+				next.FrameworkUpdates.EntityBatchUpdate.Mutations.ToDictionary(x => x.EntityKey, x => x.Payload);
+			return new ContinuationResponse
+			{
+				ContinuationToken = continuationItems
+					.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+					?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
+				Results = continuationItems
+					.Where(x => x.RendererCase == RendererWrapper.RendererOneofCase.CommentThreadRenderer)
+					.Select(x => new RendererContainer
+					{
+						Type = "comment",
+						OriginalType = "commentThreadRenderer",
+						Data = new CommentRendererData(
+							x.CommentThreadRenderer,
+							mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.CommentKey]
+								.CommentEntityPayload,
+							mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.ToolbarStateKey]
+								.EngagementToolbarStateEntityPayload)
+					}).ToArray()
+			};
+		}
 	}
 }

@@ -71,7 +71,7 @@ public class Channel(
 			subscribersText: null,
 			badges: null); // TODO: badges
 
-	private static string? TryGetHandle(string url)
+	internal static string? TryGetHandle(string url)
 	{
 		string res = url.TrimStart('/');
 		return url.Length != 0 ? res[0] == '@' ? res : null : null;
