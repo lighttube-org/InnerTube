@@ -81,30 +81,28 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 					}).ToArray()
 			};
 		}
-		else
+
+		// ViewModels <3
+		Dictionary<string, Payload> mutations =
+			next.FrameworkUpdates.EntityBatchUpdate.Mutations.ToDictionary(x => x.EntityKey, x => x.Payload);
+		return new ContinuationResponse
 		{
-			// ViewModels <3
-			Dictionary<string, Payload> mutations =
-				next.FrameworkUpdates.EntityBatchUpdate.Mutations.ToDictionary(x => x.EntityKey, x => x.Payload);
-			return new ContinuationResponse
-			{
-				ContinuationToken = continuationItems
-					.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
-					?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
-				Results = continuationItems
-					.Where(x => x.RendererCase == RendererWrapper.RendererOneofCase.CommentThreadRenderer)
-					.Select(x => new RendererContainer
-					{
-						Type = "comment",
-						OriginalType = "commentThreadRenderer",
-						Data = new CommentRendererData(
-							x.CommentThreadRenderer,
-							mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.CommentKey]
-								.CommentEntityPayload,
-							mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.ToolbarStateKey]
-								.EngagementToolbarStateEntityPayload)
-					}).ToArray()
-			};
-		}
+			ContinuationToken = continuationItems
+				.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+				?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
+			Results = continuationItems
+				.Where(x => x.RendererCase == RendererWrapper.RendererOneofCase.CommentThreadRenderer)
+				.Select(x => new RendererContainer
+				{
+					Type = "comment",
+					OriginalType = "commentThreadRenderer",
+					Data = new CommentRendererData(
+						x.CommentThreadRenderer,
+						mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.CommentKey]
+							.CommentEntityPayload,
+						mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.ToolbarStateKey]
+							.EngagementToolbarStateEntityPayload)
+				}).ToArray()
+		};
 	}
 }
