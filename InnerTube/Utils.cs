@@ -150,42 +150,33 @@ public static partial class Utils
 			: ulong.Parse(input);
 	}
 
-	public static string GetParams(this ChannelTabs tab) =>
-		tab switch
-		{
-			ChannelTabs.Home => "EghmZWF0dXJlZA%3D%3D",
-			ChannelTabs.Videos => "EgZ2aWRlb3PyBgQKAjoA",
-			ChannelTabs.Shorts => "EgZzaG9ydHPyBgUKA5oBAA%3D%3D",
-			ChannelTabs.Live => "EgdzdHJlYW1z8gYECgJ6AA%3D%3D",
-			ChannelTabs.Playlists => "EglwbGF5bGlzdHM%3D",
-			ChannelTabs.Podcasts => "Eghwb2RjYXN0c_IGBQoDugEA",
-			ChannelTabs.Releases => "EghyZWxlYXNlc_IGBQoDsgEA",
-			ChannelTabs.Community => "Egljb21tdW5pdHk%3D",
-			ChannelTabs.Channels => "EghjaGFubmVscw%3D%3D",
-			ChannelTabs.Store => "EgVzdG9yZfIGBAoCGgA%3D",
-			ChannelTabs.About => "EgVhYm91dA%3D%3D",
-			ChannelTabs.Search => "EgZzZWFyY2g%3D",
-			var _ => ""
-		};
+	public static string GetParams(this ChannelTabs tab) => GetParamsFromChannelTabName(tab.ToString().ToLower());
 
-	public static ChannelTabs GetTabFromParams(string param) =>
-		// this method is starting to look slightly stupid with every new tab youtube adds
-		string.Join("", param.Take(9)) switch
+	public static string GetNameFromChannelParams(string param) =>
+		ChannelTabParams.Parser.ParseFrom(FromBase64UrlString(param)).Name;
+
+	public static ChannelTabs GetTabFromChannelParams(string param)
+	{
+		return GetNameFromChannelParams(param) switch
 		{
-			"EghmZWF0d" => ChannelTabs.Home,
-			"EgZ2aWRlb" => ChannelTabs.Videos,
-			"EgZzaG9yd" => ChannelTabs.Shorts,
-			"EgdzdHJlY" => ChannelTabs.Live,
-			"EglwbGF5b" => ChannelTabs.Playlists,
-			"Eghwb2RjY" => ChannelTabs.Podcasts,
-			"EghyZWxlY" => ChannelTabs.Releases,
-			"Egljb21td" => ChannelTabs.Community,
-			"EghjaGFub" => ChannelTabs.Channels,
-			"EgVzdG9yZ" => ChannelTabs.Store,
-			"EgVhYm91d" => ChannelTabs.About,
-			"" => ChannelTabs.Search,
-			var _ => ChannelTabs.Home
+			"featured" => ChannelTabs.Featured,
+			"videos" => ChannelTabs.Videos,
+			"shorts" => ChannelTabs.Shorts,
+			"streams" => ChannelTabs.Streams,
+			"releases" => ChannelTabs.Releases,
+			"playlists" => ChannelTabs.Playlists,
+			"community" => ChannelTabs.Community,
+			"store" => ChannelTabs.Store,
+			"search" => ChannelTabs.Search,
+			_ => ChannelTabs.Unknown
 		};
+	}
+
+	public static string GetParamsFromChannelTabName(string name) =>
+		ToBase64UrlString(new ChannelTabParams
+		{
+			Name = name
+		}.ToByteArray());
 
 	public static string ReadAttributedDescription(AttributedDescription? attributedDescription,
 		bool includeFormatting = false)
@@ -747,6 +738,7 @@ public static partial class Utils
 					PublishedText = ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText),
 					ViewCountText = ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText),
 					Badges = [],
+					Thumbnails = [],
 					Description = ReadRuns(renderer.ChannelVideoPlayerRenderer.Description)
 				}
 			},
@@ -777,6 +769,8 @@ public static partial class Utils
 					ContinuationToken = renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token
 				}
 			},
+			// FIXME: i dont remember if there was ever more than 1 element in an ISR
+			RendererWrapper.RendererOneofCase.ItemSectionRenderer => ConvertRenderer(renderer.ItemSectionRenderer.Contents[0]),
 			_ => new RendererContainer
 			{
 				Type = "unknown",
@@ -792,6 +786,8 @@ public static partial class Utils
 		};
 	}
 
-    [GeneratedRegex(@"\D")]
+	public static string? NullIfEmpty(this string input) => string.IsNullOrWhiteSpace(input) ? null : input;
+
+	[GeneratedRegex(@"\D")]
     private static partial Regex GeneratedNotDigitsRegex();
 }

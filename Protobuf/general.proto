@@ -39,7 +39,14 @@ message Thumbnail {
   int32 height = 3;
 }
 
-message Avatar {
+message AvatarViewModel {
+  Image image = 1;
+  string accessibilityText = 3;
+  int32 avatarImageSize = 4;
+  optional Endpoint endpoint = 5;
+}
+
+message Image {
   message ProcessorWrapper {
     message BorderImageProcessor {
       bool circular = 4;
@@ -50,14 +57,19 @@ message Avatar {
     }
   }
 
-  repeated AvatarImage sources = 1;
-  ProcessorWrapper processor = 3;
-}
+  message ImageSource {
+    message LocalResource {
+      string imageName = 2;
+    }
 
-message AvatarImage {
-  string url = 1;
-  int32 width = 4;
-  int32 height = 5;
+    optional string url = 1;
+    optional LocalResource clientResource = 3;
+    int32 width = 4;
+    int32 height = 5;
+  }
+
+  repeated ImageSource sources = 1;
+  ProcessorWrapper processor = 3;
 }
 
 message Color {
@@ -90,8 +102,18 @@ message ColorPalette {
 }
 
 message LoggingDirectives {
+  message VisibilityContainer {
+    int32 types = 1;
+  }
+  
+  message VeSpec {
+    int32 uiType = 1;
+    int32 veCounter = 2;
+  }
+
   bytes trackingParams = 1;
-  google.protobuf.Int32Value visibility = 4;
+  VisibilityContainer visibility = 4;
+  VeSpec clientVeSpec = 7;
   bool enableDisplayloggerExperiment = 11;
 }
 
@@ -118,6 +140,7 @@ message SurfaceIdentifier {
   int32 surface = 1;
   string tag = 3;
 }
+
 message AttributedDescription {
   message CommandRun {
     int32 startIndex = 1;
@@ -136,13 +159,30 @@ message AttributedDescription {
 
     int32 startIndex = 1;
     int32 length = 2;
+    string fontName = 3;
+    float fontSize = 4;
+    int32 weight = 7;
+    int32 weightLabel = 8;
     Extensions styleRunExtensions = 10;
-    string fontName = 14;
+    //string fontName = 14; // idr when i put this but it collides with 3??
+  }
+  
+  message AttachmentRun {
+    message AttachmentElement {
+      RendererWrapper type = 1;
+      RendererWrapper properties = 2;
+    }
+    
+    int32 startIndex = 1;
+    int32 length = 2;
+    AttachmentElement element = 3;
+    int32 alignment = 4;
   }
 
   string content = 1;
   repeated CommandRun commandRuns = 5;
   repeated StyleRun styleRuns = 6;
+  repeated AttachmentRun attachmentRuns = 8;
 }
 
 message ShareData {
@@ -159,6 +199,24 @@ message GradientConfig {
   float startLocation = 3;
 }
 
+message Context {
+  message LoggingDirectivesWrapper {
+    optional LoggingDirectives loggingDirectives = 999;
+  }
+
+  message Accessibility {
+    string label = 1;
+  }
+
+  message Command {
+    optional Endpoint onTap = 3;
+  }
+
+  LoggingDirectivesWrapper loggingContext = 1;
+  optional Accessibility accessibilityContext = 2;
+  optional Command commandContext = 3;
+}
+
 // ===============================================================
 // ==================    RENDERERS    ============================
 // ===============================================================
@@ -166,6 +224,8 @@ message GradientConfig {
 message RendererWrapper {
   oneof renderer {
     ChannelHeaderLinksViewModel channelHeaderLinksViewModel = 1022;
+    DecoratedAvatarViewModel decoratedAvatarViewModel = 1105;
+    ImageBannerViewModel imageBannerViewModel = 1127;
     C4TabbedHeaderRenderer c4TabbedHeaderRenderer = 46407682;
     Autoplay autoplay = 46659098;
     SearchFilterRenderer searchFilterRenderer = 47550566;
@@ -267,8 +327,10 @@ message RendererWrapper {
     ReelPlayerOverlayRenderer reelPlayerOverlayRenderer = 139970731;
     CallToActionButtonRenderer callToActionButtonRenderer = 154950953;
     CollageHeroImageRenderer collageHeroImageRenderer = 155492686;
+    ImageType imageType =158796345;
     ReelItemRenderer reelItemRenderer = 158884182;
     ContinuationItemRenderer continuationItemRenderer = 159495980;
+    LayoutProperties layoutProperties = 168772996;
     ReelShelfRenderer reelShelfRenderer = 187049775;
     FeedFilterChipBarRenderer feedFilterChipBarRenderer = 213380311;
     ThumbnailOverlayNowPlayingRenderer thumbnailOverlayNowPlayingRenderer = 228343999;
@@ -287,6 +349,7 @@ message RendererWrapper {
     PlaylistLoopButtonStateRenderer playlistLoopButtonStateRenderer = 404843395;
     AdSlotRenderer adSlotRenderer = 424701016;
     InFeedAdLayoutRenderer inFeedAdLayoutRenderer = 425953177;
+    AvatarViewModel avatarViewModel = 437811886;
     CommentViewModel commentViewModel = 439933638;
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
     CinematicContainerRenderer cinematicContainerRenderer = 455752576;
@@ -298,12 +361,29 @@ message RendererWrapper {
     DislikeButtonViewModel dislikeButtonViewModel = 484590786;
     SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 484586709;
     SearchHeaderRenderer searchHeaderRenderer = 485224057;
+    PageHeaderViewModel pageHeaderViewModel = 508686415;
+    DynamicTextViewModel dynamicTextViewModel = 509603841;
+    PageHeaderRenderer pageHeaderRenderer = 509923604;
+    ContentMetadataViewModel contentMetadataViewModel = 514549827;
+    FlexibleActionsViewModel flexibleActionsViewModel = 520990934;
+    AttributionViewModel attributionViewModel = 522729680;
+    DescriptionPreviewViewModel descriptionPreviewViewModel = 524902670;
   }
 }
 
 message ChannelHeaderLinksViewModel {
   AttributedDescription firstLink = 5;
   AttributedDescription more = 6;
+}
+
+message DecoratedAvatarViewModel {
+  RendererWrapper avatar = 1;
+}
+
+message ImageBannerViewModel {
+  Image image = 1;
+  int32 style = 2;
+  Context rendererContext = 997;
 }
 
 message C4TabbedHeaderRenderer {
@@ -716,6 +796,7 @@ message ChannelMetadataRenderer {
   string title = 1;
   string description = 2;
   string rssUrl = 3;
+  string channelConversionUrl = 7;
   string externalId = 8;
   string keywords = 11;
   repeated string ownerUrls = 12;
@@ -991,6 +1072,7 @@ message MicroformatDataRenderer {
   bool noindex = 21;
   bool unlisted = 22;
   bool familySafe = 24;
+  repeated string keywords = 25;
   repeated string availableCountries = 26;
   repeated google.protobuf.StringValue linkAlternates = 33;
 }
@@ -1381,6 +1463,10 @@ message CollageHeroImageRenderer {
   Thumbnails bottomRightThumbnail = 3;
 }
 
+message ImageType {
+  Image image = 1;
+}
+
 message ReelItemRenderer {
   string videoId = 1;
   Text headline = 2;
@@ -1400,6 +1486,21 @@ message ContinuationItemRenderer {
   int32 trigger = 1;
   Endpoint continuationEndpoint = 2;
   optional LoggingDirectives loggingDirectives = 999;
+}
+
+message LayoutProperties {
+  message ValueUnitPair {
+    float value = 1;
+    int32 unit = 2;
+  }
+  
+  message MarginContainer {
+    optional ValueUnitPair left = 2;
+  }
+
+  ValueUnitPair height = 2;
+  ValueUnitPair width = 3;
+  MarginContainer margin = 8;
 }
 
 message ReelShelfRenderer {
@@ -1554,13 +1655,6 @@ message InFeedAdLayoutRenderer {
 
 message CommentViewModel 
 {
-  message Context {
-    message LoggingDirectivesWrapper {
-      optional LoggingDirectives loggingDirectives = 999;  
-    }
-    LoggingDirectivesWrapper loggingContext = 1;
-  }
-  
   string commentKey = 1;
   string sharedKey = 2;
   string toolbarStateKey = 3;
@@ -1608,6 +1702,7 @@ message ButtonViewModel2 {
   bool isFullWidth = 10;
   int32 type = 11;
   int32 buttonSize = 13;
+  int32 state = 14;
   optional string accessibilityId = 17;
   optional string tooltip = 39;
 }
@@ -1653,6 +1748,64 @@ message SearchHeaderRenderer {
   RendererWrapper chipBar = 1;
   RendererWrapper searchFilterButton = 2;
   bytes trackingParams = 4;
+}
+
+message PageHeaderViewModel {
+  RendererWrapper title = 2;
+  RendererWrapper image = 3;
+  RendererWrapper metadata = 4;
+  RendererWrapper actions = 5;
+  RendererWrapper description = 6;
+  RendererWrapper attribution = 7;
+  RendererWrapper banner = 10;
+  Context rendererContext = 997;
+}
+
+message DynamicTextViewModel {
+  AttributedDescription text = 1;
+  int32 maxLines = 2;
+  Context rendererContext = 997;
+}
+
+message PageHeaderRenderer {
+  string pageTitle = 1;
+  RendererWrapper content = 2;
+}
+
+message ContentMetadataViewModel {
+  message MetadataRow {
+    message AttributedDescriptionWrapper {
+      AttributedDescription text = 2;
+    }
+
+    repeated AttributedDescriptionWrapper metadataParts = 1;
+  }
+  repeated MetadataRow metadataRows = 1;
+  string delimiter = 2;
+  Context rendererContext = 997;
+}
+
+message FlexibleActionsViewModel {
+  message ActionRow {
+    repeated RendererWrapper actions = 1;
+  }
+  
+  repeated ActionRow actionsRows = 1;
+  Context rendererContext = 997;
+}
+
+message AttributionViewModel {
+  AttributedDescription text = 3;
+  AttributedDescription suffix = 5;
+  Context rendererContext = 997;
+}
+
+message DescriptionPreviewViewModel {
+  AttributedDescription content = 1;
+  int32 maxLines = 2;
+  AttributedDescription truncationText = 3;
+  bool alwaysShowTruncationText = 4;
+  Context rendererContext = 997;
 }
 
 // ===============================================================
@@ -2077,18 +2230,11 @@ message CommentEntityPayload {
     string heartActiveTooltip = 35;
   }
 
-  message CommentAvatar {
-    Avatar image = 1;
-    string accessibilityText = 3;
-    int32 avatarImageSize = 4;
-    Endpoint endpoint = 5;
-  }
-
   string key = 1;
   CommentProperties properties = 2;
   CommentAuthor author = 3;
   CommentToolbar toolbar = 4;
-  CommentAvatar avatar = 6;
+  AvatarViewModel avatar = 6;
 }
 
 message EngagementToolbarStateEntityPayload {

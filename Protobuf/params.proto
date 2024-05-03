@@ -1,4 +1,4 @@
-syntax = "proto2";
+syntax = "proto3";
 
 package InnerTube.Protobuf.Params;
 
@@ -19,6 +19,7 @@ message SearchParams {
 
 message SearchFilters {
   enum UploadDate {
+    UNSET_DATE = 0;
     LAST_HOUR = 1;
     TODAY = 2;
     THIS_WEEK = 3;
@@ -27,6 +28,7 @@ message SearchFilters {
   }
 
   enum ItemType {
+    UNSET_TYPE = 0;
     VIDEO = 1;
     CHANNEL = 2;
     PLAYLIST = 3;
@@ -34,6 +36,7 @@ message SearchFilters {
   }
 
   enum VideoDuration {
+    UNSET_DURATION = 0;
     SHORT = 1;
     LONG = 2;
     MEDIUM = 3;
@@ -66,21 +69,21 @@ message QueryFlags {
 // Playlist continuation
 
 message PlaylistContinuationContainer {
-  required PlaylistContinuation Continuation = 80226972;
+  PlaylistContinuation Continuation = 80226972;
 }
 
 message PlaylistContinuation {
-  required string InternalPlaylistId = 2;
-  required string PaginationInfo = 3;
-  required string PlaylistId = 35;
+  string InternalPlaylistId = 2;
+  string PaginationInfo = 3;
+  string PlaylistId = 35;
 }
 
 message PaginationInfo {
-  required string SkipAmountEncoded = 15;
+  string SkipAmountEncoded = 15;
 }
 
 message IntContainer {
-  required int32 Value = 1;
+  int32 Value = 1;
 }
 
 // Initial comments request
@@ -88,20 +91,20 @@ message IntContainer {
 
 message CommentsContinuation {
   optional int32 Amount = 1;
-  required VideoIdContainer VideoId = 2;
-  required int32 Something = 3;
+  VideoIdContainer VideoId = 2;
+  int32 Something = 3;
   // required? in the first one
   optional CommentsContextContainer ContextContainer = 6;
 }
 
 message VideoIdContainer {
-  required string Id = 2;
+  string Id = 2;
 }
 
 message CommentsContextContainer {
-  required CommentsContext Context = 4;
+  CommentsContext Context = 4;
   // set to comments-section
-  required string Source = 8;
+  string Source = 8;
 }
 
 message CommentsContext {
@@ -110,6 +113,10 @@ message CommentsContext {
     NEWEST_FIRST = 1;
   }
 
-  required string VideoId = 4;
-  required SortOrder SortingOrder = 6;
+  string VideoId = 4;
+  SortOrder SortingOrder = 6;
+}
+
+message ChannelTabParams {
+  string name = 2;
 }

@@ -1,5 +1,6 @@
 using System.Text;
 using InnerTube.Models;
+using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
 using InnerTube.Renderers;
@@ -9,7 +10,7 @@ namespace InnerTube.Tests;
 public class SimpleInnerTubeClientTests
 {
 	private SimpleInnerTubeClient client;
-	
+
 	[OneTimeSetUp]
 	public void Setup()
 	{
@@ -62,7 +63,7 @@ public class SimpleInnerTubeClientTests
 		else
 		{
 			sb.AppendLine($"RecommendedLevel: {player.Storyboard.RecommendedLevel}");
-			foreach ((int level, Uri url) in player.Storyboard.Levels) 
+			foreach ((int level, Uri url) in player.Storyboard.Levels)
 				sb.AppendLine($"-> [{level}] {url}");
 		}
 
@@ -84,7 +85,7 @@ public class SimpleInnerTubeClientTests
 		else
 			foreach (Format format in player.AdaptiveFormats)
 				sb.AppendLine($"-> [{format.Itag}]");
-		
+
 		Assert.Pass(sb.ToString());
 	}
 
@@ -98,13 +99,16 @@ public class SimpleInnerTubeClientTests
 	[TestCase("UoBFuLMlDkw", null, null, null, TestName = "Video with more special stuff in attributedDescription")]
 	[TestCase("llrBX6FpMpM", null, null, null, TestName = "compactMovieRenderer")]
 	[TestCase("jUUe6TuRlgU", null, null, null, TestName = "Chapters")]
-	[TestCase("3BR7-AzE2dQ", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null, TestName = "[Playlist] Album playlist (index 1)")]
-	[TestCase("o0tky2O8NlY", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null, TestName = "[Playlist] Album playlist (index 9)")]
+	[TestCase("3BR7-AzE2dQ", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null,
+		TestName = "[Playlist] Album playlist (index 1)")]
+	[TestCase("o0tky2O8NlY", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null,
+		TestName = "[Playlist] Album playlist (index 9)")]
 	[TestCase("k_nLHgIM4yE", "PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", null, null, TestName = "[Playlist] Large playlist")]
 	public async Task GetVideoDetailsAsync(string videoId, string? playlistId, int? playlistIndex,
 		string? playlistParams)
 	{
-		InnerTubeVideo next = await client.GetVideoDetailsAsync(videoId, true, playlistId, playlistIndex, playlistParams, "en", "US");
+		InnerTubeVideo next =
+			await client.GetVideoDetailsAsync(videoId, true, playlistId, playlistIndex, playlistParams, "en", "US");
 		StringBuilder sb = new();
 
 		sb.AppendLine("== DETAILS")
@@ -159,7 +163,7 @@ public class SimpleInnerTubeClientTests
 	public async Task ContinueVideoDetailsAsync(string token)
 	{
 		ContinuationResponse continuationResponse = await client.ContinueVideoRecommendationsAsync(token, "en", "US");
-		
+
 		StringBuilder sb = new("\n");
 		sb.AppendLine("Continuation: " + (continuationResponse.ContinuationToken ?? "<null>"));
 		sb.AppendLine("\n== ITEMS");
@@ -169,15 +173,16 @@ public class SimpleInnerTubeClientTests
 
 		Assert.Pass(sb.ToString());
 	}
-	
+
 	[TestCase("BaW_jenozKc", TestName = "Regular video comments")]
 	[TestCase("5UCz9i2K9gY", TestName = "Has unescaped HTML tags")]
 	[TestCase("quI6g4HpePc", TestName = "Contains pinned & hearted comments")]
 	[TestCase("kYwB-kZyNU4", TestName = "Contains authors with badges")]
 	public async Task GetVideoCommentsAsync(string token)
 	{
-		ContinuationResponse continuationResponse = await client.GetVideoCommentsAsync(token, CommentsContext.Types.SortOrder.TopComments);
-		
+		ContinuationResponse continuationResponse =
+			await client.GetVideoCommentsAsync(token, CommentsContext.Types.SortOrder.TopComments);
+
 		StringBuilder sb = new();
 		sb.AppendLine("== ITEMS");
 		foreach (RendererContainer renderer in continuationResponse.Results)
@@ -194,7 +199,7 @@ public class SimpleInnerTubeClientTests
 	public async Task ContinueVideoCommentsAsync(string continuationToken)
 	{
 		ContinuationResponse continuationResponse = await client.ContinueVideoCommentsAsync(continuationToken);
-		
+
 		StringBuilder sb = new();
 		sb.AppendLine("== ITEMS");
 		foreach (RendererContainer renderer in continuationResponse.Results)
@@ -203,5 +208,68 @@ public class SimpleInnerTubeClientTests
 		sb.AppendLine("\nContinuation: " + (continuationResponse.ContinuationToken ?? "<null>"));
 
 		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Featured, null)]
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Videos, null)]
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Shorts, null)]
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Streams, null)]
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Playlists, null)]
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Community, null)]
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Channels, null)]
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.About, null)]
+	[TestCase("UCRS3ZUNqkEyTd9XZEphFRMA", (int)ChannelTabs.Featured, null)]
+	[TestCase("UCXuqSBlHAE6Xw-yeJA0Tunw", (int)ChannelTabs.Podcasts, null)]
+	[TestCase("UC_kRDKYrUlrbtrSiyu5Tflg", (int)ChannelTabs.Releases, null)]
+	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Store, null)]
+	public async Task GetChannelAsync(string channelId, int channelTab, string searchQuery)
+	{
+		InnerTubeChannel channel = await client.GetChannelAsync(channelId, (ChannelTabs)channelTab);
+		StringBuilder sb = new();
+		sb.AppendLine("=== HEADER");
+		ChannelHeader? header = channel.Header;
+		if (header is null) sb.AppendLine("<null>");
+		else
+		{
+			sb.AppendLine("Channel ID: " + header.Id);
+			sb.AppendLine("Title: " + header.Title);
+			sb.AppendLine("Handle: " + header.Handle);
+			sb.AppendLine("Subscribers: " + header.SubscriberCountText);
+			sb.AppendLine("Videos: " + header.VideoCountText);
+			sb.AppendLine($"Tagline: {header.Tagline}");
+			sb.AppendLine($"Avatar: ({header.Avatars.Length})" + string.Join("",
+				header.Avatars.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"Banner: ({header.Banner.Length})" + string.Join("",
+				header.Banner.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"MobileBanner: ({header.MobileBanner.Length})" + string.Join("",
+				header.MobileBanner.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"TVBanner: ({header.TvBanner.Length})" + string.Join("",
+				header.TvBanner.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"Badges: ({header.Badges.Length})\n- " + string.Join("",
+				header.Badges.Select(x =>
+					string.Join("\n  ", Utils.SerializeRenderer(new RendererWrapper
+					{
+						MetadataBadgeRenderer = x
+					}).Trim().Split("\n")))));
+			sb.AppendLine("Links:");
+			sb.AppendLine("- First: " + (header.PrimaryLink ?? "<null>"));
+			sb.AppendLine("- More: " + (header.SecondaryLink ?? "<null>"));
+		}
+
+		sb.AppendLine("\n=== TABS");
+		foreach (ChannelTab tab in channel.Tabs)
+			sb.AppendLine($"- [{tab.Tab}/{tab.Params}] {tab.Title} {(tab.Selected ? "(selected)" : "")}");
+
+		sb.AppendLine("\n=== CONTENT");
+		foreach (RendererContainer renderer in channel.Contents)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", "skyblock")]
+	public async Task SearchChannelAsync(string channelId, string query)
+	{
 	}
 }

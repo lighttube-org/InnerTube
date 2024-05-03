@@ -51,7 +51,6 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 	public async Task<ContinuationResponse> ContinueVideoCommentsAsync(string continuationToken)
 	{
 		NextResponse next = await InnerTube.ContinueNextAsync(continuationToken);
-		File.WriteAllBytes("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/comments.bin", next.ToByteArray());
 		RendererWrapper[]? continuationItems =
 			(next.OnResponseReceivedEndpoints.LastOrDefault()?.ReloadContinuationItemsCommand?.ContinuationItems ??
 			 next.OnResponseReceivedEndpoints.LastOrDefault()?.AppendContinuationItemsAction?.ContinuationItems)?
@@ -104,5 +103,17 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 							.EngagementToolbarStateEntityPayload)
 				}).ToArray()
 		};
+	}
+
+	public async Task<InnerTubeChannel> GetChannelAsync(string channelId, ChannelTabs tabs = ChannelTabs.Featured)
+	{
+		BrowseResponse channel = await InnerTube.BrowseAsync(channelId, tabs.GetParams());
+		return new InnerTubeChannel(channel);
+	}
+
+	public async Task<InnerTubeChannel> GetChannelAsync(string channelId, string param)
+	{
+		BrowseResponse channel = await InnerTube.BrowseAsync(channelId, Utils.GetParamsFromChannelTabName(param));
+		return new InnerTubeChannel(channel);
 	}
 }

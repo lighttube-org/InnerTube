@@ -1,4 +1,6 @@
-﻿namespace InnerTube;
+﻿using InnerTube.Models;
+
+namespace InnerTube;
 
 /// <summary>
 /// The client to make the request from
@@ -52,9 +54,13 @@ public enum EndscreenItemType
 public enum ChannelTabs
 {
 	/// <summary>
+	/// Unknown tab. Use <see cref="ChannelTab.Params"/>
+	/// </summary>
+	Unknown,
+	/// <summary>
 	/// Home tab.
 	/// </summary>
-	Home,
+	Featured,
 	/// <summary>
 	/// Videos tab.
 	/// </summary>
@@ -66,7 +72,7 @@ public enum ChannelTabs
 	/// <summary>
 	/// Past live streams tab.
 	/// </summary>
-	Live,
+	Streams,
 	/// <summary>
 	/// Playlists tab.
 	/// </summary>
