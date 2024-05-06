@@ -39,6 +39,14 @@ message Thumbnail {
   int32 height = 3;
 }
 
+message RecognitionShelfRenderer {
+  Text title = 1;
+  Text subtitle = 2;
+  repeated Thumbnails avatars = 3;
+  RendererWrapper button = 4;
+  int32 surface = 5;
+}
+
 message AvatarViewModel {
   Image image = 1;
   string accessibilityText = 3;
@@ -247,6 +255,7 @@ message RendererWrapper {
     VideoOwnerRenderer videoOwnerRenderer = 51779708;
     SecondaryResults secondaryResults = 51779776;
     TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
+    GridRenderer gridRenderer = 51805506;
     ShelfRenderer shelfRenderer = 51845067;
     TwoColumnBrowseResultsRenderer twoColumnBrowseResultsRenderer = 52123031;
     CompactRadioRenderer compactRadioRenderer = 53170873;
@@ -265,6 +274,8 @@ message RendererWrapper {
     MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
     ChannelVideoPlayerRenderer channelVideoPlayerRenderer = 60408738;
+    GridChannelRenderer gridChannelRenderer = 60373547;
+    GridPlaylistRenderer gridPlaylistRenderer = 60373571;
     GridVideoRenderer gridVideoRenderer = 60373625;
     ExpandableTabRenderer expandableTabRenderer = 62070496;
     CommentThreadRenderer commentThreadRenderer = 62285833;
@@ -311,6 +322,7 @@ message RendererWrapper {
     BasicColorPaletteData basicColorPaletteData = 118483990;
     UniversalWatchCardRenderer universalWatchCardRenderer = 119956144;
     RichListHeaderRenderer richListHeaderRenderer = 120280839;
+    BackstageImageRenderer backstageImageRenderer = 120744665;
     ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
     WatchCardHeroVideoRenderer watchCardHeroVideoRenderer = 122710540;
     WatchCardCompactVideoRenderer watchCardCompactVideoRenderer = 122814739;
@@ -327,9 +339,11 @@ message RendererWrapper {
     ReelPlayerOverlayRenderer reelPlayerOverlayRenderer = 139970731;
     CallToActionButtonRenderer callToActionButtonRenderer = 154950953;
     CollageHeroImageRenderer collageHeroImageRenderer = 155492686;
-    ImageType imageType =158796345;
+    ImageType imageType = 158796345;
     ReelItemRenderer reelItemRenderer = 158884182;
     ContinuationItemRenderer continuationItemRenderer = 159495980;
+    BackstagePostRenderer backstagePostRenderer = 164138837;
+    BackstagePostThreadRenderer backstagePostThreadRenderer = 164616223;
     LayoutProperties layoutProperties = 168772996;
     ReelShelfRenderer reelShelfRenderer = 187049775;
     FeedFilterChipBarRenderer feedFilterChipBarRenderer = 213380311;
@@ -342,6 +356,7 @@ message RendererWrapper {
     DestinationButtonRenderer destinationButtonRenderer = 277393771;
     MacroMarkersListItemRenderer macroMarkersListItemRenderer = 307450214;
     MacroMarkersListRenderer macroMarkersListRenderer = 309482905;
+    PostMultiImageRenderer postMultiImageRenderer = 340956460;
     MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
     FeedNudgeRenderer feedNudgeRenderer = 362133374;
     ThumbnailOverlayLoadingPreviewRenderer thumbnailOverlayLoadingPreviewRenderer = 367662231;
@@ -349,6 +364,7 @@ message RendererWrapper {
     PlaylistLoopButtonStateRenderer playlistLoopButtonStateRenderer = 404843395;
     AdSlotRenderer adSlotRenderer = 424701016;
     InFeedAdLayoutRenderer inFeedAdLayoutRenderer = 425953177;
+    RecognitionShelfRenderer recognitionShelfRenderer =432471502;
     AvatarViewModel avatarViewModel = 437811886;
     CommentViewModel commentViewModel = 439933638;
     CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
@@ -667,6 +683,12 @@ message TwoColumnWatchNextResults {
   optional RendererWrapper autoplay = 4;
 }
 
+message GridRenderer {
+  repeated RendererWrapper items = 1;
+  bytes trackingParams = 10;
+  string targetId = 19;
+}
+
 message ShelfRenderer {
   Text title = 1;
   RendererWrapper content = 5;
@@ -879,6 +901,33 @@ message ChannelVideoPlayerRenderer {
   Text readMoreText = 6;
 }
 
+message GridChannelRenderer {
+  string channelId = 1;
+  Thumbnails thumbnail = 2;
+  Text videoCountText = 4;
+  Text subscriberCountText = 5;
+  Endpoint navigationEndpoint = 6;
+  Text title = 9;
+  RendererWrapper subscribeButton = 11;
+  bytes trackingParams = 14;
+}
+
+message GridPlaylistRenderer {
+  string playlistId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text videoCountText = 5;
+  Endpoint navigationEndpoint = 6;
+  Text videoCountShortText = 9;
+  bytes trackingParams = 11;
+  repeated Thumbnails sidebarThumbnails = 12;
+  Text thumbnailText = 14;
+  repeated RendererWrapper ownerBadges = 15;
+  RendererWrapper thumbnailRenderer = 16;
+  repeated RendererWrapper thumbnailOverlays = 23;
+  Text viewPlaylistText = 26;
+}
+
 message GridVideoRenderer {
   string videoId = 1;
   Thumbnails thumbnail = 2;
@@ -981,6 +1030,7 @@ message ButtonViewModel {
   optional string accessibilityText = 11;
   optional bytes trackingParams = 13;
   optional RendererWrapper accessibilityData = 16;
+  optional string targetId = 18;
   optional Endpoint command = 19;
   int32 iconPosition = 22;
 }
@@ -1318,6 +1368,14 @@ message RichListHeaderRenderer {
   Icon icon = 7;
 }
 
+message BackstageImageRenderer {
+  Thumbnails image = 1;
+  bytes trackingParams = 3;
+  Endpoint command = 4;
+  RendererWrapper accessibility = 6;
+  Icon icon = 7;
+}
+
 message ThumbnailOverlayTimeStatusRenderer {
   Text text = 1;
   int32 style = 2;
@@ -1488,6 +1546,30 @@ message ContinuationItemRenderer {
   optional LoggingDirectives loggingDirectives = 999;
 }
 
+message BackstagePostRenderer {
+  string postId = 1;
+  Text authorText = 3;
+  Thumbnails authorThumbnail = 4;
+  Endpoint authorEndpoint = 5;
+  Text contentText = 6;
+  optional RendererWrapper backstageAttachment = 7;
+  RendererWrapper expandButton = 8;
+  RendererWrapper collapseButton = 9;
+  Text publishedTimeText = 10;
+  Text voteCount = 11;
+  int32 voteStatus = 12;
+  RendererWrapper actionButtons = 14;
+  bytes trackingParams = 18;
+  int32 surface = 23;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message BackstagePostThreadRenderer {
+  RendererWrapper post = 1;
+  bytes loggingParams = 4;
+  optional LoggingDirectives loggingDirectives = 999;
+}
+
 message LayoutProperties {
   message ValueUnitPair {
     float value = 1;
@@ -1588,6 +1670,11 @@ message MacroMarkersListItemRenderer {
 
 message MacroMarkersListRenderer {
   repeated RendererWrapper contents = 1;
+}
+
+message PostMultiImageRenderer {
+  repeated RendererWrapper images = 1;
+  LoggingDirectives loggingDirectives = 999;
 }
 
 message MenuFlexibleItemRenderer {
@@ -1938,6 +2025,7 @@ message BrowseEndpoint {
 
 message SignInEndpoint {
   Endpoint nextEndpoint = 2;
+  string continueAction = 5;
   string idamTag = 8;
 }
 

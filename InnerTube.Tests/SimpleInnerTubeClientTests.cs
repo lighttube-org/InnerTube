@@ -216,8 +216,6 @@ public class SimpleInnerTubeClientTests
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Streams, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Playlists, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Community, null)]
-	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Channels, null)]
-	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.About, null)]
 	[TestCase("UCRS3ZUNqkEyTd9XZEphFRMA", (int)ChannelTabs.Featured, null)]
 	[TestCase("UCXuqSBlHAE6Xw-yeJA0Tunw", (int)ChannelTabs.Podcasts, null)]
 	[TestCase("UC_kRDKYrUlrbtrSiyu5Tflg", (int)ChannelTabs.Releases, null)]

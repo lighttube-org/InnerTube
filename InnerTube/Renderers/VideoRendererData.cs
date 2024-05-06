@@ -6,7 +6,7 @@ namespace InnerTube.Renderers;
 
 public class VideoRendererData : IRendererData
 {
-	public string Id { get; set; }
+	public string VideoId { get; set; }
 	public string Title { get; set; }
 	public Thumbnail[] Thumbnails { get; set; }
 	public Channel? Author { get; set; }
@@ -19,9 +19,9 @@ public class VideoRendererData : IRendererData
 	public override string ToString()
 	{
 		StringBuilder sb = new();
-		sb.AppendLine($"[{Id}] {Title}");
+		sb.AppendLine($"[{VideoId}] {Title}");
 		sb.AppendLine("Thumbnails.Length: " + Thumbnails.Length);
-		sb.AppendLine("Author: " + Author);
+		sb.AppendLine("Author: " + (Author?.ToString() ?? "<null>"));
 		sb.AppendLine("Duration: " + Duration);
 		sb.AppendLine("PublishedText: " + PublishedText);
 		sb.AppendLine("ViewCountText: " + ViewCountText);

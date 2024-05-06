@@ -635,7 +635,7 @@ public static partial class Utils
 				OriginalType = "videoRenderer",
 				Data = new VideoRendererData
 				{
-					Id = renderer.VideoRenderer.VideoId,
+					VideoId = renderer.VideoRenderer.VideoId,
 					Title = ReadRuns(renderer.VideoRenderer.Title),
 					Thumbnails = renderer.VideoRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Author = Channel.From(renderer.VideoRenderer.OwnerText,
@@ -653,7 +653,7 @@ public static partial class Utils
 				OriginalType = "playlistVideoRenderer",
 				Data = new PlaylistVideoRendererData
 				{
-					Id = renderer.PlaylistVideoRenderer.VideoId,
+					VideoId = renderer.PlaylistVideoRenderer.VideoId,
 					Title = ReadRuns(renderer.PlaylistVideoRenderer.Title),
 					Thumbnails = renderer.PlaylistVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Author = Channel.From(renderer.PlaylistVideoRenderer.ShortBylineText),
@@ -675,7 +675,7 @@ public static partial class Utils
 				OriginalType = "playlistPanelVideoRenderer",
 				Data = new PlaylistVideoRendererData
 				{
-					Id = renderer.PlaylistPanelVideoRenderer.VideoId,
+					VideoId = renderer.PlaylistPanelVideoRenderer.VideoId,
 					Title = ReadRuns(renderer.PlaylistPanelVideoRenderer.Title),
 					Thumbnails = renderer.PlaylistPanelVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Author = Channel.From(renderer.PlaylistPanelVideoRenderer.ShortBylineText),
@@ -693,7 +693,7 @@ public static partial class Utils
 				OriginalType = "compactVideoRenderer",
 				Data = new VideoRendererData
 				{
-					Id = renderer.CompactVideoRenderer.VideoId,
+					VideoId = renderer.CompactVideoRenderer.VideoId,
 					Title = ReadRuns(renderer.CompactVideoRenderer.Text),
 					Thumbnails = renderer.CompactVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Author = Channel.From(renderer.CompactVideoRenderer.LongBylineText,
@@ -711,7 +711,7 @@ public static partial class Utils
 				OriginalType = "gridVideoRenderer",
 				Data = new VideoRendererData
 				{
-					Id = renderer.GridVideoRenderer.VideoId,
+					VideoId = renderer.GridVideoRenderer.VideoId,
 					Title = ReadRuns(renderer.GridVideoRenderer.Title),
 					Thumbnails = renderer.GridVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Author = Channel.From(renderer.GridVideoRenderer.ShortBylineText,
@@ -732,7 +732,7 @@ public static partial class Utils
 				OriginalType = "channelVideoPlayerRenderer",
 				Data = new VideoRendererData
 				{
-					Id = renderer.ChannelVideoPlayerRenderer.VideoId,
+					VideoId = renderer.ChannelVideoPlayerRenderer.VideoId,
 					Title = ReadRuns(renderer.ChannelVideoPlayerRenderer.Title),
 					Duration = TimeSpan.Zero,
 					PublishedText = ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText),
@@ -748,7 +748,7 @@ public static partial class Utils
 				OriginalType = "compactMovieRenderer",
 				Data = new VideoRendererData
 				{
-					Id = renderer.CompactMovieRenderer.VideoId,
+					VideoId = renderer.CompactMovieRenderer.VideoId,
 					Title = ReadRuns(renderer.CompactMovieRenderer.Title),
 					Thumbnails = renderer.CompactMovieRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Author = Channel.From(renderer.CompactMovieRenderer.ShortBylineText),
@@ -760,6 +760,67 @@ public static partial class Utils
 					Description = ReadRuns(renderer.CompactMovieRenderer.TopMetadataItems)
 				}
 			},
+			RendererWrapper.RendererOneofCase.ReelItemRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "reelItemRenderer",
+				Data = new VideoRendererData
+				{
+					VideoId = renderer.ReelItemRenderer.VideoId,
+					Title = ReadRuns(renderer.ReelItemRenderer.Headline),
+					Thumbnails = renderer.ReelItemRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Author = null,
+					Duration = TimeSpan.Zero,
+					PublishedText = "",
+					ViewCountText = ReadRuns(renderer.ReelItemRenderer.ViewCountText),
+					Badges = [],
+					Description = null
+				}
+			},
+			RendererWrapper.RendererOneofCase.GridChannelRenderer => new RendererContainer
+			{
+				Type = "channel",
+				OriginalType = "gridChannelRenderer",
+				Data = new ChannelRendererData
+				{
+					ChannelId = renderer.GridChannelRenderer.ChannelId,
+					Title = ReadRuns(renderer.GridChannelRenderer.Title),
+					Handle = Channel.TryGetHandle(renderer.GridChannelRenderer.NavigationEndpoint.BrowseEndpoint
+						.CanonicalBaseUrl),
+					Avatar = renderer.GridChannelRenderer.Thumbnail.Thumbnails_.ToArray(),
+					VideoCountText = ReadRuns(renderer.GridChannelRenderer.VideoCountText),
+					SubscriberCountText = ReadRuns(renderer.GridChannelRenderer.SubscriberCountText)
+				}
+			},
+			RendererWrapper.RendererOneofCase.PlaylistRenderer => new RendererContainer
+			{
+				Type = "playlist",
+				OriginalType = "playlistRenderer",
+				Data = new PlaylistRendererData
+				{
+					PlaylistId = renderer.PlaylistRenderer.PlaylistId,
+					Thumbnails = renderer.PlaylistRenderer.Thumbnails[0].Thumbnails_.ToArray(),
+					Title = ReadRuns(renderer.PlaylistRenderer.Title),
+					VideoCountText = ReadRuns(renderer.PlaylistRenderer.VideoCountText),
+					SidebarThumbnails = renderer.PlaylistRenderer.Thumbnails.ToArray()[1..].Select(x => x.Thumbnails_.ToArray()).ToArray(),
+					Author = Channel.From(renderer.PlaylistRenderer.ShortBylineText,
+						renderer.PlaylistRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray())
+				}
+			},
+			RendererWrapper.RendererOneofCase.GridPlaylistRenderer => new RendererContainer
+			{
+				Type = "playlist",
+				OriginalType = "gridPlaylistRenderer",
+				Data = new PlaylistRendererData
+				{
+					PlaylistId = renderer.GridPlaylistRenderer.PlaylistId,
+					Thumbnails = renderer.GridPlaylistRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Title = ReadRuns(renderer.GridPlaylistRenderer.Title),
+					VideoCountText = ReadRuns(renderer.GridPlaylistRenderer.VideoCountText),
+					SidebarThumbnails = renderer.GridPlaylistRenderer.SidebarThumbnails.Select(x => x.Thumbnails_.ToArray()).ToArray(),
+					Author = null
+				}
+			},
 			RendererWrapper.RendererOneofCase.ContinuationItemRenderer => new RendererContainer
 			{
 				Type = "continuation",
@@ -769,8 +830,128 @@ public static partial class Utils
 					ContinuationToken = renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token
 				}
 			},
-			// FIXME: i dont remember if there was ever more than 1 element in an ISR
-			RendererWrapper.RendererOneofCase.ItemSectionRenderer => ConvertRenderer(renderer.ItemSectionRenderer.Contents[0]),
+			RendererWrapper.RendererOneofCase.RecognitionShelfRenderer => new RendererContainer
+			{
+				Type = "recognitionShelf",
+				OriginalType = "recognitionShelfRenderer",
+				Data = new RecognitionShelfRendererData
+				{
+					Title = ReadRuns(renderer.RecognitionShelfRenderer.Title),
+					Subtitle = ReadRuns(renderer.RecognitionShelfRenderer.Subtitle),
+					Avatars = renderer.RecognitionShelfRenderer.Avatars
+						.SelectMany(x => x.Thumbnails_.Select(y => y.Url)).ToArray()
+				}
+			},
+			RendererWrapper.RendererOneofCase.BackstagePostThreadRenderer => ConvertRenderer(renderer.BackstagePostThreadRenderer.Post),
+			RendererWrapper.RendererOneofCase.BackstagePostRenderer => new RendererContainer
+			{
+				Type = "communityPost",
+				OriginalType = "backstagePostRenderer",
+				Data = new CommunityPostRendererData
+				{
+					PostId = renderer.BackstagePostRenderer.PostId,
+					Author = Channel.From(renderer.BackstagePostRenderer.AuthorText,
+						avatar: renderer.BackstagePostRenderer.AuthorThumbnail)!,
+					Content = ReadRuns(renderer.BackstagePostRenderer.ContentText),
+					LikeCountText = ReadRuns(renderer.BackstagePostRenderer.VoteCount),
+					CommentsCountText = ReadRuns(renderer.BackstagePostRenderer.ActionButtons
+						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title),
+					Attachment = renderer.BackstagePostRenderer.BackstageAttachment != null
+						? ConvertRenderer(renderer.BackstagePostRenderer.BackstageAttachment)
+						: null
+				}
+			},
+			RendererWrapper.RendererOneofCase.BackstageImageRenderer => new RendererContainer
+			{
+				Type = "communityPostImage",
+				OriginalType = "backstageImageRenderer",
+				Data = new CommunityPostImageRendererData
+				{
+					Images = [renderer.BackstageImageRenderer.Image.Thumbnails_.ToArray()]
+				}
+			},
+			RendererWrapper.RendererOneofCase.PostMultiImageRenderer => new RendererContainer
+			{
+				Type = "communityPostImage",
+				OriginalType = "PostMultiImageRenderer",
+				Data = new CommunityPostImageRendererData
+				{
+					Images = renderer.PostMultiImageRenderer.Images
+						.Select(x => x.BackstageImageRenderer.Image.Thumbnails_.ToArray()).ToArray()
+				}
+			},
+			RendererWrapper.RendererOneofCase.ItemSectionRenderer => new RendererContainer
+			{
+				Type = "container",
+				OriginalType = "itemSectionRenderer",
+				Data = new ContainerRendererData
+				{
+					Items = ConvertRenderers(renderer.ItemSectionRenderer.Contents)
+				}
+			},
+			RendererWrapper.RendererOneofCase.ShelfRenderer => new RendererContainer
+			{
+				Type = "container",
+				OriginalType = "shelfRenderer",
+				Data = new ContainerRendererData
+				{
+					Items = ConvertRenderers(renderer.ShelfRenderer.Content.RendererCase switch
+					{
+						RendererWrapper.RendererOneofCase.VerticalListRenderer => renderer.ShelfRenderer.Content.VerticalListRenderer.Items,
+						RendererWrapper.RendererOneofCase.HorizontalListRenderer => renderer.ShelfRenderer.Content.HorizontalListRenderer.Items,
+						_ =>
+						[
+							new RendererWrapper
+							{
+								MessageRenderer = new MessageRenderer
+								{
+									Text = new Text
+									{
+										SimpleText = $"INNERTUBE: Unknown RendererCase: {renderer.ShelfRenderer.Content.RendererCase}"
+									}
+								}
+							}
+						]
+					}),
+					Style = "shelf;" + renderer.ShelfRenderer.Content.RendererCase switch
+					{
+						RendererWrapper.RendererOneofCase.VerticalListRenderer => "vertical",
+						RendererWrapper.RendererOneofCase.HorizontalListRenderer => "horizontal",
+						_ => "vertical"
+					}
+				}
+			},
+			RendererWrapper.RendererOneofCase.ReelShelfRenderer => new RendererContainer
+			{
+				Type = "container",
+				OriginalType = "reelShelfRenderer",
+				Data = new ContainerRendererData
+				{
+					Items = ConvertRenderers(renderer.ReelShelfRenderer.Items),
+					Style = "shelf;reel"
+				}
+			},
+			RendererWrapper.RendererOneofCase.GridRenderer => new RendererContainer
+			{
+				Type = "container",
+				OriginalType = "gridRenderer",
+				Data = new ContainerRendererData
+				{
+					Items = ConvertRenderers(renderer.GridRenderer.Items),
+					Style = "grid"
+				}
+			},
+			RendererWrapper.RendererOneofCase.RichGridRenderer => new RendererContainer
+			{
+				Type = "container",
+				OriginalType = "richGridRenderer",
+				Data = new ContainerRendererData
+				{
+					Items = ConvertRenderers(renderer.RichGridRenderer.Contents),
+					Style = "grid"
+				}
+			},
+			RendererWrapper.RendererOneofCase.RichItemRenderer => ConvertRenderer(renderer.RichItemRenderer.Content),
 			_ => new RendererContainer
 			{
 				Type = "unknown",

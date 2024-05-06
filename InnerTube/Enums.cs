@@ -94,6 +94,7 @@ public enum ChannelTabs
 	/// <summary>
 	/// Related channels tab.
 	/// </summary>
+	[Obsolete("Doesn't seem to work anymore.")]
 	Channels,
 	/// <summary>
 	/// Store tab.
@@ -102,6 +103,7 @@ public enum ChannelTabs
 	/// <summary>
 	/// About tab.
 	/// </summary>
+	[Obsolete("Doesn't seem to work anymore.")]
 	About,
 	/// <summary>
 	/// Search tab.

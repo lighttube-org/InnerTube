@@ -6,7 +6,7 @@ public class Channel(
 	string id,
 	string title,
 	string? handle,
-	Thumbnail[] avatar,
+	Thumbnail[]? avatar,
 	string? subscribersText,
 	MetadataBadgeRenderer[]? badges)
 {
@@ -39,14 +39,14 @@ public class Channel(
 			subscribersText: Utils.ReadRuns(videoOwnerRenderer.SubscriberCountText),
 			badges: badges);
 
-	public static Channel? From(Text bylineText, MetadataBadgeRenderer[]? badges = null)
+	public static Channel? From(Text bylineText, MetadataBadgeRenderer[]? badges = null, Thumbnails? avatar = null)
 	{
 		try
 		{
 			return new Channel(id: bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId,
 				title: Utils.ReadRuns(bylineText),
 				handle: TryGetHandle(bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.CanonicalBaseUrl),
-				avatar: null,
+				avatar: avatar?.Thumbnails_.ToArray(),
 				subscribersText: null,
 				badges: badges);
 		}
