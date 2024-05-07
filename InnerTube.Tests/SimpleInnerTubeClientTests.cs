@@ -330,16 +330,24 @@ public class SimpleInnerTubeClientTests
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false, TestName = "Playlist with unavailable videos")]
-	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", true,
+	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false, PlaylistFilter.All,
+		TestName = "Playlist with unavailable videos")]
+	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", true, PlaylistFilter.All,
 		TestName = "Playlist with unavailable videos, includeUnavailable: true")]
-	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true, TestName = "VLPL URL")]
-	[TestCase("PLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF", false, TestName = "Intentionally empty playlist")]
-	public async Task GetPlaylistAsync(string playlistId, bool includeUnavailable)
+	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false, PlaylistFilter.Videos,
+		TestName = "Playlist with unavailable videos, playlistFilter: Videos")]
+	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false, PlaylistFilter.Shorts,
+		TestName = "Playlist with unavailable videos, playlistFilter: Shorts")]
+	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true, PlaylistFilter.All, TestName = "VLPL URL")]
+	[TestCase("PLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF", false, PlaylistFilter.All,
+		TestName = "Intentionally empty playlist")]
+	public async Task GetPlaylistAsync(string playlistId, bool includeUnavailable, PlaylistFilter filters)
 	{
-		InnerTubePlaylist playlist = await client.GetPlaylistAsync(playlistId, includeUnavailable);
+		InnerTubePlaylist playlist = await client.GetPlaylistAsync(playlistId, includeUnavailable, filters);
 		
 		StringBuilder sb = new(playlist.Id);
+		sb.AppendLine("\n" + Utils.PackPlaylistParams(includeUnavailable, filters));
+		sb.AppendLine(includeUnavailable + ", " + filters);
 		sb.AppendLine("\n\n=== SIDEBAR");
 		sb.AppendLine($"Title: {playlist.Sidebar.Title}");
 		sb.AppendLine($"Thumbnails.Length: {playlist.Sidebar.Thumbnails.Length}");
@@ -352,6 +360,15 @@ public class SimpleInnerTubeClientTests
 		sb.AppendLine("\n=== ALERTS");
 		foreach (string alert in playlist.Alerts)
 			sb.AppendLine("- " + alert);
+		if (playlist.Alerts.Length == 0)
+			sb.AppendLine("<empty>");
+
+		sb.AppendLine("\n=== CHIPS");
+		foreach (RendererContainer renderer in playlist.Chips)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+		if (playlist.Chips.Length == 0)
+			sb.AppendLine("<empty>");
 
 		sb.AppendLine("\n=== CONTENT");
 		foreach (RendererContainer renderer in playlist.Contents)

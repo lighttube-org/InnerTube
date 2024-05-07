@@ -66,6 +66,17 @@ message QueryFlags {
   optional bool ExactSearch = 1;
 }
 
+// Playlist params
+message PlaylistParamsContainer {
+  PlaylistParams Params = 104;
+}
+
+message PlaylistParams {
+  optional bool HideUnavailableVideos = 1;
+  bool VideosOnly = 2;
+  bool ShortsOnly = 3;
+}
+
 // Playlist continuation
 // Unused in InnerTube/LightTube
 

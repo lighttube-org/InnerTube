@@ -133,3 +133,10 @@ public enum ShelfDirection
 	/// </summary>
 	Grid
 }
+
+public enum PlaylistFilter
+{
+	All = 0,
+	Videos = 1,
+	Shorts = 2
+}

@@ -221,11 +221,14 @@ public static partial class Utils
 		return Formatter.HandleLineBreaks(text);
 	}
 
-	public static string ToBase64UrlString(byte[] buffer) =>
-		Convert.ToBase64String(buffer)
-			.TrimEnd('=')
+	public static string ToBase64UrlString(byte[] buffer, bool keepPadding = false)
+	{
+		string res = Convert.ToBase64String(buffer)
 			.Replace('+', '-')
 			.Replace('/', '_');
+		res = !keepPadding ? res.TrimEnd('=') : res.Replace("=", "%3D");
+		return res;
+	}
 
 	public static byte[] FromBase64UrlString(string s)
 	{
@@ -258,6 +261,21 @@ public static partial class Utils
 		};
 
 		return ToBase64UrlString(continuation.ToByteArray());
+	}
+
+	public static string? PackPlaylistParams(bool showUnavailableVideos, PlaylistFilter filter = PlaylistFilter.All)
+	{
+		if (!showUnavailableVideos && filter == PlaylistFilter.All) return null;
+		PlaylistParamsContainer container = new()
+		{
+			Params = new PlaylistParams
+			{
+				HideUnavailableVideos = !showUnavailableVideos,
+				VideosOnly = filter == PlaylistFilter.Videos,
+				ShortsOnly = filter == PlaylistFilter.Shorts
+			}
+		};
+		return ToBase64UrlString(container.ToByteArray(), true);
 	}
 
 	public static string SerializeRenderer(RendererWrapper? renderer)
@@ -917,6 +935,18 @@ public static partial class Utils
 				Type = "message",
 				OriginalType = "messageRenderer",
 				Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text))
+			},
+			RendererWrapper.RendererOneofCase.ChipCloudChipRenderer => new RendererContainer
+			{
+				Type = "chip",
+				OriginalType = "chipCloudChipRenderer",
+				Data = new ChipRendererData
+				{
+					Title = ReadRuns(renderer.ChipCloudChipRenderer.Text),
+					ContinuationToken = null,
+					Params = renderer.ChipCloudChipRenderer.NavigationEndpoint.BrowseEndpoint?.Params,
+					IsSelected = renderer.ChipCloudChipRenderer.IsSelected
+				}
 			},
 			_ => new RendererContainer
 			{

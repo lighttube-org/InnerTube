@@ -145,12 +145,12 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		return new InnerTubeChannel(channel);
 	}
 
-	public async Task<InnerTubePlaylist> GetPlaylistAsync(string playlistId, bool includeUnavailable,
-		string language = "en", string region = "US")
+	public async Task<InnerTubePlaylist> GetPlaylistAsync(string playlistId, bool includeUnavailable = false,
+		PlaylistFilter filter = PlaylistFilter.All, string language = "en", string region = "US")
 	{
 		BrowseResponse playlist =
 			await InnerTube.BrowseAsync(playlistId.StartsWith("PL") ? "VL" + playlistId : playlistId,
-				includeUnavailable ? "wgYCCAA%3D" : null, null, language, region);
+				Utils.PackPlaylistParams(includeUnavailable, filter), null, language, region);
 		return new InnerTubePlaylist(playlist);
 	}
 
