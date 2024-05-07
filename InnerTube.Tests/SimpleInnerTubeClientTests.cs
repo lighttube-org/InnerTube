@@ -329,4 +329,58 @@ public class SimpleInnerTubeClientTests
 
 		Assert.Pass(sb.ToString());
 	}
+
+	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", false, TestName = "Playlist with unavailable videos")]
+	[TestCase("PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", true,
+		TestName = "Playlist with unavailable videos, includeUnavailable: true")]
+	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true, TestName = "VLPL URL")]
+	[TestCase("PLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF", false, TestName = "Intentionally empty playlist")]
+	public async Task GetPlaylistAsync(string playlistId, bool includeUnavailable)
+	{
+		InnerTubePlaylist playlist = await client.GetPlaylistAsync(playlistId, includeUnavailable);
+		
+		StringBuilder sb = new(playlist.Id);
+		sb.AppendLine("\n\n=== SIDEBAR");
+		sb.AppendLine($"Title: {playlist.Sidebar.Title}");
+		sb.AppendLine($"Thumbnails.Length: {playlist.Sidebar.Thumbnails.Length}");
+		sb.AppendLine($"VideoCountText: {playlist.Sidebar.VideoCountText}");
+		sb.AppendLine($"ViewCountText: {playlist.Sidebar.ViewCountText}");
+		sb.AppendLine($"LastUpdated: {playlist.Sidebar.LastUpdated}");
+		sb.AppendLine($"Description: {playlist.Sidebar.Description}");
+		sb.AppendLine($"Channel: {playlist.Sidebar.Channel}");
+
+		sb.AppendLine("\n=== ALERTS");
+		foreach (string alert in playlist.Alerts)
+			sb.AppendLine("- " + alert);
+
+		sb.AppendLine("\n=== CONTENT");
+		foreach (RendererContainer renderer in playlist.Contents)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+
+		sb.AppendLine("\n=== CONTINUATION");
+		sb.AppendLine(playlist.Continuation ?? "<null>");
+
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("4qmFsgKUAhIkVkxQTHYzVFRCcjFXXzl0cHBpa0J4QUVfRzZxaldkQmxqQkhKGsYBQ0FGNmpRRlFWRHBEUjFscFJVUkZNazVxVGtST" +
+	          "mExSkVVbFJCTkZGcVNURk5NRTF2UVZWcWNsODBSMmR3ZERKR1FURkJRbGRyVVdsUk1teExWVlpTU1ZkWWNGZFNiRXBFV1RKd1IxZE" +
+	          "dhRFppUkVKcVUwVktkMWxVUWt0T1JrWldWbTFhVTJWc2NEUlpWM2hyWVRGR2RHVklSbEpoTW1oTVVsZGtlbE5UTVVwWldFSjZWVlp" +
+	          "zVWt4V1FqRlpiRnBDU1djJTNEmgIiUEx2M1RUQnIxV185dHBwaWtCeEFFX0c2cWpXZEJsakJISg%3D%3D",
+		TestName = "Continuation Test #1")]
+	public async Task ContinuePlaylistAsync(string continuationToken)
+	{
+		ContinuationResponse continuation = await client.ContinuePlaylistAsync(continuationToken);
+		StringBuilder sb = new();
+		sb.AppendLine("=== CONTENT");
+		foreach (RendererContainer renderer in continuation.Results)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+
+		sb.AppendLine("\n=== CONTINUATION");
+		sb.AppendLine(continuation.ContinuationToken ?? "<null>");
+
+		Assert.Pass(sb.ToString());
+	}
 }

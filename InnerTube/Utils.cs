@@ -31,8 +31,6 @@ public static partial class Utils
 				return richText["label"]!.ToString();
 		 */
 
-		if (text.Runs.Count <= 0) return text.ToString();
-		
 		string str = "";
 		foreach (Text.Types.Run run in text.Runs)
 		{
@@ -72,7 +70,6 @@ public static partial class Utils
 		}
 
 		return Formatter.HandleLineBreaks(str);
-
 	}
 
 	public static string? UnwrapRedirectUrl(string url)
@@ -238,43 +235,6 @@ public static partial class Utils
 		return Convert.FromBase64String(b64
 			.Replace('-', '+')
 			.Replace('_', '/'));
-	}
-
-	public static string PackProtobufInt(int value) =>
-		ToBase64UrlString(new IntContainer { Value = value }.ToByteArray());
-
-	public static int UnpackProtobufInt(string encoded) =>
-		IntContainer.Parser.ParseFrom(FromBase64UrlString(encoded)).Value;
-
-	// TODO: add "unavailable videos" flag
-	public static string PackPlaylistContinuation(string playlistId, int skipAmount)
-	{
-		PaginationInfo info = new()
-		{
-			SkipAmountEncoded = $"PT:{PackProtobufInt(skipAmount)}"
-		};
-
-		PlaylistContinuationContainer container = new()
-		{
-			Continuation = new PlaylistContinuation
-			{
-				InternalPlaylistId = playlistId,
-				PaginationInfo = ToBase64UrlString(info.ToByteArray()),
-				PlaylistId = playlistId[2..]
-			}
-		};
-
-		return ToBase64UrlString(container.ToByteArray());
-	}
-
-	public static PlaylistContinuationInfo UnpackPlaylistContinuation(string continuationKey)
-	{
-		PlaylistContinuationContainer container =
-			PlaylistContinuationContainer.Parser.ParseFrom(FromBase64UrlString(continuationKey));
-		PaginationInfo info =
-			PaginationInfo.Parser.ParseFrom(FromBase64UrlString(container.Continuation.PaginationInfo));
-		return new PlaylistContinuationInfo(container.Continuation.InternalPlaylistId,
-			container.Continuation.PlaylistId, UnpackProtobufInt(info.SkipAmountEncoded.Split(":").Last()));
 	}
 
 	public static string PackCommentsContinuation(string videoId, CommentsContext.Types.SortOrder sortOrder)
@@ -952,6 +912,12 @@ public static partial class Utils
 				}
 			},
 			RendererWrapper.RendererOneofCase.RichItemRenderer => ConvertRenderer(renderer.RichItemRenderer.Content),
+			RendererWrapper.RendererOneofCase.MessageRenderer => new RendererContainer
+			{
+				Type = "message",
+				OriginalType = "messageRenderer",
+				Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text))
+			},
 			_ => new RendererContainer
 			{
 				Type = "unknown",

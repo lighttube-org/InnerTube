@@ -67,6 +67,7 @@ message QueryFlags {
 }
 
 // Playlist continuation
+// Unused in InnerTube/LightTube
 
 message PlaylistContinuationContainer {
   PlaylistContinuation Continuation = 80226972;
@@ -79,11 +80,14 @@ message PlaylistContinuation {
 }
 
 message PaginationInfo {
+  bool IncludeUnavailable = 1;
   string SkipAmountEncoded = 15;
 }
 
 message IntContainer {
   int32 Value = 1;
+  bool IncludeUnavailable = 10;
+  bool IncludeUnavailableAgain = 5;
 }
 
 // Initial comments request

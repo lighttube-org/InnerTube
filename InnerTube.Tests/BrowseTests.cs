@@ -177,7 +177,12 @@ public class BrowseTests
 	public async Task ContinuePlaylist(string playlistId, int skipAmount)
 	{
 		BrowseResponse playlist =
-			await _innerTube.ContinueBrowseAsync(Utils.PackPlaylistContinuation(playlistId, skipAmount));
+			await _innerTube.ContinueBrowseAsync(
+				"4qmFsgKeAhIkVkxQTHYzVFRCcjFXXzl0cHBpa0J4QUVfRzZxaldkQmxqQkhKGtABQ0FGNmpRRlFWRHBEUjFs" +
+				"cFJVUkZNazVxVGtSTmExSkVVbFJCTkZGcVNURk5NRTF2UVZWcWNsODBSMmR3ZERKR1FURkJRbGRyVVdsUk1teExWVlpTU1" +
+				"ZkWWNGZFNiRXBFV1RKd1IxZEdhRFppUkVKcVUwVktkMWxVUWt0T1JrWldWbTFhVTJWc2NEUlpWM2hyWVRGR2RHVklSbEpo" +
+				"TW1oTVVsZGtlbE5UTVVwWldFSjZWVlpzVWt4V1FqRlpiRnBDU1dmQ0JnSUlBUSUzRCUzRJoCIlBMdjNUVEJyMVdfOXRwcG" +
+				"lrQnhBRV9HNnFqV2RCbGpCSEo%3D");
 		
 		StringBuilder sb = new();
 		foreach (RendererWrapper renderer in playlist.OnResponseReceivedActions.AppendContinuationItemsAction

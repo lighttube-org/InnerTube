@@ -142,7 +142,40 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 	{
 		BrowseResponse channel =
 			await InnerTube.BrowseAsync(channelId, "EgZzZWFyY2jyBgQKAloA", query, language, region);
-		File.WriteAllBytes("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/channel-search.bin", channel.ToByteArray());
 		return new InnerTubeChannel(channel);
+	}
+
+	public async Task<InnerTubePlaylist> GetPlaylistAsync(string playlistId, bool includeUnavailable,
+		string language = "en", string region = "US")
+	{
+		BrowseResponse playlist =
+			await InnerTube.BrowseAsync(playlistId.StartsWith("PL") ? "VL" + playlistId : playlistId,
+				includeUnavailable ? "wgYCCAA%3D" : null, null, language, region);
+		return new InnerTubePlaylist(playlist);
+	}
+
+	public async Task<ContinuationResponse> ContinuePlaylistAsync(string continuationToken, string language = "en",
+		string region = "US")
+	{
+		BrowseResponse playlist = await InnerTube.ContinueBrowseAsync(continuationToken, language, region);
+		IEnumerable<RendererWrapper> renderers = playlist.Contents.TwoColumnBrowseResultsRenderer.Tabs[0]
+			                                         .TabRenderer.Content?
+			                                         .ResultsContainer.Results[0].ItemSectionRenderer
+			                                         .Contents[0].PlaylistVideoListRenderer?.Contents ??
+		                                         playlist.Contents.TwoColumnBrowseResultsRenderer.Tabs[0]
+			                                         .TabRenderer.Content?
+			                                         .ResultsContainer.Results[0].ItemSectionRenderer
+			                                         .Contents ??
+		                                         playlist.OnResponseReceivedActions?
+			                                         .AppendContinuationItemsAction?.ContinuationItems ??
+		                                         [];
+		RendererContainer[] items = Utils.ConvertRenderers(renderers);
+
+		return new ContinuationResponse
+		{
+			ContinuationToken = (items.LastOrDefault(x => x.Type == "continuation")?.Data as ContinuationRendererData)
+				?.ContinuationToken,
+			Results = items.Where(x => x.Type != "continuation").ToArray()
+		};
 	}
 }

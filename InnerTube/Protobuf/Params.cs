@@ -58,22 +58,24 @@ namespace InnerTube.Protobuf.Params {
             "1aAmIAEoCzIvLklubmVyVHViZS5Qcm90b2J1Zi5QYXJhbXMuUGxheWxpc3RD",
             "b250aW51YXRpb24iXgoUUGxheWxpc3RDb250aW51YXRpb24SGgoSSW50ZXJu",
             "YWxQbGF5bGlzdElkGAIgASgJEhYKDlBhZ2luYXRpb25JbmZvGAMgASgJEhIK",
-            "ClBsYXlsaXN0SWQYIyABKAkiKwoOUGFnaW5hdGlvbkluZm8SGQoRU2tpcEFt",
-            "b3VudEVuY29kZWQYDyABKAkiHQoMSW50Q29udGFpbmVyEg0KBVZhbHVlGAEg",
-            "ASgFIvABChRDb21tZW50c0NvbnRpbnVhdGlvbhITCgZBbW91bnQYASABKAVI",
-            "AIgBARI8CgdWaWRlb0lkGAIgASgLMisuSW5uZXJUdWJlLlByb3RvYnVmLlBh",
-            "cmFtcy5WaWRlb0lkQ29udGFpbmVyEhEKCVNvbWV0aGluZxgDIAEoBRJSChBD",
-            "b250ZXh0Q29udGFpbmVyGAYgASgLMjMuSW5uZXJUdWJlLlByb3RvYnVmLlBh",
-            "cmFtcy5Db21tZW50c0NvbnRleHRDb250YWluZXJIAYgBAUIJCgdfQW1vdW50",
-            "QhMKEV9Db250ZXh0Q29udGFpbmVyIh4KEFZpZGVvSWRDb250YWluZXISCgoC",
-            "SWQYAiABKAkiZwoYQ29tbWVudHNDb250ZXh0Q29udGFpbmVyEjsKB0NvbnRl",
-            "eHQYBCABKAsyKi5Jbm5lclR1YmUuUHJvdG9idWYuUGFyYW1zLkNvbW1lbnRz",
-            "Q29udGV4dBIOCgZTb3VyY2UYCCABKAkinwEKD0NvbW1lbnRzQ29udGV4dBIP",
-            "CgdWaWRlb0lkGAQgASgJEkoKDFNvcnRpbmdPcmRlchgGIAEoDjI0LklubmVy",
-            "VHViZS5Qcm90b2J1Zi5QYXJhbXMuQ29tbWVudHNDb250ZXh0LlNvcnRPcmRl",
-            "ciIvCglTb3J0T3JkZXISEAoMVE9QX0NPTU1FTlRTEAASEAoMTkVXRVNUX0ZJ",
-            "UlNUEAEiIAoQQ2hhbm5lbFRhYlBhcmFtcxIMCgRuYW1lGAIgASgJYgZwcm90",
-            "bzM="));
+            "ClBsYXlsaXN0SWQYIyABKAkiRwoOUGFnaW5hdGlvbkluZm8SGgoSSW5jbHVk",
+            "ZVVuYXZhaWxhYmxlGAEgASgIEhkKEVNraXBBbW91bnRFbmNvZGVkGA8gASgJ",
+            "IloKDEludENvbnRhaW5lchINCgVWYWx1ZRgBIAEoBRIaChJJbmNsdWRlVW5h",
+            "dmFpbGFibGUYCiABKAgSHwoXSW5jbHVkZVVuYXZhaWxhYmxlQWdhaW4YBSAB",
+            "KAgi8AEKFENvbW1lbnRzQ29udGludWF0aW9uEhMKBkFtb3VudBgBIAEoBUgA",
+            "iAEBEjwKB1ZpZGVvSWQYAiABKAsyKy5Jbm5lclR1YmUuUHJvdG9idWYuUGFy",
+            "YW1zLlZpZGVvSWRDb250YWluZXISEQoJU29tZXRoaW5nGAMgASgFElIKEENv",
+            "bnRleHRDb250YWluZXIYBiABKAsyMy5Jbm5lclR1YmUuUHJvdG9idWYuUGFy",
+            "YW1zLkNvbW1lbnRzQ29udGV4dENvbnRhaW5lckgBiAEBQgkKB19BbW91bnRC",
+            "EwoRX0NvbnRleHRDb250YWluZXIiHgoQVmlkZW9JZENvbnRhaW5lchIKCgJJ",
+            "ZBgCIAEoCSJnChhDb21tZW50c0NvbnRleHRDb250YWluZXISOwoHQ29udGV4",
+            "dBgEIAEoCzIqLklubmVyVHViZS5Qcm90b2J1Zi5QYXJhbXMuQ29tbWVudHND",
+            "b250ZXh0Eg4KBlNvdXJjZRgIIAEoCSKfAQoPQ29tbWVudHNDb250ZXh0Eg8K",
+            "B1ZpZGVvSWQYBCABKAkSSgoMU29ydGluZ09yZGVyGAYgASgOMjQuSW5uZXJU",
+            "dWJlLlByb3RvYnVmLlBhcmFtcy5Db21tZW50c0NvbnRleHQuU29ydE9yZGVy",
+            "Ii8KCVNvcnRPcmRlchIQCgxUT1BfQ09NTUVOVFMQABIQCgxORVdFU1RfRklS",
+            "U1QQASIgChBDaGFubmVsVGFiUGFyYW1zEgwKBG5hbWUYAiABKAliBnByb3Rv",
+            "Mw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
@@ -82,8 +84,8 @@ namespace InnerTube.Protobuf.Params {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.QueryFlags), global::InnerTube.Protobuf.Params.QueryFlags.Parser, new[]{ "ExactSearch" }, new[]{ "ExactSearch" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.PlaylistContinuationContainer), global::InnerTube.Protobuf.Params.PlaylistContinuationContainer.Parser, new[]{ "Continuation" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.PlaylistContinuation), global::InnerTube.Protobuf.Params.PlaylistContinuation.Parser, new[]{ "InternalPlaylistId", "PaginationInfo", "PlaylistId" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.PaginationInfo), global::InnerTube.Protobuf.Params.PaginationInfo.Parser, new[]{ "SkipAmountEncoded" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.IntContainer), global::InnerTube.Protobuf.Params.IntContainer.Parser, new[]{ "Value" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.PaginationInfo), global::InnerTube.Protobuf.Params.PaginationInfo.Parser, new[]{ "IncludeUnavailable", "SkipAmountEncoded" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.IntContainer), global::InnerTube.Protobuf.Params.IntContainer.Parser, new[]{ "Value", "IncludeUnavailable", "IncludeUnavailableAgain" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.CommentsContinuation), global::InnerTube.Protobuf.Params.CommentsContinuation.Parser, new[]{ "Amount", "VideoId", "Something", "ContextContainer" }, new[]{ "Amount", "ContextContainer" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.VideoIdContainer), global::InnerTube.Protobuf.Params.VideoIdContainer.Parser, new[]{ "Id" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Params.CommentsContextContainer), global::InnerTube.Protobuf.Params.CommentsContextContainer.Parser, new[]{ "Context", "Source" }, null, null, null, null),
@@ -2029,6 +2031,7 @@ namespace InnerTube.Protobuf.Params {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public PaginationInfo(PaginationInfo other) : this() {
+      includeUnavailable_ = other.includeUnavailable_;
       skipAmountEncoded_ = other.skipAmountEncoded_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -2037,6 +2040,18 @@ namespace InnerTube.Protobuf.Params {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public PaginationInfo Clone() {
       return new PaginationInfo(this);
+    }
+
+    /// <summary>Field number for the "IncludeUnavailable" field.</summary>
+    public const int IncludeUnavailableFieldNumber = 1;
+    private bool includeUnavailable_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IncludeUnavailable {
+      get { return includeUnavailable_; }
+      set {
+        includeUnavailable_ = value;
+      }
     }
 
     /// <summary>Field number for the "SkipAmountEncoded" field.</summary>
@@ -2066,6 +2081,7 @@ namespace InnerTube.Protobuf.Params {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (IncludeUnavailable != other.IncludeUnavailable) return false;
       if (SkipAmountEncoded != other.SkipAmountEncoded) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -2074,6 +2090,7 @@ namespace InnerTube.Protobuf.Params {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (IncludeUnavailable != false) hash ^= IncludeUnavailable.GetHashCode();
       if (SkipAmountEncoded.Length != 0) hash ^= SkipAmountEncoded.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -2093,6 +2110,10 @@ namespace InnerTube.Protobuf.Params {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (IncludeUnavailable != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(IncludeUnavailable);
+      }
       if (SkipAmountEncoded.Length != 0) {
         output.WriteRawTag(122);
         output.WriteString(SkipAmountEncoded);
@@ -2107,6 +2128,10 @@ namespace InnerTube.Protobuf.Params {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (IncludeUnavailable != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(IncludeUnavailable);
+      }
       if (SkipAmountEncoded.Length != 0) {
         output.WriteRawTag(122);
         output.WriteString(SkipAmountEncoded);
@@ -2121,6 +2146,9 @@ namespace InnerTube.Protobuf.Params {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (IncludeUnavailable != false) {
+        size += 1 + 1;
+      }
       if (SkipAmountEncoded.Length != 0) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(SkipAmountEncoded);
       }
@@ -2135,6 +2163,9 @@ namespace InnerTube.Protobuf.Params {
     public void MergeFrom(PaginationInfo other) {
       if (other == null) {
         return;
+      }
+      if (other.IncludeUnavailable != false) {
+        IncludeUnavailable = other.IncludeUnavailable;
       }
       if (other.SkipAmountEncoded.Length != 0) {
         SkipAmountEncoded = other.SkipAmountEncoded;
@@ -2154,6 +2185,10 @@ namespace InnerTube.Protobuf.Params {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 8: {
+            IncludeUnavailable = input.ReadBool();
+            break;
+          }
           case 122: {
             SkipAmountEncoded = input.ReadString();
             break;
@@ -2173,6 +2208,10 @@ namespace InnerTube.Protobuf.Params {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 8: {
+            IncludeUnavailable = input.ReadBool();
+            break;
+          }
           case 122: {
             SkipAmountEncoded = input.ReadString();
             break;
@@ -2220,6 +2259,8 @@ namespace InnerTube.Protobuf.Params {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public IntContainer(IntContainer other) : this() {
       value_ = other.value_;
+      includeUnavailable_ = other.includeUnavailable_;
+      includeUnavailableAgain_ = other.includeUnavailableAgain_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
 
@@ -2241,6 +2282,30 @@ namespace InnerTube.Protobuf.Params {
       }
     }
 
+    /// <summary>Field number for the "IncludeUnavailable" field.</summary>
+    public const int IncludeUnavailableFieldNumber = 10;
+    private bool includeUnavailable_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IncludeUnavailable {
+      get { return includeUnavailable_; }
+      set {
+        includeUnavailable_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "IncludeUnavailableAgain" field.</summary>
+    public const int IncludeUnavailableAgainFieldNumber = 5;
+    private bool includeUnavailableAgain_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool IncludeUnavailableAgain {
+      get { return includeUnavailableAgain_; }
+      set {
+        includeUnavailableAgain_ = value;
+      }
+    }
+
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override bool Equals(object other) {
@@ -2257,6 +2322,8 @@ namespace InnerTube.Protobuf.Params {
         return true;
       }
       if (Value != other.Value) return false;
+      if (IncludeUnavailable != other.IncludeUnavailable) return false;
+      if (IncludeUnavailableAgain != other.IncludeUnavailableAgain) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
 
@@ -2265,6 +2332,8 @@ namespace InnerTube.Protobuf.Params {
     public override int GetHashCode() {
       int hash = 1;
       if (Value != 0) hash ^= Value.GetHashCode();
+      if (IncludeUnavailable != false) hash ^= IncludeUnavailable.GetHashCode();
+      if (IncludeUnavailableAgain != false) hash ^= IncludeUnavailableAgain.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
       }
@@ -2287,6 +2356,14 @@ namespace InnerTube.Protobuf.Params {
         output.WriteRawTag(8);
         output.WriteInt32(Value);
       }
+      if (IncludeUnavailableAgain != false) {
+        output.WriteRawTag(40);
+        output.WriteBool(IncludeUnavailableAgain);
+      }
+      if (IncludeUnavailable != false) {
+        output.WriteRawTag(80);
+        output.WriteBool(IncludeUnavailable);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(output);
       }
@@ -2301,6 +2378,14 @@ namespace InnerTube.Protobuf.Params {
         output.WriteRawTag(8);
         output.WriteInt32(Value);
       }
+      if (IncludeUnavailableAgain != false) {
+        output.WriteRawTag(40);
+        output.WriteBool(IncludeUnavailableAgain);
+      }
+      if (IncludeUnavailable != false) {
+        output.WriteRawTag(80);
+        output.WriteBool(IncludeUnavailable);
+      }
       if (_unknownFields != null) {
         _unknownFields.WriteTo(ref output);
       }
@@ -2313,6 +2398,12 @@ namespace InnerTube.Protobuf.Params {
       int size = 0;
       if (Value != 0) {
         size += 1 + pb::CodedOutputStream.ComputeInt32Size(Value);
+      }
+      if (IncludeUnavailable != false) {
+        size += 1 + 1;
+      }
+      if (IncludeUnavailableAgain != false) {
+        size += 1 + 1;
       }
       if (_unknownFields != null) {
         size += _unknownFields.CalculateSize();
@@ -2328,6 +2419,12 @@ namespace InnerTube.Protobuf.Params {
       }
       if (other.Value != 0) {
         Value = other.Value;
+      }
+      if (other.IncludeUnavailable != false) {
+        IncludeUnavailable = other.IncludeUnavailable;
+      }
+      if (other.IncludeUnavailableAgain != false) {
+        IncludeUnavailableAgain = other.IncludeUnavailableAgain;
       }
       _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
     }
@@ -2348,6 +2445,14 @@ namespace InnerTube.Protobuf.Params {
             Value = input.ReadInt32();
             break;
           }
+          case 40: {
+            IncludeUnavailableAgain = input.ReadBool();
+            break;
+          }
+          case 80: {
+            IncludeUnavailable = input.ReadBool();
+            break;
+          }
         }
       }
     #endif
@@ -2365,6 +2470,14 @@ namespace InnerTube.Protobuf.Params {
             break;
           case 8: {
             Value = input.ReadInt32();
+            break;
+          }
+          case 40: {
+            IncludeUnavailableAgain = input.ReadBool();
+            break;
+          }
+          case 80: {
+            IncludeUnavailable = input.ReadBool();
             break;
           }
         }
