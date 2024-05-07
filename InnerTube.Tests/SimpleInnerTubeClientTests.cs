@@ -266,8 +266,67 @@ public class SimpleInnerTubeClientTests
 		Assert.Pass(sb.ToString());
 	}
 
+	[TestCase(
+		"4qmFsgKrCBIYVUNGQWlGeUdzNm9EaUYxTmYtclJKcFpBGo4IOGdhRUJocUJCbnItQlFyNUJRclFCVUZpTkZvdFEwaFpNRVI0VTJRMU4zVmZVVjk0WXpJeVdYQlhjR1JsVlhkcmJFSmxXWFJoVGpKTlgwNU1XRlpmZDJkQllXbFBXVXRUUlRoV2RrZGtNemswV2tRNU1teFJkMmRXTkZscVNsb3dSM0Y1U2poSVkwVnpSbk56Vm5GSFJsSmlWSGRYVkhZd2NGTTJWMjFXTkVjd1pWaFNiV3hGWVUxNVJYRk9UMjVtTkhaNVdVeGZVWEZGWjFwMGRFeENTbnBET1hsRlUxSlZUekpIZG0weVFVRlJNMjQ1Vm04Mk1tczRTa0ZZTTJnMkxYaFpWM2xJY21GMWJDMVpRMngyY0VaMlIyaEthRmc0UmtZeWVUSnNNRmR1TW5KR1ZGTmxaVkV0VW5kTmRWWlpTQzF2ZVdWMmVqRkRkamx1YlhjMVlXOHpNMFo0VlZkeVpUbHRhMlpxZVc1SVZtODRkVnB0VmxCa04zb3lTSGRuYlhsUGVXYzVWalJzVUVObWJuSjZXVmhpWjNselFUQjZVVnB4WlVsQmNpMTFiR0pST0RVd2EyVkVOblpQYjBaT05pMVVOR1k1VlhwdVVVODNabkZLVTAxbVoxRldXRmh6UjBwVlMwSXRiM0ZWYWpCSkxXdHJXbTVaWkZoclVGUTNaV2x1UjFseUxVcHBlVzVTZVY5MVYybGFNbmcxTW5oNWJtOUdOSGx3U21wZmJHZ3lhVU52ZEhSNU5FTkVRVzFvVlc5VWNYbFdjMmhYWm5SSU1GaDNZbWRSV0RoQmIwRmFRMkpvWVdsMVluWndhRVpUVFZOc1pVNUVhMmRpZFRoclkxUXdjbW8zVjBJd1dqaFNlSGR0VW1JMFREWlBVazlTVWt0T2RVOVdiRzVLVjBnM1pHOHdWbEJxVmtkQ2J6ZE5ZbGc0ZDBsT2VrTmhhR3RXU1daR1JESkhSbEpNV21oRlpVOVhRbWd5TTNwdFMxaHBXVjgwVG5GSlJGTnZhMnRGTUVJMVlYUTFUVkYzU0VKZk56bGtiVXBuWXpoWlgxQlRhRWxKTm5KU05WZzJWSEo1YkV4Mk1rMUhVbVZUZUc1emJHSmZTVk5IWW1acVNrWTRaM3BDTWxWNU5uVTJSVTVDTlU1RmFHdDNkbXMyZEVGRVJVZHFTMjlYYjNCWVNUWkhjVlJFT0ZwcVZGbzFYMjFVTWxad01GazVWbWgxWW1ab1ZtUkRURzFOTm13d1VXdzNiM1JzVm1oYVgycENOakJ2UWtkRlQybGhXVFk1VDI5QlUxRkdSUklrTmpneU5UWXdaakV0TURBd01DMHlZelEwTFRrME5qZ3ROVGd5TkRJNVpESXhORGM0R0FFJTNE",
+		TestName = "Continuation test #1")]
+	public async Task ContinueChannelAsync(string continuationToken)
+	{
+		ContinuationResponse continuationResponse = await client.ContinueChannelAsync(continuationToken);
+
+		StringBuilder sb = new();
+		sb.AppendLine("== ITEMS");
+		foreach (RendererContainer renderer in continuationResponse.Results)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+		sb.AppendLine("\nContinuation: " + (continuationResponse.ContinuationToken ?? "<null>"));
+
+		Assert.Pass(sb.ToString());
+	}
+
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", "skyblock")]
 	public async Task SearchChannelAsync(string channelId, string query)
 	{
+		InnerTubeChannel channel = await client.SearchChannelAsync(channelId, query);
+		StringBuilder sb = new();
+		sb.AppendLine("=== HEADER");
+		ChannelHeader? header = channel.Header;
+		if (header is null) sb.AppendLine("<null>");
+		else
+		{
+			sb.AppendLine("Channel ID: " + header.Id);
+			sb.AppendLine("Title: " + header.Title);
+			sb.AppendLine("Handle: " + header.Handle);
+			sb.AppendLine("Subscribers: " + header.SubscriberCountText);
+			sb.AppendLine("Videos: " + header.VideoCountText);
+			sb.AppendLine($"Tagline: {header.Tagline}");
+			sb.AppendLine($"Avatar: ({header.Avatars.Length})" + string.Join("",
+				header.Avatars.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"Banner: ({header.Banner.Length})" + string.Join("",
+				header.Banner.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"MobileBanner: ({header.MobileBanner.Length})" + string.Join("",
+				header.MobileBanner.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"TVBanner: ({header.TvBanner.Length})" + string.Join("",
+				header.TvBanner.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
+			sb.AppendLine($"Badges: ({header.Badges.Length})\n- " + string.Join("",
+				header.Badges.Select(x =>
+					string.Join("\n  ", Utils.SerializeRenderer(new RendererWrapper
+					{
+						MetadataBadgeRenderer = x
+					}).Trim().Split("\n")))));
+			sb.AppendLine("Links:");
+			sb.AppendLine("- First: " + (header.PrimaryLink ?? "<null>"));
+			sb.AppendLine("- More: " + (header.SecondaryLink ?? "<null>"));
+		}
+
+		sb.AppendLine("\n=== TABS");
+		foreach (ChannelTab tab in channel.Tabs)
+			sb.AppendLine($"- [{tab.Tab}/{tab.Params}] {tab.Title} {(tab.Selected ? "(selected)" : "")}");
+
+		sb.AppendLine("\n=== CONTENT");
+		foreach (RendererContainer renderer in channel.Contents)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+
+		Assert.Pass(sb.ToString());
 	}
 }

@@ -35,7 +35,8 @@ public class InnerTubeChannel(BrowseResponse channel)
 				RendererWrapper.RendererOneofCase.TabRenderer => (x.TabRenderer.Selected,
 					x.TabRenderer.Content?.ResultsContainer?.Results ??
 					x.TabRenderer.Content?.RichGridRenderer.Contents),
-				RendererWrapper.RendererOneofCase.ExpandableTabRenderer => (x.ExpandableTabRenderer.Selected, []),
+				RendererWrapper.RendererOneofCase.ExpandableTabRenderer => (x.ExpandableTabRenderer.Selected,
+					x.ExpandableTabRenderer.Content.ResultsContainer.Results),
 				_ => (false, [])
 			}).FirstOrDefault(x => x.Selected).Item2 ?? []);
 }
