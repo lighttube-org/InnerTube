@@ -48,7 +48,7 @@ public partial class SignatureSolver
 		string descramblerMethodContainerObjectName =
 			descrambleFunctionMatch.Groups[2].Value.Split(".", 2)[0];
 		Match descramblerObjectMatch =
-			new Regex(descramblerMethodContainerObjectName + "={(.+?)};").Match(js.ReplaceLineEndings(""));
+			new Regex(Regex.Escape(descramblerMethodContainerObjectName) + "={(.+?)};").Match(js.ReplaceLineEndings(""));
 		string descramblerObject = descramblerObjectMatch.Groups[1].Value;
 
 		// parse JS with Regex (to find the descrambler function for the n query param)
