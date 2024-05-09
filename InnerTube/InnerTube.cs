@@ -157,9 +157,9 @@ public class InnerTube
 			language, region, true));
 	}
 
-	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk, bool captionsRequested,
-		string? playlistId = null, int? playlistIndex = null, string? playlistParams = null, string language = "en",
-		string region = "US")
+	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk = false,
+		bool captionsRequested = false, string? playlistId = null, int? playlistIndex = null,
+		string? playlistParams = null, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("videoId", videoId)

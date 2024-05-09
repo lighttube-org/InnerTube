@@ -140,3 +140,10 @@ public enum PlaylistFilter
 	Videos = 1,
 	Shorts = 2
 }
+
+public enum VideoUploadType
+{
+	Published = 0,
+	Streamed = 1,
+	Premiered = 2
+}
