@@ -32,6 +32,12 @@ string[] videos =
 	"7DKv5H5Frt0", // Published
 ];
 
+string[] playlists =
+[
+	"VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7",
+	"VLPLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF"
+];
+
 // todo: remember to borrow dates from https://github.com/TeamNewPipe/NewPipeExtractor/blob/dev/timeago-parser/raw/overview.json
 
 InnerTube.InnerTube client = new();
@@ -47,6 +53,7 @@ for (int i = 0; i < languages.Length; i++)
 	List<string> videoDates = [];
 	List<string> viewCounts = [];
 	List<string> likeCounts = [];
+	List<string> lastUpdatedDates = [];
 
 	Task[] channelTasks = channels.Select(channelId => GetSubscriptionCount(hl, channelId)).Cast<Task>().ToArray();
 	await Task.WhenAll(channelTasks);
@@ -58,13 +65,18 @@ for (int i = 0; i < languages.Length; i++)
 	viewCounts.AddRange(from Task<(string, string, string)> res in videoTasks select res.Result.Item2);
 	likeCounts.AddRange(from Task<(string, string, string)> res in videoTasks select res.Result.Item3);
 
+	Task[] playlistTasks = playlists.Select(playlistId => GetLastUpdated(hl, playlistId)).Cast<Task>().ToArray();
+	await Task.WhenAll(playlistTasks);
+	lastUpdatedDates.AddRange(from Task<string> res in playlistTasks select res.Result);
+
 	Console.Write("\n");
 	Dictionary<string, List<string>> languageResult = new()
 	{
 		["subscriberCounts"] = subscriberCounts,
 		["videoDates"] = videoDates,
 		["viewCounts"] = viewCounts,
-		["likeCounts"] = likeCounts
+		["likeCounts"] = likeCounts,
+		["lastUpdatedDates"] = lastUpdatedDates,
 	};
 
 	finalResult.Add(hl, languageResult);
@@ -104,6 +116,14 @@ async Task<(string, string, string)> GetVideoStrings(string hl, string videoId)
 		.First(x => x.RendererCase == RendererWrapper.RendererOneofCase.SegmentedLikeDislikeButtonViewModel)
 		.SegmentedLikeDislikeButtonViewModel.LikeButtonViewModel.LikeButtonViewModel.ToggleButtonViewModel
 		.ToggleButtonViewModel.DefaultButtonViewModel.ButtonViewModel2.Title;
-	Console.Write(".");
+	Console.Write(",");
 	return (dateText, viewCountText, likeCountText);
+}
+
+async Task<string> GetLastUpdated(string hl, string playlistId)
+{
+	BrowseResponse browse = await client.BrowseAsync(playlistId, language: hl);
+	string lastUpdated = Utils.ReadRuns(browse.Header.PlaylistHeaderRenderer.Byline.PlaylistBylineRenderer.Text.Last());
+	Console.Write(";");
+	return lastUpdated;
 }
