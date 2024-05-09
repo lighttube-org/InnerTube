@@ -28,7 +28,8 @@ string[] channels =
 string[] videos =
 [
 	"Atvsg_zogxo", // Premiered
-	"jfKfPfyJRdk", // Streamed
+	"jfKfPfyJRdk", // Streaming
+	"dv_YFDzCw2s", // Streamed
 	"7DKv5H5Frt0", // Published
 ];
 

@@ -12,7 +12,7 @@ public class ValueParserTests
 	public async Task Setup()
 	{
 		string url =
-			"https://gist.githubusercontent.com/kuylar/2cc4abb51a04def25d3914c7bc236424/raw/4da342b115ceeaea3278ca74a73adf8bb3524174/out.json";
+			"https://gist.githubusercontent.com/kuylar/2cc4abb51a04def25d3914c7bc236424/raw/71c6fba16739bf6e790e42da4a353b02aed71b1a/out.json";
 		string json = await new HttpClient().GetStringAsync(url);
 		testData = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string[]>>>(json);
 		ValueParser.Init();
