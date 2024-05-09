@@ -12,7 +12,7 @@ public class ValueParserTests
 	public async Task Setup()
 	{
 		string url =
-			"https://gist.githubusercontent.com/kuylar/c030dcc7bae70a0e46dad43941e2af8f/raw/c1ee5ab30e16576acd2672c570ab5a6251e48b62/out.json";
+			"https://gist.githubusercontent.com/kuylar/2cc4abb51a04def25d3914c7bc236424/raw/4da342b115ceeaea3278ca74a73adf8bb3524174/out.json";
 		string json = await new HttpClient().GetStringAsync(url);
 		testData = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string[]>>>(json);
 		ValueParser.Init();
@@ -134,6 +134,10 @@ public class ValueParserTests
 		sb.AppendLine("\nLike counts:");
 		foreach (string value in testValues["likeCounts"])
 			sb.AppendLine($"'{value}': {parser.ParseLikeCount(value)}");
+
+		sb.AppendLine("\nLast updated:");
+		foreach (string value in testValues["lastUpdatedDates"])
+			sb.AppendLine($"'{value}': {parser.ParseLastUpdated(value)}");
 
 		Assert.Pass(sb.ToString());
 	}
