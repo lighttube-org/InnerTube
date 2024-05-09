@@ -16,7 +16,7 @@ public static class ValueParser
 				.ToDictionary(x => x.Item1!.LanguageCode, x => (IValueParser)Activator.CreateInstance(x.x)!);
 	}
 
-	private static IValueParser GetParserForLocale(string language) =>
+	public static IValueParser GetParserForLocale(string language) =>
 		!languages.TryGetValue(language, out IValueParser? parser)
 			? throw new Exception($"Unknown language code '{language}'")
 			: parser;
