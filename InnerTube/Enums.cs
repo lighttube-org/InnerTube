@@ -144,6 +144,7 @@ public enum PlaylistFilter
 public enum VideoUploadType
 {
 	Published = 0,
-	Streamed = 1,
-	Premiered = 2
+	Premiered = 1,
+	Streamed = 2,
+	Streaming = 3,
 }
