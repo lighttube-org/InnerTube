@@ -120,24 +120,29 @@ public class ValueParserTests
 		sb.AppendLine($"Language: {language}");
 
 		sb.AppendLine("\nSubscriber counts:");
-		foreach (string value in testValues["subscriberCounts"]) 
-			sb.AppendLine($"'{value}': {parser.ParseSubscriberCount(value)}");
+		foreach (string value in testValues["subscriberCounts"])
+			sb.AppendLine(
+				$"{$"{value}".PadLeft(testValues["subscriberCounts"].Max(x => x.Length))}: {parser.ParseSubscriberCount(value)}");
 
 		sb.AppendLine("\nVideo upload dates & video publish types:");
 		foreach (string value in testValues["videoDates"])
-			sb.AppendLine($"'{value}': {parser.ParseVideoUploadType(value)}, {parser.ParseFullDate(value)}");
+			sb.AppendLine(
+				$"{$"{value}".PadLeft(testValues["videoDates"].Max(x => x.Length))}: {parser.ParseVideoUploadType(value)}, {parser.ParseFullDate(value):dd/MM/yyyy}");
 
 		sb.AppendLine("\nView counts:");
 		foreach (string value in testValues["viewCounts"])
-			sb.AppendLine($"'{value}': {parser.ParseViewCount(value)}");
+			sb.AppendLine(
+				$"{$"{value}".PadLeft(testValues["viewCounts"].Max(x => x.Length))}: {parser.ParseViewCount(value)}");
 
 		sb.AppendLine("\nLike counts:");
 		foreach (string value in testValues["likeCounts"])
-			sb.AppendLine($"'{value}': {parser.ParseLikeCount(value)}");
+			sb.AppendLine(
+				$"{$"{value}".PadLeft(testValues["likeCounts"].Max(x => x.Length))}: {parser.ParseLikeCount(value)}");
 
-		sb.AppendLine("\nLast updated:");
+		sb.AppendLine("\nLast updated dates:");
 		foreach (string value in testValues["lastUpdatedDates"])
-			sb.AppendLine($"'{value}': {parser.ParseLastUpdated(value)}");
+			sb.AppendLine(
+				$"{$"{value}".PadLeft(testValues["lastUpdatedDates"].Max(x => x.Length))}: {parser.ParseLastUpdated(value):dd/MM/yyyy}");
 
 		Assert.Pass(sb.ToString());
 	}
