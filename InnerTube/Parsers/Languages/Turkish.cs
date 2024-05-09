@@ -22,15 +22,14 @@ public partial class Turkish : IValueParser
 			"yyyy/MMM/d", GetCultureInfo());
 	}
 
-	public VideoUploadType ParseVideoUploadType(string type)
-	{
-		// Turkish doesn't have a difference between premieres and streams, defaulting to "streamed" for all
-		return type.ToLower(GetCultureInfo()).Contains("yayınlandı")
-			? VideoUploadType.Streamed
+	public VideoUploadType ParseVideoUploadType(string type) =>
+		type.ToLower(GetCultureInfo()).Contains("yayınlandı")
+			? VideoUploadType.Premiered
 			: type.ToLower(GetCultureInfo()).Contains("başladı")
 				? VideoUploadType.Streaming
-				: VideoUploadType.Published;
-	}
+				: type.ToLower(GetCultureInfo()).Contains("yapıldı")
+					? VideoUploadType.Streamed
+					: VideoUploadType.Published;
 
 	public long ParseSubscriberCount(string subscriberCountText)
 	{
@@ -38,13 +37,13 @@ public partial class Turkish : IValueParser
 		return ParseShortNumber(digitsPart);
 	}
 
-	public long ParseLikeCount(string likeCountText) => 
+	public long ParseLikeCount(string likeCountText) =>
 		ParseShortNumber(likeCountText);
 
 	public long ParseViewCount(string viewCountText) => int.Parse(viewCountRegex.Match(viewCountText).Groups[1].Value,
 		NumberStyles.AllowThousands, GetCultureInfo());
 
-	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) => 
+	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) =>
 		ParseFullDate(lastUpdatedText.Split(" son ")[1].Split(" tarihinde ")[0]);
 
 	private long ParseShortNumber(string part)
@@ -70,11 +69,11 @@ public partial class Turkish : IValueParser
 	private CultureInfo GetCultureInfo() => CultureInfo.GetCultureInfoByIetfLanguageTag("tr");
 
 	[GeneratedRegex("(\\d{1,2}) (\\w+) (\\d{4})")]
-    private static partial Regex FullDatePatternRegex();
+	private static partial Regex FullDatePatternRegex();
 
-    [GeneratedRegex("([\\d.,]+)\\s?(\\w*)")]
-    private static partial Regex ShortNumberRegex();
+	[GeneratedRegex("([\\d.,]+)\\s?(\\w*)")]
+	private static partial Regex ShortNumberRegex();
 
-    [GeneratedRegex("([\\d.]+)")]
-    private static partial Regex ViewCountRegex();
+	[GeneratedRegex("([\\d.]+)")]
+	private static partial Regex ViewCountRegex();
 }
