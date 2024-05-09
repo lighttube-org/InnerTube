@@ -1,4 +1,5 @@
 ﻿using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -23,7 +24,8 @@ public static partial class Utils
 	{
 		if (text == null) return "";
 
-		if (text.HasSimpleText) return Formatter.HandleLineBreaks(text.SimpleText);
+		if (text.HasSimpleText && !string.IsNullOrWhiteSpace(text.SimpleText))
+			return Formatter.HandleLineBreaks(text.SimpleText);
 
 		// TODO: check for .label
 		/*
@@ -592,9 +594,9 @@ public static partial class Utils
 	}
 
 	public static RendererContainer[] ConvertRenderers(IEnumerable<RendererWrapper>? renderers) =>
-		renderers?.Select(ConvertRenderer).ToArray() ?? [];
+		renderers?.Select(ConvertRenderer).Where(x => x != null).ToArray() ?? [];
 
-	public static RendererContainer ConvertRenderer(RendererWrapper renderer)
+	public static RendererContainer? ConvertRenderer(RendererWrapper renderer)
 	{
 		return renderer.RendererCase switch
 		{
@@ -755,6 +757,40 @@ public static partial class Utils
 					Description = null
 				}
 			},
+			RendererWrapper.RendererOneofCase.PromotedVideoRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "promotedVideoRenderer",
+				Data = new VideoRendererData
+				{
+					VideoId = renderer.PromotedVideoRenderer.VideoId,
+					Title = ReadRuns(renderer.PromotedVideoRenderer.Title),
+					Thumbnails = renderer.PromotedVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+					Author = Channel.From(renderer.PromotedVideoRenderer.LongBylineText),
+					Duration = ParseDuration(ReadRuns(renderer.PromotedVideoRenderer.LengthText)),
+					PublishedText = "",
+					ViewCountText = "",
+					Badges = [
+						renderer.PromotedVideoRenderer.AdBadge.MetadataBadgeRenderer
+					],
+					Description = ReadRuns(renderer.PromotedVideoRenderer.Description)
+				}
+			},
+			RendererWrapper.RendererOneofCase.ChannelRenderer => new RendererContainer
+			{
+				Type = "channel",
+				OriginalType = "channelRenderer",
+				Data = new ChannelRendererData
+				{
+					ChannelId = renderer.ChannelRenderer.ChannelId,
+					Title = ReadRuns(renderer.ChannelRenderer.Title),
+					Handle = Channel.TryGetHandle(renderer.ChannelRenderer.NavigationEndpoint.BrowseEndpoint
+						.CanonicalBaseUrl),
+					Avatar = renderer.ChannelRenderer.Thumbnail.Thumbnails_.ToArray(),
+					VideoCountText = ReadRuns(renderer.ChannelRenderer.VideoCountText),
+					SubscriberCountText = ReadRuns(renderer.ChannelRenderer.SubscriberCountText)
+				}
+			},
 			RendererWrapper.RendererOneofCase.GridChannelRenderer => new RendererContainer
 			{
 				Type = "channel",
@@ -909,6 +945,16 @@ public static partial class Utils
 					Style = "shelf;reel"
 				}
 			},
+			RendererWrapper.RendererOneofCase.SearchPyvRenderer => new RendererContainer
+			{
+				Type = "container",
+				OriginalType = "searchPyvRenderer",
+				Data = new ContainerRendererData
+				{
+					Items = ConvertRenderers(renderer.SearchPyvRenderer.Ads),
+					Style = "ad"
+				}
+			},
 			RendererWrapper.RendererOneofCase.GridRenderer => new RendererContainer
 			{
 				Type = "container",
@@ -930,11 +976,19 @@ public static partial class Utils
 				}
 			},
 			RendererWrapper.RendererOneofCase.RichItemRenderer => ConvertRenderer(renderer.RichItemRenderer.Content),
+			RendererWrapper.RendererOneofCase.AdSlotRenderer => ConvertRenderer(renderer.AdSlotRenderer
+				.FulfillmentContent.FulfilledLayout.InFeedAdLayoutRenderer.RenderingContent),
 			RendererWrapper.RendererOneofCase.MessageRenderer => new RendererContainer
 			{
 				Type = "message",
 				OriginalType = "messageRenderer",
 				Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text))
+			},
+			RendererWrapper.RendererOneofCase.BackgroundPromoRenderer => new RendererContainer
+			{
+				Type = "message",
+				OriginalType = "backgroundPromoRenderer",
+				Data = new MessageRendererData(ReadRuns(renderer.BackgroundPromoRenderer.Text))
 			},
 			RendererWrapper.RendererOneofCase.ChipCloudChipRenderer => new RendererContainer
 			{
@@ -943,11 +997,13 @@ public static partial class Utils
 				Data = new ChipRendererData
 				{
 					Title = ReadRuns(renderer.ChipCloudChipRenderer.Text),
-					ContinuationToken = null,
-					Params = renderer.ChipCloudChipRenderer.NavigationEndpoint.BrowseEndpoint?.Params,
+					ContinuationToken = renderer.ChipCloudChipRenderer.NavigationEndpoint?.ContinuationCommand?.Token,
+					Params = renderer.ChipCloudChipRenderer.NavigationEndpoint?.BrowseEndpoint?.Params,
 					IsSelected = renderer.ChipCloudChipRenderer.IsSelected
 				}
 			},
+			RendererWrapper.RendererOneofCase
+				.PromotedSparklesWebRenderer => null, // ad, doesn't fit into any IRendererData's
 			_ => new RendererContainer
 			{
 				Type = "unknown",

@@ -344,7 +344,7 @@ public class SimpleInnerTubeClientTests
 	public async Task GetPlaylistAsync(string playlistId, bool includeUnavailable, PlaylistFilter filters)
 	{
 		InnerTubePlaylist playlist = await client.GetPlaylistAsync(playlistId, includeUnavailable, filters);
-		
+
 		StringBuilder sb = new(playlist.Id);
 		sb.AppendLine("\n" + Utils.PackPlaylistParams(includeUnavailable, filters));
 		sb.AppendLine(includeUnavailable + ", " + filters);
@@ -397,6 +397,84 @@ public class SimpleInnerTubeClientTests
 
 		sb.AppendLine("\n=== CONTINUATION");
 		sb.AppendLine(continuation.ContinuationToken ?? "<null>");
+
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("big buck bunny", null, TestName = "Just a normal search")]
+	[TestCase("big bcuk bunny", null, TestName = "Search with a typo")]
+	[TestCase("big bcuk bunny", "exact", TestName = "Force to search with the typo")]
+	[TestCase("technoblade skyblock", null, TestName = "Used to get playlistRenderer & channelRenderer")]
+	[TestCase("lofi radio", null, TestName = "Used to get live videos")]
+	[TestCase("EvCZ9W2xAMQ", null, TestName = "Premiere video")]
+	[TestCase("technoblade", null, TestName = "didYouMeanRenderer")]
+	[TestCase("O'zbekcha Kuylar 2020, Vol. 2", null, TestName = "epic broken playlist")]
+	[TestCase("cars 2", "movie", TestName = "movieRenderer")]
+	[TestCase("", "exact", TestName = "backgroundPromoRenderer")]
+	[TestCase("vpn", null, TestName = "adSlotRenderer")]
+	[TestCase("Various Artists", "exact;channel", TestName = "Various Artists/old ChannelRenderer")]
+	public async Task SearchAsync(string query, string? paramArgs)
+	{
+		SearchParams? param = paramArgs switch
+		{
+			"movie" => new SearchParams
+			{
+				Filters = new SearchFilters { Type = SearchFilters.Types.ItemType.Movie }
+			},
+			"exact" => new SearchParams
+			{
+				QueryFlags = new QueryFlags { ExactSearch = true }
+			},
+			"exact;channel" => new SearchParams
+			{
+				QueryFlags = new QueryFlags { ExactSearch = true },
+				Filters = new SearchFilters { Type = SearchFilters.Types.ItemType.Channel }
+			},
+			_ => null
+		};
+		InnerTubeSearchResults results = await client.SearchAsync(query, param);
+		StringBuilder sb = new();
+
+		sb.AppendLine("EstimatedResults: " + results.EstimatedResults)
+			.AppendLine("QueryCorrecter: " + (results.QueryCorrecter?.ToString() ?? "<null>"))
+			.AppendLine("Continuation: " + string.Join("", results.Continuation?.Take(20) ?? "NONE") + "...")
+			.AppendLine("Refinements: \n" + string.Join('\n', results.Refinements.Select(x => $"- {x}")));
+
+		sb.AppendLine("\n=== RESULTS");
+		foreach (RendererContainer renderer in results.Results)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+
+		sb.AppendLine("\n=== CHIPS");
+		foreach (RendererContainer renderer in results.Chips)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase(
+		"EpMFEg9zYXVsIGdvb2RtYW4gM2QahANTQlNDQVF0blJHcE5XblpaVjFWa2I0SUJDM28zVDNJME56VkNRVFJGZ2dFTGFtVk5PWGxTU25kTGJE" +
+		"aUNBUXQ1TUhOWVZHSnhVSEJZUVlJQkMwOXlNVlJrYW1zMmFUUnpnZ0VMZEMxVFlXRlBTMmR0WW11Q0FRdE5kVXRWUzFwTGNHZFdiNElCQ3pk" +
+		"UE0yRkhOR3BzVVZCQmdnRUxVR04yUm1sclVsOW9NbFdDQVF0cmFGZGlOVVJ2WjFCblZZSUJDM281WDA5WU1WZFdXRmhWZ2dFTFRIbEZjV280" +
+		"YlVNM2FWR0NBUXN0WmpaaVlUUnhWbFpTUVlJQkMycFhSVzh4TWxGRVlra3dnZ0VMYUVGRmVWaFFXRWh2T0d1Q0FRdHFVMUpJZWxSWlZFWnBi" +
+		"NElCQzNoSFIycFNaV3B3Y1U4NGdnRUxTbVpxVmtsUmNFcFFlRUdDQVF0VWRYZHRhRTQ1ZGpkZlVZSUJDMFk1ZW5CNE16QnZPSGRac2dFR0Nn" +
+		"UUlGUkFDkgL3AS9zZWFyY2g_b3E9c2F1bCBnb29kbWFuIDNkJmdzX2w9eW91dHViZS4zLi4waTQ3MWk0MzNrMWwyajBpNDcxazFqMGk1MTJp" +
+		"NDMzazFqMGk1MTJrMWowaTUxMmk0MzNrMWowaTUxMmk0MzNpMTMxazFqMGk1MTJrMWw3LjIyNzQuNDcwNS4wLjUwMDcuMTYuMTMuMC4zLjMu" +
+		"MC4zNDUuMjMxMS4wajlqMWoyLjEzLjAuLi4uMC4uLjFhYy4xLjY0LnlvdXR1YmUuLjEuMTQuMjE1Ny4wLi4waTQzM2kxMzFrMWowaTNrMS42" +
+		"MTAuTEs4aHZ1cXB0R3cYgeDoGCILc2VhcmNoLWZlZWQ%3D",
+		Description = "A continuation key that i hope wont expire")]
+	public async Task ContinueSearchAsync(string continuation)
+	{
+		ContinuationResponse results = await client.ContinueSearchAsync(continuation);
+		StringBuilder sb = new();
+		sb.AppendLine("=== CONTENT");
+		foreach (RendererContainer renderer in results.Results)
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+
+		sb.AppendLine("\n=== CONTINUATION");
+		sb.AppendLine(results.ContinuationToken ?? "<null>");
 
 		Assert.Pass(sb.ToString());
 	}

@@ -178,4 +178,27 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 			Results = items.Where(x => x.Type != "continuation").ToArray()
 		};
 	}
+
+	public async Task<InnerTubeSearchResults> SearchAsync(string query, SearchParams? param = null, string language = "en",
+		string region = "US")
+	{
+		SearchResponse searchResponse = await InnerTube.SearchAsync(query, param, language, region);
+		return new InnerTubeSearchResults(searchResponse);
+	}
+
+	public async Task<ContinuationResponse> ContinueSearchAsync(string continuationToken, string language = "en",
+		string region = "US")
+	{
+		SearchResponse searchResponse = await InnerTube.ContinueSearchAsync(continuationToken, language, region);
+		return new ContinuationResponse
+		{
+			ContinuationToken = searchResponse.OnResponseReceivedCommands.AppendContinuationItemsAction
+				.ContinuationItems
+				.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+				?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
+			Results = Utils.ConvertRenderers(
+				searchResponse.OnResponseReceivedCommands.AppendContinuationItemsAction.ContinuationItems.SelectMany(
+					x => x.ItemSectionRenderer?.Contents ?? []))
+		};
+	}
 }

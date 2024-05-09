@@ -348,6 +348,7 @@ message RendererWrapper {
     ReelShelfRenderer reelShelfRenderer = 187049775;
     FeedFilterChipBarRenderer feedFilterChipBarRenderer = 213380311;
     ThumbnailOverlayNowPlayingRenderer thumbnailOverlayNowPlayingRenderer = 228343999;
+    PromotedSparklesWebRenderer promotedSparklesWebRenderer =239748402;
     RichGridRenderer richGridRenderer = 255072793;
     RichItemRenderer richItemRenderer = 258632786;
     RichSectionRenderer richSectionRenderer = 258669678;
@@ -1048,7 +1049,9 @@ message MenuRenderer {
   repeated RendererWrapper topLevelButtons = 6;
   RendererWrapper accessibility = 10;
   optional string targetId = 11;
+  bool isDisabled = 19;
   repeated RendererWrapper flexibleItems = 20;
+  Endpoint disabledCommand = 21;
 }
 
 message MenuNavigationItemRenderer {
@@ -1605,6 +1608,30 @@ message ThumbnailOverlayNowPlayingRenderer {
   Text text = 1;
 }
 
+message PromotedSparklesWebRenderer {
+  message ClickLocationTarget {
+    int32 location = 1;
+    int32 code = 2;
+    int32 behaviorType = 3;
+  }
+
+  Thumbnails thumbnail = 1;
+  Text title = 3;
+  Text description = 4;
+  Text websiteText = 5;
+  Endpoint navigationEndpoint = 7;
+  repeated Endpoint impressionCommands = 8;
+  RendererWrapper menu = 10;
+  bytes trackingParams = 13;
+  repeated ClickLocationTarget clickLocationTargets = 14;
+  RendererWrapper mediaHoverOverlay = 18;
+  RendererWrapper mediaBadge = 19;
+  int32 promotedSparklesWebStyle = 20;
+  bool isSquareThumbnail = 21;
+  Endpoint thumbnailNavigationEndpoint = 22;
+  RendererWrapper adBadge = 23;
+}
+
 message RichGridRenderer {
   message ReflowOpts {
     int32 minimumRowsOfVideosAtStart = 1;
@@ -1907,8 +1934,13 @@ message Endpoint {
       WebCommandMetadata webCommandMetadata = 177881822;
     }
   }
+  
+  message LoggingUrl {
+    string baseUrl = 1;
+  }
 
   bytes clickTrackingParams = 2;
+  repeated LoggingUrl loggingUrls = 3;
   CommandMetadata commandMetadata = 4;
 
   oneof endpointType {
@@ -1925,6 +1957,7 @@ message Endpoint {
     UnsubscribeEndpoint unsubscribeEndpoint = 68997401;
     UserFeedbackEndpoint userFeedbackEndpoint = 72579984;
     ModifyChannelNotificationPreferenceEndpoint modifyChannelNotificationPreferenceEndpoint = 90195593;
+    PingingEndpoint pingingEndpoint = 98444775;
     ModalEndpoint modalEndpoint = 106613511;
     SignalServiceEndpoint signalServiceEndpoint = 124290411;
     CreatePlaylistServiceEndpoint createPlaylistServiceEndpoint = 124747980;
@@ -2091,6 +2124,10 @@ message ReloadContinuationItemsCommand {
   repeated RendererWrapper continuationItems = 2;
 }
 
+message PingingEndpoint {
+  bool hack = 1;
+}
+
 message ModalEndpoint {
   message ButtonWrapper {
     message Button {
@@ -2221,6 +2258,15 @@ message OpenPopupAction {
       bytes trackingParams = 6;
       bool showLoadingSpinner = 15;
     }
+    
+    message AboutThisAdRenderer {
+      message PrivateDoNotAccessOrElseResourceUrlWrapper {
+        string privateDoNotAccessOrElseResourceUrlWrappedValue = 4; // no this is literally what its called in the json
+      }
+
+      PrivateDoNotAccessOrElseResourceUrlWrapper url = 1;
+      bytes trackingParams = 4;
+    }
 
     oneof popupRendererType {
       MenuPopupRenderer menuPopupRenderer = 144495266;
@@ -2229,11 +2275,13 @@ message OpenPopupAction {
       FancyDismissibleDialogRenderer fancyDismissibleDialogRenderer = 85374086;
       UnifiedSharePanelRenderer unifiedSharePanelRenderer = 87759049;
       NotificationActionRenderer notificationActionRenderer = 96140188;
+      AboutThisAdRenderer aboutThisAdRenderer = 343935806;
     }
   }
 
   Popup popup = 1;
   int32 popupType = 2;
+  RendererWrapper accessibilityData = 13;
   bool beReused = 7;
 }
 
