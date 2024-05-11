@@ -12,7 +12,20 @@ public partial class Turkish : IValueParser
 
 	public string ParseRelativeDate(string date)
 	{
-		throw new NotImplementedException();
+		string[] parts = date.ToLower().Split(" ");
+		string metric = parts[1];
+		int amount = int.Parse(parts[0]);
+		return metric switch
+		{
+			"saniye" => $"-{amount}s",
+			"dakika" => $"-{amount}m",
+			"saat" =>   $"-{amount}h",
+			"gün" =>    $"-{amount}D",
+			"hafta" =>   $"-{amount}W",
+			"ay" =>  $"-{amount}M",
+			"yıl" =>   $"-{amount}Y",
+			_ => $"!Unknown metric;{metric};{amount};{date}"
+		};
 	}
 
 	public DateTimeOffset ParseFullDate(string date)
