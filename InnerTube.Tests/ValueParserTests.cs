@@ -260,7 +260,10 @@ public class ValueParserTests
 			string value = testValues["seconds"][i];
             string res = parser.ParseRelativeDate(value);
             string expected = $"-{i+1}s";
-            if (res != expected) fails++;
+            if (res != expected) {
+                fails++;
+                sb.AppendLine("!! FAIL !!");
+            }
 			sb.AppendLine(
 				$"[{i+1,2}]: {$"{value}".PadRight(testValues["seconds"].Max(x => x.Length))}: {res} (expecting: {expected})");
 		}
@@ -271,7 +274,10 @@ public class ValueParserTests
 			string value = testValues["minutes"][i];
             string res = parser.ParseRelativeDate(value);
             string expected = $"-{i+1}m";
-            if (res != expected) fails++;
+            if (res != expected) {
+                fails++;
+                sb.AppendLine("!! FAIL !!");
+            }
 			sb.AppendLine(
 				$"[{i+1,2}]: {$"{value}".PadRight(testValues["minutes"].Max(x => x.Length))}: {res} (expecting: {expected})");
 		}
@@ -282,7 +288,10 @@ public class ValueParserTests
 			string value = testValues["hours"][i];
             string res = parser.ParseRelativeDate(value);
             string expected = $"-{i+1}h";
-            if (res != expected) fails++;
+            if (res != expected) {
+                fails++;
+                sb.AppendLine("!! FAIL !!");
+            }
 			sb.AppendLine(
 				$"[{i+1,2}]: {$"{value}".PadRight(testValues["hours"].Max(x => x.Length))}: {res} (expecting: {expected})");
 		}
@@ -293,7 +302,10 @@ public class ValueParserTests
 			string value = testValues["days"][i];
             string res = parser.ParseRelativeDate(value);
             string expected = $"-{i+1}D";
-            if (res != expected) fails++;
+            if (res != expected) {
+                fails++;
+                sb.AppendLine("!! FAIL !!");
+            }
 			sb.AppendLine(
 				$"[{i+1,2}]: {$"{value}".PadRight(testValues["days"].Max(x => x.Length))}: {res} (expecting: {expected})");
 		}
@@ -304,7 +316,10 @@ public class ValueParserTests
 			string value = testValues["weeks"][i];
             string res = parser.ParseRelativeDate(value);
             string expected = $"-{i+1}W";
-            if (res != expected) fails++;
+            if (res != expected) {
+                fails++;
+                sb.AppendLine("!! FAIL !!");
+            }
 			sb.AppendLine(
 				$"[{i+1,2}]: {$"{value}".PadRight(testValues["weeks"].Max(x => x.Length))}: {res} (expecting: {expected})");
 		}
@@ -315,7 +330,10 @@ public class ValueParserTests
 			string value = testValues["months"][i];
             string res = parser.ParseRelativeDate(value);
             string expected = $"-{i+1}M";
-            if (res != expected) fails++;
+            if (res != expected) {
+                fails++;
+                sb.AppendLine("!! FAIL !!");
+            }
 			sb.AppendLine(
 				$"[{i+1,2}]: {$"{value}".PadRight(testValues["months"].Max(x => x.Length))}: {res} (expecting: {expected})");
 		}
@@ -326,7 +344,10 @@ public class ValueParserTests
 			string value = testValues["years"][i];
             string res = parser.ParseRelativeDate(value);
             string expected = $"-{i+1}Y";
-            if (res != expected) fails++;
+            if (res != expected) {
+                fails++;
+                sb.AppendLine("!! FAIL !!");
+            }
 			sb.AppendLine(
 				$"[{i+1,2}]: {$"{value}".PadRight(testValues["years"].Max(x => x.Length))}: {res} (expecting: {expected})");
 		}
