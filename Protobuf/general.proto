@@ -1,0 +1,2392 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf;
+
+import "google/protobuf/wrappers.proto";
+
+message Text {
+  message Run {
+    string text = 1;
+    bool bold = 2;
+    optional Endpoint navigationEndpoint = 5;
+    optional LoggingDirectives loggingDirectives = 999;
+  }
+
+  message LoggingDirectives {
+    bytes trackingParams = 1;
+    google.protobuf.Int32Value visibility = 4;
+  }
+
+  repeated Run runs = 1;
+  AccessibilityWrapper accessibility = 3;
+  optional string simpleText = 4;
+}
+
+message Thumbnails {
+  repeated Thumbnail thumbnails = 1;
+  optional int64 placeholderColor = 2;
+  optional AccessibilityWrapper accessibility = 4;
+  optional bool isOriginalAspectRatio = 11;
+  optional Color sampledThumbnailColor = 12;
+  optional ColorPalette lightColorPalette = 13;
+  optional ColorPalette darkColorPalette = 14;
+  optional ColorPalette vibrantColorPalette = 18;
+}
+
+message Thumbnail {
+  string url = 1;
+  int32 width = 2;
+  int32 height = 3;
+}
+
+message RecognitionShelfRenderer {
+  Text title = 1;
+  Text subtitle = 2;
+  repeated Thumbnails avatars = 3;
+  RendererWrapper button = 4;
+  int32 surface = 5;
+}
+
+message AvatarViewModel {
+  Image image = 1;
+  string accessibilityText = 3;
+  int32 avatarImageSize = 4;
+  optional Endpoint endpoint = 5;
+}
+
+message Image {
+  message ProcessorWrapper {
+    message BorderImageProcessor {
+      bool circular = 4;
+    }
+    
+    oneof Processor {
+      BorderImageProcessor borderImageProcessor = 154604025;
+    }
+  }
+
+  message ImageSource {
+    message LocalResource {
+      string imageName = 2;
+    }
+
+    optional string url = 1;
+    optional LocalResource clientResource = 3;
+    int32 width = 4;
+    int32 height = 5;
+  }
+
+  repeated ImageSource sources = 1;
+  ProcessorWrapper processor = 3;
+}
+
+message Color {
+  int32 red = 1;
+  int32 green = 2;
+  int32 blue = 3;
+}
+
+message Icon {
+  int32 iconType = 1;
+}
+
+message AccessibilityData {
+  string label = 2;
+}
+
+message AccessibilityWrapper {
+  AccessibilityData accessibilityData = 75730170;
+}
+
+message ColorPalette {
+  optional int64 section1Color = 1;
+  optional int64 section2Color = 2;
+  optional int64 section3Color = 3;
+  optional int64 primaryTitleColor = 5;
+  optional int64 secondaryTitleColor = 6;
+  optional int64 iconInactiveColor = 9;
+  optional int64 section4Color = 10;
+  optional int64 iconDisabledColor = 12;
+}
+
+message LoggingDirectives {
+  message VisibilityContainer {
+    int32 types = 1;
+  }
+  
+  message VeSpec {
+    int32 uiType = 1;
+    int32 veCounter = 2;
+  }
+
+  bytes trackingParams = 1;
+  VisibilityContainer visibility = 4;
+  VeSpec clientVeSpec = 7;
+  bool enableDisplayloggerExperiment = 11;
+}
+
+message CustomEmoji {
+  string emojiId = 1;
+  repeated string shortcuts = 2;
+  repeated string searchTerms = 3;
+  Thumbnails image = 5;
+  bool isCustomEmoji = 6;
+}
+
+message DetailedMetadataSnippets {
+  Text snippetText = 1;
+  Text snippetHoverText = 2;
+  bool maxOneLine = 3;
+}
+
+message SubscriptionButton {
+  optional int32 type = 1;
+  optional bool subscribed = 3;
+}
+
+message SurfaceIdentifier {
+  int32 surface = 1;
+  string tag = 3;
+}
+
+message AttributedDescription {
+  message CommandRun {
+    int32 startIndex = 1;
+    int32 length = 2;
+    Endpoint command = 3;
+  }
+
+  message StyleRun {
+    message Extensions {
+      message ColorMapExtension {
+        map<string, uint32> colorMap = 1;
+      }
+
+      ColorMapExtension styleRunColorMapExtension = 289753726;
+    }
+
+    int32 startIndex = 1;
+    int32 length = 2;
+    string fontName = 3;
+    float fontSize = 4;
+    int32 weight = 7;
+    int32 weightLabel = 8;
+    Extensions styleRunExtensions = 10;
+    //string fontName = 14; // idr when i put this but it collides with 3??
+  }
+  
+  message AttachmentRun {
+    message AttachmentElement {
+      RendererWrapper type = 1;
+      RendererWrapper properties = 2;
+    }
+    
+    int32 startIndex = 1;
+    int32 length = 2;
+    AttachmentElement element = 3;
+    int32 alignment = 4;
+  }
+
+  string content = 1;
+  repeated CommandRun commandRuns = 5;
+  repeated StyleRun styleRuns = 6;
+  repeated AttachmentRun attachmentRuns = 8;
+}
+
+message ShareData {
+  bool canShare = 1;
+}
+
+message EditableDetails {
+  bool canDelete = 3;
+}
+
+message GradientConfig {
+  uint64 lightThemeColor = 1;
+  uint64 darkThemeColor = 2;
+  float startLocation = 3;
+}
+
+message Context {
+  message LoggingDirectivesWrapper {
+    optional LoggingDirectives loggingDirectives = 999;
+  }
+
+  message Accessibility {
+    string label = 1;
+  }
+
+  message Command {
+    optional Endpoint onTap = 3;
+  }
+
+  LoggingDirectivesWrapper loggingContext = 1;
+  optional Accessibility accessibilityContext = 2;
+  optional Command commandContext = 3;
+}
+
+// ===============================================================
+// ==================    RENDERERS    ============================
+// ===============================================================
+
+message RendererWrapper {
+  oneof renderer {
+    ChannelHeaderLinksViewModel channelHeaderLinksViewModel = 1022;
+    DecoratedAvatarViewModel decoratedAvatarViewModel = 1105;
+    ImageBannerViewModel imageBannerViewModel = 1127;
+    C4TabbedHeaderRenderer c4TabbedHeaderRenderer = 46407682;
+    Autoplay autoplay = 46659098;
+    SearchFilterRenderer searchFilterRenderer = 47550566;
+    SearchFilterGroupRenderer searchFilterGroupRenderer = 47602288;
+    ResultsContainer resultsContainer = 49399797;
+    ItemSectionRenderer itemSectionRenderer = 50195462;
+    FeedTabbedHeaderRenderer feedTabbedHeaderRenderer = 50236216;
+    ChildVideoRenderer childVideoRenderer = 50524046;
+    VideoRenderer videoRenderer = 50577878;
+    ChannelRenderer channelRenderer = 50590275;
+    CompactVideoRenderer compactVideoRenderer = 50630979;
+    Playlist playlist = 50631000;
+    PlaylistRenderer playlistRenderer = 50732276;
+    CompactPlaylistRenderer compactPlaylistRenderer = 50742631;
+    TwoColumnSearchResultsRenderer twoColumnSearchResultsRenderer = 50848250;
+    HorizontalListRenderer horizontalListRenderer = 51431404;
+    PlayerCaptionsTracklistRenderer captionsTrackListRenderer = 51621377;
+    PlaylistPanelVideoRenderer playlistPanelVideoRenderer = 51779701;
+    VideoOwnerRenderer videoOwnerRenderer = 51779708;
+    SecondaryResults secondaryResults = 51779776;
+    TwoColumnWatchNextResults twoColumnWatchNextResults = 51779759;
+    GridRenderer gridRenderer = 51805506;
+    ShelfRenderer shelfRenderer = 51845067;
+    TwoColumnBrowseResultsRenderer twoColumnBrowseResultsRenderer = 52123031;
+    CompactRadioRenderer compactRadioRenderer = 53170873;
+    PlaylistHeaderRenderer playlistHeaderRenderer = 53272665;
+    PlaylistVideoRenderer playlistVideoRenderer = 53330184;
+    PlaylistVideoListRenderer playlistVideoListRenderer = 54681060;
+    SubscribeButtonRenderer subscribeButtonRenderer = 55419609;
+    ShowingResultsForRenderer showingResultsForRenderer = 55504968;
+    ExpandedShelfContentsRenderer expandedShelfContentsRenderer = 55636665;
+    DidYouMeanRenderer didYouMeanRenderer = 55641975;
+    PlayerStoryboardSpecRenderer playerStoryboardSpecRenderer = 55735497;
+    ChannelMetadataRenderer channelMetadataRenderer = 57075253;
+    VerticalListRenderer verticalListRenderer = 57988071;
+    TabRenderer tabRenderer = 58174010;
+    CompactMovieRenderer compactMovieRenderer = 58485276;
+    MessageRenderer messageRenderer = 58508690;
+    PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
+    ChannelVideoPlayerRenderer channelVideoPlayerRenderer = 60408738;
+    GridChannelRenderer gridChannelRenderer = 60373547;
+    GridPlaylistRenderer gridPlaylistRenderer = 60373571;
+    GridVideoRenderer gridVideoRenderer = 60373625;
+    ExpandableTabRenderer expandableTabRenderer = 62070496;
+    CommentThreadRenderer commentThreadRenderer = 62285833;
+    CommentRenderer commentRenderer = 62285947;
+    PromotedVideoRenderer promotedVideoRenderer = 62887855;
+    PlaylistMetadataRenderer playlistMetadataRenderer = 63173126;
+    CommentRepliesRenderer commentRepliesRenderer = 65060753;
+    ButtonViewModel buttonViewModel = 65153809;
+    SecondarySearchContainerRenderer secondarySearchContainerRenderer = 65750403;
+    MenuRenderer menuRenderer = 66439850;
+    MenuNavigationItemRenderer menuNavigationItemRenderer = 66441108;
+    MenuServiceItemRenderer menuServiceItemRenderer = 66441155;
+    CommentActionButtonsRenderer commentActionButtonsRenderer = 66744747;
+    SearchSubMenuRenderer searchSubMenuRenderer = 69655246;
+    VideoViewCountRenderer videoViewCountRenderer = 70044402;
+    PlayerLiveStoryboardSpecRenderer playerLiveStoryboardSpecRenderer = 70276274;
+    MetadataRowContainerRenderer metadataRowContainerRenderer = 71271859;
+    PlaylistVideoThumbnailRenderer playlistVideoThumbnailRenderer = 72426341;
+    MicroformatDataRenderer microformatDataRenderer = 75249450;
+    AccessibilityData accessibilityData = 75730170;
+    SortFilterSubMenuRenderer sortFilterSubMenuRenderer = 76818770;
+    SearchPyvRenderer searchPyvRenderer = 77536014;
+    ToggleMenuServiceItemRenderer toggleMenuServiceItemRenderer = 78861357;
+    ToggleButtonRenderer toggleButtonRenderer = 79971800;
+    HorizontalCardListRenderer horizontalCardListRenderer = 88962895;
+    SearchRefinementCardRenderer searchRefinementCardRenderer = 88967868;
+    ChipCloudRenderer chipCloudRenderer = 90823135;
+    ChipCloudChipRenderer chipCloudChipRenderer = 91394224;
+    AlertWithButtonRenderer alertWithButtonRenderer = 93388040;
+    BackgroundPromoRenderer backgroundPromoRenderer = 94317419;
+    VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
+    ChannelThumbnailWithLinkRenderer channelThumbnailWithLinkRenderer = 100346611;
+    VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
+    CommentsHeaderRenderer commentsHeaderRenderer = 105977417;
+    EndscreenRenderer endscreenRenderer = 106301526;
+    EndscreenElementRenderer endscreenElementRenderer = 105860658;
+    ThumbnailOverlayBottomPanelRenderer thumbnailOverlayBottomPanelRenderer = 109635582;
+    ThumbnailOverlayHoverTextRenderer thumbnailOverlayHoverTextRenderer = 107250266;
+    HeroPlaylistThumbnailRenderer heroPlaylistThumbnailRenderer = 111638594;
+    TitleAndButtonListHeaderRenderer titleAndButtonListHeaderRenderer = 112067016;
+    VerticalWatchCardListRenderer verticalWatchCardListRenderer = 117337765;
+    WatchCardSectionSequenceRenderer watchCardSectionSequenceRenderer = 117548244;
+    WatchCardRichHeaderRenderer watchCardRichHeaderRenderer = 117928329;
+    BasicColorPaletteData basicColorPaletteData = 118483990;
+    UniversalWatchCardRenderer universalWatchCardRenderer = 119956144;
+    RichListHeaderRenderer richListHeaderRenderer = 120280839;
+    BackstageImageRenderer backstageImageRenderer = 120744665;
+    ThumbnailOverlayTimeStatusRenderer thumbnailOverlayTimeStatusRenderer = 121720768;
+    WatchCardHeroVideoRenderer watchCardHeroVideoRenderer = 122710540;
+    WatchCardCompactVideoRenderer watchCardCompactVideoRenderer = 122814739;
+    SlimMetadataToggleButtonRenderer slimMetadataToggleButtonRenderer = 124608045;
+    AuthorCommentBadgeRenderer authorCommentBadgeRenderer = 127214311;
+    ThumbnailOverlayToggleButtonRenderer thumbnailOverlayToggleButtonRenderer = 128231774;
+    MetadataBadgeRenderer metadataBadgeRenderer = 128361622;
+    PinnedCommentBadgeRenderer pinnedCommentBadgeRenderer = 126313810;
+    CreatorHeartRenderer creatorHeartRenderer = 128905810;
+    SubscriptionNotificationToggleButtonRenderer subscriptionNotificationToggleButtonRenderer = 136076983;
+    ToggleButtonSupportedData toggleButtonSupportedData = 136527600;
+    EngagementPanelSectionListRenderer engagementPanelSectionListRenderer = 138681066;
+    EngagementPanelTitleHeaderRenderer engagementPanelTitleHeaderRenderer = 138681548;
+    ReelPlayerOverlayRenderer reelPlayerOverlayRenderer = 139970731;
+    CallToActionButtonRenderer callToActionButtonRenderer = 154950953;
+    CollageHeroImageRenderer collageHeroImageRenderer = 155492686;
+    ImageType imageType = 158796345;
+    ReelItemRenderer reelItemRenderer = 158884182;
+    ContinuationItemRenderer continuationItemRenderer = 159495980;
+    BackstagePostRenderer backstagePostRenderer = 164138837;
+    BackstagePostThreadRenderer backstagePostThreadRenderer = 164616223;
+    LayoutProperties layoutProperties = 168772996;
+    ReelShelfRenderer reelShelfRenderer = 187049775;
+    FeedFilterChipBarRenderer feedFilterChipBarRenderer = 213380311;
+    ThumbnailOverlayNowPlayingRenderer thumbnailOverlayNowPlayingRenderer = 228343999;
+    PromotedSparklesWebRenderer promotedSparklesWebRenderer =239748402;
+    RichGridRenderer richGridRenderer = 255072793;
+    RichItemRenderer richItemRenderer = 258632786;
+    RichSectionRenderer richSectionRenderer = 258669678;
+    CommentsEntryPointHeaderRenderer commentsEntryPointHeaderRenderer = 275947328;
+    DestinationShelfRenderer destinationShelfRenderer = 277393168;
+    DestinationButtonRenderer destinationButtonRenderer = 277393771;
+    MacroMarkersListItemRenderer macroMarkersListItemRenderer = 307450214;
+    MacroMarkersListRenderer macroMarkersListRenderer = 309482905;
+    PostMultiImageRenderer postMultiImageRenderer = 340956460;
+    MenuFlexibleItemRenderer menuFlexibleItemRenderer = 355255079;
+    FeedNudgeRenderer feedNudgeRenderer = 362133374;
+    ThumbnailOverlayLoadingPreviewRenderer thumbnailOverlayLoadingPreviewRenderer = 367662231;
+    PlaylistLoopButtonRenderer playlistLoopButtonRenderer = 404843388;
+    PlaylistLoopButtonStateRenderer playlistLoopButtonStateRenderer = 404843395;
+    AdSlotRenderer adSlotRenderer = 424701016;
+    InFeedAdLayoutRenderer inFeedAdLayoutRenderer = 425953177;
+    RecognitionShelfRenderer recognitionShelfRenderer =432471502;
+    AvatarViewModel avatarViewModel = 437811886;
+    CommentViewModel commentViewModel = 439933638;
+    CommentsEntryPointTeaserRenderer commentsEntryPointTeaserRenderer = 450811390;
+    CinematicContainerRenderer cinematicContainerRenderer = 455752576;
+    PlaylistBylineRenderer playlistBylineRenderer = 455964309;
+    ButtonViewModel2 buttonViewModel2 = 461054335;
+    ToggleButtonViewModel toggleButtonViewModel = 479644279;
+    ChannelTaglineRenderer channelTaglineRenderer = 482604211;
+    LikeButtonViewModel likeButtonViewModel = 484585818;
+    DislikeButtonViewModel dislikeButtonViewModel = 484590786;
+    SegmentedLikeDislikeButtonViewModel segmentedLikeDislikeButtonViewModel = 484586709;
+    SearchHeaderRenderer searchHeaderRenderer = 485224057;
+    PageHeaderViewModel pageHeaderViewModel = 508686415;
+    DynamicTextViewModel dynamicTextViewModel = 509603841;
+    PageHeaderRenderer pageHeaderRenderer = 509923604;
+    ContentMetadataViewModel contentMetadataViewModel = 514549827;
+    FlexibleActionsViewModel flexibleActionsViewModel = 520990934;
+    AttributionViewModel attributionViewModel = 522729680;
+    DescriptionPreviewViewModel descriptionPreviewViewModel = 524902670;
+  }
+}
+
+message ChannelHeaderLinksViewModel {
+  AttributedDescription firstLink = 5;
+  AttributedDescription more = 6;
+}
+
+message DecoratedAvatarViewModel {
+  RendererWrapper avatar = 1;
+}
+
+message ImageBannerViewModel {
+  Image image = 1;
+  int32 style = 2;
+  Context rendererContext = 997;
+}
+
+message C4TabbedHeaderRenderer {
+  string channelId = 5;
+  string title = 6;
+  Endpoint navigationEndpoint = 7;
+  Thumbnails avatar = 9;
+  Thumbnails banner = 10;
+  repeated RendererWrapper badges = 13;
+  repeated RendererWrapper headerLinks = 15;
+  RendererWrapper subscribeButton = 18;
+  Text subscriberCountText = 22;
+  Thumbnails tvBanner = 24;
+  Thumbnails mobileBanner = 25;
+  bytes trackingParams = 27;
+  Text channelHandleText = 59;
+  int32 style = 60;
+  Text videosCountText = 61;
+  RendererWrapper tagline = 62;
+}
+
+message Autoplay {
+  message Set {
+    int32 mode = 1;
+    Endpoint autoplayVideo = 2;
+    optional Endpoint nextButtonVideo = 3;
+    optional Endpoint previousButtonVideo = 4;
+  }
+
+  repeated Set sets = 1;
+  int32 countdownSecs = 3;
+  bytes trackingParams = 11;
+  repeated Set modifiedSets = 6;
+}
+
+message SearchFilterRenderer {
+  Text label = 1;
+  int32 status = 2;
+  Endpoint navigationEndpoint = 3;
+  string tooltip = 4;
+  bytes trackingParams = 6;
+}
+
+message SearchFilterGroupRenderer {
+  Text title = 1;
+  repeated RendererWrapper filters = 2;
+  bytes trackingParams = 4;
+}
+
+message ResultsContainer {
+  repeated RendererWrapper results = 1;
+  optional bytes trackingParams = 4;
+  RendererWrapper subMenu = 5;
+  bool hideBottomSeparator = 11;
+  optional string targetId = 13;
+  optional google.protobuf.BoolValue scrollPaneStyle = 27;
+}
+
+message ItemSectionRenderer {
+  repeated RendererWrapper contents = 1;
+  optional bytes trackingParams = 4;
+  optional RendererWrapper header = 5;
+  optional string sectionIdentifier = 7;
+  optional string targetId = 13;
+}
+
+message FeedTabbedHeaderRenderer {
+  Text title = 1;
+}
+
+message ChildVideoRenderer{
+  Text title = 1;
+  Endpoint navigationEndpoint = 2;
+  Text lengthText = 3;
+  string videoId = 5;
+}
+
+message VideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text longBylineText = 5;
+  Text publishedTimeText = 6;
+  Text lengthText = 7;
+  Text viewCountText = 8;
+  Endpoint navigationEndpoint = 9;
+  repeated RendererWrapper badges = 10;
+  repeated RendererWrapper ownerBadges = 11;
+  Text ownerText = 15;
+  Text shortBylineText = 18;
+  bytes trackingParams = 21;
+  bool showActionMenu = 25;
+  Text shortViewCountText = 26;
+  RendererWrapper menu = 28;
+  RendererWrapper channelThumbnailSupportedRenderers = 33;
+  repeated RendererWrapper thumbnailOverlays = 34;
+  DetailedMetadataSnippets detailedMetadataSnippets = 49;
+  Endpoint inlinePlaybackEndpoint = 50;
+  string searchVideoResultEntityKey = 55;
+}
+
+message ChannelRenderer {
+  string channelId = 1;
+  Text title = 2;
+  Endpoint navigationEndpoint = 3;
+  Thumbnails thumbnail = 4;
+  optional Text descriptionSnippet = 5;
+  Text shortBylineText = 6;
+  Text videoCountText = 7;
+  SubscriptionButton subscriptionButton = 10;
+  repeated RendererWrapper ownerBadges = 11;
+  Text subscriberCountText = 12;
+  RendererWrapper subscribeButton = 17;
+  bytes trackingParams = 18;
+  Text longBylineText = 19;
+}
+
+message CompactVideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text text = 3;
+  Text longBylineText = 4;
+  optional Text publishedTimeText = 5;
+  Text viewCountText = 6;
+  optional Text lengthText = 7;
+  Endpoint navigationEndpoint = 8;
+  Text shortBylineText = 10;
+  repeated RendererWrapper badges = 13;
+  Thumbnails channelThumbnail = 14;
+  repeated RendererWrapper ownerBadges = 15;
+  bytes trackingParams = 18;
+  Text shortViewCountText = 23;
+  RendererWrapper menu = 25;
+  repeated RendererWrapper thumbnailOverlays = 32;
+  RendererWrapper accessibility = 36;
+}
+
+message Playlist {
+  string title = 1;
+  repeated RendererWrapper contents = 2;
+  int32 currentIndex = 3;
+  string playlistId = 5;
+  int32 totalVideos = 6;
+  bool isInfinite = 8;
+  string playlistShareUrl = 13;
+  Text shortBylineText = 16;
+  Text longBylineText = 17;
+  Text totalVideosText = 18;
+  bytes trackingParams = 20;
+  Text titleText = 22;
+  Endpoint endpoint = 24;
+  RendererWrapper menu = 26;
+  int32 localCurrentIndex = 27;
+  RendererWrapper playlistButtons = 30;
+  Text videoCountText = 36;
+  bool isCourse = 38;
+  Text nextVideoLabel = 40;
+}
+
+message PlaylistRenderer {
+  string playlistId = 1;
+  Text title = 2;
+  repeated Thumbnails thumbnails = 3;
+  int32 videoCount = 4;
+  Endpoint navigationEndpoint = 5;
+  Text viewPlaylistText = 6;
+  Text shortBylineText = 7;
+  repeated RendererWrapper videos = 9;
+  Text videoCountText = 13;
+  bytes trackingParams = 15;
+  Text thumbnailText = 16;
+  Text longBylineText = 17;
+  repeated RendererWrapper ownerBadges = 18;
+  RendererWrapper thumbnailRenderer = 20;
+  RendererWrapper thumbnailOverlays = 23;
+}
+
+message CompactPlaylistRenderer {
+  string playlistId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text shortBylineText = 4;
+  Text videoCountText = 5;
+  Endpoint navigationEndpoint = 6;
+  Text videoCountShortText = 9;
+  bytes trackingParams = 12;
+  Thumbnails sidebarThumbnails = 13;
+  Text thumbnailText = 15;
+  repeated RendererWrapper badges = 16;
+  string shareUrl = 19;
+  RendererWrapper thumbnailRenderer = 20;
+  Text longBylineText = 21;
+  RendererWrapper thumbnailOverlays = 25;
+}
+
+message TwoColumnSearchResultsRenderer {
+  RendererWrapper primaryContents = 1;
+  RendererWrapper secondaryContents = 4;
+}
+
+message HorizontalListRenderer {
+  repeated RendererWrapper items = 1;
+  bytes trackingParams = 4;
+  int32 visibleItemCount = 7;
+  RendererWrapper nextButton = 11;
+  RendererWrapper previousButton = 12;
+}
+
+message PlayerCaptionsTracklistRenderer {
+  message Caption {
+    string baseUrl = 1;
+    Text name = 2;
+    string vssId = 3;
+    string language = 4;
+    string kind = 5;
+    bool isTranslatable = 7;
+    string trackName = 11;
+  }
+
+  message CaptionAudioTrack {
+    repeated int32 captionTrackIndices = 2;
+    optional bool defaultCaptionTrackIndex = 3;
+    optional int32 visibility = 5;
+    optional bool hasDefaultTrack = 6;
+    string audioTrackId = 8;
+    optional int32 captionsInitialState = 11;
+  }
+
+  message TranslationLanguage {
+    string languageCode = 1;
+    Text languageName = 2;
+    repeated int32 excludeAudioTrackIndices = 4;
+  }
+
+  repeated Caption captions = 1;
+  repeated CaptionAudioTrack audioTracks = 2;
+  repeated TranslationLanguage translationLanguages = 3;
+  int32 defaultAudioTrackIndex = 4;
+  Endpoint openTranscriptCommand = 7;
+}
+
+message PlaylistPanelVideoRenderer {
+  Text title = 1;
+  Text longBylineText = 2;
+  Thumbnails thumbnail = 3;
+  Text lengthText = 4;
+  Text indexText = 5;
+  bool selected = 6;
+  Endpoint navigationEndpoint = 7;
+  string videoId = 10;
+  Text shortBylineText = 12;
+  bytes trackingParams = 15;
+  RendererWrapper menu = 19;
+  repeated RendererWrapper thumbnailOverlays = 24;
+  string playlistSetVideoId = 26;
+  repeated RendererWrapper actionButtons = 32;
+  ColorPalette lightColorPalette = 34;
+  ColorPalette darkColorPalette = 35;
+}
+
+message VideoOwnerRenderer {
+  Thumbnails thumbnail = 1;
+  Text title = 2;
+  SubscriptionButton subscriptionButton = 3;
+  Endpoint navigationEndpoint = 4;
+  Text subscriberCountText = 5;
+  bytes trackingParams = 8;
+  repeated RendererWrapper badges = 10;
+}
+
+message SecondaryResults {
+  repeated RendererWrapper results = 1;
+  optional bytes trackingParams = 4;
+  optional string targetId = 6;
+}
+
+message TwoColumnWatchNextResults {
+  RendererWrapper results = 1;
+  optional RendererWrapper secondaryResults = 2;
+  optional RendererWrapper playlist = 3;
+  optional RendererWrapper autoplay = 4;
+}
+
+message GridRenderer {
+  repeated RendererWrapper items = 1;
+  bytes trackingParams = 10;
+  string targetId = 19;
+}
+
+message ShelfRenderer {
+  Text title = 1;
+  RendererWrapper content = 5;
+  bytes trackingParams = 15;
+}
+
+message TwoColumnBrowseResultsRenderer {
+  repeated RendererWrapper tabs = 3;
+}
+
+message CompactRadioRenderer {
+  string playlistId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Endpoint navigationEndpoint = 5;
+  Text videoCountText = 7;
+  Endpoint secondaryNavigationEndpoint = 9;
+  Text longBylineText = 11;
+  bytes trackingParams = 12;
+  Text thumbnailText = 14;
+  Text videoCountShortText = 15;
+  string shareUrl = 17;
+  RendererWrapper thumbnailOverlays = 19;
+}
+
+message PlaylistHeaderRenderer {
+  string playlistId = 1;
+  Text title = 3;
+  Text numVideosText = 5;
+  Text descriptionText = 6;
+  Text ownerText = 7;
+  Text viewCountText = 8;
+  ShareData shareData = 11;
+  bool isEditable = 12;
+  int32 privacy = 16;
+  Endpoint ownerEndpoint = 17;
+  EditableDetails editableDetails = 18;
+  bytes trackingParams = 23;
+  repeated Endpoint serviceEndpoints = 24;
+  repeated Text stats = 32;
+  repeated Text briefStats = 33;
+  RendererWrapper playlistHeaderBanner = 44;
+  RendererWrapper saveButton = 46;
+  RendererWrapper shareButton = 47;
+  RendererWrapper moreActionsMenu = 55;
+  RendererWrapper playButton = 63;
+  RendererWrapper shufflePlayButton = 64;
+  Endpoint onDescriptionTap = 71;
+  RendererWrapper cinematicContainer = 73;
+  RendererWrapper byline = 74;
+  Text descriptionTapText = 79;
+}
+
+message PlaylistVideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text index = 4;
+  Text shortBylineText = 5;
+  Text lengthText = 6;
+  Endpoint navigationEndpoint = 7;
+  int64 lengthSeconds = 11;
+  bytes trackingParams = 17;
+  bool isPlayable = 18;
+  RendererWrapper menu = 19;
+  repeated RendererWrapper thumbnailOverlays = 25;
+  Text videoInfo = 37;
+}
+
+message PlaylistVideoListRenderer {
+  repeated RendererWrapper contents = 1;
+  string playlistId = 2;
+  bool isEditable = 3;
+  bool canReorder = 5;
+  bytes trackingParams = 9;
+  string targetId = 14;
+}
+
+message SubscribeButtonRenderer {
+  Text buttonText = 1;
+  bool subscribed = 3;
+  bool enabled = 4;
+  int32 type = 6;
+  string channelId = 7;
+  bool showPreferences = 8;
+  Text subscribedButtonText = 12;
+  Text unsubscribedButtonText = 13;
+  bytes trackingParams = 15;
+  Text unsubscribeButtonText = 16;
+  RendererWrapper subscribeAccessibility = 25;
+  RendererWrapper unsubscribeAccessibility = 26;
+  RendererWrapper notificationPreferenceButton = 27;
+  string targetId = 31;
+  string subscribedEntityKey = 36;
+  repeated Endpoint onSubscribeEndpoints = 38;
+  repeated Endpoint onUnsubscribeEndpoints = 39;
+}
+
+message ShowingResultsForRenderer {
+  Text showingResultsFor = 1;
+  Text correctedQuery = 2;
+  Endpoint correctedQueryEndpoint = 3;
+  Text searchInsteadFor = 4;
+  Text originalQuery = 5;
+  Endpoint originalQueryEndpoint = 6;
+  bytes trackingParams = 8;
+}
+
+message ExpandedShelfContentsRenderer {
+  repeated RendererWrapper items = 1;
+}
+
+message DidYouMeanRenderer {
+  Text didYouMean = 1;
+  Text correctedQuery = 2;
+  Endpoint correctedQueryEndpoint = 3;
+  bytes trackingParams = 5;
+}
+
+message PlayerStoryboardSpecRenderer {
+  string spec = 1;
+  int32 recommendedLevel = 3;
+  int32 highResolutionRecommendedLevel = 7;
+}
+
+message ChannelMetadataRenderer {
+  string title = 1;
+  string description = 2;
+  string rssUrl = 3;
+  string channelConversionUrl = 7;
+  string externalId = 8;
+  string keywords = 11;
+  repeated string ownerUrls = 12;
+  Thumbnails avatar = 14;
+  string channelUrl = 15;
+  bool isFamilySafe = 16;
+  repeated string availableCountryCodes = 18;
+  string androidDeepLink = 21;
+  string androidAppindexingLink = 24;
+  string iosAppindexingLink = 25;
+  string vanityChannelUrl = 27;
+}
+
+message VerticalListRenderer {
+  repeated RendererWrapper items = 1;
+  int32 collapsedItemCount = 2;
+  Text collapsedStateButtonText = 3;
+  bytes trackingParams = 7;
+}
+
+message TabRenderer {
+  Endpoint endpoint = 1;
+  string title = 2;
+  bool selected = 3;
+  RendererWrapper content = 4;
+  string tabIdentifier = 11;
+  bytes trackingParams = 14;
+}
+
+message CompactMovieRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text shortBylineText = 5;
+  Text lengthText = 9;
+  Endpoint navigationEndpoint = 10;
+  repeated RendererWrapper badges = 11;
+  bytes trackingParams = 16;
+  bool useVerticalPoster = 29;
+  Text topMetadataItems = 30;
+  repeated RendererWrapper thumbnailOverlays = 33;
+}
+
+message MessageRenderer {
+  Text text = 1;
+  bytes trackingParams = 4;
+}
+
+message PlayerMicroformatRenderer {
+  message Embed {
+    string embedUrl = 1;
+    int32 width = 3;
+    int32 height = 4;
+  }
+
+  Thumbnails thumbnail = 1;
+  Embed embed = 2;
+  Text title = 3;
+  Text description = 4;
+  int32 lengthSeconds = 5;
+  string ownerProfileUrl = 6;
+  string externalChannelId = 8;
+  bool isFamilySafe = 9;
+  repeated string availableCountries = 10;
+  bool isUnlisted = 11;
+  bool hasYpcMetadata = 12;
+  optional string viewCount = 14;
+  string category = 15;
+  string publishDate = 16;
+  string ownerChannelName = 17;
+  string uploadDate = 19;
+}
+
+message ChannelVideoPlayerRenderer {
+  string videoId = 1;
+  Text title = 2;
+  Text description = 3;
+  Text viewCountText = 4;
+  Text publishedTimeText = 5;
+  Text readMoreText = 6;
+}
+
+message GridChannelRenderer {
+  string channelId = 1;
+  Thumbnails thumbnail = 2;
+  Text videoCountText = 4;
+  Text subscriberCountText = 5;
+  Endpoint navigationEndpoint = 6;
+  Text title = 9;
+  RendererWrapper subscribeButton = 11;
+  bytes trackingParams = 14;
+}
+
+message GridPlaylistRenderer {
+  string playlistId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text videoCountText = 5;
+  Endpoint navigationEndpoint = 6;
+  Text videoCountShortText = 9;
+  bytes trackingParams = 11;
+  repeated Thumbnails sidebarThumbnails = 12;
+  Text thumbnailText = 14;
+  repeated RendererWrapper ownerBadges = 15;
+  RendererWrapper thumbnailRenderer = 16;
+  repeated RendererWrapper thumbnailOverlays = 23;
+  Text viewPlaylistText = 26;
+}
+
+message GridVideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text publishedTimeText = 5;
+  Text viewCountText = 6;
+  Endpoint navigationEndpoint = 8;
+  Text shortBylineText = 10;
+  repeated RendererWrapper badges = 13;
+  repeated RendererWrapper ownerBadges = 15;
+  bytes trackingParams = 17;
+  Text shortViewCountText = 22;
+  RendererWrapper menu = 24;
+  repeated RendererWrapper thumbnailOverlays = 28;
+}
+
+message ExpandableTabRenderer {
+  Endpoint endpoint = 1;
+  string title = 2;
+  bool selected = 3;
+  string expandedText = 5;
+  RendererWrapper content = 6;
+}
+
+message CommentThreadRenderer {
+  RendererWrapper comment = 1;
+  RendererWrapper replies = 2;
+  bytes trackingParams = 6;
+  int32 renderingPriority = 13;
+  bool isModeratedElqComment = 24;
+  RendererWrapper commentViewModel = 25;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message CommentRenderer {
+  Text authorText = 1;
+  Thumbnails authorThumbnail = 2;
+  Endpoint authorEndpoint = 3;
+  Text contentText = 4;
+  Text publishedTimeText = 5;
+  bool isLiked = 6;
+  string commentId = 9;
+  RendererWrapper actionButtons = 10;
+  bool authorIsChannelOwner = 11;
+  int32 voteStatus = 17;
+  bytes trackingParams = 19;
+  Text voteCount = 28;
+  RendererWrapper pinnedCommentBadge = 33;
+  RendererWrapper expandButton = 34;
+  RendererWrapper collapseButton = 35;
+  RendererWrapper authorCommentBadge = 39;
+  int32 replyCount = 82;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+/* This renderer isnt complete */
+/* Free PR */
+message PromotedVideoRenderer {
+  string videoId = 1;
+  Thumbnails thumbnail = 2;
+  Text title = 3;
+  Text description = 4;
+  Text longBylineText = 5;
+  Text shortBylineText = 6;
+  Text lengthText = 8;
+  Endpoint navigationEndpoint = 9;
+  RendererWrapper ctaRenderer = 10;
+  repeated string impressionUrls = 11;
+  repeated string clickTrackingUrls = 12;
+  bytes trackingParams = 16;
+  RendererWrapper menu = 19;
+  repeated RendererWrapper thumbnailOverlays = 22;
+  bytes activeView = 25;
+  string adPlaybackContextParams = 30;
+  RendererWrapper adBadge = 31;
+}
+
+message PlaylistMetadataRenderer {
+  string title = 1;
+  string description = 2;
+  string androidAppindexingLink = 6;
+  string iosAppindexingLink = 7;
+}
+
+message CommentRepliesRenderer {
+  repeated RendererWrapper continuationItemRenderer = 1;
+  bytes trackingParams = 4;
+  RendererWrapper viewReplies = 16;
+  RendererWrapper hideReplies = 17;
+  string targetId = 21;
+}
+
+message ButtonViewModel {
+  optional int32 style = 1;
+  optional int32 size = 2;
+  optional bool isDisabled = 3;
+  optional Text title = 5;
+  optional Endpoint onTap = 7;
+  optional Icon icon = 8;
+  optional Endpoint navigationEndpoint = 9;
+  optional AccessibilityData accessibility = 10;
+  optional string accessibilityText = 11;
+  optional bytes trackingParams = 13;
+  optional RendererWrapper accessibilityData = 16;
+  optional string targetId = 18;
+  optional Endpoint command = 19;
+  int32 iconPosition = 22;
+}
+
+message SecondarySearchContainerRenderer {
+  repeated RendererWrapper contents = 1;
+  bytes trackingParams = 3;
+}
+
+message MenuRenderer {
+  repeated RendererWrapper items = 1;
+  bytes trackingParams = 4;
+  repeated RendererWrapper topLevelButtons = 6;
+  RendererWrapper accessibility = 10;
+  optional string targetId = 11;
+  bool isDisabled = 19;
+  repeated RendererWrapper flexibleItems = 20;
+  Endpoint disabledCommand = 21;
+}
+
+message MenuNavigationItemRenderer {
+  Text text = 1;
+  Icon icon = 2;
+  Endpoint endpoint = 3;
+  optional bytes trackingParams = 5;
+  optional RendererWrapper accessibility = 7;
+}
+
+message MenuServiceItemRenderer {
+  Text text = 1;
+  Icon icon = 2;
+  Endpoint serviceEndpoint = 3;
+  bytes trackingParams = 5;
+  bool hasSeparator = 12;
+  bool isSelected = 13;
+}
+
+message CommentActionButtonsRenderer {
+  RendererWrapper likeButton = 1;
+  RendererWrapper replyButton = 2;
+  RendererWrapper dislikeButton = 7;
+  bytes trackingParams = 8;
+  optional RendererWrapper creatorHeart = 15;
+  int64 protoCreationMs = 16;
+  int32 style = 18;
+}
+
+message SearchSubMenuRenderer {
+  bytes trackingParams = 6;
+}
+
+message VideoViewCountRenderer {
+  Text viewCount = 1;
+  Text shortViewCount = 4;
+  optional int32 originalViewCount = 9;
+}
+
+message PlayerLiveStoryboardSpecRenderer {
+  string spec = 1;
+}
+
+message MetadataRowContainerRenderer {
+  int32 collapsedItemCount = 2;
+  bytes trackingParams = 4;
+}
+
+message PlaylistVideoThumbnailRenderer {
+  Thumbnails thumbnail = 1;
+  bytes trackingParams = 3;
+}
+
+message MicroformatDataRenderer {
+  string urlCanonical = 1;
+  string title = 2;
+  string description = 3;
+  Thumbnails thumbnail = 4;
+  string siteName = 5;
+  string appName = 6;
+  string androidPackage = 7;
+  string iosAppStoreId = 9;
+  string iosAppArguments = 10;
+  string ogType = 12;
+  string urlApplinksWeb = 13;
+  string urlApplinksIos = 14;
+  string urlApplinksAndroid = 15;
+  string urlTwitterIos = 16;
+  string urlTwitterAndroid = 17;
+  string twitterCardType = 18;
+  string twitterSiteHandle = 19;
+  string schemaDotOrgType = 20;
+  bool noindex = 21;
+  bool unlisted = 22;
+  bool familySafe = 24;
+  repeated string keywords = 25;
+  repeated string availableCountries = 26;
+  repeated google.protobuf.StringValue linkAlternates = 33;
+}
+
+message SortFilterSubMenuRenderer {
+  message SubMenuItem {
+    string title = 1;
+    bool selected = 2;
+    Endpoint serviceEndpoint = 5;
+    bytes trackingParams = 13;
+  }
+
+  repeated SubMenuItem subMenuItems = 1;
+  string title = 2;
+  Icon icon = 3;
+  RendererWrapper accessibility = 4;
+  string tooltip = 5;
+  bytes trackingParams = 7;
+}
+
+message SearchPyvRenderer {
+  repeated RendererWrapper ads = 1;
+  bytes trackingParams = 3;
+}
+
+message ToggleMenuServiceItemRenderer {
+  Text defaultText = 1;
+  Icon defaultIcon = 2;
+  Endpoint defaultServiceEndpoint = 3;
+  Text toggledText = 4;
+  Icon toggledIcon = 5;
+  Endpoint toggledServiceEndpoint = 6;
+  bytes trackingParams = 8;
+  bool isToggled = 11;
+}
+
+message ToggleButtonRenderer {
+  google.protobuf.Int32Value style = 1;
+  google.protobuf.Int32Value size = 2;
+  bool isToggled = 3;
+  bool isDisabled = 4;
+  Icon defaultIcon = 5;
+  Endpoint defaultServiceEndpoint = 7;
+  Icon toggledIcon = 8;
+  Endpoint toggledServiceEndpoint = 10;
+  AccessibilityData accessibility = 11;
+  Endpoint defaultNavigationEndpoint = 17;
+  RendererWrapper accessibilityData = 19;
+  RendererWrapper toggledAccessibilityData = 20;
+  RendererWrapper toggleButtonSupportedData = 21;
+  bytes trackingParams = 13;
+  string defaultTooltip = 14;
+  string toggledTooltip = 15;
+  google.protobuf.Int32Value toggledStyle = 16;
+}
+
+message HorizontalCardListRenderer {
+  repeated RendererWrapper cards = 1;
+  bytes trackingParams = 2;
+  RendererWrapper header = 4;
+  google.protobuf.Int32Value style = 6;
+  RendererWrapper previousButton = 10;
+  RendererWrapper nextButton = 11;
+}
+
+message ChipCloudRenderer {
+  repeated RendererWrapper chips = 1;
+  bytes trackingParams = 4;
+  RendererWrapper nextButton = 8;
+  RendererWrapper previousButton = 9;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message SearchRefinementCardRenderer {
+  Thumbnails thumbnail = 1;
+  Text query = 2;
+  Endpoint searchEndpoint = 3;
+  bytes trackingParams = 4;
+  optional google.protobuf.Int32Value searchRefinementCardRendererStyle = 6;
+}
+
+message ChipCloudChipRenderer {
+  google.protobuf.Int32Value style = 1;
+  Text text = 2;
+  optional Endpoint navigationEndpoint = 3;
+  bytes trackingParams = 5;
+  bool isSelected = 9;
+  int32 location = 16;
+}
+
+message AlertWithButtonRenderer {
+  int32 type = 1;
+  Text text = 2;
+  RendererWrapper dismissButton = 6;
+}
+
+message BackgroundPromoRenderer {
+  Text text = 1;
+  bytes trackingParams = 6;
+  Thumbnails thumbnail = 7;
+  RendererWrapper ctaButton = 8;
+  google.protobuf.Int32Value style = 9;
+}
+
+message VideoPrimaryInfoRenderer {
+  Text title = 1;
+  RendererWrapper viewCount = 3;
+  RendererWrapper videoActions = 4;
+  bytes trackingParams = 7;
+  repeated RendererWrapper badges = 11;
+  Text dateText = 14;
+  Text relativeDateText = 21;
+}
+
+message ChannelThumbnailWithLinkRenderer {
+  Thumbnail thumbnail = 1;
+  Endpoint navigationEndpoint = 2;
+  RendererWrapper accessibility = 3;
+}
+
+message VideoSecondaryInfoRenderer {
+  RendererWrapper owner = 1;
+  RendererWrapper subscribeButton = 4;
+  RendererWrapper metadataRowContainer = 5;
+  Text showMoreText = 6;
+  Text showLessText = 7;
+  bool defaultExpanded = 10;
+  int32 descriptionCollapsedLines = 11;
+  Endpoint showMoreCommand = 12;
+  Endpoint showLessCommand = 14;
+  AttributedDescription attributedDescription = 15;
+}
+
+message CommentsHeaderRenderer {
+  Text countText = 1;
+  RendererWrapper createRenderer = 2;
+  RendererWrapper sortMenu = 3;
+  bytes trackingParams = 7;
+  Text titleText = 10;
+  Text commentsCount = 11;
+  bool showSeparator = 25;
+  repeated CustomEmoji customEmojis = 27;
+  string unicodeEmojisUrl = 28;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message EndscreenRenderer {
+  repeated RendererWrapper elements = 1;
+  int32 startMs = 2;
+}
+
+message EndscreenElementRenderer {
+  enum EndscreenElementStyle {
+    INVALID = 0;
+    VIDEO = 1;
+    PLAYLIST = 2;
+    CHANNEL = 3;
+    WEBSITE = 4;
+  }
+
+  EndscreenElementStyle style = 1;
+  Thumbnails image = 2;
+  optional Thumbnails icon = 3;
+  float left = 6;
+  float width = 7;
+  float top = 8;
+  float aspectRatio = 9;
+  int32 startMs = 10;
+  int32 endMs = 11;
+  Text title = 12;
+  Text metadata = 13;
+  optional Text callToAction = 14;
+  optional Text dismiss = 15;
+  InnerTube.Protobuf.Endpoint endpoint = 16;
+  string id = 31;
+  RendererWrapper thumbnailOverlays = 32;
+}
+
+message ThumbnailOverlayBottomPanelRenderer {
+  Text text = 1;
+  Icon icon = 2;
+}
+
+message ThumbnailOverlayHoverTextRenderer {
+  Text text = 1;
+  Icon icon = 2;
+}
+
+message HeroPlaylistThumbnailRenderer {
+  Thumbnails thumbnail = 1;
+  float maxRatio = 2;
+  bytes trackingParams = 4;
+  Endpoint onTap = 5;
+  repeated RendererWrapper thumbnailOverlays = 6;
+}
+
+message TitleAndButtonListHeaderRenderer {
+  Text title = 1;
+  bytes trackingParams = 5;
+}
+
+message VerticalWatchCardListRenderer {
+  repeated RendererWrapper items = 2;
+  bytes trackingParams = 6;
+}
+
+message WatchCardSectionSequenceRenderer {
+  repeated RendererWrapper lists = 1;
+  repeated Text listTitles = 2;
+  bytes trackingParams = 4;
+}
+
+message WatchCardRichHeaderRenderer {
+  Text title = 1;
+  Endpoint titleNavigationEndpoint = 2;
+  Text subtitle = 3;
+  Thumbnails avatar = 5;
+  RendererWrapper colorSupportedDatas = 6;
+  bytes trackingParams = 8;
+  RendererWrapper titleBadge = 12;
+  RendererWrapper darkThemeColorSupportedDatas = 13;
+  int32 style = 15;
+  repeated RendererWrapper callToActionButtons = 16;
+}
+
+message BasicColorPaletteData {
+  int64 backgroundColor = 1;
+  int64 foregroundTitleColor = 2;
+  int64 foregroundBodyColor = 3;
+}
+
+message UniversalWatchCardRenderer {
+  RendererWrapper header = 1;
+  RendererWrapper callToAction = 2;
+  repeated RendererWrapper sections = 3;
+  Text collapsedLabel = 5;
+  bytes trackingParams = 9;
+}
+
+message RichListHeaderRenderer {
+  Text title = 1;
+  bytes trackingParams = 6;
+  Icon icon = 7;
+}
+
+message BackstageImageRenderer {
+  Thumbnails image = 1;
+  bytes trackingParams = 3;
+  Endpoint command = 4;
+  RendererWrapper accessibility = 6;
+  Icon icon = 7;
+}
+
+message ThumbnailOverlayTimeStatusRenderer {
+  Text text = 1;
+  int32 style = 2;
+}
+
+message WatchCardHeroVideoRenderer {
+  Endpoint navigationEndpoint = 2;
+  bytes trackingParams = 7;
+  RendererWrapper callToActionButton = 10;
+  RendererWrapper heroImage = 11;
+  RendererWrapper accessibility = 12;
+}
+
+message WatchCardCompactVideoRenderer {
+  Text title = 2;
+  Text subtitle = 3;
+  Text lengthText = 4;
+  Endpoint navigationEndpoint = 5;
+  bytes trackingParams = 7;
+  int32 style = 11;
+  Text byline = 14;
+}
+
+message SlimMetadataToggleButtonRenderer {
+  int32 likeStatus = 19;
+  bool isLike = 20;
+  bool isDislike = 21;
+  RendererWrapper button = 26;
+  string likeStatusEntityKey = 27;
+}
+
+message AuthorCommentBadgeRenderer {
+  Icon icon = 1;
+  Text authorText = 3;
+  Endpoint authorEndpoint = 4;
+  string iconTooltip = 5;
+}
+
+message ThumbnailOverlayToggleButtonRenderer {
+  bool isToggled = 1;
+  Icon untoggledIcon = 2;
+  Icon toggledIcon = 3;
+  string untoggledTooltip = 4;
+  string toggledTooltip = 5;
+  Endpoint untoggledServiceEndpoint = 6;
+  Endpoint toggledServiceEndpoint = 7;
+  RendererWrapper untoggledAccessibility = 8;
+  RendererWrapper toggledAccessibility = 9;
+  bytes trackingParams = 12;
+}
+
+message MetadataBadgeRenderer {
+  optional Icon icon = 1;
+  int32 style = 2;
+  optional string label = 3;
+  optional string tooltip = 4;
+  bytes trackingParams = 6;
+  optional AccessibilityData accessibilityData = 7;
+}
+
+message PinnedCommentBadgeRenderer {
+  Icon icon = 1;
+  Text label = 2;
+  RendererWrapper color = 3;
+}
+
+message CreatorHeartRenderer {
+  Thumbnails creatorThumbnail = 1;
+  Icon heartIcon = 2;
+  RendererWrapper heartColor = 3;
+  string heartedTooltip = 4;
+  bool isHearted = 5;
+  bool isEnabled = 6;
+  RendererWrapper heartedAccessibility = 9;
+  RendererWrapper unheartedAccessibility = 10;
+  string kennedyHeartColorString = 11;
+}
+
+message SubscriptionNotificationToggleButtonRenderer {
+  message State {
+    message StateWrapper {
+      message State {
+        int32 style = 1;
+        int32 size = 2;
+        bool isDisabled = 3;
+        Icon icon = 8;
+        AccessibilityData accessibility = 10;
+        bytes trackingParams = 13;
+        RendererWrapper accessibilityData = 16;
+      }
+
+      State buttonRenderer = 65153809;
+    }
+    int32 stateId = 1;
+    int32 nextStateId = 2;
+    StateWrapper state = 3;
+  }
+
+  repeated State states = 1;
+  int32 currentStateId = 2;
+  bytes trackingParams = 6;
+  Endpoint command = 10;
+  string targetId = 11;
+  Icon secondaryIcon = 13;
+}
+
+message ToggleButtonSupportedData {
+  int32 id = 1;
+}
+
+message EngagementPanelSectionListRenderer {
+  optional string panelIdentifier = 1;
+  optional RendererWrapper header = 2;
+  optional RendererWrapper content = 3;
+  string targetId = 8;
+  int32 visibility = 9;
+  optional SurfaceIdentifier identifier = 18;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message EngagementPanelTitleHeaderRenderer {
+  Text title = 1;
+  string subtitle = 5;
+  RendererWrapper visibilityButton = 8;
+  bytes trackingParams = 12;
+}
+
+message ReelPlayerOverlayRenderer {
+  int32 style = 12;
+  bytes trackingParams = 16;
+  int32 reelPlayerNavigationModel = 20;
+}
+
+message CallToActionButtonRenderer {
+  Text label = 1;
+  Icon icon = 2;
+  int32 style = 3;
+}
+
+message CollageHeroImageRenderer {
+  Thumbnails leftThumbnail = 1;
+  Thumbnails topRightThumbnail = 2;
+  Thumbnails bottomRightThumbnail = 3;
+}
+
+message ImageType {
+  Image image = 1;
+}
+
+message ReelItemRenderer {
+  string videoId = 1;
+  Text headline = 2;
+  Thumbnails thumbnail = 4;
+  Text viewCountText = 6;
+  Endpoint navigationEndpoint = 8;
+  RendererWrapper menu = 9;
+  bytes trackingParams = 12;
+  RendererWrapper accessibility = 13;
+  int32 style = 14;
+  int32 videoType = 22;
+  Endpoint inlinePlaybackEndpoint = 24;
+  optional LoggingDirectives loggingDirectives = 999;
+}
+
+message ContinuationItemRenderer {
+  int32 trigger = 1;
+  Endpoint continuationEndpoint = 2;
+  optional LoggingDirectives loggingDirectives = 999;
+}
+
+message BackstagePostRenderer {
+  string postId = 1;
+  Text authorText = 3;
+  Thumbnails authorThumbnail = 4;
+  Endpoint authorEndpoint = 5;
+  Text contentText = 6;
+  optional RendererWrapper backstageAttachment = 7;
+  RendererWrapper expandButton = 8;
+  RendererWrapper collapseButton = 9;
+  Text publishedTimeText = 10;
+  Text voteCount = 11;
+  int32 voteStatus = 12;
+  RendererWrapper actionButtons = 14;
+  bytes trackingParams = 18;
+  int32 surface = 23;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message BackstagePostThreadRenderer {
+  RendererWrapper post = 1;
+  bytes loggingParams = 4;
+  optional LoggingDirectives loggingDirectives = 999;
+}
+
+message LayoutProperties {
+  message ValueUnitPair {
+    float value = 1;
+    int32 unit = 2;
+  }
+  
+  message MarginContainer {
+    optional ValueUnitPair left = 2;
+  }
+
+  ValueUnitPair height = 2;
+  ValueUnitPair width = 3;
+  MarginContainer margin = 8;
+}
+
+message ReelShelfRenderer {
+  Text title = 1;
+  RendererWrapper button = 2;
+  repeated RendererWrapper items = 3;
+}
+
+message FeedFilterChipBarRenderer {
+  repeated RendererWrapper contents = 1;
+  bytes trackingParams = 4;
+  RendererWrapper nextButton = 7;
+  RendererWrapper previousButton = 8;
+  int32 styleType = 10;
+}
+
+message ThumbnailOverlayNowPlayingRenderer {
+  Text text = 1;
+}
+
+message PromotedSparklesWebRenderer {
+  message ClickLocationTarget {
+    int32 location = 1;
+    int32 code = 2;
+    int32 behaviorType = 3;
+  }
+
+  Thumbnails thumbnail = 1;
+  Text title = 3;
+  Text description = 4;
+  Text websiteText = 5;
+  Endpoint navigationEndpoint = 7;
+  repeated Endpoint impressionCommands = 8;
+  RendererWrapper menu = 10;
+  bytes trackingParams = 13;
+  repeated ClickLocationTarget clickLocationTargets = 14;
+  RendererWrapper mediaHoverOverlay = 18;
+  RendererWrapper mediaBadge = 19;
+  int32 promotedSparklesWebStyle = 20;
+  bool isSquareThumbnail = 21;
+  Endpoint thumbnailNavigationEndpoint = 22;
+  RendererWrapper adBadge = 23;
+}
+
+message RichGridRenderer {
+  message ReflowOpts {
+    int32 minimumRowsOfVideosAtStart = 1;
+    int32 minimumRowsOfVideosBetweenSections = 2;
+  }
+
+  repeated RendererWrapper contents = 1;
+  bytes trackingParams = 3;
+  RendererWrapper header = 6;
+  string targetId = 7;
+  ReflowOpts reflowOptions = 10;
+  int32 style = 12;
+}
+
+message RichItemRenderer {
+  RendererWrapper content = 1;
+  bytes trackingParams = 3;
+}
+
+message RichSectionRenderer {
+  RendererWrapper content = 1;
+  bytes trackingParams = 3;
+  bool fullBleed = 4;
+}
+
+message CommentsEntryPointHeaderRenderer {
+  Text headerText = 1;
+  Endpoint onTap = 2;
+  bytes trackingParams = 3;
+  Text commentCount = 5;
+  RendererWrapper contentRenderer = 12;
+  string targetId = 13;
+}
+
+message DestinationShelfRenderer {
+  repeated RendererWrapper destinationButtons = 1;
+  string expandButtonText = 2;
+  bytes trackingParams = 4;
+}
+
+message DestinationButtonRenderer {
+  Text label = 1;
+  Thumbnails iconImage = 3;
+  Endpoint onTap = 4;
+  RendererWrapper accessibility = 6;
+  bytes trackingParams = 8;
+}
+
+message MacroMarkersListItemRenderer {
+  Text title = 1;
+  Text timeDescription = 2;
+  Thumbnails thumbnail = 5;
+  Endpoint onTap = 6;
+  bytes trackingParams = 9;
+  RendererWrapper shareButton = 12;
+  RendererWrapper repeatButton = 13;
+  string macroMarkerRepeatStateEntityKey = 14;
+  Endpoint endRepeatCommand = 15;
+  string playerStateEntityKey = 16;
+  int32 carouselType = 18;
+  ColorPalette lightColorPalette = 19;
+  ColorPalette darkColorPalette = 20;
+  string timeDescriptionA11yLabel = 21;
+}
+
+message MacroMarkersListRenderer {
+  repeated RendererWrapper contents = 1;
+}
+
+message PostMultiImageRenderer {
+  repeated RendererWrapper images = 1;
+  LoggingDirectives loggingDirectives = 999;
+}
+
+message MenuFlexibleItemRenderer {
+  RendererWrapper menuItem = 1;
+  RendererWrapper topLevelButton = 2;
+}
+
+message FeedNudgeRenderer {
+  Text title = 3;
+  Text subtitle = 4;
+  Endpoint impressionEndpoint = 8;
+  bytes trackingParams = 11;
+}
+
+message ThumbnailOverlayLoadingPreviewRenderer {
+  Text text = 1;
+}
+
+message PlaylistLoopButtonRenderer {
+  repeated RendererWrapper states = 1;
+  int32 currentState = 2;
+  string playlistLoopStateEntityKey = 3;
+}
+
+message PlaylistLoopButtonStateRenderer {
+  int32 state = 1;
+  RendererWrapper button = 2;
+}
+
+message AdSlotRenderer {
+  message Content {
+    RendererWrapper fulfilledLayout = 1;
+  }
+
+  message SlotMetadata {
+    message SlotLoggingData {
+      bytes serializedSlotAdServingDataEntry = 1;
+    }
+
+    string slotId = 1;
+    int32 slotType = 2;
+    int32 slotPhysicalPosition = 3;
+    SlotLoggingData adSlotLoggingData = 4;
+  }
+
+  SlotMetadata adSlotMetadata = 1;
+  Content fulfillmentContent = 2;
+  bool enablePacfLoggingWeb = 3;
+}
+
+message InFeedAdLayoutRenderer {
+  message Metadata {
+    message LayoutLoggingData {
+      bytes serializedAdServingDataEntry = 1;
+    }
+
+    string layoutId = 1;
+    int32 layoutType = 2;
+    LayoutLoggingData adLayoutLoggingData = 3;
+  }
+
+  Metadata adLayoutMetadata = 1;
+  RendererWrapper renderingContent = 2;
+}
+
+message CommentViewModel 
+{
+  string commentKey = 1;
+  string sharedKey = 2;
+  string toolbarStateKey = 3;
+  string toolbarSurfaceKey = 4;
+  optional string pinnedText = 5;
+  string commentId = 7;
+  string commentSurfaceKey = 8;
+  Context rendererContext = 997;
+}
+
+message CommentsEntryPointTeaserRenderer {
+  Thumbnails teaserAvatar = 1;
+  Text teaserContent = 2;
+  bytes trackingParams = 3;
+}
+
+message CinematicContainerRenderer {
+  message BackgroundConfig {
+    Thumbnails thumbnails = 1;
+  }
+
+  message CinematicConfig {
+    uint64 lightThemeBackgroundColor = 1;
+    uint64 darkThemeBackgroundColor = 2;
+    uint64 colorSourcesSizeMultiplier = 4;
+    bool applyClientImageBlur = 5;
+  }
+
+  BackgroundConfig backgroundImageConfig = 1;
+  repeated GradientConfig gradientColorConfig = 2;
+  CinematicConfig config = 4;
+}
+
+message PlaylistBylineRenderer {
+  repeated Text text = 1;
+}
+
+message ButtonViewModel2 {
+  string iconName = 2;
+  string title = 3;
+  Endpoint onTap = 4;
+  string accessibilityText = 5;
+  int32 style = 7;
+  bytes trackingParams = 8;
+  bool isFullWidth = 10;
+  int32 type = 11;
+  int32 buttonSize = 13;
+  int32 state = 14;
+  optional string accessibilityId = 17;
+  optional string tooltip = 39;
+}
+
+message ToggleButtonViewModel {
+  RendererWrapper defaultButtonViewModel = 1;
+  RendererWrapper toggledButtonViewModel = 2;
+  string identifier = 4;
+  bytes trackingParams = 5;
+  bool isTogglingDisabled = 7;
+}
+
+message ChannelTaglineRenderer {
+  string content = 1;
+  int32 maxLines = 2;
+  string moreLabel = 3;
+  Endpoint moreEndpoint = 4;
+  Icon moreIcon = 5;
+}
+
+message LikeButtonViewModel {
+  message LikeStatusEntity {
+    string key = 1;
+    int32 likeStatus = 2;
+  }
+
+  RendererWrapper toggleButtonViewModel = 1;
+  string likeStatusEntityKey = 3;
+  LikeStatusEntity likeStatusEntity = 6;
+}
+
+message DislikeButtonViewModel {
+  RendererWrapper toggleButtonViewModel = 1;
+  string dislikeEntityKey = 3;
+}
+
+message SegmentedLikeDislikeButtonViewModel {
+  RendererWrapper likeButtonViewModel = 1;
+  RendererWrapper dislikeButtonViewModel = 2;
+}
+
+message SearchHeaderRenderer {
+  RendererWrapper chipBar = 1;
+  RendererWrapper searchFilterButton = 2;
+  bytes trackingParams = 4;
+}
+
+message PageHeaderViewModel {
+  RendererWrapper title = 2;
+  RendererWrapper image = 3;
+  RendererWrapper metadata = 4;
+  RendererWrapper actions = 5;
+  RendererWrapper description = 6;
+  RendererWrapper attribution = 7;
+  RendererWrapper banner = 10;
+  Context rendererContext = 997;
+}
+
+message DynamicTextViewModel {
+  AttributedDescription text = 1;
+  int32 maxLines = 2;
+  Context rendererContext = 997;
+}
+
+message PageHeaderRenderer {
+  string pageTitle = 1;
+  RendererWrapper content = 2;
+}
+
+message ContentMetadataViewModel {
+  message MetadataRow {
+    message AttributedDescriptionWrapper {
+      AttributedDescription text = 2;
+    }
+
+    repeated AttributedDescriptionWrapper metadataParts = 1;
+  }
+  repeated MetadataRow metadataRows = 1;
+  string delimiter = 2;
+  Context rendererContext = 997;
+}
+
+message FlexibleActionsViewModel {
+  message ActionRow {
+    repeated RendererWrapper actions = 1;
+  }
+  
+  repeated ActionRow actionsRows = 1;
+  Context rendererContext = 997;
+}
+
+message AttributionViewModel {
+  AttributedDescription text = 3;
+  AttributedDescription suffix = 5;
+  Context rendererContext = 997;
+}
+
+message DescriptionPreviewViewModel {
+  AttributedDescription content = 1;
+  int32 maxLines = 2;
+  AttributedDescription truncationText = 3;
+  bool alwaysShowTruncationText = 4;
+  Context rendererContext = 997;
+}
+
+// ===============================================================
+// ==================    ENDPOINTS    ============================
+// ===============================================================
+
+message Endpoint {
+  message CommandMetadata {
+    oneof metadataType {
+      WebCommandMetadata webCommandMetadata = 177881822;
+    }
+  }
+  
+  message LoggingUrl {
+    string baseUrl = 1;
+  }
+
+  bytes clickTrackingParams = 2;
+  repeated LoggingUrl loggingUrls = 3;
+  CommandMetadata commandMetadata = 4;
+
+  oneof endpointType {
+    SearchEndpoint searchEndpoint = 48687709;
+    WatchEndpoint watchEndpoint = 48687757;
+    UrlEndpoint urlEndpoint = 49679253;
+    BrowseEndpoint browseEndpoint = 48687626;
+    SignInEndpoint signInEndpoint = 49706687;
+    WatchPlaylistEndpoint watchPlaylistEndpoint = 52666186;
+    PlaylistEditEndpoint playlistEditEndpoint = 60666189;
+    LikeEndpoint likeEndpoint = 63158558;
+    FeedbackEndpoint feedbackEndpoint = 65153809;
+    SubscribeEndpoint subscribeEndpoint = 68997349;
+    UnsubscribeEndpoint unsubscribeEndpoint = 68997401;
+    UserFeedbackEndpoint userFeedbackEndpoint = 72579984;
+    ModifyChannelNotificationPreferenceEndpoint modifyChannelNotificationPreferenceEndpoint = 90195593;
+    PingingEndpoint pingingEndpoint = 98444775;
+    ModalEndpoint modalEndpoint = 106613511;
+    SignalServiceEndpoint signalServiceEndpoint = 124290411;
+    CreatePlaylistServiceEndpoint createPlaylistServiceEndpoint = 124747980;
+    OpenPopupAction openPopupAction = 128491736;
+    ShowEngagementPanelEndpoint showEngagementPanelEndpoint = 138681778;
+    ReelWatchEndpoint reelWatchEndpoint = 139608561;
+    AppendContinuationItemsAction appendContinuationItemsAction = 160980450;
+    Endpoint innertubeCommand = 169495254;
+    SerialCommand serialCommand = 170382688;
+    ShareEntityServiceEndpoint shareEntityServiceEndpoint = 171169820;
+    CommandExecutorCommand commandExecutorCommand = 174116574;
+    LogGestureCommand logGestureCommand = 241780379;
+    AddToPlaylistCommand addToPlaylistCommand = 243789987;
+    ChangeEngagementPanelVisibilityAction changeEngagementPanelVisibilityAction = 247256721;
+    ContinuationCommand continuationCommand = 280298060;
+    ReloadContinuationItemsCommand reloadContinuationItemsCommand = 293675513;
+    ShowReloadUiCommand showReloadUiCommand = 297946747;
+    EntityUpdateCommand entityUpdateCommand = 300347778;
+    ScrollToEngagementPanelCommand scrollToEngagementPanelCommand = 344410484;
+  }
+}
+
+message Payload {
+  oneof payloadType {
+    CommentEntityPayload commentEntityPayload = 40;
+    EngagementToolbarStateEntityPayload engagementToolbarStateEntityPayload = 44;
+    LikeStatusEntity likeStatusEntity = 62;
+    PlaylistLoopStateEntity playlistLoopStateEntity = 354;
+  }
+}
+
+message LoggingContext {
+  message VssLoggingContext {
+    string serializedContextData = 1;
+  }
+
+  message QoeLoggingContext {
+    string serializedContextData = 3;
+  }
+
+  optional VssLoggingContext vssLoggingContext = 1;
+  optional QoeLoggingContext qoeLoggingContext = 2;
+}
+
+message SearchEndpoint {
+  string query = 1;
+  string params = 2;
+}
+
+message WatchEndpoint {
+  message WatchEndpointSupportedOnesieConfig {
+    message Html5PlaybackOnesieConfig {
+      // i dont wanna write a new message for this thing.
+      optional google.protobuf.StringValue commonConfig = 1;
+    }
+
+    // pretty sure we need a oneof here
+    optional Html5PlaybackOnesieConfig html5PlaybackOnesieConfig = 268150231;
+  }
+
+  message PrefetchHintConfigWrapper {
+    message PrefetchHintConfig {
+      int32 prefetchPriority = 1;
+      int64 playbackRelativeSecondsPrefetchCondition = 4;
+      int64 countdownUiRelativeSecondsPrefetchCondition = 5;
+    }
+
+    // pretty sure we need a oneof here
+    optional PrefetchHintConfig prefetchHintConfig = 68429767;
+  }
+
+  string videoId = 1;
+  optional string playlistId = 2;
+  optional int32 index = 3;
+  optional string params = 5;
+  optional bool continuePlayback = 6;
+  optional float startTimeSeconds = 7;
+  optional string playerParams = 9;
+  optional string playlistSetVideoId = 13;
+  optional bool nofollow = 17;
+  optional WatchEndpointSupportedOnesieConfig watchEndpointSupportedOnesieConfig = 79857908;
+  optional PrefetchHintConfigWrapper watchEndpointSupportedPrefetchConfig = 68146959;
+  optional LoggingContext loggingContext = 26;
+  map<string, string> playerExtraUrlParams = 18;
+}
+
+message UrlEndpoint {
+  string url = 1;
+  int32 target = 2;
+  optional bool nofollow = 17;
+}
+
+message BrowseEndpoint {
+  string browseId = 2;
+  optional string params = 3;
+  optional string canonicalBaseUrl = 4;
+  bool nofollow = 11;
+  int32 navigationType = 14;
+}
+
+message SignInEndpoint {
+  Endpoint nextEndpoint = 2;
+  string continueAction = 5;
+  string idamTag = 8;
+}
+
+message WatchPlaylistEndpoint {
+  string playlistId = 1;
+  int32 index = 2;
+  string params = 4;
+}
+
+message PlaylistEditEndpoint {
+  message Action {
+    string addedVideoId = 2;
+    int32 action = 6;
+    string removedVideoId = 17;
+  }
+
+  string playlistId = 1;
+  repeated Action actions = 2;
+}
+
+message LikeEndpoint {
+  message Target {
+    optional string videoId = 1;
+    optional string playlistId = 2;
+  }
+
+  int32 status = 1;
+  Target target = 2;
+  optional string likeParams = 8;
+}
+
+message FeedbackEndpoint {
+  string feedbackToken = 1;
+}
+
+message SubscribeEndpoint {
+  repeated string channelIds = 1;
+  string params = 3;
+}
+
+message UnsubscribeEndpoint {
+  repeated string channelIds = 1;
+  bytes trackingParams = 4;
+}
+
+message UserFeedbackEndpoint {
+  message AdditionalData {
+    map<string, string> userFeedbackEndpointProductSpecificValueData = 124907695;
+  }
+
+  repeated AdditionalData additionalDatas = 2;
+}
+
+message ModifyChannelNotificationPreferenceEndpoint {
+  string params = 1;
+}
+
+message ReloadContinuationItemsCommand {
+  string targetId = 1;
+  int32 slot = 3;
+  repeated RendererWrapper continuationItems = 2;
+}
+
+message PingingEndpoint {
+  bool hack = 1;
+}
+
+message ModalEndpoint {
+  message ButtonWrapper {
+    message Button {
+      int32 style = 1;
+      int32 size = 2;
+      bool isDisabled = 3;
+      Text text = 5;
+      Endpoint serviceEndpoint = 7;
+      Endpoint navigationEndpoint = 9;
+      bytes trackingParams = 13;
+    }
+
+    Button buttonWrapper = 65153809;
+  }
+
+  message ModalWithTitleAndButtonWrapper {
+    message ModalWithTitleAndButton {
+      Text title = 1;
+      Text content = 2;
+      ButtonWrapper button = 3;
+    }
+
+    ModalWithTitleAndButton modalWithTitleAndButton = 106613512;
+  }
+  ModalWithTitleAndButtonWrapper modalWithTitleAndButtonWrapper = 1;
+}
+
+message SignalServiceEndpoint {
+  int32 signal = 1;
+  repeated Endpoint commands = 2;
+}
+
+message ShowEngagementPanelEndpoint {
+  message Configs {
+    message PopupPresentationConfig {
+      int32 popupType = 1;
+    }
+    PopupPresentationConfig engagementPanelPopupPresentationConfig = 1;
+  }
+  RendererWrapper engagementPanel = 2;
+  SurfaceIdentifier identifier = 10;
+  Configs engagementPanelPresentationConfigs = 12;
+}
+
+message ReelWatchEndpoint {
+  string videoId = 1;
+  string playerParams = 4;
+  Thumbnails thumbnail = 5;
+  RendererWrapper reelPlayerOverlayRenderer = 8;
+  string params = 11;
+  int32 sequenceProvider = 12;
+  string sequenceParams = 13;
+  LoggingContext loggingContext = 23;
+  bytes ustreamerConfig = 24;
+}
+
+message AppendContinuationItemsAction {
+  repeated RendererWrapper continuationItems = 2;
+  string targetId = 3;
+}
+
+message SerialCommand {
+  repeated Endpoint commands = 1;
+}
+
+message ContinuationCommand {
+  string token = 1;
+  int32 request = 2;
+  repeated Endpoint command = 3;
+}
+
+message LogGestureCommand {
+  int32 gestureType = 1;
+  bytes trackingParams = 2;
+}
+
+message AddToPlaylistCommand {
+  bool openMiniplayer = 1;
+  bool openListPanel = 2;
+  string videoId = 3;
+  int32 listType = 5;
+  Endpoint onCreateListCommand = 6;
+  repeated string videoIds = 8;
+}
+
+message ChangeEngagementPanelVisibilityAction {
+  string targetId = 1;
+  int32 visibility = 2;
+}
+
+message CreatePlaylistServiceEndpoint {
+  repeated string videoIds = 1;
+  string params = 4;
+}
+
+message OpenPopupAction {
+  message Popup {
+    message MenuPopupRenderer {
+      repeated RendererWrapper items = 1;
+    }
+
+    message SearchFilterOptionsDialogRenderer {
+      Text title = 1;
+      repeated RendererWrapper groups = 2;
+    }
+
+    message ConfirmDialogRenderer {
+      bytes trackingParams = 7;
+      Text dialogMessages = 8;
+      ModalEndpoint.ButtonWrapper confirmButton = 12;
+      ModalEndpoint.ButtonWrapper cancelButton = 13;
+      bool primaryIsCancel = 19;
+    }
+
+    message NotificationActionRenderer {
+      Text responseText = 1;
+      bytes trackingParams = 4;
+    }
+
+    message FancyDismissibleDialogRenderer {
+      Text dialogMessage = 1;
+      Text title = 2;
+      Text confirmLabel = 3;
+      bytes trackingParams = 7;
+    }
+
+    message UnifiedSharePanelRenderer {
+      bytes trackingParams = 6;
+      bool showLoadingSpinner = 15;
+    }
+    
+    message AboutThisAdRenderer {
+      message PrivateDoNotAccessOrElseResourceUrlWrapper {
+        string privateDoNotAccessOrElseResourceUrlWrappedValue = 4; // no this is literally what its called in the json
+      }
+
+      PrivateDoNotAccessOrElseResourceUrlWrapper url = 1;
+      bytes trackingParams = 4;
+    }
+
+    oneof popupRendererType {
+      MenuPopupRenderer menuPopupRenderer = 144495266;
+      SearchFilterOptionsDialogRenderer searchFilterOptionsDialogRenderer = 482016595;
+      ConfirmDialogRenderer confirmDialogRenderer = 64099105;
+      FancyDismissibleDialogRenderer fancyDismissibleDialogRenderer = 85374086;
+      UnifiedSharePanelRenderer unifiedSharePanelRenderer = 87759049;
+      NotificationActionRenderer notificationActionRenderer = 96140188;
+      AboutThisAdRenderer aboutThisAdRenderer = 343935806;
+    }
+  }
+
+  Popup popup = 1;
+  int32 popupType = 2;
+  RendererWrapper accessibilityData = 13;
+  bool beReused = 7;
+}
+
+message ShareEntityServiceEndpoint {
+  string serializedShareEntity = 1;
+  repeated Endpoint commands = 4;
+}
+
+message CommandExecutorCommand {
+  repeated Endpoint commands = 1;
+}
+
+message ShowReloadUiCommand {
+  string targetId = 1;
+}
+
+message EntityUpdateCommand {
+  message BatchUpdate {
+    repeated Mutation mutations = 1;
+  }
+
+  message Mutation {
+    string entityKey = 1;
+    int32 type = 2;
+    Payload payload = 3;
+  }
+
+  BatchUpdate entityBatchUpdate = 1;
+}
+
+message ScrollToEngagementPanelCommand {
+  string targetId = 1;
+}
+
+message WebCommandMetadata {
+  string url = 1;
+  bool sendPost = 2;
+  int32 webPageType = 3;
+  bool ignoreNavigation = 4;
+  int32 rootVe = 5;
+  string apiUrl = 7;
+}
+
+message CommentEntityPayload {
+  message CommentText {
+    string content = 1;
+  }
+
+  message CommentProperties {
+    string commentId = 1;
+    CommentText content = 3;
+    string publishedTime = 4;
+    int32 replyLevel = 10;
+    string authorButtonA11y = 11;
+    string toolbarStateKey = 17;
+    string translateButtonEntityKey = 18;
+  }
+
+  message CommentAuthor {
+    string channelId = 1;
+    string displayName = 2;
+    string avatarThumbnailUrl = 3;
+    bool isVerified = 4;
+    bool isCurrentUser = 7;
+    bool isCreator = 8;
+    Endpoint channelCommand = 9;
+    string innerBadgeA11y = 11;
+    bool isArtist = 12;
+  }
+
+  message CommentToolbar {
+    string likeCountLiked = 5;
+    string likeCountNotLiked = 6;
+    string replyCount = 11;
+    string creatorThumbnailUrl = 20;
+    string likeButtonA11y = 21;
+    google.protobuf.Int32Value engagementToolbarStyle = 22;
+    string likeCountA11y = 24;
+    string replyCountA11y = 25;
+    string likeInactiveTooltip = 30;
+    string likeActiveTooltip = 31;
+    string dislikeInactiveTooltip = 32;
+    string dislikeActiveTooltip = 33;
+    string heartActiveTooltip = 35;
+  }
+
+  string key = 1;
+  CommentProperties properties = 2;
+  CommentAuthor author = 3;
+  CommentToolbar toolbar = 4;
+  AvatarViewModel avatar = 6;
+}
+
+message EngagementToolbarStateEntityPayload {
+  string key = 1;
+  int32 likeState = 2;
+  int32 heartState = 3;
+}
+
+message LikeStatusEntity {
+  string key = 1;
+  int32 likeStatus = 2;
+}
+
+message PlaylistLoopStateEntity {
+  string key = 1;
+  int32 state = 2;
+}

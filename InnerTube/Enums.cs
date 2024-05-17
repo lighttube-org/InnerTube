@@ -1,4 +1,6 @@
-﻿namespace InnerTube;
+﻿using InnerTube.Models;
+
+namespace InnerTube;
 
 /// <summary>
 /// The client to make the request from
@@ -22,16 +24,16 @@ public enum RequestClient
 /// <summary>
 /// Type of the end screen item 
 /// </summary>
-public enum EndScreenItemType
+public enum EndscreenItemType
 {
 	/// <summary>
 	/// Video item.
 	/// </summary>
-	Video,
+	Video = 1,
 	/// <summary>
 	/// Playlist item.
 	/// </summary>
-	Playlist,
+	Playlist = 2,
 	/// <summary>
 	/// Channel icon.
 	/// </summary>
@@ -39,11 +41,11 @@ public enum EndScreenItemType
 	/// <summary>
 	/// Channel icon.
 	/// </summary>
-	Channel,
+	Channel = 3,
 	/// <summary>
 	/// Link to an external source.
 	/// </summary>
-	Link
+	Link = 4
 }
 
 /// <summary>
@@ -52,9 +54,13 @@ public enum EndScreenItemType
 public enum ChannelTabs
 {
 	/// <summary>
+	/// Unknown tab. Use <see cref="ChannelTab.Params"/>
+	/// </summary>
+	Unknown,
+	/// <summary>
 	/// Home tab.
 	/// </summary>
-	Home,
+	Featured,
 	/// <summary>
 	/// Videos tab.
 	/// </summary>
@@ -66,7 +72,7 @@ public enum ChannelTabs
 	/// <summary>
 	/// Past live streams tab.
 	/// </summary>
-	Live,
+	Streams,
 	/// <summary>
 	/// Playlists tab.
 	/// </summary>
@@ -88,6 +94,7 @@ public enum ChannelTabs
 	/// <summary>
 	/// Related channels tab.
 	/// </summary>
+	[Obsolete("Doesn't seem to work anymore.")]
 	Channels,
 	/// <summary>
 	/// Store tab.
@@ -96,6 +103,7 @@ public enum ChannelTabs
 	/// <summary>
 	/// About tab.
 	/// </summary>
+	[Obsolete("Doesn't seem to work anymore.")]
 	About,
 	/// <summary>
 	/// Search tab.
@@ -124,4 +132,19 @@ public enum ShelfDirection
 	/// Grid
 	/// </summary>
 	Grid
+}
+
+public enum PlaylistFilter
+{
+	All = 0,
+	Videos = 1,
+	Shorts = 2
+}
+
+public enum VideoUploadType
+{
+	Published = 0,
+	Premiered = 1,
+	Streamed = 2,
+	Streaming = 3,
 }

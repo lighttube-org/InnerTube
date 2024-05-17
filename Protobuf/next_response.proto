@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Responses;
+
+import "general.proto";
+
+message NextResponse {
+  RendererWrapper contents = 7;
+  Endpoint currentVideoEndpoint = 9;
+  bytes trackingParams = 13;
+  repeated Endpoint onResponseReceivedEndpoints = 21;
+  repeated RendererWrapper engagementPanels = 25;
+  FrameworkUpdates frameworkUpdates = 777;
+}
+
+message FrameworkUpdates {
+  EntityBatchUpdate entityBatchUpdate = 1;
+}
+
+message EntityBatchUpdate {
+  repeated EntityUpdateCommand.Mutation mutations = 1;
+}
