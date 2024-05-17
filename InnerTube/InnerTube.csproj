@@ -11,7 +11,8 @@
         <RepositoryUrl>https://github.com/kuylar/InnerTube</RepositoryUrl>
         <PackageTags>youtube, innertube</PackageTags>
         <AssemblyVersion>2.0.0.1</AssemblyVersion>
-        <Version>2.0.0-rc1</Version>
+        <Version>2.0.0-rc.1</Version>
+        <PackageVersion>2.0.0-rc.1</PackageVersion>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <!-- Remove/comment this while looking for missing XMLDocs -->
         <NoWarn>$(NoWarn);1591</NoWarn>
