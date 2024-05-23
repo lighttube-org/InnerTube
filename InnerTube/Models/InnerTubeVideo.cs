@@ -38,9 +38,9 @@ public class InnerTubeVideo
 			x.RendererCase == RendererWrapper.RendererOneofCase.VideoPrimaryInfoRenderer).VideoPrimaryInfoRenderer;
 		VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = firstColumnResults.First(x =>
 			x.RendererCase == RendererWrapper.RendererOneofCase.VideoSecondaryInfoRenderer).VideoSecondaryInfoRenderer;
-		RendererWrapper commentsSection = firstColumnResults.First(x =>
+		RendererWrapper? commentsSection = firstColumnResults.FirstOrDefault(x =>
 			x.RendererCase == RendererWrapper.RendererOneofCase.ItemSectionRenderer &&
-			x.ItemSectionRenderer.SectionIdentifier.StartsWith("comment")).ItemSectionRenderer.Contents[0];
+			x.ItemSectionRenderer.SectionIdentifier.StartsWith("comment"))?.ItemSectionRenderer.Contents[0];
 
 		if (firstColumnResults[0].RendererCase == RendererWrapper.RendererOneofCase.ItemSectionRenderer &&
 		    firstColumnResults[0].ItemSectionRenderer.Contents[0].BackgroundPromoRenderer != null)
@@ -57,13 +57,16 @@ public class InnerTubeVideo
 			.ToggleButtonViewModel.DefaultButtonViewModel.ButtonViewModel2.Title; // jesus christ
 		Channel = Channel.From(videoSecondaryInfoRenderer.Owner.VideoOwnerRenderer);
 
-		switch (commentsSection.RendererCase)
+		switch (commentsSection?.RendererCase)
 		{
 			case RendererWrapper.RendererOneofCase.CommentsEntryPointHeaderRenderer:
 				CommentsCountText = Utils.ReadRuns(commentsSection.CommentsEntryPointHeaderRenderer.CommentCount);
 				break;
 			case RendererWrapper.RendererOneofCase.MessageRenderer:
 				CommentsErrorMessage = Utils.ReadRuns(commentsSection.MessageRenderer.Text, true);
+				break;
+			case null:
+				CommentsErrorMessage = $"Comments aren't available for this video";
 				break;
 			default:
 				CommentsErrorMessage =

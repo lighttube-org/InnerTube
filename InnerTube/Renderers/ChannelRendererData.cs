@@ -1,4 +1,5 @@
 using System.Text;
+using InnerTube.Models;
 using InnerTube.Protobuf;
 
 namespace InnerTube.Renderers;
@@ -11,6 +12,7 @@ public class ChannelRendererData : IRendererData
 	public Thumbnail[] Avatar { get; set; }
 	public string? VideoCountText { get; set; }
 	public string? SubscriberCountText { get; set; }
+	public Badge[] Badges { get; set; }
 
 	public override string ToString()
 	{

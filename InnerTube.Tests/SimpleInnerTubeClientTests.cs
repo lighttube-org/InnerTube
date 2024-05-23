@@ -104,6 +104,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("o0tky2O8NlY", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null,
 		TestName = "[Playlist] Album playlist (index 9)")]
 	[TestCase("k_nLHgIM4yE", "PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", null, null, TestName = "[Playlist] Large playlist")]
+	[TestCase("Hr2Lm6oEo3c", null, null, null, TestName = "Premiere video in the recommended")]
 	public async Task GetVideoDetailsAsync(string videoId, string? playlistId, int? playlistIndex,
 		string? playlistParams)
 	{
@@ -220,6 +221,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("UCXuqSBlHAE6Xw-yeJA0Tunw", (int)ChannelTabs.Podcasts, null)]
 	[TestCase("UC_kRDKYrUlrbtrSiyu5Tflg", (int)ChannelTabs.Releases, null)]
 	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Store, null)]
+	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Featured, null, TestName = "Scheduled premiere")]
 	public async Task GetChannelAsync(string channelId, int channelTab, string searchQuery)
 	{
 		InnerTubeChannel channel = await client.GetChannelAsync(channelId, (ChannelTabs)channelTab);
@@ -244,11 +246,7 @@ public class SimpleInnerTubeClientTests
 			sb.AppendLine($"TVBanner: ({header.TvBanner.Length})" + string.Join("",
 				header.TvBanner.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
 			sb.AppendLine($"Badges: ({header.Badges.Length})\n- " + string.Join("",
-				header.Badges.Select(x =>
-					string.Join("\n  ", Utils.SerializeRenderer(new RendererWrapper
-					{
-						MetadataBadgeRenderer = x
-					}).Trim().Split("\n")))));
+				header.Badges.Select(x => string.Join("\n  ", x.ToString()).Trim().Split("\n"))));
 			sb.AppendLine("Links:");
 			sb.AppendLine("- First: " + (header.PrimaryLink ?? "<null>"));
 			sb.AppendLine("- More: " + (header.SecondaryLink ?? "<null>"));
@@ -308,11 +306,7 @@ public class SimpleInnerTubeClientTests
 			sb.AppendLine($"TVBanner: ({header.TvBanner.Length})" + string.Join("",
 				header.TvBanner.Select(x => $"\n- [{x.Width}x{x.Height}] {x.Url}")));
 			sb.AppendLine($"Badges: ({header.Badges.Length})\n- " + string.Join("",
-				header.Badges.Select(x =>
-					string.Join("\n  ", Utils.SerializeRenderer(new RendererWrapper
-					{
-						MetadataBadgeRenderer = x
-					}).Trim().Split("\n")))));
+				header.Badges.Select(x => string.Join("\n  ", x.ToString()).Trim().Split("\n"))));
 			sb.AppendLine("Links:");
 			sb.AppendLine("- First: " + (header.PrimaryLink ?? "<null>"));
 			sb.AppendLine("- More: " + (header.SecondaryLink ?? "<null>"));
@@ -406,7 +400,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("big bcuk bunny", "exact", TestName = "Force to search with the typo")]
 	[TestCase("technoblade skyblock", null, TestName = "Used to get playlistRenderer & channelRenderer")]
 	[TestCase("lofi radio", null, TestName = "Used to get live videos")]
-	[TestCase("EvCZ9W2xAMQ", null, TestName = "Premiere video")]
+	[TestCase("GfDXqY-V0EY", "exact", TestName = "Premiere video")]
 	[TestCase("technoblade", null, TestName = "didYouMeanRenderer")]
 	[TestCase("O'zbekcha Kuylar 2020, Vol. 2", null, TestName = "epic broken playlist")]
 	[TestCase("cars 2", "movie", TestName = "movieRenderer")]

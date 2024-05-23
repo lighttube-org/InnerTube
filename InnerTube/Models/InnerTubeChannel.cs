@@ -26,7 +26,7 @@ public class InnerTubeChannel(BrowseResponse channel)
 		.ToList()!
 		.AsReadOnly();
 
-	public ChannelMetadataRenderer Metadata { get; } = channel.Metadata.ChannelMetadataRenderer;
+	public ChannelMetadata Metadata { get; } = new(channel.Metadata.ChannelMetadataRenderer);
 
 	public RendererContainer[] Contents { get; } = Utils.ConvertRenderers(channel.Contents
 		.TwoColumnBrowseResultsRenderer.Tabs.Select(x =>
