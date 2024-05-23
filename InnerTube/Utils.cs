@@ -793,6 +793,24 @@ public static partial class Utils
 					Description = ReadRuns(renderer.PromotedVideoRenderer.Description)
 				}
 			},
+			RendererWrapper.RendererOneofCase.ChildVideoRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "childVideoRenderer",
+				Data = new VideoRendererData
+				{
+					VideoId = renderer.ChildVideoRenderer.VideoId,
+					Title = ReadRuns(renderer.ChildVideoRenderer.Title),
+					Thumbnails = [],
+					Author = null,
+					Duration = ParseDuration(ReadRuns(renderer.ChildVideoRenderer.LengthText)),
+					PublishedText = null,
+					ViewCountText = null,
+					Badges = [],
+					Description = null,
+					PremiereStartTime = null
+				}
+			},
 			RendererWrapper.RendererOneofCase.ChannelRenderer => new RendererContainer
 			{
 				Type = "channel",
