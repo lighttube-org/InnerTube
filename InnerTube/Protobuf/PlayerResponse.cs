@@ -37,64 +37,75 @@ namespace InnerTube.Protobuf.Responses {
             "dWJlLlByb3RvYnVmLlJlbmRlcmVyV3JhcHBlckgCiAEBEjsKCWVuZHNjcmVl",
             "bhggIAEoCzIjLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcldyYXBwZXJI",
             "A4gBAUILCglfY2FwdGlvbnNCDgoMX3N0b3J5Ym9hcmRzQg4KDF9taWNyb2Zv",
-            "cm1hdEIMCgpfZW5kc2NyZWVuIsMCChFQbGF5YWJpbGl0eVN0YXR1cxJGCgZz",
-            "dGF0dXMYASABKA4yNi5Jbm5lclR1YmUuUHJvdG9idWYuUmVzcG9uc2VzLlBs",
-            "YXlhYmlsaXR5U3RhdHVzLlN0YXR1cxITCgZyZWFzb24YAiABKAlIAIgBARIc",
-            "Cg9wbGF5YWJsZUluRW1iZWQYCSABKAhIAYgBARIWCglzdWJyZWFzb24YFiAB",
-            "KAlIAogBARIaCg1jb250ZXh0UGFyYW1zGB8gASgJSAOIAQEiQAoGU3RhdHVz",
-            "EgYKAk9LEAASEgoOTE9HSU5fUkVRVUlSRUQQAxIaChZDT05URU5UX0NIRUNL",
-            "X1JFUVVJUkVEEARCCQoHX3JlYXNvbkISChBfcGxheWFibGVJbkVtYmVkQgwK",
-            "Cl9zdWJyZWFzb25CEAoOX2NvbnRleHRQYXJhbXMivwIKDVN0cmVhbWluZ0Rh",
-            "dGESGAoQZXhwaXJlc0luU2Vjb25kcxgBIAEoBRI1Cgdmb3JtYXRzGAIgAygL",
-            "MiQuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5Gb3JtYXQSPQoPYWRh",
-            "cHRpdmVGb3JtYXRzGAMgAygLMiQuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3Bv",
-            "bnNlcy5Gb3JtYXQSHAoPZGFzaE1hbmlmZXN0VXJsGAQgASgJSACIAQESGwoO",
-            "aGxzTWFuaWZlc3RVcmwYBSABKAlIAYgBARIiChVzZXJ2ZXJBYnJTdHJlYW1p",
-            "bmdVcmwYDyABKAlIAogBAUISChBfZGFzaE1hbmlmZXN0VXJsQhEKD19obHNN",
-            "YW5pZmVzdFVybEIYChZfc2VydmVyQWJyU3RyZWFtaW5nVXJsIr8GCgZGb3Jt",
-            "YXQSDAoEaXRhZxgBIAEoBRILCgN1cmwYAiABKAkSDAoEbWltZRgFIAEoCRIP",
-            "CgdiaXRyYXRlGAYgASgFEg0KBXdpZHRoGAcgASgFEg4KBmhlaWdodBgIIAEo",
-            "BRI7Cglpbml0UmFuZ2UYCSABKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYuUmVz",
-            "cG9uc2VzLlJhbmdlSACIAQESPAoKaW5kZXhSYW5nZRgKIAEoCzIjLklubmVy",
-            "VHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuUmFuZ2VIAYgBARIUCgxsYXN0TW9k",
-            "aWZpZWQYCyABKAQSFQoNY29udGVudExlbmd0aBgMIAEoBBIPCgdxdWFsaXR5",
-            "GBAgASgJEgsKA2ZwcxgZIAEoBRISCgV4dGFncxgXIAEoDEgCiAEBEhQKDHF1",
-            "YWxpdHlMYWJlbBgaIAEoCRIWCg5wcm9qZWN0aW9uVHlwZRgbIAEoBRJBCgph",
-            "dWRpb1RyYWNrGBwgASgLMiguSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNl",
-            "cy5BdWRpb1RyYWNrSAOIAQESFgoOYXZlcmFnZUJpdHJhdGUYHyABKAUSQAoJ",
-            "Y29sb3JJbmZvGCEgASgLMi0uSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNl",
-            "cy5Gb3JtYXRDb2xvckluZm8SFwoPaGlnaFJlcGxpY2F0aW9uGCcgASgIEhQK",
-            "DGF1ZGlvUXVhbGl0eRgrIAEoBRIYChBhcHByb3hEdXJhdGlvbk1zGCwgASgF",
-            "EhwKD2F1ZGlvU2FtcGxlUmF0ZRgtIAEoBUgEiAEBEhoKDWF1ZGlvQ2hhbm5l",
-            "bHMYLiABKAVIBYgBARIXCgpsb3VkbmVzc0RiGC8gASgCSAaIAQESHAoPc2ln",
-            "bmF0dXJlQ2lwaGVyGDAgASgJSAeIAQFCDAoKX2luaXRSYW5nZUINCgtfaW5k",
-            "ZXhSYW5nZUIICgZfeHRhZ3NCDQoLX2F1ZGlvVHJhY2tCEgoQX2F1ZGlvU2Ft",
-            "cGxlUmF0ZUIQCg5fYXVkaW9DaGFubmVsc0INCgtfbG91ZG5lc3NEYkISChBf",
-            "c2lnbmF0dXJlQ2lwaGVyImEKD0Zvcm1hdENvbG9ySW5mbxIRCglwcmltYXJp",
-            "ZXMYASABKAUSHwoXdHJhbnNmZXJDaGFyYWN0ZXJpc3RpY3MYAiABKAUSGgoS",
-            "bWF0cml4Q29lZmZpY2llbnRzGAMgASgFIiMKBVJhbmdlEg0KBXN0YXJ0GAMg",
-            "ASgFEgsKA2VuZBgEIAEoBSJFCgpBdWRpb1RyYWNrEhMKC2Rpc3BsYXlOYW1l",
-            "GAQgASgJEgoKAmlkGAUgASgJEhYKDmF1ZGlvSXNEZWZhdWx0GAYgASgIIuIC",
-            "CgxWaWRlb0RldGFpbHMSDwoHdmlkZW9JZBgBIAEoCRINCgV0aXRsZRgPIAEo",
-            "CRIVCg1sZW5ndGhTZWNvbmRzGBAgASgFEhAKCGtleXdvcmRzGBIgAygJEhEK",
-            "CWNoYW5uZWxJZBgTIAEoCRIWCg5pc093bmVyVmlld2luZxgUIAEoCBIYChBz",
-            "aG9ydERlc2NyaXB0aW9uGBUgASgJEhMKC2lzQ3Jhd2xhYmxlGBYgASgIEjEK",
-            "CXRodW1ibmFpbBgZIAEoCzIeLklubmVyVHViZS5Qcm90b2J1Zi5UaHVtYm5h",
-            "aWxzEhQKDGFsbG93UmF0aW5ncxgfIAEoCBIRCgl2aWV3Q291bnQYICABKAkS",
-            "EQoJaXNQcml2YXRlGCUgASgIEg4KBmF1dGhvchghIAEoCRIZChFpc1VucGx1",
-            "Z2dlZENvcnB1cxgmIAEoCBIVCg1pc0xpdmVDb250ZW50GCkgASgIYgZwcm90",
-            "bzM="));
+            "cm1hdEIMCgpfZW5kc2NyZWVuInYKEkVycm9yU2NyZWVuV3JhcHBlchJRChJ5",
+            "cGNUcmFpbGVyUmVuZGVyZXIYq4SLKSABKAsyMC5Jbm5lclR1YmUuUHJvdG9i",
+            "dWYuUmVzcG9uc2VzLllwY1RyYWlsZXJSZW5kZXJlckgAQg0KC2Vycm9yU2Ny",
+            "ZWVuIrgDChFQbGF5YWJpbGl0eVN0YXR1cxJGCgZzdGF0dXMYASABKA4yNi5J",
+            "bm5lclR1YmUuUHJvdG9idWYuUmVzcG9uc2VzLlBsYXlhYmlsaXR5U3RhdHVz",
+            "LlN0YXR1cxITCgZyZWFzb24YAiABKAlIAIgBARJKCgtlcnJvclNjcmVlbhgI",
+            "IAEoCzIwLklubmVyVHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuRXJyb3JTY3Jl",
+            "ZW5XcmFwcGVySAGIAQESHAoPcGxheWFibGVJbkVtYmVkGAkgASgISAKIAQES",
+            "FgoJc3VicmVhc29uGBYgASgJSAOIAQESGgoNY29udGV4dFBhcmFtcxgfIAEo",
+            "CUgEiAEBIlkKBlN0YXR1cxIGCgJPSxAAEhIKDkxPR0lOX1JFUVVJUkVEEAMS",
+            "GgoWQ09OVEVOVF9DSEVDS19SRVFVSVJFRBAEEhcKE0xJVkVfU1RSRUFNX09G",
+            "RkxJTkUQBkIJCgdfcmVhc29uQg4KDF9lcnJvclNjcmVlbkISChBfcGxheWFi",
+            "bGVJbkVtYmVkQgwKCl9zdWJyZWFzb25CEAoOX2NvbnRleHRQYXJhbXMivwIK",
+            "DVN0cmVhbWluZ0RhdGESGAoQZXhwaXJlc0luU2Vjb25kcxgBIAEoBRI1Cgdm",
+            "b3JtYXRzGAIgAygLMiQuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5G",
+            "b3JtYXQSPQoPYWRhcHRpdmVGb3JtYXRzGAMgAygLMiQuSW5uZXJUdWJlLlBy",
+            "b3RvYnVmLlJlc3BvbnNlcy5Gb3JtYXQSHAoPZGFzaE1hbmlmZXN0VXJsGAQg",
+            "ASgJSACIAQESGwoOaGxzTWFuaWZlc3RVcmwYBSABKAlIAYgBARIiChVzZXJ2",
+            "ZXJBYnJTdHJlYW1pbmdVcmwYDyABKAlIAogBAUISChBfZGFzaE1hbmlmZXN0",
+            "VXJsQhEKD19obHNNYW5pZmVzdFVybEIYChZfc2VydmVyQWJyU3RyZWFtaW5n",
+            "VXJsIr8GCgZGb3JtYXQSDAoEaXRhZxgBIAEoBRILCgN1cmwYAiABKAkSDAoE",
+            "bWltZRgFIAEoCRIPCgdiaXRyYXRlGAYgASgFEg0KBXdpZHRoGAcgASgFEg4K",
+            "BmhlaWdodBgIIAEoBRI7Cglpbml0UmFuZ2UYCSABKAsyIy5Jbm5lclR1YmUu",
+            "UHJvdG9idWYuUmVzcG9uc2VzLlJhbmdlSACIAQESPAoKaW5kZXhSYW5nZRgK",
+            "IAEoCzIjLklubmVyVHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuUmFuZ2VIAYgB",
+            "ARIUCgxsYXN0TW9kaWZpZWQYCyABKAQSFQoNY29udGVudExlbmd0aBgMIAEo",
+            "BBIPCgdxdWFsaXR5GBAgASgJEgsKA2ZwcxgZIAEoBRISCgV4dGFncxgXIAEo",
+            "DEgCiAEBEhQKDHF1YWxpdHlMYWJlbBgaIAEoCRIWCg5wcm9qZWN0aW9uVHlw",
+            "ZRgbIAEoBRJBCgphdWRpb1RyYWNrGBwgASgLMiguSW5uZXJUdWJlLlByb3Rv",
+            "YnVmLlJlc3BvbnNlcy5BdWRpb1RyYWNrSAOIAQESFgoOYXZlcmFnZUJpdHJh",
+            "dGUYHyABKAUSQAoJY29sb3JJbmZvGCEgASgLMi0uSW5uZXJUdWJlLlByb3Rv",
+            "YnVmLlJlc3BvbnNlcy5Gb3JtYXRDb2xvckluZm8SFwoPaGlnaFJlcGxpY2F0",
+            "aW9uGCcgASgIEhQKDGF1ZGlvUXVhbGl0eRgrIAEoBRIYChBhcHByb3hEdXJh",
+            "dGlvbk1zGCwgASgFEhwKD2F1ZGlvU2FtcGxlUmF0ZRgtIAEoBUgEiAEBEhoK",
+            "DWF1ZGlvQ2hhbm5lbHMYLiABKAVIBYgBARIXCgpsb3VkbmVzc0RiGC8gASgC",
+            "SAaIAQESHAoPc2lnbmF0dXJlQ2lwaGVyGDAgASgJSAeIAQFCDAoKX2luaXRS",
+            "YW5nZUINCgtfaW5kZXhSYW5nZUIICgZfeHRhZ3NCDQoLX2F1ZGlvVHJhY2tC",
+            "EgoQX2F1ZGlvU2FtcGxlUmF0ZUIQCg5fYXVkaW9DaGFubmVsc0INCgtfbG91",
+            "ZG5lc3NEYkISChBfc2lnbmF0dXJlQ2lwaGVyImEKD0Zvcm1hdENvbG9ySW5m",
+            "bxIRCglwcmltYXJpZXMYASABKAUSHwoXdHJhbnNmZXJDaGFyYWN0ZXJpc3Rp",
+            "Y3MYAiABKAUSGgoSbWF0cml4Q29lZmZpY2llbnRzGAMgASgFIiMKBVJhbmdl",
+            "Eg0KBXN0YXJ0GAMgASgFEgsKA2VuZBgEIAEoBSJFCgpBdWRpb1RyYWNrEhMK",
+            "C2Rpc3BsYXlOYW1lGAQgASgJEgoKAmlkGAUgASgJEhYKDmF1ZGlvSXNEZWZh",
+            "dWx0GAYgASgIIuICCgxWaWRlb0RldGFpbHMSDwoHdmlkZW9JZBgBIAEoCRIN",
+            "CgV0aXRsZRgPIAEoCRIVCg1sZW5ndGhTZWNvbmRzGBAgASgFEhAKCGtleXdv",
+            "cmRzGBIgAygJEhEKCWNoYW5uZWxJZBgTIAEoCRIWCg5pc093bmVyVmlld2lu",
+            "ZxgUIAEoCBIYChBzaG9ydERlc2NyaXB0aW9uGBUgASgJEhMKC2lzQ3Jhd2xh",
+            "YmxlGBYgASgIEjEKCXRodW1ibmFpbBgZIAEoCzIeLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5UaHVtYm5haWxzEhQKDGFsbG93UmF0aW5ncxgfIAEoCBIRCgl2aWV3",
+            "Q291bnQYICABKAkSEQoJaXNQcml2YXRlGCUgASgIEg4KBmF1dGhvchghIAEo",
+            "CRIZChFpc1VucGx1Z2dlZENvcnB1cxgmIAEoCBIVCg1pc0xpdmVDb250ZW50",
+            "GCkgASgIIrIBChJZcGNUcmFpbGVyUmVuZGVyZXISMgoQZnVsbFZpZGVvTWVz",
+            "c2FnZRgEIAEoCzIYLklubmVyVHViZS5Qcm90b2J1Zi5UZXh0EhYKDnRyYWNr",
+            "aW5nUGFyYW1zGAYgASgMElAKGnVuc2VyaWFsaXplZFBsYXllclJlc3BvbnNl",
+            "GAkgASgLMiwuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5QbGF5ZXJS",
+            "ZXNwb25zZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayerResponse), global::InnerTube.Protobuf.Responses.PlayerResponse.Parser, new[]{ "PlayabilityStatus", "StreamingData", "Captions", "VideoDetails", "Storyboards", "Microformat", "Endscreen" }, new[]{ "Captions", "Storyboards", "Microformat", "Endscreen" }, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus), global::InnerTube.Protobuf.Responses.PlayabilityStatus.Parser, new[]{ "Status", "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ "Reason", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status) }, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.ErrorScreenWrapper), global::InnerTube.Protobuf.Responses.ErrorScreenWrapper.Parser, new[]{ "YpcTrailerRenderer" }, new[]{ "ErrorScreen" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus), global::InnerTube.Protobuf.Responses.PlayabilityStatus.Parser, new[]{ "Status", "Reason", "ErrorScreen", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ "Reason", "ErrorScreen", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status) }, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.StreamingData), global::InnerTube.Protobuf.Responses.StreamingData.Parser, new[]{ "ExpiresInSeconds", "Formats", "AdaptiveFormats", "DashManifestUrl", "HlsManifestUrl", "ServerAbrStreamingUrl" }, new[]{ "DashManifestUrl", "HlsManifestUrl", "ServerAbrStreamingUrl" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Format), global::InnerTube.Protobuf.Responses.Format.Parser, new[]{ "Itag", "Url", "Mime", "Bitrate", "Width", "Height", "InitRange", "IndexRange", "LastModified", "ContentLength", "Quality", "Fps", "Xtags", "QualityLabel", "ProjectionType", "AudioTrack", "AverageBitrate", "ColorInfo", "HighReplication", "AudioQuality", "ApproxDurationMs", "AudioSampleRate", "AudioChannels", "LoudnessDb", "SignatureCipher" }, new[]{ "InitRange", "IndexRange", "Xtags", "AudioTrack", "AudioSampleRate", "AudioChannels", "LoudnessDb", "SignatureCipher" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.FormatColorInfo), global::InnerTube.Protobuf.Responses.FormatColorInfo.Parser, new[]{ "Primaries", "TransferCharacteristics", "MatrixCoefficients" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Range), global::InnerTube.Protobuf.Responses.Range.Parser, new[]{ "Start", "End" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.AudioTrack), global::InnerTube.Protobuf.Responses.AudioTrack.Parser, new[]{ "DisplayName", "Id", "AudioIsDefault" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.VideoDetails), global::InnerTube.Protobuf.Responses.VideoDetails.Parser, new[]{ "VideoId", "Title", "LengthSeconds", "Keywords", "ChannelId", "IsOwnerViewing", "ShortDescription", "IsCrawlable", "Thumbnail", "AllowRatings", "ViewCount", "IsPrivate", "Author", "IsUnpluggedCorpus", "IsLiveContent" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.VideoDetails), global::InnerTube.Protobuf.Responses.VideoDetails.Parser, new[]{ "VideoId", "Title", "LengthSeconds", "Keywords", "ChannelId", "IsOwnerViewing", "ShortDescription", "IsCrawlable", "Thumbnail", "AllowRatings", "ViewCount", "IsPrivate", "Author", "IsUnpluggedCorpus", "IsLiveContent" }, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.YpcTrailerRenderer), global::InnerTube.Protobuf.Responses.YpcTrailerRenderer.Parser, new[]{ "FullVideoMessage", "TrackingParams", "UnserializedPlayerResponse" }, null, null, null, null)
           }));
     }
     #endregion
@@ -580,6 +591,239 @@ namespace InnerTube.Protobuf.Responses {
   }
 
   [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class ErrorScreenWrapper : pb::IMessage<ErrorScreenWrapper>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<ErrorScreenWrapper> _parser = new pb::MessageParser<ErrorScreenWrapper>(() => new ErrorScreenWrapper());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<ErrorScreenWrapper> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[1]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ErrorScreenWrapper() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ErrorScreenWrapper(ErrorScreenWrapper other) : this() {
+      switch (other.ErrorScreenCase) {
+        case ErrorScreenOneofCase.YpcTrailerRenderer:
+          YpcTrailerRenderer = other.YpcTrailerRenderer.Clone();
+          break;
+      }
+
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ErrorScreenWrapper Clone() {
+      return new ErrorScreenWrapper(this);
+    }
+
+    /// <summary>Field number for the "ypcTrailerRenderer" field.</summary>
+    public const int YpcTrailerRendererFieldNumber = 86164011;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Responses.YpcTrailerRenderer YpcTrailerRenderer {
+      get { return errorScreenCase_ == ErrorScreenOneofCase.YpcTrailerRenderer ? (global::InnerTube.Protobuf.Responses.YpcTrailerRenderer) errorScreen_ : null; }
+      set {
+        errorScreen_ = value;
+        errorScreenCase_ = value == null ? ErrorScreenOneofCase.None : ErrorScreenOneofCase.YpcTrailerRenderer;
+      }
+    }
+
+    private object errorScreen_;
+    /// <summary>Enum of possible cases for the "errorScreen" oneof.</summary>
+    public enum ErrorScreenOneofCase {
+      None = 0,
+      YpcTrailerRenderer = 86164011,
+    }
+    private ErrorScreenOneofCase errorScreenCase_ = ErrorScreenOneofCase.None;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public ErrorScreenOneofCase ErrorScreenCase {
+      get { return errorScreenCase_; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void ClearErrorScreen() {
+      errorScreenCase_ = ErrorScreenOneofCase.None;
+      errorScreen_ = null;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as ErrorScreenWrapper);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(ErrorScreenWrapper other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(YpcTrailerRenderer, other.YpcTrailerRenderer)) return false;
+      if (ErrorScreenCase != other.ErrorScreenCase) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (errorScreenCase_ == ErrorScreenOneofCase.YpcTrailerRenderer) hash ^= YpcTrailerRenderer.GetHashCode();
+      hash ^= (int) errorScreenCase_;
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (errorScreenCase_ == ErrorScreenOneofCase.YpcTrailerRenderer) {
+        output.WriteRawTag(218, 162, 216, 200, 2);
+        output.WriteMessage(YpcTrailerRenderer);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (errorScreenCase_ == ErrorScreenOneofCase.YpcTrailerRenderer) {
+        output.WriteRawTag(218, 162, 216, 200, 2);
+        output.WriteMessage(YpcTrailerRenderer);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (errorScreenCase_ == ErrorScreenOneofCase.YpcTrailerRenderer) {
+        size += 5 + pb::CodedOutputStream.ComputeMessageSize(YpcTrailerRenderer);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(ErrorScreenWrapper other) {
+      if (other == null) {
+        return;
+      }
+      switch (other.ErrorScreenCase) {
+        case ErrorScreenOneofCase.YpcTrailerRenderer:
+          if (YpcTrailerRenderer == null) {
+            YpcTrailerRenderer = new global::InnerTube.Protobuf.Responses.YpcTrailerRenderer();
+          }
+          YpcTrailerRenderer.MergeFrom(other.YpcTrailerRenderer);
+          break;
+      }
+
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 689312090: {
+            global::InnerTube.Protobuf.Responses.YpcTrailerRenderer subBuilder = new global::InnerTube.Protobuf.Responses.YpcTrailerRenderer();
+            if (errorScreenCase_ == ErrorScreenOneofCase.YpcTrailerRenderer) {
+              subBuilder.MergeFrom(YpcTrailerRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            YpcTrailerRenderer = subBuilder;
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 689312090: {
+            global::InnerTube.Protobuf.Responses.YpcTrailerRenderer subBuilder = new global::InnerTube.Protobuf.Responses.YpcTrailerRenderer();
+            if (errorScreenCase_ == ErrorScreenOneofCase.YpcTrailerRenderer) {
+              subBuilder.MergeFrom(YpcTrailerRenderer);
+            }
+            input.ReadMessage(subBuilder);
+            YpcTrailerRenderer = subBuilder;
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
   public sealed partial class PlayabilityStatus : pb::IMessage<PlayabilityStatus>
   #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       , pb::IBufferMessage
@@ -595,7 +839,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[1]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[2]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -618,6 +862,7 @@ namespace InnerTube.Protobuf.Responses {
       _hasBits0 = other._hasBits0;
       status_ = other.status_;
       reason_ = other.reason_;
+      errorScreen_ = other.errorScreen_ != null ? other.errorScreen_.Clone() : null;
       playableInEmbed_ = other.playableInEmbed_;
       subreason_ = other.subreason_;
       contextParams_ = other.contextParams_;
@@ -666,6 +911,18 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public void ClearReason() {
       reason_ = null;
+    }
+
+    /// <summary>Field number for the "errorScreen" field.</summary>
+    public const int ErrorScreenFieldNumber = 8;
+    private global::InnerTube.Protobuf.Responses.ErrorScreenWrapper errorScreen_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Responses.ErrorScreenWrapper ErrorScreen {
+      get { return errorScreen_; }
+      set {
+        errorScreen_ = value;
+      }
     }
 
     /// <summary>Field number for the "playableInEmbed" field.</summary>
@@ -764,6 +1021,7 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (Status != other.Status) return false;
       if (Reason != other.Reason) return false;
+      if (!object.Equals(ErrorScreen, other.ErrorScreen)) return false;
       if (PlayableInEmbed != other.PlayableInEmbed) return false;
       if (Subreason != other.Subreason) return false;
       if (ContextParams != other.ContextParams) return false;
@@ -776,6 +1034,7 @@ namespace InnerTube.Protobuf.Responses {
       int hash = 1;
       if (Status != global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status.Ok) hash ^= Status.GetHashCode();
       if (HasReason) hash ^= Reason.GetHashCode();
+      if (errorScreen_ != null) hash ^= ErrorScreen.GetHashCode();
       if (HasPlayableInEmbed) hash ^= PlayableInEmbed.GetHashCode();
       if (HasSubreason) hash ^= Subreason.GetHashCode();
       if (HasContextParams) hash ^= ContextParams.GetHashCode();
@@ -804,6 +1063,10 @@ namespace InnerTube.Protobuf.Responses {
       if (HasReason) {
         output.WriteRawTag(18);
         output.WriteString(Reason);
+      }
+      if (errorScreen_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(ErrorScreen);
       }
       if (HasPlayableInEmbed) {
         output.WriteRawTag(72);
@@ -835,6 +1098,10 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(18);
         output.WriteString(Reason);
       }
+      if (errorScreen_ != null) {
+        output.WriteRawTag(66);
+        output.WriteMessage(ErrorScreen);
+      }
       if (HasPlayableInEmbed) {
         output.WriteRawTag(72);
         output.WriteBool(PlayableInEmbed);
@@ -863,6 +1130,9 @@ namespace InnerTube.Protobuf.Responses {
       if (HasReason) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(Reason);
       }
+      if (errorScreen_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(ErrorScreen);
+      }
       if (HasPlayableInEmbed) {
         size += 1 + 1;
       }
@@ -889,6 +1159,12 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (other.HasReason) {
         Reason = other.Reason;
+      }
+      if (other.errorScreen_ != null) {
+        if (errorScreen_ == null) {
+          ErrorScreen = new global::InnerTube.Protobuf.Responses.ErrorScreenWrapper();
+        }
+        ErrorScreen.MergeFrom(other.ErrorScreen);
       }
       if (other.HasPlayableInEmbed) {
         PlayableInEmbed = other.PlayableInEmbed;
@@ -920,6 +1196,13 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 18: {
             Reason = input.ReadString();
+            break;
+          }
+          case 66: {
+            if (errorScreen_ == null) {
+              ErrorScreen = new global::InnerTube.Protobuf.Responses.ErrorScreenWrapper();
+            }
+            input.ReadMessage(ErrorScreen);
             break;
           }
           case 72: {
@@ -957,6 +1240,13 @@ namespace InnerTube.Protobuf.Responses {
             Reason = input.ReadString();
             break;
           }
+          case 66: {
+            if (errorScreen_ == null) {
+              ErrorScreen = new global::InnerTube.Protobuf.Responses.ErrorScreenWrapper();
+            }
+            input.ReadMessage(ErrorScreen);
+            break;
+          }
           case 72: {
             PlayableInEmbed = input.ReadBool();
             break;
@@ -983,6 +1273,7 @@ namespace InnerTube.Protobuf.Responses {
         [pbr::OriginalName("OK")] Ok = 0,
         [pbr::OriginalName("LOGIN_REQUIRED")] LoginRequired = 3,
         [pbr::OriginalName("CONTENT_CHECK_REQUIRED")] ContentCheckRequired = 4,
+        [pbr::OriginalName("LIVE_STREAM_OFFLINE")] LiveStreamOffline = 6,
       }
 
     }
@@ -1005,7 +1296,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[2]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[3]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -1401,7 +1692,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[3]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[4]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2589,7 +2880,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[4]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[5]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -2853,7 +3144,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[5]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[6]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3080,7 +3371,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[6]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[7]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -3344,7 +3635,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public static pbr::MessageDescriptor Descriptor {
-      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[7]; }
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[8]; }
     }
 
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
@@ -4026,6 +4317,288 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 328: {
             IsLiveContent = input.ReadBool();
+            break;
+          }
+        }
+      }
+    }
+    #endif
+
+  }
+
+  [global::System.Diagnostics.DebuggerDisplayAttribute("{ToString(),nq}")]
+  public sealed partial class YpcTrailerRenderer : pb::IMessage<YpcTrailerRenderer>
+  #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      , pb::IBufferMessage
+  #endif
+  {
+    private static readonly pb::MessageParser<YpcTrailerRenderer> _parser = new pb::MessageParser<YpcTrailerRenderer>(() => new YpcTrailerRenderer());
+    private pb::UnknownFieldSet _unknownFields;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pb::MessageParser<YpcTrailerRenderer> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::InnerTube.Protobuf.Responses.PlayerResponseReflection.Descriptor.MessageTypes[9]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public YpcTrailerRenderer() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public YpcTrailerRenderer(YpcTrailerRenderer other) : this() {
+      fullVideoMessage_ = other.fullVideoMessage_ != null ? other.fullVideoMessage_.Clone() : null;
+      trackingParams_ = other.trackingParams_;
+      unserializedPlayerResponse_ = other.unserializedPlayerResponse_ != null ? other.unserializedPlayerResponse_.Clone() : null;
+      _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public YpcTrailerRenderer Clone() {
+      return new YpcTrailerRenderer(this);
+    }
+
+    /// <summary>Field number for the "fullVideoMessage" field.</summary>
+    public const int FullVideoMessageFieldNumber = 4;
+    private global::InnerTube.Protobuf.Text fullVideoMessage_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Text FullVideoMessage {
+      get { return fullVideoMessage_; }
+      set {
+        fullVideoMessage_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "trackingParams" field.</summary>
+    public const int TrackingParamsFieldNumber = 6;
+    private pb::ByteString trackingParams_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pb::ByteString TrackingParams {
+      get { return trackingParams_; }
+      set {
+        trackingParams_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "unserializedPlayerResponse" field.</summary>
+    public const int UnserializedPlayerResponseFieldNumber = 9;
+    private global::InnerTube.Protobuf.Responses.PlayerResponse unserializedPlayerResponse_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Responses.PlayerResponse UnserializedPlayerResponse {
+      get { return unserializedPlayerResponse_; }
+      set {
+        unserializedPlayerResponse_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override bool Equals(object other) {
+      return Equals(other as YpcTrailerRenderer);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public bool Equals(YpcTrailerRenderer other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (!object.Equals(FullVideoMessage, other.FullVideoMessage)) return false;
+      if (TrackingParams != other.TrackingParams) return false;
+      if (!object.Equals(UnserializedPlayerResponse, other.UnserializedPlayerResponse)) return false;
+      return Equals(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (fullVideoMessage_ != null) hash ^= FullVideoMessage.GetHashCode();
+      if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
+      if (unserializedPlayerResponse_ != null) hash ^= UnserializedPlayerResponse.GetHashCode();
+      if (_unknownFields != null) {
+        hash ^= _unknownFields.GetHashCode();
+      }
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void WriteTo(pb::CodedOutputStream output) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      output.WriteRawMessage(this);
+    #else
+      if (fullVideoMessage_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(FullVideoMessage);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(TrackingParams);
+      }
+      if (unserializedPlayerResponse_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(UnserializedPlayerResponse);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(output);
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (fullVideoMessage_ != null) {
+        output.WriteRawTag(34);
+        output.WriteMessage(FullVideoMessage);
+      }
+      if (TrackingParams.Length != 0) {
+        output.WriteRawTag(50);
+        output.WriteBytes(TrackingParams);
+      }
+      if (unserializedPlayerResponse_ != null) {
+        output.WriteRawTag(74);
+        output.WriteMessage(UnserializedPlayerResponse);
+      }
+      if (_unknownFields != null) {
+        _unknownFields.WriteTo(ref output);
+      }
+    }
+    #endif
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public int CalculateSize() {
+      int size = 0;
+      if (fullVideoMessage_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(FullVideoMessage);
+      }
+      if (TrackingParams.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(TrackingParams);
+      }
+      if (unserializedPlayerResponse_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(UnserializedPlayerResponse);
+      }
+      if (_unknownFields != null) {
+        size += _unknownFields.CalculateSize();
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(YpcTrailerRenderer other) {
+      if (other == null) {
+        return;
+      }
+      if (other.fullVideoMessage_ != null) {
+        if (fullVideoMessage_ == null) {
+          FullVideoMessage = new global::InnerTube.Protobuf.Text();
+        }
+        FullVideoMessage.MergeFrom(other.FullVideoMessage);
+      }
+      if (other.TrackingParams.Length != 0) {
+        TrackingParams = other.TrackingParams;
+      }
+      if (other.unserializedPlayerResponse_ != null) {
+        if (unserializedPlayerResponse_ == null) {
+          UnserializedPlayerResponse = new global::InnerTube.Protobuf.Responses.PlayerResponse();
+        }
+        UnserializedPlayerResponse.MergeFrom(other.UnserializedPlayerResponse);
+      }
+      _unknownFields = pb::UnknownFieldSet.MergeFrom(_unknownFields, other._unknownFields);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public void MergeFrom(pb::CodedInputStream input) {
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+      input.ReadRawMessage(this);
+    #else
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
+            break;
+          case 34: {
+            if (fullVideoMessage_ == null) {
+              FullVideoMessage = new global::InnerTube.Protobuf.Text();
+            }
+            input.ReadMessage(FullVideoMessage);
+            break;
+          }
+          case 50: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 74: {
+            if (unserializedPlayerResponse_ == null) {
+              UnserializedPlayerResponse = new global::InnerTube.Protobuf.Responses.PlayerResponse();
+            }
+            input.ReadMessage(UnserializedPlayerResponse);
+            break;
+          }
+        }
+      }
+    #endif
+    }
+
+    #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    void pb::IBufferMessage.InternalMergeFrom(ref pb::ParseContext input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
+            break;
+          case 34: {
+            if (fullVideoMessage_ == null) {
+              FullVideoMessage = new global::InnerTube.Protobuf.Text();
+            }
+            input.ReadMessage(FullVideoMessage);
+            break;
+          }
+          case 50: {
+            TrackingParams = input.ReadBytes();
+            break;
+          }
+          case 74: {
+            if (unserializedPlayerResponse_ == null) {
+              UnserializedPlayerResponse = new global::InnerTube.Protobuf.Responses.PlayerResponse();
+            }
+            input.ReadMessage(UnserializedPlayerResponse);
             break;
           }
         }
