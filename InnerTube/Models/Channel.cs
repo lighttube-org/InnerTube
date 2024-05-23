@@ -1,4 +1,4 @@
-using InnerTube.Protobuf;
+﻿using InnerTube.Protobuf;
 
 namespace InnerTube.Models;
 
@@ -15,7 +15,7 @@ public class Channel(
 	public string? Handle { get; } = handle;
 	public Thumbnail[]? Avatar { get; } = avatar;
 	public string? SubscribersText { get; } = subscribersText;
-	public MetadataBadgeRenderer[]? Badges { get; } = badges;
+	public Badge[]? Badges { get; } = badges != null ? Utils.SimplifyBadges(badges) : null;
 
 	public override string ToString()
 	{
@@ -44,7 +44,7 @@ public class Channel(
 		try
 		{
 			return new Channel(id: bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId,
-				title: Utils.ReadRuns(bylineText),
+				title: bylineText.Runs[0].Text,
 				handle: TryGetHandle(bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.CanonicalBaseUrl),
 				avatar: avatar?.Thumbnails_.ToArray(),
 				subscribersText: null,

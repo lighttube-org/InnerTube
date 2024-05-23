@@ -10,7 +10,7 @@ public class ChannelHeader
 	public Thumbnail[] Banner { get; }
 	public Thumbnail[] TvBanner { get; }
 	public Thumbnail[] MobileBanner { get; }
-	public MetadataBadgeRenderer[] Badges { get; }
+	public Badge[] Badges { get; }
 	public string? PrimaryLink { get; }
 	public string? SecondaryLink { get; }
 	public string SubscriberCountText { get; }
@@ -26,7 +26,7 @@ public class ChannelHeader
 		Banner = header.Banner.Thumbnails_.ToArray();
 		TvBanner = header.TvBanner.Thumbnails_.ToArray();
 		MobileBanner = header.MobileBanner.Thumbnails_.ToArray();
-		Badges = header.Badges.Select(x => x.MetadataBadgeRenderer).ToArray();
+		Badges = Utils.SimplifyBadges(header.Badges);
 		PrimaryLink = Utils
 			.ReadAttributedDescription(header.HeaderLinks.FirstOrDefault()?.ChannelHeaderLinksViewModel.FirstLink, true)
 			.NullIfEmpty();

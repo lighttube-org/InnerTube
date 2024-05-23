@@ -13,8 +13,9 @@ public class VideoRendererData : IRendererData
 	public TimeSpan Duration { get; set; }
 	public string? PublishedText { get; set; }
 	public string? ViewCountText { get; set; }
-	public MetadataBadgeRenderer[] Badges { get; set; }
+	public Badge[] Badges { get; set; }
 	public string? Description { get; set; }
+	public DateTimeOffset? PremiereStartTime { get; set; }
 
 	public override string ToString()
 	{
@@ -27,6 +28,7 @@ public class VideoRendererData : IRendererData
 		sb.AppendLine("ViewCountText: " + ViewCountText);
 		sb.AppendLine("Badges.Length: " + Badges.Length);
 		sb.AppendLine("Description: " + Description);
+		sb.AppendLine("PremiereStartTime: " + PremiereStartTime);
 		return sb.ToString();
 	}
 }

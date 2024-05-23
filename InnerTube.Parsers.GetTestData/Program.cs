@@ -31,6 +31,8 @@ string[] videos =
 	"jfKfPfyJRdk", // Streaming
 	"dv_YFDzCw2s", // Streamed
 	"7DKv5H5Frt0", // Published
+	"GfDXqY-V0EY", // Premiere. Update before every run
+	"Hr2Lm6oEo3c" // Scheduled livestream. Update before every run
 ];
 
 string[] playlists =

@@ -13,6 +13,8 @@ public class PlaylistRendererData : IRendererData
 	public string VideoCountText { get; set; }
 	public Thumbnail[][]? SidebarThumbnails { get; set; }
 	public Channel? Author { get; set; }
+	public RendererContainer[]? ChildVideos { get; set; }
+	public string? FirstVideoId { get; set; }
 
 	public override string ToString()
 	{
