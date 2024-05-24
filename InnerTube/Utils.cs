@@ -627,7 +627,7 @@ public static partial class Utils
 								Thumbnails_ =
 								{
 									renderer.VideoRenderer.ChannelThumbnailSupportedRenderers
-										?.ChannelThumbnailWithLinkRenderer?.Thumbnail
+										?.ChannelThumbnailWithLinkRenderer?.Thumbnail.Thumbnails_
 								}
 							}
 							: null),
