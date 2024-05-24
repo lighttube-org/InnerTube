@@ -15,15 +15,23 @@ message PlayerResponse {
   optional RendererWrapper endscreen = 32;
 }
 
+message ErrorScreenWrapper {
+  oneof errorScreen {
+    YpcTrailerRenderer ypcTrailerRenderer = 86164011;
+  }
+}
+
 message PlayabilityStatus {
   enum Status {
     OK = 0;
     LOGIN_REQUIRED = 3;
     CONTENT_CHECK_REQUIRED = 4;
+    LIVE_STREAM_OFFLINE = 6;
   }
 
   Status status = 1;
   optional string reason = 2;
+  optional ErrorScreenWrapper errorScreen = 8;
   optional bool playableInEmbed = 9;
   optional string subreason = 22;
   optional string contextParams = 31;
@@ -99,4 +107,10 @@ message VideoDetails {
   string author = 33;
   bool isUnpluggedCorpus = 38;
   bool isLiveContent = 41;
+}
+
+message YpcTrailerRenderer {
+  Text fullVideoMessage = 4;
+  bytes trackingParams = 6;
+  PlayerResponse unserializedPlayerResponse = 9;
 }

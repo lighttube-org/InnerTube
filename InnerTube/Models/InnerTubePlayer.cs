@@ -5,9 +5,9 @@ using Range = InnerTube.Protobuf.Responses.Range;
 
 namespace InnerTube;
 
-public class InnerTubePlayer(PlayerResponse player)
+public class InnerTubePlayer(PlayerResponse player, bool isFallback)
 {
-	public VideoDetails Details { get; } = new(player);
+	public VideoDetails Details { get; } = new(player, isFallback);
 
 	public VideoEndscreen? Endscreen { get; } =
 		player.Endscreen?.EndscreenRenderer != null ? new VideoEndscreen(player.Endscreen.EndscreenRenderer) : null;
@@ -27,7 +27,7 @@ public class InnerTubePlayer(PlayerResponse player)
 	public string? HlsManifestUrl { get; } = player.StreamingData?.HlsManifestUrl; 
 	public string? DashManifestUrl { get; } = player.StreamingData?.DashManifestUrl; 
 
-	public class VideoDetails(PlayerResponse player)
+	public class VideoDetails(PlayerResponse player, bool isFallback)
 	{
 		public string Id { get; } = player.VideoDetails!.VideoId;
 		public string Title { get; } = player.VideoDetails!.Title;
@@ -35,9 +35,10 @@ public class InnerTubePlayer(PlayerResponse player)
 		public string ShortDescription { get; } = player.VideoDetails.ShortDescription;
 		public string Category { get; } = player.Microformat.PlayerMicroformatRenderer.Category;
 		public bool IsLive { get; } = player.VideoDetails.IsLiveContent;
+		public bool IsFallback { get; } = isFallback;
 		public bool AllowRatings { get; } = player.VideoDetails.AllowRatings;
 		public bool IsFamilySafe { get; } = true; //todo
-		public Thumbnails Thumbnails { get; } = player.VideoDetails.Thumbnail;
+		public Thumbnail[] Thumbnails { get; } = player.VideoDetails.Thumbnail.Thumbnails_.ToArray();
 
 		public DateTimeOffset PublishDate { get; } =
 			DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.PublishDate);

@@ -24,6 +24,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("4ZX9T0kWb4Y", true, TestName = "Video with multiple audio tracks")]
 	[TestCase("-UBaW1OIgTo", true, TestName = "EndScreenItem ctor")]
 	[TestCase("dQw4w9WgXcQ", true, TestName = "EndScreenItem ctor 2")]
+	[TestCase("GfDXqY-V0EY", true, TestName = "Premiere with trailer")]
 	public async Task GetVideoPlayerAsync(string videoId, bool contentCheckOk)
 	{
 		InnerTubePlayer player = await client.GetVideoPlayerAsync(videoId, contentCheckOk, "en", "US");

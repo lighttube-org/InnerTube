@@ -1,5 +1,5 @@
-using Google.Protobuf;
 using Google.Protobuf.Collections;
+using InnerTube.Exceptions;
 using InnerTube.Models;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
@@ -14,8 +14,19 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 
 	public async Task<InnerTubePlayer> GetVideoPlayerAsync(string videoId, bool contentCheckOk, string language = "en", string region = "US")
 	{
-		PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, language, region);
-		return new InnerTubePlayer(player);
+		// in the worst case scenario, this will do 4 http requests :3
+		try
+		{
+			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, false, language, region);
+			return new InnerTubePlayer(player, false);
+		}
+		catch (PlayerException e)
+		{
+			if (e.Code != PlayabilityStatus.Types.Status.LiveStreamOffline) throw;
+
+			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, true, language, region);
+			return new InnerTubePlayer(player, true);
+		}
 	}
 
 	public async Task<InnerTubeVideo> GetVideoDetailsAsync(string videoId, bool contentCheckOk, string? playlistId,

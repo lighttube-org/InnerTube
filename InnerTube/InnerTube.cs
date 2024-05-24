@@ -86,7 +86,7 @@ public class InnerTube
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
-		string language = "en", string region = "US")
+		bool fallbackToUnserializedResponse = false, string language = "en", string region = "US")
 	{
 		if (!SignatureSolver.Initialized)
 			await SignatureSolver.LoadLatestJs(videoId);
@@ -96,21 +96,24 @@ public class InnerTube
 
 		Task<PlayerResponse> webResponse =
 			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.WEB);
-		//Task<PlayerResponse> androidResponse =
-		//	GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.ANDROID);
 		Task<PlayerResponse> iosResponse =
 			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.IOS);
 
 		PlayerResponse webPlayer = await webResponse;
-		//PlayerResponse androidPlayer = await androidResponse;
-		PlayerResponse iosPlayer = await iosResponse;
+		PlayerResponse? iosPlayer = await iosResponse;
 
+		if (webPlayer.PlayabilityStatus.Status == PlayabilityStatus.Types.Status.LiveStreamOffline)
+		{
+			webPlayer = webPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer?.UnserializedPlayerResponse ??
+			            throw new PlayerException(webPlayer.PlayabilityStatus.Status,
+				            webPlayer.PlayabilityStatus.Reason, webPlayer.PlayabilityStatus.Subreason);
+			iosPlayer = iosPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer?.UnserializedPlayerResponse;
+		}
 		if (webPlayer.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
 			throw new PlayerException(webPlayer.PlayabilityStatus.Status, webPlayer.PlayabilityStatus.Reason,
 				webPlayer.PlayabilityStatus.Subreason);
 
-		//webPlayer.StreamingData = androidPlayer.StreamingData;
-		if (webPlayer.StreamingData != null && iosPlayer.StreamingData != null &&
+		if (webPlayer.StreamingData != null && iosPlayer?.StreamingData != null &&
 		    !webPlayer.StreamingData.HasHlsManifestUrl && iosPlayer.StreamingData.HasHlsManifestUrl)
 			webPlayer.StreamingData.HlsManifestUrl = iosPlayer.StreamingData.HlsManifestUrl;
 

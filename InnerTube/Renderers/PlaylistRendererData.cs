@@ -24,6 +24,12 @@ public class PlaylistRendererData : IRendererData
 		sb.AppendLine("Author: " + (Author?.ToString() ?? "<null>"));
 		sb.AppendLine("VideoCountText: " + VideoCountText);
 		sb.AppendLine("SidebarThumbnails: " + string.Join(", ", SidebarThumbnails?.Select(x => x.Length.ToString()) ?? ["none"]));
+		sb.AppendLine("FirstVideoId: " + FirstVideoId);
+		foreach (RendererContainer renderer in ChildVideos ?? [])
+		{
+			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+		}
 		return sb.ToString();
 	}
 }

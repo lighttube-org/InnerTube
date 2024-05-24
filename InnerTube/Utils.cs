@@ -627,7 +627,7 @@ public static partial class Utils
 								Thumbnails_ =
 								{
 									renderer.VideoRenderer.ChannelThumbnailSupportedRenderers
-										?.ChannelThumbnailWithLinkRenderer?.Thumbnail
+										?.ChannelThumbnailWithLinkRenderer?.Thumbnail.Thumbnails_
 								}
 							}
 							: null),
@@ -791,6 +791,24 @@ public static partial class Utils
 					ViewCountText = "",
 					Badges = SimplifyBadges([renderer.PromotedVideoRenderer.AdBadge]),
 					Description = ReadRuns(renderer.PromotedVideoRenderer.Description)
+				}
+			},
+			RendererWrapper.RendererOneofCase.ChildVideoRenderer => new RendererContainer
+			{
+				Type = "video",
+				OriginalType = "childVideoRenderer",
+				Data = new VideoRendererData
+				{
+					VideoId = renderer.ChildVideoRenderer.VideoId,
+					Title = ReadRuns(renderer.ChildVideoRenderer.Title),
+					Thumbnails = [],
+					Author = null,
+					Duration = ParseDuration(ReadRuns(renderer.ChildVideoRenderer.LengthText)),
+					PublishedText = null,
+					ViewCountText = null,
+					Badges = [],
+					Description = null,
+					PremiereStartTime = null
 				}
 			},
 			RendererWrapper.RendererOneofCase.ChannelRenderer => new RendererContainer

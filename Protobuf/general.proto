@@ -1272,7 +1272,7 @@ message VideoPrimaryInfoRenderer {
 }
 
 message ChannelThumbnailWithLinkRenderer {
-  Thumbnail thumbnail = 1;
+  Thumbnails thumbnail = 1;
   Endpoint navigationEndpoint = 2;
   RendererWrapper accessibility = 3;
 }
