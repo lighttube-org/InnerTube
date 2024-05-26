@@ -23,19 +23,31 @@ public class InnerTubeAuthorization
 	{ }
 
 	/// <summary>
-	/// Authorize with cookies. See https://github.com/kuylar/InnerTube/wiki/Authorization#using-cookies
+	/// Authorize with cookies. See https://github.com/lighttube-org/InnerTube/wiki/Authorization#using-cookies
 	/// </summary>
-	/// <param name="sapisid">The <code>__Secure-3PAPISID</code> cookie from your browser session</param>
-	/// <param name="psid">The <code>__Secure-3PSID</code> cookie from your browser session</param>
+	/// <param name="sid">The <code>SID</code> cookie from your browser session</param>
+	/// <param name="hsid">The <code>HSID</code> cookie from your browser session</param>
+	/// <param name="ssid">The <code>SSID</code> cookie from your browser session</param>
+	/// <param name="apisid">The <code>APISID</code> cookie from your browser session</param>
+	/// <param name="sapisid">The <code>SAPISID</code> cookie from your browser session</param>
 	/// <returns></returns>
-	public static InnerTubeAuthorization SapisidAuthorization(string sapisid, string psid) =>
+	[Obsolete("Cookie authorization does not work with protobuf. Use refresh tokens instead")]
+	public static InnerTubeAuthorization SapisidAuthorization(
+		string sid,
+		string hsid,
+		string ssid,
+		string apisid,
+		string sapisid) =>
 		new()
 		{
 			Type = AuthorizationType.SAPISID,
 			Secrets = new Dictionary<string, object>
 			{
-				["SAPISID"] = sapisid,
-				["PSID"] = psid
+				["SID"] = sid,
+				["HSID"] = hsid,
+				["SSID"] = ssid,
+				["APISID"] = apisid,
+				["SAPISID"] = sapisid
 			}
 		};
 
@@ -59,8 +71,7 @@ public class InnerTubeAuthorization
 		switch (Type)
 		{
 			case AuthorizationType.SAPISID:
-				return
-					$"SAPISID={Secrets["SAPISID"]}; __Secure-3PAPISID={Secrets["SAPISID"]}; __Secure-3PSID={Secrets["PSID"]};";
+				return string.Join(", ", Secrets.Select(x => $"{x.Key}={x.Value}"));
 			case AuthorizationType.REFRESH_TOKEN:
 			default:
 				return "";
@@ -116,8 +127,7 @@ public class InnerTubeAuthorization
 
 	private string GenerateSha1Hash(string input)
 	{
-		using SHA1Managed sha1 = new();
-		byte[] hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+		byte[] hash = SHA1.HashData(Encoding.UTF8.GetBytes(input));
 		StringBuilder sb = new(hash.Length * 2);
 		foreach (byte b in hash) sb.Append(b.ToString("X2"));
 		return sb.ToString();
