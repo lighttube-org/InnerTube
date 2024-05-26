@@ -40,6 +40,8 @@ public partial class HongKongChinese: IValueParser
 		if (type.Contains("已於")) return VideoUploadType.Premiered;
 		if (type.Contains("開始串流日期")) return VideoUploadType.Streaming;
 		if (type.Contains("串流播放日期")) return VideoUploadType.Streamed;
+		if (type.Contains("首播日期")) return VideoUploadType.FuturePremiere;
+		if (type.Contains("預定發佈時間")) return VideoUploadType.ScheduledStream;
 		return VideoUploadType.Published;
 	}
 
@@ -55,6 +57,11 @@ public partial class HongKongChinese: IValueParser
 	public long ParseViewCount(string viewCountText) =>
 		int.Parse(digitRegex.Match(viewCountText).Groups[1].Value, NumberStyles.AllowThousands, CultureInfo.GetCultureInfo("zh-HK"));
 
+	public long ParseVideoCount(string videoCountText) =>
+		!videoCountText.Contains('沒')
+			? ParseShortNumber(videoCountText)
+			: 0;
+
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) => 
 		ParseFullDate(lastUpdatedText);
 
@@ -63,7 +70,8 @@ public partial class HongKongChinese: IValueParser
 		try
 		{
 			Match match = shortNumberRegex.Match(part);
-			float value = float.Parse(match.Groups[1].Value);
+			float value = float.Parse(match.Groups[1].Value,
+				NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.GetCultureInfo("zh-HK"));
 			return (long)(match.Groups[2].Value.ToUpper() switch
 			{
 				"K" => value * 1000,
@@ -80,9 +88,9 @@ public partial class HongKongChinese: IValueParser
 
 	[GeneratedRegex("(\\d{4}.\\d{1,2}.\\d{1,2})")]
 	private static partial Regex FullDatePatternRegex();
-	[GeneratedRegex("([\\d,]+)")]
+	[GeneratedRegex("([\\d.,]+)")]
 	private static partial Regex DigitRegex();
 
-	[GeneratedRegex("([\\d.]+)([KMB]?)")]
+	[GeneratedRegex("([\\d.,]+)([KMB]?)")]
     private static partial Regex ShortNumberRegex();
 }

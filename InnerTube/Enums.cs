@@ -18,7 +18,8 @@ public enum RequestClient
 	/// <summary>
 	/// iOS client. Only useful for HLS manifests and nothing else.
 	/// </summary>
-	IOS = 5
+	IOS = 5,
+	TV_EMBEDDED = 85
 }
 
 /// <summary>
@@ -147,4 +148,6 @@ public enum VideoUploadType
 	Premiered = 1,
 	Streamed = 2,
 	Streaming = 3,
+	FuturePremiere = 4,
+	ScheduledStream = 5
 }

@@ -8,5 +8,6 @@ public interface IValueParser
 	public long ParseSubscriberCount(string subscriberCountText);
 	public long ParseLikeCount(string likeCountText);
 	public long ParseViewCount(string viewCountText);
+	public long ParseVideoCount(string videoCountText);
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText);
 }

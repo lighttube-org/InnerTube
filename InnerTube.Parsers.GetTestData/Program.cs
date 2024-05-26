@@ -23,6 +23,7 @@ string[] channels =
 	"UCjdHbo8_vh3rxQ-875XGkvw", // thousand subscribers, 1 decimal
 	// TODO: "", // thousand subscribers, 2 decimal
 	"UCRS3ZUNqkEyTd9XZEphFRMA", // hundred subscribers
+	"UCPF-oYb2-xN5FbCXy0167Gg", // a lot of videos
 ];
 
 string[] videos =
@@ -38,7 +39,8 @@ string[] videos =
 string[] playlists =
 [
 	"VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7",
-	"VLPLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF"
+	"VLPLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF",
+	"VLPLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ"
 ];
 
 // todo: remember to borrow dates from https://github.com/TeamNewPipe/NewPipeExtractor/blob/dev/timeago-parser/raw/overview.json
@@ -57,10 +59,12 @@ for (int i = 0; i < languages.Length; i++)
 	List<string> viewCounts = [];
 	List<string> likeCounts = [];
 	List<string> lastUpdatedDates = [];
+	List<string> videoCounts = [];
 
 	Task[] channelTasks = channels.Select(channelId => GetSubscriptionCount(hl, channelId)).Cast<Task>().ToArray();
 	await Task.WhenAll(channelTasks);
-	subscriberCounts.AddRange(from Task<string> res in channelTasks select res.Result);
+	subscriberCounts.AddRange(from Task<(string, string)> res in channelTasks select res.Result.Item1);
+	videoCounts.AddRange(from Task<(string, string)> res in channelTasks select res.Result.Item2);
 
 	Task[] videoTasks = videos.Select(videoId => GetVideoStrings(hl, videoId)).Cast<Task>().ToArray();
 	await Task.WhenAll(videoTasks);
@@ -70,7 +74,8 @@ for (int i = 0; i < languages.Length; i++)
 
 	Task[] playlistTasks = playlists.Select(playlistId => GetLastUpdated(hl, playlistId)).Cast<Task>().ToArray();
 	await Task.WhenAll(playlistTasks);
-	lastUpdatedDates.AddRange(from Task<string> res in playlistTasks select res.Result);
+	lastUpdatedDates.AddRange(from Task<(string, string)> res in playlistTasks select res.Result.Item1);
+	videoCounts.AddRange(from Task<(string, string)> res in playlistTasks select res.Result.Item2);
 
 	Console.Write("\n");
 	Dictionary<string, List<string>> languageResult = new()
@@ -80,6 +85,7 @@ for (int i = 0; i < languages.Length; i++)
 		["viewCounts"] = viewCounts,
 		["likeCounts"] = likeCounts,
 		["lastUpdatedDates"] = lastUpdatedDates,
+		["videoCounts"] = videoCounts
 	};
 
 	finalResult.Add(hl, languageResult);
@@ -90,20 +96,29 @@ File.WriteAllText($"out.{DateTimeOffset.Now:s}.json", json);
 
 return;
 
-async Task<string> GetSubscriptionCount(string hl, string channelId)
+async Task<(string, string)> GetSubscriptionCount(string hl, string channelId)
 {
 	BrowseResponse channel = await client.BrowseAsync(channelId, language: hl);
 	string subscriberCountText = (channel.Header.RendererCase switch
 	{
 		RendererWrapper.RendererOneofCase.C4TabbedHeaderRenderer => new ChannelHeader(channel.Header
-			.C4TabbedHeaderRenderer),
+			.C4TabbedHeaderRenderer, ""),
 		RendererWrapper.RendererOneofCase.PageHeaderRenderer => new ChannelHeader(
 			channel.Header.PageHeaderRenderer,
-			channel.Metadata.ChannelMetadataRenderer.ExternalId),
+			channel.Metadata.ChannelMetadataRenderer.ExternalId, ""),
 		_ => null
 	})!.SubscriberCountText;
+	string videoCountText = (channel.Header.RendererCase switch
+	{
+		RendererWrapper.RendererOneofCase.C4TabbedHeaderRenderer => new ChannelHeader(channel.Header
+			.C4TabbedHeaderRenderer, ""),
+		RendererWrapper.RendererOneofCase.PageHeaderRenderer => new ChannelHeader(
+			channel.Header.PageHeaderRenderer,
+			channel.Metadata.ChannelMetadataRenderer.ExternalId, ""),
+		_ => null
+	})!.VideoCountText;
 	Console.Write(".");
-	return subscriberCountText;
+	return (subscriberCountText, videoCountText);
 }
 
 async Task<(string, string, string)> GetVideoStrings(string hl, string videoId)
@@ -123,10 +138,11 @@ async Task<(string, string, string)> GetVideoStrings(string hl, string videoId)
 	return (dateText, viewCountText, likeCountText);
 }
 
-async Task<string> GetLastUpdated(string hl, string playlistId)
+async Task<(string, string)> GetLastUpdated(string hl, string playlistId)
 {
 	BrowseResponse browse = await client.BrowseAsync(playlistId, language: hl);
 	string lastUpdated = Utils.ReadRuns(browse.Header.PlaylistHeaderRenderer.Byline.PlaylistBylineRenderer.Text.Last());
+	string videoCount = Utils.ReadRuns(browse.Header.PlaylistHeaderRenderer.NumVideosText);
 	Console.Write(";");
-	return lastUpdated;
+	return (lastUpdated, videoCount);
 }

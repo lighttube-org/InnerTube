@@ -41,6 +41,8 @@ public partial class IndianEnglish : IValueParser
 			"Premiered" => VideoUploadType.Premiered,
 			"Started" => VideoUploadType.Streaming,
 			"Streamed" => VideoUploadType.Streamed,
+			"Premieres" => VideoUploadType.FuturePremiere,
+			"Scheduled" => VideoUploadType.ScheduledStream,
 			_ => VideoUploadType.Published
 		};
 	}
@@ -57,6 +59,11 @@ public partial class IndianEnglish : IValueParser
 	public long ParseViewCount(string viewCountText) =>
 		int.Parse(viewCountText.Split(" ")[0], NumberStyles.AllowThousands);
 
+	public long ParseVideoCount(string videoCountText) =>
+		!videoCountText.Contains("No")
+			? ParseShortNumber(videoCountText)
+			: 0;
+
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) => 
 		ParseFullDate(lastUpdatedText.Split(" on ")[1]);
 
@@ -67,8 +74,8 @@ public partial class IndianEnglish : IValueParser
 			Match match = shortNumberRegex.Match(part);
 			string number = match.Groups[1].Value.ToUpper();
 			float value = number.EndsWith('K')
-				? float.Parse(match.Groups[1].Value) * 1000
-				: float.Parse(match.Groups[1].Value);
+				? float.Parse(match.Groups[1].Value, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands) * 1000
+				: float.Parse(match.Groups[1].Value, NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands);
 			return (long)(match.Groups[2].Value.ToLower() switch
 			{
 				"lakh" => value * 100000,
@@ -85,6 +92,6 @@ public partial class IndianEnglish : IValueParser
 	[GeneratedRegex("(\\d{1,2}) (\\w+) (\\d{4})")]
     private static partial Regex FullDatePatternRegex();
 
-    [GeneratedRegex("([\\d.kK]+)\\s?(\\w*)")]
+    [GeneratedRegex("([\\d,.kK]+)\\s?(\\w*)")]
     private static partial Regex ShortNumberRegex();
 }

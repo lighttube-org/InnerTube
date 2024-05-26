@@ -1,5 +1,4 @@
 ﻿using System.Collections.Specialized;
-using System.ComponentModel;
 using System.Globalization;
 using System.Text;
 using System.Text.Json;
@@ -9,6 +8,7 @@ using System.Web;
 using Google.Protobuf;
 using InnerTube.Formatters;
 using InnerTube.Models;
+using InnerTube.Parsers;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
 using InnerTube.Renderers;
@@ -52,8 +52,7 @@ public static partial class Utils
 				{
 					case Endpoint.EndpointTypeOneofCase.UrlEndpoint:
 						string? target = UnwrapRedirectUrl(run.NavigationEndpoint.UrlEndpoint.Url);
-						if (target != null)
-							currentString = Formatter.FormatUrl(currentString, target);
+						currentString = Formatter.FormatUrl(currentString, target);
 						break;
 					case Endpoint.EndpointTypeOneofCase.WatchEndpoint:
 						string url = "https://youtube.com/watch?v=" + run.NavigationEndpoint.WatchEndpoint.VideoId;
@@ -74,7 +73,7 @@ public static partial class Utils
 		return Formatter.HandleLineBreaks(str);
 	}
 
-	public static string? UnwrapRedirectUrl(string url)
+	public static string UnwrapRedirectUrl(string url)
 	{
 		if (url.StartsWith("https://www.youtube.com/redirect"))
 		{
@@ -300,7 +299,7 @@ public static partial class Utils
 				              video.OwnerText?.Runs[0].Text);
 				sb.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
 						video.OwnerBadges.Select(x =>
-							$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+							$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(y => $"  {y}"))}"))
 					.TrimStart());
 				sb.AppendLine("Duration: " + video.LengthText?.SimpleText);
 				sb.AppendLine("ViewCount: " + video.ViewCountText.SimpleText);
@@ -309,7 +308,7 @@ public static partial class Utils
 				sb.AppendLine($"Badges: ({video.Badges.Count})\n- " +
 				              string.Join("",
 						              video.Badges.Select(x =>
-							              $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+							              $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(y => $"  {y}"))}"))
 					              .TrimStart());
 				sb.AppendLine(ReadRuns(video.DetailedMetadataSnippets?.SnippetText));
 				return sb.ToString();
@@ -345,7 +344,7 @@ public static partial class Utils
 					            video.LongBylineText.Runs[0].Text)
 					.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
 							video.OwnerBadges.Select(x =>
-								$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+								$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(y => $"  {y}"))}"))
 						.TrimStart())
 					.AppendLine("Duration: " + video.LengthText?.SimpleText)
 					.AppendLine("ViewCount: " + video.ViewCountText.SimpleText)
@@ -354,7 +353,7 @@ public static partial class Utils
 					.AppendLine($"Badges: ({video.Badges.Count})\n- " +
 					            string.Join("",
 							            video.Badges.Select(x =>
-								            $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+								            $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(y => $"  {y}"))}"))
 						            .TrimStart());
 				return sb.ToString();
 			}
@@ -370,7 +369,7 @@ public static partial class Utils
 				              video.ShortBylineText?.Runs?[0]?.Text);
 				sb.AppendLine($"OwnerBadges: ({video.OwnerBadges.Count})\n- " + string.Join("",
 						video.OwnerBadges.Select(x =>
-							$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+							$"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(y => $"  {y}"))}"))
 					.TrimStart());
 				sb.AppendLine("Duration: " + ReadRuns(video.ThumbnailOverlays.FirstOrDefault(x =>
 						x.RendererCase == RendererWrapper.RendererOneofCase.ThumbnailOverlayTimeStatusRenderer)
@@ -381,7 +380,7 @@ public static partial class Utils
 				sb.AppendLine($"Badges: ({video.Badges.Count})\n- " +
 				              string.Join("",
 						              video.Badges.Select(x =>
-							              $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))}"))
+							              $"\n{string.Join("\n", SerializeRenderer(x).Split("\n").Select(y => $"  {y}"))}"))
 					              .TrimStart());
 				return sb.ToString();
 			}
@@ -437,7 +436,7 @@ public static partial class Utils
 					.AppendLine($"Badges: ({movie.Badges.Count})\n" +
 					            string.Join("\n",
 							            movie.Badges.Select(x =>
-								            $"- {string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}")).TrimStart()}"))
+								            $"- {string.Join("\n", SerializeRenderer(x).Split("\n").Select(y => $"  {y}")).TrimStart()}"))
 						            .TrimStart());
 				return sb.ToString();
 			}
@@ -453,7 +452,7 @@ public static partial class Utils
 					.AppendLine($"Badges: ({channel.OwnerBadges.Count})\n" +
 					            string.Join("\n",
 							            channel.OwnerBadges.Select(x =>
-								            $"- {string.Join("\n", SerializeRenderer(x).Split("\n").Select(x => $"  {x}")).TrimStart()}"))
+								            $"- {string.Join("\n", SerializeRenderer(x).Split("\n").Select(y => $"  {y}")).TrimStart()}"))
 						            .TrimStart())
 					.AppendLine("DescriptionSnippet:\n" + ReadRuns(channel.DescriptionSnippet));
 				return sb.ToString();
@@ -463,10 +462,10 @@ public static partial class Utils
 				MetadataBadgeRenderer badge = renderer.MetadataBadgeRenderer;
 				StringBuilder sb = new();
 				sb.AppendLine($"[MetadataBadgeRenderer]")
-					.AppendLine("Icon: " + badge.Icon?.IconType ?? "<no icon>")
-					.AppendLine("Style: " + badge.Style)
-					.AppendLine("Label: " + badge.Label ?? "<no label>")
-					.AppendLine("Tooltip: " + badge.Tooltip ?? "<no tooltip>");
+					.AppendLine("Icon: " + (badge.Icon?.IconType.ToString() ?? "<no icon>"))
+					.AppendLine("Style: " + (badge.Style))
+					.AppendLine("Label: " + (badge.Label ?? "<no label>"))
+					.AppendLine("Tooltip: " + (badge.Tooltip ?? "<no tooltip>"));
 				return sb.ToString();
 			}
 			case RendererWrapper.RendererOneofCase.PlaylistPanelVideoRenderer:
@@ -581,7 +580,7 @@ public static partial class Utils
 			case RendererWrapper.RendererOneofCase.ItemSectionRenderer:
 				return "[ItemSectionRenderer]\n" + string.Join('\n',
 					renderer.ItemSectionRenderer.Contents.Select(x =>
-						string.Join('\n', SerializeRenderer(x).Split("\n").Select(x => $"  {x}"))));
+						string.Join('\n', SerializeRenderer(x).Split("\n").Select(y => $"  {y}"))));
 			case RendererWrapper.RendererOneofCase.RichItemRenderer:
 				return "[RichItemRenderer] " + SerializeRenderer(renderer.RichItemRenderer.Content);
 			case RendererWrapper.RendererOneofCase.AlertWithButtonRenderer:
@@ -593,10 +592,10 @@ public static partial class Utils
 		}
 	}
 
-	public static RendererContainer[] ConvertRenderers(IEnumerable<RendererWrapper>? renderers) =>
-		renderers?.Select(ConvertRenderer).Where(x => x != null).ToArray() ?? [];
+	public static RendererContainer[] ConvertRenderers(IEnumerable<RendererWrapper>? renderers, string parserLanguage) =>
+		(renderers?.Select(x => ConvertRenderer(x, parserLanguage)).Where(x => x != null).ToArray() ?? [])!;
 
-	public static RendererContainer? ConvertRenderer(RendererWrapper renderer)
+	public static RendererContainer? ConvertRenderer(RendererWrapper renderer, string parserLanguage)
 	{
 		return renderer.RendererCase switch
 		{
@@ -633,7 +632,9 @@ public static partial class Utils
 							: null),
 					Duration = ParseDuration(renderer.VideoRenderer.LengthText?.SimpleText ?? "00:00"),
 					PublishedText = ReadRuns(renderer.VideoRenderer.PublishedTimeText),
+					Published = ValueParser.ParseFullDate(parserLanguage, ReadRuns(renderer.VideoRenderer.PublishedTimeText)),
 					ViewCountText = ReadRuns(renderer.VideoRenderer.ViewCountText),
+					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.VideoRenderer.ViewCountText)),
 					Badges = SimplifyBadges(renderer.VideoRenderer.Badges),
 					Description = ReadRuns(renderer.VideoRenderer.DetailedMetadataSnippets?.SnippetText),
 					PremiereStartTime = renderer.VideoRenderer.UpcomingEventData != null
@@ -655,9 +656,15 @@ public static partial class Utils
 					PublishedText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
 						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text
 						: "",
+					Published = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+						? ValueParser.ParseFullDate(parserLanguage, renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text)
+						: DateTimeOffset.UnixEpoch,
 					ViewCountText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
 						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text
 						: "",
+					ViewCount = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+						? ValueParser.ParseViewCount(parserLanguage, renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text)
+						: -1,
 					Badges = [],
 					Description = null,
 					VideoIndexText = ReadRuns(renderer.PlaylistVideoRenderer.Index)
@@ -675,7 +682,9 @@ public static partial class Utils
 					Author = Channel.From(renderer.PlaylistPanelVideoRenderer.ShortBylineText),
 					Duration = ParseDuration(renderer.PlaylistPanelVideoRenderer.LengthText?.SimpleText ?? "00:00"),
 					PublishedText = "",
+					Published = DateTimeOffset.UnixEpoch,
 					ViewCountText = "",
+					ViewCount = -1,
 					Badges = [],
 					Description = null,
 					VideoIndexText = ReadRuns(renderer.PlaylistPanelVideoRenderer.IndexText)
@@ -694,7 +703,9 @@ public static partial class Utils
 						renderer.CompactVideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
 					Duration = ParseDuration(renderer.CompactVideoRenderer.LengthText?.SimpleText ?? "00:00"),
 					PublishedText = ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText),
+					Published = ValueParser.ParseFullDate(parserLanguage, ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText)),
 					ViewCountText = ReadRuns(renderer.CompactVideoRenderer.ViewCountText),
+					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.CompactVideoRenderer.ViewCountText)),
 					Badges = SimplifyBadges(renderer.CompactVideoRenderer.Badges),
 					Description = null,
 					PremiereStartTime = renderer.CompactVideoRenderer.UpcomingEventData != null
@@ -718,7 +729,9 @@ public static partial class Utils
 							x.RendererCase == RendererWrapper.RendererOneofCase.ThumbnailOverlayTimeStatusRenderer)
 						?.ThumbnailOverlayTimeStatusRenderer.Text)),
 					PublishedText = ReadRuns(renderer.GridVideoRenderer.PublishedTimeText),
+					Published = ValueParser.ParseFullDate(parserLanguage, ReadRuns(renderer.GridVideoRenderer.PublishedTimeText)),
 					ViewCountText = ReadRuns(renderer.GridVideoRenderer.ViewCountText),
+					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.GridVideoRenderer.ViewCountText)),
 					Badges = SimplifyBadges(renderer.GridVideoRenderer.Badges),
 					Description = null,
 					PremiereStartTime = renderer.GridVideoRenderer.UpcomingEventData != null
@@ -736,7 +749,9 @@ public static partial class Utils
 					Title = ReadRuns(renderer.ChannelVideoPlayerRenderer.Title),
 					Duration = TimeSpan.Zero,
 					PublishedText = ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText),
+					Published = ValueParser.ParseFullDate(parserLanguage, ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText)),
 					ViewCountText = ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText),
+					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText)),
 					Badges = [],
 					Thumbnails = [],
 					Description = ReadRuns(renderer.ChannelVideoPlayerRenderer.Description)
@@ -754,7 +769,9 @@ public static partial class Utils
 					Author = Channel.From(renderer.CompactMovieRenderer.ShortBylineText),
 					Duration = ParseDuration(renderer.CompactMovieRenderer.LengthText?.SimpleText ?? "00:00"),
 					PublishedText = "",
+					Published = DateTimeOffset.UnixEpoch,
 					ViewCountText = "",
+					ViewCount = -1,
 					Badges = SimplifyBadges(renderer.GridVideoRenderer.Badges),
 					Description = ReadRuns(renderer.CompactMovieRenderer.TopMetadataItems)
 				}
@@ -771,7 +788,9 @@ public static partial class Utils
 					Author = null,
 					Duration = TimeSpan.Zero,
 					PublishedText = "",
+					Published = DateTimeOffset.UnixEpoch,
 					ViewCountText = ReadRuns(renderer.ReelItemRenderer.ViewCountText),
+					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.ReelItemRenderer.ViewCountText)),
 					Badges = [],
 					Description = null
 				}
@@ -788,7 +807,9 @@ public static partial class Utils
 					Author = Channel.From(renderer.PromotedVideoRenderer.LongBylineText),
 					Duration = ParseDuration(ReadRuns(renderer.PromotedVideoRenderer.LengthText)),
 					PublishedText = "",
+					Published = DateTimeOffset.UnixEpoch,
 					ViewCountText = "",
+					ViewCount = -1,
 					Badges = SimplifyBadges([renderer.PromotedVideoRenderer.AdBadge]),
 					Description = ReadRuns(renderer.PromotedVideoRenderer.Description)
 				}
@@ -804,8 +825,10 @@ public static partial class Utils
 					Thumbnails = [],
 					Author = null,
 					Duration = ParseDuration(ReadRuns(renderer.ChildVideoRenderer.LengthText)),
-					PublishedText = null,
-					ViewCountText = null,
+					PublishedText = "",
+					Published = DateTimeOffset.UnixEpoch,
+					ViewCountText = "",
+					ViewCount = -1,
 					Badges = [],
 					Description = null,
 					PremiereStartTime = null
@@ -815,17 +838,7 @@ public static partial class Utils
 			{
 				Type = "channel",
 				OriginalType = "channelRenderer",
-				Data = new ChannelRendererData
-				{
-					ChannelId = renderer.ChannelRenderer.ChannelId,
-					Title = ReadRuns(renderer.ChannelRenderer.Title),
-					Handle = Channel.TryGetHandle(renderer.ChannelRenderer.NavigationEndpoint.BrowseEndpoint
-						.CanonicalBaseUrl),
-					Avatar = renderer.ChannelRenderer.Thumbnail.Thumbnails_.ToArray(),
-					VideoCountText = ReadRuns(renderer.ChannelRenderer.VideoCountText),
-					SubscriberCountText = ReadRuns(renderer.ChannelRenderer.SubscriberCountText),
-					Badges = SimplifyBadges(renderer.ChannelRenderer.OwnerBadges)
-				}
+				Data = new ChannelRendererData(renderer.ChannelRenderer, parserLanguage)
 			},
 			RendererWrapper.RendererOneofCase.GridChannelRenderer => new RendererContainer
 			{
@@ -839,7 +852,9 @@ public static partial class Utils
 						.CanonicalBaseUrl),
 					Avatar = renderer.GridChannelRenderer.Thumbnail.Thumbnails_.ToArray(),
 					VideoCountText = ReadRuns(renderer.GridChannelRenderer.VideoCountText),
-					SubscriberCountText = ReadRuns(renderer.GridChannelRenderer.SubscriberCountText)
+					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.GridChannelRenderer.VideoCountText)),
+					SubscriberCountText = ReadRuns(renderer.GridChannelRenderer.SubscriberCountText),
+					SubscriberCount = ValueParser.ParseSubscriberCount(parserLanguage, ReadRuns(renderer.GridChannelRenderer.SubscriberCountText))
 				}
 			},
 			RendererWrapper.RendererOneofCase.PlaylistRenderer => new RendererContainer
@@ -852,10 +867,11 @@ public static partial class Utils
 					Thumbnails = renderer.PlaylistRenderer.Thumbnails[0].Thumbnails_.ToArray(),
 					Title = ReadRuns(renderer.PlaylistRenderer.Title),
 					VideoCountText = ReadRuns(renderer.PlaylistRenderer.VideoCountText),
+					VideoCount = renderer.PlaylistRenderer.VideoCount,
 					SidebarThumbnails = renderer.PlaylistRenderer.Thumbnails.ToArray()[1..].Select(x => x.Thumbnails_.ToArray()).ToArray(),
 					Author = Channel.From(renderer.PlaylistRenderer.ShortBylineText,
 						renderer.PlaylistRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
-					ChildVideos = ConvertRenderers(renderer.PlaylistRenderer.Videos),
+					ChildVideos = ConvertRenderers(renderer.PlaylistRenderer.Videos, parserLanguage),
 					FirstVideoId = renderer.PlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
 					               renderer.PlaylistRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId ??
 					               renderer.PlaylistRenderer.Videos.FirstOrDefault()?.ChildVideoRenderer.VideoId
@@ -871,6 +887,7 @@ public static partial class Utils
 					Thumbnails = renderer.GridPlaylistRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Title = ReadRuns(renderer.GridPlaylistRenderer.Title),
 					VideoCountText = ReadRuns(renderer.GridPlaylistRenderer.VideoCountText),
+					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.GridPlaylistRenderer.VideoCountText)),
 					SidebarThumbnails = renderer.GridPlaylistRenderer.SidebarThumbnails.Select(x => x.Thumbnails_.ToArray()).ToArray(),
 					Author = null,
 					FirstVideoId = renderer.GridPlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
@@ -887,6 +904,7 @@ public static partial class Utils
 					Thumbnails = renderer.CompactPlaylistRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Title = ReadRuns(renderer.CompactPlaylistRenderer.Title),
 					VideoCountText = ReadRuns(renderer.CompactPlaylistRenderer.VideoCountText),
+					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.CompactPlaylistRenderer.VideoCountText)),
 					SidebarThumbnails = renderer.CompactPlaylistRenderer.SidebarThumbnails.Select(x => x.Thumbnails_.ToArray()).ToArray(),
 					Author = Channel.From(renderer.CompactPlaylistRenderer.ShortBylineText),
 					FirstVideoId = renderer.CompactPlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
@@ -903,6 +921,8 @@ public static partial class Utils
 					Thumbnails = renderer.RadioRenderer.Thumbnails[0].Thumbnails_.ToArray(),
 					Title = ReadRuns(renderer.RadioRenderer.Title),
 					VideoCountText = ReadRuns(renderer.RadioRenderer.VideoCountText),
+					// this will always fail i think
+					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.RadioRenderer.VideoCountText)),
 					SidebarThumbnails = null,
 					Author = Channel.From(renderer.RadioRenderer.LongBylineText),
 					FirstVideoId = renderer.RadioRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
@@ -919,6 +939,8 @@ public static partial class Utils
 					Thumbnails = renderer.CompactRadioRenderer.Thumbnail.Thumbnails_.ToArray(),
 					Title = ReadRuns(renderer.CompactRadioRenderer.Title),
 					VideoCountText = ReadRuns(renderer.CompactRadioRenderer.VideoCountText),
+					// this will always fail i think
+					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.CompactRadioRenderer.VideoCountText)),
 					SidebarThumbnails = null,
 					Author = Channel.From(renderer.CompactRadioRenderer.LongBylineText),
 					FirstVideoId = renderer.CompactRadioRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
@@ -946,7 +968,7 @@ public static partial class Utils
 						.SelectMany(x => x.Thumbnails_.Select(y => y.Url)).ToArray()
 				}
 			},
-			RendererWrapper.RendererOneofCase.BackstagePostThreadRenderer => ConvertRenderer(renderer.BackstagePostThreadRenderer.Post),
+			RendererWrapper.RendererOneofCase.BackstagePostThreadRenderer => ConvertRenderer(renderer.BackstagePostThreadRenderer.Post, parserLanguage),
 			RendererWrapper.RendererOneofCase.BackstagePostRenderer => new RendererContainer
 			{
 				Type = "communityPost",
@@ -958,10 +980,13 @@ public static partial class Utils
 						avatar: renderer.BackstagePostRenderer.AuthorThumbnail)!,
 					Content = ReadRuns(renderer.BackstagePostRenderer.ContentText),
 					LikeCountText = ReadRuns(renderer.BackstagePostRenderer.VoteCount),
+					LikeCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.BackstagePostRenderer.VoteCount)),
 					CommentsCountText = ReadRuns(renderer.BackstagePostRenderer.ActionButtons
 						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title),
+					CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.BackstagePostRenderer.ActionButtons
+						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
 					Attachment = renderer.BackstagePostRenderer.BackstageAttachment != null
-						? ConvertRenderer(renderer.BackstagePostRenderer.BackstageAttachment)
+						? ConvertRenderer(renderer.BackstagePostRenderer.BackstageAttachment, parserLanguage)
 						: null
 				}
 			},
@@ -976,10 +1001,13 @@ public static partial class Utils
 						avatar: renderer.PostRenderer.AuthorThumbnail)!,
 					Content = ReadRuns(renderer.PostRenderer.ContentText),
 					LikeCountText = ReadRuns(renderer.PostRenderer.VoteCount),
+					LikeCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.PostRenderer.VoteCount)),
 					CommentsCountText = ReadRuns(renderer.PostRenderer.ActionButtons
 						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title),
+					CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.PostRenderer.ActionButtons
+						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
 					Attachment = renderer.PostRenderer.BackstageAttachment != null
-						? ConvertRenderer(renderer.PostRenderer.BackstageAttachment)
+						? ConvertRenderer(renderer.PostRenderer.BackstageAttachment, parserLanguage)
 						: null
 				}
 			},
@@ -1008,7 +1036,7 @@ public static partial class Utils
 				OriginalType = "itemSectionRenderer",
 				Data = new ContainerRendererData
 				{
-					Items = ConvertRenderers(renderer.ItemSectionRenderer.Contents)
+					Items = ConvertRenderers(renderer.ItemSectionRenderer.Contents, parserLanguage)
 				}
 			},
 			RendererWrapper.RendererOneofCase.ShelfRenderer => new RendererContainer
@@ -1034,7 +1062,7 @@ public static partial class Utils
 								}
 							}
 						]
-					}),
+					}, parserLanguage),
 					Style = "shelf;" + renderer.ShelfRenderer.Content.RendererCase switch
 					{
 						RendererWrapper.RendererOneofCase.VerticalListRenderer => "vertical",
@@ -1053,7 +1081,7 @@ public static partial class Utils
 				OriginalType = "reelShelfRenderer",
 				Data = new ContainerRendererData
 				{
-					Items = ConvertRenderers(renderer.ReelShelfRenderer.Items),
+					Items = ConvertRenderers(renderer.ReelShelfRenderer.Items, parserLanguage),
 					Style = "shelf;reel",
 					Title = ReadRuns(renderer.ReelShelfRenderer.Title)
 				}
@@ -1064,7 +1092,7 @@ public static partial class Utils
 				OriginalType = "searchPyvRenderer",
 				Data = new ContainerRendererData
 				{
-					Items = ConvertRenderers(renderer.SearchPyvRenderer.Ads),
+					Items = ConvertRenderers(renderer.SearchPyvRenderer.Ads, parserLanguage),
 					Style = "ad"
 				}
 			},
@@ -1074,7 +1102,7 @@ public static partial class Utils
 				OriginalType = "gridRenderer",
 				Data = new ContainerRendererData
 				{
-					Items = ConvertRenderers(renderer.GridRenderer.Items),
+					Items = ConvertRenderers(renderer.GridRenderer.Items, parserLanguage),
 					Style = "grid"
 				}
 			},
@@ -1084,13 +1112,13 @@ public static partial class Utils
 				OriginalType = "richGridRenderer",
 				Data = new ContainerRendererData
 				{
-					Items = ConvertRenderers(renderer.RichGridRenderer.Contents),
+					Items = ConvertRenderers(renderer.RichGridRenderer.Contents, parserLanguage),
 					Style = "grid"
 				}
 			},
-			RendererWrapper.RendererOneofCase.RichItemRenderer => ConvertRenderer(renderer.RichItemRenderer.Content),
+			RendererWrapper.RendererOneofCase.RichItemRenderer => ConvertRenderer(renderer.RichItemRenderer.Content, parserLanguage),
 			RendererWrapper.RendererOneofCase.AdSlotRenderer => ConvertRenderer(renderer.AdSlotRenderer
-				.FulfillmentContent.FulfilledLayout.InFeedAdLayoutRenderer.RenderingContent),
+				.FulfillmentContent.FulfilledLayout.InFeedAdLayoutRenderer.RenderingContent, parserLanguage),
 			RendererWrapper.RendererOneofCase.MessageRenderer => new RendererContainer
 			{
 				Type = "message",

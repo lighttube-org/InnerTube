@@ -12,7 +12,9 @@ public class VideoRendererData : IRendererData
 	public Channel? Author { get; set; }
 	public TimeSpan Duration { get; set; }
 	public string? PublishedText { get; set; }
+	public DateTimeOffset Published { get; set; }
 	public string? ViewCountText { get; set; }
+	public long ViewCount { get; set; }
 	public Badge[] Badges { get; set; }
 	public string? Description { get; set; }
 	public DateTimeOffset? PremiereStartTime { get; set; }

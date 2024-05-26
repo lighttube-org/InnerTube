@@ -41,6 +41,8 @@ public partial class Korean : IValueParser
 		if (type.Contains("최초 공개")) return VideoUploadType.Premiered;
 		if (type.Contains("실시간 스트리밍 시작일")) return VideoUploadType.Streaming;
 		if (type.Contains("스트리밍 시작일")) return VideoUploadType.Streamed;
+		if (type.Contains("최초 공개일")) return VideoUploadType.FuturePremiere;
+		if (type.Contains("예정일")) return VideoUploadType.ScheduledStream;
 		return VideoUploadType.Published;
 	}
 
@@ -56,6 +58,11 @@ public partial class Korean : IValueParser
 	public long ParseViewCount(string viewCountText) =>
 		int.Parse(digitRegex.Match(viewCountText).Groups[1].Value, NumberStyles.AllowThousands, CultureInfo.GetCultureInfo("ko"));
 
+	public long ParseVideoCount(string videoCountText) =>
+		!videoCountText.Contains("없음")
+			? ParseShortNumber(videoCountText)
+			: 0;
+
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) => 
 		ParseFullDate(lastUpdatedText);
 
@@ -64,7 +71,8 @@ public partial class Korean : IValueParser
 		try
 		{
 			Match match = shortNumberRegex.Match(part);
-			float value = float.Parse(match.Groups[1].Value);
+			float value = float.Parse(match.Groups[1].Value,
+				NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.GetCultureInfo("ko"));
 			return (long)(match.Groups[2].Value.ToUpper() switch
 			{
 				"억" => value * 100000000,
@@ -80,9 +88,9 @@ public partial class Korean : IValueParser
 
 	[GeneratedRegex("(\\d{4}\\. \\d{1,2}\\. \\d{1,2})")]
 	private static partial Regex FullDatePatternRegex();
-	[GeneratedRegex("([\\d,]+)")]
+	[GeneratedRegex("([\\d.,]+)")]
 	private static partial Regex DigitRegex();
 
-    [GeneratedRegex("([\\d.]+)([억만]?)")]
+    [GeneratedRegex("([\\d.,]+)([억만]?)")]
     private static partial Regex ShortNumberRegex();
 }

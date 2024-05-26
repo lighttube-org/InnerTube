@@ -1,5 +1,6 @@
 using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
+using InnerTube.Parsers;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Responses;
 using InnerTube.Renderers;
@@ -12,16 +13,21 @@ public class InnerTubeVideo
 	public string Title { get; }
 	public string Description { get; }
 	public string DateText { get; }
+	public DateTimeOffset PublishDate { get; }
+	public VideoUploadType PublishType { get; }
 	public string ViewCountText { get; }
+	public long ViewCount { get; }
 	public string LikeCountText { get; }
+	public long LikeCount { get; }
 	public Channel Channel { get; }
 	public string? CommentsCountText { get; }
+	public long? CommentsCount { get; }
 	public string? CommentsErrorMessage { get; }
 	public RendererContainer[] Recommended { get; }
 	public VideoPlaylistInfo? Playlist { get; }
 	public IEnumerable<VideoChapter>? Chapters { get; }
 
-	public InnerTubeVideo(NextResponse next)
+	public InnerTubeVideo(NextResponse next, string parserLanguage)
 	{
 		Id = next.CurrentVideoEndpoint.EndpointTypeCase switch
 		{
@@ -50,17 +56,25 @@ public class InnerTubeVideo
 		Title = Utils.ReadRuns(videoPrimaryInfoRenderer.Title, true);
 		Description = Utils.ReadAttributedDescription(videoSecondaryInfoRenderer.AttributedDescription, true);
 		DateText = Utils.ReadRuns(videoPrimaryInfoRenderer.DateText);
+		PublishDate = ValueParser.ParseFullDate(parserLanguage, DateText);
+		PublishType = ValueParser.ParseVideoUploadType(parserLanguage, DateText);
 		ViewCountText = Utils.ReadRuns(videoPrimaryInfoRenderer.ViewCount?.VideoViewCountRenderer.ViewCount);
+		if (videoPrimaryInfoRenderer.ViewCount?.VideoViewCountRenderer.HasOriginalViewCount == true)
+			ViewCount = videoPrimaryInfoRenderer.ViewCount?.VideoViewCountRenderer.OriginalViewCount ?? 0;
+		else
+			ViewCount = ValueParser.ParseViewCount(parserLanguage, ViewCountText);
 		LikeCountText = videoPrimaryInfoRenderer.VideoActions.MenuRenderer.TopLevelButtons
 			.First(x => x.RendererCase == RendererWrapper.RendererOneofCase.SegmentedLikeDislikeButtonViewModel)
 			.SegmentedLikeDislikeButtonViewModel.LikeButtonViewModel.LikeButtonViewModel.ToggleButtonViewModel
 			.ToggleButtonViewModel.DefaultButtonViewModel.ButtonViewModel2.Title; // jesus christ
-		Channel = Channel.From(videoSecondaryInfoRenderer.Owner.VideoOwnerRenderer);
+		LikeCount = ValueParser.ParseLikeCount(parserLanguage, LikeCountText);
+		Channel = Channel.From(videoSecondaryInfoRenderer.Owner.VideoOwnerRenderer, parserLanguage);
 
 		switch (commentsSection?.RendererCase)
 		{
 			case RendererWrapper.RendererOneofCase.CommentsEntryPointHeaderRenderer:
 				CommentsCountText = Utils.ReadRuns(commentsSection.CommentsEntryPointHeaderRenderer.CommentCount);
+				CommentsCount = ValueParser.ParseLikeCount(parserLanguage, CommentsCountText);
 				break;
 			case RendererWrapper.RendererOneofCase.MessageRenderer:
 				CommentsErrorMessage = Utils.ReadRuns(commentsSection.MessageRenderer.Text, true);
@@ -87,10 +101,10 @@ public class InnerTubeVideo
 		
 		// NOTE: for age restricted videos, the first SecondaryResults is null
 		Recommended =
-			Utils.ConvertRenderers(next.Contents.TwoColumnWatchNextResults.SecondaryResults?.SecondaryResults?.Results);
+			Utils.ConvertRenderers(next.Contents.TwoColumnWatchNextResults.SecondaryResults?.SecondaryResults?.Results, parserLanguage);
 
 		Playlist = next.Contents.TwoColumnWatchNextResults.Playlist != null
-			? new VideoPlaylistInfo(next.Contents.TwoColumnWatchNextResults.Playlist.Playlist)
+			? new VideoPlaylistInfo(next.Contents.TwoColumnWatchNextResults.Playlist.Playlist, parserLanguage)
 			: null;
 	}
 }

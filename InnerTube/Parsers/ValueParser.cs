@@ -21,24 +21,99 @@ public static class ValueParser
 			? throw new Exception($"Unknown language code '{language}'")
 			: parser;
 
-	public static string ParseRelativeDate(string languageCode, string date) =>
-		GetParserForLocale(languageCode).ParseRelativeDate(date);
+	public static string ParseRelativeDate(string languageCode, string date)
+	{
+		try
+		{
+			return GetParserForLocale(languageCode).ParseRelativeDate(date);
+		}
+		catch
+		{
+			return $"!Failed to parse;;;{date}";
+		}
+	}
 
-	public static DateTimeOffset ParseFullDate(string languageCode, string date) =>
-		GetParserForLocale(languageCode).ParseFullDate(date);
+	public static DateTimeOffset ParseFullDate(string languageCode, string date)
+	{
+		try
+		{
+			return GetParserForLocale(languageCode).ParseFullDate(date);
+		}
+		catch
+		{
+			return DateTimeOffset.UnixEpoch;
+		}
+	}
 
-	public static VideoUploadType ParseVideoUploadType(string languageCode, string type) =>
-		GetParserForLocale(languageCode).ParseVideoUploadType(type);
+	public static VideoUploadType ParseVideoUploadType(string languageCode, string type)
+	{
+		try
+		{
+			return GetParserForLocale(languageCode).ParseVideoUploadType(type);
+		}
+		catch
+		{
+			return VideoUploadType.Published;
+		}
+	}
 
-	public static long ParseSubscriberCount(string languageCode, string subscriberCountText) =>
-		GetParserForLocale(languageCode).ParseSubscriberCount(subscriberCountText);
+	public static long ParseSubscriberCount(string languageCode, string subscriberCountText)
+	{
+		try
+		{
+			return GetParserForLocale(languageCode).ParseSubscriberCount(subscriberCountText);
+		}
+		catch
+		{
+			return -1;
+		}
+	}
 
-	public static long ParseLikeCount(string languageCode, string likeCountText) =>
-		GetParserForLocale(languageCode).ParseLikeCount(likeCountText);
+	public static long ParseLikeCount(string languageCode, string likeCountText)
+	{
+		try
+		{
+			return GetParserForLocale(languageCode).ParseLikeCount(likeCountText);
+		}
+		catch
+		{
+			return -1;
+		}
+	}
 
-	public static long ParseViewCount(string languageCode, string viewCountText) =>
-		GetParserForLocale(languageCode).ParseViewCount(viewCountText);
+	public static long ParseViewCount(string languageCode, string viewCountText)
+	{
+		try
+		{
+			return GetParserForLocale(languageCode).ParseViewCount(viewCountText);
+		}
+		catch
+		{
+			return -1;
+		}
+	}
 
-	public static DateTimeOffset ParseLastUpdated(string languageCode, string lastUpdatedText) =>
-		GetParserForLocale(languageCode).ParseLastUpdated(lastUpdatedText);
+	public static long ParseVideoCount(string languageCode, string videoCountText)
+	{
+		try
+		{
+			return GetParserForLocale(languageCode).ParseVideoCount(videoCountText);
+		}
+		catch
+		{
+			return -1;
+		}
+	}
+
+	public static DateTimeOffset ParseLastUpdated(string languageCode, string lastUpdatedText)
+	{
+		try
+		{
+			return GetParserForLocale(languageCode).ParseLastUpdated(lastUpdatedText);
+		}
+		catch
+		{
+			return DateTimeOffset.UnixEpoch;
+		}
+	}
 }

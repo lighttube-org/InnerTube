@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
+using System.Text.Json;
 using Newtonsoft.Json.Linq;
 using Serilog;
 
@@ -23,19 +24,31 @@ public class InnerTubeAuthorization
 	{ }
 
 	/// <summary>
-	/// Authorize with cookies. See https://github.com/kuylar/InnerTube/wiki/Authorization#using-cookies
+	/// Authorize with cookies. See https://github.com/lighttube-org/InnerTube/wiki/Authorization#using-cookies
 	/// </summary>
-	/// <param name="sapisid">The <code>__Secure-3PAPISID</code> cookie from your browser session</param>
-	/// <param name="psid">The <code>__Secure-3PSID</code> cookie from your browser session</param>
+	/// <param name="sid">The <code>SID</code> cookie from your browser session</param>
+	/// <param name="hsid">The <code>HSID</code> cookie from your browser session</param>
+	/// <param name="ssid">The <code>SSID</code> cookie from your browser session</param>
+	/// <param name="apisid">The <code>APISID</code> cookie from your browser session</param>
+	/// <param name="sapisid">The <code>SAPISID</code> cookie from your browser session</param>
 	/// <returns></returns>
-	public static InnerTubeAuthorization SapisidAuthorization(string sapisid, string psid) =>
+	[Obsolete("Cookie authorization does not work with protobuf. Use refresh tokens instead")]
+	public static InnerTubeAuthorization SapisidAuthorization(
+		string sid,
+		string hsid,
+		string ssid,
+		string apisid,
+		string sapisid) =>
 		new()
 		{
 			Type = AuthorizationType.SAPISID,
 			Secrets = new Dictionary<string, object>
 			{
-				["SAPISID"] = sapisid,
-				["PSID"] = psid
+				["SID"] = sid,
+				["HSID"] = hsid,
+				["SSID"] = ssid,
+				["APISID"] = apisid,
+				["SAPISID"] = sapisid
 			}
 		};
 
@@ -43,14 +56,20 @@ public class InnerTubeAuthorization
 	/// Authorize with an OAuth2 refresh token. See: https://github.com/kuylar/InnerTube/wiki/Authorization#using-a-refresh-token
 	/// </summary>
 	/// <param name="refreshToken">The refresh token from the OAuth response</param>
+	/// <param name="clientId">The client ID of YouTube TV from when the refresh token was taken</param>
+	/// <param name="clientSecret">The client secret of YouTube TV from when the refresh token was taken</param>
 	/// <returns></returns>
-	public static InnerTubeAuthorization RefreshTokenAuthorization(string refreshToken) =>
+	public static InnerTubeAuthorization RefreshTokenAuthorization(string refreshToken,
+		string clientId = "861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com",
+		string clientSecret = "SboVhoG9s0rNafixCSGGKXAT") =>
 		new()
 		{
 			Type = AuthorizationType.REFRESH_TOKEN,
 			Secrets = new Dictionary<string, object>
 			{
-				["refreshToken"] = refreshToken
+				["refreshToken"] = refreshToken,
+				["clientId"] = clientId,
+				["clientSecret"] = clientSecret
 			}
 		};
 
@@ -59,8 +78,7 @@ public class InnerTubeAuthorization
 		switch (Type)
 		{
 			case AuthorizationType.SAPISID:
-				return
-					$"SAPISID={Secrets["SAPISID"]}; __Secure-3PAPISID={Secrets["SAPISID"]}; __Secure-3PSID={Secrets["PSID"]};";
+				return string.Join(", ", Secrets.Select(x => $"{x.Key}={x.Value}"));
 			case AuthorizationType.REFRESH_TOKEN:
 			default:
 				return "";
@@ -96,11 +114,16 @@ public class InnerTubeAuthorization
 		}
 
 		Log.Debug("[AUTHORIZATION] Refreshing access token");
-		string requestBody =
-			$"{{\"client_id\":\"861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com\",\"client_secret\":\"SboVhoG9s0rNafixCSGGKXAT\",\"grant_type\":\"refresh_token\",\"refresh_token\":\"{Secrets["refreshToken"]}\" }}";
+		Dictionary<string, object> requestBody = new()
+		{
+			["client_id"] = Secrets["clientId"],
+			["client_secret"] = Secrets["clientSecret"],
+			["grant_type"] = "refresh_token",
+			["refresh_token"] = Secrets["refreshToken"]
+		};
 		HttpClient client = new();
 		HttpResponseMessage httpResponseMessage = await client.PostAsync("https://www.youtube.com/o/oauth2/token",
-			new StringContent(requestBody, Encoding.UTF8, "application/json"));
+			new StringContent(JsonSerializer.Serialize(requestBody), Encoding.UTF8, "application/json"));
 		JObject res = JObject.Parse(await httpResponseMessage.Content.ReadAsStringAsync());
 
 		if (Secrets.ContainsKey("accessToken"))
@@ -116,8 +139,7 @@ public class InnerTubeAuthorization
 
 	private string GenerateSha1Hash(string input)
 	{
-		using SHA1Managed sha1 = new();
-		byte[] hash = sha1.ComputeHash(Encoding.UTF8.GetBytes(input));
+		byte[] hash = SHA1.HashData(Encoding.UTF8.GetBytes(input));
 		StringBuilder sb = new(hash.Length * 2);
 		foreach (byte b in hash) sb.Append(b.ToString("X2"));
 		return sb.ToString();

@@ -1,6 +1,6 @@
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
-using Google.Protobuf;
 using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
 using InnerTube.Formatters;
@@ -13,23 +13,67 @@ namespace InnerTube.Tests;
 public class PlayerTests
 {
 	private InnerTube _innerTube;
+	private bool authenticated = false;
 
 	[SetUp]
+	[SuppressMessage("ReSharper", "NotResolvedInText")]
 	public void Setup()
 	{
-		_innerTube = new InnerTube();
+		string? authType = Environment.GetEnvironmentVariable("INNERTUBE_AUTH");
+		if (authType != null)
+		{
+			InnerTubeAuthorization? auth = authType switch
+			{
+				"cookie" => InnerTubeAuthorization.SapisidAuthorization(
+					Environment.GetEnvironmentVariable("INNERTUBE_SID") ??
+					throw new ArgumentNullException("INNERTUBE_SID",
+						"Please set the INNERTUBE_SID environment variable."),
+					Environment.GetEnvironmentVariable("INNERTUBE_HSID") ??
+					throw new ArgumentNullException("INNERTUBE_HSID",
+						"Please set the INNERTUBE_HSID environment variable."),
+					Environment.GetEnvironmentVariable("INNERTUBE_SSID") ??
+					throw new ArgumentNullException("INNERTUBE_SSID",
+						"Please set the INNERTUBE_SSID environment variable."),
+					Environment.GetEnvironmentVariable("INNERTUBE_APISID") ??
+					throw new ArgumentNullException("INNERTUBE_APISID",
+						"Please set the INNERTUBE_APISID environment variable."),
+					Environment.GetEnvironmentVariable("INNERTUBE_SAPISID") ??
+					throw new ArgumentNullException("INNERTUBE_SAPISID",
+						"Please set the INNERTUBE_SAPISID environment variable.")),
+				"oauth2" => InnerTubeAuthorization.RefreshTokenAuthorization(
+					Environment.GetEnvironmentVariable("INNERTUBE_REFRESH_TOKEN") ??
+					throw new ArgumentNullException("INNERTUBE_REFRESH_TOKEN",
+						"Please set the INNERTUBE_REFRESH_TOKEN environment variable.")
+				),
+				_ => null
+			};
+			_innerTube = new InnerTube(new InnerTubeConfiguration
+			{
+				Authorization = auth
+			});
+			authenticated = auth != null;
+		}
+		else
+		{
+			_innerTube = new InnerTube();
+		}
 	}
 
-	[TestCase("BaW_jenozKc", true, TestName = "Load a video with an HLS manifest")]
-	[TestCase("J6Ga4wciA2k", true, TestName = "Load a video with the endscreen & info cards")]
-	[TestCase("jfKfPfyJRdk", true, TestName = "Load a livestream")]
-	[TestCase("9gIXoaB-Jik", true, TestName = "Video with WEBSITE endscreen item")]
-	[TestCase("4ZX9T0kWb4Y", true, TestName = "Video with multiple audio tracks")]
-	[TestCase("-UBaW1OIgTo", true, TestName = "EndScreenItem ctor")]
-	[TestCase("UoBFuLMlDkw", true, TestName = "Video with cards")]
-	[TestCase("Atvsg_zogxo", true, TestName = "Music video (Descramble result always throws an SSL error)")]
-	public async Task GetPlayer(string videoId, bool contentCheckOk)
+	[TestCase("BaW_jenozKc", true, false, TestName = "Load a video with an HLS manifest")]
+	[TestCase("J6Ga4wciA2k", true, false, TestName = "Load a video with the endscreen & info cards")]
+	[TestCase("jfKfPfyJRdk", true, false, TestName = "Load a livestream")]
+	[TestCase("9gIXoaB-Jik", true, false, TestName = "Video with WEBSITE endscreen item")]
+	[TestCase("4ZX9T0kWb4Y", true, false, TestName = "Video with multiple audio tracks")]
+	[TestCase("-UBaW1OIgTo", true, false, TestName = "EndScreenItem ctor")]
+	[TestCase("UoBFuLMlDkw", true, false, TestName = "Video with cards")]
+	[TestCase("Atvsg_zogxo", true, false, TestName = "Music video (Descramble result always throws an SSL error)")]
+	[TestCase("V6kJKxvbgZ0", true, false, TestName = "Age restricted video")]
+	[TestCase("jOQs1WBf6qY", true, true, TestName = "Age restricted & non embeddable video")]
+	[TestCase("LACbVhgtx9I", true, false, TestName = "Video that includes self-harm topics")]
+	public async Task GetPlayer(string videoId, bool contentCheckOk, bool requiresAuthentication)
 	{
+		if (requiresAuthentication && !authenticated)
+			Assert.Inconclusive("Test requires authentication");
 		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk);
 		StringBuilder sb = new();
 
@@ -155,7 +199,7 @@ public class PlayerTests
 				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
 				.AppendLine("   AudioChannels: " + f.AudioChannels)
 				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"))
-                .AppendLine("   SignatureCipher: " + f.SignatureCipher);
+				.AppendLine("   SignatureCipher: " + f.SignatureCipher);
 		}
 
 		sb.AppendLine("== ADAPTIVE FORMATS");
@@ -177,7 +221,7 @@ public class PlayerTests
 				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
 				.AppendLine("   AudioChannels: " + f.AudioChannels)
 				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"))
-                .AppendLine("   SignatureCipher: " + f.SignatureCipher);
+				.AppendLine("   SignatureCipher: " + f.SignatureCipher);
 		}
 
 		sb.AppendLine("== OTHER")
@@ -358,7 +402,7 @@ public class PlayerTests
 	{
 		try
 		{
-			await _innerTube.GetNextAsync(videoId, false, false);
+			await _innerTube.GetNextAsync(videoId);
 		}
 		catch (InnerTubeException e)
 		{

@@ -1,8 +1,10 @@
-﻿using InnerTube.Protobuf;
+﻿using InnerTube.Parsers;
+using InnerTube.Protobuf;
 
 namespace InnerTube.Models;
 
 public class Channel(
+	string parserLanguage,
 	string id,
 	string title,
 	string? handle,
@@ -15,6 +17,10 @@ public class Channel(
 	public string? Handle { get; } = handle;
 	public Thumbnail[]? Avatar { get; } = avatar;
 	public string? SubscribersText { get; } = subscribersText;
+
+	public long? Subscribers { get; } = subscribersText != null
+		? ValueParser.ParseSubscriberCount(parserLanguage, subscribersText)
+		: null;
 	public Badge[]? Badges { get; } = badges != null ? Utils.SimplifyBadges(badges) : null;
 
 	public override string ToString()
@@ -31,8 +37,9 @@ public class Channel(
 		return res;
 	}
 
-	public static Channel From(VideoOwnerRenderer videoOwnerRenderer, MetadataBadgeRenderer[]? badges = null) =>
-		new(id: videoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.BrowseId,
+	public static Channel From(VideoOwnerRenderer videoOwnerRenderer, string parserLanguage, MetadataBadgeRenderer[]? badges = null) =>
+		new(parserLanguage,
+			id: videoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.BrowseId,
 			title: Utils.ReadRuns(videoOwnerRenderer.Title),
 			handle: TryGetHandle(videoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.CanonicalBaseUrl),
 			avatar: videoOwnerRenderer.Thumbnail.Thumbnails_.ToArray(),
@@ -43,7 +50,8 @@ public class Channel(
 	{
 		try
 		{
-			return new Channel(id: bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId,
+			return new Channel("",
+				id: bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId,
 				title: bylineText.Runs[0].Text,
 				handle: TryGetHandle(bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.CanonicalBaseUrl),
 				avatar: avatar?.Thumbnails_.ToArray(),
@@ -57,7 +65,8 @@ public class Channel(
 	}
 
 	public static Channel From(CommentEntityPayload.Types.CommentAuthor commentAuthor) =>
-		new(id: commentAuthor.ChannelId,
+		new("",
+			id: commentAuthor.ChannelId,
 			title: commentAuthor.DisplayName,
 			handle: TryGetHandle(commentAuthor.ChannelCommand.InnertubeCommand.BrowseEndpoint.CanonicalBaseUrl),
 			avatar: [

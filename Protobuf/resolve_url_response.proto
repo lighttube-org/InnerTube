@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Responses;
+
+import "general.proto";
+
+message ResolveUrlResponse {
+  Endpoint endpoint = 2;
+}
