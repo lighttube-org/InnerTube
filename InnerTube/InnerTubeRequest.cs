@@ -51,12 +51,24 @@ internal class InnerTubeRequest
 				clientContext.Add("osVersion", "15.6.0.19G71");
 				clientContext.Add("platform", "MOBILE");
 				break;
+			case RequestClient.TV_EMBEDDED:
+				clientContext.Add("clientName", "TVHTML5_SIMPLY_EMBEDDED_PLAYER");
+				clientContext.Add("clientVersion", "2.0");
+				break;
 		}
 
-		AddValue("context", new Dictionary<string, object>
+		Dictionary<string, object> context = new()
 		{
 			["client"] = clientContext
-		});
+		};
+
+		if (requestClient == RequestClient.TV_EMBEDDED)
+			context.Add("thirdParty", new Dictionary<string, string>
+			{
+				["embedUrl"] = "https://youtube.com"
+			});
+
+		AddValue("context", context);
 	}
 
 	public string GetJson(RequestClient client, string language, string region)

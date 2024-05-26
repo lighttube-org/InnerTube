@@ -24,6 +24,7 @@ message ErrorScreenWrapper {
 message PlayabilityStatus {
   enum Status {
     OK = 0;
+    UNPLAYABLE = 2;
     LOGIN_REQUIRED = 3;
     CONTENT_CHECK_REQUIRED = 4;
     LIVE_STREAM_OFFLINE = 6;

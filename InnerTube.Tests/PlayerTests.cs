@@ -28,6 +28,9 @@ public class PlayerTests
 	[TestCase("-UBaW1OIgTo", true, TestName = "EndScreenItem ctor")]
 	[TestCase("UoBFuLMlDkw", true, TestName = "Video with cards")]
 	[TestCase("Atvsg_zogxo", true, TestName = "Music video (Descramble result always throws an SSL error)")]
+	[TestCase("V6kJKxvbgZ0", true, TestName = "Age restricted video")]
+	[TestCase("jOQs1WBf6qY", true, TestName = "Age restricted & non embeddable video")]
+	[TestCase("LACbVhgtx9I", true, TestName = "Video that includes self-harm topics")]
 	public async Task GetPlayer(string videoId, bool contentCheckOk)
 	{
 		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk);

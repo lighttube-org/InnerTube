@@ -5,7 +5,6 @@ using InnerTube.Exceptions;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
-using Microsoft.ClearScript.Util.Web;
 using Microsoft.Extensions.Caching.Memory;
 
 namespace InnerTube;
@@ -66,6 +65,7 @@ public class InnerTube
 			RequestClient.WEB => "2.20240304.00.00",
 			RequestClient.ANDROID => "19.09.4",
 			RequestClient.IOS => "19.09.4",
+			RequestClient.TV_EMBEDDED => "2.0",
 			var _ => ""
 		});
 		//hrm.Headers.Add("Origin", "https://www.youtube.com");
@@ -86,7 +86,7 @@ public class InnerTube
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
-		bool fallbackToUnserializedResponse = false, string language = "en", string region = "US")
+		string language = "en", string region = "US")
 	{
 		if (!SignatureSolver.Initialized)
 			await SignatureSolver.LoadLatestJs(videoId);
@@ -94,8 +94,11 @@ public class InnerTube
 
 		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
+		// if authorized, use the WEB client to make sure all age-gated videos play.
+		// if not, use TV_EMBEDDED to bypass embeddable videos 
 		Task<PlayerResponse> webResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.WEB);
+			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region,
+				Authorization != null ? RequestClient.WEB : RequestClient.TV_EMBEDDED);
 		Task<PlayerResponse> iosResponse =
 			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.IOS);
 
@@ -144,7 +147,7 @@ public class InnerTube
 			.AddValue("contentCheckOk", contentCheckOk)
 			.AddValue("racyCheckOk", contentCheckOk);
 
-		if (client == RequestClient.WEB && signatureTimestamp != null)
+		if (client is RequestClient.TV_EMBEDDED or RequestClient.WEB && signatureTimestamp != null)
 		{
 			postData.AddValue("playbackContext", new Dictionary<string, object>
 			{
