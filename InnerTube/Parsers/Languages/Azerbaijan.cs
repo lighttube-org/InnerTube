@@ -42,9 +42,13 @@ public partial class Azerbaijan : IValueParser
 			? VideoUploadType.Streamed
 			: type.ToLower(GetCultureInfo()).Contains("başladı")
 				? VideoUploadType.Streaming
-				: type.ToLower(GetCultureInfo()).Contains("premyera")
-					? VideoUploadType.Premiered
-					: VideoUploadType.Published;
+				: type.ToLower(GetCultureInfo()).Contains("var")
+					? VideoUploadType.FuturePremiere
+					: type.ToLower(GetCultureInfo()).Contains("premyera")
+						? VideoUploadType.Premiered
+						: type.ToLower(GetCultureInfo()).Contains("planlaşdırılıb")
+							? VideoUploadType.ScheduledStream
+							: VideoUploadType.Published;
 	}
 
 	public long ParseSubscriberCount(string subscriberCountText) => 
@@ -56,6 +60,11 @@ public partial class Azerbaijan : IValueParser
 	public long ParseViewCount(string viewCountText) => int.Parse(viewCountRegex.Match(viewCountText).Groups[1].Value,
 		NumberStyles.AllowThousands, GetCultureInfo());
 
+	public long ParseVideoCount(string videoCountText) =>
+		!videoCountText.Contains("yoxdur")
+			? ParseShortNumber(videoCountText)
+			: 0;
+
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) =>
 		ParseFullDate(lastUpdatedText.Split(": ")[1]);
 
@@ -65,8 +74,10 @@ public partial class Azerbaijan : IValueParser
 		{
 			Match match = shortNumberRegex.Match(part);
 			float value = match.Groups[1].Value.ToUpper().EndsWith('K')
-				? float.Parse(match.Groups[1].Value.TrimEnd('K'), GetCultureInfo()) * 1000
-				: float.Parse(match.Groups[1].Value, GetCultureInfo());
+				? float.Parse(match.Groups[1].Value.TrimEnd('K'),
+					NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, GetCultureInfo()) * 1000
+				: float.Parse(match.Groups[1].Value, NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint,
+					GetCultureInfo());
 			return (long)(match.Groups[2].Value switch
 			{
 				"mln" => value * 1000000,
@@ -84,7 +95,7 @@ public partial class Azerbaijan : IValueParser
 	[GeneratedRegex("(\\d{1,2}) (\\w+) (\\d{4})")]
 	private static partial Regex FullDatePatternRegex();
 
-	[GeneratedRegex("([\\d,]+K?)\\s?(\\w+)")]
+	[GeneratedRegex("([\\d,.]+K?)\\s?(\\w+)")]
 	private static partial Regex ShortNumberRegex();
 
 	[GeneratedRegex("([\\d.]+)")]

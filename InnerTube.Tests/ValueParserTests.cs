@@ -13,7 +13,7 @@ public class ValueParserTests
 	public async Task Setup()
 	{
 		string valuesJson = await new HttpClient().GetStringAsync(
-			"https://gist.githubusercontent.com/kuylar/2cc4abb51a04def25d3914c7bc236424/raw/71c6fba16739bf6e790e42da4a353b02aed71b1a/out.json");
+			"https://gist.githubusercontent.com/kuylar/2cc4abb51a04def25d3914c7bc236424/raw/756e1b28a57bae1a3a8a67f698a96f28a3f40050/out.json");
 		valuesTestData = JsonSerializer.Deserialize<Dictionary<string, Dictionary<string, string[]>>>(valuesJson)!;
 
 		string datesJson = await new HttpClient().GetStringAsync(
@@ -137,6 +137,11 @@ public class ValueParserTests
 		foreach (string value in testValues["viewCounts"])
 			sb.AppendLine(
 				$"{$"{value}".PadLeft(testValues["viewCounts"].Max(x => x.Length))}: {parser.ParseViewCount(value)}");
+
+		sb.AppendLine("\nVideo counts:");
+		foreach (string value in testValues["videoCounts"])
+			sb.AppendLine(
+				$"{$"{value}".PadLeft(testValues["videoCounts"].Max(x => x.Length))}: {parser.ParseVideoCount(value)}");
 
 		sb.AppendLine("\nLike counts:");
 		foreach (string value in testValues["likeCounts"])

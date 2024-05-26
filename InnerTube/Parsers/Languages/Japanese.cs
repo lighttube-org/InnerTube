@@ -39,6 +39,8 @@ public partial class Japanese : IValueParser
 		if (type.Contains("に公開済み")) return VideoUploadType.Premiered;
 		if (type.Contains("ライブ配信開始日")) return VideoUploadType.Streaming;
 		if (type.Contains("にライブ配信")) return VideoUploadType.Streamed;
+		if (type.Contains("にプレミア公開")) return VideoUploadType.FuturePremiere;
+		if (type.Contains("に公開予定")) return VideoUploadType.ScheduledStream;
 		return VideoUploadType.Published;
 	}
 
@@ -54,6 +56,11 @@ public partial class Japanese : IValueParser
 	public long ParseViewCount(string viewCountText) =>
 		int.Parse(viewCountText.Split(" ")[0], NumberStyles.AllowThousands, CultureInfo.GetCultureInfo("ja"));
 
+	public long ParseVideoCount(string videoCountText) =>
+		!videoCountText.Contains("動画はありません")
+			? ParseShortNumber(videoCountText)
+			: 0;
+
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) => 
 		ParseFullDate(lastUpdatedText);
 
@@ -62,7 +69,8 @@ public partial class Japanese : IValueParser
 		try
 		{
 			Match match = shortNumberRegex.Match(part);
-			float value = float.Parse(match.Groups[1].Value);
+			float value = float.Parse(match.Groups[1].Value,
+				NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.GetCultureInfo("ja"));
 			return (long)(match.Groups[2].Value.ToUpper() switch
 			{
 				"億" => value * 100000000,
@@ -79,6 +87,6 @@ public partial class Japanese : IValueParser
     [GeneratedRegex("(\\d{4}/\\d{2}/\\d{2})")]
     private static partial Regex FullDatePatternRegex();
 
-    [GeneratedRegex("([\\d.]+)([億万]?)")]
+    [GeneratedRegex("([\\d.,]+)([億万]?)")]
     private static partial Regex ShortNumberRegex();
 }

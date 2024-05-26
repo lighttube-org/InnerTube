@@ -148,4 +148,6 @@ public enum VideoUploadType
 	Premiered = 1,
 	Streamed = 2,
 	Streaming = 3,
+	FuturePremiere = 4,
+	ScheduledStream = 5
 }

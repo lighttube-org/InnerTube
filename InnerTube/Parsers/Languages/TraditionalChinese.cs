@@ -40,6 +40,7 @@ public partial class TraditionalChinese: IValueParser
 		if (type.Contains("首播日期")) return VideoUploadType.Premiered;
 		if (type.Contains("開始直播日期")) return VideoUploadType.Streaming;
 		if (type.Contains("串流直播日期")) return VideoUploadType.Streamed;
+		if (type.Contains("預定發布時間")) return VideoUploadType.ScheduledStream;
 		return VideoUploadType.Published;
 	}
 
@@ -55,6 +56,11 @@ public partial class TraditionalChinese: IValueParser
 	public long ParseViewCount(string viewCountText) =>
 		int.Parse(digitRegex.Match(viewCountText).Groups[1].Value, NumberStyles.AllowThousands, CultureInfo.GetCultureInfo("zh-TW"));
 
+	public long ParseVideoCount(string videoCountText) =>
+		!videoCountText.Contains('沒')
+			? ParseShortNumber(videoCountText)
+			: 0;
+
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) => 
 		ParseFullDate(lastUpdatedText);
 
@@ -63,7 +69,8 @@ public partial class TraditionalChinese: IValueParser
 		try
 		{
 			Match match = shortNumberRegex.Match(part);
-			float value = float.Parse(match.Groups[1].Value);
+			float value = float.Parse(match.Groups[1].Value,
+				NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint, CultureInfo.GetCultureInfo("zh-TW"));
 			return (long)(match.Groups[2].Value.ToUpper() switch
 			{
 				"億" => value * 100000000,
@@ -79,9 +86,9 @@ public partial class TraditionalChinese: IValueParser
 
 	[GeneratedRegex("(\\d{4}.\\d{1,2}.\\d{1,2})")]
 	private static partial Regex FullDatePatternRegex();
-	[GeneratedRegex("([\\d,]+)")]
+	[GeneratedRegex("([\\d.,]+)")]
 	private static partial Regex DigitRegex();
 
-    [GeneratedRegex("([\\d.]+)([萬億]?)")]
+    [GeneratedRegex("([\\d.,]+)([萬億]?)")]
     private static partial Regex ShortNumberRegex();
 }

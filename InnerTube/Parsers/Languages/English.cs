@@ -41,6 +41,8 @@ public partial class English : IValueParser
 			"Premiered" => VideoUploadType.Premiered,
 			"Started" => VideoUploadType.Streaming,
 			"Streamed" => VideoUploadType.Streamed,
+			"Premieres" => VideoUploadType.FuturePremiere,
+			"Scheduled" => VideoUploadType.ScheduledStream,
 			_ => VideoUploadType.Published
 		};
 	}
@@ -57,6 +59,12 @@ public partial class English : IValueParser
 	public long ParseViewCount(string viewCountText) =>
 		int.Parse(viewCountText.Split(" ")[0], NumberStyles.AllowThousands);
 
+
+	public long ParseVideoCount(string videoCountText) =>
+		!videoCountText.Contains("No")
+			? ParseShortNumber(videoCountText)
+			: 0;
+
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) => 
 		ParseFullDate(lastUpdatedText.Split(" on ")[1]);
 
@@ -65,7 +73,8 @@ public partial class English : IValueParser
 		try
 		{
 			Match match = shortNumberRegex.Match(part);
-			float value = float.Parse(match.Groups[1].Value);
+			float value = float.Parse(match.Groups[1].Value,
+				NumberStyles.AllowThousands | NumberStyles.AllowDecimalPoint);
 			return (long)(match.Groups[2].Value.ToUpper() switch
 			{
 				"K" => value * 1000,
@@ -83,6 +92,6 @@ public partial class English : IValueParser
     [GeneratedRegex("(\\w+) (\\d{1,2}), (\\d{4})")]
     private static partial Regex FullDatePatternRegex();
 
-    [GeneratedRegex("([\\d.]+)([KMB]?)")]
+    [GeneratedRegex("([\\d.,]+)([KMB]?)")]
     private static partial Regex ShortNumberRegex();
 }

@@ -42,7 +42,11 @@ public partial class Turkish : IValueParser
 				? VideoUploadType.Streaming
 				: type.ToLower(GetCultureInfo()).Contains("yapıldı")
 					? VideoUploadType.Streamed
-					: VideoUploadType.Published;
+					: type.ToLower(GetCultureInfo()).Contains("yayında")
+						? VideoUploadType.FuturePremiere
+						: type.ToLower(GetCultureInfo()).Contains("planlandı")
+							? VideoUploadType.ScheduledStream
+							: VideoUploadType.Published;
 
 	public long ParseSubscriberCount(string subscriberCountText)
 	{
@@ -56,6 +60,11 @@ public partial class Turkish : IValueParser
 	public long ParseViewCount(string viewCountText) => int.Parse(viewCountRegex.Match(viewCountText).Groups[1].Value,
 		NumberStyles.AllowThousands, GetCultureInfo());
 
+	public long ParseVideoCount(string videoCountText) =>
+		!videoCountText.Contains("yok")
+			? ParseShortNumber(videoCountText) 
+			: 0;
+
 	public DateTimeOffset ParseLastUpdated(string lastUpdatedText) =>
 		ParseFullDate(lastUpdatedText.Split(" son ")[1].Split(" tarihinde ")[0]);
 
@@ -64,7 +73,8 @@ public partial class Turkish : IValueParser
 		try
 		{
 			Match match = shortNumberRegex.Match(part);
-			float value = float.Parse(match.Groups[1].Value, NumberStyles.AllowDecimalPoint, GetCultureInfo());
+			float value = float.Parse(match.Groups[1].Value,
+				NumberStyles.AllowDecimalPoint | NumberStyles.AllowThousands, GetCultureInfo());
 			return (long)(match.Groups[2].Value switch
 			{
 				"B" => value * 1000,
