@@ -212,4 +212,6 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 					x => x.ItemSectionRenderer?.Contents ?? []))
 		};
 	}
+
+	public async Task<ResolveUrlResponse> ResolveUrl(string url) => await InnerTube.ResolveUrl(url);
 }

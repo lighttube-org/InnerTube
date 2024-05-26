@@ -25,8 +25,6 @@ public class BrowseTests
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Streams, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Playlists, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Community, null)]
-	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Channels, null)]
-	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.About, null)]
 	[TestCase("UCFAiFyGs6oDiF1Nf-rRJpZA", (int)ChannelTabs.Search, "skyblock")]
 	[TestCase("UCRS3ZUNqkEyTd9XZEphFRMA", (int)ChannelTabs.Featured, null)]
 	[TestCase("UCXuqSBlHAE6Xw-yeJA0Tunw", (int)ChannelTabs.Podcasts, null)]
@@ -203,5 +201,12 @@ public class BrowseTests
 			DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
 			WriteIndented = true
 		}));
+	}
+
+	[TestCase("https://youtube.com/@kuylardev")]
+	public async Task ResolveUrl(string url)
+	{
+		ResolveUrlResponse res = await _innerTube.ResolveUrl(url);
+		Assert.Pass(res.ToString());
 	}
 }

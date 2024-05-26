@@ -257,4 +257,12 @@ public class InnerTube
 			.AddValue("continuation", continuation);
 		return BrowseResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "browse", postData, language, region));
 	}
+
+	public async Task<ResolveUrlResponse> ResolveUrl(string url)
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("url", url);
+		return ResolveUrlResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "navigation/resolve_url",
+			postData, "en", "US"));
+	}
 }
