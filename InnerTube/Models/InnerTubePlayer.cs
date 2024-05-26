@@ -1,13 +1,11 @@
-using InnerTube.Models;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Responses;
-using Range = InnerTube.Protobuf.Responses.Range;
 
-namespace InnerTube;
+namespace InnerTube.Models;
 
-public class InnerTubePlayer(PlayerResponse player, bool isFallback)
+public class InnerTubePlayer(PlayerResponse player, bool isFallback, string parserLanguage)
 {
-	public VideoDetails Details { get; } = new(player, isFallback);
+	public VideoDetails Details { get; } = new(player, isFallback, parserLanguage);
 
 	public VideoEndscreen? Endscreen { get; } =
 		player.Endscreen?.EndscreenRenderer != null ? new VideoEndscreen(player.Endscreen.EndscreenRenderer) : null;
@@ -27,7 +25,7 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback)
 	public string? HlsManifestUrl { get; } = player.StreamingData?.HlsManifestUrl; 
 	public string? DashManifestUrl { get; } = player.StreamingData?.DashManifestUrl; 
 
-	public class VideoDetails(PlayerResponse player, bool isFallback)
+	public class VideoDetails(PlayerResponse player, bool isFallback, string parserLanguage)
 	{
 		public string Id { get; } = player.VideoDetails!.VideoId;
 		public string Title { get; } = player.VideoDetails!.Title;
@@ -37,7 +35,7 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback)
 		public bool IsLive { get; } = player.VideoDetails.IsLiveContent;
 		public bool IsFallback { get; } = isFallback;
 		public bool AllowRatings { get; } = player.VideoDetails.AllowRatings;
-		public bool IsFamilySafe { get; } = true; //todo
+		public bool IsFamilySafe { get; } = player.Microformat.PlayerMicroformatRenderer.IsFamilySafe;
 		public Thumbnail[] Thumbnails { get; } = player.VideoDetails.Thumbnail.Thumbnails_.ToArray();
 
 		public DateTimeOffset PublishDate { get; } =
@@ -50,6 +48,7 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback)
 			TimeSpan.FromSeconds(player.Microformat.PlayerMicroformatRenderer.LengthSeconds);
 
 		public Channel Author { get; } = new(
+			parserLanguage,
 			player.VideoDetails!.ChannelId,
 			player.VideoDetails!.Author,
 			"@" + player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl.Split('@')[1],

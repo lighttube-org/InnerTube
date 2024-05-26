@@ -14,7 +14,7 @@ public class InnerTubePlaylist
 	public string? Continuation { get; }
 	public PlaylistSidebar Sidebar { get; }
 
-	public InnerTubePlaylist(BrowseResponse browse)
+	public InnerTubePlaylist(BrowseResponse browse, string parserLanguage)
 	{
 		Id = HttpUtility.ParseQueryString(
 			browse.Metadata?.PlaylistMetadataRenderer?.AndroidAppindexingLink?.Split('?')[1] ?? "")["list"] ?? "";
@@ -28,12 +28,12 @@ public class InnerTubePlaylist
 			                                         .ResultsContainer.Results[0].ItemSectionRenderer
 			                                         .Contents ??
 		                                         [];
-		RendererContainer[] items = Utils.ConvertRenderers(renderers);
+		RendererContainer[] items = Utils.ConvertRenderers(renderers, parserLanguage);
 		Contents = items.Where(x => x.Type != "continuation").ToArray();
 		Continuation = (items.LastOrDefault(x => x.Type == "continuation")?.Data as ContinuationRendererData)
 			?.ContinuationToken;
 		Chips = Utils.ConvertRenderers(browse.Contents.TwoColumnBrowseResultsRenderer.Tabs[0].TabRenderer.Content
-			?.ResultsContainer.Results[0].ItemSectionRenderer.Header?.FeedFilterChipBarRenderer?.Contents);
-		Sidebar = new PlaylistSidebar(browse.Header.PlaylistHeaderRenderer);
+			?.ResultsContainer.Results[0].ItemSectionRenderer.Header?.FeedFilterChipBarRenderer?.Contents, parserLanguage);
+		Sidebar = new PlaylistSidebar(browse.Header.PlaylistHeaderRenderer, parserLanguage);
 	}
 }

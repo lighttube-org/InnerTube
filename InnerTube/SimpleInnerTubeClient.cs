@@ -12,20 +12,21 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 {
 	public InnerTube InnerTube = new(config);
 
-	public async Task<InnerTubePlayer> GetVideoPlayerAsync(string videoId, bool contentCheckOk, string language = "en", string region = "US")
+	public async Task<InnerTubePlayer> GetVideoPlayerAsync(string videoId, bool contentCheckOk, string language = "en",
+		string region = "US")
 	{
 		// in the worst case scenario, this will do 4 http requests :3
 		try
 		{
 			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, language, region);
-			return new InnerTubePlayer(player, false);
+			return new InnerTubePlayer(player, false, language);
 		}
 		catch (PlayerException e)
 		{
 			if (e.Code != PlayabilityStatus.Types.Status.LiveStreamOffline) throw;
 
 			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, language, region);
-			return new InnerTubePlayer(player, true);
+			return new InnerTubePlayer(player, true, language);
 		}
 	}
 
@@ -34,7 +35,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 	{
 		NextResponse next = await InnerTube.GetNextAsync(videoId, contentCheckOk, true, playlistId, playlistIndex,
 			playlistParams, language, region);
-		return new InnerTubeVideo(next);
+		return new InnerTubeVideo(next, language);
 	}
 
 	public async Task<ContinuationResponse> ContinueVideoRecommendationsAsync(string continuationKey,
@@ -50,7 +51,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		return new ContinuationResponse
 		{
 			ContinuationToken = continuation?.ContinuationEndpoint.ContinuationCommand.Token,
-			Results = Utils.ConvertRenderers(items)
+			Results = Utils.ConvertRenderers(items, language)
 		};
 	}
 
@@ -68,11 +69,12 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 			.Where(x => x.RendererCase is RendererWrapper.RendererOneofCase.CommentThreadRenderer
 				or RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
 			.ToArray();
-		if (continuationItems == null) return new ContinuationResponse
-		{
-			ContinuationToken = null,
-			Results = []
-		};
+		if (continuationItems == null)
+			return new ContinuationResponse
+			{
+				ContinuationToken = null,
+				Results = []
+			};
 		if (continuationItems[0].CommentThreadRenderer.Comment != null)
 		{
 			// CommentRenderer instead of ViewModels
@@ -87,7 +89,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 					{
 						Type = "comment",
 						OriginalType = "commentThreadRenderer",
-						Data = new CommentRendererData(x.CommentThreadRenderer)
+						Data = new CommentRendererData(x.CommentThreadRenderer, "en")
 					}).ToArray()
 			};
 		}
@@ -120,7 +122,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		string language = "en", string region = "US")
 	{
 		BrowseResponse channel = await InnerTube.BrowseAsync(channelId, tabs.GetParams(), null, language, region);
-		return new InnerTubeChannel(channel);
+		return new InnerTubeChannel(channel, language);
 	}
 
 	public async Task<InnerTubeChannel> GetChannelAsync(string channelId, string param, string language = "en",
@@ -128,7 +130,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 	{
 		BrowseResponse channel = await InnerTube.BrowseAsync(channelId, Utils.GetParamsFromChannelTabName(param), null,
 			language, region);
-		return new InnerTubeChannel(channel);
+		return new InnerTubeChannel(channel, language);
 	}
 
 	public async Task<ContinuationResponse> ContinueChannelAsync(string continuationToken, string language = "en",
@@ -144,7 +146,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		return new ContinuationResponse
 		{
 			ContinuationToken = continuation?.ContinuationEndpoint.ContinuationCommand.Token,
-			Results = Utils.ConvertRenderers(items)
+			Results = Utils.ConvertRenderers(items, language)
 		};
 	}
 
@@ -153,7 +155,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 	{
 		BrowseResponse channel =
 			await InnerTube.BrowseAsync(channelId, "EgZzZWFyY2jyBgQKAloA", query, language, region);
-		return new InnerTubeChannel(channel);
+		return new InnerTubeChannel(channel, language);
 	}
 
 	public async Task<InnerTubePlaylist> GetPlaylistAsync(string playlistId, bool includeUnavailable = false,
@@ -162,7 +164,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		BrowseResponse playlist =
 			await InnerTube.BrowseAsync(playlistId.StartsWith("PL") ? "VL" + playlistId : playlistId,
 				Utils.PackPlaylistParams(includeUnavailable, filter), null, language, region);
-		return new InnerTubePlaylist(playlist);
+		return new InnerTubePlaylist(playlist, language);
 	}
 
 	public async Task<ContinuationResponse> ContinuePlaylistAsync(string continuationToken, string language = "en",
@@ -180,7 +182,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		                                         playlist.OnResponseReceivedActions?
 			                                         .AppendContinuationItemsAction?.ContinuationItems ??
 		                                         [];
-		RendererContainer[] items = Utils.ConvertRenderers(renderers);
+		RendererContainer[] items = Utils.ConvertRenderers(renderers, language);
 
 		return new ContinuationResponse
 		{
@@ -190,11 +192,12 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 		};
 	}
 
-	public async Task<InnerTubeSearchResults> SearchAsync(string query, SearchParams? param = null, string language = "en",
+	public async Task<InnerTubeSearchResults> SearchAsync(string query, SearchParams? param = null,
+		string language = "en",
 		string region = "US")
 	{
 		SearchResponse searchResponse = await InnerTube.SearchAsync(query, param, language, region);
-		return new InnerTubeSearchResults(searchResponse);
+		return new InnerTubeSearchResults(searchResponse, language);
 	}
 
 	public async Task<ContinuationResponse> ContinueSearchAsync(string continuationToken, string language = "en",
@@ -209,7 +212,7 @@ public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
 				?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
 			Results = Utils.ConvertRenderers(
 				searchResponse.OnResponseReceivedCommands.AppendContinuationItemsAction.ContinuationItems.SelectMany(
-					x => x.ItemSectionRenderer?.Contents ?? []))
+					x => x.ItemSectionRenderer?.Contents ?? []), language)
 		};
 	}
 

@@ -5,14 +5,14 @@ using InnerTube.Renderers;
 
 namespace InnerTube.Models;
 
-public class InnerTubeChannel(BrowseResponse channel)
+public class InnerTubeChannel(BrowseResponse channel, string parserLanguage)
 {
 	public ChannelHeader? Header { get; } = channel.Header.RendererCase switch
 	{
 		RendererWrapper.RendererOneofCase.C4TabbedHeaderRenderer => new ChannelHeader(channel.Header
-			.C4TabbedHeaderRenderer),
+			.C4TabbedHeaderRenderer, parserLanguage),
 		RendererWrapper.RendererOneofCase.PageHeaderRenderer => new ChannelHeader(channel.Header.PageHeaderRenderer,
-			channel.Metadata.ChannelMetadataRenderer.ExternalId),
+			channel.Metadata.ChannelMetadataRenderer.ExternalId, parserLanguage),
 		_ => null
 	};
 
@@ -38,5 +38,5 @@ public class InnerTubeChannel(BrowseResponse channel)
 				RendererWrapper.RendererOneofCase.ExpandableTabRenderer => (x.ExpandableTabRenderer.Selected,
 					x.ExpandableTabRenderer.Content.ResultsContainer.Results),
 				_ => (false, [])
-			}).FirstOrDefault(x => x.Selected).Item2 ?? []);
+			}).FirstOrDefault(x => x.Selected).Item2 ?? [], parserLanguage);
 }

@@ -66,11 +66,11 @@ for (int i = 0; i < languages.Length; i++)
 	subscriberCounts.AddRange(from Task<(string, string)> res in channelTasks select res.Result.Item1);
 	videoCounts.AddRange(from Task<(string, string)> res in channelTasks select res.Result.Item2);
 
-	//Task[] videoTasks = videos.Select(videoId => GetVideoStrings(hl, videoId)).Cast<Task>().ToArray();
-	//await Task.WhenAll(videoTasks);
-	//videoDates.AddRange(from Task<(string, string, string)> res in videoTasks select res.Result.Item1);
-	//viewCounts.AddRange(from Task<(string, string, string)> res in videoTasks select res.Result.Item2);
-	//likeCounts.AddRange(from Task<(string, string, string)> res in videoTasks select res.Result.Item3);
+	Task[] videoTasks = videos.Select(videoId => GetVideoStrings(hl, videoId)).Cast<Task>().ToArray();
+	await Task.WhenAll(videoTasks);
+	videoDates.AddRange(from Task<(string, string, string)> res in videoTasks select res.Result.Item1);
+	viewCounts.AddRange(from Task<(string, string, string)> res in videoTasks select res.Result.Item2);
+	likeCounts.AddRange(from Task<(string, string, string)> res in videoTasks select res.Result.Item3);
 
 	Task[] playlistTasks = playlists.Select(playlistId => GetLastUpdated(hl, playlistId)).Cast<Task>().ToArray();
 	await Task.WhenAll(playlistTasks);
@@ -80,11 +80,11 @@ for (int i = 0; i < languages.Length; i++)
 	Console.Write("\n");
 	Dictionary<string, List<string>> languageResult = new()
 	{
-		//["subscriberCounts"] = subscriberCounts,
-		//["videoDates"] = videoDates,
-		//["viewCounts"] = viewCounts,
-		//["likeCounts"] = likeCounts,
-		//["lastUpdatedDates"] = lastUpdatedDates,
+		["subscriberCounts"] = subscriberCounts,
+		["videoDates"] = videoDates,
+		["viewCounts"] = viewCounts,
+		["likeCounts"] = likeCounts,
+		["lastUpdatedDates"] = lastUpdatedDates,
 		["videoCounts"] = videoCounts
 	};
 
@@ -102,19 +102,19 @@ async Task<(string, string)> GetSubscriptionCount(string hl, string channelId)
 	string subscriberCountText = (channel.Header.RendererCase switch
 	{
 		RendererWrapper.RendererOneofCase.C4TabbedHeaderRenderer => new ChannelHeader(channel.Header
-			.C4TabbedHeaderRenderer),
+			.C4TabbedHeaderRenderer, ""),
 		RendererWrapper.RendererOneofCase.PageHeaderRenderer => new ChannelHeader(
 			channel.Header.PageHeaderRenderer,
-			channel.Metadata.ChannelMetadataRenderer.ExternalId),
+			channel.Metadata.ChannelMetadataRenderer.ExternalId, ""),
 		_ => null
 	})!.SubscriberCountText;
 	string videoCountText = (channel.Header.RendererCase switch
 	{
 		RendererWrapper.RendererOneofCase.C4TabbedHeaderRenderer => new ChannelHeader(channel.Header
-			.C4TabbedHeaderRenderer),
+			.C4TabbedHeaderRenderer, ""),
 		RendererWrapper.RendererOneofCase.PageHeaderRenderer => new ChannelHeader(
 			channel.Header.PageHeaderRenderer,
-			channel.Metadata.ChannelMetadataRenderer.ExternalId),
+			channel.Metadata.ChannelMetadataRenderer.ExternalId, ""),
 		_ => null
 	})!.VideoCountText;
 	Console.Write(".");

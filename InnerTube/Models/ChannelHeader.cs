@@ -1,4 +1,4 @@
-using System.Text;
+using InnerTube.Parsers;
 using InnerTube.Protobuf;
 
 namespace InnerTube.Models;
@@ -14,12 +14,14 @@ public class ChannelHeader
 	public string? PrimaryLink { get; }
 	public string? SecondaryLink { get; }
 	public string SubscriberCountText { get; }
+	public long SubscriberCount { get; }
 	public string Title { get; }
 	public string Handle { get; }
 	public string VideoCountText { get; }
+	public long VideoCount { get; }
 	public string Tagline { get; }
 
-	public ChannelHeader(C4TabbedHeaderRenderer header)
+	public ChannelHeader(C4TabbedHeaderRenderer header, string parserLanguage)
 	{
 		Id = header.ChannelId;
 		Avatars = header.Avatar.Thumbnails_.ToArray();
@@ -34,13 +36,15 @@ public class ChannelHeader
 			.ReadAttributedDescription(header.HeaderLinks.FirstOrDefault()?.ChannelHeaderLinksViewModel.More, true)
 			.NullIfEmpty();
 		SubscriberCountText = Utils.ReadRuns(header.SubscriberCountText);
+		SubscriberCount = ValueParser.ParseSubscriberCount(parserLanguage, SubscriberCountText);
 		Title = header.Title;
 		Handle = Utils.ReadRuns(header.ChannelHandleText);
 		VideoCountText = Utils.ReadRuns(header.VideosCountText);
+		VideoCount = ValueParser.ParseVideoCount(parserLanguage, VideoCountText);
 		Tagline = header.Tagline.ChannelTaglineRenderer.Content;
 	}
 
-	public ChannelHeader(PageHeaderRenderer header, string channelId)
+	public ChannelHeader(PageHeaderRenderer header, string channelId, string parserLanguage)
 	{
 		Id = channelId;
 		Avatars = header.Content.PageHeaderViewModel.Image.DecoratedAvatarViewModel.Avatar.AvatarViewModel.Image.Sources
@@ -68,11 +72,13 @@ public class ChannelHeader
 			.NullIfEmpty();
 		SubscriberCountText = Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata
 			.ContentMetadataViewModel.MetadataRows[1].MetadataParts[0].Text);
+		SubscriberCount = ValueParser.ParseSubscriberCount(parserLanguage, SubscriberCountText);
 		Title = header.PageTitle;
 		Handle = Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata.ContentMetadataViewModel
 			.MetadataRows[0].MetadataParts[0].Text);
 		VideoCountText = Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata
 			.ContentMetadataViewModel.MetadataRows[1].MetadataParts[1].Text);
+		VideoCount = ValueParser.ParseVideoCount(parserLanguage, VideoCountText);
 		Tagline = Utils.ReadAttributedDescription(
 			header.Content.PageHeaderViewModel.Description.DescriptionPreviewViewModel.Content, true);
 	}

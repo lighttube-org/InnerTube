@@ -11,7 +11,9 @@ public class CommunityPostRendererData : IRendererData
 	public Channel Author { get; set; }
 	public string Content { get; set; }
 	public string LikeCountText { get; set; }
+	public long LikeCount { get; set; }
 	public string CommentsCountText { get; set; }
+	public long CommentCount { get; set; }
 	public RendererContainer? Attachment { get; set; }
 
 	public override string ToString()

@@ -2,7 +2,7 @@ using InnerTube.Protobuf;
 
 namespace InnerTube.Models;
 
-public struct EndscreenItem(EndscreenElementRenderer item)
+public class EndscreenItem(EndscreenElementRenderer item)
 {
 	public EndscreenItemType Type { get; } = (EndscreenItemType)item.Style;
 	public string Title { get; } = Utils.ReadRuns(item.Title);

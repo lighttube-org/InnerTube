@@ -11,6 +11,7 @@ public class PlaylistRendererData : IRendererData
 	public Thumbnail[] Thumbnails { get; set; }
 	public string Title { get; set; }
 	public string VideoCountText { get; set; }
+	public long VideoCount { get; set; }
 	public Thumbnail[][]? SidebarThumbnails { get; set; }
 	public Channel? Author { get; set; }
 	public RendererContainer[]? ChildVideos { get; set; }

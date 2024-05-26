@@ -43,13 +43,14 @@ public class CommentRendererData : IRendererData
 			.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token;
 	}
 
-	public CommentRendererData(CommentThreadRenderer thread)
+	public CommentRendererData(CommentThreadRenderer thread, string parserLanguage)
 	{
 		CommentRenderer comment = thread.Comment.CommentRenderer;
 		Id = comment.CommentId;
 		Content = Utils.ReadRuns(comment.ContentText, true);
 		PublishedTimeText = Utils.ReadRuns(comment.PublishedTimeText);
 		Owner = new Channel(
+			parserLanguage,
 			id: comment.AuthorEndpoint.BrowseEndpoint.BrowseId,
 			title: Utils.ReadRuns(comment.AuthorText),
 			handle: Channel.TryGetHandle(comment.AuthorEndpoint.BrowseEndpoint
