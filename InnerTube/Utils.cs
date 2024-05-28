@@ -632,7 +632,7 @@ public static partial class Utils
 							: null),
 					Duration = ParseDuration(renderer.VideoRenderer.LengthText?.SimpleText ?? "00:00"),
 					PublishedText = ReadRuns(renderer.VideoRenderer.PublishedTimeText),
-					Published = ValueParser.ParseFullDate(parserLanguage, ReadRuns(renderer.VideoRenderer.PublishedTimeText)),
+					RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage, ReadRuns(renderer.VideoRenderer.PublishedTimeText)),
 					ViewCountText = ReadRuns(renderer.VideoRenderer.ViewCountText),
 					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.VideoRenderer.ViewCountText)),
 					Badges = SimplifyBadges(renderer.VideoRenderer.Badges),
@@ -656,9 +656,9 @@ public static partial class Utils
 					PublishedText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
 						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text
 						: "",
-					Published = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
-						? ValueParser.ParseFullDate(parserLanguage, renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text)
-						: DateTimeOffset.UnixEpoch,
+					RelativePublishedDate = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+						? ValueParser.ParseRelativeDate(parserLanguage, renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text)
+						: "",
 					ViewCountText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
 						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text
 						: "",
@@ -682,7 +682,7 @@ public static partial class Utils
 					Author = Channel.From(renderer.PlaylistPanelVideoRenderer.ShortBylineText),
 					Duration = ParseDuration(renderer.PlaylistPanelVideoRenderer.LengthText?.SimpleText ?? "00:00"),
 					PublishedText = "",
-					Published = DateTimeOffset.UnixEpoch,
+					RelativePublishedDate = "",
 					ViewCountText = "",
 					ViewCount = -1,
 					Badges = [],
@@ -703,7 +703,7 @@ public static partial class Utils
 						renderer.CompactVideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
 					Duration = ParseDuration(renderer.CompactVideoRenderer.LengthText?.SimpleText ?? "00:00"),
 					PublishedText = ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText),
-					Published = ValueParser.ParseFullDate(parserLanguage, ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText)),
+					RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage, ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText)),
 					ViewCountText = ReadRuns(renderer.CompactVideoRenderer.ViewCountText),
 					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.CompactVideoRenderer.ViewCountText)),
 					Badges = SimplifyBadges(renderer.CompactVideoRenderer.Badges),
@@ -729,7 +729,7 @@ public static partial class Utils
 							x.RendererCase == RendererWrapper.RendererOneofCase.ThumbnailOverlayTimeStatusRenderer)
 						?.ThumbnailOverlayTimeStatusRenderer.Text)),
 					PublishedText = ReadRuns(renderer.GridVideoRenderer.PublishedTimeText),
-					Published = ValueParser.ParseFullDate(parserLanguage, ReadRuns(renderer.GridVideoRenderer.PublishedTimeText)),
+					RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage, ReadRuns(renderer.GridVideoRenderer.PublishedTimeText)),
 					ViewCountText = ReadRuns(renderer.GridVideoRenderer.ViewCountText),
 					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.GridVideoRenderer.ViewCountText)),
 					Badges = SimplifyBadges(renderer.GridVideoRenderer.Badges),
@@ -749,7 +749,7 @@ public static partial class Utils
 					Title = ReadRuns(renderer.ChannelVideoPlayerRenderer.Title),
 					Duration = TimeSpan.Zero,
 					PublishedText = ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText),
-					Published = ValueParser.ParseFullDate(parserLanguage, ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText)),
+					RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage, ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText)),
 					ViewCountText = ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText),
 					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText)),
 					Badges = [],
@@ -769,7 +769,7 @@ public static partial class Utils
 					Author = Channel.From(renderer.CompactMovieRenderer.ShortBylineText),
 					Duration = ParseDuration(renderer.CompactMovieRenderer.LengthText?.SimpleText ?? "00:00"),
 					PublishedText = "",
-					Published = DateTimeOffset.UnixEpoch,
+					RelativePublishedDate = "",
 					ViewCountText = "",
 					ViewCount = -1,
 					Badges = SimplifyBadges(renderer.GridVideoRenderer.Badges),
@@ -788,7 +788,7 @@ public static partial class Utils
 					Author = null,
 					Duration = TimeSpan.Zero,
 					PublishedText = "",
-					Published = DateTimeOffset.UnixEpoch,
+					RelativePublishedDate = "",
 					ViewCountText = ReadRuns(renderer.ReelItemRenderer.ViewCountText),
 					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.ReelItemRenderer.ViewCountText)),
 					Badges = [],
@@ -807,7 +807,7 @@ public static partial class Utils
 					Author = Channel.From(renderer.PromotedVideoRenderer.LongBylineText),
 					Duration = ParseDuration(ReadRuns(renderer.PromotedVideoRenderer.LengthText)),
 					PublishedText = "",
-					Published = DateTimeOffset.UnixEpoch,
+					RelativePublishedDate = "",
 					ViewCountText = "",
 					ViewCount = -1,
 					Badges = SimplifyBadges([renderer.PromotedVideoRenderer.AdBadge]),
@@ -826,7 +826,7 @@ public static partial class Utils
 					Author = null,
 					Duration = ParseDuration(ReadRuns(renderer.ChildVideoRenderer.LengthText)),
 					PublishedText = "",
-					Published = DateTimeOffset.UnixEpoch,
+					RelativePublishedDate = "",
 					ViewCountText = "",
 					ViewCount = -1,
 					Badges = [],
