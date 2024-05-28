@@ -1,6 +1,7 @@
 using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
 using InnerTube.Models;
+using InnerTube.Parsers;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
@@ -8,9 +9,15 @@ using InnerTube.Renderers;
 
 namespace InnerTube;
 
-public class SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
+public class SimpleInnerTubeClient
 {
-	public InnerTube InnerTube = new(config);
+	public readonly InnerTube InnerTube;
+
+	public SimpleInnerTubeClient(InnerTubeConfiguration? config = null)
+	{
+		InnerTube = new InnerTube(config);
+		ValueParser.Init();
+	}
 
 	public async Task<InnerTubePlayer> GetVideoPlayerAsync(string videoId, bool contentCheckOk, string language = "en",
 		string region = "US")
