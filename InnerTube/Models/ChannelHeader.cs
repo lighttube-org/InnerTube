@@ -70,14 +70,21 @@ public class ChannelHeader
 		SecondaryLink = Utils
 			.ReadAttributedDescription(header.Content.PageHeaderViewModel.Attribution?.AttributionViewModel.Suffix, true)
 			.NullIfEmpty();
-		SubscriberCountText = Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata
-			.ContentMetadataViewModel.MetadataRows[1].MetadataParts[0].Text);
+		SubscriberCountText = header.Content.PageHeaderViewModel.Metadata.ContentMetadataViewModel.MetadataRows[1]
+			                      .MetadataParts.Count > 1
+			? Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata
+				.ContentMetadataViewModel.MetadataRows[1].MetadataParts[0].Text)
+			: "";
 		SubscriberCount = ValueParser.ParseSubscriberCount(parserLanguage, SubscriberCountText);
 		Title = header.PageTitle;
 		Handle = Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata.ContentMetadataViewModel
 			.MetadataRows[0].MetadataParts[0].Text);
-		VideoCountText = Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata
-			.ContentMetadataViewModel.MetadataRows[1].MetadataParts[1].Text);
+		VideoCountText = header.Content.PageHeaderViewModel.Metadata.ContentMetadataViewModel.MetadataRows[1]
+			.MetadataParts.Count > 1
+			? Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata
+				.ContentMetadataViewModel.MetadataRows[1].MetadataParts[1].Text)
+			: Utils.ReadAttributedDescription(header.Content.PageHeaderViewModel.Metadata
+				.ContentMetadataViewModel.MetadataRows[1].MetadataParts[0].Text);
 		VideoCount = ValueParser.ParseVideoCount(parserLanguage, VideoCountText);
 		Tagline = Utils.ReadAttributedDescription(
 			header.Content.PageHeaderViewModel.Description.DescriptionPreviewViewModel.Content, true);
