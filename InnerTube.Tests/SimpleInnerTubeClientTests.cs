@@ -106,6 +106,7 @@ public class SimpleInnerTubeClientTests
 		TestName = "[Playlist] Album playlist (index 9)")]
 	[TestCase("k_nLHgIM4yE", "PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", null, null, TestName = "[Playlist] Large playlist")]
 	[TestCase("Hr2Lm6oEo3c", null, null, null, TestName = "Premiere video in the recommended")]
+	[TestCase("G-n0h9Y8T_0", null, null, null, TestName = "aaaa")]
 	public async Task GetVideoDetailsAsync(string videoId, string? playlistId, int? playlistIndex,
 		string? playlistParams)
 	{

@@ -772,7 +772,7 @@ public static partial class Utils
 					RelativePublishedDate = "",
 					ViewCountText = "",
 					ViewCount = -1,
-					Badges = SimplifyBadges(renderer.GridVideoRenderer.Badges),
+					Badges = SimplifyBadges(renderer.CompactMovieRenderer.Badges),
 					Description = ReadRuns(renderer.CompactMovieRenderer.TopMetadataItems)
 				}
 			},
