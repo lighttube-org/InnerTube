@@ -48,7 +48,7 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback, string pars
 
 		public TimeSpan? Length { get; } = player.Microformat != null
 			? TimeSpan.FromSeconds(player.Microformat.PlayerMicroformatRenderer.LengthSeconds)
-			: null;
+			: TimeSpan.FromSeconds(player.VideoDetails.LengthSeconds);
 
 		public Channel Author { get; } = new(
 			parserLanguage,
