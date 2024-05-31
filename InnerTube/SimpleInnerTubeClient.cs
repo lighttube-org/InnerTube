@@ -26,14 +26,14 @@ public class SimpleInnerTubeClient
 		// in the worst case scenario, this will do 4 http requests :3
 		try
 		{
-			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, language, region);
+			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, false, language, region);
 			return new InnerTubePlayer(player, false, language);
 		}
 		catch (PlayerException e)
 		{
 			if (e.Code != PlayabilityStatus.Types.Status.LiveStreamOffline) throw;
 
-			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, language, region);
+			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, true, language, region);
 			return new InnerTubePlayer(player, true, language);
 		}
 	}
