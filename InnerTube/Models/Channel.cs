@@ -46,7 +46,7 @@ public class Channel(
 			subscribersText: Utils.ReadRuns(videoOwnerRenderer.SubscriberCountText),
 			badges: badges);
 
-	public static Channel? From(Text? bylineText, MetadataBadgeRenderer[]? badges = null, Thumbnails? avatar = null)
+	public static Channel? From(Text bylineText, MetadataBadgeRenderer[]? badges = null, Thumbnails? avatar = null)
 	{
 		if (bylineText == null)
 			return null;
