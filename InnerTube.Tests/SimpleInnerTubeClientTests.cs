@@ -225,6 +225,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Store, null)]
 	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Featured, null, TestName = "Scheduled premiere")]
 	[TestCase("UCv6P5nsS9rP4tDtFlqLU_QQ", (int)ChannelTabs.Featured, null, TestName = "Unsubscribeable channel")]
+	[TestCase("UCpBEwd9bEo0mkMdKQaF0yPw", (int)ChannelTabs.Featured, null, TestName = "Has nullref in header")]
 	public async Task GetChannelAsync(string channelId, int channelTab, string searchQuery)
 	{
 		InnerTubeChannel channel = await client.GetChannelAsync(channelId, (ChannelTabs)channelTab);
