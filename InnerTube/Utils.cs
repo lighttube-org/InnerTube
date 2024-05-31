@@ -1061,6 +1061,9 @@ public static partial class Utils
 						CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer
 							.BackstagePostRenderer.ActionButtons
 							.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
+						PublishedText = ReadRuns(renderer.BackstagePostRenderer.PublishedTimeText),
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.BackstagePostRenderer.PublishedTimeText)),
 						Attachment = renderer.BackstagePostRenderer.BackstageAttachment != null
 							? ConvertRenderer(renderer.BackstagePostRenderer.BackstageAttachment, parserLanguage)
 							: null
@@ -1084,6 +1087,9 @@ public static partial class Utils
 						CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.PostRenderer
 							.ActionButtons
 							.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
+						PublishedText = ReadRuns(renderer.PostRenderer.PublishedTimeText),
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.PostRenderer.PublishedTimeText)),
 						Attachment = renderer.PostRenderer.BackstageAttachment != null
 							? ConvertRenderer(renderer.PostRenderer.BackstageAttachment, parserLanguage)
 							: null
