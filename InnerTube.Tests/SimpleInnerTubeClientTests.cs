@@ -376,9 +376,7 @@ public class SimpleInnerTubeClientTests
 		InnerTubePlaylist playlist = await client.GetPlaylistAsync(playlistId, includeUnavailable, filters);
 
 		StringBuilder sb = new(playlist.Id);
-		sb.AppendLine("\n" + Utils.PackPlaylistParams(includeUnavailable, filters));
-		sb.AppendLine(includeUnavailable + ", " + filters);
-		sb.AppendLine("\n\n=== SIDEBAR");
+		sb.AppendLine("=== SIDEBAR");
 		sb.AppendLine($"Title: {playlist.Sidebar.Title}");
 		sb.AppendLine($"Thumbnails.Length: {playlist.Sidebar.Thumbnails.Length}");
 		sb.AppendLine($"VideoCountText: {playlist.Sidebar.VideoCountText}");
