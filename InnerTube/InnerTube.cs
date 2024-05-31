@@ -98,12 +98,26 @@ public class InnerTube
 		// if not, use TV_EMBEDDED to bypass embeddable videos 
 		Task<PlayerResponse> webResponse =
 			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region,
-				Authorization != null ? RequestClient.WEB : RequestClient.TV_EMBEDDED);
+				RequestClient.WEB);
+		Task<PlayerResponse>? tvEmbeddedResponse = Authorization == null
+			? GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region,
+				RequestClient.TV_EMBEDDED)
+			: null;
 		Task<PlayerResponse> iosResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.IOS);
+			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region,
+				RequestClient.IOS);
 
 		PlayerResponse webPlayer = await webResponse;
+		PlayerResponse? tvEmbeddedPlayer = tvEmbeddedResponse != null ? await tvEmbeddedResponse : null;
 		PlayerResponse? iosPlayer = await iosResponse;
+
+		if (Authorization == null)
+		{
+			PlayerResponse a = webPlayer;
+			webPlayer = tvEmbeddedPlayer!;
+			tvEmbeddedPlayer = a;
+			webPlayer.Microformat = tvEmbeddedPlayer.Microformat;
+		}
 
 		if (webPlayer.PlayabilityStatus.Status == PlayabilityStatus.Types.Status.LiveStreamOffline)
 		{
@@ -128,6 +142,10 @@ public class InnerTube
 				SignatureSolver.DescrambleUrl(format);
 		}
 
+		// Only WEB players have microformat
+		if (webPlayer.Microformat == null && iosPlayer?.Microformat != null)
+			webPlayer.Microformat = iosPlayer.Microformat;
+
 		PlayerCache.Set(cacheId, webPlayer, new MemoryCacheEntryOptions
 		{
 			Size = 1,
@@ -136,6 +154,7 @@ public class InnerTube
 				TimeSpan.FromSeconds(Math.Max(3600,
 					webPlayer.StreamingData!.ExpiresInSeconds - webPlayer.VideoDetails.LengthSeconds))
 		});
+		if (webPlayer.Microformat == null) throw new Exception("no microformat?");
 		return webPlayer;
 	}
 
