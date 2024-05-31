@@ -443,6 +443,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("", "exact", TestName = "backgroundPromoRenderer")]
 	[TestCase("vpn", null, TestName = "adSlotRenderer")]
 	[TestCase("Various Artists", "exact;channel", TestName = "Various Artists/old ChannelRenderer")]
+	[TestCase("ずっと真夜中でいいのに。ZUTOMAYO", null, TestName = "Sidebar")]
 	public async Task SearchAsync(string query, string? paramArgs)
 	{
 		SearchParams? param = paramArgs switch
@@ -469,6 +470,14 @@ public class SimpleInnerTubeClientTests
 			.AppendLine("QueryCorrecter: " + (results.QueryCorrecter?.ToString() ?? "<null>"))
 			.AppendLine("Continuation: " + string.Join("", results.Continuation?.Take(20) ?? "NONE") + "...")
 			.AppendLine("Refinements: \n" + string.Join('\n', results.Refinements.Select(x => $"- {x}")));
+
+		sb.AppendLine("\n=== SIDEBAR");
+		if (results.Sidebar != null)
+			sb.AppendLine(
+				$"-> [{results.Sidebar.Type} ({results.Sidebar.OriginalType})] [{results.Sidebar.Data.GetType().Name}]\n\t" +
+				string.Join("\n\t", results.Sidebar.Data.ToString()!.Split("\n")));
+		else
+			sb.AppendLine("<no sidebar>");
 
 		sb.AppendLine("\n=== RESULTS");
 		foreach (RendererContainer renderer in results.Results)

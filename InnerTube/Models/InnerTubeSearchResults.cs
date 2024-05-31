@@ -7,6 +7,7 @@ namespace InnerTube.Models;
 public class InnerTubeSearchResults
 {
 	public RendererContainer[] Results { get; }
+	public RendererContainer? Sidebar { get; }
 	public ShowingResultsFor? QueryCorrecter { get; }
 	public RendererContainer[] Chips { get; }
 	public string? Continuation { get; }
@@ -29,5 +30,11 @@ public class InnerTubeSearchResults
 			?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token;
 		Refinements = response.Refinements.ToArray();
 		EstimatedResults = response.EstimatedResults;
+
+		Sidebar = response.Contents.TwoColumnSearchResultsRenderer.SecondaryContents != null
+			? Utils.ConvertRenderer(
+				response.Contents.TwoColumnSearchResultsRenderer.SecondaryContents.SecondarySearchContainerRenderer
+					.Contents[0], parserLanguage)
+			: null;
 	}
 }
