@@ -371,12 +371,13 @@ public class SimpleInnerTubeClientTests
 	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true, PlaylistFilter.All, TestName = "VLPL URL")]
 	[TestCase("PLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF", false, PlaylistFilter.All,
 		TestName = "Intentionally empty playlist")]
+	[TestCase("OLAK5uy_nvXWTE9GmzNodCDqaY2vs7fxNm3l5pWcM", true, PlaylistFilter.All, TestName = "Playlist")]
 	public async Task GetPlaylistAsync(string playlistId, bool includeUnavailable, PlaylistFilter filters)
 	{
 		InnerTubePlaylist playlist = await client.GetPlaylistAsync(playlistId, includeUnavailable, filters);
 
 		StringBuilder sb = new(playlist.Id);
-		sb.AppendLine("=== SIDEBAR");
+		sb.AppendLine("\n=== SIDEBAR");
 		sb.AppendLine($"Title: {playlist.Sidebar.Title}");
 		sb.AppendLine($"Thumbnails.Length: {playlist.Sidebar.Thumbnails.Length}");
 		sb.AppendLine($"VideoCountText: {playlist.Sidebar.VideoCountText}");

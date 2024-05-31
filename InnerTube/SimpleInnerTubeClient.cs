@@ -214,7 +214,7 @@ public class SimpleInnerTubeClient
 		PlaylistFilter filter = PlaylistFilter.All, string language = "en", string region = "US")
 	{
 		BrowseResponse playlist =
-			await InnerTube.BrowseAsync(playlistId.StartsWith("PL") ? "VL" + playlistId : playlistId,
+			await InnerTube.BrowseAsync(!playlistId.StartsWith("VL") ? "VL" + playlistId : playlistId,
 				Utils.PackPlaylistParams(includeUnavailable, filter), null, language, region);
 		return new InnerTubePlaylist(playlist, language);
 	}
