@@ -14,7 +14,7 @@ public class ChipRendererData : IRendererData
 		StringBuilder sb = new();
 		sb.AppendLine("Title: " + Title);
 		sb.AppendLine("ContinuationToken: " + (ContinuationToken != null ? ContinuationToken[..10] + "..." : "<null>"));
-		sb.AppendLine("Params: " + (Params != null ? Params[..10] + "..." : "<null>"));
+		sb.AppendLine("Params: " + (Params != null ? Params.Take(10) + "..." : "<null>"));
 		sb.AppendLine("IsSelected: " + IsSelected);
 		return sb.ToString();
 	}
