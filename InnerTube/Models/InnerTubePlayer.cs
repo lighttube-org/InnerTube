@@ -54,7 +54,7 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback, string pars
 			parserLanguage,
 			player.VideoDetails!.ChannelId,
 			player.VideoDetails!.Author,
-			player.Microformat != null
+			player.Microformat != null && player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl.Contains('@') 
 				? "@" + player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl.Split('@')[1]
 				: null,
 			null,
