@@ -51,7 +51,7 @@ public static partial class Utils
 				switch (run.NavigationEndpoint.EndpointTypeCase)
 				{
 					case Endpoint.EndpointTypeOneofCase.UrlEndpoint:
-						string? target = UnwrapRedirectUrl(run.NavigationEndpoint.UrlEndpoint.Url);
+						string target = UnwrapRedirectUrl(run.NavigationEndpoint.UrlEndpoint.Url);
 						currentString = Formatter.FormatUrl(currentString, target);
 						break;
 					case Endpoint.EndpointTypeOneofCase.WatchEndpoint:
@@ -277,6 +277,33 @@ public static partial class Utils
 			}
 		};
 		return ToBase64UrlString(container.ToByteArray(), true);
+	}
+
+	public static string PackChannelAboutPageParams(string channelId, Guid? modalUuid = null)
+	{
+		Guid uuid = modalUuid ?? Guid.NewGuid();
+
+		ChannelAboutParamsContainer aboutParamsContainer = new()
+		{
+			/* 110 */ ChannelAboutParams = new ChannelAboutParams
+			{
+				/* 3 */ ModalUuidParamsContainer = new ModalUuidParamsContainer
+				{
+					/* 19 > 1 */ Uuid = uuid.ToString()
+				}
+			}
+		};
+
+		ChannelBrowseParamsContainer container = new()
+		{
+			ChannelBrowse = new ChannelBrowseParams
+			{
+				BrowseId = channelId,
+				Params = ToBase64UrlString(aboutParamsContainer.ToByteArray())
+			}
+		};
+
+		return ToBase64UrlString(container.ToByteArray());
 	}
 
 	public static string SerializeRenderer(RendererWrapper? renderer)
@@ -597,567 +624,615 @@ public static partial class Utils
 
 	public static RendererContainer? ConvertRenderer(RendererWrapper renderer, string parserLanguage)
 	{
-		return renderer.RendererCase switch
+		try
 		{
-			RendererWrapper.RendererOneofCase.None => new RendererContainer
+			return renderer.RendererCase switch
 			{
-				Type = "unknown",
-				OriginalType = "UnknownProtobufRenderer",
-				Data = new UnknownRendererData
+				RendererWrapper.RendererOneofCase.None => new RendererContainer
 				{
-					ProtobufBytes = renderer.ToByteArray()
-				}
-			},
-			RendererWrapper.RendererOneofCase.VideoRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "videoRenderer",
-				Data = new VideoRendererData
-				{
-					VideoId = renderer.VideoRenderer.VideoId,
-					Title = ReadRuns(renderer.VideoRenderer.Title),
-					Thumbnails = renderer.VideoRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Author = Channel.From(renderer.VideoRenderer.OwnerText,
-						renderer.VideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray(),
-						renderer.VideoRenderer.ChannelThumbnailSupportedRenderers?.ChannelThumbnailWithLinkRenderer
-							?.Thumbnail != null
-							? new Thumbnails
-							{
-								Thumbnails_ =
-								{
-									renderer.VideoRenderer.ChannelThumbnailSupportedRenderers
-										?.ChannelThumbnailWithLinkRenderer?.Thumbnail.Thumbnails_
-								}
-							}
-							: null),
-					Duration = ParseDuration(renderer.VideoRenderer.LengthText?.SimpleText ?? "00:00"),
-					PublishedText = ReadRuns(renderer.VideoRenderer.PublishedTimeText),
-					RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage, ReadRuns(renderer.VideoRenderer.PublishedTimeText)),
-					ViewCountText = ReadRuns(renderer.VideoRenderer.ViewCountText),
-					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.VideoRenderer.ViewCountText)),
-					Badges = SimplifyBadges(renderer.VideoRenderer.Badges),
-					Description = ReadRuns(renderer.VideoRenderer.DetailedMetadataSnippets?.SnippetText),
-					PremiereStartTime = renderer.VideoRenderer.UpcomingEventData != null
-						? DateTimeOffset.FromUnixTimeSeconds(renderer.VideoRenderer.UpcomingEventData.StartTime)
-						: null
-				}
-			},
-			RendererWrapper.RendererOneofCase.PlaylistVideoRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "playlistVideoRenderer",
-				Data = new PlaylistVideoRendererData
-				{
-					VideoId = renderer.PlaylistVideoRenderer.VideoId,
-					Title = ReadRuns(renderer.PlaylistVideoRenderer.Title),
-					Thumbnails = renderer.PlaylistVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Author = Channel.From(renderer.PlaylistVideoRenderer.ShortBylineText),
-					Duration = ParseDuration(renderer.PlaylistVideoRenderer.LengthText?.SimpleText ?? "00:00"),
-					PublishedText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
-						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text
-						: "",
-					RelativePublishedDate = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
-						? ValueParser.ParseRelativeDate(parserLanguage, renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text)
-						: "",
-					ViewCountText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
-						? renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text
-						: "",
-					ViewCount = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
-						? ValueParser.ParseViewCount(parserLanguage, renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text)
-						: -1,
-					Badges = [],
-					Description = null,
-					VideoIndexText = ReadRuns(renderer.PlaylistVideoRenderer.Index)
-				}
-			},
-			RendererWrapper.RendererOneofCase.PlaylistPanelVideoRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "playlistPanelVideoRenderer",
-				Data = new PlaylistVideoRendererData
-				{
-					VideoId = renderer.PlaylistPanelVideoRenderer.VideoId,
-					Title = ReadRuns(renderer.PlaylistPanelVideoRenderer.Title),
-					Thumbnails = renderer.PlaylistPanelVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Author = Channel.From(renderer.PlaylistPanelVideoRenderer.ShortBylineText),
-					Duration = ParseDuration(renderer.PlaylistPanelVideoRenderer.LengthText?.SimpleText ?? "00:00"),
-					PublishedText = "",
-					RelativePublishedDate = "",
-					ViewCountText = "",
-					ViewCount = -1,
-					Badges = [],
-					Description = null,
-					VideoIndexText = ReadRuns(renderer.PlaylistPanelVideoRenderer.IndexText)
-				}
-			},
-			RendererWrapper.RendererOneofCase.CompactVideoRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "compactVideoRenderer",
-				Data = new VideoRendererData
-				{
-					VideoId = renderer.CompactVideoRenderer.VideoId,
-					Title = ReadRuns(renderer.CompactVideoRenderer.Text),
-					Thumbnails = renderer.CompactVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Author = Channel.From(renderer.CompactVideoRenderer.LongBylineText,
-						renderer.CompactVideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
-					Duration = ParseDuration(renderer.CompactVideoRenderer.LengthText?.SimpleText ?? "00:00"),
-					PublishedText = ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText),
-					RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage, ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText)),
-					ViewCountText = ReadRuns(renderer.CompactVideoRenderer.ViewCountText),
-					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.CompactVideoRenderer.ViewCountText)),
-					Badges = SimplifyBadges(renderer.CompactVideoRenderer.Badges),
-					Description = null,
-					PremiereStartTime = renderer.CompactVideoRenderer.UpcomingEventData != null
-						? DateTimeOffset.FromUnixTimeSeconds(renderer.CompactVideoRenderer.UpcomingEventData.StartTime)
-						: null
-				}
-			},
-			RendererWrapper.RendererOneofCase.GridVideoRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "gridVideoRenderer",
-				Data = new VideoRendererData
-				{
-					VideoId = renderer.GridVideoRenderer.VideoId,
-					Title = ReadRuns(renderer.GridVideoRenderer.Title),
-					Thumbnails = renderer.GridVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Author = Channel.From(renderer.GridVideoRenderer.ShortBylineText,
-						renderer.GridVideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
-					Duration = ParseDuration(ReadRuns(renderer.GridVideoRenderer.ThumbnailOverlays
-						.FirstOrDefault(x =>
-							x.RendererCase == RendererWrapper.RendererOneofCase.ThumbnailOverlayTimeStatusRenderer)
-						?.ThumbnailOverlayTimeStatusRenderer.Text)),
-					PublishedText = ReadRuns(renderer.GridVideoRenderer.PublishedTimeText),
-					RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage, ReadRuns(renderer.GridVideoRenderer.PublishedTimeText)),
-					ViewCountText = ReadRuns(renderer.GridVideoRenderer.ViewCountText),
-					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.GridVideoRenderer.ViewCountText)),
-					Badges = SimplifyBadges(renderer.GridVideoRenderer.Badges),
-					Description = null,
-					PremiereStartTime = renderer.GridVideoRenderer.UpcomingEventData != null
-						? DateTimeOffset.FromUnixTimeSeconds(renderer.GridVideoRenderer.UpcomingEventData.StartTime)
-						: null
-				}
-			},
-			RendererWrapper.RendererOneofCase.ChannelVideoPlayerRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "channelVideoPlayerRenderer",
-				Data = new VideoRendererData
-				{
-					VideoId = renderer.ChannelVideoPlayerRenderer.VideoId,
-					Title = ReadRuns(renderer.ChannelVideoPlayerRenderer.Title),
-					Duration = TimeSpan.Zero,
-					PublishedText = ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText),
-					RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage, ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText)),
-					ViewCountText = ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText),
-					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText)),
-					Badges = [],
-					Thumbnails = [],
-					Description = ReadRuns(renderer.ChannelVideoPlayerRenderer.Description)
-				}
-			},
-			RendererWrapper.RendererOneofCase.CompactMovieRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "compactMovieRenderer",
-				Data = new VideoRendererData
-				{
-					VideoId = renderer.CompactMovieRenderer.VideoId,
-					Title = ReadRuns(renderer.CompactMovieRenderer.Title),
-					Thumbnails = renderer.CompactMovieRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Author = Channel.From(renderer.CompactMovieRenderer.ShortBylineText),
-					Duration = ParseDuration(renderer.CompactMovieRenderer.LengthText?.SimpleText ?? "00:00"),
-					PublishedText = "",
-					RelativePublishedDate = "",
-					ViewCountText = "",
-					ViewCount = -1,
-					Badges = SimplifyBadges(renderer.GridVideoRenderer.Badges),
-					Description = ReadRuns(renderer.CompactMovieRenderer.TopMetadataItems)
-				}
-			},
-			RendererWrapper.RendererOneofCase.ReelItemRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "reelItemRenderer",
-				Data = new VideoRendererData
-				{
-					VideoId = renderer.ReelItemRenderer.VideoId,
-					Title = ReadRuns(renderer.ReelItemRenderer.Headline),
-					Thumbnails = renderer.ReelItemRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Author = null,
-					Duration = TimeSpan.Zero,
-					PublishedText = "",
-					RelativePublishedDate = "",
-					ViewCountText = ReadRuns(renderer.ReelItemRenderer.ViewCountText),
-					ViewCount = ValueParser.ParseViewCount(parserLanguage, ReadRuns(renderer.ReelItemRenderer.ViewCountText)),
-					Badges = [],
-					Description = null
-				}
-			},
-			RendererWrapper.RendererOneofCase.PromotedVideoRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "promotedVideoRenderer",
-				Data = new VideoRendererData
-				{
-					VideoId = renderer.PromotedVideoRenderer.VideoId,
-					Title = ReadRuns(renderer.PromotedVideoRenderer.Title),
-					Thumbnails = renderer.PromotedVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Author = Channel.From(renderer.PromotedVideoRenderer.LongBylineText),
-					Duration = ParseDuration(ReadRuns(renderer.PromotedVideoRenderer.LengthText)),
-					PublishedText = "",
-					RelativePublishedDate = "",
-					ViewCountText = "",
-					ViewCount = -1,
-					Badges = SimplifyBadges([renderer.PromotedVideoRenderer.AdBadge]),
-					Description = ReadRuns(renderer.PromotedVideoRenderer.Description)
-				}
-			},
-			RendererWrapper.RendererOneofCase.ChildVideoRenderer => new RendererContainer
-			{
-				Type = "video",
-				OriginalType = "childVideoRenderer",
-				Data = new VideoRendererData
-				{
-					VideoId = renderer.ChildVideoRenderer.VideoId,
-					Title = ReadRuns(renderer.ChildVideoRenderer.Title),
-					Thumbnails = [],
-					Author = null,
-					Duration = ParseDuration(ReadRuns(renderer.ChildVideoRenderer.LengthText)),
-					PublishedText = "",
-					RelativePublishedDate = "",
-					ViewCountText = "",
-					ViewCount = -1,
-					Badges = [],
-					Description = null,
-					PremiereStartTime = null
-				}
-			},
-			RendererWrapper.RendererOneofCase.ChannelRenderer => new RendererContainer
-			{
-				Type = "channel",
-				OriginalType = "channelRenderer",
-				Data = new ChannelRendererData(renderer.ChannelRenderer, parserLanguage)
-			},
-			RendererWrapper.RendererOneofCase.GridChannelRenderer => new RendererContainer
-			{
-				Type = "channel",
-				OriginalType = "gridChannelRenderer",
-				Data = new ChannelRendererData
-				{
-					ChannelId = renderer.GridChannelRenderer.ChannelId,
-					Title = ReadRuns(renderer.GridChannelRenderer.Title),
-					Handle = Channel.TryGetHandle(renderer.GridChannelRenderer.NavigationEndpoint.BrowseEndpoint
-						.CanonicalBaseUrl),
-					Avatar = renderer.GridChannelRenderer.Thumbnail.Thumbnails_.ToArray(),
-					VideoCountText = ReadRuns(renderer.GridChannelRenderer.VideoCountText),
-					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.GridChannelRenderer.VideoCountText)),
-					SubscriberCountText = ReadRuns(renderer.GridChannelRenderer.SubscriberCountText),
-					SubscriberCount = ValueParser.ParseSubscriberCount(parserLanguage, ReadRuns(renderer.GridChannelRenderer.SubscriberCountText))
-				}
-			},
-			RendererWrapper.RendererOneofCase.PlaylistRenderer => new RendererContainer
-			{
-				Type = "playlist",
-				OriginalType = "playlistRenderer",
-				Data = new PlaylistRendererData
-				{
-					PlaylistId = renderer.PlaylistRenderer.PlaylistId,
-					Thumbnails = renderer.PlaylistRenderer.Thumbnails[0].Thumbnails_.ToArray(),
-					Title = ReadRuns(renderer.PlaylistRenderer.Title),
-					VideoCountText = ReadRuns(renderer.PlaylistRenderer.VideoCountText),
-					VideoCount = renderer.PlaylistRenderer.VideoCount,
-					SidebarThumbnails = renderer.PlaylistRenderer.Thumbnails.ToArray()[1..].Select(x => x.Thumbnails_.ToArray()).ToArray(),
-					Author = Channel.From(renderer.PlaylistRenderer.ShortBylineText,
-						renderer.PlaylistRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
-					ChildVideos = ConvertRenderers(renderer.PlaylistRenderer.Videos, parserLanguage),
-					FirstVideoId = renderer.PlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
-					               renderer.PlaylistRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId ??
-					               renderer.PlaylistRenderer.Videos.FirstOrDefault()?.ChildVideoRenderer.VideoId
-				}
-			},
-			RendererWrapper.RendererOneofCase.GridPlaylistRenderer => new RendererContainer
-			{
-				Type = "playlist",
-				OriginalType = "gridPlaylistRenderer",
-				Data = new PlaylistRendererData
-				{
-					PlaylistId = renderer.GridPlaylistRenderer.PlaylistId,
-					Thumbnails = renderer.GridPlaylistRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Title = ReadRuns(renderer.GridPlaylistRenderer.Title),
-					VideoCountText = ReadRuns(renderer.GridPlaylistRenderer.VideoCountText),
-					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.GridPlaylistRenderer.VideoCountText)),
-					SidebarThumbnails = renderer.GridPlaylistRenderer.SidebarThumbnails.Select(x => x.Thumbnails_.ToArray()).ToArray(),
-					Author = null,
-					FirstVideoId = renderer.GridPlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
-					               renderer.GridPlaylistRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId
-				}
-			},
-			RendererWrapper.RendererOneofCase.CompactPlaylistRenderer => new RendererContainer
-			{
-				Type = "playlist",
-				OriginalType = "compactPlaylistRenderer",
-				Data = new PlaylistRendererData
-				{
-					PlaylistId = renderer.CompactPlaylistRenderer.PlaylistId,
-					Thumbnails = renderer.CompactPlaylistRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Title = ReadRuns(renderer.CompactPlaylistRenderer.Title),
-					VideoCountText = ReadRuns(renderer.CompactPlaylistRenderer.VideoCountText),
-					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.CompactPlaylistRenderer.VideoCountText)),
-					SidebarThumbnails = renderer.CompactPlaylistRenderer.SidebarThumbnails.Select(x => x.Thumbnails_.ToArray()).ToArray(),
-					Author = Channel.From(renderer.CompactPlaylistRenderer.ShortBylineText),
-					FirstVideoId = renderer.CompactPlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
-					               renderer.CompactPlaylistRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId
-				}
-			},
-			RendererWrapper.RendererOneofCase.RadioRenderer => new RendererContainer
-			{
-				Type = "playlist",
-				OriginalType = "radioRenderer",
-				Data = new PlaylistRendererData
-				{
-					PlaylistId = renderer.RadioRenderer.PlaylistId,
-					Thumbnails = renderer.RadioRenderer.Thumbnails[0].Thumbnails_.ToArray(),
-					Title = ReadRuns(renderer.RadioRenderer.Title),
-					VideoCountText = ReadRuns(renderer.RadioRenderer.VideoCountText),
-					// this will always fail i think
-					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.RadioRenderer.VideoCountText)),
-					SidebarThumbnails = null,
-					Author = Channel.From(renderer.RadioRenderer.LongBylineText),
-					FirstVideoId = renderer.RadioRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
-					               renderer.RadioRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId
-				}
-			},
-			RendererWrapper.RendererOneofCase.CompactRadioRenderer => new RendererContainer
-			{
-				Type = "playlist",
-				OriginalType = "compactRadioRenderer",
-				Data = new PlaylistRendererData
-				{
-					PlaylistId = renderer.CompactRadioRenderer.PlaylistId,
-					Thumbnails = renderer.CompactRadioRenderer.Thumbnail.Thumbnails_.ToArray(),
-					Title = ReadRuns(renderer.CompactRadioRenderer.Title),
-					VideoCountText = ReadRuns(renderer.CompactRadioRenderer.VideoCountText),
-					// this will always fail i think
-					VideoCount = ValueParser.ParseVideoCount(parserLanguage, ReadRuns(renderer.CompactRadioRenderer.VideoCountText)),
-					SidebarThumbnails = null,
-					Author = Channel.From(renderer.CompactRadioRenderer.LongBylineText),
-					FirstVideoId = renderer.CompactRadioRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
-					               renderer.CompactRadioRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId
-				}
-			},
-			RendererWrapper.RendererOneofCase.ContinuationItemRenderer => new RendererContainer
-			{
-				Type = "continuation",
-				OriginalType = "continuationItemRenderer",
-				Data = new ContinuationRendererData
-				{
-					ContinuationToken = renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token
-				}
-			},
-			RendererWrapper.RendererOneofCase.RecognitionShelfRenderer => new RendererContainer
-			{
-				Type = "recognitionShelf",
-				OriginalType = "recognitionShelfRenderer",
-				Data = new RecognitionShelfRendererData
-				{
-					Title = ReadRuns(renderer.RecognitionShelfRenderer.Title),
-					Subtitle = ReadRuns(renderer.RecognitionShelfRenderer.Subtitle),
-					Avatars = renderer.RecognitionShelfRenderer.Avatars
-						.SelectMany(x => x.Thumbnails_.Select(y => y.Url)).ToArray()
-				}
-			},
-			RendererWrapper.RendererOneofCase.BackstagePostThreadRenderer => ConvertRenderer(renderer.BackstagePostThreadRenderer.Post, parserLanguage),
-			RendererWrapper.RendererOneofCase.BackstagePostRenderer => new RendererContainer
-			{
-				Type = "communityPost",
-				OriginalType = "backstagePostRenderer",
-				Data = new CommunityPostRendererData
-				{
-					PostId = renderer.BackstagePostRenderer.PostId,
-					Author = Channel.From(renderer.BackstagePostRenderer.AuthorText,
-						avatar: renderer.BackstagePostRenderer.AuthorThumbnail)!,
-					Content = ReadRuns(renderer.BackstagePostRenderer.ContentText),
-					LikeCountText = ReadRuns(renderer.BackstagePostRenderer.VoteCount),
-					LikeCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.BackstagePostRenderer.VoteCount)),
-					CommentsCountText = ReadRuns(renderer.BackstagePostRenderer.ActionButtons
-						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title),
-					CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.BackstagePostRenderer.ActionButtons
-						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
-					Attachment = renderer.BackstagePostRenderer.BackstageAttachment != null
-						? ConvertRenderer(renderer.BackstagePostRenderer.BackstageAttachment, parserLanguage)
-						: null
-				}
-			},
-			RendererWrapper.RendererOneofCase.PostRenderer => new RendererContainer
-			{
-				Type = "communityPost",
-				OriginalType = "postRenderer",
-				Data = new CommunityPostRendererData
-				{
-					PostId = renderer.PostRenderer.PostId,
-					Author = Channel.From(renderer.PostRenderer.AuthorText,
-						avatar: renderer.PostRenderer.AuthorThumbnail)!,
-					Content = ReadRuns(renderer.PostRenderer.ContentText),
-					LikeCountText = ReadRuns(renderer.PostRenderer.VoteCount),
-					LikeCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.PostRenderer.VoteCount)),
-					CommentsCountText = ReadRuns(renderer.PostRenderer.ActionButtons
-						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title),
-					CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.PostRenderer.ActionButtons
-						.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
-					Attachment = renderer.PostRenderer.BackstageAttachment != null
-						? ConvertRenderer(renderer.PostRenderer.BackstageAttachment, parserLanguage)
-						: null
-				}
-			},
-			RendererWrapper.RendererOneofCase.BackstageImageRenderer => new RendererContainer
-			{
-				Type = "communityPostImage",
-				OriginalType = "backstageImageRenderer",
-				Data = new CommunityPostImageRendererData
-				{
-					Images = [renderer.BackstageImageRenderer.Image.Thumbnails_.ToArray()]
-				}
-			},
-			RendererWrapper.RendererOneofCase.PostMultiImageRenderer => new RendererContainer
-			{
-				Type = "communityPostImage",
-				OriginalType = "PostMultiImageRenderer",
-				Data = new CommunityPostImageRendererData
-				{
-					Images = renderer.PostMultiImageRenderer.Images
-						.Select(x => x.BackstageImageRenderer.Image.Thumbnails_.ToArray()).ToArray()
-				}
-			},
-			RendererWrapper.RendererOneofCase.ItemSectionRenderer => new RendererContainer
-			{
-				Type = "container",
-				OriginalType = "itemSectionRenderer",
-				Data = new ContainerRendererData
-				{
-					Items = ConvertRenderers(renderer.ItemSectionRenderer.Contents, parserLanguage)
-				}
-			},
-			RendererWrapper.RendererOneofCase.ShelfRenderer => new RendererContainer
-			{
-				Type = "container",
-				OriginalType = "shelfRenderer",
-				Data = new ContainerRendererData
-				{
-					Items = ConvertRenderers(renderer.ShelfRenderer.Content.RendererCase switch
+					Type = "unknown",
+					OriginalType = "UnknownProtobufRenderer",
+					Data = new UnknownRendererData
 					{
-						RendererWrapper.RendererOneofCase.VerticalListRenderer => renderer.ShelfRenderer.Content.VerticalListRenderer.Items,
-						RendererWrapper.RendererOneofCase.HorizontalListRenderer => renderer.ShelfRenderer.Content.HorizontalListRenderer.Items,
-						_ =>
-						[
-							new RendererWrapper
-							{
-								MessageRenderer = new MessageRenderer
+						ProtobufBytes = renderer.ToByteArray()
+					}
+				},
+				RendererWrapper.RendererOneofCase.VideoRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "videoRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.VideoRenderer.VideoId,
+						Title = ReadRuns(renderer.VideoRenderer.Title),
+						Thumbnails = renderer.VideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Author = Channel.From(renderer.VideoRenderer.OwnerText,
+							renderer.VideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray(),
+							renderer.VideoRenderer.ChannelThumbnailSupportedRenderers?.ChannelThumbnailWithLinkRenderer
+								?.Thumbnail != null
+								? new Thumbnails
 								{
-									Text = new Text
+									Thumbnails_ =
 									{
-										SimpleText = $"INNERTUBE: Unknown RendererCase: {renderer.ShelfRenderer.Content.RendererCase}"
+										renderer.VideoRenderer.ChannelThumbnailSupportedRenderers
+											?.ChannelThumbnailWithLinkRenderer?.Thumbnail.Thumbnails_
 									}
 								}
-							}
-						]
-					}, parserLanguage),
-					Style = "shelf;" + renderer.ShelfRenderer.Content.RendererCase switch
+								: null),
+						Duration = ParseDuration(renderer.VideoRenderer.LengthText?.SimpleText ?? "00:00"),
+						PublishedText = ReadRuns(renderer.VideoRenderer.PublishedTimeText),
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.VideoRenderer.PublishedTimeText)),
+						ViewCountText = ReadRuns(renderer.VideoRenderer.ViewCountText),
+						ViewCount = ValueParser.ParseViewCount(parserLanguage,
+							ReadRuns(renderer.VideoRenderer.ViewCountText)),
+						Badges = SimplifyBadges(renderer.VideoRenderer.Badges),
+						Description = ReadRuns(renderer.VideoRenderer.DetailedMetadataSnippets?.SnippetText),
+						PremiereStartTime = renderer.VideoRenderer.UpcomingEventData != null
+							? DateTimeOffset.FromUnixTimeSeconds(renderer.VideoRenderer.UpcomingEventData.StartTime)
+							: null
+					}
+				},
+				RendererWrapper.RendererOneofCase.PlaylistVideoRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "playlistVideoRenderer",
+					Data = new PlaylistVideoRendererData
 					{
-						RendererWrapper.RendererOneofCase.VerticalListRenderer => "vertical",
-						RendererWrapper.RendererOneofCase.HorizontalListRenderer => "horizontal",
-						_ => "vertical"
-					},
-					Title = ReadRuns(renderer.ShelfRenderer.Title),
-					Subtitle = ReadRuns(renderer.ShelfRenderer.Subtitle),
-					// TODO: Destination = Utils.ParseEndpoint(),
-					ShownItemCount = renderer.ShelfRenderer.Content.VerticalListRenderer?.CollapsedItemCount
-				}
-			},
-			RendererWrapper.RendererOneofCase.ReelShelfRenderer => new RendererContainer
-			{
-				Type = "container",
-				OriginalType = "reelShelfRenderer",
-				Data = new ContainerRendererData
+						VideoId = renderer.PlaylistVideoRenderer.VideoId,
+						Title = ReadRuns(renderer.PlaylistVideoRenderer.Title),
+						Thumbnails = renderer.PlaylistVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Author = Channel.From(renderer.PlaylistVideoRenderer.ShortBylineText),
+						Duration = ParseDuration(renderer.PlaylistVideoRenderer.LengthText?.SimpleText ?? "00:00"),
+						PublishedText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+							? renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text
+							: "",
+						RelativePublishedDate = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+							? ValueParser.ParseRelativeDate(parserLanguage,
+								renderer.PlaylistVideoRenderer.VideoInfo.Runs[2].Text)
+							: "",
+						ViewCountText = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+							? renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text
+							: "",
+						ViewCount = renderer.PlaylistVideoRenderer.VideoInfo?.Runs.Count > 0
+							? ValueParser.ParseViewCount(parserLanguage,
+								renderer.PlaylistVideoRenderer.VideoInfo.Runs[0].Text)
+							: -1,
+						Badges = [],
+						Description = null,
+						VideoIndexText = ReadRuns(renderer.PlaylistVideoRenderer.Index)
+					}
+				},
+				RendererWrapper.RendererOneofCase.PlaylistPanelVideoRenderer => new RendererContainer
 				{
-					Items = ConvertRenderers(renderer.ReelShelfRenderer.Items, parserLanguage),
-					Style = "shelf;reel",
-					Title = ReadRuns(renderer.ReelShelfRenderer.Title)
-				}
-			},
-			RendererWrapper.RendererOneofCase.SearchPyvRenderer => new RendererContainer
-			{
-				Type = "container",
-				OriginalType = "searchPyvRenderer",
-				Data = new ContainerRendererData
-				{
-					Items = ConvertRenderers(renderer.SearchPyvRenderer.Ads, parserLanguage),
-					Style = "ad"
-				}
-			},
-			RendererWrapper.RendererOneofCase.GridRenderer => new RendererContainer
-			{
-				Type = "container",
-				OriginalType = "gridRenderer",
-				Data = new ContainerRendererData
-				{
-					Items = ConvertRenderers(renderer.GridRenderer.Items, parserLanguage),
-					Style = "grid"
-				}
-			},
-			RendererWrapper.RendererOneofCase.RichGridRenderer => new RendererContainer
-			{
-				Type = "container",
-				OriginalType = "richGridRenderer",
-				Data = new ContainerRendererData
-				{
-					Items = ConvertRenderers(renderer.RichGridRenderer.Contents, parserLanguage),
-					Style = "grid"
-				}
-			},
-			RendererWrapper.RendererOneofCase.RichItemRenderer => ConvertRenderer(renderer.RichItemRenderer.Content, parserLanguage),
-			RendererWrapper.RendererOneofCase.AdSlotRenderer => ConvertRenderer(renderer.AdSlotRenderer
-				.FulfillmentContent.FulfilledLayout.InFeedAdLayoutRenderer.RenderingContent, parserLanguage),
-			RendererWrapper.RendererOneofCase.MessageRenderer => new RendererContainer
-			{
-				Type = "message",
-				OriginalType = "messageRenderer",
-				Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text))
-			},
-			RendererWrapper.RendererOneofCase.BackgroundPromoRenderer => new RendererContainer
-			{
-				Type = "message",
-				OriginalType = "backgroundPromoRenderer",
-				Data = new MessageRendererData(ReadRuns(renderer.BackgroundPromoRenderer.Text))
-			},
-			RendererWrapper.RendererOneofCase.ChipCloudChipRenderer => new RendererContainer
-			{
-				Type = "chip",
-				OriginalType = "chipCloudChipRenderer",
-				Data = new ChipRendererData
-				{
-					Title = ReadRuns(renderer.ChipCloudChipRenderer.Text),
-					ContinuationToken = renderer.ChipCloudChipRenderer.NavigationEndpoint?.ContinuationCommand?.Token,
-					Params = renderer.ChipCloudChipRenderer.NavigationEndpoint?.BrowseEndpoint?.Params,
-					IsSelected = renderer.ChipCloudChipRenderer.IsSelected
-				}
-			},
-			RendererWrapper.RendererOneofCase
-				.PromotedSparklesWebRenderer => null, // ad, doesn't fit into any IRendererData's
-			_ => new RendererContainer
-			{
-				Type = "unknown",
-				OriginalType = renderer.RendererCase.ToString(),
-				Data = new UnknownRendererData
-				{
-					Json = JsonSerializer.Serialize(renderer, new JsonSerializerOptions
+					Type = "video",
+					OriginalType = "playlistPanelVideoRenderer",
+					Data = new PlaylistVideoRendererData
 					{
-						DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
-					})
+						VideoId = renderer.PlaylistPanelVideoRenderer.VideoId,
+						Title = ReadRuns(renderer.PlaylistPanelVideoRenderer.Title),
+						Thumbnails = renderer.PlaylistPanelVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Author = Channel.From(renderer.PlaylistPanelVideoRenderer.ShortBylineText),
+						Duration = ParseDuration(renderer.PlaylistPanelVideoRenderer.LengthText?.SimpleText ?? "00:00"),
+						PublishedText = "",
+						RelativePublishedDate = "",
+						ViewCountText = "",
+						ViewCount = -1,
+						Badges = [],
+						Description = null,
+						VideoIndexText = ReadRuns(renderer.PlaylistPanelVideoRenderer.IndexText)
+					}
+				},
+				RendererWrapper.RendererOneofCase.CompactVideoRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "compactVideoRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.CompactVideoRenderer.VideoId,
+						Title = ReadRuns(renderer.CompactVideoRenderer.Text),
+						Thumbnails = renderer.CompactVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Author = Channel.From(renderer.CompactVideoRenderer.LongBylineText,
+							renderer.CompactVideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
+						Duration = ParseDuration(renderer.CompactVideoRenderer.LengthText?.SimpleText ?? "00:00"),
+						PublishedText = ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText),
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.CompactVideoRenderer.PublishedTimeText)),
+						ViewCountText = ReadRuns(renderer.CompactVideoRenderer.ViewCountText),
+						ViewCount = ValueParser.ParseViewCount(parserLanguage,
+							ReadRuns(renderer.CompactVideoRenderer.ViewCountText)),
+						Badges = SimplifyBadges(renderer.CompactVideoRenderer.Badges),
+						Description = null,
+						PremiereStartTime = renderer.CompactVideoRenderer.UpcomingEventData != null
+							? DateTimeOffset.FromUnixTimeSeconds(renderer.CompactVideoRenderer.UpcomingEventData
+								.StartTime)
+							: null
+					}
+				},
+				RendererWrapper.RendererOneofCase.GridVideoRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "gridVideoRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.GridVideoRenderer.VideoId,
+						Title = ReadRuns(renderer.GridVideoRenderer.Title),
+						Thumbnails = renderer.GridVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Author = Channel.From(renderer.GridVideoRenderer.ShortBylineText,
+							renderer.GridVideoRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
+						Duration = ParseDuration(ReadRuns(renderer.GridVideoRenderer.ThumbnailOverlays
+							.FirstOrDefault(x =>
+								x.RendererCase == RendererWrapper.RendererOneofCase.ThumbnailOverlayTimeStatusRenderer)
+							?.ThumbnailOverlayTimeStatusRenderer.Text)),
+						PublishedText = ReadRuns(renderer.GridVideoRenderer.PublishedTimeText),
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.GridVideoRenderer.PublishedTimeText)),
+						ViewCountText = ReadRuns(renderer.GridVideoRenderer.ViewCountText),
+						ViewCount = ValueParser.ParseViewCount(parserLanguage,
+							ReadRuns(renderer.GridVideoRenderer.ViewCountText)),
+						Badges = SimplifyBadges(renderer.GridVideoRenderer.Badges),
+						Description = null,
+						PremiereStartTime = renderer.GridVideoRenderer.UpcomingEventData != null
+							? DateTimeOffset.FromUnixTimeSeconds(renderer.GridVideoRenderer.UpcomingEventData.StartTime)
+							: null
+					}
+				},
+				RendererWrapper.RendererOneofCase.ChannelVideoPlayerRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "channelVideoPlayerRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.ChannelVideoPlayerRenderer.VideoId,
+						Title = ReadRuns(renderer.ChannelVideoPlayerRenderer.Title),
+						Duration = TimeSpan.Zero,
+						PublishedText = ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText),
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.ChannelVideoPlayerRenderer.PublishedTimeText)),
+						ViewCountText = ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText),
+						ViewCount = ValueParser.ParseViewCount(parserLanguage,
+							ReadRuns(renderer.ChannelVideoPlayerRenderer.ViewCountText)),
+						Badges = [],
+						Thumbnails = [],
+						Description = ReadRuns(renderer.ChannelVideoPlayerRenderer.Description)
+					}
+				},
+				RendererWrapper.RendererOneofCase.CompactMovieRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "compactMovieRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.CompactMovieRenderer.VideoId,
+						Title = ReadRuns(renderer.CompactMovieRenderer.Title),
+						Thumbnails = renderer.CompactMovieRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Author = Channel.From(renderer.CompactMovieRenderer.ShortBylineText),
+						Duration = ParseDuration(renderer.CompactMovieRenderer.LengthText?.SimpleText ?? "00:00"),
+						PublishedText = "",
+						RelativePublishedDate = "",
+						ViewCountText = "",
+						ViewCount = -1,
+						Badges = SimplifyBadges(renderer.CompactMovieRenderer.Badges),
+						Description = ReadRuns(renderer.CompactMovieRenderer.TopMetadataItems)
+					}
+				},
+				RendererWrapper.RendererOneofCase.ReelItemRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "reelItemRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.ReelItemRenderer.VideoId,
+						Title = ReadRuns(renderer.ReelItemRenderer.Headline),
+						Thumbnails = renderer.ReelItemRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Author = null,
+						Duration = TimeSpan.Zero,
+						PublishedText = "",
+						RelativePublishedDate = "",
+						ViewCountText = ReadRuns(renderer.ReelItemRenderer.ViewCountText),
+						ViewCount = ValueParser.ParseViewCount(parserLanguage,
+							ReadRuns(renderer.ReelItemRenderer.ViewCountText)),
+						Badges = [],
+						Description = null
+					}
+				},
+				RendererWrapper.RendererOneofCase.PromotedVideoRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "promotedVideoRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.PromotedVideoRenderer.VideoId,
+						Title = ReadRuns(renderer.PromotedVideoRenderer.Title),
+						Thumbnails = renderer.PromotedVideoRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Author = Channel.From(renderer.PromotedVideoRenderer.LongBylineText),
+						Duration = ParseDuration(ReadRuns(renderer.PromotedVideoRenderer.LengthText)),
+						PublishedText = "",
+						RelativePublishedDate = "",
+						ViewCountText = "",
+						ViewCount = -1,
+						Badges = SimplifyBadges([renderer.PromotedVideoRenderer.AdBadge]),
+						Description = ReadRuns(renderer.PromotedVideoRenderer.Description)
+					}
+				},
+				RendererWrapper.RendererOneofCase.ChildVideoRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "childVideoRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.ChildVideoRenderer.VideoId,
+						Title = ReadRuns(renderer.ChildVideoRenderer.Title),
+						Thumbnails = [],
+						Author = null,
+						Duration = ParseDuration(ReadRuns(renderer.ChildVideoRenderer.LengthText)),
+						PublishedText = "",
+						RelativePublishedDate = "",
+						ViewCountText = "",
+						ViewCount = -1,
+						Badges = [],
+						Description = null,
+						PremiereStartTime = null
+					}
+				},
+				RendererWrapper.RendererOneofCase.ChannelRenderer => new RendererContainer
+				{
+					Type = "channel",
+					OriginalType = "channelRenderer",
+					Data = new ChannelRendererData(renderer.ChannelRenderer, parserLanguage)
+				},
+				RendererWrapper.RendererOneofCase.GridChannelRenderer => new RendererContainer
+				{
+					Type = "channel",
+					OriginalType = "gridChannelRenderer",
+					Data = new ChannelRendererData
+					{
+						ChannelId = renderer.GridChannelRenderer.ChannelId,
+						Title = ReadRuns(renderer.GridChannelRenderer.Title),
+						Handle = Channel.TryGetHandle(renderer.GridChannelRenderer.NavigationEndpoint.BrowseEndpoint
+							.CanonicalBaseUrl),
+						Avatar = renderer.GridChannelRenderer.Thumbnail.Thumbnails_.ToArray(),
+						VideoCountText = ReadRuns(renderer.GridChannelRenderer.VideoCountText),
+						VideoCount = ValueParser.ParseVideoCount(parserLanguage,
+							ReadRuns(renderer.GridChannelRenderer.VideoCountText)),
+						SubscriberCountText = ReadRuns(renderer.GridChannelRenderer.SubscriberCountText),
+						SubscriberCount = ValueParser.ParseSubscriberCount(parserLanguage,
+							ReadRuns(renderer.GridChannelRenderer.SubscriberCountText))
+					}
+				},
+				RendererWrapper.RendererOneofCase.PlaylistRenderer => new RendererContainer
+				{
+					Type = "playlist",
+					OriginalType = "playlistRenderer",
+					Data = new PlaylistRendererData
+					{
+						PlaylistId = renderer.PlaylistRenderer.PlaylistId,
+						Thumbnails = renderer.PlaylistRenderer.Thumbnails[0].Thumbnails_.ToArray(),
+						Title = ReadRuns(renderer.PlaylistRenderer.Title),
+						VideoCountText = ReadRuns(renderer.PlaylistRenderer.VideoCountText),
+						VideoCount = renderer.PlaylistRenderer.VideoCount,
+						SidebarThumbnails = renderer.PlaylistRenderer.Thumbnails.ToArray()[1..]
+							.Select(x => x.Thumbnails_.ToArray()).ToArray(),
+						Author = Channel.From(renderer.PlaylistRenderer.ShortBylineText,
+							renderer.PlaylistRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray()),
+						ChildVideos = ConvertRenderers(renderer.PlaylistRenderer.Videos, parserLanguage),
+						FirstVideoId = renderer.PlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
+						               renderer.PlaylistRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId ??
+						               renderer.PlaylistRenderer.Videos.FirstOrDefault()?.ChildVideoRenderer.VideoId
+					}
+				},
+				RendererWrapper.RendererOneofCase.GridPlaylistRenderer => new RendererContainer
+				{
+					Type = "playlist",
+					OriginalType = "gridPlaylistRenderer",
+					Data = new PlaylistRendererData
+					{
+						PlaylistId = renderer.GridPlaylistRenderer.PlaylistId,
+						Thumbnails = renderer.GridPlaylistRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Title = ReadRuns(renderer.GridPlaylistRenderer.Title),
+						VideoCountText = ReadRuns(renderer.GridPlaylistRenderer.VideoCountText),
+						VideoCount = ValueParser.ParseVideoCount(parserLanguage,
+							ReadRuns(renderer.GridPlaylistRenderer.VideoCountText)),
+						SidebarThumbnails = renderer.GridPlaylistRenderer.SidebarThumbnails
+							.Select(x => x.Thumbnails_.ToArray()).ToArray(),
+						Author = null,
+						FirstVideoId = renderer.GridPlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
+						               renderer.GridPlaylistRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId
+					}
+				},
+				RendererWrapper.RendererOneofCase.CompactPlaylistRenderer => new RendererContainer
+				{
+					Type = "playlist",
+					OriginalType = "compactPlaylistRenderer",
+					Data = new PlaylistRendererData
+					{
+						PlaylistId = renderer.CompactPlaylistRenderer.PlaylistId,
+						Thumbnails = renderer.CompactPlaylistRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Title = ReadRuns(renderer.CompactPlaylistRenderer.Title),
+						VideoCountText = ReadRuns(renderer.CompactPlaylistRenderer.VideoCountText),
+						VideoCount = ValueParser.ParseVideoCount(parserLanguage,
+							ReadRuns(renderer.CompactPlaylistRenderer.VideoCountText)),
+						SidebarThumbnails = renderer.CompactPlaylistRenderer.SidebarThumbnails
+							.Select(x => x.Thumbnails_.ToArray()).ToArray(),
+						Author = Channel.From(renderer.CompactPlaylistRenderer.ShortBylineText),
+						FirstVideoId = renderer.CompactPlaylistRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
+						               renderer.CompactPlaylistRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId
+					}
+				},
+				RendererWrapper.RendererOneofCase.RadioRenderer => new RendererContainer
+				{
+					Type = "playlist",
+					OriginalType = "radioRenderer",
+					Data = new PlaylistRendererData
+					{
+						PlaylistId = renderer.RadioRenderer.PlaylistId,
+						Thumbnails = renderer.RadioRenderer.Thumbnails[0].Thumbnails_.ToArray(),
+						Title = ReadRuns(renderer.RadioRenderer.Title),
+						VideoCountText = ReadRuns(renderer.RadioRenderer.VideoCountText),
+						// this will always fail i think
+						VideoCount = ValueParser.ParseVideoCount(parserLanguage,
+							ReadRuns(renderer.RadioRenderer.VideoCountText)),
+						SidebarThumbnails = null,
+						Author = Channel.From(renderer.RadioRenderer.LongBylineText),
+						FirstVideoId = renderer.RadioRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
+						               renderer.RadioRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId
+					}
+				},
+				RendererWrapper.RendererOneofCase.CompactRadioRenderer => new RendererContainer
+				{
+					Type = "playlist",
+					OriginalType = "compactRadioRenderer",
+					Data = new PlaylistRendererData
+					{
+						PlaylistId = renderer.CompactRadioRenderer.PlaylistId,
+						Thumbnails = renderer.CompactRadioRenderer.Thumbnail.Thumbnails_.ToArray(),
+						Title = ReadRuns(renderer.CompactRadioRenderer.Title),
+						VideoCountText = ReadRuns(renderer.CompactRadioRenderer.VideoCountText),
+						// this will always fail i think
+						VideoCount = ValueParser.ParseVideoCount(parserLanguage,
+							ReadRuns(renderer.CompactRadioRenderer.VideoCountText)),
+						SidebarThumbnails = null,
+						Author = Channel.From(renderer.CompactRadioRenderer.LongBylineText),
+						FirstVideoId = renderer.CompactRadioRenderer.NavigationEndpoint.WatchEndpoint?.VideoId ??
+						               renderer.CompactRadioRenderer.NavigationEndpoint.ReelWatchEndpoint?.VideoId
+					}
+				},
+				RendererWrapper.RendererOneofCase.ContinuationItemRenderer => new RendererContainer
+				{
+					Type = "continuation",
+					OriginalType = "continuationItemRenderer",
+					Data = new ContinuationRendererData
+					{
+						ContinuationToken = renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand
+							.Token
+					}
+				},
+				RendererWrapper.RendererOneofCase.RecognitionShelfRenderer => new RendererContainer
+				{
+					Type = "recognitionShelf",
+					OriginalType = "recognitionShelfRenderer",
+					Data = new RecognitionShelfRendererData
+					{
+						Title = ReadRuns(renderer.RecognitionShelfRenderer.Title),
+						Subtitle = ReadRuns(renderer.RecognitionShelfRenderer.Subtitle),
+						Avatars = renderer.RecognitionShelfRenderer.Avatars
+							.SelectMany(x => x.Thumbnails_.Select(y => y.Url)).ToArray()
+					}
+				},
+				RendererWrapper.RendererOneofCase.BackstagePostThreadRenderer => ConvertRenderer(
+					renderer.BackstagePostThreadRenderer.Post, parserLanguage),
+				RendererWrapper.RendererOneofCase.BackstagePostRenderer => new RendererContainer
+				{
+					Type = "communityPost",
+					OriginalType = "backstagePostRenderer",
+					Data = new CommunityPostRendererData
+					{
+						PostId = renderer.BackstagePostRenderer.PostId,
+						Author = Channel.From(renderer.BackstagePostRenderer.AuthorText,
+							avatar: renderer.BackstagePostRenderer.AuthorThumbnail)!,
+						Content = ReadRuns(renderer.BackstagePostRenderer.ContentText),
+						LikeCountText = ReadRuns(renderer.BackstagePostRenderer.VoteCount),
+						LikeCount = ValueParser.ParseLikeCount(parserLanguage,
+							ReadRuns(renderer.BackstagePostRenderer.VoteCount)),
+						CommentsCountText = ReadRuns(renderer.BackstagePostRenderer.ActionButtons
+							.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title),
+						CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer
+							.BackstagePostRenderer.ActionButtons
+							.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
+						Attachment = renderer.BackstagePostRenderer.BackstageAttachment != null
+							? ConvertRenderer(renderer.BackstagePostRenderer.BackstageAttachment, parserLanguage)
+							: null
+					}
+				},
+				RendererWrapper.RendererOneofCase.PostRenderer => new RendererContainer
+				{
+					Type = "communityPost",
+					OriginalType = "postRenderer",
+					Data = new CommunityPostRendererData
+					{
+						PostId = renderer.PostRenderer.PostId,
+						Author = Channel.From(renderer.PostRenderer.AuthorText,
+							avatar: renderer.PostRenderer.AuthorThumbnail)!,
+						Content = ReadRuns(renderer.PostRenderer.ContentText),
+						LikeCountText = ReadRuns(renderer.PostRenderer.VoteCount),
+						LikeCount = ValueParser.ParseLikeCount(parserLanguage,
+							ReadRuns(renderer.PostRenderer.VoteCount)),
+						CommentsCountText = ReadRuns(renderer.PostRenderer.ActionButtons
+							.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title),
+						CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.PostRenderer
+							.ActionButtons
+							.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
+						Attachment = renderer.PostRenderer.BackstageAttachment != null
+							? ConvertRenderer(renderer.PostRenderer.BackstageAttachment, parserLanguage)
+							: null
+					}
+				},
+				RendererWrapper.RendererOneofCase.BackstageImageRenderer => new RendererContainer
+				{
+					Type = "communityPostImage",
+					OriginalType = "backstageImageRenderer",
+					Data = new CommunityPostImageRendererData
+					{
+						Images = [renderer.BackstageImageRenderer.Image.Thumbnails_.ToArray()]
+					}
+				},
+				RendererWrapper.RendererOneofCase.PostMultiImageRenderer => new RendererContainer
+				{
+					Type = "communityPostImage",
+					OriginalType = "PostMultiImageRenderer",
+					Data = new CommunityPostImageRendererData
+					{
+						Images = renderer.PostMultiImageRenderer.Images
+							.Select(x => x.BackstageImageRenderer.Image.Thumbnails_.ToArray()).ToArray()
+					}
+				},
+				RendererWrapper.RendererOneofCase.ItemSectionRenderer => new RendererContainer
+				{
+					Type = "container",
+					OriginalType = "itemSectionRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = ConvertRenderers(renderer.ItemSectionRenderer.Contents, parserLanguage)
+					}
+				},
+				RendererWrapper.RendererOneofCase.ShelfRenderer => new RendererContainer
+				{
+					Type = "container",
+					OriginalType = "shelfRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = ConvertRenderers(renderer.ShelfRenderer.Content.RendererCase switch
+						{
+							RendererWrapper.RendererOneofCase.VerticalListRenderer => renderer.ShelfRenderer.Content
+								.VerticalListRenderer.Items,
+							RendererWrapper.RendererOneofCase.HorizontalListRenderer => renderer.ShelfRenderer.Content
+								.HorizontalListRenderer.Items,
+							_ =>
+							[
+								new RendererWrapper
+								{
+									MessageRenderer = new MessageRenderer
+									{
+										Text = new Text
+										{
+											SimpleText =
+												$"INNERTUBE: Unknown RendererCase: {renderer.ShelfRenderer.Content.RendererCase}"
+										}
+									}
+								}
+							]
+						}, parserLanguage),
+						Style = "shelf;" + renderer.ShelfRenderer.Content.RendererCase switch
+						{
+							RendererWrapper.RendererOneofCase.VerticalListRenderer => "vertical",
+							RendererWrapper.RendererOneofCase.HorizontalListRenderer => "horizontal",
+							_ => "vertical"
+						},
+						Title = ReadRuns(renderer.ShelfRenderer.Title),
+						Subtitle = ReadRuns(renderer.ShelfRenderer.Subtitle),
+						// TODO: Destination = Utils.ParseEndpoint(),
+						ShownItemCount = renderer.ShelfRenderer.Content.VerticalListRenderer?.CollapsedItemCount
+					}
+				},
+				RendererWrapper.RendererOneofCase.ReelShelfRenderer => new RendererContainer
+				{
+					Type = "container",
+					OriginalType = "reelShelfRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = ConvertRenderers(renderer.ReelShelfRenderer.Items, parserLanguage),
+						Style = "shelf;reel",
+						Title = ReadRuns(renderer.ReelShelfRenderer.Title)
+					}
+				},
+				RendererWrapper.RendererOneofCase.SearchPyvRenderer => new RendererContainer
+				{
+					Type = "container",
+					OriginalType = "searchPyvRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = ConvertRenderers(renderer.SearchPyvRenderer.Ads, parserLanguage),
+						Style = "ad"
+					}
+				},
+				RendererWrapper.RendererOneofCase.GridRenderer => new RendererContainer
+				{
+					Type = "container",
+					OriginalType = "gridRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = ConvertRenderers(renderer.GridRenderer.Items, parserLanguage),
+						Style = "grid"
+					}
+				},
+				RendererWrapper.RendererOneofCase.RichGridRenderer => new RendererContainer
+				{
+					Type = "container",
+					OriginalType = "richGridRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = ConvertRenderers(renderer.RichGridRenderer.Contents, parserLanguage),
+						Style = "grid"
+					}
+				},
+				RendererWrapper.RendererOneofCase.RichItemRenderer => ConvertRenderer(renderer.RichItemRenderer.Content,
+					parserLanguage),
+				RendererWrapper.RendererOneofCase.AdSlotRenderer => ConvertRenderer(renderer.AdSlotRenderer
+					.FulfillmentContent.FulfilledLayout.InFeedAdLayoutRenderer.RenderingContent, parserLanguage),
+				RendererWrapper.RendererOneofCase.MessageRenderer => new RendererContainer
+				{
+					Type = "message",
+					OriginalType = "messageRenderer",
+					Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text))
+				},
+				RendererWrapper.RendererOneofCase.BackgroundPromoRenderer => new RendererContainer
+				{
+					Type = "message",
+					OriginalType = "backgroundPromoRenderer",
+					Data = new MessageRendererData(ReadRuns(renderer.BackgroundPromoRenderer.Text))
+				},
+				RendererWrapper.RendererOneofCase.ChipCloudChipRenderer => new RendererContainer
+				{
+					Type = "chip",
+					OriginalType = "chipCloudChipRenderer",
+					Data = new ChipRendererData
+					{
+						Title = ReadRuns(renderer.ChipCloudChipRenderer.Text),
+						ContinuationToken = renderer.ChipCloudChipRenderer.NavigationEndpoint?.ContinuationCommand
+							?.Token,
+						Params = renderer.ChipCloudChipRenderer.NavigationEndpoint?.BrowseEndpoint?.Params,
+						IsSelected = renderer.ChipCloudChipRenderer.IsSelected
+					}
+				},
+				RendererWrapper.RendererOneofCase
+					.PromotedSparklesWebRenderer => null, // ad, doesn't fit into any IRendererData's
+				_ => new RendererContainer
+				{
+					Type = "unknown",
+					OriginalType = renderer.RendererCase.ToString(),
+					Data = new UnknownRendererData
+					{
+						Json = JsonSerializer.Serialize(renderer, new JsonSerializerOptions
+						{
+							DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+						})
+					}
 				}
-			}
-		};
+			};
+		}
+		catch (Exception e)
+		{
+			return new RendererContainer
+			{
+				Type = "exception",
+				OriginalType = e.GetType().Name,
+				Data = new ExceptionRendererData
+				{
+					Message = e.Message,
+					RendererCase = renderer.RendererCase.ToString()
+				}
+			};
+		}
 	}
 
 	public static Badge[] SimplifyBadges(IEnumerable<RendererWrapper> renderers) =>

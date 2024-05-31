@@ -240,6 +240,7 @@ message RendererWrapper {
     ChannelHeaderLinksViewModel channelHeaderLinksViewModel = 1022;
     DecoratedAvatarViewModel decoratedAvatarViewModel = 1105;
     ImageBannerViewModel imageBannerViewModel = 1127;
+    ChannelExternalLinkViewModel channelExternalLinkViewModel = 22504;
     C4TabbedHeaderRenderer c4TabbedHeaderRenderer = 46407682;
     Autoplay autoplay = 46659098;
     SearchFilterRenderer searchFilterRenderer = 47550566;
@@ -390,7 +391,9 @@ message RendererWrapper {
     DynamicTextViewModel dynamicTextViewModel = 509603841;
     PageHeaderRenderer pageHeaderRenderer = 509923604;
     ContentMetadataViewModel contentMetadataViewModel = 514549827;
+    AboutChannelRenderer aboutChannelRenderer = 520574426;
     FlexibleActionsViewModel flexibleActionsViewModel = 520990934;
+    AboutChannelViewModel aboutChannelViewModel = 522039202;
     AttributionViewModel attributionViewModel = 522729680;
     DescriptionPreviewViewModel descriptionPreviewViewModel = 524902670;
   }
@@ -409,6 +412,12 @@ message ImageBannerViewModel {
   Image image = 1;
   int32 style = 2;
   Context rendererContext = 997;
+}
+
+message ChannelExternalLinkViewModel {
+  AttributedDescription title = 1;
+  AttributedDescription link = 2;
+  Image favicon = 3;
 }
 
 message C4TabbedHeaderRenderer {
@@ -1577,6 +1586,7 @@ message ReelItemRenderer {
 message ContinuationItemRenderer {
   int32 trigger = 1;
   Endpoint continuationEndpoint = 2;
+  RendererWrapper button = 3;
   optional LoggingDirectives loggingDirectives = 999;
 }
 
@@ -1818,6 +1828,17 @@ message InFeedAdLayoutRenderer {
 
 message CommentViewModel 
 {
+  message Logging {
+    message TrackingParamsWrapper {
+      bytes trackingParams = 1;
+    }
+
+    bytes trackingParams = 1;
+    TrackingParamsWrapper readMoreLogging = 3;
+    TrackingParamsWrapper showTranslatorButtonLogging = 4;
+    TrackingParamsWrapper showOriginalButtonLogging = 5;
+  }
+  
   string commentKey = 1;
   string sharedKey = 2;
   string toolbarStateKey = 3;
@@ -1825,6 +1846,9 @@ message CommentViewModel
   optional string pinnedText = 5;
   string commentId = 7;
   string commentSurfaceKey = 8;
+  string sharedSurfaceKey = 11;
+  string inlineRepliesKey = 12;
+  Logging commentLogging = 16;
   Context rendererContext = 997;
 }
 
@@ -1948,6 +1972,12 @@ message ContentMetadataViewModel {
   Context rendererContext = 997;
 }
 
+message AboutChannelRenderer {
+  RendererWrapper metadata = 1;
+  optional RendererWrapper flaggingButton = 2;
+  RendererWrapper shareChannel = 3;
+}
+
 message FlexibleActionsViewModel {
   message ActionRow {
     repeated RendererWrapper actions = 1;
@@ -1955,6 +1985,25 @@ message FlexibleActionsViewModel {
   
   repeated ActionRow actionsRows = 1;
   Context rendererContext = 997;
+}
+
+message AboutChannelViewModel {
+  optional string description = 1;
+  optional AttributedDescription descriptionLabel = 2;
+  optional AttributedDescription artistBio = 3;
+  optional AttributedDescription artistBioLabel = 4;
+  string country = 6;
+  AttributedDescription customLinksLabel = 7;
+  string subscriberCountText = 9;
+  string viewCountText = 10;
+  AttributedDescription joinedDateText = 11;
+  string canonicalChannelUrl = 12;
+  string channelId = 13;
+  AttributedDescription additionalInfoLabel = 14;
+  Endpoint customUrlOnTap = 15;
+  string videoCountText = 16;
+  repeated RendererWrapper links = 26;
+  string displayCanonicalChannelUrl = 30;
 }
 
 message AttributionViewModel {

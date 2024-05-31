@@ -25,9 +25,9 @@ public class ChannelHeader
 	{
 		Id = header.ChannelId;
 		Avatars = header.Avatar.Thumbnails_.ToArray();
-		Banner = header.Banner.Thumbnails_.ToArray();
-		TvBanner = header.TvBanner.Thumbnails_.ToArray();
-		MobileBanner = header.MobileBanner.Thumbnails_.ToArray();
+		Banner = header.Banner?.Thumbnails_?.ToArray() ?? [];
+		TvBanner = header.TvBanner?.Thumbnails_?.ToArray() ?? [];
+		MobileBanner = header.MobileBanner?.Thumbnails_?.ToArray() ?? [];
 		Badges = Utils.SimplifyBadges(header.Badges);
 		PrimaryLink = Utils
 			.ReadAttributedDescription(header.HeaderLinks.FirstOrDefault()?.ChannelHeaderLinksViewModel.FirstLink, true)
@@ -54,13 +54,13 @@ public class ChannelHeader
 				Width = x.Width,
 				Height = x.Height
 			}).ToArray();
-		Banner = header.Content.PageHeaderViewModel.Banner.ImageBannerViewModel.Image.Sources
+		Banner = header.Content.PageHeaderViewModel.Banner?.ImageBannerViewModel.Image.Sources
 			.Select(x => new Thumbnail
 			{
 				Url = x.Url,
 				Width = x.Width,
 				Height = x.Height
-			}).ToArray();
+			}).ToArray() ?? [];
 		TvBanner = [];
 		MobileBanner = [];
 		Badges = [];

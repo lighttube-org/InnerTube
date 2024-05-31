@@ -1,5 +1,5 @@
-using System.Text;
 using InnerTube.Models;
+using InnerTube.Parsers;
 using InnerTube.Protobuf;
 
 namespace InnerTube.Renderers;
@@ -9,9 +9,12 @@ public class CommentRendererData : IRendererData
 	public string Id { get; }
 	public string Content { get; }
 	public string? PublishedTimeText { get; }
+	public string RelativePublishedDate { get; set; }
 	public Channel Owner { get; }
 	public string? LikeCountText { get; }
+	public long LikeCount { get; set; }
 	public string? ReplyCountText { get; }
+	public long ReplyCount { get; set; }
 	public HeartInfo? Loved { get; }
 	// todo: try to put the channel name here
 	// "Pinned by kuylar"
@@ -20,11 +23,11 @@ public class CommentRendererData : IRendererData
 	public string? ReplyContinuation { get; }
 
 	public override string ToString() =>
-		$"[{Id}] {(Pinned ? "[PINNED] |" : "|")} {Owner}{(Loved != null ? " (channel author)" : "")} | {PublishedTimeText}\n{Content}\n{LikeCountText ?? "0"} likes | {ReplyCountText ?? "0"} replies{(Loved != null ? $" | {Loved.HeartedBy}" : "")}";
+		$"[{Id}] {(Pinned ? "[PINNED] |" : "|")} {Owner}{(Loved != null ? " (channel author)" : "")} | {PublishedTimeText}\n{Content}\n{LikeCountText ?? "0"} likes | {ReplyCountText ?? "0"} replies{(Loved != null ? $" | {Loved.HeartedBy}" : "")}\nReply Continuation: {ReplyContinuation}";
 
 
 	public CommentRendererData(
-		CommentThreadRenderer thread,
+		CommentThreadRenderer? thread,
 		CommentEntityPayload viewModel,
 		EngagementToolbarStateEntityPayload toolbarState)
 	{
@@ -33,13 +36,16 @@ public class CommentRendererData : IRendererData
 			Utils.Formatter.HandleLineBreaks(
 				Utils.Formatter.Sanitize(viewModel.Properties.Content.Content)); // todo: formatting doesnt exist here
 		PublishedTimeText = viewModel.Properties.PublishedTime;
+		RelativePublishedDate = ValueParser.ParseRelativeDate("en", viewModel.Properties.PublishedTime);
 		Owner = Channel.From(viewModel.Author);
 		LikeCountText = viewModel.Toolbar.LikeCountNotLiked;
+		LikeCount = ValueParser.ParseLikeCount("en", viewModel.Toolbar.LikeCountNotLiked);
 		ReplyCountText = viewModel.Toolbar.ReplyCount;
+		ReplyCount = ValueParser.ParseLikeCount("en", viewModel.Toolbar.ReplyCount);
 		Loved = toolbarState.HeartState == 1 ? new HeartInfo(viewModel) : null;
-		Pinned = thread.CommentViewModel.CommentViewModel.HasPinnedText;
+		Pinned = thread?.CommentViewModel?.CommentViewModel?.HasPinnedText ?? false;
 		AuthorIsChannelOwner = viewModel.Author.IsCreator;
-		ReplyContinuation = thread.Replies?.CommentRepliesRenderer.ContinuationItemRenderer[0]
+		ReplyContinuation = thread?.Replies?.CommentRepliesRenderer.ContinuationItemRenderer[0]
 			.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token;
 	}
 
@@ -49,6 +55,7 @@ public class CommentRendererData : IRendererData
 		Id = comment.CommentId;
 		Content = Utils.ReadRuns(comment.ContentText, true);
 		PublishedTimeText = Utils.ReadRuns(comment.PublishedTimeText);
+		RelativePublishedDate = ValueParser.ParseRelativeDate("en", PublishedTimeText);
 		Owner = new Channel(
 			parserLanguage,
 			id: comment.AuthorEndpoint.BrowseEndpoint.BrowseId,
@@ -60,7 +67,9 @@ public class CommentRendererData : IRendererData
 			badges: null
 		);
 		LikeCountText = Utils.ReadRuns(comment.VoteCount);
+		LikeCount = ValueParser.ParseLikeCount("en", LikeCountText);
 		ReplyCountText = comment.ReplyCount.ToString();
+		ReplyCount = ValueParser.ParseLikeCount("en", ReplyCountText);
 		RendererWrapper creatorHeart = comment.ActionButtons.CommentActionButtonsRenderer.CreatorHeart;
 		Loved = creatorHeart != null ? new HeartInfo(creatorHeart.CreatorHeartRenderer) : null;
 		Pinned = comment.PinnedCommentBadge != null;

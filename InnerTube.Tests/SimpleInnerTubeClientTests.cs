@@ -25,6 +25,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("-UBaW1OIgTo", true, TestName = "EndScreenItem ctor")]
 	[TestCase("dQw4w9WgXcQ", true, TestName = "EndScreenItem ctor 2")]
 	[TestCase("GfDXqY-V0EY", true, TestName = "Premiere with trailer")]
+	[TestCase("9dVYBsh9D00", true, TestName = "YouTube Music video")]
 	public async Task GetVideoPlayerAsync(string videoId, bool contentCheckOk)
 	{
 		InnerTubePlayer player = await client.GetVideoPlayerAsync(videoId, contentCheckOk, "en", "US");
@@ -198,6 +199,9 @@ public class SimpleInnerTubeClientTests
 	[TestCase(
 		"Eg0SC0JhV19qZW5vektjGAYy1QIKqwJnZXRfcmFua2VkX3N0cmVhbXMtLUNxY0JDSUFFRlJlMzBUZ2FuQUVLbHdFSTJGOFFnQVFZQnlLTUFmdXlxRzg0ZWRpMVFNazF5ZUNyWTBvVVJNTmpRQXNVQjBJb1ZwUEpGQjA3UEM4alFCMFI0amxvUWhNckkwdXRDZWFOVDkySlZqRm1hS2w5U29UUmNvS3ZySWVfTlMtN0M4b2d2OTJqY0ZpV1A0T1FqX2dXd2pMSzAzWW9uRnJTaUxPTUhEQUI5UVNDRGt3WDZlZTRZc2g4ZjM4VmtadWVjakV2aGdvT3NkRUVacDZHOFVKRmFRWHd6eDRFRUJRU0JRaW9JQmdBRWdVSWlDQVlBQklGQ0ljZ0dBQVNCUWlKSUJnQUVnY0loU0FRRkJnQkdBQSIRIgtCYVdfamVub3pLYzAAeAEoFEIQY29tbWVudHMtc2VjdGlvbg%3D%3D",
 		TestName = "Regular video comment continuation")]
+	[TestCase(
+		"Eg0SC2tZd0Ita1p5TlU0GAYygwEaUBIaVWd5U3FJSnBIbEt0YzdHa2hEeDRBYUFCQWciAggAKhhVQ05FbE00NUp5cHhxQVI3M1JvVVExMGcyC2tZd0Ita1p5TlU0QAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3lTcUlKcEhsS3RjN0draER4NEFhQUJBZw%3D%3D",
+		TestName = "Reply continuation")]
 	public async Task ContinueVideoCommentsAsync(string continuationToken)
 	{
 		ContinuationResponse continuationResponse = await client.ContinueVideoCommentsAsync(continuationToken);
@@ -224,6 +228,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Store, null)]
 	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Featured, null, TestName = "Scheduled premiere")]
 	[TestCase("UCv6P5nsS9rP4tDtFlqLU_QQ", (int)ChannelTabs.Featured, null, TestName = "Unsubscribeable channel")]
+	[TestCase("UCpBEwd9bEo0mkMdKQaF0yPw", (int)ChannelTabs.Featured, null, TestName = "Has nullref in header")]
 	public async Task GetChannelAsync(string channelId, int channelTab, string searchQuery)
 	{
 		InnerTubeChannel channel = await client.GetChannelAsync(channelId, (ChannelTabs)channelTab);
@@ -263,6 +268,35 @@ public class SimpleInnerTubeClientTests
 			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
 			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
 
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw")]
+	[TestCase("UCv6P5nsS9rP4tDtFlqLU_QQ")]
+	[TestCase("UCRS3ZUNqkEyTd9XZEphFRMA")]
+	public async Task GetAboutChannelAsync(string channelId)
+	{
+		InnerTubeAboutChannel? about = await client.GetAboutChannelAsync(channelId);
+		if (about is null)
+		{
+			Assert.Fail("about is null");
+			return;
+		}
+		StringBuilder sb = new();
+		sb.AppendLine("Description         : " + about.Description);
+		sb.AppendLine("ArtistBio           : " + about.ArtistBio);
+		sb.AppendLine("Country             : " + about.Country);
+		sb.AppendLine("SubscriberCountText : " + about.SubscriberCountText);
+		sb.AppendLine("SubscriberCount     : " + about.SubscriberCount);
+		sb.AppendLine("ViewCountText       : " + about.ViewCountText);
+		sb.AppendLine("ViewCount           : " + about.ViewCount);
+		sb.AppendLine("VideoCountText      : " + about.VideoCountText);
+		sb.AppendLine("VideoCount          : " + about.VideoCount);
+		sb.AppendLine("JoinedDateText      : " + about.JoinedDateText);
+		sb.AppendLine("JoinedDate          : " + about.JoinedDate);
+		sb.AppendLine("CanonicalChannelUrl : " + about.CanonicalChannelUrl);
+		sb.AppendLine("ChannelId           : " + about.ChannelId);
+		sb.AppendLine("ChannelLinks        :\n" + string.Join('\n', about.ChannelLinks.Select(x => $"- {x.Title} - {x.Url}")));
 		Assert.Pass(sb.ToString());
 	}
 

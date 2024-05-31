@@ -1,3 +1,4 @@
+using Google.Protobuf;
 using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
 using InnerTube.Models;
@@ -71,18 +72,19 @@ public class SimpleInnerTubeClient
 	{
 		NextResponse next = await InnerTube.ContinueNextAsync(continuationToken);
 		RendererWrapper[]? continuationItems =
-			(next.OnResponseReceivedEndpoints.LastOrDefault()?.ReloadContinuationItemsCommand?.ContinuationItems ??
-			 next.OnResponseReceivedEndpoints.LastOrDefault()?.AppendContinuationItemsAction?.ContinuationItems)?
-			.Where(x => x.RendererCase is RendererWrapper.RendererOneofCase.CommentThreadRenderer
-				or RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
-			.ToArray();
-		if (continuationItems == null)
+			next.OnResponseReceivedEndpoints.SelectMany(x => x.ReloadContinuationItemsCommand?.ContinuationItems ?? [])
+				.Concat(next.OnResponseReceivedEndpoints.SelectMany(x => x.AppendContinuationItemsAction?.ContinuationItems ?? []))
+				.Where(x => x.RendererCase is RendererWrapper.RendererOneofCase.CommentThreadRenderer
+					or RendererWrapper.RendererOneofCase.CommentViewModel
+					or RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+				.ToArray();
+		if (continuationItems.Length == 0)
 			return new ContinuationResponse
 			{
 				ContinuationToken = null,
 				Results = []
 			};
-		if (continuationItems[0].CommentThreadRenderer.Comment != null)
+		if (continuationItems[0].CommentThreadRenderer?.Comment != null)
 		{
 			// CommentRenderer instead of ViewModels
 			return new ContinuationResponse
@@ -104,23 +106,58 @@ public class SimpleInnerTubeClient
 		// ViewModels <3
 		Dictionary<string, Payload> mutations =
 			next.FrameworkUpdates.EntityBatchUpdate.Mutations.ToDictionary(x => x.EntityKey, x => x.Payload);
+		ContinuationItemRenderer? continuationItemRenderer = continuationItems
+			.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+			?.ContinuationItemRenderer;
 		return new ContinuationResponse
 		{
-			ContinuationToken = continuationItems
-				.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
-				?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
+			ContinuationToken = continuationItemRenderer?.ContinuationEndpoint?.ContinuationCommand.Token ?? 
+			                    continuationItemRenderer?.Button?.ButtonViewModel.Command?.ContinuationCommand?.Token,
 			Results = continuationItems
-				.Where(x => x.RendererCase == RendererWrapper.RendererOneofCase.CommentThreadRenderer)
-				.Select(x => new RendererContainer
+				.Where(x => x.RendererCase is RendererWrapper.RendererOneofCase.CommentThreadRenderer
+					or RendererWrapper.RendererOneofCase.CommentViewModel)
+				.Select(x =>
 				{
-					Type = "comment",
-					OriginalType = "commentThreadRenderer",
-					Data = new CommentRendererData(
-						x.CommentThreadRenderer,
-						mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.CommentKey]
-							.CommentEntityPayload,
-						mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.ToolbarStateKey]
-							.EngagementToolbarStateEntityPayload)
+					switch (x.RendererCase)
+					{
+						case RendererWrapper.RendererOneofCase.CommentThreadRenderer:
+						{
+							return new RendererContainer
+							{
+								Type = "comment",
+								OriginalType = "commentThreadRenderer",
+								Data = new CommentRendererData(
+									x.CommentThreadRenderer,
+									mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.CommentKey]
+										.CommentEntityPayload,
+									mutations[x.CommentThreadRenderer.CommentViewModel.CommentViewModel.ToolbarStateKey]
+										.EngagementToolbarStateEntityPayload)
+							};
+						}
+						case RendererWrapper.RendererOneofCase.CommentViewModel:
+						{
+							return new RendererContainer
+							{
+								Type = "comment",
+								OriginalType = "commentThreadRenderer",
+								Data = new CommentRendererData(
+									null,
+									mutations[x.CommentViewModel.CommentKey].CommentEntityPayload,
+									mutations[x.CommentViewModel.ToolbarStateKey].EngagementToolbarStateEntityPayload)
+							};
+						}
+						default:
+							return new RendererContainer
+							{
+								Type = "exception",
+								OriginalType = "unexpectedRenderer",
+								Data = new ExceptionRendererData
+								{
+									Message = "Unexpected renderer in comments response",
+									RendererCase = x.RendererCase.ToString()
+								}
+							};
+					}
 				}).ToArray()
 		};
 	}
@@ -155,6 +192,14 @@ public class SimpleInnerTubeClient
 			ContinuationToken = continuation?.ContinuationEndpoint.ContinuationCommand.Token,
 			Results = Utils.ConvertRenderers(items, language)
 		};
+	}
+
+	public async Task<InnerTubeAboutChannel?> GetAboutChannelAsync(string channelId, string language = "en", string region = "US")
+	{
+		BrowseResponse about =
+			await InnerTube.ContinueBrowseAsync(Utils.PackChannelAboutPageParams(channelId), language, region);
+		AboutChannelViewModel? viewModel = about.OnResponseReceivedEndpoints?.AppendContinuationItemsAction?.ContinuationItems[0]?.AboutChannelRenderer?.Metadata?.AboutChannelViewModel;
+		return viewModel == null ? null : new InnerTubeAboutChannel(viewModel, language);
 	}
 
 	public async Task<InnerTubeChannel> SearchChannelAsync(string channelId, string query,

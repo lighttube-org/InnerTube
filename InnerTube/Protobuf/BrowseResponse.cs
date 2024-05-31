@@ -25,20 +25,22 @@ namespace InnerTube.Protobuf.Responses {
       byte[] descriptorData = global::System.Convert.FromBase64String(
           string.Concat(
             "ChVicm93c2VfcmVzcG9uc2UucHJvdG8SHElubmVyVHViZS5Qcm90b2J1Zi5S",
-            "ZXNwb25zZXMaDWdlbmVyYWwucHJvdG8imgMKDkJyb3dzZVJlc3BvbnNlEjUK",
+            "ZXNwb25zZXMaDWdlbmVyYWwucHJvdG8i3QMKDkJyb3dzZVJlc3BvbnNlEjUK",
             "CGNvbnRlbnRzGAkgASgLMiMuSW5uZXJUdWJlLlByb3RvYnVmLlJlbmRlcmVy",
             "V3JhcHBlchI4CgZoZWFkZXIYDSABKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYu",
             "UmVuZGVyZXJXcmFwcGVySACIAQESMwoGYWxlcnRzGA4gAygLMiMuSW5uZXJU",
             "dWJlLlByb3RvYnVmLlJlbmRlcmVyV3JhcHBlchI6CghtZXRhZGF0YRgPIAEo",
             "CzIjLklubmVyVHViZS5Qcm90b2J1Zi5SZW5kZXJlcldyYXBwZXJIAYgBARI9",
             "CgttaWNyb2Zvcm1hdBgbIAEoCzIjLklubmVyVHViZS5Qcm90b2J1Zi5SZW5k",
-            "ZXJlcldyYXBwZXJIAogBARI/ChlvblJlc3BvbnNlUmVjZWl2ZWRBY3Rpb25z",
-            "GB4gASgLMhwuSW5uZXJUdWJlLlByb3RvYnVmLkVuZHBvaW50QgkKB19oZWFk",
-            "ZXJCCwoJX21ldGFkYXRhQg4KDF9taWNyb2Zvcm1hdGIGcHJvdG8z"));
+            "ZXJlcldyYXBwZXJIAogBARJBChtvblJlc3BvbnNlUmVjZWl2ZWRFbmRwb2lu",
+            "dHMYHSABKAsyHC5Jbm5lclR1YmUuUHJvdG9idWYuRW5kcG9pbnQSPwoZb25S",
+            "ZXNwb25zZVJlY2VpdmVkQWN0aW9ucxgeIAEoCzIcLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5FbmRwb2ludEIJCgdfaGVhZGVyQgsKCV9tZXRhZGF0YUIOCgxfbWlj",
+            "cm9mb3JtYXRiBnByb3RvMw=="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.BrowseResponse), global::InnerTube.Protobuf.Responses.BrowseResponse.Parser, new[]{ "Contents", "Header", "Alerts", "Metadata", "Microformat", "OnResponseReceivedActions" }, new[]{ "Header", "Metadata", "Microformat" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.BrowseResponse), global::InnerTube.Protobuf.Responses.BrowseResponse.Parser, new[]{ "Contents", "Header", "Alerts", "Metadata", "Microformat", "OnResponseReceivedEndpoints", "OnResponseReceivedActions" }, new[]{ "Header", "Metadata", "Microformat" }, null, null, null)
           }));
     }
     #endregion
@@ -85,6 +87,7 @@ namespace InnerTube.Protobuf.Responses {
       alerts_ = other.alerts_.Clone();
       metadata_ = other.metadata_ != null ? other.metadata_.Clone() : null;
       microformat_ = other.microformat_ != null ? other.microformat_.Clone() : null;
+      onResponseReceivedEndpoints_ = other.onResponseReceivedEndpoints_ != null ? other.onResponseReceivedEndpoints_.Clone() : null;
       onResponseReceivedActions_ = other.onResponseReceivedActions_ != null ? other.onResponseReceivedActions_.Clone() : null;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -154,6 +157,18 @@ namespace InnerTube.Protobuf.Responses {
       }
     }
 
+    /// <summary>Field number for the "onResponseReceivedEndpoints" field.</summary>
+    public const int OnResponseReceivedEndpointsFieldNumber = 29;
+    private global::InnerTube.Protobuf.Endpoint onResponseReceivedEndpoints_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Endpoint OnResponseReceivedEndpoints {
+      get { return onResponseReceivedEndpoints_; }
+      set {
+        onResponseReceivedEndpoints_ = value;
+      }
+    }
+
     /// <summary>Field number for the "onResponseReceivedActions" field.</summary>
     public const int OnResponseReceivedActionsFieldNumber = 30;
     private global::InnerTube.Protobuf.Endpoint onResponseReceivedActions_;
@@ -186,6 +201,7 @@ namespace InnerTube.Protobuf.Responses {
       if(!alerts_.Equals(other.alerts_)) return false;
       if (!object.Equals(Metadata, other.Metadata)) return false;
       if (!object.Equals(Microformat, other.Microformat)) return false;
+      if (!object.Equals(OnResponseReceivedEndpoints, other.OnResponseReceivedEndpoints)) return false;
       if (!object.Equals(OnResponseReceivedActions, other.OnResponseReceivedActions)) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -199,6 +215,7 @@ namespace InnerTube.Protobuf.Responses {
       hash ^= alerts_.GetHashCode();
       if (metadata_ != null) hash ^= Metadata.GetHashCode();
       if (microformat_ != null) hash ^= Microformat.GetHashCode();
+      if (onResponseReceivedEndpoints_ != null) hash ^= OnResponseReceivedEndpoints.GetHashCode();
       if (onResponseReceivedActions_ != null) hash ^= OnResponseReceivedActions.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -235,6 +252,10 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(218, 1);
         output.WriteMessage(Microformat);
       }
+      if (onResponseReceivedEndpoints_ != null) {
+        output.WriteRawTag(234, 1);
+        output.WriteMessage(OnResponseReceivedEndpoints);
+      }
       if (onResponseReceivedActions_ != null) {
         output.WriteRawTag(242, 1);
         output.WriteMessage(OnResponseReceivedActions);
@@ -266,6 +287,10 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(218, 1);
         output.WriteMessage(Microformat);
       }
+      if (onResponseReceivedEndpoints_ != null) {
+        output.WriteRawTag(234, 1);
+        output.WriteMessage(OnResponseReceivedEndpoints);
+      }
       if (onResponseReceivedActions_ != null) {
         output.WriteRawTag(242, 1);
         output.WriteMessage(OnResponseReceivedActions);
@@ -292,6 +317,9 @@ namespace InnerTube.Protobuf.Responses {
       }
       if (microformat_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(Microformat);
+      }
+      if (onResponseReceivedEndpoints_ != null) {
+        size += 2 + pb::CodedOutputStream.ComputeMessageSize(OnResponseReceivedEndpoints);
       }
       if (onResponseReceivedActions_ != null) {
         size += 2 + pb::CodedOutputStream.ComputeMessageSize(OnResponseReceivedActions);
@@ -332,6 +360,12 @@ namespace InnerTube.Protobuf.Responses {
           Microformat = new global::InnerTube.Protobuf.RendererWrapper();
         }
         Microformat.MergeFrom(other.Microformat);
+      }
+      if (other.onResponseReceivedEndpoints_ != null) {
+        if (onResponseReceivedEndpoints_ == null) {
+          OnResponseReceivedEndpoints = new global::InnerTube.Protobuf.Endpoint();
+        }
+        OnResponseReceivedEndpoints.MergeFrom(other.OnResponseReceivedEndpoints);
       }
       if (other.onResponseReceivedActions_ != null) {
         if (onResponseReceivedActions_ == null) {
@@ -386,6 +420,13 @@ namespace InnerTube.Protobuf.Responses {
             input.ReadMessage(Microformat);
             break;
           }
+          case 234: {
+            if (onResponseReceivedEndpoints_ == null) {
+              OnResponseReceivedEndpoints = new global::InnerTube.Protobuf.Endpoint();
+            }
+            input.ReadMessage(OnResponseReceivedEndpoints);
+            break;
+          }
           case 242: {
             if (onResponseReceivedActions_ == null) {
               OnResponseReceivedActions = new global::InnerTube.Protobuf.Endpoint();
@@ -438,6 +479,13 @@ namespace InnerTube.Protobuf.Responses {
               Microformat = new global::InnerTube.Protobuf.RendererWrapper();
             }
             input.ReadMessage(Microformat);
+            break;
+          }
+          case 234: {
+            if (onResponseReceivedEndpoints_ == null) {
+              OnResponseReceivedEndpoints = new global::InnerTube.Protobuf.Endpoint();
+            }
+            input.ReadMessage(OnResponseReceivedEndpoints);
             break;
           }
           case 242: {

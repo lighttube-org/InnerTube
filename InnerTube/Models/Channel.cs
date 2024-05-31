@@ -48,6 +48,8 @@ public class Channel(
 
 	public static Channel? From(Text bylineText, MetadataBadgeRenderer[]? badges = null, Thumbnails? avatar = null)
 	{
+		if (bylineText == null)
+			return null;
 		try
 		{
 			return new Channel("",

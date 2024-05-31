@@ -10,5 +10,6 @@ message BrowseResponse {
   repeated RendererWrapper alerts = 14;
   optional RendererWrapper metadata = 15;
   optional RendererWrapper microformat = 27;
+  Endpoint onResponseReceivedEndpoints = 29;
   Endpoint onResponseReceivedActions = 30;
 }
