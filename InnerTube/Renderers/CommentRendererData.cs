@@ -23,11 +23,11 @@ public class CommentRendererData : IRendererData
 	public string? ReplyContinuation { get; }
 
 	public override string ToString() =>
-		$"[{Id}] {(Pinned ? "[PINNED] |" : "|")} {Owner}{(Loved != null ? " (channel author)" : "")} | {PublishedTimeText}\n{Content}\n{LikeCountText ?? "0"} likes | {ReplyCountText ?? "0"} replies{(Loved != null ? $" | {Loved.HeartedBy}" : "")}";
+		$"[{Id}] {(Pinned ? "[PINNED] |" : "|")} {Owner}{(Loved != null ? " (channel author)" : "")} | {PublishedTimeText}\n{Content}\n{LikeCountText ?? "0"} likes | {ReplyCountText ?? "0"} replies{(Loved != null ? $" | {Loved.HeartedBy}" : "")}\nReply Continuation: {ReplyContinuation}";
 
 
 	public CommentRendererData(
-		CommentThreadRenderer thread,
+		CommentThreadRenderer? thread,
 		CommentEntityPayload viewModel,
 		EngagementToolbarStateEntityPayload toolbarState)
 	{
@@ -43,9 +43,9 @@ public class CommentRendererData : IRendererData
 		ReplyCountText = viewModel.Toolbar.ReplyCount;
 		ReplyCount = ValueParser.ParseLikeCount("en", viewModel.Toolbar.ReplyCount);
 		Loved = toolbarState.HeartState == 1 ? new HeartInfo(viewModel) : null;
-		Pinned = thread.CommentViewModel.CommentViewModel.HasPinnedText;
+		Pinned = thread?.CommentViewModel?.CommentViewModel?.HasPinnedText ?? false;
 		AuthorIsChannelOwner = viewModel.Author.IsCreator;
-		ReplyContinuation = thread.Replies?.CommentRepliesRenderer.ContinuationItemRenderer[0]
+		ReplyContinuation = thread?.Replies?.CommentRepliesRenderer.ContinuationItemRenderer[0]
 			.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token;
 	}
 

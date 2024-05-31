@@ -1586,6 +1586,7 @@ message ReelItemRenderer {
 message ContinuationItemRenderer {
   int32 trigger = 1;
   Endpoint continuationEndpoint = 2;
+  RendererWrapper button = 3;
   optional LoggingDirectives loggingDirectives = 999;
 }
 
@@ -1827,6 +1828,17 @@ message InFeedAdLayoutRenderer {
 
 message CommentViewModel 
 {
+  message Logging {
+    message TrackingParamsWrapper {
+      bytes trackingParams = 1;
+    }
+
+    bytes trackingParams = 1;
+    TrackingParamsWrapper readMoreLogging = 3;
+    TrackingParamsWrapper showTranslatorButtonLogging = 4;
+    TrackingParamsWrapper showOriginalButtonLogging = 5;
+  }
+  
   string commentKey = 1;
   string sharedKey = 2;
   string toolbarStateKey = 3;
@@ -1834,6 +1846,9 @@ message CommentViewModel
   optional string pinnedText = 5;
   string commentId = 7;
   string commentSurfaceKey = 8;
+  string sharedSurfaceKey = 11;
+  string inlineRepliesKey = 12;
+  Logging commentLogging = 16;
   Context rendererContext = 997;
 }
 
