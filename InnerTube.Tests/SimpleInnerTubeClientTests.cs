@@ -268,6 +268,35 @@ public class SimpleInnerTubeClientTests
 		Assert.Pass(sb.ToString());
 	}
 
+	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw")]
+	[TestCase("UCv6P5nsS9rP4tDtFlqLU_QQ")]
+	[TestCase("UCRS3ZUNqkEyTd9XZEphFRMA")]
+	public async Task GetAboutChannelAsync(string channelId)
+	{
+		InnerTubeAboutChannel? about = await client.GetAboutChannelAsync(channelId);
+		if (about is null)
+		{
+			Assert.Fail("about is null");
+			return;
+		}
+		StringBuilder sb = new();
+		sb.AppendLine("Description         : " + about.Description);
+		sb.AppendLine("ArtistBio           : " + about.ArtistBio);
+		sb.AppendLine("Country             : " + about.Country);
+		sb.AppendLine("SubscriberCountText : " + about.SubscriberCountText);
+		sb.AppendLine("SubscriberCount     : " + about.SubscriberCount);
+		sb.AppendLine("ViewCountText       : " + about.ViewCountText);
+		sb.AppendLine("ViewCount           : " + about.ViewCount);
+		sb.AppendLine("VideoCountText      : " + about.VideoCountText);
+		sb.AppendLine("VideoCount          : " + about.VideoCount);
+		sb.AppendLine("JoinedDateText      : " + about.JoinedDateText);
+		sb.AppendLine("JoinedDate          : " + about.JoinedDate);
+		sb.AppendLine("CanonicalChannelUrl : " + about.CanonicalChannelUrl);
+		sb.AppendLine("ChannelId           : " + about.ChannelId);
+		sb.AppendLine("ChannelLinks        :\n" + string.Join('\n', about.ChannelLinks.Select(x => $"- {x.Title} - {x.Url}")));
+		Assert.Pass(sb.ToString());
+	}
+
 	[TestCase(
 		"4qmFsgKrCBIYVUNGQWlGeUdzNm9EaUYxTmYtclJKcFpBGo4IOGdhRUJocUJCbnItQlFyNUJRclFCVUZpTkZvdFEwaFpNRVI0VTJRMU4zVmZVVjk0WXpJeVdYQlhjR1JsVlhkcmJFSmxXWFJoVGpKTlgwNU1XRlpmZDJkQllXbFBXVXRUUlRoV2RrZGtNemswV2tRNU1teFJkMmRXTkZscVNsb3dSM0Y1U2poSVkwVnpSbk56Vm5GSFJsSmlWSGRYVkhZd2NGTTJWMjFXTkVjd1pWaFNiV3hGWVUxNVJYRk9UMjVtTkhaNVdVeGZVWEZGWjFwMGRFeENTbnBET1hsRlUxSlZUekpIZG0weVFVRlJNMjQ1Vm04Mk1tczRTa0ZZTTJnMkxYaFpWM2xJY21GMWJDMVpRMngyY0VaMlIyaEthRmc0UmtZeWVUSnNNRmR1TW5KR1ZGTmxaVkV0VW5kTmRWWlpTQzF2ZVdWMmVqRkRkamx1YlhjMVlXOHpNMFo0VlZkeVpUbHRhMlpxZVc1SVZtODRkVnB0VmxCa04zb3lTSGRuYlhsUGVXYzVWalJzVUVObWJuSjZXVmhpWjNselFUQjZVVnB4WlVsQmNpMTFiR0pST0RVd2EyVkVOblpQYjBaT05pMVVOR1k1VlhwdVVVODNabkZLVTAxbVoxRldXRmh6UjBwVlMwSXRiM0ZWYWpCSkxXdHJXbTVaWkZoclVGUTNaV2x1UjFseUxVcHBlVzVTZVY5MVYybGFNbmcxTW5oNWJtOUdOSGx3U21wZmJHZ3lhVU52ZEhSNU5FTkVRVzFvVlc5VWNYbFdjMmhYWm5SSU1GaDNZbWRSV0RoQmIwRmFRMkpvWVdsMVluWndhRVpUVFZOc1pVNUVhMmRpZFRoclkxUXdjbW8zVjBJd1dqaFNlSGR0VW1JMFREWlBVazlTVWt0T2RVOVdiRzVLVjBnM1pHOHdWbEJxVmtkQ2J6ZE5ZbGc0ZDBsT2VrTmhhR3RXU1daR1JESkhSbEpNV21oRlpVOVhRbWd5TTNwdFMxaHBXVjgwVG5GSlJGTnZhMnRGTUVJMVlYUTFUVkYzU0VKZk56bGtiVXBuWXpoWlgxQlRhRWxKTm5KU05WZzJWSEo1YkV4Mk1rMUhVbVZUZUc1emJHSmZTVk5IWW1acVNrWTRaM3BDTWxWNU5uVTJSVTVDTlU1RmFHdDNkbXMyZEVGRVJVZHFTMjlYYjNCWVNUWkhjVlJFT0ZwcVZGbzFYMjFVTWxad01GazVWbWgxWW1ab1ZtUkRURzFOTm13d1VXdzNiM1JzVm1oYVgycENOakJ2UWtkRlQybGhXVFk1VDI5QlUxRkdSUklrTmpneU5UWXdaakV0TURBd01DMHlZelEwTFRrME5qZ3ROVGd5TkRJNVpESXhORGM0R0FFJTNE",
 		TestName = "Continuation test #1")]

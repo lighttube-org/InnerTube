@@ -279,6 +279,33 @@ public static partial class Utils
 		return ToBase64UrlString(container.ToByteArray(), true);
 	}
 
+	public static string PackChannelAboutPageParams(string channelId, Guid? modalUuid = null)
+	{
+		Guid uuid = modalUuid ?? Guid.NewGuid();
+
+		ChannelAboutParamsContainer aboutParamsContainer = new()
+		{
+			/* 110 */ ChannelAboutParams = new ChannelAboutParams
+			{
+				/* 3 */ ModalUuidParamsContainer = new ModalUuidParamsContainer
+				{
+					/* 19 > 1 */ Uuid = uuid.ToString()
+				}
+			}
+		};
+
+		ChannelBrowseParamsContainer container = new()
+		{
+			ChannelBrowse = new ChannelBrowseParams
+			{
+				BrowseId = channelId,
+				Params = ToBase64UrlString(aboutParamsContainer.ToByteArray())
+			}
+		};
+
+		return ToBase64UrlString(container.ToByteArray());
+	}
+
 	public static string SerializeRenderer(RendererWrapper? renderer)
 	{
 		if (renderer == null) return "[Renderer is null]";

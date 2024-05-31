@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package InnerTube.Protobuf.Params;
 
+import "google/protobuf/wrappers.proto";
+
 // Search
 
 message SearchParams {
@@ -134,4 +136,27 @@ message CommentsContext {
 
 message ChannelTabParams {
   string name = 2;
+}
+
+// Channel About page
+
+message ChannelBrowseParamsContainer {
+  ChannelBrowseParams channelBrowse = 80226972;
+}
+
+message ChannelBrowseParams {
+  string browseId = 2;
+  string params = 3;
+}
+
+message ChannelAboutParamsContainer {
+  ChannelAboutParams channelAboutParams = 110;
+}
+
+message ChannelAboutParams {
+  ModalUuidParamsContainer modalUuidParamsContainer = 3;
+}
+
+message ModalUuidParamsContainer {
+  google.protobuf.StringValue uuid = 19;
 }

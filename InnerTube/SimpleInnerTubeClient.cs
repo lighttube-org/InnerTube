@@ -1,3 +1,4 @@
+using Google.Protobuf;
 using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
 using InnerTube.Models;
@@ -155,6 +156,14 @@ public class SimpleInnerTubeClient
 			ContinuationToken = continuation?.ContinuationEndpoint.ContinuationCommand.Token,
 			Results = Utils.ConvertRenderers(items, language)
 		};
+	}
+
+	public async Task<InnerTubeAboutChannel?> GetAboutChannelAsync(string channelId, string language = "en", string region = "US")
+	{
+		BrowseResponse about =
+			await InnerTube.ContinueBrowseAsync(Utils.PackChannelAboutPageParams(channelId), language, region);
+		AboutChannelViewModel? viewModel = about.OnResponseReceivedEndpoints?.AppendContinuationItemsAction?.ContinuationItems[0]?.AboutChannelRenderer?.Metadata?.AboutChannelViewModel;
+		return viewModel == null ? null : new InnerTubeAboutChannel(viewModel, language);
 	}
 
 	public async Task<InnerTubeChannel> SearchChannelAsync(string channelId, string query,
