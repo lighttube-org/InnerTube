@@ -1,9 +1,8 @@
-using InnerTube.Models;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Responses;
 using InnerTube.Renderers;
 
-namespace InnerTube;
+namespace InnerTube.Models;
 
 public class InnerTubeSearchResults
 {

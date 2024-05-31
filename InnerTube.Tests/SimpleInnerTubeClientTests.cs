@@ -494,11 +494,22 @@ public class SimpleInnerTubeClientTests
 		"MC4zNDUuMjMxMS4wajlqMWoyLjEzLjAuLi4uMC4uLjFhYy4xLjY0LnlvdXR1YmUuLjEuMTQuMjE1Ny4wLi4waTQzM2kxMzFrMWowaTNrMS42" +
 		"MTAuTEs4aHZ1cXB0R3cYgeDoGCILc2VhcmNoLWZlZWQ%3D",
 		Description = "A continuation key that i hope wont expire")]
+	[TestCase(
+		"EqUGEg10cnV0aCBpbiBsaWVzGpAGRXNjRWtnSERCRG9vRWhwNWIzVjBkV0psWDNacFpHVnZYM0JoWjJVZ09uUjVjR1U2Y2lnQlVBRmdTR2dCY0FGNEFVcVdCQW92Q2cxMGNuVjBhQ0JwYmlCc2FXVno2Z0VQQ2cxYUN3b0hDSVlCRWdBWUN4aGg4Z0VGQ2dOQmJHellBZ0c0QTJFS3RRSHFBUThLRFZvTENnY0loZ0VTQUJnTEdCcnlBUWdLQmxOb2IzSjBjOElDamdFb1lTQjViM1YwZFdKbFgzTm9iM0owYzE5bGJHbG5hV0pzWlNBNmRIbHdaVHB5SUNodUlIbHZkWFIxWW1WZlpteGhaMTlvWVhOZmNISmxiV2xsY21WZmRtbGtaVzlmYldWMFlXUmhkR0U5TVNBNmRIbHdaVHB5S1NBb2JpQjViM1YwZFdKbFgyWnNZV2RmYUdGelgyeHBkbVZmYzNSeVpXRnRYMjFsZEdGa1lYUmhQVEVnT25SNWNHVTZjaWtwLUFJQnVBTWFDa3pxQVE4S0RWb0xDZ2NJaGdFU0FCZ0xHRWp5QVFnS0JsWnBaR1Z2YzhJQ0dubHZkWFIxWW1WZmRtbGtaVzlmY0dGblpTQTZkSGx3WlRweTZBSUJxQU1CdUFOSXdBTUJ5QU1CMEFNQkNpanFBUThLRFZvTENnY0loZ0VTQUJnTEdCenlBUXNLQ1ZWdWQyRjBZMmhsWk1vQ0FnZ0J1QU1jQ2licUFROEtEVm9MQ2djSWhnRVNBQmdMR0VyeUFRa0tCMWRoZEdOb1pXVEtBZ0lZQXJnRFNnb3RZQWZxQVE4S0RWb0xDZ2NJaGdFU0FCZ0xHQWZ5QVJNS0VWSmxZMlZ1ZEd4NUlIVndiRzloWkdWa3VBTUhDa3ZxQVE4S0RWb0xDZ2NJaGdFU0FCZ0xHQVR5QVFZS0JFeHBkbVhDQWlkNWIzVjBkV0psWDJ4cGRtVmZZbkp2WVdSallYTjBYM04wWVhSMWN6MHdJRHAwZVhCbE9uTG9BZ0c0QXdRWUMxb05DZ3NJQkNvSENJWUJFZ0FZQzNnQZABARiB4OgYIgtzZWFyY2gtcGFnZQ%3D%3D",
+		TestName = "Search chip")]
 	public async Task ContinueSearchAsync(string continuation)
 	{
-		ContinuationResponse results = await client.ContinueSearchAsync(continuation);
+		SearchContinuationResponse results = await client.ContinueSearchAsync(continuation);
 		StringBuilder sb = new();
-		sb.AppendLine("=== CONTENT");
+		sb.AppendLine("=== CHIPS");
+		if (results.Chips == null)
+			sb.AppendLine("<no chips>");
+		else
+			foreach (RendererContainer renderer in results.Chips)
+				sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+				              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+		
+		sb.AppendLine("\n=== CONTENT");
 		foreach (RendererContainer renderer in results.Results)
 			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
 			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
