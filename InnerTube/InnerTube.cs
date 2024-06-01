@@ -68,10 +68,10 @@ public partial class InnerTube
 		hrm.Headers.Add("X-Youtube-Client-Name", ((int)client).ToString());
 		hrm.Headers.Add("X-Youtube-Client-Version", client switch
 		{
-			RequestClient.WEB => "2.20240304.00.00",
-			RequestClient.ANDROID => "19.09.4",
-			RequestClient.IOS => "19.09.4",
-			RequestClient.TV_EMBEDDED => "2.0",
+			RequestClient.WEB => Constants.WebClientVersion,
+			RequestClient.ANDROID => Constants.MobileClientVersion,
+			RequestClient.IOS => Constants.MobileClientVersion,
+			RequestClient.TV_EMBEDDED => Constants.TvEmbeddedClientVersion,
 			_ => ""
 		});
 		//hrm.Headers.Add("Origin", "https://www.youtube.com");

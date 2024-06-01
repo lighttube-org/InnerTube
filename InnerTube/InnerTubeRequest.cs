@@ -25,7 +25,7 @@ internal class InnerTubeRequest
 				clientContext.Add("browserName", "Safari");
 				clientContext.Add("browserVersion", "15.4");
 				clientContext.Add("clientName", "WEB");
-				clientContext.Add("clientVersion", "2.20240304.00.00");
+				clientContext.Add("clientVersion", Constants.WebClientVersion);
 				clientContext.Add("deviceMake", "Apple");
 				clientContext.Add("deviceModel", "");
 				clientContext.Add("osName", "Macintosh");
@@ -36,7 +36,7 @@ internal class InnerTubeRequest
 				break;
 			case RequestClient.ANDROID:
 				clientContext.Add("clientName", "ANDROID");
-				clientContext.Add("clientVersion", "19.09.4");
+				clientContext.Add("clientVersion", Constants.MobileClientVersion);
 				clientContext.Add("osName", "Android");
 				clientContext.Add("osVersion", "11");
 				clientContext.Add("androidSdkVersion", 30);
@@ -45,7 +45,7 @@ internal class InnerTubeRequest
 				break;
 			case RequestClient.IOS:
 				clientContext.Add("clientName", "IOS");
-				clientContext.Add("clientVersion", "19.09.4");
+				clientContext.Add("clientVersion", Constants.MobileClientVersion);
 				clientContext.Add("deviceMake", "Apple");
 				clientContext.Add("deviceModel", "iPhone14,5");
 				clientContext.Add("osName", "iOS");
@@ -54,7 +54,7 @@ internal class InnerTubeRequest
 				break;
 			case RequestClient.TV_EMBEDDED:
 				clientContext.Add("clientName", "TVHTML5_SIMPLY_EMBEDDED_PLAYER");
-				clientContext.Add("clientVersion", "2.0");
+				clientContext.Add("clientVersion", Constants.TvEmbeddedClientVersion);
 				break;
 		}
 
