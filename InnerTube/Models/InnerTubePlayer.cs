@@ -31,30 +31,26 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback, string pars
 		public string Title { get; } = player.VideoDetails!.Title;
 		public string[] Keywords { get; } = player.VideoDetails.Keywords.ToArray();
 		public string ShortDescription { get; } = player.VideoDetails.ShortDescription;
-		public string? Category { get; } = player.Microformat?.PlayerMicroformatRenderer.Category;
+		public string Category { get; } = player.Microformat.PlayerMicroformatRenderer.Category;
 		public bool IsLive { get; } = player.VideoDetails.IsLiveContent;
 		public bool IsFallback { get; } = isFallback;
 		public bool AllowRatings { get; } = player.VideoDetails.AllowRatings;
-		public bool IsFamilySafe { get; } = player.Microformat?.PlayerMicroformatRenderer.IsFamilySafe ?? true;
+		public bool IsFamilySafe { get; } = player.Microformat.PlayerMicroformatRenderer.IsFamilySafe;
 		public Thumbnail[] Thumbnails { get; } = player.VideoDetails.Thumbnail.Thumbnails_.ToArray();
 
-		public DateTimeOffset? PublishDate { get; } = player.Microformat != null
-			? DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.PublishDate)
-			: null;
+		public DateTimeOffset? PublishDate { get; } =
+			DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.PublishDate);
 
-		public DateTimeOffset? UploadDate { get; } = player.Microformat != null
-			? DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.UploadDate)
-			: null;
+		public DateTimeOffset? UploadDate { get; } =
+			DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.UploadDate);
 
-		public TimeSpan? Length { get; } = player.Microformat != null
-			? TimeSpan.FromSeconds(player.Microformat.PlayerMicroformatRenderer.LengthSeconds)
-			: null;
+		public TimeSpan? Length { get; } = TimeSpan.FromSeconds(player.VideoDetails.LengthSeconds);
 
 		public Channel Author { get; } = new(
 			parserLanguage,
 			player.VideoDetails!.ChannelId,
 			player.VideoDetails!.Author,
-			player.Microformat != null
+			player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl.Contains('@') 
 				? "@" + player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl.Split('@')[1]
 				: null,
 			null,

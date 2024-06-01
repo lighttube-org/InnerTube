@@ -14,6 +14,8 @@ public class CommunityPostRendererData : IRendererData
 	public long LikeCount { get; set; }
 	public string CommentsCountText { get; set; }
 	public long CommentCount { get; set; }
+	public string? PublishedText { get; set; }
+	public string RelativePublishedDate { get; set; }
 	public RendererContainer? Attachment { get; set; }
 
 	public override string ToString()
@@ -23,6 +25,7 @@ public class CommunityPostRendererData : IRendererData
 		sb.AppendLine("Author: " + (Author?.ToString() ?? "<null>"));
 		sb.AppendLine("LikeCountText: " + LikeCountText);
 		sb.AppendLine("CommentsCountText: " + CommentsCountText);
+		sb.AppendLine("PublishedText: " + CommentsCountText);
 		sb.AppendLine("Content: " + Content);
 		sb.AppendLine("Attachment:");
 		if (Attachment != null)

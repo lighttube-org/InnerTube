@@ -58,7 +58,7 @@ public class SearchTests
 		SearchResponse results = await _innerTube.ContinueSearchAsync(continuation);
 		StringBuilder sb = new();
 		sb.AppendLine("\n== RESULTS");
-		foreach (RendererWrapper? renderer in results.OnResponseReceivedCommands.AppendContinuationItemsAction
+		foreach (RendererWrapper? renderer in results.OnResponseReceivedCommands[0].AppendContinuationItemsAction
 			         .ContinuationItems.SelectMany(x => x.ItemSectionRenderer?.Contents ?? []))
 			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
 		Assert.Pass(sb.ToString());

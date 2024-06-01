@@ -371,14 +371,13 @@ public class SimpleInnerTubeClientTests
 	[TestCase("VLPLiDvcIUGEFPv2K8h3SRrpc7FN7Ks0Z_A7", true, PlaylistFilter.All, TestName = "VLPL URL")]
 	[TestCase("PLWA4fx92eWNstZbKK52BK9Ox-I4KvxdkF", false, PlaylistFilter.All,
 		TestName = "Intentionally empty playlist")]
+	[TestCase("OLAK5uy_nvXWTE9GmzNodCDqaY2vs7fxNm3l5pWcM", true, PlaylistFilter.All, TestName = "Playlist")]
 	public async Task GetPlaylistAsync(string playlistId, bool includeUnavailable, PlaylistFilter filters)
 	{
 		InnerTubePlaylist playlist = await client.GetPlaylistAsync(playlistId, includeUnavailable, filters);
 
 		StringBuilder sb = new(playlist.Id);
-		sb.AppendLine("\n" + Utils.PackPlaylistParams(includeUnavailable, filters));
-		sb.AppendLine(includeUnavailable + ", " + filters);
-		sb.AppendLine("\n\n=== SIDEBAR");
+		sb.AppendLine("\n=== SIDEBAR");
 		sb.AppendLine($"Title: {playlist.Sidebar.Title}");
 		sb.AppendLine($"Thumbnails.Length: {playlist.Sidebar.Thumbnails.Length}");
 		sb.AppendLine($"VideoCountText: {playlist.Sidebar.VideoCountText}");
@@ -443,6 +442,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("", "exact", TestName = "backgroundPromoRenderer")]
 	[TestCase("vpn", null, TestName = "adSlotRenderer")]
 	[TestCase("Various Artists", "exact;channel", TestName = "Various Artists/old ChannelRenderer")]
+	[TestCase("ずっと真夜中でいいのに。ZUTOMAYO", null, TestName = "Sidebar")]
 	public async Task SearchAsync(string query, string? paramArgs)
 	{
 		SearchParams? param = paramArgs switch
@@ -470,6 +470,14 @@ public class SimpleInnerTubeClientTests
 			.AppendLine("Continuation: " + string.Join("", results.Continuation?.Take(20) ?? "NONE") + "...")
 			.AppendLine("Refinements: \n" + string.Join('\n', results.Refinements.Select(x => $"- {x}")));
 
+		sb.AppendLine("\n=== SIDEBAR");
+		if (results.Sidebar != null)
+			sb.AppendLine(
+				$"-> [{results.Sidebar.Type} ({results.Sidebar.OriginalType})] [{results.Sidebar.Data.GetType().Name}]\n\t" +
+				string.Join("\n\t", results.Sidebar.Data.ToString()!.Split("\n")));
+		else
+			sb.AppendLine("<no sidebar>");
+
 		sb.AppendLine("\n=== RESULTS");
 		foreach (RendererContainer renderer in results.Results)
 			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
@@ -494,11 +502,22 @@ public class SimpleInnerTubeClientTests
 		"MC4zNDUuMjMxMS4wajlqMWoyLjEzLjAuLi4uMC4uLjFhYy4xLjY0LnlvdXR1YmUuLjEuMTQuMjE1Ny4wLi4waTQzM2kxMzFrMWowaTNrMS42" +
 		"MTAuTEs4aHZ1cXB0R3cYgeDoGCILc2VhcmNoLWZlZWQ%3D",
 		Description = "A continuation key that i hope wont expire")]
+	[TestCase(
+		"EqUGEg10cnV0aCBpbiBsaWVzGpAGRXNjRWtnSERCRG9vRWhwNWIzVjBkV0psWDNacFpHVnZYM0JoWjJVZ09uUjVjR1U2Y2lnQlVBRmdTR2dCY0FGNEFVcVdCQW92Q2cxMGNuVjBhQ0JwYmlCc2FXVno2Z0VQQ2cxYUN3b0hDSVlCRWdBWUN4aGg4Z0VGQ2dOQmJHellBZ0c0QTJFS3RRSHFBUThLRFZvTENnY0loZ0VTQUJnTEdCcnlBUWdLQmxOb2IzSjBjOElDamdFb1lTQjViM1YwZFdKbFgzTm9iM0owYzE5bGJHbG5hV0pzWlNBNmRIbHdaVHB5SUNodUlIbHZkWFIxWW1WZlpteGhaMTlvWVhOZmNISmxiV2xsY21WZmRtbGtaVzlmYldWMFlXUmhkR0U5TVNBNmRIbHdaVHB5S1NBb2JpQjViM1YwZFdKbFgyWnNZV2RmYUdGelgyeHBkbVZmYzNSeVpXRnRYMjFsZEdGa1lYUmhQVEVnT25SNWNHVTZjaWtwLUFJQnVBTWFDa3pxQVE4S0RWb0xDZ2NJaGdFU0FCZ0xHRWp5QVFnS0JsWnBaR1Z2YzhJQ0dubHZkWFIxWW1WZmRtbGtaVzlmY0dGblpTQTZkSGx3WlRweTZBSUJxQU1CdUFOSXdBTUJ5QU1CMEFNQkNpanFBUThLRFZvTENnY0loZ0VTQUJnTEdCenlBUXNLQ1ZWdWQyRjBZMmhsWk1vQ0FnZ0J1QU1jQ2licUFROEtEVm9MQ2djSWhnRVNBQmdMR0VyeUFRa0tCMWRoZEdOb1pXVEtBZ0lZQXJnRFNnb3RZQWZxQVE4S0RWb0xDZ2NJaGdFU0FCZ0xHQWZ5QVJNS0VWSmxZMlZ1ZEd4NUlIVndiRzloWkdWa3VBTUhDa3ZxQVE4S0RWb0xDZ2NJaGdFU0FCZ0xHQVR5QVFZS0JFeHBkbVhDQWlkNWIzVjBkV0psWDJ4cGRtVmZZbkp2WVdSallYTjBYM04wWVhSMWN6MHdJRHAwZVhCbE9uTG9BZ0c0QXdRWUMxb05DZ3NJQkNvSENJWUJFZ0FZQzNnQZABARiB4OgYIgtzZWFyY2gtcGFnZQ%3D%3D",
+		TestName = "Search chip")]
 	public async Task ContinueSearchAsync(string continuation)
 	{
-		ContinuationResponse results = await client.ContinueSearchAsync(continuation);
+		SearchContinuationResponse results = await client.ContinueSearchAsync(continuation);
 		StringBuilder sb = new();
-		sb.AppendLine("=== CONTENT");
+		sb.AppendLine("=== CHIPS");
+		if (results.Chips == null)
+			sb.AppendLine("<no chips>");
+		else
+			foreach (RendererContainer renderer in results.Chips)
+				sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
+				              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));
+		
+		sb.AppendLine("\n=== CONTENT");
 		foreach (RendererContainer renderer in results.Results)
 			sb.AppendLine($"-> [{renderer.Type} ({renderer.OriginalType})] [{renderer.Data.GetType().Name}]\n\t" +
 			              string.Join("\n\t", renderer.Data.ToString()!.Split("\n")));

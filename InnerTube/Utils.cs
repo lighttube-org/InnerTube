@@ -875,6 +875,28 @@ public static partial class Utils
 						PremiereStartTime = null
 					}
 				},
+				RendererWrapper.RendererOneofCase.WatchCardCompactVideoRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "watchCardCompactVideoRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.WatchCardCompactVideoRenderer.NavigationEndpoint.WatchEndpoint.VideoId,
+						Title = ReadRuns(renderer.WatchCardCompactVideoRenderer.Title),
+						Thumbnails = [],
+						Author = Channel.From(renderer.WatchCardCompactVideoRenderer.Byline),
+						Duration = ParseDuration(ReadRuns(renderer.WatchCardCompactVideoRenderer.LengthText)),
+						PublishedText = ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[1],
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[1]),
+						ViewCountText = ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[0],
+						ViewCount = ValueParser.ParseViewCount(parserLanguage,
+							ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[1]),
+						Badges = [],
+						Description = null,
+						PremiereStartTime = null
+					}
+				},
 				RendererWrapper.RendererOneofCase.ChannelRenderer => new RendererContainer
 				{
 					Type = "channel",
@@ -1039,6 +1061,9 @@ public static partial class Utils
 						CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer
 							.BackstagePostRenderer.ActionButtons
 							.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
+						PublishedText = ReadRuns(renderer.BackstagePostRenderer.PublishedTimeText),
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.BackstagePostRenderer.PublishedTimeText)),
 						Attachment = renderer.BackstagePostRenderer.BackstageAttachment != null
 							? ConvertRenderer(renderer.BackstagePostRenderer.BackstageAttachment, parserLanguage)
 							: null
@@ -1062,6 +1087,9 @@ public static partial class Utils
 						CommentCount = ValueParser.ParseLikeCount(parserLanguage, ReadRuns(renderer.PostRenderer
 							.ActionButtons
 							.CommentActionButtonsRenderer.ReplyButton.ButtonViewModel.Title)),
+						PublishedText = ReadRuns(renderer.PostRenderer.PublishedTimeText),
+						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
+							ReadRuns(renderer.PostRenderer.PublishedTimeText)),
 						Attachment = renderer.PostRenderer.BackstageAttachment != null
 							? ConvertRenderer(renderer.PostRenderer.BackstageAttachment, parserLanguage)
 							: null
@@ -1086,6 +1114,94 @@ public static partial class Utils
 							.Select(x => x.BackstageImageRenderer.Image.Thumbnails_.ToArray()).ToArray()
 					}
 				},
+				RendererWrapper.RendererOneofCase.UniversalWatchCardRenderer => new RendererContainer
+				{
+					Type = "searchSidebar",
+					OriginalType = "universalWatchCardRenderer",
+					Data = new SearchSidebarRendererData
+					{
+						Title = ReadRuns(renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer.Title),
+						Subtitle = ReadRuns(renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer
+							.Subtitle),
+						Avatar = renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer.Avatar
+							.Thumbnails_.ToArray(),
+						TitleBadge = SimplifyBadges([
+							renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer.TitleBadge
+						]).FirstOrDefault(),
+						CallToAction =
+							ConvertRenderer(renderer.UniversalWatchCardRenderer.CallToAction, parserLanguage),
+						Sections = ConvertRenderers(renderer.UniversalWatchCardRenderer.Sections, parserLanguage)
+					}
+				},
+				RendererWrapper.RendererOneofCase.WatchCardHeroVideoRenderer => new RendererContainer
+				{
+					Type = "heroVideo",
+					OriginalType = "watchCardHeroVideoRenderer",
+					Data = new WatchCardHeroVideoRendererData
+					{
+						Title = renderer.WatchCardHeroVideoRenderer.Accessibility.AccessibilityData.Label,
+						VideoId = renderer.WatchCardHeroVideoRenderer.NavigationEndpoint.WatchEndpoint?.VideoId,
+						HeroImages = [
+							renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer.LeftThumbnail
+								.Thumbnails_.ToArray(),
+							renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer.TopRightThumbnail
+								.Thumbnails_.ToArray(),
+							renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer.BottomRightThumbnail
+								.Thumbnails_.ToArray()
+						]
+					}
+				},
+				RendererWrapper.RendererOneofCase.WatchCardSectionSequenceRenderer => new RendererContainer
+				{
+					Type = "container",
+					OriginalType = "watchCardSectionSequenceRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = ConvertRenderers(renderer.WatchCardSectionSequenceRenderer.Lists[0].RendererCase switch
+						{
+							RendererWrapper.RendererOneofCase.VerticalWatchCardListRenderer => renderer.WatchCardSectionSequenceRenderer.Lists[0]
+								.VerticalWatchCardListRenderer.Items,
+							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => renderer.WatchCardSectionSequenceRenderer.Lists[0]
+								.HorizontalCardListRenderer.Cards,
+							_ =>
+							[
+								new RendererWrapper
+								{
+									MessageRenderer = new MessageRenderer
+									{
+										Text = new Text
+										{
+											SimpleText =
+												$"INNERTUBE: Unexpected RendererCase: {renderer.WatchCardSectionSequenceRenderer.Lists[0].RendererCase}"
+										}
+									}
+								}
+							]
+						}, parserLanguage),
+						Style = renderer.WatchCardSectionSequenceRenderer.Lists[0].RendererCase switch
+						{
+							RendererWrapper.RendererOneofCase.VerticalWatchCardListRenderer => "searchSidebar;vertical",
+							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => "searchSidebar;cards",
+							_ => "vertical"
+						},
+						Title = ReadRuns(renderer.WatchCardSectionSequenceRenderer.ListTitles.FirstOrDefault()),
+						Subtitle = null,
+						Destination = null,
+						ShownItemCount = null
+					}
+				},
+				RendererWrapper.RendererOneofCase.SearchRefinementCardRenderer => new RendererContainer
+				{
+					Type = "searchRefinementCard",
+					OriginalType = "searchRefinementCardRenderer",
+					Data = new SearchRefinementCardRendererData
+					{
+						Thumbnail = renderer.SearchRefinementCardRenderer.Thumbnail.Thumbnails_[0].Url,
+						Title = ReadRuns(renderer.SearchRefinementCardRenderer.Query),
+						PlaylistId = renderer.SearchRefinementCardRenderer.SearchEndpoint.WatchPlaylistEndpoint?.PlaylistId,
+						SearchQuery = renderer.SearchRefinementCardRenderer.SearchEndpoint.SearchEndpoint?.Query
+					}
+				},
 				RendererWrapper.RendererOneofCase.ItemSectionRenderer => new RendererContainer
 				{
 					Type = "container",
@@ -1107,6 +1223,8 @@ public static partial class Utils
 								.VerticalListRenderer.Items,
 							RendererWrapper.RendererOneofCase.HorizontalListRenderer => renderer.ShelfRenderer.Content
 								.HorizontalListRenderer.Items,
+							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => renderer.ShelfRenderer.Content
+								.HorizontalCardListRenderer.Cards,
 							_ =>
 							[
 								new RendererWrapper
@@ -1126,6 +1244,7 @@ public static partial class Utils
 						{
 							RendererWrapper.RendererOneofCase.VerticalListRenderer => "vertical",
 							RendererWrapper.RendererOneofCase.HorizontalListRenderer => "horizontal",
+							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => "horizontal;cards",
 							_ => "vertical"
 						},
 						Title = ReadRuns(renderer.ShelfRenderer.Title),

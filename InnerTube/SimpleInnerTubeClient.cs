@@ -26,14 +26,14 @@ public class SimpleInnerTubeClient
 		// in the worst case scenario, this will do 4 http requests :3
 		try
 		{
-			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, language, region);
+			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, false, language, region);
 			return new InnerTubePlayer(player, false, language);
 		}
 		catch (PlayerException e)
 		{
 			if (e.Code != PlayabilityStatus.Types.Status.LiveStreamOffline) throw;
 
-			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, language, region);
+			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, true, language, region);
 			return new InnerTubePlayer(player, true, language);
 		}
 	}
@@ -214,7 +214,7 @@ public class SimpleInnerTubeClient
 		PlaylistFilter filter = PlaylistFilter.All, string language = "en", string region = "US")
 	{
 		BrowseResponse playlist =
-			await InnerTube.BrowseAsync(playlistId.StartsWith("PL") ? "VL" + playlistId : playlistId,
+			await InnerTube.BrowseAsync(!playlistId.StartsWith("VL") ? "VL" + playlistId : playlistId,
 				Utils.PackPlaylistParams(includeUnavailable, filter), null, language, region);
 		return new InnerTubePlaylist(playlist, language);
 	}
@@ -252,20 +252,42 @@ public class SimpleInnerTubeClient
 		return new InnerTubeSearchResults(searchResponse, language);
 	}
 
-	public async Task<ContinuationResponse> ContinueSearchAsync(string continuationToken, string language = "en",
+	public async Task<SearchContinuationResponse> ContinueSearchAsync(string continuationToken, string language = "en",
 		string region = "US")
 	{
 		SearchResponse searchResponse = await InnerTube.ContinueSearchAsync(continuationToken, language, region);
-		return new ContinuationResponse
+		RendererWrapper[] continuationItems = (searchResponse.OnResponseReceivedCommands?.SelectMany(x =>
+				x.AppendContinuationItemsAction?.ContinuationItems ??
+				x.ReloadContinuationItemsCommand?.ContinuationItems ?? []) ?? [])
+			.ToArray();
+		if (continuationItems[0].RendererCase == RendererWrapper.RendererOneofCase.TwoColumnSearchResultsRenderer)
 		{
-			ContinuationToken = searchResponse.OnResponseReceivedCommands.AppendContinuationItemsAction
-				.ContinuationItems
-				.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
-				?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
-			Results = Utils.ConvertRenderers(
-				searchResponse.OnResponseReceivedCommands.AppendContinuationItemsAction.ContinuationItems.SelectMany(
-					x => x.ItemSectionRenderer?.Contents ?? []), language)
-		};
+			RendererWrapper[] renderers = continuationItems[0].TwoColumnSearchResultsRenderer.PrimaryContents
+				.ResultsContainer.Results.SelectMany(x => x.ItemSectionRenderer?.Contents ?? []).ToArray();
+			return new SearchContinuationResponse
+			{
+				ContinuationToken = renderers
+					.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+					?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
+				Results = Utils.ConvertRenderers(
+					renderers.Where(x => x.RendererCase != RendererWrapper.RendererOneofCase.ContinuationItemRenderer),
+					language),
+				Chips = Utils.ConvertRenderers(
+					continuationItems[1].SearchHeaderRenderer.ChipBar.ChipCloudRenderer.Chips, language)
+			};
+		}
+		else
+		{
+			return new SearchContinuationResponse
+			{
+				ContinuationToken = continuationItems
+					.LastOrDefault(x => x.RendererCase == RendererWrapper.RendererOneofCase.ContinuationItemRenderer)
+					?.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token,
+				Results = Utils.ConvertRenderers(continuationItems.SelectMany(x => x.ItemSectionRenderer?.Contents ?? []),
+					language),
+				Chips = null
+			};
+		}
 	}
 
 	public async Task<ResolveUrlResponse> ResolveUrl(string url) => await InnerTube.ResolveUrl(url);

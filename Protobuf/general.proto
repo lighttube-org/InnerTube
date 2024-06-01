@@ -896,6 +896,11 @@ message PlayerMicroformatRenderer {
     int32 width = 3;
     int32 height = 4;
   }
+  
+  message BroadcastDetails {
+    bool isLiveNow = 1;
+    string startTimestamp = 2;
+  }
 
   Thumbnails thumbnail = 1;
   Embed embed = 2;
@@ -912,7 +917,9 @@ message PlayerMicroformatRenderer {
   string category = 15;
   string publishDate = 16;
   string ownerChannelName = 17;
+  optional BroadcastDetails liveBroadcastDetails = 18;
   string uploadDate = 19;
+  bool isShortsEligible = 22;
 }
 
 message ChannelVideoPlayerRenderer {

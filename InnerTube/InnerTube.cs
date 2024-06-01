@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.RegularExpressions;
 using Google.Protobuf;
 using InnerTube.Exceptions;
 using InnerTube.Protobuf;
@@ -12,13 +13,15 @@ namespace InnerTube;
 /// <summary>
 /// The InnerTube client.
 /// </summary>
-public class InnerTube
+public partial class InnerTube
 {
 	internal readonly HttpClient HttpClient = new();
 	internal readonly MemoryCache PlayerCache;
 	internal readonly string ApiKey;
 	internal readonly InnerTubeAuthorization? Authorization;
 	internal readonly SignatureSolver SignatureSolver = new();
+	internal string? VisitorData;
+	private readonly Regex visitorDataRegex = VisitorDataGeneratedRegex();
 
 	/// <summary>
 	/// Initializes a new instance of InnerTube client.
@@ -37,8 +40,10 @@ public class InnerTube
 	}
 
 	private async Task<byte[]> MakeRequest(RequestClient client, string endpoint, InnerTubeRequest postData,
-		string language, string region, bool authorized = false)
+		string language, string region, bool authorized = false, string? referer = null)
 	{
+		if (VisitorData is null) 
+			await UpdateVisitorData();
 		string url = $"https://youtubei.googleapis.com/youtubei/v1/{endpoint}";
 		url += "?alt=proto";
 		if (!authorized || Authorization?.Type != AuthorizationType.REFRESH_TOKEN)
@@ -47,7 +52,8 @@ public class InnerTube
 
 		HttpRequestMessage hrm = new(HttpMethod.Post, url);
 
-		byte[] buffer = Encoding.UTF8.GetBytes(postData.GetJson(client, language, region));
+		byte[] buffer =
+			Encoding.UTF8.GetBytes(postData.GetJson(client, language, region, authorized ? VisitorData : null, referer));
 		ByteArrayContent byteContent = new(buffer);
 		byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 		hrm.Content = byteContent;
@@ -62,11 +68,11 @@ public class InnerTube
 		hrm.Headers.Add("X-Youtube-Client-Name", ((int)client).ToString());
 		hrm.Headers.Add("X-Youtube-Client-Version", client switch
 		{
-			RequestClient.WEB => "2.20240304.00.00",
-			RequestClient.ANDROID => "19.09.4",
-			RequestClient.IOS => "19.09.4",
-			RequestClient.TV_EMBEDDED => "2.0",
-			var _ => ""
+			RequestClient.WEB => Constants.WebClientVersion,
+			RequestClient.ANDROID => Constants.MobileClientVersion,
+			RequestClient.IOS => Constants.MobileClientVersion,
+			RequestClient.TV_EMBEDDED => Constants.TvEmbeddedClientVersion,
+			_ => ""
 		});
 		//hrm.Headers.Add("Origin", "https://www.youtube.com");
 		if (client == RequestClient.ANDROID)
@@ -78,15 +84,26 @@ public class InnerTube
 		return await ytPlayerRequest.Content.ReadAsByteArrayAsync();
 	}
 
+	private async Task UpdateVisitorData()
+	{
+		HttpRequestMessage req = new(HttpMethod.Get, "https://www.youtube.com");
+		req.Headers.Add("Cookie", "CONSENT=PENDING+742");
+		HttpResponseMessage res = await HttpClient.SendAsync(req);
+		string html = await res.Content.ReadAsStringAsync();
+		VisitorData = visitorDataRegex.Match(html).Groups[1].Value;
+	}
+
 	/// <summary>
 	/// Gets the player data of a video
 	/// </summary>
 	/// <param name="videoId">ID of the video</param>
 	/// <param name="contentCheckOk">Set to true if you want to skip the content warnings (suicide, self-harm etc.)</param>
+	/// <param name="fallbackToUnserializedResponse">For future streams/premieres with trailers, the response will have
+	/// another video response inside the main response. Set this to true to use that response, if its available</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
-		string language = "en", string region = "US")
+		bool fallbackToUnserializedResponse = false, string language = "en", string region = "US")
 	{
 		if (!SignatureSolver.Initialized)
 			await SignatureSolver.LoadLatestJs(videoId);
@@ -98,18 +115,41 @@ public class InnerTube
 		// if not, use TV_EMBEDDED to bypass embeddable videos 
 		Task<PlayerResponse> webResponse =
 			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region,
-				Authorization != null ? RequestClient.WEB : RequestClient.TV_EMBEDDED);
+				RequestClient.WEB);
+		Task<PlayerResponse>? tvEmbeddedResponse = Authorization == null
+			? GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region,
+				RequestClient.TV_EMBEDDED)
+			: null;
 		Task<PlayerResponse> iosResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region, RequestClient.IOS);
+			GetPlayerObjectAsync(videoId, contentCheckOk, SignatureSolver.SignatureTimestamp, language, region,
+				RequestClient.IOS);
 
 		PlayerResponse webPlayer = await webResponse;
+		PlayerResponse? tvEmbeddedPlayer = tvEmbeddedResponse != null ? await tvEmbeddedResponse : null;
 		PlayerResponse? iosPlayer = await iosResponse;
+
+		if (Authorization == null)
+		{
+			PlayerResponse a = webPlayer;
+			webPlayer = tvEmbeddedPlayer!;
+			tvEmbeddedPlayer = a;
+			webPlayer.PlayabilityStatus = tvEmbeddedPlayer.PlayabilityStatus;
+			webPlayer.Microformat = tvEmbeddedPlayer.Microformat;
+		}
 
 		if (webPlayer.PlayabilityStatus.Status == PlayabilityStatus.Types.Status.LiveStreamOffline)
 		{
-			webPlayer = webPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer?.UnserializedPlayerResponse ??
-			            throw new PlayerException(webPlayer.PlayabilityStatus.Status,
-				            webPlayer.PlayabilityStatus.Reason, webPlayer.PlayabilityStatus.Subreason);
+			PlayerResponse? unserializedResponse = webPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer?.UnserializedPlayerResponse;
+			if (unserializedResponse == null || !fallbackToUnserializedResponse)
+	            throw new PlayerException(webPlayer.PlayabilityStatus.Status,
+		            webPlayer.PlayabilityStatus.Reason, webPlayer.PlayabilityStatus.Subreason);
+			cacheId = ""; // dont cache
+			// keep microformat & videodetails alive
+			webPlayer.Captions = unserializedResponse.Captions;
+			webPlayer.StreamingData = unserializedResponse.StreamingData;
+			webPlayer.PlayabilityStatus = unserializedResponse.PlayabilityStatus;
+			webPlayer.Storyboards = unserializedResponse.Storyboards;
+			webPlayer.Endscreen = unserializedResponse.Endscreen;
 			iosPlayer = iosPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer?.UnserializedPlayerResponse;
 		}
 		if (webPlayer.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
@@ -128,14 +168,20 @@ public class InnerTube
 				SignatureSolver.DescrambleUrl(format);
 		}
 
-		PlayerCache.Set(cacheId, webPlayer, new MemoryCacheEntryOptions
-		{
-			Size = 1,
-			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, webPlayer.VideoDetails.LengthSeconds)),
-			AbsoluteExpirationRelativeToNow =
-				TimeSpan.FromSeconds(Math.Max(3600,
-					webPlayer.StreamingData!.ExpiresInSeconds - webPlayer.VideoDetails.LengthSeconds))
-		});
+		// Only WEB players have microformat
+		if (webPlayer.Microformat == null && iosPlayer?.Microformat != null)
+			webPlayer.Microformat = iosPlayer.Microformat;
+
+		if (cacheId != "")
+			PlayerCache.Set(cacheId, webPlayer, new MemoryCacheEntryOptions
+			{
+				Size = 1,
+				SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, webPlayer.VideoDetails.LengthSeconds)),
+				AbsoluteExpirationRelativeToNow =
+					TimeSpan.FromSeconds(Math.Max(3600,
+						webPlayer.StreamingData!.ExpiresInSeconds - webPlayer.VideoDetails.LengthSeconds))
+			});
+		if (webPlayer.Microformat == null) throw new Exception("no microformat?");
 		return webPlayer;
 	}
 
@@ -153,14 +199,21 @@ public class InnerTube
 			{
 				["contentPlaybackContext"] = new Dictionary<string, object>
 				{
+					["html5Preference"] = "HTML5_PREF_WANTS",
+					["lactMilliseconds"] = "2132",
+					["referer"] = "https://www.youtube.com/watch?v=" + videoId,
 					["signatureTimestamp"] = signatureTimestamp,
-					["html5Preference"] = "HTML5_PREF_WANTS"
+					["autoCaptionsDefaultOn"] = false,
+					["autoplay"] = true,
+					["mdxContext"] = new Dictionary<string, string>(),
+					["playerWidthPixels"] = 770,
+					["playerHeightPixels"] = 433
 				}
 			});	
 		}
 
 		return PlayerResponse.Parser.ParseFrom(await MakeRequest(client, "player", postData,
-			language, region, true));
+			language, region, true, "https://www.youtube.com/watch?v=" + videoId));
 	}
 
 	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk = false,
@@ -265,4 +318,7 @@ public class InnerTube
 		return ResolveUrlResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "navigation/resolve_url",
 			postData, "en", "US"));
 	}
+
+    [GeneratedRegex("\"visitorData\":\"(.+?)\",")]
+    private static partial Regex VisitorDataGeneratedRegex();
 }

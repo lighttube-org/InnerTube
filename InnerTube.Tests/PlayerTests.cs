@@ -74,7 +74,7 @@ public class PlayerTests
 	{
 		if (requiresAuthentication && !authenticated)
 			Assert.Inconclusive("Test requires authentication");
-		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk);
+		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, true);
 		StringBuilder sb = new();
 
 		sb.AppendLine("== DETAILS")
