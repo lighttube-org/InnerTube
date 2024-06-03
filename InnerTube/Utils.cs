@@ -1211,6 +1211,16 @@ public static partial class Utils
 						Items = ConvertRenderers(renderer.ItemSectionRenderer.Contents, parserLanguage)
 					}
 				},
+				RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => new RendererContainer {
+					Type = "container",
+					OriginalType = "horizontalCardListRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = ConvertRenderers(renderer.HorizontalCardListRenderer.Cards, parserLanguage),
+						Title = ReadRuns(renderer.RichListHeaderRenderer.Title),
+						Style = "shelf;horizontal;cards"
+					}
+				},
 				RendererWrapper.RendererOneofCase.ShelfRenderer => new RendererContainer
 				{
 					Type = "container",
