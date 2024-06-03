@@ -32,7 +32,10 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback, string pars
 		public string[] Keywords { get; } = player.VideoDetails.Keywords.ToArray();
 		public string ShortDescription { get; } = player.VideoDetails.ShortDescription;
 		public string Category { get; } = player.Microformat.PlayerMicroformatRenderer.Category;
-		public bool IsLive { get; } = player.VideoDetails.IsLiveContent;
+
+		public bool IsLive { get; } = player.Microformat.PlayerMicroformatRenderer.LiveBroadcastDetails?.IsLiveNow ??
+		                              player.VideoDetails.IsLiveContent;
+		
 		public bool IsFallback { get; } = isFallback;
 		public bool AllowRatings { get; } = player.VideoDetails.AllowRatings;
 		public bool IsFamilySafe { get; } = player.Microformat.PlayerMicroformatRenderer.IsFamilySafe;
@@ -43,6 +46,11 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback, string pars
 
 		public DateTimeOffset? UploadDate { get; } =
 			DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.UploadDate);
+
+		public DateTimeOffset? LiveStreamStartDate { get; } =
+			player.Microformat.PlayerMicroformatRenderer.LiveBroadcastDetails != null
+				? DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.LiveBroadcastDetails.StartTimestamp)
+				: null;
 
 		public TimeSpan? Length { get; } = TimeSpan.FromSeconds(player.VideoDetails.LengthSeconds);
 
