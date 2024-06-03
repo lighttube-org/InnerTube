@@ -381,6 +381,7 @@ message RendererWrapper {
     CinematicContainerRenderer cinematicContainerRenderer = 455752576;
     PlaylistBylineRenderer playlistBylineRenderer = 455964309;
     ButtonViewModel2 buttonViewModel2 = 461054335;
+    ButtonCardViewModel buttonCardViewModel = 464630959;
     ToggleButtonViewModel toggleButtonViewModel = 479644279;
     ChannelTaglineRenderer channelTaglineRenderer = 482604211;
     LikeButtonViewModel likeButtonViewModel = 484585818;
@@ -1899,6 +1900,12 @@ message ButtonViewModel2 {
   int32 state = 14;
   optional string accessibilityId = 17;
   optional string tooltip = 39;
+}
+
+message ButtonCardViewModel {
+  string title = 1;
+  Image image = 4;
+  Context rendererContext = 997;
 }
 
 message ToggleButtonViewModel {
