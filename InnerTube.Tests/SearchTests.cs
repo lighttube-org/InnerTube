@@ -154,4 +154,25 @@ public class SearchTests
 				break;
 		}
 	}
+
+	[TestCase("lofi radio", null, TestName = "Page 1")]
+	[TestCase("lofi radio", 20, TestName = "Page 2")]
+	public async Task PaginationTest(string query, int? index)
+	{
+		SearchResponse results =
+			await _innerTube.SearchAsync(query, index != null ? new SearchParams { Index = index.Value } : null);
+		StringBuilder sb = new();
+		sb.AppendLine("\n== METADATA");
+		sb.AppendLine($"EstimatedResults: {results.EstimatedResults}");
+		sb.AppendLine($"Chips: {string.Join(", ", results.Header.SearchHeaderRenderer.ChipBar?.ChipCloudRenderer?.Chips?.Select(x => Utils.ReadRuns(x.ChipCloudChipRenderer.Text)) ?? [])}");
+		sb.AppendLine("Refinements:");
+		foreach (string resultsRefinement in results.Refinements) 
+			sb.AppendLine("- " + resultsRefinement);
+		
+		sb.AppendLine("\n== RESULTS");
+		foreach (RendererWrapper? renderer in results.Contents.TwoColumnSearchResultsRenderer.PrimaryContents
+			         .ResultsContainer.Results.SelectMany(x => x.ItemSectionRenderer?.Contents ?? []))
+			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
+		Assert.Pass(sb.ToString());
+	}
 }

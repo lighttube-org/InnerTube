@@ -17,6 +17,7 @@ message SearchParams {
   optional SortField SortBy = 1;
   optional SearchFilters Filters = 2;
   optional QueryFlags QueryFlags = 8;
+  optional int32 index = 9;
 }
 
 message SearchFilters {
