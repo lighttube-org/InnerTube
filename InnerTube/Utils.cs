@@ -1217,7 +1217,7 @@ public static partial class Utils
 					Data = new ContainerRendererData
 					{
 						Items = ConvertRenderers(renderer.HorizontalCardListRenderer.Cards, parserLanguage),
-						Title = ReadRuns(renderer.RichListHeaderRenderer.Title),
+						Title = ReadRuns(renderer.HorizontalCardListRenderer.Header.RichListHeaderRenderer.Title),
 						Style = "shelf;horizontal;cards"
 					}
 				},

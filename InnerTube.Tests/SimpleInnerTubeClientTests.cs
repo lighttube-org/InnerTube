@@ -443,6 +443,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("vpn", null, TestName = "adSlotRenderer")]
 	[TestCase("Various Artists", "exact;channel", TestName = "Various Artists/old ChannelRenderer")]
 	[TestCase("ずっと真夜中でいいのに。ZUTOMAYO", null, TestName = "Sidebar")]
+	[TestCase("zutomayo truth in lies", null, TestName = "Attempt at getting a horizontalCardListRenderer")]
 	public async Task SearchAsync(string query, string? paramArgs)
 	{
 		SearchParams? param = paramArgs switch
