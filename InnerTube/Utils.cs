@@ -667,7 +667,8 @@ public static partial class Utils
 						ViewCount = ValueParser.ParseViewCount(parserLanguage,
 							ReadRuns(renderer.VideoRenderer.ViewCountText)),
 						Badges = SimplifyBadges(renderer.VideoRenderer.Badges),
-						Description = ReadRuns(renderer.VideoRenderer.DetailedMetadataSnippets?.SnippetText),
+						Description = ReadRuns(renderer.VideoRenderer.DescriptionSnippet ??
+						                       renderer.VideoRenderer.DetailedMetadataSnippets?.SnippetText),
 						PremiereStartTime = renderer.VideoRenderer.UpcomingEventData != null
 							? DateTimeOffset.FromUnixTimeSeconds(renderer.VideoRenderer.UpcomingEventData.StartTime)
 							: null
@@ -795,6 +796,38 @@ public static partial class Utils
 						Badges = [],
 						Thumbnails = [],
 						Description = ReadRuns(renderer.ChannelVideoPlayerRenderer.Description)
+					}
+				},
+				RendererWrapper.RendererOneofCase.MovieRenderer => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "movieRenderer",
+					Data = new VideoRendererData
+					{
+						VideoId = renderer.MovieRenderer.VideoId,
+						Title = ReadRuns(renderer.MovieRenderer.Title),
+						Thumbnails = renderer.MovieRenderer.Thumbnails.Thumbnails_.ToArray(),
+						Author = Channel.From(renderer.MovieRenderer.LongBylineText,
+							renderer.MovieRenderer.OwnerBadges.Select(x => x.MetadataBadgeRenderer).ToArray(),
+							renderer.MovieRenderer.ChannelThumbnailSupportedRenderers?.ChannelThumbnailWithLinkRenderer
+								?.Thumbnail != null
+								? new Thumbnails
+								{
+									Thumbnails_ =
+									{
+										renderer.MovieRenderer.ChannelThumbnailSupportedRenderers
+											?.ChannelThumbnailWithLinkRenderer?.Thumbnail.Thumbnails_
+									}
+								}
+								: null),
+						Duration = ParseDuration(renderer.MovieRenderer.LengthText?.SimpleText ?? "00:00"),
+						PublishedText = null,
+						RelativePublishedDate = null,
+						ViewCountText = null,
+						ViewCount = 0,
+						Badges = SimplifyBadges(renderer.MovieRenderer.Badges),
+						Description = ReadRuns(renderer.MovieRenderer.DescriptionSnippet),
+						PremiereStartTime = null
 					}
 				},
 				RendererWrapper.RendererOneofCase.CompactMovieRenderer => new RendererContainer
@@ -1217,7 +1250,7 @@ public static partial class Utils
 					Data = new ContainerRendererData
 					{
 						Items = ConvertRenderers(renderer.HorizontalCardListRenderer.Cards, parserLanguage),
-						Title = ReadRuns(renderer.HorizontalCardListRenderer.Header.RichListHeaderRenderer.Title),
+						Title = ReadRuns(renderer.HorizontalCardListRenderer.Header?.RichListHeaderRenderer?.Title),
 						Style = "shelf;horizontal;cards"
 					}
 				},
@@ -1306,6 +1339,8 @@ public static partial class Utils
 				},
 				RendererWrapper.RendererOneofCase.RichItemRenderer => ConvertRenderer(renderer.RichItemRenderer.Content,
 					parserLanguage),
+				RendererWrapper.RendererOneofCase.ChannelFeaturedContentRenderer => ConvertRenderer(
+					renderer.ChannelFeaturedContentRenderer.Items[0], parserLanguage),
 				RendererWrapper.RendererOneofCase.AdSlotRenderer => ConvertRenderer(renderer.AdSlotRenderer
 					.FulfillmentContent.FulfilledLayout.InFeedAdLayoutRenderer.RenderingContent, parserLanguage),
 				RendererWrapper.RendererOneofCase.MessageRenderer => new RendererContainer
@@ -1335,6 +1370,8 @@ public static partial class Utils
 				},
 				RendererWrapper.RendererOneofCase
 					.PromotedSparklesWebRenderer => null, // ad, doesn't fit into any IRendererData's
+				RendererWrapper.RendererOneofCase
+					.TextImageNoButtonLayoutRenderer => null, // ad, doesn't fit into any IRendererData's
 				_ => new RendererContainer
 				{
 					Type = "unknown",

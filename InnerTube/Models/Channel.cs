@@ -53,9 +53,9 @@ public class Channel(
 		try
 		{
 			return new Channel("",
-				id: bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId,
+				id: bylineText.Runs[0].NavigationEndpoint?.BrowseEndpoint.BrowseId ?? "",
 				title: bylineText.Runs[0].Text,
-				handle: TryGetHandle(bylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.CanonicalBaseUrl),
+				handle: TryGetHandle(bylineText.Runs[0].NavigationEndpoint?.BrowseEndpoint.CanonicalBaseUrl),
 				avatar: avatar?.Thumbnails_.ToArray(),
 				subscribersText: null,
 				badges: badges);
@@ -82,8 +82,9 @@ public class Channel(
 			subscribersText: null,
 			badges: null); // TODO: badges
 
-	internal static string? TryGetHandle(string url)
+	internal static string? TryGetHandle(string? url)
 	{
+		if (url is null) return null;
 		string res = url.TrimStart('/');
 		return url.Length != 0 ? res[0] == '@' ? res : null : null;
 	}
