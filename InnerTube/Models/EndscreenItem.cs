@@ -6,7 +6,7 @@ public class EndscreenItem(EndscreenElementRenderer item)
 {
 	public EndscreenItemType Type { get; } = (EndscreenItemType)item.Style;
 	public string Title { get; } = Utils.ReadRuns(item.Title);
-	public Thumbnails Image { get; } = item.Image;
+	public Thumbnail[] Image { get; } = item.Image.Thumbnails_.ToArray();
 	public string Metadata { get; } = Utils.ReadRuns(item.Metadata);
 	public long StartMs { get; } = item.StartMs;
 	public long EndMs { get; } = item.EndMs;
