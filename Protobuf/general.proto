@@ -277,6 +277,7 @@ message RendererWrapper {
     ChannelMetadataRenderer channelMetadataRenderer = 57075253;
     VerticalListRenderer verticalListRenderer = 57988071;
     TabRenderer tabRenderer = 58174010;
+    MovieRenderer movieRenderer = 58485188;
     CompactMovieRenderer compactMovieRenderer = 58485276;
     MessageRenderer messageRenderer = 58508690;
     PlayerMicroformatRenderer playerMicroformatRenderer = 58514816;
@@ -290,6 +291,7 @@ message RendererWrapper {
     PromotedVideoRenderer promotedVideoRenderer = 62887855;
     RadioRenderer radioRenderer = 62951200;
     PlaylistMetadataRenderer playlistMetadataRenderer = 63173126;
+    ChannelFeaturedContentRenderer channelFeaturedContentRenderer = 63546828;
     CommentRepliesRenderer commentRepliesRenderer = 65060753;
     ButtonViewModel buttonViewModel = 65153809;
     SecondarySearchContainerRenderer secondarySearchContainerRenderer = 65750403;
@@ -396,6 +398,7 @@ message RendererWrapper {
     FlexibleActionsViewModel flexibleActionsViewModel = 520990934;
     AboutChannelViewModel aboutChannelViewModel = 522039202;
     AttributionViewModel attributionViewModel = 522729680;
+    TextImageNoButtonLayoutRenderer textImageNoButtonLayoutRenderer = 523805960;
     DescriptionPreviewViewModel descriptionPreviewViewModel = 524902670;
   }
 }
@@ -500,6 +503,7 @@ message VideoRenderer {
   string videoId = 1;
   Thumbnails thumbnail = 2;
   Text title = 3;
+  optional Text descriptionSnippet = 4;
   Text longBylineText = 5;
   Text publishedTimeText = 6;
   Text lengthText = 7;
@@ -872,6 +876,28 @@ message TabRenderer {
   bytes trackingParams = 14;
 }
 
+message MovieRenderer {
+  string videoId = 1;
+  Thumbnails thumbnails = 2;
+  Text title = 3;
+  Text descriptionSnippet = 4;
+  Text longBylineText = 5;
+  Text shortBylineText = 7;
+  Text lengthText = 9;
+  Endpoint navigationEndpoint = 11;
+  repeated RendererWrapper badges = 12;
+  repeated RendererWrapper ownerBadges = 13;
+  bytes trackingParams = 17;
+  RendererWrapper menu = 22;
+  Text topMetadataItems = 29;
+  repeated Text bottomMetadataItems = 30;
+  bool useVerticalPoster = 32;
+  bool showActionMenu = 34;
+  repeated RendererWrapper thumbnailOverlays = 35;
+  repeated RendererWrapper offerButtons = 37;
+  RendererWrapper channelThumbnailSupportedRenderers = 38;
+}
+
 message CompactMovieRenderer {
   string videoId = 1;
   Thumbnails thumbnail = 2;
@@ -1057,6 +1083,10 @@ message PlaylistMetadataRenderer {
   string description = 2;
   string androidAppindexingLink = 6;
   string iosAppindexingLink = 7;
+}
+
+message ChannelFeaturedContentRenderer {
+  repeated RendererWrapper items = 3;
 }
 
 message CommentRepliesRenderer {
@@ -2024,6 +2054,26 @@ message AttributionViewModel {
   AttributedDescription text = 3;
   AttributedDescription suffix = 5;
   Context rendererContext = 997;
+}
+
+message TextImageNoButtonLayoutRenderer {
+  message Target {
+    int32 location = 1;
+    int32 code = 2;
+    int32 behaviorType = 3;
+  }
+
+  Text title = 1;
+  Text headline = 2;
+  Text websiteText = 4;
+  Endpoint navigationCommand = 5;
+  Endpoint impressionCommand = 6;
+  RendererWrapper menu = 8;
+  RendererWrapper mediaHoverOverlay = 10;
+  RendererWrapper mediaBadge = 11;
+  RendererWrapper adBadge = 12;
+  repeated Target clickLocationTargets = 14;
+  bytes trackingParams = 16;
 }
 
 message DescriptionPreviewViewModel {
