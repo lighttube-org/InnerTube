@@ -96,7 +96,7 @@ public class InnerTubeVideo
 				{
 					StartSeconds = x.MacroMarkersListItemRenderer.OnTap.WatchEndpoint.StartTimeSeconds,
 					Title = Utils.ReadRuns(x.MacroMarkersListItemRenderer.Title),
-					Thumbnails = x.MacroMarkersListItemRenderer.Thumbnail
+					Thumbnails = x.MacroMarkersListItemRenderer.Thumbnail.Thumbnails_.ToArray()
 				}) ?? [];
 		
 		// NOTE: for age restricted videos, the first SecondaryResults is null
