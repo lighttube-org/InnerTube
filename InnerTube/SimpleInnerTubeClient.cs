@@ -263,7 +263,7 @@ public class SimpleInnerTubeClient
 		if (continuationItems[0].RendererCase == RendererWrapper.RendererOneofCase.TwoColumnSearchResultsRenderer)
 		{
 			RendererWrapper[] renderers = continuationItems[0].TwoColumnSearchResultsRenderer.PrimaryContents
-				.ResultsContainer.Results.SelectMany(x => x.ItemSectionRenderer?.Contents ?? []).ToArray();
+				?.ResultsContainer.Results.SelectMany(x => x.ItemSectionRenderer?.Contents ?? []).ToArray() ?? [];
 			return new SearchContinuationResponse
 			{
 				ContinuationToken = renderers
