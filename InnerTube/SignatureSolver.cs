@@ -63,7 +63,7 @@ public partial class SignatureSolver
 		}
 
 		Match nParamFunctionBodyMatch = new Regex(
-			$@"{Regex.Escape(nParamFunctionName)}=\s*function([\S\s]*?\}}\s*return [\w$]+?\.join\(""""\)\s*\}};)",
+			$@"{Regex.Escape(nParamFunctionName)}.?=.?function(\(.+?\){{.+?return (?:Array\.prototype\.join\.call\(.,""""\)|\S\.join\(""""\))}};)",
 			RegexOptions.Singleline).Match(js);
 
 		string finalJs =
@@ -126,6 +126,9 @@ public partial class SignatureSolver
     private static partial Regex SignatureTimestampRegex();
     [GeneratedRegex("""(?:[^=]+)=function\((\w)\){\w=\w.split\(""\);(.+?)return \w.join""")]
     private static partial Regex DescramblerFunctionRegex();
-    [GeneratedRegex("""\.get\("n"\)\)&&\([a-zA-Z0-9$_]=([a-zA-Z0-9$_]+)(?:\[(\d+)])?\([a-zA-Z0-9$_]\)""")]
+    [GeneratedRegex("""
+                    (?x)(?:\.get\("n"\)\)&&\(b=|b=String\.fromCharCode\(110\),c=a\.get\(b\)\)&&\(c=)
+                    (?<nfunc>[a-zA-Z0-9$]+)(?:\[(?<idx>\d+)\])?\([a-zA-Z0-9]\)
+                    """)]
     private static partial Regex NParamFunctionNameRegex();
 }
