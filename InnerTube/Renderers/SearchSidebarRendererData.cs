@@ -12,10 +12,12 @@ public class SearchSidebarRendererData : IRendererData
 	public Badge? TitleBadge { get; set; }
 	public RendererContainer? CallToAction { get; set; }
 	public RendererContainer[] Sections { get; set; }
+	public SearchSidebarType Type { get; set; }
 
 	public override string ToString()
 	{
 		StringBuilder sb = new();
+		sb.AppendLine($"Type: {Type}");
 		sb.AppendLine($"Title: {Title}");
 		sb.AppendLine($"Subtitle: {Subtitle}");
 		sb.AppendLine($"Avatar.Length: {Avatar?.Length}");

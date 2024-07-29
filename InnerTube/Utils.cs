@@ -1171,7 +1171,18 @@ public static partial class Utils
 						]).FirstOrDefault(),
 						CallToAction =
 							ConvertRenderer(renderer.UniversalWatchCardRenderer.CallToAction, parserLanguage),
-						Sections = ConvertRenderers(renderer.UniversalWatchCardRenderer.Sections, parserLanguage)
+						Sections = ConvertRenderers(renderer.UniversalWatchCardRenderer.Sections, parserLanguage),
+						Type = renderer.UniversalWatchCardRenderer.CallToAction.WatchCardHeroVideoRenderer.HeroImage
+								.RendererCase switch
+							{
+								RendererWrapper.RendererOneofCase.CollageHeroImageRenderer => SearchSidebarType.Artist,
+								RendererWrapper.RendererOneofCase.SingleHeroImageRenderer => renderer
+									.UniversalWatchCardRenderer.CallToAction.WatchCardHeroVideoRenderer
+									.NavigationEndpoint.CommandMetadata.WebCommandMetadata.Url.Contains("/show/")
+									? SearchSidebarType.TvShow
+									: SearchSidebarType.Album,
+								_ => SearchSidebarType.Unknown
+							}
 					}
 				},
 				RendererWrapper.RendererOneofCase.WatchCardHeroVideoRenderer => new RendererContainer

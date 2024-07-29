@@ -151,3 +151,11 @@ public enum VideoUploadType
 	FuturePremiere = 4,
 	ScheduledStream = 5
 }
+
+public enum SearchSidebarType
+{
+	Unknown = 0,
+	Artist = 1,
+	Album = 2,
+	TvShow = 3
+}
