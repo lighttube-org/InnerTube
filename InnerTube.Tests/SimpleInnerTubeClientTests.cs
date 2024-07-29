@@ -106,6 +106,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("o0tky2O8NlY", "OLAK5uy_l6pEkEJgy577R-aDlJ3Gkp5rmlgIOu8bc", null, null,
 		TestName = "[Playlist] Album playlist (index 9)")]
 	[TestCase("k_nLHgIM4yE", "PLv3TTBr1W_9tppikBxAE_G6qjWdBljBHJ", null, null, TestName = "[Playlist] Large playlist")]
+	[TestCase("nVdPtlZOSxU", "PLUy_TXfTDW5e53JugN_BgwP8SJ2Y-K-kO", null, null, TestName = "[Playlist] Playlist with unavailable videos")]
 	[TestCase("Hr2Lm6oEo3c", null, null, null, TestName = "Premiere video in the recommended")]
 	public async Task GetVideoDetailsAsync(string videoId, string? playlistId, int? playlistIndex,
 		string? playlistParams)

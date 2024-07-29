@@ -248,7 +248,10 @@ public class SimpleInnerTubeClient
 		string language = "en",
 		string region = "US")
 	{
-		SearchResponse searchResponse = await InnerTube.SearchAsync(query, param, language, region);
+		SearchResponse searchResponse = query.Contains("House")
+			? SearchResponse.Parser.ParseFrom(
+				await File.ReadAllBytesAsync("/home/kuylar/Projects/DotNet/InnerTube/Protobuf/search_show.bin"))
+			: await InnerTube.SearchAsync(query, param, language, region);
 		return new InnerTubeSearchResults(searchResponse, language);
 	}
 

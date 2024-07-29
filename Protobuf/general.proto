@@ -318,6 +318,7 @@ message RendererWrapper {
     BackgroundPromoRenderer backgroundPromoRenderer = 94317419;
     VideoPrimaryInfoRenderer videoPrimaryInfoRenderer = 100048340;
     ChannelThumbnailWithLinkRenderer channelThumbnailWithLinkRenderer = 100346611;
+    MessageSubtextRenderer messageSubtextRenderer = 101425885;
     VideoSecondaryInfoRenderer videoSecondaryInfoRenderer = 102519231;
     CommentsHeaderRenderer commentsHeaderRenderer = 105977417;
     EndscreenRenderer endscreenRenderer = 106301526;
@@ -917,6 +918,7 @@ message CompactMovieRenderer {
 message MessageRenderer {
   Text text = 1;
   bytes trackingParams = 4;
+  optional RendererWrapper subtext = 6;
 }
 
 message PlayerMicroformatRenderer {
@@ -1324,6 +1326,10 @@ message ChannelThumbnailWithLinkRenderer {
   Thumbnails thumbnail = 1;
   Endpoint navigationEndpoint = 2;
   RendererWrapper accessibility = 3;
+}
+
+message MessageSubtextRenderer {
+  Text text = 1;
 }
 
 message VideoSecondaryInfoRenderer {

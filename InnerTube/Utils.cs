@@ -1393,7 +1393,7 @@ public static partial class Utils
 				{
 					Type = "message",
 					OriginalType = "messageRenderer",
-					Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text))
+					Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text ?? renderer.MessageRenderer.Subtext?.MessageSubtextRenderer.Text))
 				},
 				RendererWrapper.RendererOneofCase.BackgroundPromoRenderer => new RendererContainer
 				{
