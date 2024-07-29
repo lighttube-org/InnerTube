@@ -442,7 +442,9 @@ public class SimpleInnerTubeClientTests
 	[TestCase("", "exact", TestName = "backgroundPromoRenderer")]
 	[TestCase("vpn", null, TestName = "adSlotRenderer")]
 	[TestCase("Various Artists", "exact;channel", TestName = "Various Artists/old ChannelRenderer")]
-	[TestCase("ずっと真夜中でいいのに。ZUTOMAYO", null, TestName = "Sidebar")]
+	[TestCase("ずっと真夜中でいいのに。ZUTOMAYO", null, TestName = "Sidebar - Artist")]
+	[TestCase("House MD.", null, TestName = "Sidebar - TV Show")]
+	[TestCase("ずっと真夜中でいいのに。ZUTOMAYO - Gusare", null, TestName = "Sidebar - Album")]
 	[TestCase("zutomayo truth in lies", null, TestName = "Attempt at getting a horizontalCardListRenderer")]
 	public async Task SearchAsync(string query, string? paramArgs)
 	{

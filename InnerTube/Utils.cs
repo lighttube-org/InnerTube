@@ -917,14 +917,22 @@ public static partial class Utils
 						VideoId = renderer.WatchCardCompactVideoRenderer.NavigationEndpoint.WatchEndpoint.VideoId,
 						Title = ReadRuns(renderer.WatchCardCompactVideoRenderer.Title),
 						Thumbnails = [],
-						Author = Channel.From(renderer.WatchCardCompactVideoRenderer.Byline),
+						Author = Channel.From(renderer.WatchCardCompactVideoRenderer.Byline) ??
+						         Channel.From(renderer.WatchCardCompactVideoRenderer.Subtitle),
 						Duration = ParseDuration(ReadRuns(renderer.WatchCardCompactVideoRenderer.LengthText)),
-						PublishedText = ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[1],
-						RelativePublishedDate = ValueParser.ParseRelativeDate(parserLanguage,
-							ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[1]),
+						PublishedText = ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Contains(" • ")
+							? ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[1]
+							: null,
+						RelativePublishedDate =
+							ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Contains(" • ")
+								? ValueParser.ParseRelativeDate(parserLanguage,
+									ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[1])
+								: null,
 						ViewCountText = ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[0],
-						ViewCount = ValueParser.ParseViewCount(parserLanguage,
-							ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[1]),
+						ViewCount = ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Contains(" • ")
+							? ValueParser.ParseViewCount(parserLanguage,
+								ReadRuns(renderer.WatchCardCompactVideoRenderer.Subtitle).Split(" • ")[0])
+							: 0,
 						Badges = [],
 						Description = null,
 						PremiereStartTime = null
@@ -1156,7 +1164,7 @@ public static partial class Utils
 						Title = ReadRuns(renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer.Title),
 						Subtitle = ReadRuns(renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer
 							.Subtitle),
-						Avatar = renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer.Avatar
+						Avatar = renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer.Avatar?
 							.Thumbnails_.ToArray(),
 						TitleBadge = SimplifyBadges([
 							renderer.UniversalWatchCardRenderer.Header.WatchCardRichHeaderRenderer.TitleBadge
@@ -1174,14 +1182,22 @@ public static partial class Utils
 					{
 						Title = renderer.WatchCardHeroVideoRenderer.Accessibility.AccessibilityData.Label,
 						VideoId = renderer.WatchCardHeroVideoRenderer.NavigationEndpoint.WatchEndpoint?.VideoId,
-						HeroImages = [
-							renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer.LeftThumbnail
-								.Thumbnails_.ToArray(),
-							renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer.TopRightThumbnail
-								.Thumbnails_.ToArray(),
-							renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer.BottomRightThumbnail
-								.Thumbnails_.ToArray()
-						]
+						HeroImages = renderer.WatchCardHeroVideoRenderer.HeroImage.RendererCase ==
+						             RendererWrapper.RendererOneofCase.CollageHeroImageRenderer
+							?
+							[
+								renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer.LeftThumbnail
+									.Thumbnails_.ToArray(),
+								renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer.TopRightThumbnail
+									.Thumbnails_.ToArray(),
+								renderer.WatchCardHeroVideoRenderer.HeroImage.CollageHeroImageRenderer
+									.BottomRightThumbnail.Thumbnails_.ToArray()
+							]
+							:
+							[
+								renderer.WatchCardHeroVideoRenderer.HeroImage.SingleHeroImageRenderer.Thumbnail
+									.Thumbnails_.ToArray()
+							]
 					}
 				},
 				RendererWrapper.RendererOneofCase.WatchCardSectionSequenceRenderer => new RendererContainer
@@ -1218,6 +1234,36 @@ public static partial class Utils
 							_ => "vertical"
 						},
 						Title = ReadRuns(renderer.WatchCardSectionSequenceRenderer.ListTitles.FirstOrDefault()),
+						Subtitle = null,
+						Destination = null,
+						ShownItemCount = null
+					}
+				},
+				RendererWrapper.RendererOneofCase.WatchCardSectionDropdownRenderer => new RendererContainer
+				{
+					Type = "container",
+					OriginalType = "watchCardSectionDropdownRenderer",
+					Data = new ContainerRendererData
+					{
+						Items = renderer.WatchCardSectionDropdownRenderer.Lists
+							.Where(x => x.RendererCase ==
+							            RendererWrapper.RendererOneofCase.VerticalWatchCardListRenderer)
+							.Select((x, i) => new RendererContainer
+							{
+								Type = "container",
+								OriginalType = "verticalWatchCardListRenderer",
+								Data = new ContainerRendererData
+								{
+									Items = ConvertRenderers(x.VerticalWatchCardListRenderer.Items, parserLanguage),
+									Style = "dropdown",
+									Title = ReadRuns(renderer.WatchCardSectionDropdownRenderer.DropdownTitles[i]),
+									Subtitle = ReadRuns(renderer.WatchCardSectionDropdownRenderer.DropdownSubtitles[i]),
+									Destination = null,
+									ShownItemCount = null
+								}
+						}).ToArray(),
+						Style = "searchSidebar;vertical",
+						Title = null,
 						Subtitle = null,
 						Destination = null,
 						ShownItemCount = null
@@ -1402,7 +1448,7 @@ public static partial class Utils
 	}
 
 	public static Badge[] SimplifyBadges(IEnumerable<RendererWrapper> renderers) =>
-		renderers.Where(x => x.RendererCase == RendererWrapper.RendererOneofCase.MetadataBadgeRenderer)
+		renderers.Where(x => x != null && x.RendererCase == RendererWrapper.RendererOneofCase.MetadataBadgeRenderer)
 			.Select(x => new Badge(x.MetadataBadgeRenderer))
 			.ToArray();
 

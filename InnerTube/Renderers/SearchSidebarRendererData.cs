@@ -8,7 +8,7 @@ public class SearchSidebarRendererData : IRendererData
 {
 	public string Title { get; set; }
 	public string Subtitle { get; set; }
-	public Thumbnail[] Avatar { get; set; }
+	public Thumbnail[]? Avatar { get; set; }
 	public Badge? TitleBadge { get; set; }
 	public RendererContainer? CallToAction { get; set; }
 	public RendererContainer[] Sections { get; set; }
@@ -18,7 +18,7 @@ public class SearchSidebarRendererData : IRendererData
 		StringBuilder sb = new();
 		sb.AppendLine($"Title: {Title}");
 		sb.AppendLine($"Subtitle: {Subtitle}");
-		sb.AppendLine($"Avatar.Length: {Avatar.Length}");
+		sb.AppendLine($"Avatar.Length: {Avatar?.Length}");
 		sb.AppendLine($"TitleBadge: {(TitleBadge != null ? string.Join("\n\t", TitleBadge.ToString().Split("\n")) : "<null>")}");
 		sb.AppendLine($"CallToAction: {(CallToAction != null ? string.Join("\n\t", CallToAction.Data.ToString().Split("\n")) : "<null>")}");
 		sb.AppendLine($"Sections: ({Sections.Length})");

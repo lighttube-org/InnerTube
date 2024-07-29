@@ -347,7 +347,9 @@ message RendererWrapper {
     EngagementPanelSectionListRenderer engagementPanelSectionListRenderer = 138681066;
     EngagementPanelTitleHeaderRenderer engagementPanelTitleHeaderRenderer = 138681548;
     ReelPlayerOverlayRenderer reelPlayerOverlayRenderer = 139970731;
+    WatchCardSectionDropdownRenderer watchCardSectionDropdownRenderer = 147633782;
     CallToActionButtonRenderer callToActionButtonRenderer = 154950953;
+    SingleHeroImageRenderer singleHeroImageRenderer = 155483823;
     CollageHeroImageRenderer collageHeroImageRenderer = 155492686;
     ImageType imageType = 158796345;
     ReelItemRenderer reelItemRenderer = 158884182;
@@ -1407,6 +1409,8 @@ message TitleAndButtonListHeaderRenderer {
 
 message VerticalWatchCardListRenderer {
   repeated RendererWrapper items = 2;
+  Endpoint viewAllEndpoint = 3;
+  Text viewAllText = 4;
   bytes trackingParams = 6;
 }
 
@@ -1420,6 +1424,7 @@ message WatchCardRichHeaderRenderer {
   Text title = 1;
   Endpoint titleNavigationEndpoint = 2;
   Text subtitle = 3;
+  repeated RendererWrapper badges = 4; 
   Thumbnails avatar = 5;
   RendererWrapper colorSupportedDatas = 6;
   bytes trackingParams = 8;
@@ -1441,6 +1446,7 @@ message UniversalWatchCardRenderer {
   repeated RendererWrapper sections = 3;
   Text collapsedLabel = 5;
   bytes trackingParams = 9;
+  repeated RendererWrapper actionButtons = 12;
 }
 
 message RichListHeaderRenderer {
@@ -1590,10 +1596,22 @@ message ReelPlayerOverlayRenderer {
   int32 reelPlayerNavigationModel = 20;
 }
 
+message WatchCardSectionDropdownRenderer {
+  repeated RendererWrapper lists = 1;
+  repeated Text dropdownTitles = 2;
+  bytes trackingParams = 4;
+  repeated Text dropdownSubtitles = 5;
+}
+
 message CallToActionButtonRenderer {
   Text label = 1;
   Icon icon = 2;
   int32 style = 3;
+}
+
+message SingleHeroImageRenderer {
+  Thumbnails thumbnail = 1;
+  int32 style = 2;
 }
 
 message CollageHeroImageRenderer {
