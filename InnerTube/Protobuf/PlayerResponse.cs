@@ -50,62 +50,65 @@ namespace InnerTube.Protobuf.Responses {
             "T0dJTl9SRVFVSVJFRBADEhoKFkNPTlRFTlRfQ0hFQ0tfUkVRVUlSRUQQBBIX",
             "ChNMSVZFX1NUUkVBTV9PRkZMSU5FEAZCCQoHX3JlYXNvbkIOCgxfZXJyb3JT",
             "Y3JlZW5CEgoQX3BsYXlhYmxlSW5FbWJlZEIMCgpfc3VicmVhc29uQhAKDl9j",
-            "b250ZXh0UGFyYW1zIr8CCg1TdHJlYW1pbmdEYXRhEhgKEGV4cGlyZXNJblNl",
+            "b250ZXh0UGFyYW1zIvkCCg1TdHJlYW1pbmdEYXRhEhgKEGV4cGlyZXNJblNl",
             "Y29uZHMYASABKAUSNQoHZm9ybWF0cxgCIAMoCzIkLklubmVyVHViZS5Qcm90",
             "b2J1Zi5SZXNwb25zZXMuRm9ybWF0Ej0KD2FkYXB0aXZlRm9ybWF0cxgDIAMo",
             "CzIkLklubmVyVHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuRm9ybWF0EhwKD2Rh",
             "c2hNYW5pZmVzdFVybBgEIAEoCUgAiAEBEhsKDmhsc01hbmlmZXN0VXJsGAUg",
-            "ASgJSAGIAQESIgoVc2VydmVyQWJyU3RyZWFtaW5nVXJsGA8gASgJSAKIAQFC",
-            "EgoQX2Rhc2hNYW5pZmVzdFVybEIRCg9faGxzTWFuaWZlc3RVcmxCGAoWX3Nl",
-            "cnZlckFiclN0cmVhbWluZ1VybCK/BgoGRm9ybWF0EgwKBGl0YWcYASABKAUS",
-            "CwoDdXJsGAIgASgJEgwKBG1pbWUYBSABKAkSDwoHYml0cmF0ZRgGIAEoBRIN",
-            "CgV3aWR0aBgHIAEoBRIOCgZoZWlnaHQYCCABKAUSOwoJaW5pdFJhbmdlGAkg",
-            "ASgLMiMuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNlcy5SYW5nZUgAiAEB",
-            "EjwKCmluZGV4UmFuZ2UYCiABKAsyIy5Jbm5lclR1YmUuUHJvdG9idWYuUmVz",
-            "cG9uc2VzLlJhbmdlSAGIAQESFAoMbGFzdE1vZGlmaWVkGAsgASgEEhUKDWNv",
-            "bnRlbnRMZW5ndGgYDCABKAQSDwoHcXVhbGl0eRgQIAEoCRILCgNmcHMYGSAB",
-            "KAUSEgoFeHRhZ3MYFyABKAxIAogBARIUCgxxdWFsaXR5TGFiZWwYGiABKAkS",
-            "FgoOcHJvamVjdGlvblR5cGUYGyABKAUSQQoKYXVkaW9UcmFjaxgcIAEoCzIo",
-            "LklubmVyVHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuQXVkaW9UcmFja0gDiAEB",
-            "EhYKDmF2ZXJhZ2VCaXRyYXRlGB8gASgFEkAKCWNvbG9ySW5mbxghIAEoCzIt",
-            "LklubmVyVHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuRm9ybWF0Q29sb3JJbmZv",
-            "EhcKD2hpZ2hSZXBsaWNhdGlvbhgnIAEoCBIUCgxhdWRpb1F1YWxpdHkYKyAB",
-            "KAUSGAoQYXBwcm94RHVyYXRpb25NcxgsIAEoBRIcCg9hdWRpb1NhbXBsZVJh",
-            "dGUYLSABKAVIBIgBARIaCg1hdWRpb0NoYW5uZWxzGC4gASgFSAWIAQESFwoK",
-            "bG91ZG5lc3NEYhgvIAEoAkgGiAEBEhwKD3NpZ25hdHVyZUNpcGhlchgwIAEo",
-            "CUgHiAEBQgwKCl9pbml0UmFuZ2VCDQoLX2luZGV4UmFuZ2VCCAoGX3h0YWdz",
-            "Qg0KC19hdWRpb1RyYWNrQhIKEF9hdWRpb1NhbXBsZVJhdGVCEAoOX2F1ZGlv",
-            "Q2hhbm5lbHNCDQoLX2xvdWRuZXNzRGJCEgoQX3NpZ25hdHVyZUNpcGhlciJh",
-            "Cg9Gb3JtYXRDb2xvckluZm8SEQoJcHJpbWFyaWVzGAEgASgFEh8KF3RyYW5z",
-            "ZmVyQ2hhcmFjdGVyaXN0aWNzGAIgASgFEhoKEm1hdHJpeENvZWZmaWNpZW50",
-            "cxgDIAEoBSIjCgVSYW5nZRINCgVzdGFydBgDIAEoBRILCgNlbmQYBCABKAUi",
-            "RQoKQXVkaW9UcmFjaxITCgtkaXNwbGF5TmFtZRgEIAEoCRIKCgJpZBgFIAEo",
-            "CRIWCg5hdWRpb0lzRGVmYXVsdBgGIAEoCCLiAgoMVmlkZW9EZXRhaWxzEg8K",
-            "B3ZpZGVvSWQYASABKAkSDQoFdGl0bGUYDyABKAkSFQoNbGVuZ3RoU2Vjb25k",
-            "cxgQIAEoBRIQCghrZXl3b3JkcxgSIAMoCRIRCgljaGFubmVsSWQYEyABKAkS",
-            "FgoOaXNPd25lclZpZXdpbmcYFCABKAgSGAoQc2hvcnREZXNjcmlwdGlvbhgV",
-            "IAEoCRITCgtpc0NyYXdsYWJsZRgWIAEoCBIxCgl0aHVtYm5haWwYGSABKAsy",
-            "Hi5Jbm5lclR1YmUuUHJvdG9idWYuVGh1bWJuYWlscxIUCgxhbGxvd1JhdGlu",
-            "Z3MYHyABKAgSEQoJdmlld0NvdW50GCAgASgJEhEKCWlzUHJpdmF0ZRglIAEo",
-            "CBIOCgZhdXRob3IYISABKAkSGQoRaXNVbnBsdWdnZWRDb3JwdXMYJiABKAgS",
-            "FQoNaXNMaXZlQ29udGVudBgpIAEoCCKyAQoSWXBjVHJhaWxlclJlbmRlcmVy",
-            "EjIKEGZ1bGxWaWRlb01lc3NhZ2UYBCABKAsyGC5Jbm5lclR1YmUuUHJvdG9i",
-            "dWYuVGV4dBIWCg50cmFja2luZ1BhcmFtcxgGIAEoDBJQChp1bnNlcmlhbGl6",
-            "ZWRQbGF5ZXJSZXNwb25zZRgJIAEoCzIsLklubmVyVHViZS5Qcm90b2J1Zi5S",
-            "ZXNwb25zZXMuUGxheWVyUmVzcG9uc2ViBnByb3RvMw=="));
+            "ASgJSAGIAQESOAoKaGxzRm9ybWF0cxgGIAMoCzIkLklubmVyVHViZS5Qcm90",
+            "b2J1Zi5SZXNwb25zZXMuRm9ybWF0EiIKFXNlcnZlckFiclN0cmVhbWluZ1Vy",
+            "bBgPIAEoCUgCiAEBQhIKEF9kYXNoTWFuaWZlc3RVcmxCEQoPX2hsc01hbmlm",
+            "ZXN0VXJsQhgKFl9zZXJ2ZXJBYnJTdHJlYW1pbmdVcmwivwYKBkZvcm1hdBIM",
+            "CgRpdGFnGAEgASgFEgsKA3VybBgCIAEoCRIMCgRtaW1lGAUgASgJEg8KB2Jp",
+            "dHJhdGUYBiABKAUSDQoFd2lkdGgYByABKAUSDgoGaGVpZ2h0GAggASgFEjsK",
+            "CWluaXRSYW5nZRgJIAEoCzIjLklubmVyVHViZS5Qcm90b2J1Zi5SZXNwb25z",
+            "ZXMuUmFuZ2VIAIgBARI8CgppbmRleFJhbmdlGAogASgLMiMuSW5uZXJUdWJl",
+            "LlByb3RvYnVmLlJlc3BvbnNlcy5SYW5nZUgBiAEBEhQKDGxhc3RNb2RpZmll",
+            "ZBgLIAEoBBIVCg1jb250ZW50TGVuZ3RoGAwgASgEEg8KB3F1YWxpdHkYECAB",
+            "KAkSCwoDZnBzGBkgASgFEhIKBXh0YWdzGBcgASgMSAKIAQESFAoMcXVhbGl0",
+            "eUxhYmVsGBogASgJEhYKDnByb2plY3Rpb25UeXBlGBsgASgFEkEKCmF1ZGlv",
+            "VHJhY2sYHCABKAsyKC5Jbm5lclR1YmUuUHJvdG9idWYuUmVzcG9uc2VzLkF1",
+            "ZGlvVHJhY2tIA4gBARIWCg5hdmVyYWdlQml0cmF0ZRgfIAEoBRJACgljb2xv",
+            "ckluZm8YISABKAsyLS5Jbm5lclR1YmUuUHJvdG9idWYuUmVzcG9uc2VzLkZv",
+            "cm1hdENvbG9ySW5mbxIXCg9oaWdoUmVwbGljYXRpb24YJyABKAgSFAoMYXVk",
+            "aW9RdWFsaXR5GCsgASgFEhgKEGFwcHJveER1cmF0aW9uTXMYLCABKAUSHAoP",
+            "YXVkaW9TYW1wbGVSYXRlGC0gASgFSASIAQESGgoNYXVkaW9DaGFubmVscxgu",
+            "IAEoBUgFiAEBEhcKCmxvdWRuZXNzRGIYLyABKAJIBogBARIcCg9zaWduYXR1",
+            "cmVDaXBoZXIYMCABKAlIB4gBAUIMCgpfaW5pdFJhbmdlQg0KC19pbmRleFJh",
+            "bmdlQggKBl94dGFnc0INCgtfYXVkaW9UcmFja0ISChBfYXVkaW9TYW1wbGVS",
+            "YXRlQhAKDl9hdWRpb0NoYW5uZWxzQg0KC19sb3VkbmVzc0RiQhIKEF9zaWdu",
+            "YXR1cmVDaXBoZXIiYQoPRm9ybWF0Q29sb3JJbmZvEhEKCXByaW1hcmllcxgB",
+            "IAEoBRIfChd0cmFuc2ZlckNoYXJhY3RlcmlzdGljcxgCIAEoBRIaChJtYXRy",
+            "aXhDb2VmZmljaWVudHMYAyABKAUiIwoFUmFuZ2USDQoFc3RhcnQYAyABKAUS",
+            "CwoDZW5kGAQgASgFIkUKCkF1ZGlvVHJhY2sSEwoLZGlzcGxheU5hbWUYBCAB",
+            "KAkSCgoCaWQYBSABKAkSFgoOYXVkaW9Jc0RlZmF1bHQYBiABKAgi4gIKDFZp",
+            "ZGVvRGV0YWlscxIPCgd2aWRlb0lkGAEgASgJEg0KBXRpdGxlGA8gASgJEhUK",
+            "DWxlbmd0aFNlY29uZHMYECABKAUSEAoIa2V5d29yZHMYEiADKAkSEQoJY2hh",
+            "bm5lbElkGBMgASgJEhYKDmlzT3duZXJWaWV3aW5nGBQgASgIEhgKEHNob3J0",
+            "RGVzY3JpcHRpb24YFSABKAkSEwoLaXNDcmF3bGFibGUYFiABKAgSMQoJdGh1",
+            "bWJuYWlsGBkgASgLMh4uSW5uZXJUdWJlLlByb3RvYnVmLlRodW1ibmFpbHMS",
+            "FAoMYWxsb3dSYXRpbmdzGB8gASgIEhEKCXZpZXdDb3VudBggIAEoCRIRCglp",
+            "c1ByaXZhdGUYJSABKAgSDgoGYXV0aG9yGCEgASgJEhkKEWlzVW5wbHVnZ2Vk",
+            "Q29ycHVzGCYgASgIEhUKDWlzTGl2ZUNvbnRlbnQYKSABKAgi+AEKEllwY1Ry",
+            "YWlsZXJSZW5kZXJlchJECg5wbGF5ZXJSZXNwb25zZRgBIAEoCzIsLklubmVy",
+            "VHViZS5Qcm90b2J1Zi5SZXNwb25zZXMuUGxheWVyUmVzcG9uc2USMgoQZnVs",
+            "bFZpZGVvTWVzc2FnZRgEIAEoCzIYLklubmVyVHViZS5Qcm90b2J1Zi5UZXh0",
+            "EhYKDnRyYWNraW5nUGFyYW1zGAYgASgMElAKGnVuc2VyaWFsaXplZFBsYXll",
+            "clJlc3BvbnNlGAkgASgLMiwuSW5uZXJUdWJlLlByb3RvYnVmLlJlc3BvbnNl",
+            "cy5QbGF5ZXJSZXNwb25zZWIGcHJvdG8z"));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { global::InnerTube.Protobuf.GeneralReflection.Descriptor, },
           new pbr::GeneratedClrTypeInfo(null, null, new pbr::GeneratedClrTypeInfo[] {
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayerResponse), global::InnerTube.Protobuf.Responses.PlayerResponse.Parser, new[]{ "PlayabilityStatus", "StreamingData", "Captions", "VideoDetails", "Storyboards", "Microformat", "Endscreen" }, new[]{ "Captions", "Storyboards", "Microformat", "Endscreen" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.ErrorScreenWrapper), global::InnerTube.Protobuf.Responses.ErrorScreenWrapper.Parser, new[]{ "YpcTrailerRenderer" }, new[]{ "ErrorScreen" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus), global::InnerTube.Protobuf.Responses.PlayabilityStatus.Parser, new[]{ "Status", "Reason", "ErrorScreen", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ "Reason", "ErrorScreen", "PlayableInEmbed", "Subreason", "ContextParams" }, new[]{ typeof(global::InnerTube.Protobuf.Responses.PlayabilityStatus.Types.Status) }, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.StreamingData), global::InnerTube.Protobuf.Responses.StreamingData.Parser, new[]{ "ExpiresInSeconds", "Formats", "AdaptiveFormats", "DashManifestUrl", "HlsManifestUrl", "ServerAbrStreamingUrl" }, new[]{ "DashManifestUrl", "HlsManifestUrl", "ServerAbrStreamingUrl" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.StreamingData), global::InnerTube.Protobuf.Responses.StreamingData.Parser, new[]{ "ExpiresInSeconds", "Formats", "AdaptiveFormats", "DashManifestUrl", "HlsManifestUrl", "HlsFormats", "ServerAbrStreamingUrl" }, new[]{ "DashManifestUrl", "HlsManifestUrl", "ServerAbrStreamingUrl" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Format), global::InnerTube.Protobuf.Responses.Format.Parser, new[]{ "Itag", "Url", "Mime", "Bitrate", "Width", "Height", "InitRange", "IndexRange", "LastModified", "ContentLength", "Quality", "Fps", "Xtags", "QualityLabel", "ProjectionType", "AudioTrack", "AverageBitrate", "ColorInfo", "HighReplication", "AudioQuality", "ApproxDurationMs", "AudioSampleRate", "AudioChannels", "LoudnessDb", "SignatureCipher" }, new[]{ "InitRange", "IndexRange", "Xtags", "AudioTrack", "AudioSampleRate", "AudioChannels", "LoudnessDb", "SignatureCipher" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.FormatColorInfo), global::InnerTube.Protobuf.Responses.FormatColorInfo.Parser, new[]{ "Primaries", "TransferCharacteristics", "MatrixCoefficients" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.Range), global::InnerTube.Protobuf.Responses.Range.Parser, new[]{ "Start", "End" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.AudioTrack), global::InnerTube.Protobuf.Responses.AudioTrack.Parser, new[]{ "DisplayName", "Id", "AudioIsDefault" }, null, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.VideoDetails), global::InnerTube.Protobuf.Responses.VideoDetails.Parser, new[]{ "VideoId", "Title", "LengthSeconds", "Keywords", "ChannelId", "IsOwnerViewing", "ShortDescription", "IsCrawlable", "Thumbnail", "AllowRatings", "ViewCount", "IsPrivate", "Author", "IsUnpluggedCorpus", "IsLiveContent" }, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.YpcTrailerRenderer), global::InnerTube.Protobuf.Responses.YpcTrailerRenderer.Parser, new[]{ "FullVideoMessage", "TrackingParams", "UnserializedPlayerResponse" }, null, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::InnerTube.Protobuf.Responses.YpcTrailerRenderer), global::InnerTube.Protobuf.Responses.YpcTrailerRenderer.Parser, new[]{ "PlayerResponse", "FullVideoMessage", "TrackingParams", "UnserializedPlayerResponse" }, null, null, null, null)
           }));
     }
     #endregion
@@ -1346,6 +1349,7 @@ namespace InnerTube.Protobuf.Responses {
       adaptiveFormats_ = other.adaptiveFormats_.Clone();
       dashManifestUrl_ = other.dashManifestUrl_;
       hlsManifestUrl_ = other.hlsManifestUrl_;
+      hlsFormats_ = other.hlsFormats_.Clone();
       serverAbrStreamingUrl_ = other.serverAbrStreamingUrl_;
       _unknownFields = pb::UnknownFieldSet.Clone(other._unknownFields);
     }
@@ -1442,6 +1446,17 @@ namespace InnerTube.Protobuf.Responses {
       hlsManifestUrl_ = null;
     }
 
+    /// <summary>Field number for the "hlsFormats" field.</summary>
+    public const int HlsFormatsFieldNumber = 6;
+    private static readonly pb::FieldCodec<global::InnerTube.Protobuf.Responses.Format> _repeated_hlsFormats_codec
+        = pb::FieldCodec.ForMessage(50, global::InnerTube.Protobuf.Responses.Format.Parser);
+    private readonly pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format> hlsFormats_ = new pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format>();
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public pbc::RepeatedField<global::InnerTube.Protobuf.Responses.Format> HlsFormats {
+      get { return hlsFormats_; }
+    }
+
     /// <summary>Field number for the "serverAbrStreamingUrl" field.</summary>
     public const int ServerAbrStreamingUrlFieldNumber = 15;
     private readonly static string ServerAbrStreamingUrlDefaultValue = "";
@@ -1488,6 +1503,7 @@ namespace InnerTube.Protobuf.Responses {
       if(!adaptiveFormats_.Equals(other.adaptiveFormats_)) return false;
       if (DashManifestUrl != other.DashManifestUrl) return false;
       if (HlsManifestUrl != other.HlsManifestUrl) return false;
+      if(!hlsFormats_.Equals(other.hlsFormats_)) return false;
       if (ServerAbrStreamingUrl != other.ServerAbrStreamingUrl) return false;
       return Equals(_unknownFields, other._unknownFields);
     }
@@ -1501,6 +1517,7 @@ namespace InnerTube.Protobuf.Responses {
       hash ^= adaptiveFormats_.GetHashCode();
       if (HasDashManifestUrl) hash ^= DashManifestUrl.GetHashCode();
       if (HasHlsManifestUrl) hash ^= HlsManifestUrl.GetHashCode();
+      hash ^= hlsFormats_.GetHashCode();
       if (HasServerAbrStreamingUrl) hash ^= ServerAbrStreamingUrl.GetHashCode();
       if (_unknownFields != null) {
         hash ^= _unknownFields.GetHashCode();
@@ -1534,6 +1551,7 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(42);
         output.WriteString(HlsManifestUrl);
       }
+      hlsFormats_.WriteTo(output, _repeated_hlsFormats_codec);
       if (HasServerAbrStreamingUrl) {
         output.WriteRawTag(122);
         output.WriteString(ServerAbrStreamingUrl);
@@ -1562,6 +1580,7 @@ namespace InnerTube.Protobuf.Responses {
         output.WriteRawTag(42);
         output.WriteString(HlsManifestUrl);
       }
+      hlsFormats_.WriteTo(ref output, _repeated_hlsFormats_codec);
       if (HasServerAbrStreamingUrl) {
         output.WriteRawTag(122);
         output.WriteString(ServerAbrStreamingUrl);
@@ -1587,6 +1606,7 @@ namespace InnerTube.Protobuf.Responses {
       if (HasHlsManifestUrl) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(HlsManifestUrl);
       }
+      size += hlsFormats_.CalculateSize(_repeated_hlsFormats_codec);
       if (HasServerAbrStreamingUrl) {
         size += 1 + pb::CodedOutputStream.ComputeStringSize(ServerAbrStreamingUrl);
       }
@@ -1613,6 +1633,7 @@ namespace InnerTube.Protobuf.Responses {
       if (other.HasHlsManifestUrl) {
         HlsManifestUrl = other.HlsManifestUrl;
       }
+      hlsFormats_.Add(other.hlsFormats_);
       if (other.HasServerAbrStreamingUrl) {
         ServerAbrStreamingUrl = other.ServerAbrStreamingUrl;
       }
@@ -1653,6 +1674,10 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 42: {
             HlsManifestUrl = input.ReadString();
+            break;
+          }
+          case 50: {
+            hlsFormats_.AddEntriesFrom(input, _repeated_hlsFormats_codec);
             break;
           }
           case 122: {
@@ -1696,6 +1721,10 @@ namespace InnerTube.Protobuf.Responses {
           }
           case 42: {
             HlsManifestUrl = input.ReadString();
+            break;
+          }
+          case 50: {
+            hlsFormats_.AddEntriesFrom(ref input, _repeated_hlsFormats_codec);
             break;
           }
           case 122: {
@@ -4434,6 +4463,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public YpcTrailerRenderer(YpcTrailerRenderer other) : this() {
+      playerResponse_ = other.playerResponse_ != null ? other.playerResponse_.Clone() : null;
       fullVideoMessage_ = other.fullVideoMessage_ != null ? other.fullVideoMessage_.Clone() : null;
       trackingParams_ = other.trackingParams_;
       unserializedPlayerResponse_ = other.unserializedPlayerResponse_ != null ? other.unserializedPlayerResponse_.Clone() : null;
@@ -4444,6 +4474,18 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public YpcTrailerRenderer Clone() {
       return new YpcTrailerRenderer(this);
+    }
+
+    /// <summary>Field number for the "playerResponse" field.</summary>
+    public const int PlayerResponseFieldNumber = 1;
+    private global::InnerTube.Protobuf.Responses.PlayerResponse playerResponse_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
+    public global::InnerTube.Protobuf.Responses.PlayerResponse PlayerResponse {
+      get { return playerResponse_; }
+      set {
+        playerResponse_ = value;
+      }
     }
 
     /// <summary>Field number for the "fullVideoMessage" field.</summary>
@@ -4497,6 +4539,7 @@ namespace InnerTube.Protobuf.Responses {
       if (ReferenceEquals(other, this)) {
         return true;
       }
+      if (!object.Equals(PlayerResponse, other.PlayerResponse)) return false;
       if (!object.Equals(FullVideoMessage, other.FullVideoMessage)) return false;
       if (TrackingParams != other.TrackingParams) return false;
       if (!object.Equals(UnserializedPlayerResponse, other.UnserializedPlayerResponse)) return false;
@@ -4507,6 +4550,7 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public override int GetHashCode() {
       int hash = 1;
+      if (playerResponse_ != null) hash ^= PlayerResponse.GetHashCode();
       if (fullVideoMessage_ != null) hash ^= FullVideoMessage.GetHashCode();
       if (TrackingParams.Length != 0) hash ^= TrackingParams.GetHashCode();
       if (unserializedPlayerResponse_ != null) hash ^= UnserializedPlayerResponse.GetHashCode();
@@ -4528,6 +4572,10 @@ namespace InnerTube.Protobuf.Responses {
     #if !GOOGLE_PROTOBUF_REFSTRUCT_COMPATIBILITY_MODE
       output.WriteRawMessage(this);
     #else
+      if (playerResponse_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(PlayerResponse);
+      }
       if (fullVideoMessage_ != null) {
         output.WriteRawTag(34);
         output.WriteMessage(FullVideoMessage);
@@ -4550,6 +4598,10 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     void pb::IBufferMessage.InternalWriteTo(ref pb::WriteContext output) {
+      if (playerResponse_ != null) {
+        output.WriteRawTag(10);
+        output.WriteMessage(PlayerResponse);
+      }
       if (fullVideoMessage_ != null) {
         output.WriteRawTag(34);
         output.WriteMessage(FullVideoMessage);
@@ -4572,6 +4624,9 @@ namespace InnerTube.Protobuf.Responses {
     [global::System.CodeDom.Compiler.GeneratedCode("protoc", null)]
     public int CalculateSize() {
       int size = 0;
+      if (playerResponse_ != null) {
+        size += 1 + pb::CodedOutputStream.ComputeMessageSize(PlayerResponse);
+      }
       if (fullVideoMessage_ != null) {
         size += 1 + pb::CodedOutputStream.ComputeMessageSize(FullVideoMessage);
       }
@@ -4592,6 +4647,12 @@ namespace InnerTube.Protobuf.Responses {
     public void MergeFrom(YpcTrailerRenderer other) {
       if (other == null) {
         return;
+      }
+      if (other.playerResponse_ != null) {
+        if (playerResponse_ == null) {
+          PlayerResponse = new global::InnerTube.Protobuf.Responses.PlayerResponse();
+        }
+        PlayerResponse.MergeFrom(other.PlayerResponse);
       }
       if (other.fullVideoMessage_ != null) {
         if (fullVideoMessage_ == null) {
@@ -4627,6 +4688,13 @@ namespace InnerTube.Protobuf.Responses {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, input);
             break;
+          case 10: {
+            if (playerResponse_ == null) {
+              PlayerResponse = new global::InnerTube.Protobuf.Responses.PlayerResponse();
+            }
+            input.ReadMessage(PlayerResponse);
+            break;
+          }
           case 34: {
             if (fullVideoMessage_ == null) {
               FullVideoMessage = new global::InnerTube.Protobuf.Text();
@@ -4664,6 +4732,13 @@ namespace InnerTube.Protobuf.Responses {
           default:
             _unknownFields = pb::UnknownFieldSet.MergeFieldFrom(_unknownFields, ref input);
             break;
+          case 10: {
+            if (playerResponse_ == null) {
+              PlayerResponse = new global::InnerTube.Protobuf.Responses.PlayerResponse();
+            }
+            input.ReadMessage(PlayerResponse);
+            break;
+          }
           case 34: {
             if (fullVideoMessage_ == null) {
               FullVideoMessage = new global::InnerTube.Protobuf.Text();

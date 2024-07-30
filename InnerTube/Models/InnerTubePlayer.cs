@@ -21,6 +21,7 @@ public class InnerTubePlayer(PlayerResponse player, bool isFallback, string pars
 	// TODO: complete formats
 	public Format[] Formats { get; } = player.StreamingData?.Formats.ToArray() ?? [];
 	public Format[] AdaptiveFormats { get; } = player.StreamingData?.AdaptiveFormats.ToArray() ?? [];
+	public Format[] HlsFormats { get; } = player.StreamingData?.HlsFormats.ToArray() ?? [];
 	public DateTimeOffset ExpiryTimeStamp { get; } = DateTimeOffset.UtcNow.AddSeconds(player.StreamingData?.ExpiresInSeconds ?? -1);
 	public string? HlsManifestUrl { get; } = player.StreamingData?.HlsManifestUrl; 
 	public string? DashManifestUrl { get; } = player.StreamingData?.DashManifestUrl; 

@@ -44,6 +44,7 @@ message StreamingData {
   repeated Format adaptiveFormats = 3;
   optional string dashManifestUrl = 4;
   optional string hlsManifestUrl = 5;
+  repeated Format hlsFormats = 6;
   optional string serverAbrStreamingUrl = 15;
 }
 
@@ -111,6 +112,7 @@ message VideoDetails {
 }
 
 message YpcTrailerRenderer {
+  PlayerResponse playerResponse = 1;
   Text fullVideoMessage = 4;
   bytes trackingParams = 6;
   PlayerResponse unserializedPlayerResponse = 9;

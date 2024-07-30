@@ -23,7 +23,7 @@ public class SimpleInnerTubeClient
 	public async Task<InnerTubePlayer> GetVideoPlayerAsync(string videoId, bool contentCheckOk, string language = "en",
 		string region = "US")
 	{
-		// in the worst case scenario, this will do 4 http requests :3
+		// in the worst case scenario, this will do 6 http requests :3
 		try
 		{
 			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, false, language, region);

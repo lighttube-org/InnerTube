@@ -24,7 +24,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("4ZX9T0kWb4Y", true, TestName = "Video with multiple audio tracks")]
 	[TestCase("-UBaW1OIgTo", true, TestName = "EndScreenItem ctor")]
 	[TestCase("dQw4w9WgXcQ", true, TestName = "EndScreenItem ctor 2")]
-	[TestCase("GfDXqY-V0EY", true, TestName = "Premiere with trailer")]
+	[TestCase("T9VJKIlf5ME", true, TestName = "Premiere with trailer")]
 	[TestCase("9dVYBsh9D00", true, TestName = "YouTube Music video")]
 	public async Task GetVideoPlayerAsync(string videoId, bool contentCheckOk)
 	{
@@ -436,7 +436,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("big bcuk bunny", "exact", TestName = "Force to search with the typo")]
 	[TestCase("technoblade skyblock", null, TestName = "Used to get playlistRenderer & channelRenderer")]
 	[TestCase("lofi radio", null, TestName = "Used to get live videos")]
-	[TestCase("GfDXqY-V0EY", "exact", TestName = "Premiere video")]
+	[TestCase("T9VJKIlf5ME", "exact", TestName = "Premiere video")]
 	[TestCase("technoblade", null, TestName = "didYouMeanRenderer")]
 	[TestCase("O'zbekcha Kuylar 2020, Vol. 2", null, TestName = "epic broken playlist")]
 	[TestCase("cars 2", "movie", TestName = "movieRenderer")]

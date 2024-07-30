@@ -52,6 +52,14 @@ internal class InnerTubeRequest
 				clientContext.Add("osVersion", "15.6.0.19G71");
 				clientContext.Add("platform", "MOBILE");
 				break;
+			case RequestClient.TVAPPLE:
+				clientContext.Add("clientName", "TVAPPLE");
+				clientContext.Add("clientVersion", Constants.TvAppleClientVersion);
+				break;
+			case RequestClient.MWEB_TIER_2:
+				clientContext.Add("clientName", "MWEB_TIER_2");
+				clientContext.Add("clientVersion", Constants.MwebTier2ClientVersion);
+				break;
 			case RequestClient.TV_EMBEDDED:
 				clientContext.Add("clientName", "TVHTML5_SIMPLY_EMBEDDED_PLAYER");
 				clientContext.Add("clientVersion", Constants.TvEmbeddedClientVersion);

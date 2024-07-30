@@ -19,6 +19,8 @@ public enum RequestClient
 	/// iOS client. Only useful for HLS manifests and nothing else.
 	/// </summary>
 	IOS = 5,
+	TVAPPLE = 16,
+	MWEB_TIER_2 = 27,
 	TV_EMBEDDED = 85
 }
 
