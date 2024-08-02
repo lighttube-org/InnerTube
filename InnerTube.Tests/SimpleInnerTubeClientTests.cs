@@ -227,7 +227,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("UCXuqSBlHAE6Xw-yeJA0Tunw", (int)ChannelTabs.Podcasts, null)]
 	[TestCase("UC_kRDKYrUlrbtrSiyu5Tflg", (int)ChannelTabs.Releases, null)]
 	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Store, null)]
-	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Featured, null, TestName = "Scheduled premiere")]
+	[TestCase("UCcd-GOvl9DdyPVHQxy58bOw", (int)ChannelTabs.Featured, null, TestName = "ExpandedShelfContentsRenderer")]
 	[TestCase("UCv6P5nsS9rP4tDtFlqLU_QQ", (int)ChannelTabs.Featured, null, TestName = "Unsubscribeable channel")]
 	[TestCase("UCpBEwd9bEo0mkMdKQaF0yPw", (int)ChannelTabs.Featured, null, TestName = "Has nullref in header")]
 	public async Task GetChannelAsync(string channelId, int channelTab, string searchQuery)
