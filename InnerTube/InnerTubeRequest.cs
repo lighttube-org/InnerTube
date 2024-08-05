@@ -41,15 +41,16 @@ internal class InnerTubeRequest
 				clientContext.Add("osVersion", "11");
 				clientContext.Add("androidSdkVersion", 30);
 				clientContext.Add("platform", "MOBILE");
-				clientContext.Add("userAgent", "com.google.android.youtube/19.09.4 (Linux; U; Android 11) gzip");
+				clientContext.Add("userAgent", Constants.AndroidUserAgent);
 				break;
 			case RequestClient.IOS:
 				clientContext.Add("clientName", "IOS");
 				clientContext.Add("clientVersion", Constants.MobileClientVersion);
 				clientContext.Add("deviceMake", "Apple");
-				clientContext.Add("deviceModel", "iPhone14,5");
-				clientContext.Add("osName", "iOS");
-				clientContext.Add("osVersion", "15.6.0.19G71");
+				clientContext.Add("deviceModel", "iPhone16,2");
+				clientContext.Add("userAgent", Constants.IosUserAgent);
+				clientContext.Add("osName", "iPhone");
+				clientContext.Add("osVersion", "17.5.1.21F90");
 				clientContext.Add("platform", "MOBILE");
 				break;
 			case RequestClient.TVAPPLE:

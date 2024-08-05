@@ -75,8 +75,15 @@ public partial class InnerTube
 			_ => ""
 		});
 		//hrm.Headers.Add("Origin", "https://www.youtube.com");
-		if (client == RequestClient.ANDROID)
-			hrm.Headers.Add("User-Agent", "com.google.android.youtube/19.09.4 (Linux; U; Android 11) gzip");
+		switch (client)
+		{
+			case RequestClient.ANDROID:			
+				hrm.Headers.Add("User-Agent", Constants.AndroidUserAgent);
+				break;
+			case RequestClient.IOS:
+				hrm.Headers.Add("User-Agent", Constants.IosUserAgent);
+				break;
+		}
 
 		HttpResponseMessage ytPlayerRequest = await HttpClient.SendAsync(hrm);
 		if (!ytPlayerRequest.IsSuccessStatusCode)
