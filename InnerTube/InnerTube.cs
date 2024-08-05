@@ -109,16 +109,13 @@ public partial class InnerTube
 
 		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
-		Task<PlayerResponse> microformatResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB);
-		Task<PlayerResponse> tvEmbeddedResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.TVAPPLE);
-		Task<PlayerResponse> iosResponse =
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS);
-
-		PlayerResponse microformatPlayer = await microformatResponse;
-		PlayerResponse tvApplePlayer = await tvEmbeddedResponse;
-		PlayerResponse iosPlayer = await iosResponse;
+		PlayerResponse[] results = await Task.WhenAll(
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.TVAPPLE),
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS));
+		PlayerResponse microformatPlayer = results[0];
+		PlayerResponse tvApplePlayer = results[1];
+		PlayerResponse iosPlayer = results[2];
 
 		// feed formats iOS player doesnt have from TVAPPLE player
 		if (tvApplePlayer.StreamingData?.HlsFormats.Count > 0 && iosPlayer.StreamingData?.HlsFormats.Count == 0)
