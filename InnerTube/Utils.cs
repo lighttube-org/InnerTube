@@ -1325,7 +1325,7 @@ public static partial class Utils
 								.HorizontalListRenderer.Items,
 							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => renderer.ShelfRenderer.Content
 								.HorizontalCardListRenderer.Cards,
-							RendererWrapper.RendererOneofCase.ExpandedShelfContentsRenderer => renderer.ExpandedShelfContentsRenderer.Items,
+							RendererWrapper.RendererOneofCase.ExpandedShelfContentsRenderer => renderer.ShelfRenderer.Content.ExpandedShelfContentsRenderer.Items,
 							_ =>
 							[
 								new RendererWrapper
@@ -1346,7 +1346,7 @@ public static partial class Utils
 							RendererWrapper.RendererOneofCase.VerticalListRenderer => "vertical",
 							RendererWrapper.RendererOneofCase.HorizontalListRenderer => "horizontal",
 							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => "horizontal;cards",
-							RendererWrapper.RendererOneofCase.ExpandableTabRenderer => "expanded",
+							RendererWrapper.RendererOneofCase.ExpandedShelfContentsRenderer => "expanded",
 							_ => "vertical"
 						},
 						Title = ReadRuns(renderer.ShelfRenderer.Title),
