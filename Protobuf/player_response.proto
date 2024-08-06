@@ -27,6 +27,7 @@ message PlayabilityStatus {
     UNPLAYABLE = 2;
     LOGIN_REQUIRED = 3;
     CONTENT_CHECK_REQUIRED = 4;
+    AGE_CHECK_REQUIRED = 5;
     LIVE_STREAM_OFFLINE = 6;
   }
 
