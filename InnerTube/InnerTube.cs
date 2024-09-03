@@ -72,6 +72,7 @@ public partial class InnerTube
 			RequestClient.TVAPPLE => Constants.TvAppleClientVersion,
 			RequestClient.MWEB_TIER_2 => Constants.MwebTier2ClientVersion,
 			RequestClient.TV_EMBEDDED => Constants.TvEmbeddedClientVersion,
+			RequestClient.MEDIA_CONNECT_FRONTEND => Constants.MediaConnectFrontendClientVersion,
 			_ => ""
 		});
 		//hrm.Headers.Add("Origin", "https://www.youtube.com");
@@ -118,24 +119,27 @@ public partial class InnerTube
 
 		PlayerResponse[] results = await Task.WhenAll(
 			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.TVAPPLE),
+			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.MEDIA_CONNECT_FRONTEND),
 			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS));
 		PlayerResponse microformatPlayer = results[0];
-		PlayerResponse tvApplePlayer = results[1];
+		PlayerResponse mediaconnectPlayer = results[1];
 		PlayerResponse iosPlayer = results[2];
 
-		// feed formats iOS player doesnt have from TVAPPLE player
-		if (tvApplePlayer.StreamingData?.HlsFormats.Count > 0 && iosPlayer.StreamingData?.HlsFormats.Count == 0)
-			iosPlayer.StreamingData.HlsFormats.AddRange(tvApplePlayer.StreamingData.HlsFormats);
-		if (tvApplePlayer.StreamingData?.Formats.Count > 0 && iosPlayer.StreamingData?.Formats.Count == 0)
-			iosPlayer.StreamingData.Formats.AddRange(tvApplePlayer.StreamingData.Formats);
-
+		// feed formats iOS player doesnt have from MEDIA_CONNECT_FRONTEND player		
+		if (mediaconnectPlayer.StreamingData?.HlsFormats.Count > 0 && iosPlayer.StreamingData?.HlsFormats.Count == 0)
+			iosPlayer.StreamingData.HlsFormats.AddRange(mediaconnectPlayer.StreamingData.HlsFormats);
+		if (mediaconnectPlayer.StreamingData?.Formats.Count > 0 && iosPlayer.StreamingData?.Formats.Count == 0)
+			iosPlayer.StreamingData.Formats.AddRange(mediaconnectPlayer.StreamingData.Formats);
+		// todo: extract muxed hls formats from mediaconnect player
+		//if (mediaconnectPlayer.StreamingData?.HasHlsManifestUrl == true)
+		//	iosPlayer.StreamingData!.HlsFormats.AddRange();
+		
 		if (iosPlayer.PlayabilityStatus.Status == PlayabilityStatus.Types.Status.LiveStreamOffline)
 		{
 			YpcTrailerRenderer? ypc = iosPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer;
 			PlayerResponse? fallbackResponse = ypc?.UnserializedPlayerResponse ?? ypc?.PlayerResponse;
 			
-			YpcTrailerRenderer? tvPlayerYpc = tvApplePlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer;
+			YpcTrailerRenderer? tvPlayerYpc = mediaconnectPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer;
 			PlayerResponse? tvPlayerFallbackResponse = tvPlayerYpc?.UnserializedPlayerResponse ?? ypc?.PlayerResponse;
 			
 			if (fallbackResponse == null || !fallbackToUnserializedResponse)

@@ -65,6 +65,10 @@ internal class InnerTubeRequest
 				clientContext.Add("clientName", "TVHTML5_SIMPLY_EMBEDDED_PLAYER");
 				clientContext.Add("clientVersion", Constants.TvEmbeddedClientVersion);
 				break;
+			case RequestClient.MEDIA_CONNECT_FRONTEND:
+				clientContext.Add("clientName", "MEDIA_CONNECT_FRONTEND");
+				clientContext.Add("clientVersion", Constants.MediaConnectFrontendClientVersion);
+				break;
 		}
 
 		if (visitorData != null)
