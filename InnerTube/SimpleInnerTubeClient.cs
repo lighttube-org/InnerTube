@@ -294,4 +294,9 @@ public class SimpleInnerTubeClient
 	}
 
 	public async Task<ResolveUrlResponse> ResolveUrl(string url) => await InnerTube.ResolveUrl(url);
+
+	public void ProvideSecrets(RequestClient client, string visitorData, string? poToken = null) =>
+		InnerTube.ProvideSecrets(client, visitorData, poToken);
+
+	public async Task<string> GenerateVisitorData() => await InnerTube.GenerateVisitorData();
 }

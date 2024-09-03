@@ -13,7 +13,7 @@ internal class InnerTubeRequest
 	}
 
 	private void UpdateContext(RequestClient requestClient, string language = "en", string region = "US",
-		string? visitorData = null, string? referer = null)
+		string? visitorData = null, string? poToken = null, string? referer = null)
 	{
 		Dictionary<string, object> clientContext = new();
 		clientContext.Add("hl", language);
@@ -23,7 +23,7 @@ internal class InnerTubeRequest
 		{
 			case RequestClient.WEB:
 				clientContext.Add("browserName", "Safari");
-				clientContext.Add("browserVersion", "15.4");
+				clientContext.Add("browserV	ersion", "15.4");
 				clientContext.Add("clientName", "WEB");
 				clientContext.Add("clientVersion", Constants.WebClientVersion);
 				clientContext.Add("deviceMake", "Apple");
@@ -61,6 +61,10 @@ internal class InnerTubeRequest
 				clientContext.Add("clientName", "MWEB_TIER_2");
 				clientContext.Add("clientVersion", Constants.MwebTier2ClientVersion);
 				break;
+			case RequestClient.TV_UNPLUGGED_CAST:
+				clientContext.Add("clientName", "TV_UNPLUGGED_CAST");
+				clientContext.Add("clientVersion", Constants.TvUnpluggedCastClientVersion);
+				break;
 			case RequestClient.TV_EMBEDDED:
 				clientContext.Add("clientName", "TVHTML5_SIMPLY_EMBEDDED_PLAYER");
 				clientContext.Add("clientVersion", Constants.TvEmbeddedClientVersion);
@@ -97,6 +101,12 @@ internal class InnerTubeRequest
 			clientContext.Add("clientScreen", "WATCH_FULL_SCREEN");
 		}
 
+		if (poToken != null)
+			AddValue("serviceIntegrityDimensions", new Dictionary<string, string>
+			{
+				["poToken"] = poToken	
+			});
+
 		Dictionary<string, object> context = new()
 		{
 			["client"] = clientContext
@@ -125,9 +135,10 @@ internal class InnerTubeRequest
 		AddValue("context", context);
 	}
 
-	public string GetJson(RequestClient client, string language, string region, string? visitorData, string? referer)
+	public string GetJson(RequestClient client, string language, string region, string? visitorData, string? poToken,
+		string? referer)
 	{
-		UpdateContext(client, language, region, visitorData, referer);
+		UpdateContext(client, language, region, visitorData, poToken, referer);
 		return JsonConvert.SerializeObject(data);
 	}
 }

@@ -19,8 +19,10 @@ public partial class InnerTube
 	internal readonly MemoryCache PlayerCache;
 	internal readonly string ApiKey;
 	internal readonly InnerTubeAuthorization? Authorization;
-	internal string? VisitorData;
+	internal Dictionary<RequestClient, string> VisitorDatas = [];
+	internal Dictionary<RequestClient, string> PoTokens = [];
 	private readonly Regex visitorDataRegex = VisitorDataGeneratedRegex();
+	internal SignatureSolver SignatureSolver = new();
 
 	/// <summary>
 	/// Initializes a new instance of InnerTube client.
@@ -41,8 +43,6 @@ public partial class InnerTube
 	private async Task<byte[]> MakeRequest(RequestClient client, string endpoint, InnerTubeRequest postData,
 		string language, string region, bool authorized = false, string? referer = null)
 	{
-		if (VisitorData is null) 
-			await UpdateVisitorData();
 		string url = $"https://youtubei.googleapis.com/youtubei/v1/{endpoint}";
 		url += "?alt=proto";
 		if (!authorized || Authorization?.Type != AuthorizationType.REFRESH_TOKEN)
@@ -50,8 +50,9 @@ public partial class InnerTube
 
 		HttpRequestMessage hrm = new(HttpMethod.Post, url);
 
-		byte[] buffer =
-			Encoding.UTF8.GetBytes(postData.GetJson(client, language, region, authorized ? VisitorData : null, referer));
+		byte[] buffer = Encoding.UTF8.GetBytes(postData.GetJson(client, language, region,
+			authorized ? VisitorDatas?.GetValueOrDefault(client) : null,
+			authorized ? PoTokens?.GetValueOrDefault(client) : null, referer));
 		ByteArrayContent byteContent = new(buffer);
 		byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 		hrm.Content = byteContent;
@@ -71,6 +72,7 @@ public partial class InnerTube
 			RequestClient.IOS => Constants.MobileClientVersion,
 			RequestClient.TVAPPLE => Constants.TvAppleClientVersion,
 			RequestClient.MWEB_TIER_2 => Constants.MwebTier2ClientVersion,
+			RequestClient.TV_UNPLUGGED_CAST => Constants.TvUnpluggedCastClientVersion,
 			RequestClient.TV_EMBEDDED => Constants.TvEmbeddedClientVersion,
 			RequestClient.MEDIA_CONNECT_FRONTEND => Constants.MediaConnectFrontendClientVersion,
 			_ => ""
@@ -88,17 +90,24 @@ public partial class InnerTube
 
 		HttpResponseMessage ytPlayerRequest = await HttpClient.SendAsync(hrm);
 		if (!ytPlayerRequest.IsSuccessStatusCode)
-			throw new RequestException(ytPlayerRequest.StatusCode, await ytPlayerRequest.Content.ReadAsStringAsync());
+			throw new RequestException(ytPlayerRequest.StatusCode, client, await ytPlayerRequest.Content.ReadAsStringAsync());
 		return await ytPlayerRequest.Content.ReadAsByteArrayAsync();
 	}
 
-	private async Task UpdateVisitorData()
+	public async Task<string> GenerateVisitorData()
 	{
 		HttpRequestMessage req = new(HttpMethod.Get, "https://www.youtube.com");
 		req.Headers.Add("Cookie", "CONSENT=PENDING+742");
 		HttpResponseMessage res = await HttpClient.SendAsync(req);
 		string html = await res.Content.ReadAsStringAsync();
-		VisitorData = visitorDataRegex.Match(html).Groups[1].Value;
+		return visitorDataRegex.Match(html).Groups[1].Value;
+	}
+
+	public void ProvideSecrets(RequestClient client, string visitorData, string? poToken = null)
+	{
+		VisitorDatas[client] = visitorData;
+		if (poToken != null)
+			PoTokens[client] = poToken;
 	}
 
 	/// <summary>
@@ -113,69 +122,56 @@ public partial class InnerTube
 	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
 		bool fallbackToUnserializedResponse = false, string language = "en", string region = "US")
 	{
+		if (!SignatureSolver.Initialized)
+			await SignatureSolver.LoadLatestJs(videoId);
 		string cacheId = $"{videoId}_({language}_{region})";
 
 		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
-		PlayerResponse[] results = await Task.WhenAll(
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.MEDIA_CONNECT_FRONTEND),
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.IOS));
-		PlayerResponse microformatPlayer = results[0];
-		PlayerResponse mediaconnectPlayer = results[1];
-		PlayerResponse iosPlayer = results[2];
+		PlayerResponse player = await GetPlayerObjectAsync(videoId, contentCheckOk, language, region,
+			RequestClient.WEB);
 
-		// feed formats iOS player doesnt have from MEDIA_CONNECT_FRONTEND player		
-		if (mediaconnectPlayer.StreamingData?.HlsFormats.Count > 0 && iosPlayer.StreamingData?.HlsFormats.Count == 0)
-			iosPlayer.StreamingData.HlsFormats.AddRange(mediaconnectPlayer.StreamingData.HlsFormats);
-		if (mediaconnectPlayer.StreamingData?.Formats.Count > 0 && iosPlayer.StreamingData?.Formats.Count == 0)
-			iosPlayer.StreamingData.Formats.AddRange(mediaconnectPlayer.StreamingData.Formats);
-		// todo: extract muxed hls formats from mediaconnect player
+		foreach (Format format in player.StreamingData?.Formats ?? [])
+			SignatureSolver.DescrambleUrl(format);
+		foreach (Format format in player.StreamingData?.AdaptiveFormats ?? [])
+			SignatureSolver.DescrambleUrl(format);
+		foreach (Format format in player.StreamingData?.HlsFormats ?? [])
+			SignatureSolver.DescrambleUrl(format);
+
+		// todo: extract muxed hls formats from hls manifest
 		//if (mediaconnectPlayer.StreamingData?.HasHlsManifestUrl == true)
 		//	iosPlayer.StreamingData!.HlsFormats.AddRange();
 		
-		if (iosPlayer.PlayabilityStatus.Status == PlayabilityStatus.Types.Status.LiveStreamOffline)
+		if (player.PlayabilityStatus.Status == PlayabilityStatus.Types.Status.LiveStreamOffline)
 		{
-			YpcTrailerRenderer? ypc = iosPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer;
+			YpcTrailerRenderer? ypc = player.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer;
 			PlayerResponse? fallbackResponse = ypc?.UnserializedPlayerResponse ?? ypc?.PlayerResponse;
 			
-			YpcTrailerRenderer? tvPlayerYpc = mediaconnectPlayer.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer;
-			PlayerResponse? tvPlayerFallbackResponse = tvPlayerYpc?.UnserializedPlayerResponse ?? ypc?.PlayerResponse;
-			
 			if (fallbackResponse == null || !fallbackToUnserializedResponse)
-	            throw new PlayerException(iosPlayer.PlayabilityStatus.Status,
-		            iosPlayer.PlayabilityStatus.Reason, iosPlayer.PlayabilityStatus.Subreason);
+	            throw new PlayerException(player.PlayabilityStatus.Status,
+		            player.PlayabilityStatus.Reason, player.PlayabilityStatus.Subreason);
 			cacheId = ""; // dont cache
 			// keep microformat & videodetails alive
-			iosPlayer.Captions = fallbackResponse.Captions;
-			iosPlayer.StreamingData = fallbackResponse.StreamingData;
-			iosPlayer.PlayabilityStatus = fallbackResponse.PlayabilityStatus;
-			iosPlayer.Storyboards = fallbackResponse.Storyboards;
-			iosPlayer.Endscreen = fallbackResponse.Endscreen;
-			if (tvPlayerFallbackResponse != null)
-			{
-				iosPlayer.StreamingData.Formats.AddRange(tvPlayerFallbackResponse.StreamingData.Formats);
-				iosPlayer.StreamingData.HlsFormats.AddRange(tvPlayerFallbackResponse.StreamingData.HlsFormats);
-			}
+			player.Captions = fallbackResponse.Captions;
+			player.StreamingData = fallbackResponse.StreamingData;
+			player.PlayabilityStatus = fallbackResponse.PlayabilityStatus;
+			player.Storyboards = fallbackResponse.Storyboards;
+			player.Endscreen = fallbackResponse.Endscreen;
 		}
-		if (iosPlayer.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
-			throw new PlayerException(iosPlayer.PlayabilityStatus.Status, iosPlayer.PlayabilityStatus.Reason,
-				iosPlayer.PlayabilityStatus.Subreason);
-
-		// Only WEB players have microformat
-		iosPlayer.Microformat = microformatPlayer.Microformat;
-		if (iosPlayer.Microformat == null) throw new Exception("Microformat not found");
+		if (player.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
+			throw new PlayerException(player.PlayabilityStatus.Status, player.PlayabilityStatus.Reason,
+				player.PlayabilityStatus.Subreason);
 
 		if (cacheId != "")
-			PlayerCache.Set(cacheId, iosPlayer, new MemoryCacheEntryOptions
+			PlayerCache.Set(cacheId, player, new MemoryCacheEntryOptions
 			{
 				Size = 1,
-				SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, iosPlayer.VideoDetails.LengthSeconds)),
+				SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, player.VideoDetails.LengthSeconds)),
 				AbsoluteExpirationRelativeToNow =
 					TimeSpan.FromSeconds(Math.Max(3600,
-						iosPlayer.StreamingData!.ExpiresInSeconds - iosPlayer.VideoDetails.LengthSeconds))
+						player.StreamingData!.ExpiresInSeconds - player.VideoDetails.LengthSeconds))
 			});
-		return iosPlayer;
+		return player;
 	}
 
 	private async Task<PlayerResponse> GetPlayerObjectAsync(string videoId, bool contentCheckOk, string language,

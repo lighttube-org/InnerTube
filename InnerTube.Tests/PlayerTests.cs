@@ -24,22 +24,6 @@ public class PlayerTests
 		{
 			InnerTubeAuthorization? auth = authType switch
 			{
-				"cookie" => InnerTubeAuthorization.SapisidAuthorization(
-					Environment.GetEnvironmentVariable("INNERTUBE_SID") ??
-					throw new ArgumentNullException("INNERTUBE_SID",
-						"Please set the INNERTUBE_SID environment variable."),
-					Environment.GetEnvironmentVariable("INNERTUBE_HSID") ??
-					throw new ArgumentNullException("INNERTUBE_HSID",
-						"Please set the INNERTUBE_HSID environment variable."),
-					Environment.GetEnvironmentVariable("INNERTUBE_SSID") ??
-					throw new ArgumentNullException("INNERTUBE_SSID",
-						"Please set the INNERTUBE_SSID environment variable."),
-					Environment.GetEnvironmentVariable("INNERTUBE_APISID") ??
-					throw new ArgumentNullException("INNERTUBE_APISID",
-						"Please set the INNERTUBE_APISID environment variable."),
-					Environment.GetEnvironmentVariable("INNERTUBE_SAPISID") ??
-					throw new ArgumentNullException("INNERTUBE_SAPISID",
-						"Please set the INNERTUBE_SAPISID environment variable.")),
 				"oauth2" => InnerTubeAuthorization.RefreshTokenAuthorization(
 					Environment.GetEnvironmentVariable("INNERTUBE_REFRESH_TOKEN") ??
 					throw new ArgumentNullException("INNERTUBE_REFRESH_TOKEN",

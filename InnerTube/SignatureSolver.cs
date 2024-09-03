@@ -126,9 +126,6 @@ public partial class SignatureSolver
     private static partial Regex SignatureTimestampRegex();
     [GeneratedRegex("""(?:[^=]+)=function\((\w)\){\w=\w.split\(""\);(.+?)return \w.join""")]
     private static partial Regex DescramblerFunctionRegex();
-    [GeneratedRegex("""
-                    (?x)(?:\.get\("n"\)\)&&\(b=|b=String\.fromCharCode\(110\),c=a\.get\(b\)\)&&\(c=)
-                    (?<nfunc>[a-zA-Z0-9$]+)(?:\[(?<idx>\d+)\])?\([a-zA-Z0-9]\)
-                    """)]
+    [GeneratedRegex("""(?:(?:"nn"\[.+?\]|String\.fromCharCode\(110\)),c=a\.get\(b\)|\.get\("n"\)|null)\)&&\(?\S=(?:(?<arr>.+?)\[(?<idx>.+?)\]|(?<func>.+))\(\S+?\)""")]
     private static partial Regex NParamFunctionNameRegex();
 }

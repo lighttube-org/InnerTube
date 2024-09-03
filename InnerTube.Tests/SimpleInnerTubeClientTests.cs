@@ -1,4 +1,6 @@
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using InnerTube.Models;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
@@ -12,9 +14,28 @@ public class SimpleInnerTubeClientTests
 	private SimpleInnerTubeClient client;
 
 	[OneTimeSetUp]
-	public void Setup()
+	public async Task Setup()
 	{
-		client = new SimpleInnerTubeClient();
+		string? refreshToken = Environment.GetEnvironmentVariable("INNERTUBE_REFRESH_TOKEN");
+		client = new SimpleInnerTubeClient(refreshToken != null
+			? new InnerTubeConfiguration
+			{
+				Authorization = InnerTubeAuthorization.RefreshTokenAuthorization(refreshToken)
+			}
+			: null);
+		
+		string? potGenApiUrl = Environment.GetEnvironmentVariable("INNERTUBE_POT_GENERATOR_API_URL");
+		if (potGenApiUrl != null)
+		{
+			foreach (RequestClient reqClient in (RequestClient[])[RequestClient.WEB, RequestClient.IOS])
+			{
+				string response = await new HttpClient().GetStringAsync(potGenApiUrl);
+				JsonObject resp = JsonSerializer.Deserialize<JsonObject>(response)!;
+				if (resp["success"]?.GetValue<bool>() ?? false)
+					client.ProvideSecrets(reqClient, resp["response"]!["visitorData"]!.GetValue<string>(),
+						resp["response"]!["poToken"]!.GetValue<string>());
+			}
+		}
 	}
 
 	[TestCase("BaW_jenozKc", true, TestName = "Load a video with an HLS manifest")]
@@ -26,6 +47,7 @@ public class SimpleInnerTubeClientTests
 	[TestCase("dQw4w9WgXcQ", true, TestName = "EndScreenItem ctor 2")]
 	[TestCase("T9VJKIlf5ME", true, TestName = "Premiere with trailer")]
 	[TestCase("9dVYBsh9D00", true, TestName = "YouTube Music video")]
+	[TestCase("V6kJKxvbgZ0", true, TestName = "Age restricted video")]
 	public async Task GetVideoPlayerAsync(string videoId, bool contentCheckOk)
 	{
 		InnerTubePlayer player = await client.GetVideoPlayerAsync(videoId, contentCheckOk, "en", "US");

@@ -21,6 +21,7 @@ public enum RequestClient
 	IOS = 5,
 	TVAPPLE = 16,
 	MWEB_TIER_2 = 27,
+	TV_UNPLUGGED_CAST = 58,
 	TV_EMBEDDED = 85,
 	MEDIA_CONNECT_FRONTEND = 95
 }
