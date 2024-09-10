@@ -124,7 +124,7 @@ public partial class InnerTube
 	{
 		if (!SignatureSolver.Initialized)
 			await SignatureSolver.LoadLatestJs(videoId);
-		string cacheId = $"{videoId}_({language}_{region})";
+		string cacheId = $"{videoId}_({language})";
 
 		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
