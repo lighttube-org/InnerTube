@@ -66,7 +66,7 @@ public static partial class Utils
 						break;
 				}
 			}
-				
+
 			str += currentString;
 		}
 
@@ -207,7 +207,7 @@ public static partial class Utils
 						url += "&t=" + run.Command.InnertubeCommand.WatchEndpoint.StartTimeSeconds;
 					replacement = Formatter.FormatUrl(replacement, url);
 					break;
-				
+
 				case Endpoint.EndpointTypeOneofCase.BrowseEndpoint:
 					replacement = Formatter.FormatUrl(replacement,
 						run.Command.InnertubeCommand.BrowseEndpoint.CanonicalBaseUrl);
@@ -357,6 +357,7 @@ public static partial class Utils
 					sb.AppendLine("-> ViewCount: " + video.VideoInfo.Runs[0].Text);
 					sb.AppendLine("-> PublishDate: " + video.VideoInfo.Runs[2].Text);
 				}
+
 				return sb.ToString();
 			}
 			case RendererWrapper.RendererOneofCase.CompactVideoRenderer:
@@ -527,7 +528,8 @@ public static partial class Utils
 			}
 			case RendererWrapper.RendererOneofCase.ContinuationItemRenderer:
 			{
-				return "[ContinuationItemRenderer] " + renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token;
+				return "[ContinuationItemRenderer] " +
+				       renderer.ContinuationItemRenderer.ContinuationEndpoint.ContinuationCommand.Token;
 			}
 			case RendererWrapper.RendererOneofCase.MessageRenderer:
 			{
@@ -547,14 +549,16 @@ public static partial class Utils
 			{
 				DidYouMeanRenderer dymr = renderer.DidYouMeanRenderer;
 				StringBuilder sb = new();
-				sb.AppendLine($"[DidYouMeanRenderer] \"{ReadRuns(dymr.DidYouMean)}\" \"{ReadRuns(dymr.CorrectedQuery)}\"");
+				sb.AppendLine(
+					$"[DidYouMeanRenderer] \"{ReadRuns(dymr.DidYouMean)}\" \"{ReadRuns(dymr.CorrectedQuery)}\"");
 				return sb.ToString();
 			}
 			case RendererWrapper.RendererOneofCase.ShowingResultsForRenderer:
 			{
 				ShowingResultsForRenderer srfr = renderer.ShowingResultsForRenderer;
 				StringBuilder sb = new();
-				sb.AppendLine($"[ShowingResultsForRenderer] \"{ReadRuns(srfr.ShowingResultsFor)}\" \"{ReadRuns(srfr.CorrectedQuery)}\"");
+				sb.AppendLine(
+					$"[ShowingResultsForRenderer] \"{ReadRuns(srfr.ShowingResultsFor)}\" \"{ReadRuns(srfr.CorrectedQuery)}\"");
 				sb.AppendLine($"\"{ReadRuns(srfr.SearchInsteadFor)}\" \"{ReadRuns(srfr.OriginalQuery)}\"");
 				return sb.ToString();
 			}
@@ -566,7 +570,8 @@ public static partial class Utils
 				IEnumerable<RendererWrapper> items = shelf.Content.RendererCase switch
 				{
 					RendererWrapper.RendererOneofCase.VerticalListRenderer => shelf.Content.VerticalListRenderer.Items,
-					RendererWrapper.RendererOneofCase.HorizontalListRenderer => shelf.Content.HorizontalListRenderer.Items,
+					RendererWrapper.RendererOneofCase.HorizontalListRenderer => shelf.Content.HorizontalListRenderer
+						.Items,
 					_ =>
 					[
 						new RendererWrapper
@@ -581,7 +586,7 @@ public static partial class Utils
 						}
 					]
 				};
-				foreach (RendererWrapper item in items) 
+				foreach (RendererWrapper item in items)
 					sb.AppendLine(string.Join("\n", SerializeRenderer(item).Split("\n").Select(x => $"  {x}")));
 				return sb.ToString();
 			}
@@ -590,7 +595,7 @@ public static partial class Utils
 				ReelShelfRenderer reelShelf = renderer.ReelShelfRenderer;
 				StringBuilder sb = new();
 				sb.AppendLine($"[ReelShelfRenderer] {ReadRuns(reelShelf.Title)}");
-				foreach (RendererWrapper item in reelShelf.Items) 
+				foreach (RendererWrapper item in reelShelf.Items)
 					sb.AppendLine(string.Join("\n", SerializeRenderer(item).Split("\n").Select(x => $"  {x}")));
 				return sb.ToString();
 			}
@@ -612,14 +617,16 @@ public static partial class Utils
 				return "[RichItemRenderer] " + SerializeRenderer(renderer.RichItemRenderer.Content);
 			case RendererWrapper.RendererOneofCase.AlertWithButtonRenderer:
 			{
-				return "[AlertWithButtonRenderer] [" + renderer.AlertWithButtonRenderer.Type + "] " + ReadRuns(renderer.AlertWithButtonRenderer.Text);
+				return "[AlertWithButtonRenderer] [" + renderer.AlertWithButtonRenderer.Type + "] " +
+				       ReadRuns(renderer.AlertWithButtonRenderer.Text);
 			}
 			default:
 				return $"[Unknown RendererCase={renderer.RendererCase}]";
 		}
 	}
 
-	public static RendererContainer[] ConvertRenderers(IEnumerable<RendererWrapper>? renderers, string parserLanguage) =>
+	public static RendererContainer[]
+		ConvertRenderers(IEnumerable<RendererWrapper>? renderers, string parserLanguage) =>
 		(renderers?.Select(x => ConvertRenderer(x, parserLanguage)).Where(x => x != null).ToArray() ?? [])!;
 
 	public static RendererContainer? ConvertRenderer(RendererWrapper renderer, string parserLanguage)
@@ -1219,9 +1226,11 @@ public static partial class Utils
 					{
 						Items = ConvertRenderers(renderer.WatchCardSectionSequenceRenderer.Lists[0].RendererCase switch
 						{
-							RendererWrapper.RendererOneofCase.VerticalWatchCardListRenderer => renderer.WatchCardSectionSequenceRenderer.Lists[0]
+							RendererWrapper.RendererOneofCase.VerticalWatchCardListRenderer => renderer
+								.WatchCardSectionSequenceRenderer.Lists[0]
 								.VerticalWatchCardListRenderer.Items,
-							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => renderer.WatchCardSectionSequenceRenderer.Lists[0]
+							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => renderer
+								.WatchCardSectionSequenceRenderer.Lists[0]
 								.HorizontalCardListRenderer.Cards,
 							_ =>
 							[
@@ -1272,7 +1281,7 @@ public static partial class Utils
 									Destination = null,
 									ShownItemCount = null
 								}
-						}).ToArray(),
+							}).ToArray(),
 						Style = "searchSidebar;vertical",
 						Title = null,
 						Subtitle = null,
@@ -1288,7 +1297,8 @@ public static partial class Utils
 					{
 						Thumbnail = renderer.SearchRefinementCardRenderer.Thumbnail.Thumbnails_[0].Url,
 						Title = ReadRuns(renderer.SearchRefinementCardRenderer.Query),
-						PlaylistId = renderer.SearchRefinementCardRenderer.SearchEndpoint.WatchPlaylistEndpoint?.PlaylistId,
+						PlaylistId = renderer.SearchRefinementCardRenderer.SearchEndpoint.WatchPlaylistEndpoint
+							?.PlaylistId,
 						SearchQuery = renderer.SearchRefinementCardRenderer.SearchEndpoint.SearchEndpoint?.Query
 					}
 				},
@@ -1301,7 +1311,8 @@ public static partial class Utils
 						Items = ConvertRenderers(renderer.ItemSectionRenderer.Contents, parserLanguage)
 					}
 				},
-				RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => new RendererContainer {
+				RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => new RendererContainer
+				{
 					Type = "container",
 					OriginalType = "horizontalCardListRenderer",
 					Data = new ContainerRendererData
@@ -1323,9 +1334,11 @@ public static partial class Utils
 								.VerticalListRenderer.Items,
 							RendererWrapper.RendererOneofCase.HorizontalListRenderer => renderer.ShelfRenderer.Content
 								.HorizontalListRenderer.Items,
-							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => renderer.ShelfRenderer.Content
+							RendererWrapper.RendererOneofCase.HorizontalCardListRenderer => renderer.ShelfRenderer
+								.Content
 								.HorizontalCardListRenderer.Cards,
-							RendererWrapper.RendererOneofCase.ExpandedShelfContentsRenderer => renderer.ShelfRenderer.Content.ExpandedShelfContentsRenderer.Items,
+							RendererWrapper.RendererOneofCase.ExpandedShelfContentsRenderer => renderer.ShelfRenderer
+								.Content.ExpandedShelfContentsRenderer.Items,
 							_ =>
 							[
 								new RendererWrapper
@@ -1406,7 +1419,9 @@ public static partial class Utils
 				{
 					Type = "message",
 					OriginalType = "messageRenderer",
-					Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text ?? renderer.MessageRenderer.Subtext?.MessageSubtextRenderer.Text))
+					Data = new MessageRendererData(ReadRuns(renderer.MessageRenderer.Text ??
+					                                        renderer.MessageRenderer.Subtext?.MessageSubtextRenderer
+						                                        .Text))
 				},
 				RendererWrapper.RendererOneofCase.BackgroundPromoRenderer => new RendererContainer
 				{
@@ -1471,5 +1486,63 @@ public static partial class Utils
 	public static string? NullIfEmpty(this string input) => string.IsNullOrWhiteSpace(input) ? null : input;
 
 	[GeneratedRegex(@"\D")]
-    private static partial Regex GeneratedNotDigitsRegex();
+	private static partial Regex GeneratedNotDigitsRegex();
+
+	public static Dictionary<string, string> ParseHlsStreamInfo(string line)
+	{
+		string paramsLine = line.Split(":", 2)[1].Trim();
+
+		string key = "";
+		string value = "";
+		bool insideQuote = false;
+		int state = 0;
+		// 0 = parsing key
+		// 1 = parsing value
+
+		Dictionary<string, string> res = [];
+
+		foreach (char c in paramsLine)
+		{
+			switch (c)
+			{
+				case '=':
+					state = 1;
+					continue;
+				case '"':
+					insideQuote = !insideQuote;
+					continue;
+				case ',' when !insideQuote:
+					state = 0;
+					res.TryAdd(key, value);
+					key = "";
+					value = "";
+					continue;
+			}
+
+			switch (state)
+			{
+				case 0:
+					key += c;
+					break;
+				case 1:
+					value += c;
+					break;
+			}
+		}
+
+		res.TryAdd(key, value);
+		return res;
+	}
+
+	public static Dictionary<string, string> ParseHlsUrlInfo(string url)
+	{
+		string paramsPart = url.Split("/api/", 2)[1];
+		string[] parts = paramsPart.Split('/');
+		Dictionary<string, string> res = [];
+
+		for (int i = 0; i < parts.Length; i += 2) 
+			res.Add(parts[i], HttpUtility.UrlDecode(parts[i + 1]));
+
+		return res;
+	}
 }

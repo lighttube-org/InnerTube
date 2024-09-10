@@ -80,6 +80,9 @@ public partial class InnerTube
 		//hrm.Headers.Add("Origin", "https://www.youtube.com");
 		switch (client)
 		{
+			case RequestClient.WEB:			
+				hrm.Headers.TryAddWithoutValidation("User-Agent", Constants.WebUserAgent);
+				break;
 			case RequestClient.ANDROID:			
 				hrm.Headers.Add("User-Agent", Constants.AndroidUserAgent);
 				break;
@@ -120,7 +123,7 @@ public partial class InnerTube
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
 	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
-		bool fallbackToUnserializedResponse = false, string language = "en", string region = "US")
+		bool fallbackToUnserializedResponse = false, RequestClient client = RequestClient.WEB, string language = "en", string region = "US")
 	{
 		if (!SignatureSolver.Initialized)
 			await SignatureSolver.LoadLatestJs(videoId);
@@ -128,8 +131,10 @@ public partial class InnerTube
 
 		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
-		PlayerResponse player = await GetPlayerObjectAsync(videoId, contentCheckOk, language, region,
-			RequestClient.WEB);
+		PlayerResponse player = await GetPlayerObjectAsync(videoId, contentCheckOk, language, region, client);
+		PlayerResponse? microformatPlayer = client != RequestClient.WEB
+			? await GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB)
+			: null;
 
 		foreach (Format format in player.StreamingData?.Formats ?? [])
 			SignatureSolver.DescrambleUrl(format);
@@ -137,10 +142,6 @@ public partial class InnerTube
 			SignatureSolver.DescrambleUrl(format);
 		foreach (Format format in player.StreamingData?.HlsFormats ?? [])
 			SignatureSolver.DescrambleUrl(format);
-
-		// todo: extract muxed hls formats from hls manifest
-		//if (mediaconnectPlayer.StreamingData?.HasHlsManifestUrl == true)
-		//	iosPlayer.StreamingData!.HlsFormats.AddRange();
 		
 		if (player.PlayabilityStatus.Status == PlayabilityStatus.Types.Status.LiveStreamOffline)
 		{
@@ -161,6 +162,53 @@ public partial class InnerTube
 		if (player.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
 			throw new PlayerException(player.PlayabilityStatus.Status, player.PlayabilityStatus.Reason,
 				player.PlayabilityStatus.Subreason);
+		
+		try
+		{
+			if (!string.IsNullOrEmpty(player.StreamingData?.HlsManifestUrl))
+			{
+				string hls = await HttpClient.GetStringAsync(player.StreamingData.HlsManifestUrl);
+				string[] lines = hls.Split("\n").Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+				for (int i = 0; i < lines.Length; i++)
+				{
+					string line = lines[i];
+					if (!line.StartsWith("#EXT-X-STREAM-INF")) continue;
+					if (line.StartsWith("http")) continue;
+
+					Dictionary<string,string> info = Utils.ParseHlsStreamInfo(line);
+					i++;
+					string url = lines[i];
+
+					Dictionary<string, string> urlInfo = Utils.ParseHlsUrlInfo(url);
+					
+					player.StreamingData?.HlsFormats.Add(new Format
+					{
+						Itag = int.Parse(urlInfo["itag"]),
+						Url = url,
+						Mime = $"video/mp2t; codecs={info["CODECS"]}",
+						Bitrate = int.Parse(info["BANDWIDTH"]),
+						Width = int.Parse(info["RESOLUTION"].Split('x')[0]),
+						Height = int.Parse(info["RESOLUTION"].Split('x')[1]),
+						LastModified =
+							Math.Max(
+								ulong.Parse(urlInfo["sgoap"].Split(';').FirstOrDefault(x => x.StartsWith("lmt="))?.Split('=')[1] ?? "0"),
+								ulong.Parse(urlInfo["sgovp"].Split(';').FirstOrDefault(x => x.StartsWith("lmt="))?.Split('=')[1] ?? "0")
+							),
+						Quality = "hlsmuxed_" + urlInfo["itag"],
+						Fps = int.Parse(info["FRAME-RATE"]),
+						QualityLabel = $"{info["RESOLUTION"].Split('x')[1]}p (HLS)",
+					});
+				}
+			}
+		}
+		catch (Exception)
+		{
+			// ignore errors, since theres a high change of the hls endpoint
+			// returning a 429 if used in an environment with heavy traffic
+		}
+
+		if (microformatPlayer != null)
+			player.Microformat = microformatPlayer.Microformat;
 
 		if (cacheId != "")
 			PlayerCache.Set(cacheId, player, new MemoryCacheEntryOptions

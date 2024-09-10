@@ -23,17 +23,25 @@ public class SimpleInnerTubeClient
 	public async Task<InnerTubePlayer> GetVideoPlayerAsync(string videoId, bool contentCheckOk, string language = "en",
 		string region = "US")
 	{
-		// in the worst case scenario, this will do 6 http requests :3
+		// in the worst case scenario, this will do 3 http requests :3
 		try
 		{
-			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, false, language, region);
+			PlayerResponse player =
+				await InnerTube.GetPlayerAsync(videoId, contentCheckOk, false, RequestClient.WEB, language, region);
 			return new InnerTubePlayer(player, false, language);
 		}
 		catch (PlayerException e)
 		{
-			if (e.Code != PlayabilityStatus.Types.Status.LiveStreamOffline) throw;
+			if (e.Code != PlayabilityStatus.Types.Status.LiveStreamOffline &&
+			    e.Code != PlayabilityStatus.Types.Status.LoginRequired &&
+			    e.Code != PlayabilityStatus.Types.Status.AgeCheckRequired) throw;
 
-			PlayerResponse player = await InnerTube.GetPlayerAsync(videoId, contentCheckOk, true, language, region);
+			PlayerResponse player =
+				await InnerTube.GetPlayerAsync(videoId, contentCheckOk, true,
+					e.Code is PlayabilityStatus.Types.Status.LoginRequired
+						or PlayabilityStatus.Types.Status.AgeCheckRequired
+						? RequestClient.TV_EMBEDDED
+						: RequestClient.WEB, language, region);
 			return new InnerTubePlayer(player, true, language);
 		}
 	}

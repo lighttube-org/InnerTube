@@ -31,8 +31,7 @@ internal class InnerTubeRequest
 				clientContext.Add("osName", "Macintosh");
 				clientContext.Add("osVersion", "10_15_7");
 				clientContext.Add("platform", "DESKTOP");
-				clientContext.Add("userAgent",
-					"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.4 Safari/605.1.15,gzip(gfe)");
+				clientContext.Add("userAgent", Constants.WebUserAgent);
 				break;
 			case RequestClient.ANDROID:
 				clientContext.Add("clientName", "ANDROID");

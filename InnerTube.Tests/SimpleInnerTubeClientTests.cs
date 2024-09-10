@@ -27,7 +27,7 @@ public class SimpleInnerTubeClientTests
 		string? potGenApiUrl = Environment.GetEnvironmentVariable("INNERTUBE_POT_GENERATOR_API_URL");
 		if (potGenApiUrl != null)
 		{
-			foreach (RequestClient reqClient in (RequestClient[])[RequestClient.WEB, RequestClient.IOS])
+			foreach (RequestClient reqClient in (RequestClient[])[RequestClient.WEB, RequestClient.TV_EMBEDDED])
 			{
 				string response = await new HttpClient().GetStringAsync(potGenApiUrl);
 				JsonObject resp = JsonSerializer.Deserialize<JsonObject>(response)!;
@@ -108,6 +108,12 @@ public class SimpleInnerTubeClientTests
 		if (player.AdaptiveFormats.Length == 0) sb.AppendLine("<no formats>");
 		else
 			foreach (Format format in player.AdaptiveFormats)
+				sb.AppendLine($"-> [{format.Itag}]");
+
+		sb.AppendLine("\n=== HLS FORMATS");
+		if (player.HlsFormats.Length == 0) sb.AppendLine("<no formats>");
+		else
+			foreach (Format format in player.HlsFormats)
 				sb.AppendLine($"-> [{format.Itag}]");
 
 		Assert.Pass(sb.ToString());
