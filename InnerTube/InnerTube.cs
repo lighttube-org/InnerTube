@@ -3,6 +3,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using Google.Protobuf;
 using InnerTube.Exceptions;
+using InnerTube.Models;
 using InnerTube.Protobuf;
 using InnerTube.Protobuf.Params;
 using InnerTube.Protobuf.Responses;
@@ -23,6 +24,7 @@ public partial class InnerTube
 	internal Dictionary<RequestClient, string> PoTokens = [];
 	private readonly Regex visitorDataRegex = VisitorDataGeneratedRegex();
 	internal SignatureSolver SignatureSolver = new();
+	internal InnerTubeConfiguration Configuration;
 
 	/// <summary>
 	/// Initializes a new instance of InnerTube client.
@@ -38,6 +40,7 @@ public partial class InnerTube
 			ExpirationScanFrequency = config.CacheExpirationPollingInterval,
 			SizeLimit = config.CacheSize
 		});
+		Configuration = config;
 	}
 
 	private async Task<byte[]> MakeRequest(RequestClient client, string endpoint, InnerTubeRequest postData,
@@ -337,6 +340,13 @@ public partial class InnerTube
 			postData, "en", "US"));
 	}
 
-    [GeneratedRegex("\"visitorData\":\"(.+?)\",")]
+	public CacheStats GetPlayerCacheStats() =>
+		new()
+		{
+			CacheSize = Configuration.CacheSize,
+			CacheUsed = PlayerCache.GetCurrentStatistics()?.CurrentEntryCount ?? -1
+		};
+
+	[GeneratedRegex("\"visitorData\":\"(.+?)\",")]
     private static partial Regex VisitorDataGeneratedRegex();
 }

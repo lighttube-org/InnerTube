@@ -306,5 +306,7 @@ public class SimpleInnerTubeClient
 	public void ProvideSecrets(RequestClient client, string visitorData, string? poToken = null) =>
 		InnerTube.ProvideSecrets(client, visitorData, poToken);
 
+	public CacheStats GetPlayerCacheStats() => InnerTube.GetPlayerCacheStats();
+
 	public async Task<string> GenerateVisitorData() => await InnerTube.GenerateVisitorData();
 }
