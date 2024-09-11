@@ -876,6 +876,28 @@ public static partial class Utils
 						Description = null
 					}
 				},
+				RendererWrapper.RendererOneofCase.ShortsLockupViewModel => new RendererContainer
+				{
+					Type = "video",
+					OriginalType = "shortsLockupViewModel",
+					Data = new VideoRendererData
+					{
+						// fall back to parsing entityid in case ontap changes
+						VideoId = renderer.ShortsLockupViewModel.OnTap?.InnertubeCommand?.ReelWatchEndpoint?.VideoId ??
+						          renderer.ShortsLockupViewModel.EntityId.Split('-', 4)[3],
+						Title = ReadAttributedDescription(renderer.ShortsLockupViewModel.OverlayMetadata.PrimaryText),
+						Thumbnails = renderer.ShortsLockupViewModel.Thumbnail.Sources.Select(x => new Thumbnail
+						{
+							Url = x.Url,
+							Width = x.Width,
+							Height = x.Height
+						}).ToArray(),
+						ViewCountText = ReadAttributedDescription(renderer.ShortsLockupViewModel.OverlayMetadata.SecondaryText),
+						ViewCount = ValueParser.ParseViewCount(parserLanguage,
+							ReadAttributedDescription(renderer.ShortsLockupViewModel.OverlayMetadata.SecondaryText)),
+						Badges = []
+					}
+				},
 				RendererWrapper.RendererOneofCase.PromotedVideoRenderer => new RendererContainer
 				{
 					Type = "video",

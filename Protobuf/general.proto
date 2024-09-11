@@ -397,6 +397,7 @@ message RendererWrapper {
     DynamicTextViewModel dynamicTextViewModel = 509603841;
     PageHeaderRenderer pageHeaderRenderer = 509923604;
     ContentMetadataViewModel contentMetadataViewModel = 514549827;
+    ShortsLockupViewModel shortsLockupViewModel = 518308277;
     AboutChannelRenderer aboutChannelRenderer = 520574426;
     FlexibleActionsViewModel flexibleActionsViewModel = 520990934;
     AboutChannelViewModel aboutChannelViewModel = 522039202;
@@ -2040,6 +2041,28 @@ message ContentMetadataViewModel {
   Context rendererContext = 997;
 }
 
+message ShortsLockupViewModel {
+  message PlayerData {
+    Endpoint onVisible = 4;
+  }
+  
+  message Metadata {
+    AttributedDescription primaryText = 1;
+    AttributedDescription secondaryText = 2;
+  }
+  
+  string entityId = 1;
+  string accessibilityText = 4;
+  Image thumbnail = 5;
+  Endpoint onTap = 6;
+  PlayerData inlinePlayerData = 13;
+  Endpoint menuOnTap = 14;
+  int32 indexInCollection = 16;
+  string menuOnTapA11yLabel = 21;
+  Metadata overlayMetadata = 22;
+  optional LoggingDirectives loggingDirectives = 999;
+}
+
 message AboutChannelRenderer {
   RendererWrapper metadata = 1;
   optional RendererWrapper flaggingButton = 2;
@@ -2161,6 +2184,7 @@ message Endpoint {
     ShowReloadUiCommand showReloadUiCommand = 297946747;
     EntityUpdateCommand entityUpdateCommand = 300347778;
     ScrollToEngagementPanelCommand scrollToEngagementPanelCommand = 344410484;
+    ShowSheetCommand showSheetCommand = 443434441;
   }
 }
 
@@ -2498,6 +2522,14 @@ message EntityUpdateCommand {
 
 message ScrollToEngagementPanelCommand {
   string targetId = 1;
+}
+
+message ShowSheetCommand {
+  LoadingStrategy panelLoadingStrategy = 1;
+}
+
+message LoadingStrategy {
+  RendererWrapper inlineContent = 1;
 }
 
 message WebCommandMetadata {

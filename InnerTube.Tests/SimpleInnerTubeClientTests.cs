@@ -27,13 +27,20 @@ public class SimpleInnerTubeClientTests
 		string? potGenApiUrl = Environment.GetEnvironmentVariable("INNERTUBE_POT_GENERATOR_API_URL");
 		if (potGenApiUrl != null)
 		{
-			foreach (RequestClient reqClient in (RequestClient[])[RequestClient.WEB, RequestClient.TV_EMBEDDED])
+			try
 			{
-				string response = await new HttpClient().GetStringAsync(potGenApiUrl);
-				JsonObject resp = JsonSerializer.Deserialize<JsonObject>(response)!;
-				if (resp["success"]?.GetValue<bool>() ?? false)
-					client.ProvideSecrets(reqClient, resp["response"]!["visitorData"]!.GetValue<string>(),
-						resp["response"]!["poToken"]!.GetValue<string>());
+				foreach (RequestClient reqClient in (RequestClient[]) [RequestClient.WEB, RequestClient.TV_EMBEDDED])
+				{
+					string response = await new HttpClient().GetStringAsync(potGenApiUrl);
+					JsonObject resp = JsonSerializer.Deserialize<JsonObject>(response)!;
+					if (resp["success"]?.GetValue<bool>() ?? false)
+						client.ProvideSecrets(reqClient, resp["response"]!["visitorData"]!.GetValue<string>(),
+							resp["response"]!["poToken"]!.GetValue<string>());
+				}
+			}
+			catch
+			{
+				// ignore if failure
 			}
 		}
 	}
