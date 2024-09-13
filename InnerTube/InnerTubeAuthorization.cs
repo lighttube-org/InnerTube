@@ -60,18 +60,24 @@ public class InnerTubeAuthorization
 	/// <param name="clientSecret">The client secret of YouTube TV from when the refresh token was taken</param>
 	/// <returns></returns>
 	public static InnerTubeAuthorization RefreshTokenAuthorization(string refreshToken,
+		string? userId = null,
 		string clientId = "861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com",
-		string clientSecret = "SboVhoG9s0rNafixCSGGKXAT") =>
-		new()
+		string clientSecret = "SboVhoG9s0rNafixCSGGKXAT")
+	{
+		InnerTubeAuthorization auth = new()
 		{
 			Type = AuthorizationType.REFRESH_TOKEN,
 			Secrets = new Dictionary<string, object>
 			{
 				["refreshToken"] = refreshToken,
 				["clientId"] = clientId,
-				["clientSecret"] = clientSecret
+				["clientSecret"] = clientSecret,
 			}
 		};
+		if (userId != null)
+			auth.Secrets.Add("userId", userId);
+		return auth;
+	}
 
 	internal string GenerateCookieHeader()
 	{
@@ -144,6 +150,8 @@ public class InnerTubeAuthorization
 		foreach (byte b in hash) sb.Append(b.ToString("X2"));
 		return sb.ToString();
 	}
+
+	public string? GetUserId() => Secrets.GetValueOrDefault("userId") as string;
 }
 
 /// <summary>

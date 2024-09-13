@@ -21,7 +21,8 @@ public class SimpleInnerTubeClientTests
 		client = new SimpleInnerTubeClient(refreshToken != null
 			? new InnerTubeConfiguration
 			{
-				Authorization = InnerTubeAuthorization.RefreshTokenAuthorization(refreshToken)
+				Authorization = InnerTubeAuthorization.RefreshTokenAuthorization(refreshToken,
+					Environment.GetEnvironmentVariable("INNERTUBE_USER_ID"))
 			}
 			: null);
 		

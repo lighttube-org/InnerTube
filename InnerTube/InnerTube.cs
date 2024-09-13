@@ -53,9 +53,10 @@ public partial class InnerTube
 
 		HttpRequestMessage hrm = new(HttpMethod.Post, url);
 
-		byte[] buffer = Encoding.UTF8.GetBytes(postData.GetJson(client, language, region,
-			authorized ? VisitorDatas?.GetValueOrDefault(client) : null,
-			authorized ? PoTokens?.GetValueOrDefault(client) : null, referer));
+		byte[] buffer = Encoding.UTF8.GetBytes(postData.GetJson(client, language, region, referer,
+			authorized ? VisitorDatas.GetValueOrDefault(client) : null,
+			authorized ? PoTokens.GetValueOrDefault(client) : null,
+			authorized ? Authorization?.GetUserId() : null));
 		ByteArrayContent byteContent = new(buffer);
 		byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 		hrm.Content = byteContent;

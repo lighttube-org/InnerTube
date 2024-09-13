@@ -13,7 +13,7 @@ internal class InnerTubeRequest
 	}
 
 	private void UpdateContext(RequestClient requestClient, string language = "en", string region = "US",
-		string? visitorData = null, string? poToken = null, string? referer = null)
+		string? visitorData = null, string? poToken = null, string? referer = null, string? userId = null)
 	{
 		Dictionary<string, object> clientContext = new();
 		clientContext.Add("hl", language);
@@ -111,12 +111,20 @@ internal class InnerTubeRequest
 			["client"] = clientContext
 		};
 
-		if (visitorData != null)
-		{
+		if (userId != null)
+			context.Add("user", new Dictionary<string, object>
+			{
+				["lockedSafetyMode"] = false,
+				["onBehalfOfUser"] = userId
+			});
+		else
 			context.Add("user", new Dictionary<string, object>
 			{
 				["lockedSafetyMode"] = false
 			});
+
+		if (visitorData != null)
+		{
 			context.Add("request", new Dictionary<string, object>
 			{
 				["useSsl"] = true,
@@ -134,10 +142,9 @@ internal class InnerTubeRequest
 		AddValue("context", context);
 	}
 
-	public string GetJson(RequestClient client, string language, string region, string? visitorData, string? poToken,
-		string? referer)
+	public string GetJson(RequestClient client, string language, string region, string? referer, string? visitorData, string? poToken, string? userId)
 	{
-		UpdateContext(client, language, region, visitorData, poToken, referer);
+		UpdateContext(client, language, region, visitorData, poToken, referer, userId);
 		return JsonConvert.SerializeObject(data);
 	}
 }
