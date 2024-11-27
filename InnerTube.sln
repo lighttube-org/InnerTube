@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerTube.Tests", "InnerTub
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerTube.Docs", "InnerTube.Docs\InnerTube.Docs.csproj", "{F091E90B-539C-46D6-8EF0-37B96CAE6FC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InnerTube.Parsers.GetTestData", "InnerTube.Parsers.GetTestData\InnerTube.Parsers.GetTestData.csproj", "{A08D5785-F22B-4E61-8C9B-48DD3CEDAFF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,5 +22,9 @@ Global
 		{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D3F3C8B-E503-4E1E-A634-244B9CB36ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A08D5785-F22B-4E61-8C9B-48DD3CEDAFF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A08D5785-F22B-4E61-8C9B-48DD3CEDAFF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A08D5785-F22B-4E61-8C9B-48DD3CEDAFF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A08D5785-F22B-4E61-8C9B-48DD3CEDAFF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,120 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Responses;
+
+import "general.proto";
+
+message PlayerResponse {
+  //bytes context = 1;
+  PlayabilityStatus playabilityStatus = 2;
+  StreamingData streamingData = 4;
+  optional RendererWrapper captions = 10;
+  VideoDetails videoDetails = 11;
+  optional RendererWrapper storyboards = 16;
+  optional RendererWrapper microformat = 19;
+  optional RendererWrapper endscreen = 32;
+}
+
+message ErrorScreenWrapper {
+  oneof errorScreen {
+    YpcTrailerRenderer ypcTrailerRenderer = 86164011;
+  }
+}
+
+message PlayabilityStatus {
+  enum Status {
+    OK = 0;
+    UNPLAYABLE = 2;
+    LOGIN_REQUIRED = 3;
+    CONTENT_CHECK_REQUIRED = 4;
+    AGE_CHECK_REQUIRED = 5;
+    LIVE_STREAM_OFFLINE = 6;
+  }
+
+  Status status = 1;
+  optional string reason = 2;
+  optional ErrorScreenWrapper errorScreen = 8;
+  optional bool playableInEmbed = 9;
+  optional string subreason = 22;
+  optional string contextParams = 31;
+}
+
+message StreamingData {
+  int32 expiresInSeconds = 1;
+  repeated Format formats = 2;
+  repeated Format adaptiveFormats = 3;
+  optional string dashManifestUrl = 4;
+  optional string hlsManifestUrl = 5;
+  repeated Format hlsFormats = 6;
+  optional string serverAbrStreamingUrl = 15;
+}
+
+message Format {
+  int32 itag = 1;
+  string url = 2;
+  string mime = 5;
+  int32 bitrate = 6;
+  int32 width = 7;
+  int32 height = 8;
+  optional Range initRange = 9;
+  optional Range indexRange = 10;
+  uint64 lastModified = 11;
+  uint64 contentLength = 12;
+  string quality = 16;
+  int32 fps = 25;
+  optional bytes xtags = 23;
+  string qualityLabel = 26;
+  int32 projectionType = 27;
+  optional AudioTrack audioTrack = 28;
+  int32 averageBitrate = 31;
+  FormatColorInfo colorInfo = 33;
+  bool highReplication = 39;
+  int32 audioQuality = 43;
+  int32 approxDurationMs = 44;
+  optional int32 audioSampleRate = 45;
+  optional int32 audioChannels = 46;
+  optional float loudnessDb = 47;
+  optional string signatureCipher = 48;
+}
+
+message FormatColorInfo {
+  int32 primaries = 1;
+  int32 transferCharacteristics = 2;
+  int32 matrixCoefficients = 3;
+}
+
+message Range {
+  int32 start = 3;
+  int32 end = 4;
+}
+
+message AudioTrack {
+  string displayName = 4;
+  string id = 5;
+  bool audioIsDefault = 6;
+}
+
+message VideoDetails {
+  string videoId = 1;
+  string title = 15;
+  int32 lengthSeconds = 16;
+  repeated string keywords = 18;
+  string channelId = 19;
+  bool isOwnerViewing = 20;
+  string shortDescription = 21;
+  bool isCrawlable = 22;
+  InnerTube.Protobuf.Thumbnails thumbnail = 25;
+  bool allowRatings = 31;
+  string viewCount = 32;
+  bool isPrivate = 37;
+  string author = 33;
+  bool isUnpluggedCorpus = 38;
+  bool isLiveContent = 41;
+}
+
+message YpcTrailerRenderer {
+  PlayerResponse playerResponse = 1;
+  Text fullVideoMessage = 4;
+  bytes trackingParams = 6;
+  PlayerResponse unserializedPlayerResponse = 9;
+}

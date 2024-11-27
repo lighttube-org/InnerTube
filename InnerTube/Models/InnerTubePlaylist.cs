@@ -1,58 +1,39 @@
-﻿using InnerTube.Exceptions;
+using System.Web;
+using InnerTube.Protobuf;
+using InnerTube.Protobuf.Responses;
 using InnerTube.Renderers;
-using Newtonsoft.Json.Linq;
 
-namespace InnerTube;
+namespace InnerTube.Models;
 
 public class InnerTubePlaylist
 {
 	public string Id { get; }
-	public IEnumerable<string> Alerts { get; }
-	public IEnumerable<PlaylistVideoRenderer> Videos { get; }
-	public PlaylistContinuationInfo? Continuation { get; }
+	public string[] Alerts { get; }
+	public RendererContainer[] Contents { get; }
+	public RendererContainer[] Chips { get; }
+	public string? Continuation { get; }
 	public PlaylistSidebar Sidebar { get; }
 
-	public InnerTubePlaylist(JObject browseResponse)
+	public InnerTubePlaylist(BrowseResponse browse, string parserLanguage)
 	{
-		JArray? alertsArray = browseResponse.GetFromJsonPath<JArray>("alerts");
-		Alerts = alertsArray is not null
-			? alertsArray.Select(x =>
-			{
-				JToken current = x.First!;
-				for (int i = 0; i < 3; i++)
-				{
-					try
-					{
-						if (current["text"] is not null)
-							return Utils.ReadText(current["text"]!.ToObject<JObject>()!);
-					}
-					catch
-					{
-					}
-
-					current = current.First!;
-				}
-
-				return "";
-			}).ToArray()
-			: Array.Empty<string>();
-		if (!browseResponse.ContainsKey("header") && !browseResponse.ContainsKey("sidebar"))
-		{
-			if (Alerts.Any())
-				throw new NotFoundException(Alerts.First());
-			throw new InnerTubeException("Response is missing important fields (header, sidebar)");
-		}
-
-		Id = browseResponse.GetFromJsonPath<string>("header.playlistHeaderRenderer.playlistId")!;
-
-		IRenderer[] renderers = RendererManager.ParseRenderers(browseResponse.GetFromJsonPath<JArray>(
-				"contents.twoColumnBrowseResultsRenderer.tabs[0].tabRenderer.content.sectionListRenderer.contents[0].itemSectionRenderer.contents[0].playlistVideoListRenderer.contents")
-			).ToArray();
-		Videos = renderers.OfType<PlaylistVideoRenderer>();
-		string? contToken = ((ContinuationItemRenderer?)Array.Find(renderers,x => x is ContinuationItemRenderer))
-			?.Token;
-		if (contToken!=null)
-			Continuation = Utils.UnpackPlaylistContinuation(contToken);
-		Sidebar = new PlaylistSidebar(browseResponse.GetFromJsonPath<JObject>("sidebar.playlistSidebarRenderer")!);
+		Id = HttpUtility.ParseQueryString(
+			browse.Metadata?.PlaylistMetadataRenderer?.AndroidAppindexingLink?.Split('?')[1] ?? "")["list"] ?? "";
+		Alerts = browse.Alerts.Select(x => Utils.ReadRuns(x.AlertWithButtonRenderer?.Text)).ToArray();
+		IEnumerable<RendererWrapper> renderers = browse.Contents.TwoColumnBrowseResultsRenderer.Tabs[0]
+			                                         .TabRenderer.Content?
+			                                         .ResultsContainer.Results[0].ItemSectionRenderer
+			                                         .Contents[0].PlaylistVideoListRenderer?.Contents ??
+		                                         browse.Contents.TwoColumnBrowseResultsRenderer.Tabs[0]
+			                                         .TabRenderer.Content?
+			                                         .ResultsContainer.Results[0].ItemSectionRenderer
+			                                         .Contents ??
+		                                         [];
+		RendererContainer[] items = Utils.ConvertRenderers(renderers, parserLanguage);
+		Contents = items.Where(x => x.Type != "continuation").ToArray();
+		Continuation = (items.LastOrDefault(x => x.Type == "continuation")?.Data as ContinuationRendererData)
+			?.ContinuationToken;
+		Chips = Utils.ConvertRenderers(browse.Contents.TwoColumnBrowseResultsRenderer.Tabs[0].TabRenderer.Content
+			?.ResultsContainer.Results[0].ItemSectionRenderer.Header?.FeedFilterChipBarRenderer?.Contents, parserLanguage);
+		Sidebar = new PlaylistSidebar(browse.Header.PlaylistHeaderRenderer, parserLanguage);
 	}
 }

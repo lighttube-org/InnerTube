@@ -1,110 +1,105 @@
-﻿using System.Globalization;
-using Newtonsoft.Json.Linq;
+using InnerTube.Protobuf;
+using InnerTube.Protobuf.Responses;
 
-namespace InnerTube;
+namespace InnerTube.Models;
 
-public class InnerTubePlayer
+public class InnerTubePlayer(PlayerResponse player, bool isFallback, string parserLanguage)
 {
-	public VideoDetails Details { get; }
-	public VideoEndscreen Endscreen { get; }
-	public VideoStoryboard Storyboard { get; }
-	public IEnumerable<VideoCaption> Captions { get; }
-	public IEnumerable<Format> Formats { get; }
-	public IEnumerable<Format> AdaptiveFormats { get; }
-	public int ExpiresInSeconds { get; }
-	public string? HlsManifestUrl { get; }
-	public string? DashManifestUrl { get; }
+	public VideoDetails Details { get; } = new(player, isFallback, parserLanguage);
 
-	public InnerTubePlayer(JObject playerResponse, JObject metadataResponse)
+	public VideoEndscreen? Endscreen { get; } =
+		player.Endscreen?.EndscreenRenderer != null ? new VideoEndscreen(player.Endscreen.EndscreenRenderer) : null;
+
+	public VideoStoryboard? Storyboard { get; } = player.Storyboards != null
+		? new(player.Storyboards, player.VideoDetails.LengthSeconds)
+		: null;
+
+	public VideoCaption[] Captions { get; } =
+		player.Captions?.CaptionsTrackListRenderer.Captions.Select(x => new VideoCaption(x)).ToArray() ??
+		[];
+
+	// TODO: complete formats
+	public Format[] Formats { get; } = player.StreamingData?.Formats.ToArray() ?? [];
+	public Format[] AdaptiveFormats { get; } = player.StreamingData?.AdaptiveFormats.ToArray() ?? [];
+	public Format[] HlsFormats { get; } = player.StreamingData?.HlsFormats.ToArray() ?? [];
+	public DateTimeOffset ExpiryTimeStamp { get; } = DateTimeOffset.UtcNow.AddSeconds(player.StreamingData?.ExpiresInSeconds ?? -1);
+	public string? HlsManifestUrl { get; } = player.StreamingData?.HlsManifestUrl; 
+	public string? DashManifestUrl { get; } = player.StreamingData?.DashManifestUrl; 
+
+	public class VideoDetails(PlayerResponse player, bool isFallback, string parserLanguage)
 	{
-		Details = new VideoDetails
+		public string Id { get; } = player.VideoDetails!.VideoId;
+		public string Title { get; } = player.VideoDetails!.Title;
+		public string[] Keywords { get; } = player.VideoDetails.Keywords.ToArray();
+		public string ShortDescription { get; } = player.VideoDetails.ShortDescription;
+		public string Category { get; } = player.Microformat.PlayerMicroformatRenderer.Category;
+
+		public bool IsLive { get; } = player.Microformat.PlayerMicroformatRenderer.LiveBroadcastDetails?.IsLiveNow ??
+		                              player.VideoDetails.IsLiveContent;
+		
+		public bool IsFallback { get; } = isFallback;
+		public bool AllowRatings { get; } = player.VideoDetails.AllowRatings;
+		public bool IsFamilySafe { get; } = player.Microformat.PlayerMicroformatRenderer.IsFamilySafe;
+		public Thumbnail[] Thumbnails { get; } = player.VideoDetails.Thumbnail.Thumbnails_.ToArray();
+
+		public DateTimeOffset? PublishDate { get; } =
+			DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.PublishDate);
+
+		public DateTimeOffset? UploadDate { get; } =
+			DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.UploadDate);
+
+		public DateTimeOffset? LiveStreamStartDate { get; } =
+			player.Microformat.PlayerMicroformatRenderer.LiveBroadcastDetails != null
+				? DateTimeOffset.Parse(player.Microformat.PlayerMicroformatRenderer.LiveBroadcastDetails.StartTimestamp)
+				: null;
+
+		public TimeSpan? Length { get; } = TimeSpan.FromSeconds(player.VideoDetails.LengthSeconds);
+
+		public Channel Author { get; } = new(
+			parserLanguage,
+			player.VideoDetails!.ChannelId,
+			player.VideoDetails!.Author,
+			player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl.Contains('@') 
+				? "@" + player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl.Split('@')[1]
+				: null,
+			null,
+			null,
+			null);
+	}
+
+	public class VideoEndscreen(EndscreenRenderer endscreen)
+	{
+		public IEnumerable<EndscreenItem> Items { get; } =
+			endscreen.Elements.Select(x => new EndscreenItem(x.EndscreenElementRenderer));
+		public long StartMs { get; } = endscreen.StartMs;
+	}
+
+	public class VideoStoryboard(RendererWrapper wrapper, long videoDuration)
+	{
+		public int RecommendedLevel { get; } = wrapper.RendererCase switch
 		{
-			Id = metadataResponse.GetFromJsonPath<string>("videoDetails.videoId")!,
-			Title = metadataResponse.GetFromJsonPath<string>("videoDetails.title")!,
-			Author = new Channel
+			RendererWrapper.RendererOneofCase.PlayerStoryboardSpecRenderer => wrapper.PlayerStoryboardSpecRenderer.RecommendedLevel,
+			RendererWrapper.RendererOneofCase.PlayerLiveStoryboardSpecRenderer => 0,
+			_ => 0
+		};
+		public Dictionary<int, Uri> Levels { get; } = wrapper.RendererCase switch
+		{
+			RendererWrapper.RendererOneofCase.PlayerStoryboardSpecRenderer => Utils.ParseStoryboardSpec(wrapper
+				.PlayerStoryboardSpecRenderer.Spec, videoDuration),
+			RendererWrapper.RendererOneofCase.PlayerLiveStoryboardSpecRenderer => new Dictionary<int, Uri>
 			{
-				Id = metadataResponse.GetFromJsonPath<string>("videoDetails.channelId")!,
-				Title = metadataResponse.GetFromJsonPath<string>("videoDetails.author")!
+				[0] = Utils.ParseLiveStoryboardSpec(wrapper.PlayerLiveStoryboardSpecRenderer.Spec)!
 			},
-			Keywords = metadataResponse.GetFromJsonPath<string[]>("videoDetails.keywords") ?? Array.Empty<string>(),
-			ShortDescription = metadataResponse.GetFromJsonPath<string>("videoDetails.shortDescription")!,
-			Category = metadataResponse.GetFromJsonPath<string>("videoDetails.category")!,
-			UploadDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.uploadDate")!, CultureInfo.InvariantCulture),
-			PublishDate = DateTimeOffset.Parse(metadataResponse.GetFromJsonPath<string>("microformat.playerMicroformatRenderer.publishDate")!, CultureInfo.InvariantCulture),
-			Length = TimeSpan.FromSeconds(
-				long.Parse(metadataResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!)),
-			IsLive = metadataResponse.GetFromJsonPath<bool>("videoDetails.isLiveContent")!,
-			AllowRatings = metadataResponse.GetFromJsonPath<bool>("videoDetails.allowRatings"),
-			IsFamilySafe = metadataResponse.GetFromJsonPath<bool>("microformat.playerMicroformatRenderer.isFamilySafe")!,
-			Thumbnails = Utils.GetThumbnails(metadataResponse.GetFromJsonPath<JArray>("microformat.playerMicroformatRenderer.thumbnail.thumbnails"))
+			_ => new Dictionary<int, Uri>()
 		};
-		Endscreen = new VideoEndscreen
-		{
-			Items = metadataResponse.GetFromJsonPath<JArray>("endscreen.endscreenRenderer.elements")
-				?.Select(x => new EndScreenItem(x["endscreenElementRenderer"]!)) ?? Array.Empty<EndScreenItem>(),
-			StartMs = long.Parse(metadataResponse.GetFromJsonPath<string>("endscreen.endscreenRenderer.startMs") ?? "0")
-		};
-		Storyboard = new VideoStoryboard
-		{
-			RecommendedLevel =
-				metadataResponse.GetFromJsonPath<int>("storyboards.playerStoryboardSpecRenderer.recommendedLevel"),
-			Levels = Utils.GetLevelsFromStoryboardSpec(
-				metadataResponse.GetFromJsonPath<string>("storyboards.playerStoryboardSpecRenderer.spec"),
-				long.Parse(metadataResponse.GetFromJsonPath<string>("videoDetails.lengthSeconds")!))
-		};
-		Captions = metadataResponse.GetFromJsonPath<JArray>("captions.playerCaptionsTracklistRenderer.captionTracks")?
-			.Select(x => new VideoCaption
-			{
-				VssId = x["vssId"]?.ToString() ?? x["languageCode"]!.ToString(),
-				LanguageCode = x["languageCode"]!.ToString(),
-				Label = Utils.ReadText(x["name"]!.ToObject<JObject>()!),
-				BaseUrl = new Uri(x["baseUrl"]!.ToString())
-			}) ?? Array.Empty<VideoCaption>();
-		Formats = playerResponse.GetFromJsonPath<JArray>("streamingData.formats")?.Select(x => new Format(x)) ??
-		          Array.Empty<Format>();
-		AdaptiveFormats =
-			playerResponse.GetFromJsonPath<JArray>("streamingData.adaptiveFormats")?.Select(x => new Format(x)) ??
-			Array.Empty<Format>();
-		ExpiresInSeconds = playerResponse["streamingData"]?["expiresInSeconds"]?.ToObject<int>() ?? 0;
-		HlsManifestUrl = playerResponse["streamingData"]?["hlsManifestUrl"]?.ToString();
-		DashManifestUrl = playerResponse["streamingData"]?["dashManifestUrl"]?.ToString();
 	}
 
-	public class VideoDetails
+	public class VideoCaption(PlayerCaptionsTracklistRenderer.Types.Caption caption)
 	{
-		public string Id { get; set; }
-		public string Title { get; set; }
-		public Channel Author { get; set; }
-		public string[] Keywords { get; set; }
-		public string ShortDescription { get; set; }
-		public string Category { get; set; }
-		public DateTimeOffset PublishDate { get; set; }
-		public DateTimeOffset UploadDate { get; set; }
-		public TimeSpan Length { get; set; }
-		public bool IsLive { get; set; }
-		public bool AllowRatings { get; set; }
-		public bool IsFamilySafe { get; set; }
-		public Thumbnail[] Thumbnails { get; set; }
-	}
-
-	public class VideoCaption
-	{
-		public string VssId { get; set; }
-		public string LanguageCode { get; set; }
-		public string Label { get; set; }
-		public Uri BaseUrl { get; set; }
+		public string VssId { get; } = caption.VssId;
+		public string LanguageCode { get; } = caption.Language;
+		public string Label { get; } = Utils.ReadRuns(caption.Name);
+		public Uri BaseUrl { get; } = new(caption.BaseUrl);
 		public bool IsAutomaticCaption => VssId[0] == 'a';
-	}
-
-	public class VideoEndscreen
-	{
-		public IEnumerable<EndScreenItem> Items { get; set; }
-		public long StartMs { get; set; }
-	}
-
-	public class VideoStoryboard
-	{
-		public int RecommendedLevel { get; set; }
-		public Dictionary<int, Uri> Levels { get; set; }
 	}
 }

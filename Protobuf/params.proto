@@ -1,0 +1,163 @@
+syntax = "proto3";
+
+package InnerTube.Protobuf.Params;
+
+import "google/protobuf/wrappers.proto";
+
+// Search
+
+message SearchParams {
+  enum SortField {
+    RELEVANCE = 0;
+    RATING = 1;
+    UPLOAD_DATE = 2;
+    VIEW_COUNT = 3;
+  }
+
+  optional SortField SortBy = 1;
+  optional SearchFilters Filters = 2;
+  optional QueryFlags QueryFlags = 8;
+  optional int32 index = 9;
+}
+
+message SearchFilters {
+  enum UploadDate {
+    UNSET_DATE = 0;
+    LAST_HOUR = 1;
+    TODAY = 2;
+    THIS_WEEK = 3;
+    THIS_MONTH = 4;
+    THIS_YEAR = 5;
+  }
+
+  enum ItemType {
+    UNSET_TYPE = 0;
+    VIDEO = 1;
+    CHANNEL = 2;
+    PLAYLIST = 3;
+    MOVIE = 4;
+  }
+
+  enum VideoDuration {
+    UNSET_DURATION = 0;
+    SHORT = 1;
+    LONG = 2;
+    MEDIUM = 3;
+  }
+
+  optional UploadDate UploadedIn = 1;
+  optional ItemType Type = 2;
+  optional VideoDuration Duration = 3;
+
+  optional bool Hd = 4;
+  optional bool Subtitles = 5;
+  optional bool CreativeCommons = 6;
+  optional bool Resolution3D = 7;
+  optional bool Live = 8;
+  optional bool Purchased = 9;
+
+  optional bool Resolution4K = 14;
+  optional bool Vr360 = 15;
+
+  optional bool Location = 23;
+
+  optional bool Hdr = 25;
+  optional bool Vr180 = 26;
+}
+
+message QueryFlags {
+  optional bool ExactSearch = 1;
+}
+
+// Playlist params
+message PlaylistParamsContainer {
+  PlaylistParams Params = 104;
+}
+
+message PlaylistParams {
+  optional bool HideUnavailableVideos = 1;
+  bool VideosOnly = 2;
+  bool ShortsOnly = 3;
+}
+
+// Playlist continuation
+// Unused in InnerTube/LightTube
+
+message PlaylistContinuationContainer {
+  PlaylistContinuation Continuation = 80226972;
+}
+
+message PlaylistContinuation {
+  string InternalPlaylistId = 2;
+  string PaginationInfo = 3;
+  string PlaylistId = 35;
+}
+
+message PaginationInfo {
+  bool IncludeUnavailable = 1;
+  string SkipAmountEncoded = 15;
+}
+
+message IntContainer {
+  int32 Value = 1;
+  bool IncludeUnavailable = 10;
+  bool IncludeUnavailableAgain = 5;
+}
+
+// Initial comments request
+// TODO: manage to understand how comment pagination works
+
+message CommentsContinuation {
+  optional int32 Amount = 1;
+  VideoIdContainer VideoId = 2;
+  int32 Something = 3;
+  // required? in the first one
+  optional CommentsContextContainer ContextContainer = 6;
+}
+
+message VideoIdContainer {
+  string Id = 2;
+}
+
+message CommentsContextContainer {
+  CommentsContext Context = 4;
+  // set to comments-section
+  string Source = 8;
+}
+
+message CommentsContext {
+  enum SortOrder {
+    TOP_COMMENTS = 0;
+    NEWEST_FIRST = 1;
+  }
+
+  string VideoId = 4;
+  SortOrder SortingOrder = 6;
+}
+
+message ChannelTabParams {
+  string name = 2;
+}
+
+// Channel About page
+
+message ChannelBrowseParamsContainer {
+  ChannelBrowseParams channelBrowse = 80226972;
+}
+
+message ChannelBrowseParams {
+  string browseId = 2;
+  string params = 3;
+}
+
+message ChannelAboutParamsContainer {
+  ChannelAboutParams channelAboutParams = 110;
+}
+
+message ChannelAboutParams {
+  ModalUuidParamsContainer modalUuidParamsContainer = 3;
+}
+
+message ModalUuidParamsContainer {
+  google.protobuf.StringValue uuid = 19;
+}

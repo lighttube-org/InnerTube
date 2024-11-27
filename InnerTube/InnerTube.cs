@@ -1,23 +1,30 @@
-﻿using System.Net.Http.Headers;
+using System.Net.Http.Headers;
 using System.Text;
-using System.Web;
+using System.Text.RegularExpressions;
 using Google.Protobuf;
 using InnerTube.Exceptions;
+using InnerTube.Models;
+using InnerTube.Protobuf;
+using InnerTube.Protobuf.Params;
+using InnerTube.Protobuf.Responses;
 using Microsoft.Extensions.Caching.Memory;
-using Newtonsoft.Json.Linq;
 
 namespace InnerTube;
 
 /// <summary>
 /// The InnerTube client.
 /// </summary>
-public class InnerTube
+public partial class InnerTube
 {
 	internal readonly HttpClient HttpClient = new();
 	internal readonly MemoryCache PlayerCache;
 	internal readonly string ApiKey;
 	internal readonly InnerTubeAuthorization? Authorization;
-	private InnerTubeLocals? _cachedLocals;
+	internal Dictionary<RequestClient, string> VisitorDatas = [];
+	internal Dictionary<RequestClient, string> PoTokens = [];
+	private readonly Regex visitorDataRegex = VisitorDataGeneratedRegex();
+	internal SignatureSolver SignatureSolver = new();
+	internal InnerTubeConfiguration Configuration;
 
 	/// <summary>
 	/// Initializes a new instance of InnerTube client.
@@ -33,17 +40,23 @@ public class InnerTube
 			ExpirationScanFrequency = config.CacheExpirationPollingInterval,
 			SizeLimit = config.CacheSize
 		});
-
-		RendererManager.LoadRenderers();
+		Configuration = config;
 	}
 
-	private async Task<JObject> MakeRequest(RequestClient client, string endpoint, InnerTubeRequest postData,
-		string language, string region, bool authorized = false)
+	private async Task<byte[]> MakeRequest(RequestClient client, string endpoint, InnerTubeRequest postData,
+		string language, string region, bool authorized = false, string? referer = null)
 	{
-		HttpRequestMessage hrm = new(HttpMethod.Post,
-			@$"https://www.youtube.com/youtubei/v1/{endpoint}?prettyPrint=false{(authorized && Authorization?.Type == AuthorizationType.REFRESH_TOKEN ? "" : $"&key={ApiKey}")}");
+		string url = $"https://youtubei.googleapis.com/youtubei/v1/{endpoint}";
+		url += "?alt=proto";
+		if (!authorized || Authorization?.Type != AuthorizationType.REFRESH_TOKEN)
+			url += $"&key={ApiKey}";
 
-		byte[] buffer = Encoding.UTF8.GetBytes(postData.GetJson(client, language, region));
+		HttpRequestMessage hrm = new(HttpMethod.Post, url);
+
+		byte[] buffer = Encoding.UTF8.GetBytes(postData.GetJson(client, language, region, referer,
+			authorized ? VisitorDatas.GetValueOrDefault(client) : null,
+			authorized ? PoTokens.GetValueOrDefault(client) : null,
+			authorized ? Authorization?.GetUserId() : null));
 		ByteArrayContent byteContent = new(buffer);
 		byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 		hrm.Content = byteContent;
@@ -58,19 +71,50 @@ public class InnerTube
 		hrm.Headers.Add("X-Youtube-Client-Name", ((int)client).ToString());
 		hrm.Headers.Add("X-Youtube-Client-Version", client switch
 		{
-			RequestClient.WEB => "2.20220809.02.00",
-			RequestClient.ANDROID => "19.09.4",
-			RequestClient.IOS => "19.09.4",
-			var _ => ""
+			RequestClient.WEB => Constants.WebClientVersion,
+			RequestClient.ANDROID => Constants.MobileClientVersion,
+			RequestClient.IOS => Constants.MobileClientVersion,
+			RequestClient.TVAPPLE => Constants.TvAppleClientVersion,
+			RequestClient.MWEB_TIER_2 => Constants.MwebTier2ClientVersion,
+			RequestClient.TV_UNPLUGGED_CAST => Constants.TvUnpluggedCastClientVersion,
+			RequestClient.TV_EMBEDDED => Constants.TvEmbeddedClientVersion,
+			RequestClient.MEDIA_CONNECT_FRONTEND => Constants.MediaConnectFrontendClientVersion,
+			_ => ""
 		});
-		hrm.Headers.Add("Origin", "https://www.youtube.com");
-		if (client == RequestClient.ANDROID)
-			hrm.Headers.Add("User-Agent", "com.google.android.youtube/19.09.4 (Linux; U; Android 11) gzip");
+		//hrm.Headers.Add("Origin", "https://www.youtube.com");
+		switch (client)
+		{
+			case RequestClient.WEB:			
+				hrm.Headers.TryAddWithoutValidation("User-Agent", Constants.WebUserAgent);
+				break;
+			case RequestClient.ANDROID:			
+				hrm.Headers.Add("User-Agent", Constants.AndroidUserAgent);
+				break;
+			case RequestClient.IOS:
+				hrm.Headers.Add("User-Agent", Constants.IosUserAgent);
+				break;
+		}
 
 		HttpResponseMessage ytPlayerRequest = await HttpClient.SendAsync(hrm);
 		if (!ytPlayerRequest.IsSuccessStatusCode)
-			throw new RequestException(ytPlayerRequest.StatusCode, await ytPlayerRequest.Content.ReadAsStringAsync());
-		return JObject.Parse(await ytPlayerRequest.Content.ReadAsStringAsync());
+			throw new RequestException(ytPlayerRequest.StatusCode, client, await ytPlayerRequest.Content.ReadAsStringAsync());
+		return await ytPlayerRequest.Content.ReadAsByteArrayAsync();
+	}
+
+	public async Task<string> GenerateVisitorData()
+	{
+		HttpRequestMessage req = new(HttpMethod.Get, "https://www.youtube.com");
+		req.Headers.Add("Cookie", "CONSENT=PENDING+742");
+		HttpResponseMessage res = await HttpClient.SendAsync(req);
+		string html = await res.Content.ReadAsStringAsync();
+		return visitorDataRegex.Match(html).Groups[1].Value;
+	}
+
+	public void ProvideSecrets(RequestClient client, string visitorData, string? poToken = null)
+	{
+		VisitorDatas[client] = visitorData;
+		if (poToken != null)
+			PoTokens[client] = poToken;
 	}
 
 	/// <summary>
@@ -78,58 +122,111 @@ public class InnerTube
 	/// </summary>
 	/// <param name="videoId">ID of the video</param>
 	/// <param name="contentCheckOk">Set to true if you want to skip the content warnings (suicide, self-harm etc.)</param>
-	/// <param name="includeHls">
-	/// Set to true if you need HLS streams. Note that HLS streams are always sent for live videos and
-	/// for non-live videos setting this to true will not return formats larger than 1080p <br></br>
-	/// If this is set to true, Formats will be empty
-	/// </param>
+	/// <param name="fallbackToUnserializedResponse">For future streams/premieres with trailers, the response will have
+	/// another video response inside the main response. Set this to true to use that response, if its available</param>
 	/// <param name="language">Language of the content</param>
 	/// <param name="region">Region of the content</param>
-	public async Task<InnerTubePlayer> GetPlayerAsync(string videoId, bool contentCheckOk = false,
-		bool includeHls = false,
-		string language = "en", string region = "US")
+	public async Task<PlayerResponse> GetPlayerAsync(string videoId, bool contentCheckOk = false,
+		bool fallbackToUnserializedResponse = false, RequestClient client = RequestClient.WEB, string language = "en", string region = "US")
 	{
-		string cacheId = $"{videoId}_{(includeHls ? "hls" : "dash")}({language}_{region})";
+		if (!SignatureSolver.Initialized)
+			await SignatureSolver.LoadLatestJs(videoId);
+		string cacheId = $"{videoId}_({language})";
 
-		if (PlayerCache.TryGetValue(cacheId, out InnerTubePlayer cachedPlayer)) return cachedPlayer;
+		if (PlayerCache.TryGetValue(cacheId, out PlayerResponse? cachedPlayer)) return cachedPlayer!;
 
-		Task[] tasks = 
-		{
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB),
-			GetPlayerObjectAsync(videoId, contentCheckOk, language, region,
-				includeHls ? RequestClient.IOS : RequestClient.ANDROID)
-		};
+		PlayerResponse player = await GetPlayerObjectAsync(videoId, contentCheckOk, language, region, client);
+		PlayerResponse? microformatPlayer = client != RequestClient.WEB
+			? await GetPlayerObjectAsync(videoId, contentCheckOk, language, region, RequestClient.WEB)
+			: null;
 
-		Task.WaitAll(tasks);
-
-		JObject[] responses = tasks.Select(x => ((Task<JObject>)x).Result).ToArray();
+		foreach (Format format in player.StreamingData?.Formats ?? [])
+			SignatureSolver.DescrambleUrl(format);
+		foreach (Format format in player.StreamingData?.AdaptiveFormats ?? [])
+			SignatureSolver.DescrambleUrl(format);
+		foreach (Format format in player.StreamingData?.HlsFormats ?? [])
+			SignatureSolver.DescrambleUrl(format);
 		
-		string playabilityStatus = responses[1].GetFromJsonPath<string>("playabilityStatus.status")!;
-		if (playabilityStatus != "OK")
-			throw new PlayerException(playabilityStatus,
-				responses[1].GetFromJsonPath<string>("playabilityStatus.reason")!,
-				responses[1].GetFromJsonPath<string>("playabilityStatus.reasonTitle") ??
-				Utils.ReadText(
-					responses[1].GetFromJsonPath<JObject>(
-						"playabilityStatus.errorScreen.playerErrorMessageRenderer.subreason")));
-
-		InnerTubePlayer player = new(responses[1], responses[0]);
-		PlayerCache.Set(cacheId, player, new MemoryCacheEntryOptions
+		if (player.PlayabilityStatus.Status == PlayabilityStatus.Types.Status.LiveStreamOffline)
 		{
-			Size = 1,
-			SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, player.Details.Length.TotalSeconds)),
-			AbsoluteExpirationRelativeToNow =
-				TimeSpan.FromSeconds(Math.Max(3600, player.ExpiresInSeconds - player.Details.Length.TotalSeconds))
-		});
+			YpcTrailerRenderer? ypc = player.PlayabilityStatus.ErrorScreen?.YpcTrailerRenderer;
+			PlayerResponse? fallbackResponse = ypc?.UnserializedPlayerResponse ?? ypc?.PlayerResponse;
+			
+			if (fallbackResponse == null || !fallbackToUnserializedResponse)
+	            throw new PlayerException(player.PlayabilityStatus.Status,
+		            player.PlayabilityStatus.Reason, player.PlayabilityStatus.Subreason);
+			cacheId = ""; // dont cache
+			// keep microformat & videodetails alive
+			player.Captions = fallbackResponse.Captions;
+			player.StreamingData = fallbackResponse.StreamingData;
+			player.PlayabilityStatus = fallbackResponse.PlayabilityStatus;
+			player.Storyboards = fallbackResponse.Storyboards;
+			player.Endscreen = fallbackResponse.Endscreen;
+		}
+		if (player.PlayabilityStatus.Status != PlayabilityStatus.Types.Status.Ok)
+			throw new PlayerException(player.PlayabilityStatus.Status, player.PlayabilityStatus.Reason,
+				player.PlayabilityStatus.Subreason);
+		
+		try
+		{
+			if (!string.IsNullOrEmpty(player.StreamingData?.HlsManifestUrl))
+			{
+				string hls = await HttpClient.GetStringAsync(player.StreamingData.HlsManifestUrl);
+				string[] lines = hls.Split("\n").Where(x => !string.IsNullOrWhiteSpace(x)).ToArray();
+				for (int i = 0; i < lines.Length; i++)
+				{
+					string line = lines[i];
+					if (!line.StartsWith("#EXT-X-STREAM-INF")) continue;
+					if (line.StartsWith("http")) continue;
+
+					Dictionary<string,string> info = Utils.ParseHlsStreamInfo(line);
+					i++;
+					string url = lines[i];
+
+					Dictionary<string, string> urlInfo = Utils.ParseHlsUrlInfo(url);
+					
+					player.StreamingData?.HlsFormats.Add(new Format
+					{
+						Itag = int.Parse(urlInfo["itag"]),
+						Url = url,
+						Mime = $"video/mp2t; codecs={info["CODECS"]}",
+						Bitrate = int.Parse(info["BANDWIDTH"]),
+						Width = int.Parse(info["RESOLUTION"].Split('x')[0]),
+						Height = int.Parse(info["RESOLUTION"].Split('x')[1]),
+						LastModified =
+							Math.Max(
+								ulong.Parse(urlInfo["sgoap"].Split(';').FirstOrDefault(x => x.StartsWith("lmt="))?.Split('=')[1] ?? "0"),
+								ulong.Parse(urlInfo["sgovp"].Split(';').FirstOrDefault(x => x.StartsWith("lmt="))?.Split('=')[1] ?? "0")
+							),
+						Quality = "hlsmuxed_" + urlInfo["itag"],
+						Fps = int.Parse(info["FRAME-RATE"]),
+						QualityLabel = $"{info["RESOLUTION"].Split('x')[1]}p (HLS)",
+					});
+				}
+			}
+		}
+		catch (Exception)
+		{
+			// ignore errors, since theres a high change of the hls endpoint
+			// returning a 429 if used in an environment with heavy traffic
+		}
+
+		if (microformatPlayer != null)
+			player.Microformat = microformatPlayer.Microformat;
+
+		if (cacheId != "")
+			PlayerCache.Set(cacheId, player, new MemoryCacheEntryOptions
+			{
+				Size = 1,
+				SlidingExpiration = TimeSpan.FromSeconds(Math.Max(600, player.VideoDetails.LengthSeconds)),
+				AbsoluteExpirationRelativeToNow =
+					TimeSpan.FromSeconds(Math.Max(3600,
+						player.StreamingData!.ExpiresInSeconds - player.VideoDetails.LengthSeconds))
+			});
 		return player;
 	}
 
-	// instead of trying hours to find a protobuf compilation to
-	// have endscreen, cards, storyboards and non 403'ing video
-	// data at the same time i decided to just do the request
-	// twice, one WEB and one ANDROID. if someone finds a protobuf
-	// string that returns all those on the android client pls pr <3
-	private async Task<JObject> GetPlayerObjectAsync(string videoId, bool contentCheckOk, string language,
+	private async Task<PlayerResponse> GetPlayerObjectAsync(string videoId, bool contentCheckOk, string language,
 		string region, RequestClient client)
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
@@ -137,338 +234,120 @@ public class InnerTube
 			.AddValue("contentCheckOk", contentCheckOk)
 			.AddValue("racyCheckOk", contentCheckOk);
 
-		if (client == RequestClient.ANDROID)
-			postData.AddValue("params", "CgIIAdgDAQ%3D%3D");
-
-		return await MakeRequest(client, "player", postData,
-			language, region, true);
+		return PlayerResponse.Parser.ParseFrom(await MakeRequest(client, "player", postData,
+			language, region, true, "https://www.youtube.com/watch?v=" + videoId));
 	}
 
-	/// <summary>
-	/// Search using a query
-	/// </summary>
-	/// <param name="query">Query of what to search</param>
-	/// <param name="param">Filter params.</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>List of results</returns>
-	public async Task<InnerTubeSearchResults> SearchAsync(string query, SearchParams? param,
-		string language = "en", string region = "US")
+	public async Task<NextResponse> GetNextAsync(string videoId, bool contentCheckOk = false,
+		bool captionsRequested = false, string? playlistId = null, int? playlistIndex = null,
+		string? playlistParams = null, string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("videoId", videoId)
+			.AddValue("contentCheckOk", contentCheckOk)
+			.AddValue("racyCheckOk", contentCheckOk)
+			.AddValue("captionsRequested", captionsRequested);
+		if (playlistId != null) postData.AddValue("playlistId", playlistId);
+		if (playlistIndex != null) postData.AddValue("playlistIndex", playlistIndex);
+		if (playlistParams != null) postData.AddValue("params", playlistParams);
+		NextResponse next =
+			NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
+		if (next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results.Count == 0)
+		{
+			throw new InnerTubeException("Empty response, video is either deleted or private");
+		}
+
+		RendererWrapper parent = next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results[0];
+		if (parent.RendererCase ==
+		    RendererWrapper.RendererOneofCase.ItemSectionRenderer)
+		{
+			if (parent.ItemSectionRenderer.Contents[0].RendererCase ==
+			    RendererWrapper.RendererOneofCase.BackgroundPromoRenderer)
+			{
+				throw new InnerTubeException(Utils.ReadRuns(parent.ItemSectionRenderer.Contents[0]
+					.BackgroundPromoRenderer.Text));
+			}
+		}
+
+		return next;
+	}
+
+	public async Task<NextResponse> ContinueNextAsync(string continuation, string language = "en", string region = "US")
+	{
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("continuation", continuation);
+		NextResponse next =
+			NextResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "next", postData, language, region));
+		if (next.Contents != null)
+		{
+			RendererWrapper parent = next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results[0];
+			if (parent.RendererCase != RendererWrapper.RendererOneofCase.ItemSectionRenderer) return next;
+			if (parent.ItemSectionRenderer.Contents[0].RendererCase ==
+			    RendererWrapper.RendererOneofCase.BackgroundPromoRenderer)
+			{
+				throw new InnerTubeException(
+					Utils.ReadRuns(parent.ItemSectionRenderer.Contents[0].BackgroundPromoRenderer.Text));
+			}
+		}
+
+		if (next.OnResponseReceivedEndpoints.Count == 0)
+			throw new InnerTubeException("No data returned from YouTube");
+
+		return next;
+	}
+
+	public async Task<SearchResponse> SearchAsync(string query, SearchParams? param = null, string language = "en",
+		string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("query", query);
-
+		
 		if (param != null)
 			postData.AddValue("params", Convert.ToBase64String(param.ToByteArray()));
-
-		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
-			language, region);
-		return new InnerTubeSearchResults(searchResponse);
+		return SearchResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "search", postData, language, region));
 	}
 
-	/// <summary>
-	/// Continue an old search query using its continuation token
-	/// </summary>
-	/// <param name="continuation">Continuation token received from an older response</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>List of continuation results</returns>
-	public async Task<InnerTubeContinuationResponse> ContinueSearchAsync(string continuation,
-		string language = "en", string region = "US")
+	public async Task<SearchResponse> ContinueSearchAsync(string continuation, string language = "en",
+		string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("continuation", continuation);
-
-		JObject searchResponse = await MakeRequest(RequestClient.WEB, "search", postData,
-			language, region);
-		return InnerTubeContinuationResponse.GetFromSearchResponse(searchResponse);
+		return SearchResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "search", postData, language, region));
 	}
 
-	/// <summary>
-	/// Gets a list of search autocomplete using the given query
-	/// </summary>
-	/// <param name="query">Query to get autocompletes in</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>List of complete strings</returns>
-	public async Task<InnerTubeSearchAutocomplete> GetSearchAutocompleteAsync(string query,
-		string language = "en", string region = "US")
-	{
-		// TODO: this is inefficient
-		// do some funny things with the mobile app to see how we should *actually* do this
-		HttpResponseMessage response = await HttpClient.GetAsync(
-			$"https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&hl={language}&gl={region.ToLower()}&ds=yt&q={HttpUtility.UrlEncode(query)}");
-
-		return new InnerTubeSearchAutocomplete(await response.Content.ReadAsStringAsync());
-	}
-
-	/// <summary>
-	/// Gets more information about a video, including recommended videos and a comment continuation token to be used with
-	/// GetVideoCommentsAsync
-	/// </summary>
-	/// <param name="videoId">ID of the video</param>
-	/// <param name="playlistId">ID of a playlist that contains this video. Must start with either PL or OLAK</param>
-	/// <param name="playlistIndex">Index of the video for the playlist this video is in. Requires <paramref name="playlistId"/> to be set.</param>
-	/// <param name="playlistParams">Params for the playlist this video is in. Requires <paramref name="playlistId"/> to be set.</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>Video info, a key for the comments &amp; a list of recommended videos</returns>
-	public async Task<InnerTubeNextResponse> GetVideoAsync(string videoId, string? playlistId = null,
-		int? playlistIndex = null, string? playlistParams = null, string language = "en", string region = "US")
-	{
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("videoId", videoId);
-		if (playlistId != null)
-			postData.AddValue("playlistId", playlistId);
-		if (playlistId != null && playlistIndex != null)
-			postData.AddValue("playlistIndex", playlistIndex);
-		if (playlistParams != null)
-			postData.AddValue("params", playlistParams);
-
-		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
-		return new InnerTubeNextResponse(nextResponse);
-	}
-
-	/// <summary>
-	/// Continues the video recommendations from the last continuation token
-	/// </summary>
-	/// <param name="continuation">Continuation token received from GetVideoAsync</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>List of recommended content for the video that belongs to the specified key</returns>
-	public async Task<InnerTubeContinuationResponse> ContinueVideoAsync(string continuation,
-		string language = "en", string region = "US")
-	{
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("continuation", continuation);
-
-		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
-		return InnerTubeContinuationResponse.GetFromNext(nextResponse);
-	}
-
-	/// <summary>
-	/// Gets the comments of a video from a comment continuation token that can be received from GetVideoAsync
-	/// </summary>
-	/// <param name="commentsContinuation">Continuation token received from GetVideoAsync</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>List of comments for the video that belongs to the specified key</returns>
-	public async Task<InnerTubeContinuationResponse> GetVideoCommentsAsync(string commentsContinuation,
-		string language = "en", string region = "US")
-	{
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("continuation", commentsContinuation);
-
-		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
-		return InnerTubeContinuationResponse.GetFromComments(nextResponse);
-	}
-
-
-	/// <summary>
-	/// Gets the comments of a video from its ID
-	/// </summary>
-	/// <param name="videoId">ID of the video</param>
-	/// <param name="sortOrder">The order to sort the comments in</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>List of comments for the video that belongs to the specified key</returns>
-	public async Task<InnerTubeContinuationResponse> GetVideoCommentsAsync(string videoId,
-		CommentsContext.Types.SortOrder sortOrder, string language = "en", string region = "US")
-	{
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("continuation", Utils.PackCommentsContinuation(videoId, sortOrder));
-
-		JObject nextResponse = await MakeRequest(RequestClient.WEB, "next", postData, language, region);
-		return InnerTubeContinuationResponse.GetFromComments(nextResponse);
-	}
-
-	/// <summary>
-	/// Get information about a channel
-	/// </summary>
-	/// <param name="channelId">ID of a channel, starts with UC</param>
-	/// <param name="tab">
-	/// Tab of the requested channel. ChannelTabs.Community will return the same response as ChannelTabs.Home
-	/// if the channel does not have community enabled
-	/// </param>
-	/// <param name="searchQuery">Query to search in this channel. Only used if tab is ChannelTabs.Search</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>Information about a channel</returns>
-	public async Task<InnerTubeChannelResponse> GetChannelAsync(string channelId, ChannelTabs tab = ChannelTabs.Home,
-		string? searchQuery = null,
-		string language = "en", string region = "US")
-	{
-		// channel ID is a vanity url/handle
-		if (!channelId.StartsWith("UC"))
-		{
-			channelId = await GetChannelIdFromVanity(
-				channelId.StartsWith('@')
-					? $"https://youtube.com/{channelId}"
-					: $"https://youtube.com/c/{channelId}") ?? channelId;
-		}
-
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("browseId", channelId);
-		if (tab == ChannelTabs.Search && searchQuery is not null)
-			postData
-				.AddValue("params", tab.GetParams())
-				.AddValue("query", searchQuery);
-		else if (tab != ChannelTabs.Search)
-			postData
-				.AddValue("params", tab.GetParams());
-
-		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
-
-		return new InnerTubeChannelResponse(browseResponse);
-	}
-
-	/// <summary>
-	/// Get a channel ID from its vanity URL or @handle
-	/// </summary>
-	/// <param name="vanityUrl">
-	/// The vanity URL or the handle of the channel
-	/// <br/>
-	/// If this is a handle, make sure it follows the format @url
-	/// <br/>
-	/// If this is a vanity URL, only pass in the part after the /c/ 
-	/// </param>
-	/// <returns>Channel ID of the given vanity URL, or null if given ID is not valid</returns>
-	public async Task<string?> GetChannelIdFromVanity(string vanityUrl)
-	{
-		if (vanityUrl.StartsWith('@'))
-			vanityUrl = "https://youtube.com/" + vanityUrl;
-		else if (!vanityUrl.StartsWith("http"))
-			vanityUrl = "https://youtube.com/c/" + vanityUrl;
-
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("url", vanityUrl);
-
-		JObject browseResponse =
-			await MakeRequest(RequestClient.ANDROID, "navigation/resolve_url", postData, "en", "US");
-
-		return browseResponse.GetFromJsonPath<string>("endpoint.browseEndpoint.browseId");
-	}
-
-	/// <summary>
-	/// Paginate through a channel
-	/// </summary>
-	/// <param name="continuation">Continuation token from an older GetSearchAsync call</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>Information about a channel</returns>
-	public async Task<InnerTubeContinuationResponse> ContinueChannelAsync(string continuation,
-		string language = "en", string region = "US")
-	{
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("continuation", continuation);
-
-		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
-
-		return InnerTubeContinuationResponse.GetFromBrowse(browseResponse);
-	}
-
-	/// <summary>
-	/// Get videos from a playlist
-	/// </summary>
-	/// <param name="playlistId">ID of the playlist. Must start with either VL, PL or OLAK</param>
-	/// <param name="includeUnavailable">Set to true if you want to received [Deleted video]s and such</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>Information and videos of a playlist</returns>
-	public async Task<InnerTubePlaylist> GetPlaylistAsync(string playlistId, bool includeUnavailable = false,
-		string language = "en", string region = "US")
-	{
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("browseId",
-				playlistId.StartsWith("VL") ? playlistId :
-				playlistId.StartsWith("OL") ? playlistId : "VL" + playlistId);
-		if (includeUnavailable)
-			postData.AddValue("params", "wgYCCAA%3D");
-
-		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
-
-		return new InnerTubePlaylist(browseResponse);
-	}
-
-	/// <summary>
-	/// Get videos from a playlist
-	/// </summary>
-	/// <param name="playlistId">ID of the playlist. Must start with either VL, PL or OLAK</param>
-	/// <param name="skipAmount">Amount of items to skip. Usually page multiplied by 100</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>More videos from a playlist</returns>
-	public async Task<InnerTubeContinuationResponse> ContinuePlaylistAsync(string playlistId, int skipAmount,
-		string language = "en", string region = "US")
-	{
-		InnerTubeRequest postData = new InnerTubeRequest()
-			.AddValue("continuation", Utils.PackPlaylistContinuation(
-				playlistId.StartsWith("VL") ? playlistId :
-				playlistId.StartsWith("OL") ? playlistId : 
-				"VL" + playlistId, skipAmount));
-
-		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
-
-		return InnerTubeContinuationResponse.GetFromBrowse(browseResponse);
-	}
-
-	/// <summary>
-	/// Get raw renderers from a browseId. Do not use unless a method for what you're trying to do does not exist.
-	/// </summary>
-	/// <param name="browseId">A browseId you can gather from the InnerTube API.</param>
-	/// <param name="browseParams">Parameters for this browseId</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns></returns>
-	public async Task<InnerTubeExploreResponse> BrowseAsync(string browseId, string? browseParams = null,
-		string language = "en", string region = "US")
+	public async Task<BrowseResponse> BrowseAsync(string browseId, string? param = null, string? query = null, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("browseId", browseId);
-
-		if (browseParams is not null)
-			postData.AddValue("params", browseParams);
-
-		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
-
-		return new InnerTubeExploreResponse(browseResponse, browseId);
+		if (param != null)
+			postData.AddValue("params", param);
+		if (query != null)
+			postData.AddValue("query", query);
+		return BrowseResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "browse", postData, language, region));
 	}
 
-	/// <summary>
-	/// Get more renderers from a continuation key received from BrowseAsync.
-	/// </summary>
-	/// <param name="continuation">Continuation token from an older BrowseAsync call</param>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>More renderers from the given continuation key</returns>
-	public async Task<InnerTubeContinuationResponse> ContinueBrowseAsync(string continuation,
-		string language = "en", string region = "US")
+	public async Task<BrowseResponse> ContinueBrowseAsync(string continuation, string language = "en", string region = "US")
 	{
 		InnerTubeRequest postData = new InnerTubeRequest()
 			.AddValue("continuation", continuation);
-
-		JObject browseResponse = await MakeRequest(RequestClient.WEB, "browse", postData, language, region);
-
-		return InnerTubeContinuationResponse.GetFromBrowse(browseResponse);
+		return BrowseResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "browse", postData, language, region));
 	}
 
-	/// <summary>
-	/// Get a list of all valid languages &amp; regions
-	/// </summary>
-	/// <param name="language">Language of the content</param>
-	/// <param name="region">Region of the content</param>
-	/// <returns>List of all valid languages &amp; regions</returns>
-	public async Task<InnerTubeLocals> GetLocalsAsync(bool refreshCache = false, string language = "en",
-		string region = "US")
+	public async Task<ResolveUrlResponse> ResolveUrl(string url)
 	{
-		if (refreshCache || _cachedLocals is null)
-		{
-			JObject localsResponse = await MakeRequest(RequestClient.WEB, "account/account_menu",
-				new InnerTubeRequest(),
-				language, region);
-			_cachedLocals = new InnerTubeLocals(localsResponse);
-		}
-
-		return _cachedLocals!;
+		InnerTubeRequest postData = new InnerTubeRequest()
+			.AddValue("url", url);
+		return ResolveUrlResponse.Parser.ParseFrom(await MakeRequest(RequestClient.WEB, "navigation/resolve_url",
+			postData, "en", "US"));
 	}
+
+	public CacheStats GetPlayerCacheStats() =>
+		new()
+		{
+			CacheSize = Configuration.CacheSize,
+			CacheUsed = PlayerCache.GetCurrentStatistics()?.CurrentEntryCount ?? -1
+		};
+
+	[GeneratedRegex("\"visitorData\":\"(.+?)\",")]
+    private static partial Regex VisitorDataGeneratedRegex();
 }

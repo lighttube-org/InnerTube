@@ -1,196 +1,347 @@
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
+using Google.Protobuf.Collections;
 using InnerTube.Exceptions;
-using InnerTube.Renderers;
+using InnerTube.Formatters;
+using InnerTube.Protobuf;
+using InnerTube.Protobuf.Params;
+using InnerTube.Protobuf.Responses;
 
 namespace InnerTube.Tests;
 
 public class PlayerTests
 {
 	private InnerTube _innerTube;
+	private bool authenticated = false;
 
 	[SetUp]
+	[SuppressMessage("ReSharper", "NotResolvedInText")]
 	public void Setup()
 	{
-		_innerTube = new InnerTube();
-	}
-
-	[TestCase("BaW_jenozKc", true, true, Description = "Load a video with an HLS manifest")]
-	[TestCase("J6Ga4wciA2k", true, false, Description = "Load a video with the endscreen & info cards")]
-	[TestCase("jfKfPfyJRdk", true, false, Description = "Load a livestream")]
-	[TestCase("9gIXoaB-Jik", true, false, Description = "Video with WEBSITE endscreen item")]
-	[TestCase("4ZX9T0kWb4Y", true, false, Description = "Video with multiple audio tracks")]
-	[TestCase("-UBaW1OIgTo", true, false, Description = "EndScreenItem ctor")]
-	public async Task GetPlayer(string videoId, bool contentCheckOk, bool includeHls)
-	{
-		InnerTubePlayer player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls);
-		StringBuilder sb = new();
-
-		sb.AppendLine("== DETAILS")
-			.AppendLine("Id: " + player.Details.Id)
-			.AppendLine("Title: " + player.Details.Title)
-			.AppendLine("Author: " + player.Details.Author)
-			.AppendLine("Keywords: " + string.Join(", ", player.Details.Keywords.Select(x => $"#{x}")))
-			.AppendLine("ShortDescription: " + player.Details.ShortDescription.Split('\n')[0])
-			.AppendLine("Category: " + player.Details.Category)
-			.AppendLine("UploadDate: " + player.Details.UploadDate)
-			.AppendLine("PublishDate: " + player.Details.PublishDate)
-			.AppendLine("Length: " + player.Details.Length)
-			.AppendLine("IsLive: " + player.Details.IsLive)
-			.AppendLine("AllowRatings: " + player.Details.AllowRatings)
-			.AppendLine("IsFamilySafe: " + player.Details.IsFamilySafe)
-			.AppendLine("Thumbnails: " + player.Details.Thumbnails.Length);
-
-		sb.AppendLine("== STORYBOARD")
-			.AppendLine("RecommendedLevel: " + player.Storyboard.RecommendedLevel);
-		foreach ((int level, Uri? uri) in player.Storyboard.Levels) sb.AppendLine($"-> L{level}: {uri}");
-
-		sb.AppendLine("== ENDSCREEN")
-			.AppendLine("Start: " + TimeSpan.FromMilliseconds(player.Endscreen.StartMs));
-		foreach (EndScreenItem item in player.Endscreen.Items)
+		string? authType = Environment.GetEnvironmentVariable("INNERTUBE_AUTH");
+		if (authType != null)
 		{
-			sb
-				.AppendLine($"-> [{item.Type}] Endscreen item")
-				.AppendLine("   Target: " + item.Target)
-				.AppendLine("   Title: " + item.Title)
-				.AppendLine("   Image: " + item.Image.First().Url)
-				.AppendLine("   Metadata: " + item.Metadata)
-				.AppendLine("   Style: " + item.Style)
-				.AppendLine("   AspectRatio: " + item.AspectRatio)
-				.AppendLine("   Left: " + item.Left)
-				.AppendLine("   Top: " + item.Top)
-				.AppendLine("   Width: " + item.Width);
-		}
-
-		sb.AppendLine("== CAPTIONS");
-		foreach (InnerTubePlayer.VideoCaption item in player.Captions)
-		{
-			sb
-				.AppendLine($"-> [{item.VssId}] ({item.LanguageCode}) {item.Label}")
-				.AppendLine("   IsAuto: " + item.IsAutomaticCaption)
-				.AppendLine("   Url: " + item.BaseUrl);
-		}
-
-		sb.AppendLine("== FORMATS");
-		foreach (Format f in player.Formats)
-		{
-			sb
-				.AppendLine($"-> [{f.Itag}] {f.QualityLabel}")
-				.AppendLine("   Bitrate: " + f.Bitrate)
-				.AppendLine("   ContentLength: " + f.ContentLength)
-				.AppendLine("   Fps: " + f.Fps)
-				.AppendLine("   Height: " + f.Height)
-				.AppendLine("   Width: " + f.Width)
-				.AppendLine("   InitRange: " + f.InitRange)
-				.AppendLine("   IndexRange: " + f.IndexRange)
-				.AppendLine("   MimeType: " + f.MimeType)
-				.AppendLine("   Url: " + f.Url)
-				.AppendLine("   Quality: " + f.Quality)
-				.AppendLine("   AudioQuality: " + f.AudioQuality)
-				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
-				.AppendLine("   AudioChannels: " + f.AudioChannels)
-				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
-		}
-
-		sb.AppendLine("== ADAPTIVE FORMATS");
-		foreach (Format f in player.AdaptiveFormats)
-		{
-			sb
-				.AppendLine($"-> [{f.Itag}] {f.QualityLabel}")
-				.AppendLine("   Bitrate: " + f.Bitrate)
-				.AppendLine("   ContentLength: " + f.ContentLength)
-				.AppendLine("   Fps: " + f.Fps)
-				.AppendLine("   Height: " + f.Height)
-				.AppendLine("   Width: " + f.Width)
-				.AppendLine("   InitRange: " + f.InitRange)
-				.AppendLine("   IndexRange: " + f.IndexRange)
-				.AppendLine("   MimeType: " + f.MimeType)
-				.AppendLine("   Url: " + f.Url)
-				.AppendLine("   Quality: " + f.Quality)
-				.AppendLine("   AudioQuality: " + f.AudioQuality)
-				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
-				.AppendLine("   AudioChannels: " + f.AudioChannels)
-				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"));
-		}
-
-		sb.AppendLine("== OTHER")
-			.AppendLine("ExpiresInSeconds: " + player.ExpiresInSeconds)
-			.AppendLine("HlsManifestUrl: " + player.HlsManifestUrl)
-			.AppendLine("DashManifestUrl: " + player.DashManifestUrl);
-
-
-		Assert.Pass(sb.ToString());
-	}
-
-	[TestCase("V6kJKxvbgZ0", true, false, Description = "Age restricted video")]
-	[TestCase("LACbVhgtx9I", false, false, Description = "Video that includes self-harm topics")]
-	public void FailPlayer(string videoId, bool contentCheckOk, bool includeHls)
-	{
-		Assert.Catch(() =>
-		{
-			InnerTubePlayer _ = _innerTube.GetPlayerAsync(videoId, contentCheckOk, includeHls).Result;
-		});
-	}
-
-	[TestCase("BaW_jenozKc", Description = "Regular video")]
-	[TestCase("V6kJKxvbgZ0", Description = "Age restricted video")]
-	[TestCase("LACbVhgtx9I", Description = "Video that includes self-harm topics")]
-	[TestCase("Atvsg_zogxo", Description = "something broke CompactPlaylistRenderer")]
-	[TestCase("t6cZn-Fvwa0", Description = "Video with comments disabled")]
-	[TestCase("jPhJbKBuNnA", Description = "Video with watchEndpoint in attributedDescription")]
-	[TestCase("UoBFuLMlDkw", Description = "Video with more special stuff in attributedDescription")]
-	[TestCase("llrBX6FpMpM", Description = "compactMovieRenderer")]
-	[TestCase("jUUe6TuRlgU", Description = "Chapters")]
-	public async Task GetVideoNext(string videoId)
-	{
-		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);
-
-		StringBuilder sb = new();
-
-		sb.AppendLine("== DETAILS")
-			.AppendLine("Id: " + next.Id)
-			.AppendLine("Title: " + next.Title)
-			.AppendLine("Channel: " + next.Channel)
-			.AppendLine("DateText: " + next.DateText)
-			.AppendLine("ViewCount: " + next.ViewCount)
-			.AppendLine("LikeCount: " + next.LikeCount)
-			.AppendLine("Description:\n" + string.Join('\n', next.Description.Split("\n").Select(x => $"\t{x}")));
-
-		sb.AppendLine("\n== CHAPTERS");
-		if (next.Chapters != null)
-		{
-			foreach (ChapterRenderer chapter in next.Chapters)
-				sb.AppendLine($"- [{TimeSpan.FromMilliseconds(chapter.TimeRangeStartMillis)}] {chapter.Title}");
+			InnerTubeAuthorization? auth = authType switch
+			{
+				"oauth2" => InnerTubeAuthorization.RefreshTokenAuthorization(
+					Environment.GetEnvironmentVariable("INNERTUBE_REFRESH_TOKEN") ??
+					throw new ArgumentNullException("INNERTUBE_REFRESH_TOKEN",
+						"Please set the INNERTUBE_REFRESH_TOKEN environment variable.")
+				),
+				_ => null
+			};
+			_innerTube = new InnerTube(new InnerTubeConfiguration
+			{
+				Authorization = auth
+			});
+			authenticated = auth != null;
 		}
 		else
 		{
-			sb.AppendLine("No chapters available");
+			_innerTube = new InnerTube();
 		}
+	}
 
-		sb.AppendLine("\n== COMMENTS")
-			.AppendLine("CommentCount: " + next.CommentCount)
-			.AppendLine("CommentsContinuation: " + next.CommentsContinuation);
+	[TestCase("BaW_jenozKc", true, false, TestName = "Load a video with an HLS manifest")]
+	[TestCase("J6Ga4wciA2k", true, false, TestName = "Load a video with the endscreen & info cards")]
+	[TestCase("jfKfPfyJRdk", true, false, TestName = "Load a livestream")]
+	[TestCase("9gIXoaB-Jik", true, false, TestName = "Video with WEBSITE endscreen item")]
+	[TestCase("4ZX9T0kWb4Y", true, false, TestName = "Video with multiple audio tracks")]
+	[TestCase("-UBaW1OIgTo", true, false, TestName = "EndScreenItem ctor")]
+	[TestCase("UoBFuLMlDkw", true, false, TestName = "Video with cards")]
+	[TestCase("Atvsg_zogxo", true, false, TestName = "Music video (Descramble result always throws an SSL error)")]
+	[TestCase("V6kJKxvbgZ0", true, false, TestName = "Age restricted video")]
+	[TestCase("jOQs1WBf6qY", true, true, TestName = "Age restricted & non embeddable video")]
+	[TestCase("LACbVhgtx9I", true, false, TestName = "Video that includes self-harm topics")]
+	public async Task GetPlayer(string videoId, bool contentCheckOk, bool requiresAuthentication)
+	{
+		if (requiresAuthentication && !authenticated)
+			Assert.Inconclusive("Test requires authentication");
+		PlayerResponse player = await _innerTube.GetPlayerAsync(videoId, contentCheckOk, true);
+		StringBuilder sb = new();
 
-		sb.AppendLine("\n== RECOMMENDED");
-		foreach (IRenderer renderer in next.Recommended)
+		sb.AppendLine("== DETAILS")
+			.AppendLine("Id: " + player.VideoDetails.VideoId)
+			.AppendLine("Title: " + player.VideoDetails.Title)
+			.AppendLine("Author: " + player.VideoDetails.Author)
+			.AppendLine("Keywords: " + string.Join(", ", player.VideoDetails.Keywords.Select(x => $"#{x}")))
+			.AppendLine("ShortDescription: " + player.VideoDetails.ShortDescription.Split('\n')[0])
+			.AppendLine("Length: " + player.VideoDetails.LengthSeconds)
+			.AppendLine("IsOwnerViewing: " + player.VideoDetails.IsOwnerViewing)
+			.AppendLine("IsCrawlable: " + player.VideoDetails.IsCrawlable)
+			.AppendLine("AllowRatings: " + player.VideoDetails.AllowRatings)
+			.AppendLine("IsPrivate: " + player.VideoDetails.IsPrivate)
+			.AppendLine("IsUnpluggedCorpus: " + player.VideoDetails.IsUnpluggedCorpus)
+			.AppendLine("IsLiveContent: " + player.VideoDetails.IsLiveContent)
+			.AppendLine("Thumbnails: " + player.VideoDetails.Thumbnail.Thumbnails_.Count);
+
+		sb.AppendLine("== MICROFORMAT");
+		if (player.Microformat != null)
+			sb.AppendLine("Thumbnails: " + player.Microformat.PlayerMicroformatRenderer.Thumbnail.Thumbnails_.Count)
+				.AppendLine("Embed: " + player.Microformat.PlayerMicroformatRenderer.Embed)
+				.AppendLine("Title: " + player.Microformat.PlayerMicroformatRenderer.Title.SimpleText)
+				.AppendLine("Description: " + player.Microformat.PlayerMicroformatRenderer.Description.SimpleText)
+				.AppendLine("LengthSeconds: " + player.Microformat.PlayerMicroformatRenderer.LengthSeconds)
+				.AppendLine("OwnerProfileUrl: " + player.Microformat.PlayerMicroformatRenderer.OwnerProfileUrl)
+				.AppendLine("ExternalChannelId: " + player.Microformat.PlayerMicroformatRenderer.ExternalChannelId)
+				.AppendLine("IsFamilySafe: " + player.Microformat.PlayerMicroformatRenderer.IsFamilySafe)
+				.AppendLine("AvailableCountries: " +
+				            string.Join(", ", player.Microformat.PlayerMicroformatRenderer.AvailableCountries))
+				.AppendLine("IsUnlisted: " + player.Microformat.PlayerMicroformatRenderer.IsUnlisted)
+				.AppendLine("HasYpcMetadata: " + player.Microformat.PlayerMicroformatRenderer.HasYpcMetadata)
+				.AppendLine("ViewCount: " + player.Microformat.PlayerMicroformatRenderer.ViewCount)
+				.AppendLine("Category: " + player.Microformat.PlayerMicroformatRenderer.Category)
+				.AppendLine("PublishDate: " + player.Microformat.PlayerMicroformatRenderer.PublishDate)
+				.AppendLine("OwnerChannelName: " + player.Microformat.PlayerMicroformatRenderer.OwnerChannelName)
+				.AppendLine("UploadDate: " + player.Microformat.PlayerMicroformatRenderer.UploadDate);
+
+		sb.AppendLine("== STORYBOARD");
+		if (player.Storyboards != null)
 		{
-			sb.AppendLine("->\t" + string.Join("\n\t",
-				(renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
+			// ReSharper disable once SwitchStatementMissingSomeEnumCasesNoDefault
+			switch (player.Storyboards.RendererCase)
+			{
+				case RendererWrapper.RendererOneofCase.PlayerStoryboardSpecRenderer:
+				{
+					sb.AppendLine("RecommendedLevel: " +
+					              player.Storyboards.PlayerStoryboardSpecRenderer.RecommendedLevel)
+						.AppendLine("HighResolutionRecommendedLevel: " +
+						            player.Storyboards.PlayerStoryboardSpecRenderer.HighResolutionRecommendedLevel)
+						.AppendLine("Spec: " + player.Storyboards.PlayerStoryboardSpecRenderer.Spec);
+					foreach ((int level, Uri? uri) in Utils.ParseStoryboardSpec(
+						         player.Storyboards.PlayerStoryboardSpecRenderer.Spec,
+						         player.VideoDetails.LengthSeconds))
+					{
+						sb.AppendLine($"-> L{level}: {uri}");
+					}
+
+					break;
+				}
+
+				case RendererWrapper.RendererOneofCase.PlayerLiveStoryboardSpecRenderer:
+				{
+					sb.AppendLine("[LIVE] Spec: " + player.Storyboards.PlayerLiveStoryboardSpecRenderer.Spec);
+					sb.AppendLine(
+						$"-> L0: {Utils.ParseLiveStoryboardSpec(player.Storyboards.PlayerLiveStoryboardSpecRenderer.Spec)}");
+
+					break;
+				}
+			}
 		}
+
+
+		sb.AppendLine("== ENDSCREEN");
+		if (player.Endscreen != null)
+		{
+			sb.AppendLine("Start: " + TimeSpan.FromMilliseconds(player.Endscreen.EndscreenRenderer.StartMs));
+			foreach (EndscreenElementRenderer item in player.Endscreen.EndscreenRenderer.Elements.Select(x =>
+				         x.EndscreenElementRenderer))
+			{
+				sb
+					.AppendLine($"-> [{item.Style}] Endscreen item")
+					.AppendLine("   Target: " + item.Endpoint)
+					.AppendLine("   Title: " + item.Title)
+					.AppendLine("   Image: " + item.Image.Thumbnails_.First().Url)
+					.AppendLine("   Icon: " + item.Icon?.Thumbnails_.First().Url)
+					.AppendLine("   Metadata: " + item.Metadata)
+					.AppendLine("   Style: " + item.Style)
+					.AppendLine("   AspectRatio: " + item.AspectRatio)
+					.AppendLine("   Left: " + item.Left)
+					.AppendLine("   Top: " + item.Top)
+					.AppendLine("   Width: " + item.Width);
+			}
+		}
+
+		sb.AppendLine("== CAPTIONS");
+		if (player.Captions != null) // why doesnt protoc create a HasCaptions value????
+			foreach (PlayerCaptionsTracklistRenderer.Types.Caption item in player.Captions.CaptionsTrackListRenderer
+				         .Captions)
+			{
+				sb
+					.AppendLine($"-> [{item.VssId}] ({item.Language}) {item.Name}")
+					.AppendLine("   Url: " + item.BaseUrl)
+					.AppendLine("   Kind: " + item.Kind);
+			}
+
+		sb.AppendLine("== FORMATS");
+		foreach (Format f in player.StreamingData.Formats)
+		{
+			sb
+				.AppendLine($"-> [{f.Itag}] {f.QualityLabel}")
+				.AppendLine("   Bitrate: " + f.Bitrate)
+				.AppendLine("   ContentLength: " + f.ContentLength)
+				.AppendLine("   Fps: " + f.Fps)
+				.AppendLine("   Height: " + f.Height)
+				.AppendLine("   Width: " + f.Width)
+				.AppendLine("   InitRange: " + f.InitRange)
+				.AppendLine("   IndexRange: " + f.IndexRange)
+				.AppendLine("   MimeType: " + f.Mime)
+				.AppendLine("   Url: " + f.Url)
+				.AppendLine("   Quality: " + f.Quality)
+				.AppendLine("   AudioQuality: " + f.AudioQuality)
+				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
+				.AppendLine("   AudioChannels: " + f.AudioChannels)
+				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"))
+				.AppendLine("   SignatureCipher: " + f.SignatureCipher);
+		}
+
+		sb.AppendLine("== ADAPTIVE FORMATS");
+		foreach (Format f in player.StreamingData.AdaptiveFormats)
+		{
+			sb
+				.AppendLine($"-> [{f.Itag}] {f.QualityLabel}")
+				.AppendLine("   Bitrate: " + f.Bitrate)
+				.AppendLine("   ContentLength: " + f.ContentLength)
+				.AppendLine("   Fps: " + f.Fps)
+				.AppendLine("   Height: " + f.Height)
+				.AppendLine("   Width: " + f.Width)
+				.AppendLine("   InitRange: " + f.InitRange)
+				.AppendLine("   IndexRange: " + f.IndexRange)
+				.AppendLine("   MimeType: " + f.Mime)
+				.AppendLine("   Url: " + f.Url)
+				.AppendLine("   Quality: " + f.Quality)
+				.AppendLine("   AudioQuality: " + f.AudioQuality)
+				.AppendLine("   AudioSampleRate: " + f.AudioSampleRate)
+				.AppendLine("   AudioChannels: " + f.AudioChannels)
+				.AppendLine("   AudioTrack: " + (f.AudioTrack?.ToString() ?? "<no audio track>"))
+				.AppendLine("   SignatureCipher: " + f.SignatureCipher);
+		}
+
+		sb.AppendLine("== OTHER")
+			.AppendLine("ExpiresInSeconds: " + player.StreamingData.ExpiresInSeconds)
+			.AppendLine("HlsManifestUrl: " + player.StreamingData.HlsManifestUrl)
+			.AppendLine("DashManifestUrl: " + player.StreamingData.DashManifestUrl);
+
 
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("CBQSKRILMlFPNDBIalJIMnfAAQDIAQDgAQOiAg0o____________AUAA-AIAGAAqmAsyczZMNnd5ckNBcW9DQW9EOGo0QUNnM0NQZ29JcFBXZDF1UzM1WmwwQ2czQ1Bnb0l0SXppd3YzZno2TmpDZzNDUGdvSTY1RHprY1hnOXR3RkNnN0NQZ3NJck1HcHRLaW04ZnVpQVFvT3dqNExDUGJSZzYtUHdfX2V4UUVLRHNJLUN3aXI4WnpSd3FEbjZMQUJDZzdDUGdzSTlvSDBpc245cDVYVkFRb093ajRMQ1BUMTA1anR3OEtDX3dFS0RjSS1DZ2pOM1l5aThQVFB1Z1VLRGNJLUNnakg5OTdSdTRqMjdoQUtEY0ktQ2dpOS1jR0c3N1NONGlBS0RzSS1Dd2o3cHA3bnVON3N2UFFCQ2c3Q1Bnc0luSnp3aktmeTVfamFBUW9Od2o0S0NNZU4yYnV4clpydmJBb053ajRLQ0lPcTA2LTM3c2VpQXdvTXdqNEpDTWJac2ZqeDlfNGxDZzNDUGdvSXZ1S0V1OEN4LS1rS0NnM0NQZ29JbkltaXk5ZTU5dkV6Q2c3Q1Bnc0kwSUwyd3B5dnNPV3FBUW9Od2o0S0NKZXVpSlQ4NHFXd0FRb053ajRLQ09MYzZjLV9ucC05U1FvT3dqNExDSXlRX19qWnJMVFk4QUVLQV9JLUFBb053ajRLQ1A3U3NJMnZzWUdZSEFvRDhqNEFDaF9TUGh3S0dsSkVSVTFKUVhSYU4zZFRibVZzTm1waFQyNDBjVjlwUjNWbkNnUHlQZ0FLRHNJLUN3akY1cHZXMGZ1bms4NEJDZ1B5UGdBS0RjSS1DZ2prc2RLbnFhM0FfbE1LQV9JLUFBb053ajRLQ0lQZTRlLUkwcUxpT1FvRDhqNEFDZzdDUGdzSXlkVC1nY3pPai1MS0FRb0Q4ajRBQ2czQ1Bnb0lxcC15cWZyQXpyaHRDZ1B5UGdBS0RzSS1Dd2lya2MzQ204LU56bzRCQ2dQeVBnQUtEc0ktQ3dpYzFLcjZ1TG1ELUw0QkNnUHlQZ0FLRHNJLUN3alA5ZUMzcVpxLXBPb0JDZ1B5UGdBS0RjSS1DZ2pzNmNHMzlPYXY5bmtLQV9JLUFBb093ajRMQ05qTHJ2REZ3WS1icUFFS0FfSS1BQW9Od2o0S0NLLTJ5YVdobGQzNVlBb0Q4ajRBQ2czQ1Bnb0lzcDNGbE5yaTJOUmpDZ1B5UGdBS0RzSS1Dd2lsbjlYSXBhT3JrdGNCQ2dQeVBnQUtEc0ktQ3dqcXRLdWExNm1ua3ZrQkNnUHlQZ0FLRGNJLUNnaXI3OWUzejVmUzYxUUtBX0ktQUFvT3dqNExDSzIxanRUNXFiLWctZ0VLQV9JLUFBb0owajRHQ2dSU1JFMU5DZ1B5UGdBS0RjSS1DZ2lxOThqNW1hM1dxblVTRlFBWEdSc2RIeUVqSlNjcEt5MHZNVE0xTnprN1BSb0VDQUFRQVJvRUNBQVFBaG9FQ0FBUUF4b0VDQUFRQkJvRUNBQVFCUm9FQ0FBUUJob0VDQUFRQnhvRUNBQVFDQm9FQ0FBUUNSb0VDQUFRQ2hvRUNBQVFDeG9FQ0FBUURCb0VDQUFRRFJvRUNBQVFEaG9FQ0FBUUR4b0VDQUFRRUJvRUNBQVFFUm9FQ0FBUUVob0VDQUFRRXhvRUNBQVFGQm9FQ0FBUUZSb0VDQUFRRmhvRUNCY1FHQm9FQ0JrUUdob0VDQnNRSEJvRUNCMFFIaG9FQ0I4UUlCb0VDQ0VRSWhvRUNDTVFKQm9FQ0NVUUpob0VDQ2NRS0JvRUNDa1FLaG9FQ0NzUUxCb0VDQzBRTGhvRUNDOFFNQm9FQ0RFUU1ob0VDRE1RTkJvRUNEVVFOaG9FQ0RjUU9Cb0VDRGtRT2hvRUNEc1FQQm9FQ0QwUVBpb1ZBQmNaR3gwZklTTWxKeWtyTFM4eE16VTNPVHM5ag93YXRjaC1uZXh0LWZlZWQ%3D")]
-	public async Task ContinueVideoNext(string continuation)
+	[TestCase("V6kJKxvbgZ0", true, false, TestName = "Age restricted video")]
+	[TestCase("LACbVhgtx9I", false, false, TestName = "Video that includes self-harm topics")]
+	public async Task FailPlayer(string videoId, bool contentCheckOk, bool includeHls)
 	{
-		InnerTubeContinuationResponse response = await _innerTube.ContinueVideoAsync(continuation);
-		StringBuilder sb = new();
-		
-		foreach (IRenderer renderer in response.Contents)
-			sb.AppendLine("->\t" + string.Join("\n\t", (renderer.ToString() ?? "UNKNOWN RENDERER " + renderer.Type).Split("\n")));
+		try
+		{
+			await _innerTube.GetPlayerAsync(videoId, contentCheckOk);
+			Assert.Fail("No exceptions were thrown");
+		}
+		catch (PlayerException e)
+		{
+			Assert.Pass(e.ToString());
+		}
+		catch (Exception e)
+		{
+			Assert.Fail($"Wrong exception was thrown ({e.GetType().Name} instead of {nameof(PlayerException)}).\n{e}");
+		}
+	}
 
-		sb.AppendLine($"Continuation: {response.Continuation?.Substring(0, 20)}");
-		
+	[Test]
+	public async Task CachePlayer()
+	{
+		StringBuilder sb = new();
+		Stopwatch sp = Stopwatch.StartNew();
+		await _innerTube.GetPlayerAsync("BaW_jenozKc", true);
+		sb.AppendLine($"First request : {sp.ElapsedMilliseconds}ms");
+		sp.Restart();
+		await _innerTube.GetPlayerAsync("BaW_jenozKc", true);
+		sb.AppendLine($"Second request: {sp.ElapsedMilliseconds}ms");
+		Assert.Pass(sb.ToString());
+	}
+
+	[TestCase("BaW_jenozKc", TestName = "Regular video")]
+	[TestCase("V6kJKxvbgZ0", TestName = "Age restricted video")]
+	[TestCase("LACbVhgtx9I", TestName = "Video that includes self-harm topics")]
+	[TestCase("Atvsg_zogxo", TestName = "something broke CompactPlaylistRenderer")]
+	[TestCase("t6cZn-Fvwa0", TestName = "Video with comments disabled")]
+	[TestCase("jPhJbKBuNnA", TestName = "Video with watchEndpoint in attributedDescription")]
+	[TestCase("UoBFuLMlDkw", TestName = "Video with more special stuff in attributedDescription")]
+	[TestCase("llrBX6FpMpM", TestName = "compactMovieRenderer")]
+	[TestCase("jUUe6TuRlgU", TestName = "Chapters")]
+	public async Task GetVideoNext(string videoId)
+	{
+		NextResponse next = await _innerTube.GetNextAsync(videoId, true, true);
+		StringBuilder sb = new();
+
+		RepeatedField<RendererWrapper> firstColumnResults =
+			next.Contents.TwoColumnWatchNextResults.Results.ResultsContainer.Results;
+		VideoPrimaryInfoRenderer primary = firstColumnResults.First(x =>
+			x.RendererCase == RendererWrapper.RendererOneofCase.VideoPrimaryInfoRenderer).VideoPrimaryInfoRenderer;
+		VideoSecondaryInfoRenderer secondary = firstColumnResults.First(x =>
+			x.RendererCase == RendererWrapper.RendererOneofCase.VideoSecondaryInfoRenderer).VideoSecondaryInfoRenderer;
+		RendererWrapper commentsSection = firstColumnResults.First(x =>
+			x.RendererCase == RendererWrapper.RendererOneofCase.ItemSectionRenderer &&
+			x.ItemSectionRenderer.SectionIdentifier.StartsWith("comment")).ItemSectionRenderer.Contents[0];
+		CommentsEntryPointHeaderRenderer? commentsEntryPoint = commentsSection.CommentsEntryPointHeaderRenderer;
+		MessageRenderer? commentsMessage = commentsSection.MessageRenderer;
+
+		Utils.Formatter = new MarkdownFormatter();
+
+		sb.AppendLine("== DETAILS");
+		sb.AppendLine("Id: " + next.CurrentVideoEndpoint.WatchEndpoint.VideoId);
+		sb.AppendLine("Title: " + Utils.ReadRuns(primary.Title));
+		sb.AppendLine("Channel: " +
+		              $"[{secondary.Owner.VideoOwnerRenderer.NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+		              Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.Title) +
+		              $" ({Utils.ReadRuns(secondary.Owner.VideoOwnerRenderer.SubscriberCountText)})");
+		sb.AppendLine("DateText: " + Utils.ReadRuns(primary.RelativeDateText));
+		sb.AppendLine("ViewCount: " + (primary.ViewCount != null
+			? primary.ViewCount.VideoViewCountRenderer.HasOriginalViewCount &&
+			  primary.ViewCount.VideoViewCountRenderer.OriginalViewCount != 0
+				? primary.ViewCount.VideoViewCountRenderer.OriginalViewCount.ToString()
+				: Utils.ReadRuns(primary.ViewCount.VideoViewCountRenderer.ViewCount)
+			: "0"));
+		sb.AppendLine("LikeCount: " + primary.VideoActions.MenuRenderer.TopLevelButtons
+			.First(x => x.RendererCase == RendererWrapper.RendererOneofCase.SegmentedLikeDislikeButtonViewModel)
+			.SegmentedLikeDislikeButtonViewModel.LikeButtonViewModel.LikeButtonViewModel.ToggleButtonViewModel
+			.ToggleButtonViewModel.DefaultButtonViewModel.ButtonViewModel2.Title);
+		sb.AppendLine("Description:\n" + Utils.ReadAttributedDescription(secondary.AttributedDescription, true));
+
+		sb.AppendLine("\n== COMMENTS");
+		if (commentsEntryPoint != null)
+		{
+			CommentsEntryPointTeaserRenderer? teaserComment =
+				commentsEntryPoint.ContentRenderer?.CommentsEntryPointTeaserRenderer;
+			sb.AppendLine("CommentCount: " + Utils.ReadRuns(commentsEntryPoint.CommentCount));
+			if (teaserComment == null) sb.AppendLine("TeaserComment: null");
+			else
+			{
+				Thumbnail avatar = teaserComment.TeaserAvatar.Thumbnails_.First();
+				sb.AppendLine("TeaserComment: ")
+					.AppendLine($"  Thumbnail: [{avatar.Width}x{avatar.Height}] {avatar.Url}")
+					.AppendLine("  Content: " + Utils.ReadRuns(teaserComment.TeaserContent));
+			}
+		}
+		else if (commentsMessage != null)
+		{
+			sb.AppendLine("Message: " + Utils.ReadRuns(commentsMessage.Text));
+		}
+
+		sb.AppendLine("\n== CHAPTERS");
+		MacroMarkersListRenderer? chapterEngagementPanel = next.EngagementPanels.FirstOrDefault(x =>
+				x.EngagementPanelSectionListRenderer.TargetId == "engagement-panel-macro-markers-description-chapters")
+			?.EngagementPanelSectionListRenderer?.Content?.MacroMarkersListRenderer;
+		if (chapterEngagementPanel != null)
+		{
+			foreach (MacroMarkersListItemRenderer chapter in chapterEngagementPanel.Contents.Select(x =>
+				         x.MacroMarkersListItemRenderer))
+				sb.AppendLine(
+					$"- [{TimeSpan.FromSeconds(chapter.OnTap.WatchEndpoint.StartTimeSeconds)}] {Utils.ReadRuns(chapter.Title)}");
+		}
+		else
+		{
+			sb.AppendLine("-> No chapters available");
+		}
+
+		sb.AppendLine("\n== RECOMMENDED");
+		// NOTE: for age restricted videos, the first SecondaryResults is null
+		if (next.Contents.TwoColumnWatchNextResults.SecondaryResults != null)
+			foreach (RendererWrapper? renderer in next.Contents.TwoColumnWatchNextResults.SecondaryResults
+				         .SecondaryResults.Results)
+				sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
+		else
+			sb.AppendLine("-> No recommendations");
+
 		Assert.Pass(sb.ToString());
 	}
 
@@ -201,40 +352,41 @@ public class PlayerTests
 	public async Task GetVideoNextWithPlaylist(string videoId, string playlistId, int? playlistIndex,
 		string? playlistParams)
 	{
-		InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId, playlistId, playlistIndex, playlistParams);
-		if (next.Playlist is null)
+		NextResponse next =
+			await _innerTube.GetNextAsync(videoId, true, true, playlistId, playlistIndex, playlistParams);
+		if (next.Contents.TwoColumnWatchNextResults.Playlist == null)
 		{
 			Assert.Fail("Playlist is null");
 			return;
 		}
 
+		Playlist playlist = next.Contents.TwoColumnWatchNextResults.Playlist.Playlist!;
 		StringBuilder sb = new();
-
-		sb.AppendLine($"[{next.Playlist.PlaylistId}] {next.Playlist.Title}")
-			.AppendLine($"{next.Playlist.Channel}")
-			.AppendLine(
-				$"{next.Playlist.CurrentIndex} ({next.Playlist.LocalCurrentIndex}) / {next.Playlist.TotalVideos}")
-			.AppendLine($"IsCourse: {next.Playlist.IsCourse}")
-			.AppendLine($"IsInfinite: {next.Playlist.IsInfinite}");
+		sb.AppendLine($"[{playlist.PlaylistId}] {playlist.Title}")
+			.AppendLine($"[{playlist.LongBylineText.Runs[0].NavigationEndpoint.BrowseEndpoint.BrowseId}] " +
+			            playlist.LongBylineText.Runs[0].Text)
+			.AppendLine($"{playlist.CurrentIndex} ({playlist.LocalCurrentIndex}) / {playlist.TotalVideos}")
+			.AppendLine($"IsCourse: {playlist.IsCourse}")
+			.AppendLine($"IsInfinite: {playlist.IsInfinite}");
 
 		sb.AppendLine()
 			.AppendLine("== VIDEOS");
 
-		foreach (PlaylistPanelVideoRenderer video in next.Playlist.Videos)
-			sb.AppendLine(video.ToString());
+		foreach (RendererWrapper? renderer in playlist.Contents)
+			sb.AppendLine("->\t" + string.Join("\n\t", Utils.SerializeRenderer(renderer).Split("\n")));
 
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("1234567890a", Description = "An ID I just made up")]
-	[TestCase("a62882basgl", Description = "Another ID I just made up")]
-	[TestCase("32nkdvLq3oQ", Description = "A deleted video")]
-	[TestCase("mVp-gQuCJI8", Description = "A private video")]
+	[TestCase("1234567890a", TestName = "An ID I just made up")]
+	[TestCase("a62882basgl", TestName = "Another ID I just made up")]
+	[TestCase("32nkdvLq3oQ", TestName = "A deleted video")]
+	[TestCase("mVp-gQuCJI8", TestName = "A private video")]
 	public async Task DontGetVideoNext(string videoId)
 	{
 		try
 		{
-			await _innerTube.GetVideoAsync(videoId);
+			await _innerTube.GetNextAsync(videoId);
 		}
 		catch (InnerTubeException e)
 		{
@@ -248,65 +400,53 @@ public class PlayerTests
 		Assert.Fail("Didn't throw an exception");
 	}
 
-	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
+	[TestCase("BaW_jenozKc", 0, TestName = "Regular video comments")]
+	[TestCase("BaW_jenozKc", 1, TestName = "Regular video comments")]
+	[TestCase("5UCz9i2K9gY", 0, TestName = "Has unescaped HTML tags")]
+	[TestCase("quI6g4HpePc", 0, TestName = "Contains pinned & hearted comments")]
+	[TestCase("kYwB-kZyNU4", 0, TestName = "Contains authors with badges")]
 	[TestCase(
-		"Eg0SC3F1STZnNEhwZVBjGAYyVSIuIgtxdUk2ZzRIcGVQYzAAeAKqAhpVZ3p3MnBIQXR1VW9xamRLbUtWNEFhQUJBZzABQiFlbmdhZ2VtZW50LXBhbmVsLWNvbW1lbnRzLXNlY3Rpb24%3D",
-		Description = "Contains pinned & hearted comments")]
-	[TestCase("Eg0SC2tZd0Ita1p5TlU0GAYyJSIRIgtrWXdCLWtaeU5VNDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D",
-		Description = "Contains authors with badges")]
-	[TestCase("5UCz9i2K9gY", Description = "Has unescaped HTML tags")]
-	public async Task GetVideoComments(string videoId)
+		"Eg0SC0JhV19qZW5vektjGAYy4QIKtwJnZXRfcmFua2VkX3N0cmVhbXMtLUNxY0JDSUFFRlJlMzBUZ2FuQUVLbHdFSTJGOFFnQVFZQnlLTUFYc2JQLW9iVGg1MkxWQnlUZklTWUh4TWlZSm9lQUJta2VKQUNNVnFNakUwQjlhMEl0S01SaFJXSFJIaU9XaUNpc19LY1BuVm1tRGVNLXRTMENyR0RPMFNwZE55WVZrUGYtdFJYVkFHT2ZBMmo4Smg2VXlTWERfZ2UxWkduYkVEcXlXTk9NdklBUk5RajlDQjZhSmJDS3FZdlVlQlNOeEkxdHQ1TVZRd2lXMmpvWG1tRnlwS0s0QVZ2M2dRRUJRU0JRaUlJQmdBRWdVSXFDQVlBQklGQ0ljZ0dBQVNCUWlKSUJnQUVnY0loU0FRRkJnQkVnY0lseUFRQ3hnQUdBQSIRIgtCYVdfamVub3pLYzAAeAEoFEIQY29tbWVudHMtc2VjdGlvbg%3D%3D",
+		-1, TestName = "Continuation")]
+	public async Task GetVideoComments(string videoId, int sortOrder)
 	{
-		InnerTubeContinuationResponse comments;
-		if (videoId.Length == 11)
-		{
-			InnerTubeNextResponse next = await _innerTube.GetVideoAsync(videoId);
-			if (next.CommentsContinuation is null) Assert.Fail("Video did not contain a comment continuation token");
-			comments = await _innerTube.GetVideoCommentsAsync(next.CommentsContinuation!);
-		}
-		else
-		{
-			comments = await _innerTube.GetVideoCommentsAsync(videoId!);
-		}
+		NextResponse comments = sortOrder >= 0
+			? await _innerTube.ContinueNextAsync(Utils.PackCommentsContinuation(videoId,
+				(CommentsContext.Types.SortOrder)sortOrder))
+			: await _innerTube.ContinueNextAsync(videoId);
 
 		StringBuilder sb = new();
-
-		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
-
-		sb.AppendLine($"\nContinuation: {comments.Continuation?.Substring(0, 20)}...");
+		foreach (Endpoint endpoint in comments.OnResponseReceivedEndpoints)
+		{
+			switch (endpoint.EndpointTypeCase)
+			{
+				case Endpoint.EndpointTypeOneofCase.ReloadContinuationItemsCommand:
+					if (endpoint.ReloadContinuationItemsCommand.Slot == 1)
+						foreach (RendererWrapper? renderer in endpoint.ReloadContinuationItemsCommand.ContinuationItems)
+							sb.AppendLine(Utils.SerializeRenderer(renderer));
+					break;
+				case Endpoint.EndpointTypeOneofCase.AppendContinuationItemsAction:
+					if (endpoint.AppendContinuationItemsAction.TargetId == "comments-section")
+						foreach (RendererWrapper? renderer in endpoint.AppendContinuationItemsAction.ContinuationItems)
+							sb.AppendLine(Utils.SerializeRenderer(renderer));
+					break;
+			}
+		}
 
 		Assert.Pass(sb.ToString());
 	}
 
-	[TestCase("BaW_jenozKc", Description = "Regular video comments")]
-	public async Task GetVideoCommentsProtobuf(string videoId)
-	{
-		InnerTubeContinuationResponse comments =
-			await _innerTube.GetVideoCommentsAsync(videoId, CommentsContext.Types.SortOrder.TopComments);
-
-		StringBuilder sb = new();
-		foreach (IRenderer renderer in comments.Contents) sb.AppendLine(renderer.ToString());
-		sb.AppendLine($"\nContinuation: {comments.Continuation?[..20]}...");
-
-		Assert.Pass(sb.ToString());
-	}
-
-
-	[TestCase("astISOttCQ0", Description = "Video with comments disabled")]
-	public void DontGetVideoCommentsProtobuf(string videoId)
-	{
-		Assert.Catch(() =>
-		{
-			_ = _innerTube.GetVideoCommentsAsync(videoId, CommentsContext.Types.SortOrder.TopComments).Result;
-		});
-	}
-
-	[TestCase("there's no way they will accept this as a continuation key", Description = "Self explanatory")]
-	public async Task DontGetVideoComments(string continuationToken)
+	[TestCase("there's no way they will accept this as a continuation key", false, TestName = "Self explanatory")]
+	[TestCase("astISOttCQ0", true, TestName = "Video with comments disabled")]
+	public async Task DontGetVideoComments(string continuationToken, bool isVideoId)
 	{
 		try
 		{
-			await _innerTube.GetVideoCommentsAsync(continuationToken);
+			if (isVideoId)
+				await _innerTube.ContinueNextAsync(Utils.PackCommentsContinuation(continuationToken,
+					CommentsContext.Types.SortOrder.TopComments));
+			else
+				await _innerTube.ContinueNextAsync(continuationToken);
 		}
 		catch (InnerTubeException e)
 		{

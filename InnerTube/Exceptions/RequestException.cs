@@ -12,8 +12,8 @@ public class RequestException : InnerTubeException
 	/// </summary>
 	public string JsonResponse { get; }
 
-	internal RequestException(HttpStatusCode statusCode, string jsonResponse) : base(
-		$"Request failed (status code: {(int)statusCode} ({statusCode}))")
+	internal RequestException(HttpStatusCode statusCode, RequestClient client, string jsonResponse) : base(
+		$"Request failed (client: {client}, status code: {(int)statusCode} ({statusCode}))")
 	{
 		JsonResponse = jsonResponse;
 	}

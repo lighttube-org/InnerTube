@@ -23,5 +23,7 @@ public class InnerTubeConfiguration
 	/// <summary>
 	/// InnerTube API key. Do not change unless you know what you're doing
 	/// </summary>
-	public string ApiKey { get; set; } = @"AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
+	public string ApiKey { get; set; } = @"AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
+	// web:
+	//public string ApiKey { get; set; } = @"AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
 }
